@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.2.0-b3">
     
     
       
@@ -26,7 +26,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.83068744.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.85d0ee34.min.css">
       
       
   
@@ -91,6 +94,16 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config",""),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -107,8 +120,18 @@
     body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -157,8 +180,41 @@
       </div>
     </div>
     
-    
-      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="关闭自动模式"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="关闭自动模式" for="__palette_3" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="default" data-md-color-accent="blue"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_3">
+            
+              <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+        </form>
+      
     
     
     
@@ -194,7 +250,7 @@
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+      <div class="md-search__scrollwrap" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -211,7 +267,7 @@
         <a href="https://github.com/RoderickShao/RoderickShao_notebook" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     RoderickShao_notebook
@@ -387,7 +443,7 @@
       <a href="https://github.com/RoderickShao/RoderickShao_notebook" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     RoderickShao_notebook
@@ -399,7 +455,6 @@
     
       
       
-  
   
   
   
@@ -422,7 +477,6 @@
   
   
   
-  
     
     
       
@@ -435,12 +489,6 @@
     
     
       
-      
-    
-    
-      
-        
-        
       
     
     <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
@@ -472,7 +520,6 @@
   
   
   
-  
     
     
       
@@ -487,12 +534,6 @@
     
     
       
-      
-    
-    
-      
-        
-        
       
     
     <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
@@ -524,7 +565,6 @@
   
   
   
-  
     
     
       
@@ -537,12 +577,6 @@
     
     
       
-      
-    
-    
-      
-        
-        
       
     
     <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
@@ -574,7 +608,6 @@
   
   
   
-  
     
     
       
@@ -585,12 +618,6 @@
     
     
       
-      
-    
-    
-      
-        
-        
       
     
     <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
@@ -624,7 +651,6 @@
     
   
   
-  
     
     
       
@@ -634,23 +660,15 @@
       
     
     
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -670,7 +688,6 @@
             
               
                 
-  
   
   
   
@@ -696,7 +713,6 @@
     
   
   
-  
     
     
       
@@ -719,20 +735,15 @@
         
       
     
-    
-      
-      
-    
-    
-      
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
+        
+        
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" checked>
         
-          
           <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
             
   
@@ -756,7 +767,6 @@
   
   
   
-  
     <li class="md-nav__item">
       <a href="../0%20Introduction/" class="md-nav__link">
         
@@ -774,7 +784,6 @@
             
               
                 
-  
   
   
   
@@ -798,7 +807,6 @@
   
   
   
-  
     <li class="md-nav__item">
       <a href="../2%20Rasterization/" class="md-nav__link">
         
@@ -816,7 +824,6 @@
             
               
                 
-  
   
   
   
@@ -840,7 +847,6 @@
   
   
   
-  
     <li class="md-nav__item">
       <a href="../4%20Texture%20Mapping/" class="md-nav__link">
         
@@ -858,7 +864,6 @@
             
               
                 
-  
   
   
   
@@ -882,7 +887,6 @@
   
   
   
-  
     <li class="md-nav__item">
       <a href="../6%20Ray%20tracing/" class="md-nav__link">
         
@@ -900,7 +904,6 @@
             
               
                 
-  
   
   
   
@@ -924,7 +927,6 @@
   
   
     
-  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -973,9 +975,7 @@
       
         <li class="md-nav__item">
   <a href="#81-advanced-light-transport" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1 Advanced Light Transport
-    </span>
+    8.1 Advanced Light Transport
   </a>
   
     <nav class="md-nav" aria-label="8.1 Advanced Light Transport">
@@ -983,9 +983,7 @@
         
           <li class="md-nav__item">
   <a href="#811-unbiased-light-transport-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.1 无偏光线传播方法 Unbiased light transport methods
-    </span>
+    8.1.1 无偏光线传播方法 Unbiased light transport methods
   </a>
   
     <nav class="md-nav" aria-label="8.1.1 无偏光线传播方法 Unbiased light transport methods">
@@ -993,18 +991,14 @@
         
           <li class="md-nav__item">
   <a href="#8111-bidirectional-path-tracing-bdpt" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.1.1 Bidirectional Path Tracing (BDPT)
-    </span>
+    8.1.1.1 Bidirectional Path Tracing (BDPT)
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#8112-metropolis-light-transport-mlt" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.1.2 Metropolis Light Transport (MLT)
-    </span>
+    8.1.1.2 Metropolis Light Transport (MLT)
   </a>
   
 </li>
@@ -1016,9 +1010,7 @@
         
           <li class="md-nav__item">
   <a href="#812-biased-light-transport-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.2 有偏光线传播方法 Biased light transport methods
-    </span>
+    8.1.2 有偏光线传播方法 Biased light transport methods
   </a>
   
     <nav class="md-nav" aria-label="8.1.2 有偏光线传播方法 Biased light transport methods">
@@ -1026,18 +1018,14 @@
         
           <li class="md-nav__item">
   <a href="#8121-photon-mapping" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.2.1 Photon Mapping
-    </span>
+    8.1.2.1 Photon Mapping
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#8122-vertex-connection-and-merging" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.2.2 Vertex Connection and Merging
-    </span>
+    8.1.2.2 Vertex Connection and Merging
   </a>
   
 </li>
@@ -1049,9 +1037,7 @@
         
           <li class="md-nav__item">
   <a href="#813-instant-radiosity" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.3 Instant Radiosity
-    </span>
+    8.1.3 Instant Radiosity
   </a>
   
 </li>
@@ -1063,9 +1049,7 @@
       
         <li class="md-nav__item">
   <a href="#82-advanced-appearance-modeling" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2 Advanced Appearance Modeling
-    </span>
+    8.2 Advanced Appearance Modeling
   </a>
   
     <nav class="md-nav" aria-label="8.2 Advanced Appearance Modeling">
@@ -1073,9 +1057,7 @@
         
           <li class="md-nav__item">
   <a href="#821-non-surface-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2.1 Non-Surface Models
-    </span>
+    8.2.1 Non-Surface Models
   </a>
   
     <nav class="md-nav" aria-label="8.2.1 Non-Surface Models">
@@ -1083,27 +1065,21 @@
         
           <li class="md-nav__item">
   <a href="#8211-participating-media" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2.1.1 Participating Media
-    </span>
+    8.2.1.1 Participating Media
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#8212-hair-appearance" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2.1.2 Hair Appearance
-    </span>
+    8.2.1.2 Hair Appearance
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#8213-granular-material" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2.1.3 Granular (颗粒) Material
-    </span>
+    8.2.1.3 Granular (颗粒) Material
   </a>
   
 </li>
@@ -1115,9 +1091,7 @@
         
           <li class="md-nav__item">
   <a href="#822-surface-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2.2 Surface Models
-    </span>
+    8.2.2 Surface Models
   </a>
   
 </li>
@@ -1179,9 +1153,7 @@
       
         <li class="md-nav__item">
   <a href="#81-advanced-light-transport" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1 Advanced Light Transport
-    </span>
+    8.1 Advanced Light Transport
   </a>
   
     <nav class="md-nav" aria-label="8.1 Advanced Light Transport">
@@ -1189,9 +1161,7 @@
         
           <li class="md-nav__item">
   <a href="#811-unbiased-light-transport-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.1 无偏光线传播方法 Unbiased light transport methods
-    </span>
+    8.1.1 无偏光线传播方法 Unbiased light transport methods
   </a>
   
     <nav class="md-nav" aria-label="8.1.1 无偏光线传播方法 Unbiased light transport methods">
@@ -1199,18 +1169,14 @@
         
           <li class="md-nav__item">
   <a href="#8111-bidirectional-path-tracing-bdpt" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.1.1 Bidirectional Path Tracing (BDPT)
-    </span>
+    8.1.1.1 Bidirectional Path Tracing (BDPT)
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#8112-metropolis-light-transport-mlt" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.1.2 Metropolis Light Transport (MLT)
-    </span>
+    8.1.1.2 Metropolis Light Transport (MLT)
   </a>
   
 </li>
@@ -1222,9 +1188,7 @@
         
           <li class="md-nav__item">
   <a href="#812-biased-light-transport-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.2 有偏光线传播方法 Biased light transport methods
-    </span>
+    8.1.2 有偏光线传播方法 Biased light transport methods
   </a>
   
     <nav class="md-nav" aria-label="8.1.2 有偏光线传播方法 Biased light transport methods">
@@ -1232,18 +1196,14 @@
         
           <li class="md-nav__item">
   <a href="#8121-photon-mapping" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.2.1 Photon Mapping
-    </span>
+    8.1.2.1 Photon Mapping
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#8122-vertex-connection-and-merging" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.2.2 Vertex Connection and Merging
-    </span>
+    8.1.2.2 Vertex Connection and Merging
   </a>
   
 </li>
@@ -1255,9 +1215,7 @@
         
           <li class="md-nav__item">
   <a href="#813-instant-radiosity" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.1.3 Instant Radiosity
-    </span>
+    8.1.3 Instant Radiosity
   </a>
   
 </li>
@@ -1269,9 +1227,7 @@
       
         <li class="md-nav__item">
   <a href="#82-advanced-appearance-modeling" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2 Advanced Appearance Modeling
-    </span>
+    8.2 Advanced Appearance Modeling
   </a>
   
     <nav class="md-nav" aria-label="8.2 Advanced Appearance Modeling">
@@ -1279,9 +1235,7 @@
         
           <li class="md-nav__item">
   <a href="#821-non-surface-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2.1 Non-Surface Models
-    </span>
+    8.2.1 Non-Surface Models
   </a>
   
     <nav class="md-nav" aria-label="8.2.1 Non-Surface Models">
@@ -1289,27 +1243,21 @@
         
           <li class="md-nav__item">
   <a href="#8211-participating-media" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2.1.1 Participating Media
-    </span>
+    8.2.1.1 Participating Media
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#8212-hair-appearance" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2.1.2 Hair Appearance
-    </span>
+    8.2.1.2 Hair Appearance
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#8213-granular-material" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2.1.3 Granular (颗粒) Material
-    </span>
+    8.2.1.3 Granular (颗粒) Material
   </a>
   
 </li>
@@ -1321,9 +1269,7 @@
         
           <li class="md-nav__item">
   <a href="#822-surface-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      8.2.2 Surface Models
-    </span>
+    8.2.2 Surface Models
   </a>
   
 </li>
@@ -1450,29 +1396,116 @@
 <h3 id="822-surface-models">8.2.2 Surface Models<a class="headerlink" href="#822-surface-models" title="Permanent link">&para;</a></h3>
 
 
+  
 
 
 
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        此页面有帮助吗？
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9v12H1V9h4m4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21H9m0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03V19Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 15V3h4v12h-4M15 3a2 2 0 0 1 2 2v10c0 .55-.22 1.05-.59 1.41L9.83 23l-1.06-1.06c-.27-.27-.44-.64-.44-1.06l.03-.31.95-4.57H3a2 2 0 0 1-2-2v-2c0-.26.05-.5.14-.73l3.02-7.05C4.46 3.5 5.17 3 6 3h9m0 2H5.97L3 12v2h8.78l-1.13 5.32L15 14.97V5Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              谢谢你的反馈！
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
 
 
+  <h2 id="__comments">Comments</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+    data-repo="RoderickShao/RoderickShao_notebook"
+    data-repo-id="R_kgDOMS_5AQ"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
 
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
 
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
 
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
 
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
 
                 
               </article>
             </div>
           
           
-<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-  Back to top
-</button>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
         
       </main>
       
@@ -1499,15 +1532,18 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "../../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
-    
-      <script src="../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.4e31edb1.min.js"></script>
       
-        <script src="../../../javascripts/mathjax.js"></script>
+        
+          <script src="../../../javascripts/mathjax.js"></script>
+        
       
-        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+          <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
