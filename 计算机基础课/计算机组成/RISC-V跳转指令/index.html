@@ -15,16 +15,16 @@
       
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
-        <title>RoderickShao's NoteBook</title>
+        <title>RISC-V 跳转指令 - RoderickShao's NoteBook</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
       
       
   
@@ -84,16 +84,25 @@
       
     
     
-      <link rel="stylesheet" href="/css/custom.css">
+      <link rel="stylesheet" href="../../../css/custom.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     <body dir="ltr">
@@ -103,6 +112,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#risc-v" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -114,7 +128,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -134,7 +148,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              RISC-V 跳转指令
             
           </span>
         </div>
@@ -222,7 +236,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
     
@@ -241,7 +255,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+        <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
           
   
     
@@ -261,7 +275,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+        <a href="../../Introduction/" class="md-tabs__link">
           
   
     
@@ -281,7 +295,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-tabs__link">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-tabs__link">
           
   
     
@@ -301,7 +315,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-tabs__link">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-tabs__link">
           
   
     
@@ -321,7 +335,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-tabs__link">
+        <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-tabs__link">
           
   
     
@@ -356,7 +370,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -386,7 +400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -430,7 +444,7 @@
         
   
   
-    <a href="/%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+    <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -482,7 +496,7 @@
         
   
   
-    <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+    <a href="../../Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -532,7 +546,7 @@
         
   
   
-    <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-nav__link">
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -580,7 +594,7 @@
         
   
   
-    <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-nav__link">
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -628,7 +642,7 @@
         
   
   
-    <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-nav__link">
+    <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -664,6 +678,118 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 无条件跳转
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 无条件跳转">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-jal" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 JAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-jalr" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 JALR
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 有条件分支跳转
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 有条件分支跳转">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-beq" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 BEQ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22bne" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2BNE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-blt" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 BLT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-bltu" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 BLTU
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-bge" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 BGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-bgeu" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 BGEU
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -675,8 +801,101 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+  
+
+
+<h1 id="risc-v">RISC-V 跳转指令<a class="headerlink" href="#risc-v" title="Permanent link">&para;</a></h1>
+<p>转载于<a href="https://zhuanlan.zhihu.com/p/394860078">RISC-V指令集讲解（5）条件和无条件跳转指令 - 知乎 (zhihu.com)</a></p>
+<p>RV32I中控制转移指令主要有两类：无条件跳转和有条件跳转。</p>
+<h2 id="1"><strong>1 无条件跳转</strong><a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>无条件跳转指令均使用PC相对寻址。无条件跳转主要包括两条指令：<code>JAL</code> 和 <code>JALR</code>。</p>
+<h3 id="11-jal">1.1 <code>JAL</code><a class="headerlink" href="#11-jal" title="Permanent link">&para;</a></h3>
+<p><code>JAL</code>指令是用J-type格式(<code>JAL</code>是RV32I中唯一J-type的指令)。</p>
+<p><code>JAL</code>的指令格式为 <code>JAL rd,offset</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>x[rd] = pc+4; 
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pc += sext(offset);         //sext是位扩展的意思
+</code></pre></div>
+<p>其机器码格式如图1所示。其opcode为110_1111。该指令把下一条指令的地址(PC + 4)存入rd寄存器中，然后把PC设置为当前值加上符号位扩展的<strong>偏移量</strong>。</p>
+<p>下图为<code>JAL</code>机器编码格式</p>
+<p><a class="glightbox" href="https://picx.zhimg.com/80/v2-d279348b363a582391647956b4d2d3fb_1440w.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://picx.zhimg.com/80/v2-d279348b363a582391647956b4d2d3fb_1440w.webp" /></a></p>
+<p>注意偏移量是带符号扩展的。可以看到偏移量是2字节对齐的(offset [20:1])，虽然RV32I中所有的指令地址都是4字节对齐的，但是<code>JAL</code>还可能被用于兼容C扩展指令集(详情见RISC-V 简介（4）RISC-V指令集编码结构中对其的描述)，所以就默认offset bit 0为0(即2字节对齐)。</p>
+<p>因此，<code>JAL</code>跳转的地址有+/- 1MB的范围。(2^21 = 2MB = +/- 1MB)。</p>
+<p>标准的软件调用约定(calling convention)用x1寄存器作为返回地址寄存器(rd)，也可以用x5作为备用的链接寄存器(link register)。因为<code>JAL</code>指令中的offset是相对于PC的偏移量，在编写时需要精确的地址差值，且任意添加/删除一条汇编指令，<code>JAL</code>中的偏移量可能就需要再次修改，这给<code>JAL</code>指令的使用带来了很大的负担，所以，一般在用<code>JAL</code>指令时，多用<code>JAL rd，label</code>而不是<code>JAL rd，offset</code>。</p>
+<p><code>JAL rd，label</code>中的label是标签，用来标注某段程序的位置，为程序中跳转及分支语句提供的跳转入口(label使用实例可以点击这里)。<strong>编译器会自动计算出标签和当前指令的offset</strong>。</p>
+<h3 id="12-jalr">1.2 <code>JALR</code><a class="headerlink" href="#12-jalr" title="Permanent link">&para;</a></h3>
+<p>间接跳转指令<code>JALR</code>用I-type编码类型。指令格式为<code>JALR rd，offset(rs1)</code>。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>t = pc + 4; 
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pc = (x[rs1]+sext(offset)) &amp; ~1; 
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>x[rd]=t; 
+</code></pre></div>
+<p>相当于：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>t = pc + 4; 
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pc = (x[rs1]+sext(offset)) &amp; 0xffff_fffe; 
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>x[rd]=t // RV32I
+</code></pre></div>
+<p>其机器码如图2所示，其opcode为110_0111，funct3为000。</p>
+<p>该指令将PC设置为<code>rs1</code>寄存器中的值加上符号位扩展的偏移量，把计算出地址的最低有效位设为0，并将原PC + 4的值写入rd寄存器。<strong>如果不需要目的寄存器，可以将rd设置为x0</strong>。</p>
+<p><code>JALR</code>的offset也是带符号位扩展的，<code>JALR</code>偏移的地址范围在rs1寄存器中存储地址的+/- 2KB(2 ^ 12 = 4096 = 4 KB = +/- 2KB)。定义<code>JALR</code>指令是为了使两个指令序列可以在32位绝对地址范围内的任意位置跳转(因为<code>JAL</code>指令的跳转范围不够大)。</p>
+<p>示例：</p>
+<p><code>JALR x13，0(x1)</code></p>
+<p>跳到x1寄存器里存储的地址，并将下一条指令存在x13寄存器中。</p>
+<p>一般来说，<code>LUI</code>和<code>JALR</code>配合使用可以跳转32位绝对地址范围，<code>AUIPC</code>和<code>JALR</code>配合可以跳转32位相对于PC的地址范围。</p>
+<p>下图是<code>JALR</code>机器编码格式</p>
+<p><a class="glightbox" href="https://pic4.zhimg.com/80/v2-d41896d6ecd25b2839a124267f4e10a5_1440w.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="img" src="https://pic4.zhimg.com/80/v2-d41896d6ecd25b2839a124267f4e10a5_1440w.webp" /></a></p>
+<h2 id="2"><strong>2 有条件分支跳转</strong><a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>所有的分支指令都是<strong>B-type</strong>编码格式，其机器码如图3所示。12位的立即数以2字节的倍数编码带符号的偏移量(offset[12:1])。</p>
+<p>虽然RV32I中所有的指令地址都是4字节对齐的，但是<code>JAL</code>还可能被用于兼容C扩展指令集，所以就默认offset bit 0为0(即2字节对齐)。</p>
+<p>目标地址由分支指令的地址加上符号位扩展的偏移量组成，范围是2^13 = 8192 = 8 KB = +/- 4 KB。</p>
+<p>与<code>JAL</code>类似，Branch指令常见用法也可以用标签代替偏移量，比如<code>BEQ rs1，rs2，label</code>。</p>
+<p>branch指令机器编码格式如下图：</p>
+<p><a class="glightbox" href="https://pic4.zhimg.com/80/v2-f3cacdecc6b4816c690fca1b33bc2b89_1440w.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="img" src="https://pic4.zhimg.com/80/v2-f3cacdecc6b4816c690fca1b33bc2b89_1440w.webp" /></a></p>
+<h3 id="21-beq">2.1 <code>BEQ</code><a class="headerlink" href="#21-beq" title="Permanent link">&para;</a></h3>
+<p><code>BEQ</code>(branch if equal，相等时分支)</p>
+<p>其指令格式为</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>BEQ rs1，rs2，offset;     //if (rs1 == rs2) pc += sext(offset)
+</code></pre></div>
+<h3 id="22bne">2.2<code>BNE</code><a class="headerlink" href="#22bne" title="Permanent link">&para;</a></h3>
+<p><code>BNE</code>(branch if not equal，不相等时分支)</p>
+<p>其指令格式为</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>BNE rs1，rs2，offset;     //if (rs1 ≠ rs2) pc += sext(offset)
+</code></pre></div>
+<h3 id="23-blt">2.3 <code>BLT</code><a class="headerlink" href="#23-blt" title="Permanent link">&para;</a></h3>
+<p><code>BLT</code>(branch if less than，小于时分支)</p>
+<p>其指令格式为</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>BLT rs1，rs2，offset;     //if (rs1 &lt;s rs2) pc += sext(offset)
+</code></pre></div>
+<h3 id="24-bltu">2.4 <code>BLTU</code><a class="headerlink" href="#24-bltu" title="Permanent link">&para;</a></h3>
+<p><code>BLTU</code>(branch if less than，unsigned，无符号小于时分支)</p>
+<p>其指令格式为</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>BLTU rs1，rs2，offset;    //if (rs1 &lt;u rs2) pc += sext(offset)
+</code></pre></div>
+<h3 id="25-bge">2.5 <code>BGE</code><a class="headerlink" href="#25-bge" title="Permanent link">&para;</a></h3>
+<p><code>BGE</code>(branch if greater than or equal，大于等于时分支)</p>
+<p>其指令格式为</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>BGE rs1，rs2，offset;     //if (rs1 ≥s rs2) pc += sext(offset)
+</code></pre></div>
+<h3 id="26-bgeu">2.6 <code>BGEU</code><a class="headerlink" href="#26-bgeu" title="Permanent link">&para;</a></h3>
+<p><code>BGEU</code>(branch if greater than or equal，unsigned，大于等于时分支)</p>
+<p>其指令格式为</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>BGEU rs1，rs2，offset;    //if (rs1 ≥u rs2) pc += sext(offset)
+</code></pre></div>
+<p><a href="../Chapter%202/">返回Chapter 2</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -716,15 +935,17 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "/assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
-        <script src="/javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

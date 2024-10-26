@@ -15,16 +15,16 @@
       
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
-        <title>RoderickShao's NoteBook</title>
+        <title>Splay Tree的时间复杂度证明 - RoderickShao's NoteBook</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
       
       
   
@@ -84,16 +84,25 @@
       
     
     
-      <link rel="stylesheet" href="/css/custom.css">
+      <link rel="stylesheet" href="../../../css/custom.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     <body dir="ltr">
@@ -114,7 +123,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -134,7 +143,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Splay Tree的时间复杂度证明
             
           </span>
         </div>
@@ -222,7 +231,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
     
@@ -241,7 +250,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+        <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
           
   
     
@@ -261,7 +270,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+        <a href="../../Introduction/" class="md-tabs__link">
           
   
     
@@ -281,7 +290,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-tabs__link">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-tabs__link">
           
   
     
@@ -301,7 +310,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-tabs__link">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-tabs__link">
           
   
     
@@ -321,7 +330,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-tabs__link">
+        <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-tabs__link">
           
   
     
@@ -356,7 +365,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -386,7 +395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -430,7 +439,7 @@
         
   
   
-    <a href="/%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+    <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -482,7 +491,7 @@
         
   
   
-    <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+    <a href="../../Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -532,7 +541,7 @@
         
   
   
-    <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-nav__link">
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -580,7 +589,7 @@
         
   
   
-    <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-nav__link">
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -628,7 +637,7 @@
         
   
   
-    <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-nav__link">
+    <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -675,8 +684,119 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+  
+
+
+  <h1>Splay Tree的时间复杂度证明</h1>
+
+<p>转载<a href="https://www.cnblogs.com/Mr-Spade/p/9715203.html">伸展树（Splay）复杂度证明 - Mr_Spade - 博客园 (cnblogs.com)</a></p>
+<p>在文中我们用<span class="arithmatex">\(T\)</span>表示一棵完整的<span class="arithmatex">\(Splay\ Tree\)</span>，并（不严谨地）用<span class="arithmatex">\(|T|\)</span>表示<span class="arithmatex">\(T\)</span>这棵<span class="arithmatex">\(Splay\ Tree\)</span>的节点数目。</p>
+<p>如无特殊说明，小写英文字母（如<span class="arithmatex">\(x，y，z\)</span>）在本文中表示<span class="arithmatex">\(T\)</span>的一个节点，并（不严谨地）用<span class="arithmatex">\(|x|\)</span>表示以节点<span class="arithmatex">\(x\)</span>为根的子树的大小，<span class="arithmatex">\(x∈T\)</span>表示节点<span class="arithmatex">\(x\)</span>在<span class="arithmatex">\(T\)</span>中。</p>
+<p>一般我们默认<span class="arithmatex">\(x′\)</span>代表节点<span class="arithmatex">\(x\)</span>在经过了上下文中描述的操作以后的状态，因此对应的<span class="arithmatex">\(x\)</span>代表之前的状态。</p>
+<p>我们用<span class="arithmatex">\(Φ(T)\)</span>表示整棵<span class="arithmatex">\(Splay Tree\)</span>的势能函数，<span class="arithmatex">\(ϕ(x)\)</span>则表示节点<span class="arithmatex">\(x\)</span>对<span class="arithmatex">\(T\)</span>贡献的势能。</p>
+<p>先来讲一下我们的势能函数，我们定义：</p>
+<div class="arithmatex">\[
+ϕ(x)=log|x|
+\]</div>
+<div class="arithmatex">\[
+Φ(T)=∑_{x∈T}ϕ(x)
+\]</div>
+<p>可以发现，对于任意时刻，因为<span class="arithmatex">\(|x|≥1\)</span>，因此<span class="arithmatex">\(log⁡|x|≥0\)</span>，从而得到<span class="arithmatex">\(Φ(T)≥0\)</span>，因此势能函数是合法的。同时<span class="arithmatex">\(∀|x|≤|T|\)</span>，因此我们总有<span class="arithmatex">\(Φ(T)≤|T|log⁡|T|\)</span>。这个上界是比较松的，但是对我们的分析没有影响。</p>
+<p>下面考虑一次伸展操作对于势能函数的影响。由于我们可以把从根向下查找的代价计算到伸展过程中对应的旋转操作上，此时旋转操作复杂度不变，只是常数增大，从而忽略了查找对复杂度的影响。我们可以简单地通过增大势的单位来支配隐藏在操作中的常数。因此我们只需证明对于一次伸展操作的所有旋转操作，其复杂度是均摊<span class="arithmatex">\(O(log⁡|T|)\)</span>的，我们就完成了对<span class="arithmatex">\(Splay\ Tree\)</span>复杂度的证明。</p>
+<ol>
+<li><span class="arithmatex">\(zig\)</span>操作</li>
+</ol>
+<p>由于<span class="arithmatex">\(zag\)</span>操作与<span class="arithmatex">\(zig\)</span>相似，因此只需要证明<span class="arithmatex">\(zig\)</span>即可。</p>
+<p>假设我们<span class="arithmatex">\(zig\)</span>的对象是<span class="arithmatex">\(x\)</span>，其父亲为<span class="arithmatex">\(y\)</span>，显然在旋转以后，只有<span class="arithmatex">\(x\)</span>和<span class="arithmatex">\(y\)</span>的子树大小发生了变化。因此势能变化量为：</p>
+<div class="arithmatex">\[
+ΔΦ(T)=ϕ(x′)+ϕ(y′)−ϕ(x)−ϕ(y)
+\]</div>
+<p>显然<span class="arithmatex">\(ϕ(x′)=ϕ(y)\)</span>，且<span class="arithmatex">\(ϕ(x′)≥ϕ(y′)\)</span>，因此消去<span class="arithmatex">\(ϕ(x′)\)</span>与<span class="arithmatex">\(ϕ(y)\)</span>，并将<span class="arithmatex">\(ϕ(y′)\)</span>替换为<span class="arithmatex">\(ϕ(x′)\)</span>，有：</p>
+<div class="arithmatex">\[
+ΔΦ(T)≤ϕ(x′)−ϕ(x)
+\]</div>
+<p>因此<span class="arithmatex">\(zig\)</span>操作的均摊代价为<span class="arithmatex">\(O(1+ϕ(x′)−ϕ(x))\)</span>，其中<span class="arithmatex">\(O(1)\)</span>代表旋转操作本身的复杂度，而在一次伸展操作中也只会有一次<span class="arithmatex">\(zig\)</span>操作，因此这额外的<span class="arithmatex">\(O(1)\)</span>代价不会对分析造成影响，因此我们可以只关心其中的<span class="arithmatex">\(O(ϕ(x′)−ϕ(x))\)</span>。</p>
+<ol start="2">
+<li><span class="arithmatex">\(zig−zig\)</span>操作</li>
+</ol>
+<p>由于<span class="arithmatex">\(zag−zag\)</span>操作与<span class="arithmatex">\(zig−zig\)</span>相似，因此只需要证明<span class="arithmatex">\(zig−zig\)</span>即可。</p>
+<p>假设我们<span class="arithmatex">\(zig−zig\)</span>的对象是<span class="arithmatex">\(x\)</span>，其父亲为<span class="arithmatex">\(y\)</span>，其祖父为<span class="arithmatex">\(z\)</span>，与<span class="arithmatex">\(zig\)</span>操作类似，势能变化量为：</p>
+<div class="arithmatex">\[
+ΔΦ(T)=ϕ(x′)+ϕ(y′)+ϕ(z′)−ϕ(x)−ϕ(y)−ϕ(z)
+\]</div>
+<p>同样地，由于<span class="arithmatex">\(ϕ(x′)=ϕ(z)\)</span>，因此将它们消去：</p>
+<div class="arithmatex">\[
+ΔΦ(T)=ϕ(y′)+ϕ(z′)−ϕ(x)−ϕ(y)
+\]</div>
+<p>而我们又有<span class="arithmatex">\(ϕ(x′)≥ϕ(y′)，ϕ(x)≤ϕ(y)\)</span>，因此有：</p>
+<div class="arithmatex">\[
+ΔΦ(T)≤ϕ(x′)+ϕ(z′)−2ϕ(x)
+\]</div>
+<p>推到这里，我们先来做一个小工作，来证明<span class="arithmatex">\(ϕ(x)+ϕ(z′)−2ϕ(x′)\)</span>（注意与上面的式子不一样）的值不大于<span class="arithmatex">\(−1\)</span>。</p>
+<p>假设<span class="arithmatex">\(|x|=a\)</span>，<span class="arithmatex">\(|z′|=b\)</span>，那么我们有：</p>
+<div class="arithmatex">\[
+ϕ(x)+ϕ(z′)−2ϕ(x′)=log⁡|x|+log⁡|z′|−2log⁡|x′|
+\]</div>
+<p>我们将<span class="arithmatex">\(log\)</span>合并，得到：</p>
+<div class="arithmatex">\[
+ϕ(x)+ϕ(z′)−2ϕ(x′)=log⁡(\frac{|x||z′|}{|x′|^2})
+\]</div>
+<p>由于<span class="arithmatex">\(|x′|≥a+b\)</span>（可以结合旋转过程思考一下），而<span class="arithmatex">\(log\)</span>是单调的，因此：</p>
+<div class="arithmatex">\[
+ϕ(x)+ϕ(z′)−2ϕ(x′)≤log⁡(\frac{ab}{(a+b)^2})≤log⁡(\frac{ab}{2ab})≤−1
+\]</div>
+<p>证明完毕。现在我们已经知道<span class="arithmatex">\(zig−zig\)</span>操作的摊还代价不大于：</p>
+<div class="arithmatex">\[
+O(1)+ϕ(x′)+ϕ(z′)−2ϕ(x)
+\]</div>
+<p>其中<span class="arithmatex">\(O(1)\)</span>为旋转操作的复杂度。由于之前的推导我们可以知道<span class="arithmatex">\(ϕ(x)+ϕ(z′)−2ϕ(x′)≤−1\)</span>，因此<span class="arithmatex">\(−1−(ϕ(x)+ϕ(z′)−2ϕ(x′))≥0\)</span>，我们在摊还代价上加上这个非负数得到：</p>
+<div class="arithmatex">\[
+O(1)+ϕ(x′)+ϕ(z′)−2ϕ(x)−1−(ϕ(x)+ϕ(z′)−2ϕ(x′))
+\]</div>
+<p>化简一下，就得到：</p>
+<div class="arithmatex">\[
+O(1)+O(ϕ(x′)−ϕ(x))−1
+\]</div>
+<p>通过增大我们刚刚加的那个非负数以及势的单位，我们就可以支配隐藏在 <span class="arithmatex">\(O(1)\)</span> 中的常数，因此一次<span class="arithmatex">\(zig−zig\)</span>操作的摊还代价为：</p>
+<div class="arithmatex">\[
+O(ϕ(x′)−ϕ(x))
+\]</div>
+<ol start="3">
+<li><span class="arithmatex">\(zig−zag\)</span>操作</li>
+</ol>
+<p>分析的过程和<span class="arithmatex">\(zig−zig\)</span>操作完全一样，之前分析用到的所有性质此时仍然适用，因此略过分析过程。其摊还代价依然为：</p>
+<div class="arithmatex">\[
+O(ϕ(x′)−ϕ(x))
+\]</div>
+<ol start="4">
+<li>总结</li>
+</ol>
+<p>综上所述，除了最后一次旋转可能增加<span class="arithmatex">\(O(1)\)</span>的代价以外，其余操作的摊还代价只和我们伸展的对象xx的势有关。我们假设旋转操作一共执行了<span class="arithmatex">\(n\)</span>次，并用<span class="arithmatex">\(x_i\)</span>来表示节点<span class="arithmatex">\(x\)</span>在经过<span class="arithmatex">\(i\)</span>次旋转后的状态，那么整一个伸展操作的摊还代价就为：</p>
+<div class="arithmatex">\[
+O(1+∑_{i=1}^nϕ(xi)−ϕ(xi−1))
+\]</div>
+<p>显然除了<span class="arithmatex">\(ϕ(x_n)\)</span>与<span class="arithmatex">\(ϕ(x_0)\)</span>外，所有的势都被抵消了，因此摊还代价为：</p>
+<div class="arithmatex">\[
+O(1+ϕ(x_n)−ϕ(x_0))
+\]</div>
+<p>至此，我们不必关心<span class="arithmatex">\(ϕ(x_0)\)</span>的值了。此时<span class="arithmatex">\(x_n\)</span>是整棵<span class="arithmatex">\(Splay\ Tree\)</span>的根，因此<span class="arithmatex">\(ϕ(x_n)=log|T|\)</span>。我们成功的证明了一次伸展操作的摊还代价为<span class="arithmatex">\(O(log|T|)\)</span>。</p>
+<p><a href="../Lecture%201/"><span class="arithmatex">\(\Leftarrow\)</span> 返回Lecture1</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -716,15 +836,17 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "/assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
-        <script src="/javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

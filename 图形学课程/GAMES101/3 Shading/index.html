@@ -13,18 +13,22 @@
       
       
       
+        <link rel="prev" href="../2%20Rasterization/">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="../4%20Texture%20Mapping/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
-        <title>RoderickShao's NoteBook</title>
+        <title>3 Shading - RoderickShao's NoteBook</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
       
       
   
@@ -84,16 +88,25 @@
       
     
     
-      <link rel="stylesheet" href="/css/custom.css">
+      <link rel="stylesheet" href="../../../css/custom.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     <body dir="ltr">
@@ -103,6 +116,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#3-shading" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -114,7 +132,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -134,7 +152,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              3 Shading
             
           </span>
         </div>
@@ -222,7 +240,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
     
@@ -241,7 +259,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+        <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
           
   
     
@@ -261,7 +279,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
           
   
     
@@ -281,7 +299,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-tabs__link">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-tabs__link">
           
   
     
@@ -301,7 +319,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-tabs__link">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-tabs__link">
           
   
     
@@ -317,11 +335,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../Introduction/" class="md-tabs__link">
           
   
     
@@ -356,7 +376,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -386,7 +406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -430,7 +450,7 @@
         
   
   
-    <a href="/%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+    <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -482,7 +502,7 @@
         
   
   
-    <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -532,7 +552,7 @@
         
   
   
-    <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-nav__link">
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -580,7 +600,7 @@
         
   
   
-    <a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-nav__link">
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -603,45 +623,426 @@
       
   
   
+    
   
   
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-      
-        
-        
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
   
-  
-    <a href="/%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-nav__link">
+    
+    
       
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
   
   <span class="md-ellipsis">
     图形学课程
   </span>
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            图形学课程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
   
 
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GAMES101
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            GAMES101
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0%20Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0 Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%20Transform/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 Transform
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20Rasterization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 Rasterization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    3 Shading
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    3 Shading
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-blinn-phong-reflectance-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Blinn-Phong Reflectance Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Blinn-Phong Reflectance Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311-specular-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1 Specular Term
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-ambient-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2 Ambient Term
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-shading-frequencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Shading Frequencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-graphicsreal-time-rendering-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Graphics(Real-time Rendering) Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4%20Texture%20Mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4 Texture Mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5%20Geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 Geometry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6%20Ray%20tracing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 Ray tracing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7%20Materials%20and%20Appearances/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 Materials and Appearances
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8%20Advanced%20Topics%20in%20rendering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8 Advanced Topics in rendering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -664,6 +1065,67 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-blinn-phong-reflectance-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Blinn-Phong Reflectance Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Blinn-Phong Reflectance Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311-specular-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1 Specular Term
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-ambient-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2 Ambient Term
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-shading-frequencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Shading Frequencies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-graphicsreal-time-rendering-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Graphics(Real-time Rendering) Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -675,8 +1137,91 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+  
+
+
+<h1 id="3-shading"><strong>3 Shading</strong><a class="headerlink" href="#3-shading" title="Permanent link">&para;</a></h1>
+<p>Definition: the process of applying a material to an object </p>
+<h2 id="31-blinn-phong-reflectance-model"><strong>3.1 Blinn-Phong Reflectance Model</strong><a class="headerlink" href="#31-blinn-phong-reflectance-model" title="Permanent link">&para;</a></h2>
+<p><strong>Shading is local</strong>: we do not need to care about other objects, so no shadows will be generated.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20131507.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20131507.png" /></a></p>
+<p>(<span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(I\)</span> are both Unit Vector)</p>
+<p><strong>Diffuse Reflection</strong>: Light is scattered uniformly in all directions.</p>
+<p><strong>Lambert’s cosine law</strong>: calculate how much light is received by the surface.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20133137.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20133137.png" /></a></p>
+<p><strong>Light Falloff</strong> : Suppose the light intensity at distance 1 is <span class="arithmatex">\(I\)</span>, then at distance <span class="arithmatex">\(r\)</span> the light intensity is <span class="arithmatex">\(I/r^2\)</span>.</p>
+<p><strong>Lambertian (Diffuse) Shading</strong> : <span class="arithmatex">\(L_d = k_d(I/r^2)max(0,n\cdot I)\)</span>, <span class="arithmatex">\(k_d\)</span> means diffuse coefficient.</p>
+<p>Shading is independent with view direction (diffuse reflection).</p>
+<h3 id="311-specular-term"><strong>3.1.1 Specular Term</strong><a class="headerlink" href="#311-specular-term" title="Permanent link">&para;</a></h3>
+<p>It means bright near reflection direction.</p>
+<p>V close to mirror direction <span class="arithmatex">\(\Leftrightarrow\)</span> half vector near normal</p>
+<p><span class="arithmatex">\(\bold{h} = bisector(\bold v, \bold l) = \frac{\bold v +\bold l}{\|\bold v +\bold l \|}\)</span></p>
+<p><span class="arithmatex">\(L_s = k_s(I/r^2)max(0,cos \alpha)^p = k_s(I/r^2)max(0,\bf {n}\cdot \bf {h}) ^p\)</span>, <span class="arithmatex">\(k_s\)</span> means specular coefficient.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20154918.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20154918.png" /></a></p>
+<p>??? question “Why we need to <span class="arithmatex">\(()^p\)</span>?”</p>
+<div class="highlight"><pre><span></span><code>Increasing p narrows the refelction lobe.Usually p is above 100.
+![](img/屏幕截图 2024-08-28 155534.png)
+</code></pre></div>
+<h3 id="312-ambient-term"><strong>3.1.2 Ambient Term</strong><a class="headerlink" href="#312-ambient-term" title="Permanent link">&para;</a></h3>
+<p>we assume that light from any direction are the same, shading does not depend on anything.</p>
+<p><span class="arithmatex">\(L_a = k_a I_a\)</span>, <span class="arithmatex">\(k_a\)</span> means ambient coefficient.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20162315.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20162315.png" /></a></p>
+<h2 id="32-shading-frequencies">3.2 Shading Frequencies<a class="headerlink" href="#32-shading-frequencies" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Flat</strong> shading</li>
+</ol>
+<ul>
+<li>Triangle face is flat ---ONE normal vector</li>
+<li>NOT good for smooth surfaces</li>
+</ul>
+<ol start="2">
+<li><strong>Gouraud</strong> shading</li>
+</ol>
+<ul>
+<li>Interpolate colors from vertices across triangle</li>
+<li>Each vertex has a normal vector</li>
+</ul>
+<ol start="3">
+<li><strong>Phong</strong> shading</li>
+</ol>
+<ul>
+<li>Interpolate normal vectors across triangle</li>
+<li>Compute full shading model at each pixel</li>
+<li>NOT the Blinn-Phong reflectance Model</li>
+</ul>
+<p>There is a question: <strong>How to define per-vertex Normal vectors?</strong></p>
+<p>One way (BEST) is to get vertex normals from the underlying geometry, like consider a sphere</p>
+<p>Otherwise have to infer vertex normals from triangle faces, we can average (or weighted) surrounding face normals <span class="arithmatex">\(N_v=\frac{\sum_i N_i}{\|\sum_i N_i\|}\)</span>
+<a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172719.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Method 1" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172719.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172858.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Method 2" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172858.png" /></a></p>
+<p><strong>How to define per-pixel normal vectors?</strong></p>
+<p>Barycentric interpolation of vertex normals. </p>
+<h2 id="33-graphicsreal-time-rendering-pipeline"><strong>3.3 Graphics(Real-time Rendering) Pipeline</strong><a class="headerlink" href="#33-graphicsreal-time-rendering-pipeline" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20135837.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20135837.png" /></a></p>
+<p>Shader programs</p>
+<ul>
+<li>
+<p>Program vertex and fragment processing stages  </p>
+</li>
+<li>
+<p>Describe operation on a single vertex (or fragment)</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -716,15 +1261,17 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "/assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
-        <script src="/javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>
