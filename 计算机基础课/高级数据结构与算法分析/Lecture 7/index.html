@@ -1263,7 +1263,7 @@ $$
 <h3 id="723-master-method"><strong>7.2.3  Master method</strong><a class="headerlink" href="#723-master-method" title="Permanent link">&para;</a></h3>
 <p>【Master Theorem】Let <span class="arithmatex">\(a\ge1\)</span> and <span class="arithmatex">\(b &gt; 1\)</span> be constants, let <span class="arithmatex">\(f(N)\)</span> be a function, and let <span class="arithmatex">\(T(N)\)</span> be defined on the nonnegative integers by the recurrence  <span class="arithmatex">\(T(N) = aT(N/b) + f(N)\)</span>.  Then:</p>
 <ol>
-<li>If $f(N)=O(N^{log_ba-\epsilon}) $ for some constant <span class="arithmatex">\(\epsilon&gt;0\)</span>, then <span class="arithmatex">\(T(N)=\Theta(N^{log_b a})\)</span></li>
+<li>If <span class="arithmatex">\(f(N)=O(N^{log_ba-\epsilon})\)</span> for some constant <span class="arithmatex">\(\epsilon&gt;0\)</span>, then <span class="arithmatex">\(T(N)=\Theta(N^{log_b a})\)</span></li>
 <li>If <span class="arithmatex">\(f(N)=\Theta(N^{log_b a})\)</span>, then <span class="arithmatex">\(T(N)=\Theta(N^{log_b a}logN)\)</span></li>
 <li>If <span class="arithmatex">\(f(N)=\Omega(N^{log_b a+\epsilon})\)</span> for some constant <span class="arithmatex">\(\epsilon&gt;0\)</span>, and if <span class="arithmatex">\(af(N/b)&lt;cf(N)\)</span> for some constant <span class="arithmatex">\(c &lt; 1\)</span> and all sufficiently large <span class="arithmatex">\(N\)</span>, then <span class="arithmatex">\(T(N)=\Theta(f(N))\)</span></li>
 </ol>
