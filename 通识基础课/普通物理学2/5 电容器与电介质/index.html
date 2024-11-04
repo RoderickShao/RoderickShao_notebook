@@ -926,6 +926,8 @@
       
         
       
+        
+      
     
     
       
@@ -1346,7 +1348,12 @@ P=\frac{\sum p_{分子}}{\triangle V}
 <p>如果电介质中的各点的极化强度矢量大小和方向都相同，那么称极化是均匀的，否则极化不均匀。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-15%20201326.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-15%20201326.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-15%20201334.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-15%20201334.png" /></a></p>
+<p>我们取任意闭合面S，令n为它的外法向矢量，d<span class="arithmatex">\(S\)</span>=<span class="arithmatex">\(n\)</span>dS，则<span class="arithmatex">\(P\)</span>通过整个闭曲面S的通量应等于因极化而穿出此面的束缚电荷总量，根据电荷守恒定律，这等于S面内净余的极化电荷<span class="arithmatex">\(\sum q'\)</span>的负值</p>
+<div class="arithmatex">\[
+\iint_S P\cdot dS=-\sum_{S_内}q'
+\]</div>
 <h3 id="534"><strong>5.3.4 退极化场</strong><a class="headerlink" href="#534" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../img/%E9%80%80%E5%8C%96%E7%A3%81%E5%9C%BA.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E9%80%80%E5%8C%96%E7%A3%81%E5%9C%BA.jpg" /></a></p>
 <p>极化电荷在周围空间产生附加的电场<span class="arithmatex">\(E'\)</span>，然后根据场强叠加原理，在电介质存在时，空间上任意一点的场强<span class="arithmatex">\(E\)</span>是外电场<span class="arithmatex">\(E_0\)</span>和极化电荷的电场<span class="arithmatex">\(E'\)</span>的矢量和。</p>
 <p>一般说来，<span class="arithmatex">\(E'\)</span>的大小和方向都是逐点变化的。例如，我们把一个均匀的电介质球放在均匀外场中极化，介质球上的正、负极化电荷分别分布在两个半球面上。它们产生的附加电场<span class="arithmatex">\(E’\)</span>的电场线示于图4-10b，它是一个不均匀的电场。<span class="arithmatex">\(E'\)</span>与均匀外电场E叠加后，得到的总电场示于图4-10c，它也是不均匀的。</p>
 <p>在介质球外部，有的地方<span class="arithmatex">\(E'\)</span>与<span class="arithmatex">\(E_0\)</span>方向一致（如图中左、右两端），这里总电场<span class="arithmatex">\(E\)</span>增强了；有的地方<span class="arithmatex">\(E'\)</span>与<span class="arithmatex">\(E_0\)</span>方向相反（如图中上、下两方），这里总电场<span class="arithmatex">\(E\)</span>减弱了；一般情况是 <span class="arithmatex">\(E'\)</span>与<span class="arithmatex">\(E_0\)</span>成一定夹角，总电场<span class="arithmatex">\(E\)</span>的方向逐点不同。</p>
@@ -1355,17 +1362,18 @@ P=\frac{\sum p_{分子}}{\triangle V}
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-16%20131132.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-16%20131132.png" /></a></p>
 <p>相对于极化方向，当电介质的纵向尺度越大，横向尺度越小事时，退极化场就越弱。平行板电容器中电介质的退极化场最强。</p>
 <h3 id="535"><strong>5.3.5 极化率</strong><a class="headerlink" href="#535" title="Permanent link">&para;</a></h3>
-<div class="arithmatex">\[
+<p>极化强度影响面点荷密度，面电荷密度影响退化极场，退化极场影响总极场
+$$
 \vec P \Rightarrow \sigma_e'\Rightarrow \vec E' \Rightarrow \vec E
-\]</div>
+$$</p>
 <p>但是实际上电介质任意一点的极化强度<span class="arithmatex">\(P\)</span>由总场<span class="arithmatex">\(E\)</span>来决定，实验表明常见的各向同性线性电介质，<span class="arithmatex">\(P\)</span>与<span class="arithmatex">\(\epsilon_0 E\)</span>方向相同，且数量上成简单的正比关系</p>
 <div class="arithmatex">\[
 P=\chi_e\epsilon_0E
 \]</div>
 <p>其中<span class="arithmatex">\(\chi_e\)</span>被称为极化率，只与电介质的种类有关</p>
-<p>参考例题见《电磁学》P170</p>
+<p><a class="glightbox" href="../img/%E9%80%80%E5%8C%96%E7%A3%81%E5%9C%BA%E4%BE%8B%E9%A2%98.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E9%80%80%E5%8C%96%E7%A3%81%E5%9C%BA%E4%BE%8B%E9%A2%98.jpg" /></a></p>
 <h3 id="536"><strong>5.3.6 电位移矢量以及有电介质时的高斯定理</strong><a class="headerlink" href="#536" title="Permanent link">&para;</a></h3>
-<p>有电介质存在时，高斯定理依然成立，只不过计算内部电荷时应该包括高斯面内所包含的自由电荷<span class="arithmatex">\(q_0\)</span>和<span class="arithmatex">\(q'\)</span></p>
+<p>有电介质存在时，高斯定理依然成立，只不过计算内部电荷时应该包括高斯面内所包含的自由电荷<span class="arithmatex">\(q_0\)</span>和极化电荷<span class="arithmatex">\(q'\)</span></p>
 <div class="arithmatex">\[
 \iint_S E\cdot dS=\frac{1}{\epsilon_0}\sum(q_0+q')
 \]</div>
