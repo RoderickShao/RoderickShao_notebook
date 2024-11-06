@@ -562,6 +562,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -889,22 +893,22 @@
         
           <li class="md-nav__item">
   <a href="#431" class="md-nav__link">
-    4.3.1 协方差
+    4.3.1 定义
   </a>
   
-    <nav class="md-nav" aria-label="4.3.1 协方差">
+    <nav class="md-nav" aria-label="4.3.1 定义">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    定义
+    协方差
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    性质
+    相关系数
   </a>
   
 </li>
@@ -916,8 +920,28 @@
         
           <li class="md-nav__item">
   <a href="#432" class="md-nav__link">
-    4.3.2 相关系数
+    4.3.2 性质
   </a>
+  
+    <nav class="md-nav" aria-label="4.3.2 性质">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    协方差的性质
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-y" class="md-nav__link">
+    随机变量 \(X\) 和 \(Y\) 的相关性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1264,22 +1288,22 @@
         
           <li class="md-nav__item">
   <a href="#431" class="md-nav__link">
-    4.3.1 协方差
+    4.3.1 定义
   </a>
   
-    <nav class="md-nav" aria-label="4.3.1 协方差">
+    <nav class="md-nav" aria-label="4.3.1 定义">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    定义
+    协方差
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    性质
+    相关系数
   </a>
   
 </li>
@@ -1291,8 +1315,28 @@
         
           <li class="md-nav__item">
   <a href="#432" class="md-nav__link">
-    4.3.2 相关系数
+    4.3.2 性质
   </a>
+  
+    <nav class="md-nav" aria-label="4.3.2 性质">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    协方差的性质
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-y" class="md-nav__link">
+    随机变量 \(X\) 和 \(Y\) 的相关性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1372,7 +1416,7 @@ E[( X - E( X))^2]
 <p>为 <span class="arithmatex">\(X\)</span> (等价地, 相应的分布) 的<strong>方差</strong> (variance) , 记为 <span class="arithmatex">\(Var( X)\)</span> 或 <span class="arithmatex">\(D( X)\)</span> (有时也可写为 <span class="arithmatex">\(V( X)\)</span> ) .</p>
 <p>方差的平方根 <span class="arithmatex">\(Var( X)\)</span> 称为随机变量 <span class="arithmatex">\(X\)</span> 的<strong>标准差</strong> ( standard deviation )或均方差, 记为 <span class="arithmatex">\(\sigma(X)\)</span> 或 <span class="arithmatex">\(SD(X)\)</span>. </p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20110832.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20110832.png" /></a></p>
-<h4 id="_1">方差与期望<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<h4 id="_1"><strong>方差与期望</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <p>方差可以由<strong>随机变量的平方的期望</strong>与<strong>随机变量的期望</strong>得到</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20110907.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20110907.png" /></a></p>
 <p><strong>标准化随机变量<span class="arithmatex">\(X^*\)</span></strong></p>
@@ -1390,41 +1434,56 @@ E[( X - E( X))^2]
 <p>设随机变量 <span class="arithmatex">\(X\)</span> 的方差存在, <span class="arithmatex">\(c\)</span>为某一常数, 则</p>
 <p>(1) <span class="arithmatex">\(Var(cX ) = c^2Var ( X)\)</span> </p>
 <p>(2) <span class="arithmatex">\(Var( X + c) = Var( X)\)</span> </p>
-<p>(3) 设 <span class="arithmatex">\(X,Y\)</span> 是两个随机变量，则有
-$$
-Var(X\pm Y)=Var(X)+Var(Y)\pm2E{[X-E(X)][Y-E[Y]}
-$$
-特别的，若<span class="arithmatex">\(X,Y\)</span> 相互独立或无线性关系，则有<span class="arithmatex">\(Var(X\pm Y)=Var[X]+Var[Y]\)</span></p>
+<p>(3) 设 <span class="arithmatex">\(X,Y\)</span> 是两个随机变量，则有</p>
+<div class="arithmatex">\[
+Var(X\pm Y)=Var(X)+Var(Y)\pm2E\{[X-E(X)][Y-E[Y]\}
+\]</div>
+<p>特别的，若<span class="arithmatex">\(X,Y\)</span> 相互独立或无线性关系，则有<span class="arithmatex">\(Var(X\pm Y)=Var[X]+Var[Y]\)</span></p>
 <p>证明：</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20112922.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20112922.png" /></a></p>
 <p>(4) <span class="arithmatex">\(Var( X) ≤E[ ( X-c) ^2]\)</span> , 其中当且仅当 <span class="arithmatex">\(E(X) =c\)</span> 时等号成立.</p>
 <p>综合以上性质，可以得到相关推论：</p>
-<p>若 <span class="arithmatex">\(n\)</span> 个<strong>两两独立</strong>的随机变量 <span class="arithmatex">\(X_1 , X_2 , ... , X_n ( n ≥ 1 )\)</span> 的方差都存在，则对任意有限个实数 <span class="arithmatex">\(c_o , c_1 , c_2 ,...c_n\)</span>，<span class="arithmatex">\(c_0+\sum_{i=1}^nc_iX_i\)</span> 的方差也存在, 且
-$$
+<p>若 <span class="arithmatex">\(n\)</span> 个<strong>两两独立</strong>的随机变量 <span class="arithmatex">\(X_1 , X_2 , ... , X_n ( n ≥ 1 )\)</span> 的方差都存在，则对任意有限个实数 <span class="arithmatex">\(c_o , c_1 , c_2 ,...c_n\)</span>，<span class="arithmatex">\(c_0+\sum_{i=1}^nc_iX_i\)</span> 的方差也存在, 且</p>
+<div class="arithmatex">\[
 Var(c_0+\sum_{i=1}^nc_iX_i)=c_0+\sum_{i=1}^nc_i^2Var(X_i)
-$$</p>
-<h4 id="_5">二项分布的方差<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+\]</div>
+<h4 id="_5"><strong>二项分布的方差</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20115656.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20115656.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20115704.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20115704.png" /></a></p>
 <h2 id="43"><strong>4.3 协方差与相关系数</strong><a class="headerlink" href="#43" title="Permanent link">&para;</a></h2>
-<h3 id="431"><strong>4.3.1 协方差</strong><a class="headerlink" href="#431" title="Permanent link">&para;</a></h3>
-<h4 id="_6">定义<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
-<p>对于数学期望都存在的随机变量 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span>, 当 <span class="arithmatex">\(( X- E( X) ) (Y-E(Y))\)</span> 的数学期望存在时, 称
-$$
+<h3 id="431"><strong>4.3.1 定义</strong><a class="headerlink" href="#431" title="Permanent link">&para;</a></h3>
+<h4 id="_6"><strong>协方差</strong><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>对于数学期望都存在的随机变量 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span>, 当 <span class="arithmatex">\(( X- E( X) ) (Y-E(Y))\)</span> 的数学期望存在时, 称</p>
+<div class="arithmatex">\[
 Cov(X,Y)=E[(X-E(X))(Y-E(Y))]
-$$
-为 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 的协方差 (covariance) .</p>
+\]</div>
+<p>为 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 的协方差 (covariance) .</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20122125.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20122125.png" /></a></p>
-<h4 id="_7">性质<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20121350.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20121350.png" /></a></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20122218.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20122218.png" /></a></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20122223.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20122223.png" /></a></p>
-<h3 id="432">4.3.2 相关系数<a class="headerlink" href="#432" title="Permanent link">&para;</a></h3>
-<p>定义：对于随机变量 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span>, 当 <span class="arithmatex">\(E( X^2)\)</span> 与 <span class="arithmatex">\(E(Y^2 )\)</span> 均存在且 <span class="arithmatex">\(Var( X) ,Var(Y)\)</span> 均为非零实数时, 称
-$$
+<h4 id="_7"><strong>相关系数</strong><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>对于随机变量 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span>, 当 <span class="arithmatex">\(E( X^2)\)</span> 与 <span class="arithmatex">\(E(Y^2 )\)</span> 均存在且 <span class="arithmatex">\(Var( X) ,Var(Y)\)</span> 均为非零实数时, 称</p>
+<div class="arithmatex">\[
 \rho_{XY}=\frac{Cov(X,Y)}{\sqrt{Var(X)}\sqrt{Var(Y)}}
-$$
-为 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 的相关系数 (correlation coefficient ) , 有时也简记为 <span class="arithmatex">\(\rho\)</span>.</p>
+\]</div>
+<p>为 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 的相关系数 (correlation coefficient ) , 有时也简记为 <span class="arithmatex">\(\rho\)</span>.</p>
+<h3 id="432"><strong>4.3.2 性质</strong><a class="headerlink" href="#432" title="Permanent link">&para;</a></h3>
+<h4 id="_8"><strong>协方差的性质</strong><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>若随机变量 X 和 Y 的协方差存在, 则</p>
+<p>(1) <span class="arithmatex">\(Cov( X, Y) = Cov(Y, X)\)</span> ;</p>
+<p>(2) <span class="arithmatex">\(Cov(X, X) =Var(X)\)</span>;</p>
+<p>(3) <span class="arithmatex">\(Cov(aX, bY) = abCov(X, Y)\)</span>, 其中a, b 为两个实数 ;</p>
+<p>(4) 若<span class="arithmatex">\(Cov(X , Y) ( i = 1,2)\)</span>存在则 <span class="arithmatex">\(Cov(X_1+X_2, Y) = Cov(X_1, Y) + Cov(X_2, Y)\)</span>;</p>
+<p>(5) 若 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span> 相互独立, 则 <span class="arithmatex">\(Cov ( X, Y ) = 0\)</span>, 但反之不然;</p>
+<p>(6) <span class="arithmatex">\(Var(X) \cdot Var(Y) \ne 0\)</span> 时, 有<span class="arithmatex">\((Cov(X, Y))^2 \le Var(X)Var(Y)\)</span>, 其中等号成立当且仅当 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 之间有严格的线性关系 </p>
+<h4 id="x-y"><strong>随机变量 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span> 的相关性</strong><a class="headerlink" href="#x-y" title="Permanent link">&para;</a></h4>
+<p>对于随机变量 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span> , 当相关系数 <span class="arithmatex">\(\rho_{xy}\)</span> 存在时, 有</p>
+<p>(1) 若 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span> 相互独立, 则 <span class="arithmatex">\(\rho_{xy}\)</span> = 0, 但反之不然;</p>
+<p>(2) <span class="arithmatex">\(| \rho_{xy} | ≤ 1\)</span> , 其中等号成立当且仅当 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 之间有严格的线性关系</p>
+<p>( 即存在常数 <span class="arithmatex">\(c_1\)</span>, <span class="arithmatex">\(c_2\)</span> , 使得 <span class="arithmatex">\(P\{Y = c_1 + c_2X \} = 1\)</span> 成立).</p>
+<p>当随机变量 X 和 Y 的相关系数 <span class="arithmatex">\(\rho_{xy}\)</span> = 0 时, 称 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span> <strong>不相关 ( uncorrelated ) 或零相关</strong>.</p>
+<p>由 相关系数及协方差定义, 可知 “<strong>不相关</strong>” 还可以用 下面的任意一条来</p>
+<p>(1) <span class="arithmatex">\(Cov( X, Y) = 0\)</span> ;</p>
+<p>(2) <span class="arithmatex">\(E(XY) = E( X) E(Y)\)</span> ;</p>
+<p>(3) <span class="arithmatex">\(Var( X + Y) = Var ( X ) + Var(Y)\)</span>.</p>
 
 
   
