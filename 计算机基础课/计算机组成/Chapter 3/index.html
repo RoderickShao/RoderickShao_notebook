@@ -488,6 +488,8 @@
       
         
       
+        
+      
     
     
       
@@ -1680,6 +1682,7 @@
 <li>Overflow: The number is too big to be represented</li>
 <li>Underflow: The number is too small to be represented</li>
 </ul>
+<p>对于太小的数和0，我们可以使用非规格数来表示</p>
 <h3 id="355-infinities-and-nans"><strong>3.5.5 Infinities and NaNs</strong><a class="headerlink" href="#355-infinities-and-nans" title="Permanent link">&para;</a></h3>
 <p><strong>无限大</strong>和<strong>无意义</strong>的数由之前保留下来的两个数来表示</p>
 <p>Exponent = 111...1, Fraction = 000...0</p>
@@ -1692,6 +1695,9 @@
 <li>Not - a -Number (NaN)</li>
 <li>Indicates illegal or undefined result, e.g. 0.0 / 0.0</li>
 </ul>
+<blockquote>
+<p>关于3.5.4和3.5.5中非规格数和特殊数的内容详见<a href="https://zhuanlan.zhihu.com/p/343049681">IEEE754规范: 四, 非规格数, ±infinity, NaN - 知乎</a></p>
+</blockquote>
 <h3 id="356-floating-point-addition"><strong>3.5.6 Floating point addition</strong><a class="headerlink" href="#356-floating-point-addition" title="Permanent link">&para;</a></h3>
 <p>先对齐，然后再做加法，接着正规化，最后修约</p>
 <p>对齐的时候，将<strong>小的数右移向大的数对齐</strong>，这样做是为了保证正确。如果将大的数向左移可能会把高位移掉，会引发数据的错误；而如果将小的数右移那么可能会将尾数移掉，只影响了精度，对数据的大小不会产生太大的影响。</p>
@@ -1715,22 +1721,22 @@
 <p>乘法的算法流程如下所示：</p>
 <ul>
 <li>
-<p>Add exponents</p>
+<p>Add exponents 将指数进行相加</p>
 </li>
 <li>
-<p>Multiply the significands</p>
+<p>Multiply the significands 将有效数相乘</p>
 </li>
 <li>
-<p>Normalize</p>
+<p>Normalize 正规化</p>
 </li>
 <li>
-<p>Over- underflow</p>
+<p>Over / underflow 检测是否上溢或者下溢 </p>
 </li>
 <li>
-<p>Rounding</p>
+<p>Rounding 修约</p>
 </li>
 <li>
-<p>Sign</p>
+<p>Sign 符号位确定</p>
 </li>
 </ul>
 <p><a class="glightbox" href="../img/Multiplication.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Multiplication.png" /></a></p>

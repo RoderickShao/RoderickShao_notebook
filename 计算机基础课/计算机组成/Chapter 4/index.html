@@ -488,6 +488,8 @@
       
         
       
+        
+      
     
     
       
@@ -1500,8 +1502,8 @@
 <ul>
 <li>for branch instructions</li>
 </ul>
-<h2 id="42-detailed-description-of-each-step">4.2  Detailed description of each step<a class="headerlink" href="#42-detailed-description-of-each-step" title="Permanent link">&para;</a></h2>
-<h3 id="421-instruction-fetch">4.2.1 Instruction Fetch<a class="headerlink" href="#421-instruction-fetch" title="Permanent link">&para;</a></h3>
+<h2 id="42-detailed-description-of-each-step"><strong>4.2  Detailed description of each step</strong><a class="headerlink" href="#42-detailed-description-of-each-step" title="Permanent link">&para;</a></h2>
+<h3 id="421-instruction-fetch"><strong>4.2.1 Instruction Fetch</strong><a class="headerlink" href="#421-instruction-fetch" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-29%20102655.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-29%20102655.png" /></a></p>
 <p>把输入指令地址 (PC) 从Instruction memory中取出Instruction</p>
 <h3 id="422-r-format-instructions"><strong>4.2.2 R-format Instructions</strong><a class="headerlink" href="#422-r-format-instructions" title="Permanent link">&para;</a></h3>
@@ -1586,7 +1588,7 @@
 <li>10代表在进行J型指令或者SB型指令时候将PC+4写入<code>X1</code>寄存器</li>
 </ul>
 <p>剩下三个为<code>MemRead</code> <code>MemWrite</code> <code>RegWrite</code>就是分别控制内存与寄存器的读写操作</p>
-<h3 id="441-scheme-of-controller">4.4.1 Scheme of Controller<a class="headerlink" href="#441-scheme-of-controller" title="Permanent link">&para;</a></h3>
+<h3 id="441-scheme-of-controller"><strong>4.4.1 Scheme of Controller</strong><a class="headerlink" href="#441-scheme-of-controller" title="Permanent link">&para;</a></h3>
 <p>ALU operation 是<strong>二级译码</strong>得到的</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-29%20210739.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-29%20210739.png" /></a></p>
 <h3 id="442-designing-the-main-control-unitfirst-level"><strong>4.4.2 Designing the Main Control Unit——First level</strong><a class="headerlink" href="#442-designing-the-main-control-unitfirst-level" title="Permanent link">&para;</a></h3>

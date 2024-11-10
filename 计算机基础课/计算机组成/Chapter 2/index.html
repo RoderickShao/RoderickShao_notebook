@@ -488,6 +488,8 @@
       
         
       
+        
+      
     
     
       
@@ -2032,7 +2034,7 @@
 <li>Instructions  <span class="arithmatex">\(\rightarrow\)</span> Word</li>
 <li>Instruction set  <span class="arithmatex">\(\rightarrow\)</span> Vocabulary</li>
 </ul>
-<p>我们选择的指令集是RISV-V</p>
+<p>我们选择的指令集是RISC-V</p>
 <p><strong>Instruction Set</strong></p>
 <p>CISC vs. RISC</p>
 <table>
@@ -2135,7 +2137,7 @@ Simplicity enables higher performance at lower cost</p>
 <p class="admonition-title">Memory Operand Example</p>
 <p>C code: <code>A[12]=h+A[8];</code></p>
 <p>Compiled RISC-V code:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ld      x9, 64(x22)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ld      x9, 64(x22)//ld 就是loaddouble 加载双字节，64=8*8
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>add     x9,x21,x9
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sd      x9,96(x22)
 </code></pre></div>
@@ -2325,7 +2327,7 @@ Simplicity enables higher performance at lower cost</p>
 <h3 id="263-while"><strong>2.6.3 While 语句</strong><a class="headerlink" href="#263-while" title="Permanent link">&para;</a></h3>
 <p>C code</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">save</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">k</span><span class="p">)</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">+</span><span class="n">i</span><span class="p">;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">;</span>
 </code></pre></div>
 <p>RISC-V assembly</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Loop:   slli x10, x22, 3 # temp reg $t1 = 8 * i
@@ -2408,7 +2410,7 @@ Simplicity enables higher performance at lower cost</p>
 RISC-V assembly code:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>addi sp,sp,-24  //在栈中为这三个项添加三个位置
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>//push
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>sd  x5,16(sp)   //把x5,x6,x20分别存储在栈中的三个位置
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>sd  x5,16(sp)   //把x5,x6,x20d分别存储在栈中的三个位置
 <a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>sd  x6,8(sp)
 <a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>sd  x20,0(sp)
 <a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>//calculate
@@ -2467,7 +2469,7 @@ RISC-V assembly code:
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>        sd x1,8(sp)
 <a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>        sd x10,0(sp)
 <a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>        addi x10,x10,-1
-<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>        blt x10,x0,done
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>        ble x10,x0,done
 <a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>        jal x1,fact
 <a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>        #找回之前的n，此时x10为之前调用的返回值
 <a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>        ld x5,0(sp)
@@ -2694,7 +2696,11 @@ RISC-V assembly code
 </code></pre></div>
 Unlock:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>        sd x0,0(x20) // free lock
-</code></pre></div></p>
+</code></pre></div>
+我们在(x20)中存储锁变量，其中0代表锁变量空闲，1代表锁变量被占用
+我们从(x20)中读取锁变量x10，如果不等于0，说明这个锁变量还在被别人用，则回到读取操作继续读
+如果等于0，那么就讲x12也就是1给入x20，表示这个锁变量已经被我占用了,(这个时候x11作为存储状态的变量)
+怎么释放？就直接把0给到(x20)j</p>
 </div>
 <h2 id="212-translating-and-starting-a-program"><strong>2.12 Translating and starting a program</strong><a class="headerlink" href="#212-translating-and-starting-a-program" title="Permanent link">&para;</a></h2>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-22%20105052.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-22%20105052.png" /></a></p>

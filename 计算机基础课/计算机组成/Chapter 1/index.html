@@ -488,6 +488,8 @@
       
         
       
+        
+      
     
     
       
@@ -1408,7 +1410,7 @@ CPU\ Time=CPU\ Clock\ Cycles \times Clock\ Cycle\ Time=\frac{CPU\ Clock\ Cycles}
 Clock\ Cycles = Instrction\ Count \times Cycles\ per \ Instruction
 \]</div>
 <div class="arithmatex">\[
-CPU\ Time=Instrction\ Count \times CPI \times CLock\ Cycle \ Time= \frac{Instrction\ Count \times CPI}{Clock\ Rate}
+CPU\ Time=Instrction\ Count \times CPI \times Clock\ Cycle \ Time= \frac{Instrction\ Count \times CPI}{Clock\ Rate}
 \]</div>
 <p>Instruction Count for a program  : <strong>determined</strong> by program, ISA（指令集） and complier</p>
 <div class="admonition example">
@@ -1440,7 +1442,7 @@ Clock\ Cycles=\sum_{i=1}^n(CPI_i\times Instruction Count_i)
 <li>Weighted average CPI 平均CPI（带权重）</li>
 </ul>
 <div class="arithmatex">\[
-CPI=\frac{Clock\ Cylces}{Instruction Count}=\sum_{i=1}^n(CPI_i\times\frac{Instruction\ Count_i}{Instruction\ Count})
+CPI=\frac{Clock\ cycles}{Instruction\ Count}=\sum_{i=1}^n(CPI_i\times\frac{Instruction\ Count_i}{Instruction\ Count})
 \]</div>
 <div class="admonition example">
 <p class="admonition-title">CPI example 2</p>
@@ -1449,10 +1451,10 @@ CPI=\frac{Clock\ Cylces}{Instruction Count}=\sum_{i=1}^n(CPI_i\times\frac{Instru
 <ul>
 <li><span class="arithmatex">\(Power = Capacitive\ load\times Voltage^2\times Frequency\)</span></li>
 </ul>
-<p><strong>Summary</strong>
-$$
-CPU Time=\frac{Instructions}{Program}\times\frac{Clock cycles}{Instrction}\times\frac{Seconds}{Clock cycles}
-$$</p>
+<p><strong>Summary</strong></p>
+<div class="arithmatex">\[
+CPU\ Time=\frac{Instructions}{Program}\times\frac{Clock\ cycles}{Instrction}\times\frac{Seconds}{Clock\ cycles}
+\]</div>
 <p>Performance depends on</p>
 <ul>
 <li>Algorithm: affects <span class="arithmatex">\(IC\)</span>, possibly <span class="arithmatex">\(CPI\)</span>(average)</li>
@@ -1461,7 +1463,7 @@ $$</p>
 <li>Instruction set architecture: affects <span class="arithmatex">\(IC, CPI, T_c(cycle\ time)\)</span></li>
 </ul>
 <h2 id="13"><strong>1.3 评价计算机的运行效率</strong><a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
-<h3 id="131-spec">1.3.1 SPEC<a class="headerlink" href="#131-spec" title="Permanent link">&para;</a></h3>
+<h3 id="131-spec"><strong>1.3.1 SPEC</strong><a class="headerlink" href="#131-spec" title="Permanent link">&para;</a></h3>
 <p><strong>SPEC</strong>: Stanard Performance Evaluation Corp</p>
 <h4 id="spec-cpu-benchmark">SPEC CPU Benchmark<a class="headerlink" href="#spec-cpu-benchmark" title="Permanent link">&para;</a></h4>
 <p>programs used to measure performance</p>
@@ -1525,20 +1527,33 @@ T_{improved}=\frac{T_{affected}}{improvement\ factor}+T_{unaffected}
 <p>Design for where it will be when finishes rather than design  for where it starts.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p>increasing the gate area on CMOS transistor to decrease its switching time</p>
+<p>Adding electromagnetic aircraft catapults (which are electrically powered as opposed to current steam-powered models), allowed by the increased power generation offered by the new reactor technology</p>
 </div>
 <ul>
 <li>Use Abstraction to Simplify Design (采用抽象简化设计) </li>
 </ul>
 <p>Lower-level details are hidden to offer  a simple model at higher level</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Building self-driving cars whose control systems partially rely on existing sensor systems already installed into the base vehicle, such as lane departure systems and smart cruise control systems
+将传感器系统进行了抽象</p>
+</div>
 <ul>
 <li>Make the Common Case Fast (加速大概率事件)</li>
 </ul>
 <p>Making the common case fast will tend to enhance  performance better than optimizing the rare case</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Express elevators in building</p>
+</div>
 <ul>
 <li>Performance via Parallelism (通过并行提高性能)</li>
 </ul>
 <p>Get more performance by performing operation in  <strong>parallel</strong></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Increasing the gate area on a CMOS transistor to decrease its switching time</p>
+</div>
 <ul>
 <li>
 <p>Performance via Pipelining (通过流水线提高性能）</p>
@@ -1548,13 +1563,25 @@ T_{improved}=\frac{T_{affected}}{improvement\ factor}+T_{unaffected}
 </li>
 </ul>
 <p>To guess and start working rather than waiting until you  know for sure</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Aircraft and marine navigation systems that incorporate wind information</p>
+</div>
 <ul>
 <li>Hierarchy of Memories (存储器层次)</li>
 </ul>
 <p>With the fastest, smallest, and most expensive memory per  bit at the top of the hierarchy and the slowest, largest, and  cheapest per bit at the bottom</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Library reserve desk</p>
+</div>
 <ul>
 <li>Dependability via Redundancy (通过冗余提高可靠性)</li>
 </ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suspension bridge cables</p>
+</div>
 
 
   
