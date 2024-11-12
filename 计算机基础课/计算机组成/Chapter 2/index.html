@@ -2662,6 +2662,7 @@ RISC-V assembly code
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-22%20101712.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-22%20101712.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-22%20101731.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-22%20101731.png" /></a></p>
 <h2 id="211-synchronization-in-risc-v"><strong>2.11 Synchronization in RISC-V</strong><a class="headerlink" href="#211-synchronization-in-risc-v" title="Permanent link">&para;</a></h2>
+<p>具体解释可参考<a href="https://blog.csdn.net/sucaiwa/article/details/129328891">20｜RISC-V指令精讲（五）：原子指令实现与调试_risc-v amoswap-CSDN博客</a></p>
 <p>现在的计算机多为多处理器，但这些处理器都共用一片内存，这样就会产生竞争。我们使用指令对来解决这一个问题：</p>
 <p>Load reserved: <code>lr.w/d rd,(rs1)</code></p>
 <ul>
@@ -2675,11 +2676,11 @@ RISC-V assembly code
 <li>Succeeds if location not changed since the lr.d, then returns 0 in rd</li>
 <li>Fails if location is changed then returns non-zero value in rd</li>
 </ul>
-<p>sc 指令在把 rs2 值写到 rs1 地址之前，会先判断 rs1 内存地址是否有设置保留标记，如果设置了，则把 rs2 值正常写入到 rs1 内存地址里，并把 rd 寄存器设置成 0，表示保存成功。如果 rs1 内存地址没有设置保留标记，则不保存，并把 rd 寄存器设置成 1 表示保存失败。不管成功还是失败，sc 指令都会把当前 hart 保留的所有保留标记全部清除。其中 w/d 分别对应 32 位/64 位版本。</p>
+<p>sc 指令在把 rs2 值写到 rs1 地址之前，会先判断 rs1 内存地址是否有设置<strong>保留标记</strong>，如果设置了，则把 rs2 值正常写入到 rs1 内存地址里，并把 rd 寄存器设置成 0，表示保存成功。如果 rs1 内存地址没有设置保留标记，则不保存，并把 rd 寄存器设置成 1 表示保存失败。不管成功还是失败，sc 指令都会把当前 hart 保留的所有保留标记全部清除。其中 w/d 分别对应 32 位/64 位版本。</p>
 <div class="admonition example">
 <p class="admonition-title">atomic swap</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>again:  lr.d x10,(x20)
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>        sc.d x11,(x20),x23 // X11 = status
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>        sc.d x11,x23,(x20) // X11 = status
 <a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>        bne x11,x0,again // branch if store failed
 <a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>        addi x23,x10,0 // X23 = loaded value
 </code></pre></div>

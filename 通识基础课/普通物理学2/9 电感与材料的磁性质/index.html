@@ -854,6 +854,33 @@
     9.1 互感
   </a>
   
+    <nav class="md-nav" aria-label="9.1 互感">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#911" class="md-nav__link">
+    9.1.1 公式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#912" class="md-nav__link">
+    9.1.2 互感的应用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    9.2 自感
+  </a>
+  
 </li>
       
     </ul>
@@ -880,6 +907,8 @@
   
     
     
+      
+        
       
         
       
@@ -1129,6 +1158,33 @@
     9.1 互感
   </a>
   
+    <nav class="md-nav" aria-label="9.1 互感">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#911" class="md-nav__link">
+    9.1.1 公式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#912" class="md-nav__link">
+    9.1.2 互感的应用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    9.2 自感
+  </a>
+  
 </li>
       
     </ul>
@@ -1151,7 +1207,41 @@
 
 <h1 id="9">9 电感与材料的磁性质<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
 <h2 id="91">9.1 互感<a class="headerlink" href="#91" title="Permanent link">&para;</a></h2>
+<h3 id="911">9.1.1 公式<a class="headerlink" href="#911" title="Permanent link">&para;</a></h3>
 <p>当线圈1中的电流变化时所激发的变化磁场，会在邻近的另一线圈中产生感应电动势；同样线圈2中的电流变化时，也会在线圈1中产生感应电动势。这种现象被称为<strong>互感现象</strong>，所产生的感应电动势被称为<strong>互感电动势</strong></p>
+<p>磁通匝链数 (Flux linkage) <span class="arithmatex">\(\Psi\)</span> ：磁通量乘以磁通线相关线圈的匝数</p>
+<p>线圈2中的磁通匝链数由线圈1中的电流决定 <span class="arithmatex">\(\Psi_{12}=M_{12}i_1\)</span>，同理线圈1中的磁通匝链数由线圈2中的电流决定 <span class="arithmatex">\(\Psi_{21}=M_{21}i_2\)</span></p>
+<p>由法拉第电磁感应定律，可知</p>
+<div class="arithmatex">\[
+\epsilon_2=-\frac{d\Psi}{dt}=-M_{12}\frac{di_1}{dt}
+\]</div>
+<p>相应的，<span class="arithmatex">\(\epsilon_1\)</span> 也是同样的算法。</p>
+<p>其中 <span class="arithmatex">\(M_{12}\)</span> 和 <span class="arithmatex">\(M_{21}\)</span> 被称为互感系数，单位是 Hery (亨利)。</p>
+<div class="admonition note">
+<p class="admonition-title">说明<span class="arithmatex">\(M_{12}=M_{21}\)</span></p>
+<p>以单匝线圈为例说明 <span class="arithmatex">\(M_{12}=M_{21}\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+M_{12}&amp;=\frac{\Phi_{12}}{I_1}\\
+&amp;=\oint_{(L_2)}A_1\cdot d\ l_2/I_1\\
+&amp;=\frac{\oint_{(L_2)}\frac{\mu_0}{4\pi}I_1\oint_{(L_1)}\frac{dl_1}{r_{12}}\cdot d\ l_2}{I_1}\\
+&amp;=\frac{\mu_0}{4\pi}\oint_{(L_2)}\oint_{(L_1)}\frac{d\ l_1\cdot d\ l_2}{r_{12}}\\
+\end{aligned}
+\]</div>
+<p>同理可得 <span class="arithmatex">\(M_{21}\)</span> 的表达式，可以明显看出二者相同</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>回忆一下螺线管中的电磁场 <span class="arithmatex">\(B=\mu_0 ni\)</span>
+<a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20101304.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20101304.png" /></a></p>
+</div>
+<h3 id="912">9.1.2 互感的应用<a class="headerlink" href="#912" title="Permanent link">&para;</a></h3>
+<ul>
+<li>变压器 (Transformer)</li>
+<li>金属探测器 (Metal Detector) </li>
+<li>心脏起搏器</li>
+</ul>
+<h2 id="92">9.2 自感<a class="headerlink" href="#92" title="Permanent link">&para;</a></h2>
 
 
   
