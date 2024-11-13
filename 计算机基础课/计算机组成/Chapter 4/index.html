@@ -663,6 +663,8 @@
       
         
       
+        
+      
     
     
       
@@ -1058,6 +1060,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#46-risc-v-pipelined-datapath" class="md-nav__link">
+    4.6 RISC-V Pipelined Datapath
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#47-data-hazards" class="md-nav__link">
+    4.7 Data Hazards
+  </a>
+  
+    <nav class="md-nav" aria-label="4.7 Data Hazards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#472-load-use-hazard-detection" class="md-nav__link">
+    4.7.2 Load-Use Hazard Detection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#48-branch-hazards" class="md-nav__link">
+    4.8 Branch Hazards
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1437,6 +1473,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#46-risc-v-pipelined-datapath" class="md-nav__link">
+    4.6 RISC-V Pipelined Datapath
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#47-data-hazards" class="md-nav__link">
+    4.7 Data Hazards
+  </a>
+  
+    <nav class="md-nav" aria-label="4.7 Data Hazards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#472-load-use-hazard-detection" class="md-nav__link">
+    4.7.2 Load-Use Hazard Detection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#48-branch-hazards" class="md-nav__link">
+    4.8 Branch Hazards
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1620,7 +1690,7 @@
 <p>IF: Instruction fetch from memory 从指令内存中把指令取出</p>
 </li>
 <li>
-<p>ID: Instruction decode &amp; register read    指令的解码以及寄存器读取</p>
+<p>ID: Instruction decode &amp; register read    指令的解码以及<strong>寄存器读取</strong></p>
 </li>
 <li>
 <p>EX: Execute operation or calculate address    计算操作以及计算地址</p>
@@ -1654,7 +1724,7 @@ Time\ between\ instructions_{pipelined}\\
 <p>流水线未提高latency（time for each instruction）, 但是提高了throughput (吞吐量)</p>
 <h3 id="452-hazard"><strong>4.5.2 Hazard 风险</strong><a class="headerlink" href="#452-hazard" title="Permanent link">&para;</a></h3>
 <h4 id="1-structure-hazards"><strong>1 Structure hazards</strong><a class="headerlink" href="#1-structure-hazards" title="Permanent link">&para;</a></h4>
-<p>不同指令之间用的硬件冲突了，但是设计的时候已经将每个指令分为五级操作，所以这个问题不会发生</p>
+<p>不同指令之间用的硬件冲突了，但是设计的时候已经将每个指令分为五级操作，所以这个问题不会发生。</p>
 <h4 id="2-data-hazard"><strong>2 Data hazard</strong><a class="headerlink" href="#2-data-hazard" title="Permanent link">&para;</a></h4>
 <p>Need to wait for previous instruction to complete its data read/write，后一条指令对数据的处理依赖于前一条指令完成后的数据</p>
 <p>比如说下面这个例子：</p>
@@ -1662,13 +1732,52 @@ Time\ between\ instructions_{pipelined}\\
 <p>如何解决这个问题，有一个方法：<strong>Forwarding (aka Bypassing)</strong></p>
 <p>我们可以在两个R型指令之间添加一根线，让上一条指令的EX步骤结束后直接将计算结果给到下一条指令的EX（在存入寄存器之前），这样我们就不需要中间的bubble步骤了</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145300.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145300.png" /></a></p>
-<p>但是对于L型指令与R型指令之间，由于ld指令必须要将数据从内存中取出，必须要在MEM结束后才能执行R指令，所以中间不可避免的会有一层bubble</p>
+<p>Load use data hazard: 但是对于L型指令与R型指令之间，由于ld指令必须要将数据从内存中取出，必须要在MEM结束后才能执行R指令，所以中间不可避免的会有一层bubble。 </p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145506.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145506.png" /></a></p>
-<p>我们可以改变指令的顺序来避免这种情况发生，下面就是一个例子</p>
+<p>我们可以改变指令的顺序，让I型指令和R型指令不要连在一起，来避免这种情况发生，下面就是一个例子</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145834.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145834.png" /></a></p>
 <h4 id="3-control-hazard"><strong>3 Control hazard</strong><a class="headerlink" href="#3-control-hazard" title="Permanent link">&para;</a></h4>
 <p>Fetching next instruction depends on branch outcome，选取的指令受到前面branch的结果影响</p>
+<p>branch再怎么优化都会有一级的停顿，因为下一条指令的产生必须要在ID之后。我们可以优化电路将计算部分往前提，让其再ID后出结果</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20174005.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20174005.png" /></a></p>
+<p><strong>Branch Prediction</strong></p>
+<p>一种提升分支阻塞效率的方法是预测分支不发生并持续执行顺序指令流。一旦条件分支发生，已经被读取和译码的指令就会被遗弃，流水线继续从分支目标处开始执行。如果条件分支不发生的概率是50%，同时丢弃指令的代价又很小，那么这种优化方法就会减少一半由控制冒险带来的代价。</p>
+<p><strong>More-Realistic Branch Prediction</strong></p>
+<ul>
+<li>Static branch prediction</li>
+</ul>
+<p>基于典型的分支行为，比如说做循环的时候一般都是分支跳转的，所以我们默认预测是跳转回去 (Predict backward branched taken)</p>
+<ul>
+<li>Dynamic branch prediction</li>
+</ul>
+<p>延续上一次的跳转行为</p>
+<h2 id="46-risc-v-pipelined-datapath">4.6 RISC-V Pipelined Datapath<a class="headerlink" href="#46-risc-v-pipelined-datapath" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141051.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141051.png" /></a></p>
+<p>我们会注意到执行WB写入寄存器的地址Write register已经发生了变化，以及将PC与立即数相加的时候我希望加的是原来指令的PC但是此时PC已经发生了改变。为了解决这些问题，我们引入<strong>流水线寄存器</strong> (Pipeline register)</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141716.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141716.png" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Single-clock-cycle and multi-clock-cycle</p>
+<p>"Single-clock-cycle" pipeline diagram
+    - shows pipeline usage in a single cycle 
+    - Highlight resourced used
+指的就是展示一个时钟周期的情况
+"multi-clock-cycle" pipeline diagram
+    - graph of operation overtime
+展示多个周期的情况</p>
+</div>
+<p>我们以 “single-clock-cycle” diagrams 来看<code>load</code>指令</p>
+<h2 id="47-data-hazards">4.7 Data Hazards<a class="headerlink" href="#47-data-hazards" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sub x2, x1,x3
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>and x12,x2,x5
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>or x13,x6,x2
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>add x14,x2,x2
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>sd x15,100(x2)
+</code></pre></div>
+<p>第一条指令会对<code>and</code> <code>or</code> 指令产生影响，于是我们需要设计forwarding以及判断什么时候需要forwarding</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20150022.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20150022.png" /></a></p>
+<h3 id="472-load-use-hazard-detection"><strong>4.7.2 Load-Use Hazard Detection</strong><a class="headerlink" href="#472-load-use-hazard-detection" title="Permanent link">&para;</a></h3>
+<h2 id="48-branch-hazards">4.8 Branch Hazards<a class="headerlink" href="#48-branch-hazards" title="Permanent link">&para;</a></h2>
+<p>WB放在最后的好处</p>
 
 
   
