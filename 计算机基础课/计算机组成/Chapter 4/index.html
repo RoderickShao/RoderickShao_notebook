@@ -1076,8 +1076,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#472-load-use-hazard-detection" class="md-nav__link">
-    4.7.2 Load-Use Hazard Detection
+  <a href="#471-detect-forwarding" class="md-nav__link">
+    4.7.1 Detect forwarding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#472-double-data-hazard" class="md-nav__link">
+    4.7.2 Double Data Hazard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#473-load-use-hazard-detection" class="md-nav__link">
+    4.7.3 Load-Use Hazard Detection
   </a>
   
 </li>
@@ -1091,6 +1105,60 @@
   <a href="#48-branch-hazards" class="md-nav__link">
     4.8 Branch Hazards
   </a>
+  
+    <nav class="md-nav" aria-label="4.8 Branch Hazards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-branch-prediction" class="md-nav__link">
+    Dynamic Branch Prediction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#49-exceptions-and-interrupts" class="md-nav__link">
+    4.9 Exceptions and Interrupts
+  </a>
+  
+    <nav class="md-nav" aria-label="4.9 Exceptions and Interrupts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handling-exceptions" class="md-nav__link">
+    Handling Exceptions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptions-in-a-pipeline" class="md-nav__link">
+    Exceptions in a Pipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-exceptions" class="md-nav__link">
+    Multiple Exceptions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imprecise-exceptions" class="md-nav__link">
+    Imprecise Exceptions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1489,8 +1557,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#472-load-use-hazard-detection" class="md-nav__link">
-    4.7.2 Load-Use Hazard Detection
+  <a href="#471-detect-forwarding" class="md-nav__link">
+    4.7.1 Detect forwarding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#472-double-data-hazard" class="md-nav__link">
+    4.7.2 Double Data Hazard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#473-load-use-hazard-detection" class="md-nav__link">
+    4.7.3 Load-Use Hazard Detection
   </a>
   
 </li>
@@ -1504,6 +1586,60 @@
   <a href="#48-branch-hazards" class="md-nav__link">
     4.8 Branch Hazards
   </a>
+  
+    <nav class="md-nav" aria-label="4.8 Branch Hazards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-branch-prediction" class="md-nav__link">
+    Dynamic Branch Prediction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#49-exceptions-and-interrupts" class="md-nav__link">
+    4.9 Exceptions and Interrupts
+  </a>
+  
+    <nav class="md-nav" aria-label="4.9 Exceptions and Interrupts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handling-exceptions" class="md-nav__link">
+    Handling Exceptions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptions-in-a-pipeline" class="md-nav__link">
+    Exceptions in a Pipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-exceptions" class="md-nav__link">
+    Multiple Exceptions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imprecise-exceptions" class="md-nav__link">
+    Imprecise Exceptions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1726,6 +1862,7 @@ Time\ between\ instructions_{pipelined}\\
 <h4 id="1-structure-hazards"><strong>1 Structure hazards</strong><a class="headerlink" href="#1-structure-hazards" title="Permanent link">&para;</a></h4>
 <p>不同指令之间用的硬件冲突了，但是设计的时候已经将每个指令分为五级操作，所以这个问题不会发生。</p>
 <h4 id="2-data-hazard"><strong>2 Data hazard</strong><a class="headerlink" href="#2-data-hazard" title="Permanent link">&para;</a></h4>
+<p>详细内容见4.7节</p>
 <p>Need to wait for previous instruction to complete its data read/write，后一条指令对数据的处理依赖于前一条指令完成后的数据</p>
 <p>比如说下面这个例子：</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145309.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145309.png" /></a></p>
@@ -1738,7 +1875,7 @@ Time\ between\ instructions_{pipelined}\\
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145834.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145834.png" /></a></p>
 <h4 id="3-control-hazard"><strong>3 Control hazard</strong><a class="headerlink" href="#3-control-hazard" title="Permanent link">&para;</a></h4>
 <p>Fetching next instruction depends on branch outcome，选取的指令受到前面branch的结果影响</p>
-<p>branch再怎么优化都会有一级的停顿，因为下一条指令的产生必须要在ID之后。我们可以优化电路将计算部分往前提，让其再ID后出结果</p>
+<p>branch再怎么优化都会有一级的停顿，因为下一条指令的产生必须要在ID之后。我们可以优化电路将计算部分往前提，让其在ID后出结果</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20174005.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20174005.png" /></a></p>
 <p><strong>Branch Prediction</strong></p>
 <p>一种提升分支阻塞效率的方法是预测分支不发生并持续执行顺序指令流。一旦条件分支发生，已经被读取和译码的指令就会被遗弃，流水线继续从分支目标处开始执行。如果条件分支不发生的概率是50%，同时丢弃指令的代价又很小，那么这种优化方法就会减少一半由控制冒险带来的代价。</p>
@@ -1750,34 +1887,226 @@ Time\ between\ instructions_{pipelined}\\
 <ul>
 <li>Dynamic branch prediction</li>
 </ul>
-<p>延续上一次的跳转行为</p>
-<h2 id="46-risc-v-pipelined-datapath">4.6 RISC-V Pipelined Datapath<a class="headerlink" href="#46-risc-v-pipelined-datapath" title="Permanent link">&para;</a></h2>
+<p>保存每个条件分支是否发生分支的历史记录，然后根据最近的过去行为来预测未来</p>
+<h2 id="46-risc-v-pipelined-datapath"><strong>4.6 RISC-V Pipelined Datapath</strong><a class="headerlink" href="#46-risc-v-pipelined-datapath" title="Permanent link">&para;</a></h2>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141051.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141051.png" /></a></p>
-<p>我们会注意到执行WB写入寄存器的地址Write register已经发生了变化，以及将PC与立即数相加的时候我希望加的是原来指令的PC但是此时PC已经发生了改变。为了解决这些问题，我们引入<strong>流水线寄存器</strong> (Pipeline register)</p>
+<p>我们会注意到执行WB写入寄存器的地址Write register已经发生了变化，以及将PC与立即数相加的时候我希望加的是原来指令的PC但是此时PC已经发生了改变。为了解决这些问题，我们引入<strong>流水线寄存器</strong> (Pipeline register)，用于存储上个阶段得到的数据。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141716.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141716.png" /></a></p>
 <div class="admonition note">
-<p class="admonition-title">Single-clock-cycle and multi-clock-cycle</p>
-<p>"Single-clock-cycle" pipeline diagram
-    - shows pipeline usage in a single cycle 
-    - Highlight resourced used
-指的就是展示一个时钟周期的情况
-"multi-clock-cycle" pipeline diagram
-    - graph of operation overtime
-展示多个周期的情况</p>
+<p class="admonition-title">Single-clock-cycle and Multi-clock-cycle</p>
+<p>1."Single-clock-cycle" pipeline diagram</p>
+<ul>
+<li>shows pipeline usage in a single cycle </li>
+<li>Highlight resourced used</li>
+</ul>
+<p>指的就是展示一个时钟周期的情况</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20103231.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20103231.png" /></a></p>
+<p>2."multi-clock-cycle" pipeline diagram</p>
+<ul>
+<li>graph of operation overtime</li>
+</ul>
+<p>展示多个周期的情况</p>
+<p>可以这样表示</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20103238.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20103238.png" /></a></p>
+<p>也可以这样表示</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20103243.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20103243.png" /></a></p>
 </div>
 <p>我们以 “single-clock-cycle” diagrams 来看<code>load</code>指令</p>
-<h2 id="47-data-hazards">4.7 Data Hazards<a class="headerlink" href="#47-data-hazards" title="Permanent link">&para;</a></h2>
+<p>执行IF阶段</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102602.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102602.png" /></a></p>
+<p>执行ID阶段</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102606.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102606.png" /></a></p>
+<p>执行EX阶段</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102611.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102611.png" /></a></p>
+<p>执行MEM阶段</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102617.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102617.png" /></a></p>
+<p>执行WB阶段</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102630.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102630.png" /></a></p>
+<p>我们注意到在执行WB阶段的时候写回寄存器的地址并不是ld指令的地址，而是另一条指令的<code>Write register</code>部分，这样会造成数据写入错误，所以我们应该将<code>ld</code>指令的<code>Write register</code>信息一直保存在流水线寄存器中并在执行WB阶段的时候使用对应寄存器中的内容。</p>
+<p>正确的电路如下图所示</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102637.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102637.png" /></a></p>
+<p>对于相应的控制信号，我们也要将其存储到相应的流水线寄存器中</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20104044.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20104044.png" /></a></p>
+<p>完整的展现出来就是</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20104329.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20104329.png" /></a></p>
+<h2 id="47-data-hazards"><strong>4.7 Data Hazards</strong><a class="headerlink" href="#47-data-hazards" title="Permanent link">&para;</a></h2>
+<h3 id="471-detect-forwarding"><strong>4.7.1 Detect forwarding</strong><a class="headerlink" href="#471-detect-forwarding" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sub x2, x1,x3
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>and x12,x2,x5
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>or x13,x6,x2
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>add x14,x2,x2
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>sd x15,100(x2)
 </code></pre></div>
-<p>第一条指令会对<code>and</code> <code>or</code> 指令产生影响，于是我们需要设计forwarding以及判断什么时候需要forwarding</p>
+<p>第一条指令会对<code>and</code> <code>or</code> 指令产生影响（注意没有对<code>add</code>产生影响），于是我们需要设计forwarding以及<strong>判断什么时候</strong>需要forwarding</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20150022.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20150022.png" /></a></p>
-<h3 id="472-load-use-hazard-detection"><strong>4.7.2 Load-Use Hazard Detection</strong><a class="headerlink" href="#472-load-use-hazard-detection" title="Permanent link">&para;</a></h3>
-<h2 id="48-branch-hazards">4.8 Branch Hazards<a class="headerlink" href="#48-branch-hazards" title="Permanent link">&para;</a></h2>
-<p>WB放在最后的好处</p>
+<p>我们需要按照流水线记录寄存器的编号，比如</p>
+<p><code>ID/EX.RegisterRs1</code>=register number for <code>Rs1</code> sitting in ID/EX pipeline register</p>
+<p>这样的话，ALU的操作数寄存器的编号就是<code>ID/EX.RegisterRs1</code> 和 <code>ID/EX.RegisterRs2</code></p>
+<p>那么我们可以认为 Data Hazards 发生在</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>//Fwd from EX/MEM pipeline reg
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>1a. EX/MEM.RegisterRd = ID/EX.RegisterRs1
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1b. EX/MEM.RegisterRd = ID/EX.RegisterRs2
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>//Fwd fromMEM/WBpipeline reg
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>2a. MEM/WB.RegisterRd = ID/EX.RegisterRs1
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>2b. MEM/WB.RegisterRd = ID/EX.RegisterRs2
+</code></pre></div>
+<p>当然我们还需要满足相应的控制信号为真</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>EX/MEM.RegWrite, MEM/WB.RegWrite
+</code></pre></div>
+<p>同时Rd寄存器的编号不为0</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>EX/MEM.RegisterRd ≠ 0,MEM/WB.RegisterRd ≠ 0
+</code></pre></div>
+<p>相应的电路图</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20105616.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20105616.png" /></a></p>
+<p>相应的控制信号（每个MUX中输入分别是正常输入，一级前递，二级前递）（后面两个名字是自己取的。。。）</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20105825.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20105825.png" /></a></p>
+<h3 id="472-double-data-hazard"><strong>4.7.2 Double Data Hazard</strong><a class="headerlink" href="#472-double-data-hazard" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>add x1,x1,x2
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>add x1,x1,x3
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>add x1,x1,x4
+</code></pre></div>
+<p>像上面这种情况，既发生一级前递，又发生二级前递的情况，我们称之为 Double Data Hazard。</p>
+<p>遇到这种情况，我们应该使用最近的那次前递得到的结果。于是二级前递仅仅只在一级前递不发生的情况下发生</p>
+<p>从而MEM hazard（被我成为二级前递）的条件修改为</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>//针对rs1
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>if (【MEM/WB.RegWrite and (MEM/WB.RegisterRd ≠ 0)】二级前递的先决条件
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>and not【(EX/MEM.RegWrite and (EX/MEM.RegisterRd ≠ 0)and (EX/MEM.RegisterRd = ID/EX.RegisterRs1)】不发生一级前递)
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>and (MEM/WB.RegisterRd = ID/EX.RegisterRs1)) ForwardA = 01
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>//针对rs2
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>if (MEM/WB.RegWrite
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>and (MEM/WB.RegisterRd ≠ 0)
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>and not(EX/MEM.RegWrite and (EX/MEM.RegisterRd ≠ 0)
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>and (EX/MEM.RegisterRd = ID/EX.RegisterRs2))
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>and (MEM/WB.RegisterRd = ID/EX.RegisterRs2)) ForwardB = 01 
+</code></pre></div>
+<p>修改相应的数据通路</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20111436.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20111436.png" /></a></p>
+<h3 id="473-load-use-hazard-detection"><strong>4.7.3 Load-Use Hazard Detection</strong><a class="headerlink" href="#473-load-use-hazard-detection" title="Permanent link">&para;</a></h3>
+<p>Load-Use Hazard 发生在这条指令的寄存器操作数是前一条指令是<code>ld</code>从内存中WriteRegister的内容。</p>
+<p>我们可以提前检测，这时ALU的寄存器操作数就是<code>IF/ID.RegisterRs1</code>, <code>IF/ID.RegisterRs2</code></p>
+<p>从而Load-Use Hazard发生的条件是</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ID/EX.MemRead and
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>((ID/EX.RegisterRd = IF/ID.RegisterRs1) or
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>(ID/EX.RegisterRd = IF/ID.RegisterRs2))
+</code></pre></div>
+<p>如果检测到，那么需要停顿并加一个bubble。</p>
+<div class="admonition note">
+<p class="admonition-title">如何添加一个bubble</p>
+<ul>
+<li>将ID/EX中的控制信号全部置0</li>
+<li>禁止PC寄存器和IF/ID流水线寄存器的改变</li>
+</ul>
+</div>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20113407.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20113407.png" /></a></p>
+<p>总的来说就是，我们先读入<code>and</code>指令，然后进行检测（IF/ID与ID/EX之间的检测），发现不对需要添加bubble，禁止PC寄存器改变与IF/ID寄存器改变，同时置ID/EX的控制信号全部为0。在下一个时钟的时候，读入的指令依然是<code>and</code>，此时我们就可以正常继续了。</p>
+<p>相应的数据通路</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20114042.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20114042.png" /></a></p>
+<h2 id="48-branch-hazards"><strong>4.8 Branch Hazards</strong><a class="headerlink" href="#48-branch-hazards" title="Permanent link">&para;</a></h2>
+<p>如果是否跳转的信号在MEM阶段才得出，那么如果我们判断错误，我们就需要刷新三个指令</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20114857.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20114857.png" /></a></p>
+<p>刷新3个指令只需要将各级的控制信号清零，WB放在最后的好处在于这三条指令产生的结果并未对数据产生影响。</p>
+<p>当然这样错误的开销是巨大的，所以我们改变硬件，将相应的结果提前到ID阶段输出，</p>
+<ul>
+<li>
+<p>算目标地址</p>
+</li>
+<li>
+<p>比较相应寄存器中的值（按位异或之后检测是否为0）【注意这里也可能会有潜在的数据冒险】</p>
+</li>
+</ul>
+<p>移到ID阶段后，这样我们刷新的时候只需要停一个周期</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20121109.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20121109.png" /></a></p>
+<h3 id="dynamic-branch-prediction"><strong>Dynamic Branch Prediction</strong><a class="headerlink" href="#dynamic-branch-prediction" title="Permanent link">&para;</a></h3>
+<p>In deeper and superscalar pipelines, branch penalty is more significant</p>
+<p>Use dynamic prediction</p>
+<ul>
+<li>
+<p><strong>Branch prediction buffer</strong> (aka branch history table) 存储的是上一次是否跳转</p>
+</li>
+<li>
+<p>Indexed by recent branch instruction addresses (lower part)</p>
+</li>
+<li>
+<p>Stores outcome (taken/not taken)</p>
+</li>
+</ul>
+<p>解码出的跳转指令，然后我去检测上一次相同的跳转跳了还是没跳</p>
+<p><strong>1-Bit Predictor: Shortcoming</strong></p>
+<p>对于一个嵌套循环</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>outer: ...
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>       ...
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>inner: ...
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>       ...
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>       【beq ...,..., inner】
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>       ...
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>       beq ...,..., outer
+</code></pre></div>
+<p>对于【】中的跳转语句，如果这次跳转语句错误了（应该不跳转但是跳转了），那么执行下一个跳转语句的时候应该是继续跳转，但是由于上次是不跳转的，那么这次还不跳转，所以又错误了，那么就会造成连续的两次错误。</p>
+<p><strong>2-Bit Predictor</strong>（有一个缓存的机制）</p>
+<p>Only change prediction on two successive mispredictions</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20122954.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20122954.png" /></a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>我们这里没有说明两种predictor的优劣，上述的shortcoming是一种2-bit更好的情况</p>
+</div>
+<p>Even with predictor, still need to calculate the target address 我们仍需要计算目标地址，同时也会又一个时钟的延误</p>
+<p>我们可以引入 Branch target buffer (BTB)，之前那个是BPB存储是否跳转，BTB则是直接存储上次跳转的地址，这样我们下次就不用算了。但是这样会造成较大的空间损耗（一条PC值64位）所以实际上我们需要在两者之间找到相应的平衡</p>
+<h2 id="49-exceptions-and-interrupts"><strong>4.9 Exceptions and Interrupts</strong><a class="headerlink" href="#49-exceptions-and-interrupts" title="Permanent link">&para;</a></h2>
+<p>“Unexpected” events requiring change in flow of control</p>
+<ul>
+<li>Exception: Arises within the CPU</li>
+<li>Interrupt: From an external I/O controller</li>
+</ul>
+<h3 id="handling-exceptions"><strong>Handling Exceptions</strong><a class="headerlink" href="#handling-exceptions" title="Permanent link">&para;</a></h3>
+<p>(RISC-V) 一种解决方式是记录下出错的PC值，出错的原因，然后跳转到一个固定的PC值去处理。</p>
+<p>Save PC of offending (or interrupted) instruction. In RISC-V, we use Supervisor Exception Program Counter (SEPC)</p>
+<p>Save indication of the problem. In RISC-V, we use Supervisor Exception Cause Register (SCAUSE)</p>
+<p>这个SCAUSE一共64位，但是很多位是没有被使用的</p>
+<ul>
+<li>Exception code field: 2 for undefined opcode, 12 for hardware malfunction, …</li>
+</ul>
+<p>Jump to handler, assume at <span class="arithmatex">\(0000\ 0000\ 1C09\ 0000_{hex}\)</span></p>
+<p>另一种解决方式是根据不同的出错方式跳转到不同的 Handler address，被称为使用<strong>向量式中断 (vectored interrupt)</strong>。用基址寄存器加上例外原因（作为偏移）作为目标地址来完成控制流转换。</p>
+<p>基址寄存器中保存了向量式中断内存区域的起始地址。比如我们可以根据例外类型定义两类例外的例外向量起始地址</p>
+<table>
+<thead>
+<tr>
+<th>例外类型</th>
+<th>例外向量地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未定义指令</td>
+<td><span class="arithmatex">\(00\ 0100\ 0000_2\)</span></td>
+</tr>
+<tr>
+<td>系统错误（硬件故障）</td>
+<td><span class="arithmatex">\(01\ 1000\ 0000_2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>操作系统可以根据例外向量起始地址来确定例外原因</p>
+<h3 id="exceptions-in-a-pipeline"><strong>Exceptions in a Pipeline</strong><a class="headerlink" href="#exceptions-in-a-pipeline" title="Permanent link">&para;</a></h3>
+<p>——another form of control hazard</p>
+<div class="admonition example">
+<p class="admonition-title">Consider malfunction on add in EX stage</p>
+<p><code>add x1, x2, x1</code></p>
+<ul>
+<li>Prevent x1 from being clobbered</li>
+<li>Complete previous instructions 完成之前的操作</li>
+<li>Flush add and subsequent instructions 对之后的操作进行刷新</li>
+<li>Set SEPC and SCAUSE register values</li>
+<li>Transfer control to handler 转移到handler中去处理</li>
+</ul>
+</div>
+<p>与 mispredicted branch的过程类似</p>
+<h3 id="multiple-exceptions"><strong>Multiple Exceptions</strong><a class="headerlink" href="#multiple-exceptions" title="Permanent link">&para;</a></h3>
+<p>一条流水线可能在同一个周期出现多个exception，我们只需要找到出现exception最早的那一条指令，然后处理即可</p>
+<h3 id="imprecise-exceptions"><strong>Imprecise Exceptions</strong><a class="headerlink" href="#imprecise-exceptions" title="Permanent link">&para;</a></h3>
+<p>在流水线处理器中，将例外和指令正确关联起来存在一定难度，一些处理器设计者在非关键情况下考虑放松对此的要求。这样的处理机制被称为<strong>非精确中断 (imprecise interrupts) 或者非精确例外 (imprecise exception)</strong>。在上文的例子中，当流水线检测到例外时程序计数器PC已经变为<span class="arithmatex">\(58_{16}\)</span>,而发生例外的是地址为<span class="arithmatex">\(4C_{16}\)</span>的add指令。具有非精确例外的处理器将在SEPC寄存器中保存<span class="arithmatex">\(58_{16}\)</span>,让操作系统去判断到底是哪条指令引发了例外。与大多数处理器相同，RISC-V支持精确中断或精确例外。一个原因是，当流水线不断加深时，非精确例外会增加操作系统处理的难度和复杂度。</p>
+<hr />
+<p>后面的内容都不考了，我也就上课听了一下，笔记就没有整理了。。。</p>
 
 
   
