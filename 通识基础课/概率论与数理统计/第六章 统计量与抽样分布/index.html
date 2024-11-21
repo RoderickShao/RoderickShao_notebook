@@ -896,7 +896,7 @@
         
           <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
-    定理1 (均值的计算)
+    定理1（均值的计算）
   </a>
   
 </li>
@@ -910,20 +910,27 @@
         
           <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
-    定理3 （方差与期望的关系）
+    定理3（方差与期望的关系）
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#4" class="md-nav__link">
-    定理4 （两个不同样本）
+    定理4（两个不同样本）
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    Homework
+  </a>
   
 </li>
       
@@ -1198,7 +1205,7 @@
         
           <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
-    定理1 (均值的计算)
+    定理1（均值的计算）
   </a>
   
 </li>
@@ -1212,20 +1219,27 @@
         
           <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
-    定理3 （方差与期望的关系）
+    定理3（方差与期望的关系）
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#4" class="md-nav__link">
-    定理4 （两个不同样本）
+    定理4（两个不同样本）
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    Homework
+  </a>
   
 </li>
       
@@ -1281,15 +1295,15 @@
 <h2 id="62">6.2 常用的分布<a class="headerlink" href="#62" title="Permanent link">&para;</a></h2>
 <h3 id="621-chi2">6.2.1 <span class="arithmatex">\(\chi^2\)</span>分布<a class="headerlink" href="#621-chi2" title="Permanent link">&para;</a></h3>
 <p>随机变量 <span class="arithmatex">\(X_1,X_2,...,X_n\)</span> 相互独立，而且 <span class="arithmatex">\(X_i\sim N(0,1)(i=1,2,...,n)\)</span> 则 <span class="arithmatex">\(X=\sum_{i=1}^nX_i^2\)</span> 服从自由度为n的 <span class="arithmatex">\(\chi^2\)</span> 分布，记为 <span class="arithmatex">\(X\sim\chi^2(n)\)</span>. 自由度指独立的标准正态分布的随机变量个数。</p>
-<p><span class="arithmatex">\(\chi^2(n)\)</span> 分布的概率密度为：
-$$
-f(x)=\left{ 
+<p><span class="arithmatex">\(\chi^2(n)\)</span> 分布的概率密度为：</p>
+<div class="arithmatex">\[
+f(x)=\left\{ 
 \begin{aligned}
-&amp;\frac{1}{2^{n/2}\Gamma(n/2)}x^{\frac n2-1}e^{-\frac x2}, &amp;&amp;x &gt; 0,\
+&amp;\frac{1}{2^{n/2}\Gamma(n/2)}x^{\frac n2-1}e^{-\frac x2},\ &amp;&amp;x &gt; 0,\\
 &amp;0, &amp;&amp;x \le0,
 \end{aligned}\right.
-$$
-其中 <span class="arithmatex">\(\Gamma(\alpha)=\int_0^{+\infty}t^{\alpha-1}e^{-t}dt\)</span></p>
+\]</div>
+<p>其中 <span class="arithmatex">\(\Gamma(\alpha)=\int_0^{+\infty}t^{\alpha-1}e^{-t}dt\)</span></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20110240.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20110240.png" /></a></p>
 <p><span class="arithmatex">\(\chi^2\)</span>分布的一些重要性质</p>
 <p>（1）<span class="arithmatex">\(\chi^2\)</span>分布的可加性</p>
@@ -1317,27 +1331,32 @@ $$
 <p>相应的性质</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20113343.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20113343.png" /></a></p>
 <h2 id="63">6.3 正态总体的抽样分布<a class="headerlink" href="#63" title="Permanent link">&para;</a></h2>
-<h3 id="1">定理1 (均值的计算)<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<p>设 <span class="arithmatex">\((X_1,X_2,...,X_n)\)</span> 是总体 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> 的样本，<span class="arithmatex">\(\overline X,S^2\)</span> 分别是样本均值和样品方差，则有：
-$$
+<h3 id="1">定理1（均值的计算）<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\((X_1,X_2,...,X_n)\)</span> 是总体 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> 的样本，<span class="arithmatex">\(\overline X,S^2\)</span> 分别是样本均值和样品方差，则有：</p>
+<div class="arithmatex">\[
 \overline X\sim(\mu,\frac{\sigma}{n})
-$$</p>
+\]</div>
 <h3 id="2">定理2（方差的计算）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
 <p>设 <span class="arithmatex">\((X_1,X_2,...,X_n)\)</span> 是总体 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> 的样本，<span class="arithmatex">\(\overline X,S^2\)</span> 分别是样本均值和样品方差，则有：</p>
 <p>（1） <span class="arithmatex">\(\frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)\)</span></p>
 <p>（2）<span class="arithmatex">\(\overline X\)</span> 和 <span class="arithmatex">\(S^2\)</span> 相互独立</p>
 <p>具体证明无需掌握，只需注意到自由度减少了1（多了一个约束条件）</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20121329.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20121329.png" /></a></p>
-<h3 id="3">定理3 （方差与期望的关系）<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
-<p>设 <span class="arithmatex">\((X_1,X_2,...,X_n)\)</span> 是总体 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> 的样本，<span class="arithmatex">\(\overline X,S^2\)</span> 分别是样本均值和样品方差，则有：
-$$
+<h3 id="3">定理3（方差与期望的关系）<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\((X_1,X_2,...,X_n)\)</span> 是总体 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> 的样本，<span class="arithmatex">\(\overline X,S^2\)</span> 分别是样本均值和样品方差，则有：</p>
+<div class="arithmatex">\[
 \frac{\overline X-\mu}{S/\sqrt n}\sim t(n-1)
-$$
-<a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20120110.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20120110.png" /></a></p>
-<h3 id="4">定理4 （两个不同样本）<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+\]</div>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20120110.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20120110.png" /></a></p>
+<h3 id="4">定理4（两个不同样本）<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20120326.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20120326.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20121445.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20121445.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20121450.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20121450.png" /></a></p>
+<h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
+<p>第六章 </p>
+<p>A5 注意二项分布的数学期望以及方差的计算</p>
+<p>A11(5) 注意正态分布减的时候的方差的计算</p>
+<p>B10 注意正负号都可以</p>
 
 
   
@@ -1384,6 +1403,59 @@ $$
     </fieldset>
   </form>
 
+
+  <h2 id="__comments">评论</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+    data-repo="RoderickShao/RoderickShao_notebook"
+    data-repo-id="R_kgDOMS_5AQ"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
 
                 
               </article>
