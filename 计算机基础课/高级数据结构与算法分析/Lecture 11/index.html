@@ -16,7 +16,7 @@
         <link rel="prev" href="../Lecture%2010/">
       
       
-        <link rel="next" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/Introduction/">
+        <link rel="next" href="../Lecture%2012/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -93,6 +93,8 @@
     
       <link rel="stylesheet" href="../../../css/custom.css">
     
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -157,8 +159,7 @@
   <nav class="md-header__inner md-grid" aria-label="页眉">
     <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -434,8 +435,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../logo.png" alt="logo">
 
     </a>
     RoderickShao's NoteBook
@@ -669,6 +669,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -707,7 +709,7 @@
         
   
   <span class="md-ellipsis">
-    0 Introduction
+    Introduction
   </span>
   
 
@@ -1100,6 +1102,26 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%2012/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 Local Search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1460,6 +1482,10 @@
 
 
 <h1 id="11-approximation"><strong>11 Approximation</strong><a class="headerlink" href="#11-approximation" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 1796 个字  •  40 行代码  预计阅读时间 6 分钟
+</div>
+
 <p>引入近似算法的目的是什么？解决比较困难的问题（NPC）</p>
 <p>在解决困难问题的时候，我们找不到一个很好的算法，可以找一些替代的方法</p>
 <ul>
@@ -1571,11 +1597,11 @@ OPT(L)&amp;\ge\sum_{i=1}^na_i\\
 \]</div>
 <p>从而 <span class="arithmatex">\(OPT(L)\ge\lceil\frac{2}{3}FFD(L)\rceil\ge \frac{2}{3}FFD(L)\)</span></p>
 <p>当然根据题目的意思我们直接根据题目的不等式直接得到 </p>
-<p>当 <span class="arithmatex">\(OPT(L)&gt;3\)</span> 时满足
-$$
+<p>当 <span class="arithmatex">\(OPT(L)&gt;3\)</span> 时满足</p>
+<div class="arithmatex">\[
 FFD(I)FFD(L)\le (11/9)OPT(L) + 1&lt;(3/2)OPT(L)
-$$
-当 <span class="arithmatex">\(OPT(L)=3\)</span> 上述不等式得到 <span class="arithmatex">\(FFD(L)\le 4&lt;4.5\)</span></p>
+\]</div>
+<p>当 <span class="arithmatex">\(OPT(L)=3\)</span> 上述不等式得到 <span class="arithmatex">\(FFD(L)\le 4&lt;4.5\)</span></p>
 <p>当 <span class="arithmatex">\(OPT(L)=2\)</span> 上述不等式得到 <span class="arithmatex">\(FFD(L)\le 3\)</span> ,亦满足等式</p>
 <p>（2）反证法。谬设存在近似比小于 <span class="arithmatex">\(3/2\)</span> 的多项式时间近似算法 <span class="arithmatex">\(A\)</span> ，那么直接用它求解装箱问题；如果 <span class="arithmatex">\(OPT(I)=2\)</span> ，那么 <span class="arithmatex">\(A(I)&lt;3\)</span> ，于是 <span class="arithmatex">\(A(I)=2=OPT(I)\)</span> ；如果 <span class="arithmatex">\(OPT(I)≥3\)</span> ，那么 <span class="arithmatex">\(A(I)≥3\)</span> 。这样我们就回答了给定物品是否能用两个箱子装下的问题。而它是一个 NP-完全 问题，在多项式时间内不可解，矛盾！</p>
 </div>
@@ -1598,10 +1624,10 @@ we are supposed to find the values of <span class="arithmatex">\(x_i\)</span> su
 <p>假设我们还使用贪心算法（选择最大价值优先和最高性价比优先两者方法较大的那个），这样的近似比是多少呢？</p>
 <p>记 <span class="arithmatex">\(p_{max}\)</span> 为最优价值的物品的价值，<span class="arithmatex">\(P_{opt}\)</span> 为最优解得到的价值，<span class="arithmatex">\(P_{greedy}\)</span> 为贪心算法得到的价值，<span class="arithmatex">\(P_{frac}\)</span>为分数版本的最大价值</p>
 <p>于是，我们可以得到下面的不等式</p>
-<p>（第一个不等式是因为 <span class="arithmatex">\(P_{greedy}\)</span> 肯定比最高性价比优先的贪心算法高，而 <span class="arithmatex">\(P_{frac}\)</span> 就是用最高性价比优先算法的，从而两者的差距就在于分数形式的可以放一半，而整数形式的就不能放了，故两者的差距不可能差一个最大物品的价格。第二个不等式的原因是 <span class="arithmatex">\(P_{greedy}\)</span> 肯定比最大价值优先的要大，也比最高性价比优先的要大。）
-$$
+<p>（第一个不等式是因为 <span class="arithmatex">\(P_{greedy}\)</span> 肯定比最高性价比优先的贪心算法高，而 <span class="arithmatex">\(P_{frac}\)</span> 就是用最高性价比优先算法的，从而两者的差距就在于分数形式的可以放一部分，而整数形式的就不能放了，故两者的差距不可能差一个最大物品的价格。第二个不等式的原因是 <span class="arithmatex">\(P_{greedy}\)</span> 肯定比最大价值优先的要大，也比最高性价比优先的要大。）</p>
+<div class="arithmatex">\[
 P_{OPT}\le P_{frac}\le P_{greedy}+p_{max}
-$$</p>
+\]</div>
 <div class="arithmatex">\[
 p_{max}\le P_{greedy}
 \]</div>
@@ -1847,13 +1873,13 @@ p_{max}\le P_{greedy}
         
         
           
-          <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/Introduction/" class="md-footer__link md-footer__link--next" aria-label="下一页: 0 Introduction" rel="next">
+          <a href="../Lecture%2012/" class="md-footer__link md-footer__link--next" aria-label="下一页: 12 Local Search" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                0 Introduction
+                12 Local Search
               </div>
             </div>
             <div class="md-footer__button md-icon">

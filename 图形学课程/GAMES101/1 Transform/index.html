@@ -93,6 +93,8 @@
     
       <link rel="stylesheet" href="../../../css/custom.css">
     
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -157,8 +159,7 @@
   <nav class="md-header__inner md-grid" aria-label="页眉">
     <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -434,8 +435,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../logo.png" alt="logo">
 
     </a>
     RoderickShao's NoteBook
@@ -776,7 +776,7 @@
         
   
   <span class="md-ellipsis">
-    0 Introduction
+    Introduction
   </span>
   
 
@@ -880,8 +880,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#121-rotation-around-x-y-or-z-axis" class="md-nav__link">
-    1.2.1 Rotation around x-,y- or z-axis
+  <a href="#rotation-around-x-y-or-z-axis" class="md-nav__link">
+    Rotation around x-,y- or z-axis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rodrigues-rotation-formula" class="md-nav__link">
+    Rodrigues’ Rotation Formula
   </a>
   
 </li>
@@ -892,29 +899,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#12-viewing-transformation" class="md-nav__link">
-    1.2 Viewing transformation
+  <a href="#13-viewcamera-transformation" class="md-nav__link">
+    1.3 View/Camera Transformation
   </a>
   
-    <nav class="md-nav" aria-label="1.2 Viewing transformation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-projection-transformation-mvp-transformation" class="md-nav__link">
+    1.4 Projection transformation (MVP transformation)
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 Projection transformation (MVP transformation)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#121-viewcamera-transformation" class="md-nav__link">
-    1.2.1 View/Camera Transformation
+  <a href="#orthographic-projection" class="md-nav__link">
+    Orthographic Projection （正交投影）
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#122-projection-transformation" class="md-nav__link">
-    1.2.2 Projection transformation
+  <a href="#perspective-projection" class="md-nav__link">
+    Perspective Projection（透视投影）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewport-transformation" class="md-nav__link">
+    ViewPort Transformation（视口变换）
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
   
 </li>
       
@@ -1151,8 +1179,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#121-rotation-around-x-y-or-z-axis" class="md-nav__link">
-    1.2.1 Rotation around x-,y- or z-axis
+  <a href="#rotation-around-x-y-or-z-axis" class="md-nav__link">
+    Rotation around x-,y- or z-axis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rodrigues-rotation-formula" class="md-nav__link">
+    Rodrigues’ Rotation Formula
   </a>
   
 </li>
@@ -1163,29 +1198,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#12-viewing-transformation" class="md-nav__link">
-    1.2 Viewing transformation
+  <a href="#13-viewcamera-transformation" class="md-nav__link">
+    1.3 View/Camera Transformation
   </a>
   
-    <nav class="md-nav" aria-label="1.2 Viewing transformation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-projection-transformation-mvp-transformation" class="md-nav__link">
+    1.4 Projection transformation (MVP transformation)
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 Projection transformation (MVP transformation)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#121-viewcamera-transformation" class="md-nav__link">
-    1.2.1 View/Camera Transformation
+  <a href="#orthographic-projection" class="md-nav__link">
+    Orthographic Projection （正交投影）
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#122-projection-transformation" class="md-nav__link">
-    1.2.2 Projection transformation
+  <a href="#perspective-projection" class="md-nav__link">
+    Perspective Projection（透视投影）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewport-transformation" class="md-nav__link">
+    ViewPort Transformation（视口变换）
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
   
 </li>
       
@@ -1208,6 +1264,10 @@
 
 
 <h1 id="1-transform"><strong>1 Transform</strong><a class="headerlink" href="#1-transform" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 1593 个字  预计阅读时间 5 分钟
+</div>
+
 <h2 id="11-2d-transforms"><strong>1.1 2D Transforms</strong><a class="headerlink" href="#11-2d-transforms" title="Permanent link">&para;</a></h2>
 <h3 id="111-some-typical-transforms"><strong>1.1.1 Some typical Transforms</strong><a class="headerlink" href="#111-some-typical-transforms" title="Permanent link">&para;</a></h3>
 <p><strong>Scale Matrix</strong></p>
@@ -1219,9 +1279,10 @@
 <p><strong>Rotate</strong></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-24%20182215.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-24%20182215.png" /></a></p>
 <h3 id="112-homogeneous-coordinates"><strong>1.1.2 Homogeneous Coordinates</strong><a class="headerlink" href="#112-homogeneous-coordinates" title="Permanent link">&para;</a></h3>
-<p>Translation cannot be represented in matrix form and we don't want translation to be a special case. So we introduce the concept of homogeneous coordinates.</p>
-<p>We add a third coordinate(w-coordinate)</p>
-<p>2D point <span class="arithmatex">\(\rightarrow\)</span> <span class="arithmatex">\((x,y,1)^T\)</span>  2D vector <span class="arithmatex">\(\rightarrow\)</span> <span class="arithmatex">\((x,y,0)^T\)</span> (Let vector do not change when translation happens) </p>
+<p>二维的矩阵只能完成旋转的操作，当我需要完成平移操作的时候，我就需要引入第三个坐标了。</p>
+<p>We add a <strong>third coordinate(w-coordinate)</strong></p>
+<p>点坐标我们的第三个坐标记为1，向量的话就记为0（这样的话，我们向量在平移的时候就不会变了）。</p>
+<p>2D point <span class="arithmatex">\(\rightarrow\)</span> <span class="arithmatex">\((x,y,1)^T\)</span>  2D vector <span class="arithmatex">\(\rightarrow\)</span> <span class="arithmatex">\((x,y,0)^T\)</span> </p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-24%20183536.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-24%20183536.png" /></a></p>
 <p>Meanwhile, valid operation if w-coordinate of result is 1/0</p>
 <ul>
@@ -1231,18 +1292,21 @@
 </ul>
 <p>However, point+point is meaningless at some point. In homogeneous coordinates,</p>
 <p><span class="arithmatex">\(\left( \begin{matrix} x\\y\\w\end{matrix} \right) \tag{2}\)</span>is the <span class="arithmatex">\(2D\)</span> point<span class="arithmatex">\(\left( \begin{matrix} x/w\\y/w\end{matrix} \right) \tag{2}\)</span>,<span class="arithmatex">\(w\neq0\)</span>. Therefore point+point means the midpoint.</p>
-<p><strong>Affine Transformation</strong></p>
+<p><strong>Affine Transformation（仿射变换）</strong></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-24%20211121.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-24%20211121.png" /></a></p>
 <details class="question">
 <summary>What's the Order? Linear Transforms first or Translation first?</summary>
 <p>The former</p>
 </details>
-<p><strong>Inverse Transform</strong></p>
+<p><strong>Inverse Transform（逆变换）</strong></p>
 <p><span class="arithmatex">\(M^{-1}\)</span> is the inverse of transform in both a matrix  and geometric sense</p>
 <h3 id="113-composing-and-decomposing"><strong>1.1.3 Composing and Decomposing</strong><a class="headerlink" href="#113-composing-and-decomposing" title="Permanent link">&para;</a></h3>
 <p><strong>Composing Transforms</strong></p>
 <p>Sequence of affine transforms <span class="arithmatex">\(A_1,A_2,A_3,\dots\)</span></p>
-<p><span class="arithmatex">\(A_n(\dots A_2(A_1(x)))=A_n\dots A_2\cdot A_1\cdot\left( \begin{matrix} x\\y\\1\end{matrix} \right)\)</span> , we can obtain a single matrix representing combined transform.</p>
+<div class="arithmatex">\[
+A_n(\dots A_2(A_1(x)))=A_n\dots A_2\cdot A_1\cdot\left( \begin{matrix} x\\y\\1\end{matrix} \right)
+\]</div>
+<p>we can obtain a single matrix representing combined transform.</p>
 <p><strong>Decomposing Complex Transforms</strong></p>
 <div class="admonition example">
 <p class="admonition-title">How to rotate around a given point c</p>
@@ -1250,28 +1314,31 @@
 </div>
 <h2 id="12-3d-transforms"><strong>1.2 3D Transforms</strong><a class="headerlink" href="#12-3d-transforms" title="Permanent link">&para;</a></h2>
 <p>3D Transforms is just like 2D transforms. We use 4*4 matrices for affine transformation
-<span class="arithmatex">\(\left(\begin{matrix}x'\\y'\\z'\\1
-\end{matrix}\right)=\left(\begin{matrix}a&amp;b&amp;c&amp;t_x\\d&amp;e&amp;f&amp;t_y\\g&amp;h&amp;i&amp;t_z\\0&amp;0&amp;0&amp;1
-\end{matrix}\right)\cdot \left(\begin{matrix}x\\y\\z\\1
-\end{matrix}\right)\)</span></p>
-<h3 id="121-rotation-around-x-y-or-z-axis"><strong>1.2.1 Rotation around x-,y- or z-axis</strong><a class="headerlink" href="#121-rotation-around-x-y-or-z-axis" title="Permanent link">&para;</a></h3>
+$$
+\left(\begin{matrix}x'\y'\z'\1
+\end{matrix}\right)=\left(\begin{matrix}a&amp;b&amp;c&amp;t_x\d&amp;e&amp;f&amp;t_y\g&amp;h&amp;i&amp;t_z\0&amp;0&amp;0&amp;1
+\end{matrix}\right)\cdot \left(\begin{matrix}x\y\z\1
+\end{matrix}\right)
+$$</p>
+<h3 id="rotation-around-x-y-or-z-axis"><strong>Rotation around x-,y- or z-axis</strong><a class="headerlink" href="#rotation-around-x-y-or-z-axis" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-25%20165634.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-25%20165634.png" /></a></p>
 <p>it looks like different when rotate around y-axis</p>
-<p>we can compose any 3D rotation from <span class="arithmatex">\(R_x(\alpha)R_y(\beta)R_z(\gamma)\)</span>, </p>
-<p><strong>Rodrigues’ Rotation Formula</strong></p>
+<p>we can compose any 3D rotation from <span class="arithmatex">\(R_x(\alpha)\ R_y(\beta)\ R_z(\gamma)\)</span>, </p>
+<h3 id="rodrigues-rotation-formula"><strong>Rodrigues’ Rotation Formula</strong><a class="headerlink" href="#rodrigues-rotation-formula" title="Permanent link">&para;</a></h3>
+<p>计算绕一个旋转轴旋转一个角度的结果</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-25%20171932.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-25%20171932.png" /></a></p>
-<h2 id="12-viewing-transformation"><strong>1.2 Viewing transformation</strong><a class="headerlink" href="#12-viewing-transformation" title="Permanent link">&para;</a></h2>
-<h3 id="121-viewcamera-transformation"><strong>1.2.1 View/Camera Transformation</strong><a class="headerlink" href="#121-viewcamera-transformation" title="Permanent link">&para;</a></h3>
-<p>We need to define the  camera first. </p>
+<h2 id="13-viewcamera-transformation"><strong>1.3 View/Camera Transformation</strong><a class="headerlink" href="#13-viewcamera-transformation" title="Permanent link">&para;</a></h2>
+<p>We need to define the camera first. </p>
 <ul>
-<li>Position  <span class="arithmatex">\(\vec e\)</span></li>
-<li>Look at / gaze direction    <span class="arithmatex">\(\hat g\)</span></li>
-<li>Up direction    <span class="arithmatex">\(\hat t\)</span></li>
+<li>Position  <span class="arithmatex">\(\vec e\)</span>    相机在哪个位置</li>
+<li>Look at / gaze direction    <span class="arithmatex">\(\hat g\)</span>    相机朝哪个地方拍</li>
+<li>Up direction    <span class="arithmatex">\(\hat t\)</span>   相机是横着拍还是竖着拍等等</li>
 </ul>
-<p>To let the problem be easy, we can move the camera and the object <strong>together</strong>. Usually, we transform the camera to the origin, up at Y, look at -Z. Let the transform matrix be <span class="arithmatex">\(M_{view}\)</span>.</p>
+<p>To let the problem be easy, we can move the camera and the object <strong>together</strong>. </p>
+<p>Usually, we transform the camera to <strong>the origin, up at Y, look at -Z</strong>. Let the transform matrix be <span class="arithmatex">\(M_{view}\)</span>.</p>
 <p><strong>How to get <span class="arithmatex">\(M_{view}\)</span> in math?</strong></p>
 <ol>
-<li>translate <span class="arithmatex">\(\vec e\)</span> to origin then rotate g to -Z, t to Y, (g*t) to X</li>
+<li>translate <span class="arithmatex">\(\vec e\)</span> to origin then rotate <span class="arithmatex">\(\hat g\)</span>  to -Z,  <span class="arithmatex">\(\hat t\)</span> to Y,  <span class="arithmatex">\(\hat g\times \hat t\)</span> to X</li>
 <li><span class="arithmatex">\(M_{view}=R_{view}T_{view}\)</span></li>
 <li>
 <p><span class="arithmatex">\(T_{view}= \left[ \begin{matrix}   1 &amp; 0 &amp; 0 &amp; -x_e \\   0 &amp; 1 &amp; 0 &amp; -y_e\\   0 &amp; 0 &amp; 1 &amp; -z_e \\ 0 &amp; 0 &amp; 0 &amp; 1\end{matrix}  \right]\)</span></p>
@@ -1280,31 +1347,57 @@
 <p><span class="arithmatex">\(R^{-1}_{view}= \left[ \begin{matrix}   x_{\hat g \times \hat t} &amp; x_t &amp; x_{-g} &amp; 0 \\   y_{\hat g \times \hat t}  &amp; y_t &amp; y_{-g} &amp; 0\\   z_{\hat g \times \hat t}  &amp; z_t &amp; z_{-g} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1\end{matrix}  \right]\)</span><span class="arithmatex">\(\Rightarrow\)</span> <span class="arithmatex">\(R_{view}= \left[ \begin{matrix}   x_{\hat g \times \hat t} &amp; y_{\hat g \times \hat t} &amp; z_{\hat g \times \hat t} &amp; 0 \\   x_t  &amp; y_t &amp; z_t &amp; 0\\  x_{-g}   &amp; y_{-g}&amp; z_{-g} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1\end{matrix}  \right]\)</span></p>
 </li>
 </ol>
-<h3 id="122-projection-transformation"><strong>1.2.2 Projection transformation</strong><a class="headerlink" href="#122-projection-transformation" title="Permanent link">&para;</a></h3>
+<h2 id="14-projection-transformation-mvp-transformation"><strong>1.4 Projection transformation (MVP transformation)</strong><a class="headerlink" href="#14-projection-transformation-mvp-transformation" title="Permanent link">&para;</a></h2>
 <p>Perspective projection vs. orthographic projection</p>
-<p><strong>Orthographic Projection</strong></p>
+<h3 id="orthographic-projection"><strong>Orthographic Projection （正交投影）</strong><a class="headerlink" href="#orthographic-projection" title="Permanent link">&para;</a></h3>
 <p>We can drop Z coordinate and translate and scale the resulting rectangle to <span class="arithmatex">\([-1,1]^2\)</span></p>
 <p>However, in general, we want to map a cuboid <span class="arithmatex">\([l,r]\times[b,t]\times[f,n]\)</span> to the “canonical” cube <span class="arithmatex">\([-1,1]^3\)</span> </p>
-<p>The transformation matrix: Translate first, then scale</p>
-<p><span class="arithmatex">\(M_{ortho}=\left[ \begin{matrix}   \frac{2}{r-l} &amp; 0 &amp; 0 &amp; 0 \\   0 &amp; \frac{2}{t-b }&amp; 0 &amp; 0\\   0 &amp; 0 &amp; \frac{2}{n-f} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1\end{matrix}  \right]\left[ \begin{matrix}   1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \\   0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2}\\   0 &amp; 0 &amp; 1 &amp; -\frac{n+f}{2} \\ 0 &amp; 0 &amp; 0 &amp; 1\end{matrix}  \right]\)</span> </p>
-<p><strong>Perspective Projection</strong></p>
-<p>Perspective Projection is common in Computer Graphics and so on, featuring that further objects are smaller and parallel lines not parallel. </p>
+<p>The transformation matrix: Translate first, then scale （一定要注意是先平移后放缩，右边的矩阵是先乘的）</p>
+<div class="arithmatex">\[
+M_{ortho}=\left[ \begin{matrix}   \frac{2}{r-l} &amp; 0 &amp; 0 &amp; 0 \\   0 &amp; \frac{2}{t-b }&amp; 0 &amp; 0\\   0 &amp; 0 &amp; \frac{2}{n-f} &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1\end{matrix}  \right]\left[ \begin{matrix}   1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \\   0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2}\\   0 &amp; 0 &amp; 1 &amp; -\frac{n+f}{2} \\ 0 &amp; 0 &amp; 0 &amp; 1\end{matrix}  \right]
+\]</div>
+<h3 id="perspective-projection"><strong>Perspective Projection（透视投影）</strong><a class="headerlink" href="#perspective-projection" title="Permanent link">&para;</a></h3>
+<p>Perspective Projection is common in Computer Graphics and so on, featuring that <strong>further objects are smaller</strong> and <strong>parallel lines not parallel</strong>. </p>
 <p>How to do perspective projection?</p>
 <ol>
-<li>“squish” the frustum in to cuboid(<span class="arithmatex">\(M_{persp\rightarrow ortho}\)</span>)</li>
-<li>do orthographic projection </li>
+<li>“squish” the frustum in to cuboid(<span class="arithmatex">\(M_{persp\rightarrow ortho}\)</span>) 我先将这个棱台压缩成一个长方体</li>
+<li>do orthographic projection 再进行正交投影</li>
 </ol>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-25%20230449.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-25%20230449.png" /></a></p>
-<p>According to the similar triangle ,<span class="arithmatex">\(x'=\frac{n}{z}x\)</span>    <span class="arithmatex">\(y'=\frac{n}{z}y\)</span>  </p>
-<p>so the ”squish” projection does this <span class="arithmatex">\(M^{(4\times 4)}_{persp\rightarrow ortho}\left(\begin{matrix}x\\y\\z\\1
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-23%20202521.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-23%20202521.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-23%20202358.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-23%20202358.png" /></a></p>
+<p>According to the similar triangle 相当于xy方向直接成比例缩放了</p>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+x'&amp;=\frac{n}{z}x\\
+y'&amp;=\frac{n}{z}y
+\end{aligned}
+\right.
+\]</div>
+<p>so the ”squish” projection does this </p>
+<div class="arithmatex">\[
+M^{(4\times 4)}_{persp\rightarrow ortho}\left(\begin{matrix}x\\y\\z\\1
 \end{matrix}\right)=\left(\begin{matrix}nx\\ny\\unknown\\z
-\end{matrix}\right)\)</span></p>
-<p>then we can get <span class="arithmatex">\(M^{(4\times 4)}_{persp\rightarrow ortho}=\left(\begin{matrix}n&amp;0&amp;0&amp;0\\0&amp;n&amp;0&amp;0\\?&amp;?&amp;?&amp;?\\0&amp;0&amp;1&amp;0
-\end{matrix}\right)\)</span></p>
-<p>Through observation, we find any point on the near plane will not change and any point’z on the far plane also not change. So we can use this two special to solve the third row of the matrix.</p>
-<p><span class="arithmatex">\(\left(\begin{matrix}x\\y\\n\\1\end{matrix}\right)\Rightarrow \left(\begin{matrix}x\\y\\n\\1\end{matrix}\right) \equiv \left(\begin{matrix}nx\\ny\\n^2\\n\end{matrix}\right)\)</span> , <span class="arithmatex">\(\left(\begin{matrix}0\\0\\f\\1\end{matrix}\right)\Rightarrow \left(\begin{matrix}0\\0\\f\\1\end{matrix}\right) \equiv \left(\begin{matrix}0\\0\\f^2\\f\end{matrix}\right)\)</span></p>
+\end{matrix}\right)
+\]</div>
+<p>then we can get </p>
+<div class="arithmatex">\[
+M^{(4\times 4)}_{persp\rightarrow ortho}=\left(\begin{matrix}n&amp;0&amp;0&amp;0\\0&amp;n&amp;0&amp;0\\?&amp;?&amp;?&amp;?\\0&amp;0&amp;1&amp;0
+\end{matrix}\right)
+\]</div>
+<p>Through observation, we find <strong>any point on the near plane will not change</strong> and <strong>any point’z on the far plane also not change</strong>. So we can use this two special to solve the third row of the matrix.</p>
+<div class="arithmatex">\[
+\left(\begin{matrix}x\\y\\n\\1\end{matrix}\right)\Rightarrow \left(\begin{matrix}x\\y\\n\\1\end{matrix}\right) \equiv \left(\begin{matrix}nx\\ny\\n^2\\n\end{matrix}\right) , \left(\begin{matrix}0\\0\\f\\1\end{matrix}\right)\Rightarrow \left(\begin{matrix}0\\0\\f\\1\end{matrix}\right) \equiv \left(\begin{matrix}0\\0\\f^2\\f\end{matrix}\right)
+\]</div>
 <p>by the first equation we know that the third row must be <span class="arithmatex">\(\left(\begin{matrix}0&amp;0&amp;A&amp;B\end{matrix}\right)\)</span> </p>
 <p>so we can the equation set <span class="arithmatex">\(\begin{cases} An+B =n^2\\Af+B=f^2\end{cases}\)</span>    <span class="arithmatex">\(\rightarrow\begin{cases} A=n+f\\b=-nf\end{cases}\)</span></p>
+<div class="arithmatex">\[
+M^{(4\times 4)}_{persp\rightarrow ortho}=\left(\begin{matrix}n&amp;0&amp;0&amp;0\\0&amp;n&amp;0&amp;0\\0&amp;0&amp;n+f&amp;-nf\\0&amp;0&amp;1&amp;0\end{matrix}\right)
+$$
+从而可以得到
+$$
+M_{persp}=M_{ortho}M_{persp\rightarrow ortho}
+\]</div>
 <details class="question">
 <summary>Which planes is closer to the point in frustum that is not on the n and f planes after the squish?</summary>
 <p>f planes</p>
@@ -1315,7 +1408,19 @@
 <li>define vertical field of view: <span class="arithmatex">\(fovY\)</span></li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-26%20112248.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-26%20112248.png" /></a></p>
-<p>it is easy to know:     <span class="arithmatex">\(tan\frac{fovY}{2}=\frac{t}{\abs{n}}\)</span>   <span class="arithmatex">\(aspect=\frac{r}{t}\)</span>      </p>
+<p>it is easy to know:     <span class="arithmatex">\(tan\frac{fovY}{2}=\frac{t}{\abs{n}}\)</span>   宽高比：<span class="arithmatex">\(aspect=\frac{r}{t}\)</span>      </p>
+<h3 id="viewport-transformation">ViewPort Transformation（视口变换）<a class="headerlink" href="#viewport-transformation" title="Permanent link">&para;</a></h3>
+<p>什么是视口变换？</p>
+<p>在我们做完投影变换后所有物体都映射在标准坐标系中，但是屏幕会有各种各样的分辨率，所以视口变换是为了将正常设备坐标映射到屏幕坐标。</p>
+<p>怎么做视口变换？</p>
+<p>假设屏幕的宽为width，高度为height，那么视口变换就是把 <span class="arithmatex">\([-1,1]^2\)</span> 的 <span class="arithmatex">\(xy\)</span> 平面变到 <span class="arithmatex">\([0,width]\times [0,height]\)</span>，这里为什么没有考虑z轴的变换是因为z轴在之后的其他地方有用。</p>
+<div class="arithmatex">\[
+M_{viewport}=\left(\begin{matrix}\frac{width}{2}&amp;0&amp;0&amp;\frac{width}{2}\\0&amp;\frac{height}{2}&amp;0&amp;\frac{height}{2}\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\end{matrix}\right)
+\]</div>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>总的来说就是我们先要做的是摄像机的变换，让摄像机位于原点，up at Y，look at -Z，同时注意物体要随着摄像机一起变换，这样才能保证照片不会发生变化。然后我们得到了变换后的物体，然后我取一个视锥，定义了相关的fovY, respect ratio, Znear, Zfar，然后我需要把他变换到 <span class="arithmatex">\([-1,1]^3\)</span> 这样一个标准立方体以方便进行接下来的步骤（注意这个变换跟前面那个摄像机的变换不要搞混了，这两次变换目的是不同的），我们如何将一个视锥变换为 <span class="arithmatex">\([-1,1]^3\)</span> 的标准立方体，先进行透视投影，然后再进行正交投影。最后我们需要将物体投影到屏幕上，再做一次视口变换即可。 </p>
+<p>步骤如下图：</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20223851.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20223851.png" /></a></p>
 
 
   
@@ -1438,7 +1543,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../0%20Introduction/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 0 Introduction" rel="prev">
+          <a href="../0%20Introduction/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Introduction" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1448,7 +1553,7 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                0 Introduction
+                Introduction
               </div>
             </div>
           </a>

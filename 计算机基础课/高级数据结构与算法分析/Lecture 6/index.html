@@ -93,6 +93,8 @@
     
       <link rel="stylesheet" href="../../../css/custom.css">
     
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -157,8 +159,7 @@
   <nav class="md-header__inner md-grid" aria-label="页眉">
     <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -434,8 +435,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../logo.png" alt="logo">
 
     </a>
     RoderickShao's NoteBook
@@ -669,6 +669,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -707,7 +709,7 @@
         
   
   <span class="md-ellipsis">
-    0 Introduction
+    Introduction
   </span>
   
 
@@ -1012,6 +1014,26 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%2012/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 Local Search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1284,6 +1306,10 @@
 
 
 <h1 id="6-backtracking"><strong>6 Backtracking</strong><a class="headerlink" href="#6-backtracking" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 535 个字  •  64 行代码  预计阅读时间 3 分钟
+</div>
+
 <p>回溯算法就是深度优先搜索</p>
 <p>A sure-fire way to find the answer to a problem is to make a list of all candidate answers, examine each, and following the examination of all or some of the candidates, declare the identified answer.</p>
 <p>The basic idea is to start with a partial solution <span class="arithmatex">\(( x_1, ... , x_i )\)</span> where each <span class="arithmatex">\(x_k \in S_k\)</span> for  <span class="arithmatex">\(1\le k \le i &lt; n\)</span>.   Then, we add  <span class="arithmatex">\(x_{i+1} \in S_{i+1}\)</span> and check if <span class="arithmatex">\(( x_1, ... , x_i, x_{i+1}\)</span> ) satisfies the constraints.  If the answer is “yes”, we continue to add the next <span class="arithmatex">\(x\)</span>, else we delete the current <span class="arithmatex">\(x_{i+1}\)</span> and try the next <span class="arithmatex">\(x_{i+1} \in S_{i+1}\)</span>. If all possible <span class="arithmatex">\(x_{i+1}\in S_{i+1}\)</span> fail to satisfy the constraints, we backtrack to the previous partial solution <span class="arithmatex">\(( x_1, ... , x_{i-1} )\)</span>.</p>

@@ -93,6 +93,8 @@
     
       <link rel="stylesheet" href="../../../css/custom.css">
     
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -157,8 +159,7 @@
   <nav class="md-header__inner md-grid" aria-label="页眉">
     <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -434,8 +435,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../logo.png" alt="logo">
 
     </a>
     RoderickShao's NoteBook
@@ -667,6 +667,8 @@
       
         
       
+        
+      
     
     
       
@@ -759,7 +761,7 @@
         
   
   <span class="md-ellipsis">
-    0 Introduction
+    Introduction
   </span>
   
 
@@ -972,7 +974,82 @@
         
           <li class="md-nav__item">
   <a href="#532-handling-cache-reads-hit-and-misses" class="md-nav__link">
-    5.3.2 Handling Cache reads hit and Misses
+    5.3.2 Handling Cache Reads Hit and Misses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#533-handling-cache-write-hit-and-misses" class="md-nav__link">
+    5.3.3 Handling Cache Write hit and Misses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-four-questions-for-memory-designers" class="md-nav__link">
+    5.4 Four Questions for Memory Designers
+  </a>
+  
+    <nav class="md-nav" aria-label="5.4 Four Questions for Memory Designers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#541-block-placement" class="md-nav__link">
+    5.4.1 Block placement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#542-block-identification" class="md-nav__link">
+    5.4.2 Block Identification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#543-block-replacement" class="md-nav__link">
+    5.4.3 Block Replacement
+  </a>
+  
+    <nav class="md-nav" aria-label="5.4.3 Block Replacement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-replacement" class="md-nav__link">
+    Random replacement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#least-recently-used-lru" class="md-nav__link">
+    Least-recently used (LRU)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-in-first-out-fifo" class="md-nav__link">
+    First in, first out (FIFO)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#544-write-strategy" class="md-nav__link">
+    5.4.4 Write Strategy
   </a>
   
 </li>
@@ -1249,7 +1326,82 @@
         
           <li class="md-nav__item">
   <a href="#532-handling-cache-reads-hit-and-misses" class="md-nav__link">
-    5.3.2 Handling Cache reads hit and Misses
+    5.3.2 Handling Cache Reads Hit and Misses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#533-handling-cache-write-hit-and-misses" class="md-nav__link">
+    5.3.3 Handling Cache Write hit and Misses
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-four-questions-for-memory-designers" class="md-nav__link">
+    5.4 Four Questions for Memory Designers
+  </a>
+  
+    <nav class="md-nav" aria-label="5.4 Four Questions for Memory Designers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#541-block-placement" class="md-nav__link">
+    5.4.1 Block placement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#542-block-identification" class="md-nav__link">
+    5.4.2 Block Identification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#543-block-replacement" class="md-nav__link">
+    5.4.3 Block Replacement
+  </a>
+  
+    <nav class="md-nav" aria-label="5.4.3 Block Replacement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-replacement" class="md-nav__link">
+    Random replacement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#least-recently-used-lru" class="md-nav__link">
+    Least-recently used (LRU)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-in-first-out-fifo" class="md-nav__link">
+    First in, first out (FIFO)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#544-write-strategy" class="md-nav__link">
+    5.4.4 Write Strategy
   </a>
   
 </li>
@@ -1278,6 +1430,10 @@
 
 
 <h1 id="5-memory-hierarchy"><strong>5 Memory Hierarchy</strong><a class="headerlink" href="#5-memory-hierarchy" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 3302 个字  预计阅读时间 11 分钟
+</div>
+
 <h2 id="51-storage-unit-introduction"><strong>5.1 Storage unit Introduction</strong><a class="headerlink" href="#51-storage-unit-introduction" title="Permanent link">&para;</a></h2>
 <h3 id="511-transistor"><strong>5.1.1 Transistor</strong><a class="headerlink" href="#511-transistor" title="Permanent link">&para;</a></h3>
 <p>半导体：性质介于金属与绝缘体之间，通过加电场可以改变其性质</p>
@@ -1346,13 +1502,14 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-19%20221910.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-19%20221910.png" /></a></p>
 <p>下一层次的内存如何映射到上一层的内存：</p>
 <p>(Block address) modulo (Number of blocks in the cache) </p>
-<p>我们直接对内存中地址以cache的block size取模，然后直接映射到相应编号的cache block中去。</p>
+<p>我们直接对内存中地址以cache的# block取模，然后直接映射到相应编号的cache block中去。</p>
 <p>那我们怎么知道cache中存的是内存中哪个位置的block (How do we know which particular block is stored in a cache location?)，我们可以取内存地址较高的位作为<strong>tag</strong>，这样我们就可以精确定位到cache中的数据来自于哪里了。</p>
 <p>当然，我们也需要判断是否有数据在cache的这个block中，引入一个 Valid bit，用1代表present，用0代表 not present。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-19%20223742.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-19%20223742.png" /></a></p>
 <div class="admonition note">
 <p class="admonition-title">关于上图的一些解释</p>
 <p>内存地址是以字节为单位的，然后一个字根据不同的系统包含不同的字节（16位系统是2字节，32位系统是4字节）然后上面我们内存是以block为单位编码地址的，所以可以看到上图是包含一个Byte offset,这是为了去掉一个block含有的字节数，剩下的部分一是用来代表index，另一部分用来代表tag</p>
+<p>上图同时也展示了Hit过程，找出Tag比较，然后确定valid，得出Hit信号，如果为真，那么直接输出Data</p>
 </div>
 <p>通过下面这个例子，我们可以更加直观地理解</p>
 <div class="admonition example">
@@ -1375,7 +1532,104 @@
 <li>越小的cache，miss rate 越高</li>
 <li>同样大小的cache，miss rate 呈现一个先小后大的趋势。Block size 较小会导致一个block中存储的数据较少，由于数据有空间局部性，miss rate较稍大一点的block来说就更高。而Block size在较大的情况，在cache大小固定的条件下，数量变少了，造成冲突更多了，失效率也就变高了。（当然在cache容量较大的情况下，就显得不那么明显了）</li>
 </ul>
-<h3 id="532-handling-cache-reads-hit-and-misses">5.3.2 Handling Cache reads hit and Misses<a class="headerlink" href="#532-handling-cache-reads-hit-and-misses" title="Permanent link">&para;</a></h3>
+<h3 id="532-handling-cache-reads-hit-and-misses">5.3.2 Handling Cache Reads Hit and Misses<a class="headerlink" href="#532-handling-cache-reads-hit-and-misses" title="Permanent link">&para;</a></h3>
+<p>Read hits: 这就是我想要得到的结果，读取的数据刚好就在cache之中</p>
+<p>Read misses: 有两种misses</p>
+<ul>
+<li>instruction cache miss</li>
+<li>data cache miss</li>
+</ul>
+<p>我们以 instruction cache miss 为例展示一下相关步骤，先暂停CPU，然后从内存中取出block给缓存，然后再重启CPU。</p>
+<ol>
+<li>
+<p>Send the original PC value (current PC-4) to the memory. </p>
+</li>
+<li>
+<p>Instruct main memory to perform a read and wait for the memory to complete its access. (in multiple cycles)</p>
+</li>
+<li>
+<p>Write the cache entry, putting the data from memory in the data portion of the entry, writing the upper bits of the address (from the ALU) into the tag field, and turning the valid bit on.</p>
+</li>
+<li>
+<p>Restart the instruction execution at the first step, which will refetch the instruction again, this time finding it in the cache</p>
+</li>
+</ol>
+<h3 id="533-handling-cache-write-hit-and-misses">5.3.3 Handling Cache Write hit and Misses<a class="headerlink" href="#533-handling-cache-write-hit-and-misses" title="Permanent link">&para;</a></h3>
+<p>Write Hits: 面对写的地方已经在内存中，我们有不同的解决方法</p>
+<ul>
+<li>write-back: 只把数据写到缓存中，写入内存的操作往后推迟。这种方法的显著特点就是快，但会造成数据的不一致。</li>
+<li>write-through: 数据同步更新到缓存和内存</li>
+</ul>
+<p>Write Misses:  先把整个block读入到内存中，然后再写入字</p>
+<div class="admonition question">
+<p class="admonition-title">为什么要先把数据从内存中先取到内存中？</p>
+<p>因为我们写入的仅仅只是一个block中的一个字，如果我们不读入的话，这个block中的字下次写回的时候其他字的数据就被清空了</p>
+</div>
+<h2 id="54-four-questions-for-memory-designers"><strong>5.4 Four Questions for Memory Designers</strong><a class="headerlink" href="#54-four-questions-for-memory-designers" title="Permanent link">&para;</a></h2>
+<h3 id="541-block-placement"><strong>5.4.1 Block placement</strong><a class="headerlink" href="#541-block-placement" title="Permanent link">&para;</a></h3>
+<p>我们可以使用 Direct Mapped 来放置 Block，这样给定一个内存地址对应放置的缓存位置是固定的，这样搜索更快，但很容易造成数据的竞争。</p>
+<p>我们也可以使用 Fully associative 的方法来放置，就是只要整个缓存中有位置可以放，那么这个 Block 就可以放在缓存当中，这种方法让竞争的可能性下降了，但是如果发生 Miss，造成的Miss Penalty就会非常大。</p>
+<p>于是我们结合上述两种方法，提出第三种方法 Set associative，这种方法将缓存分为多个 Set，内存中的Block 会被放到 对应 Set 中的任意一个位置。If sets have n blocks, the cache is said to be n-way set associative. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that direct mapped is the same as 1-way set associative, and fully associative is m-way set-associative (for a cache with m blocks).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>绿色的部分是内存中的block可能放置的位置</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20154154.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20154154.png" /></a></p>
+</div>
+<h3 id="542-block-identification"><strong>5.4.2 Block Identification</strong><a class="headerlink" href="#542-block-identification" title="Permanent link">&para;</a></h3>
+<p><strong>Tag</strong></p>
+<ul>
+<li>
+<p>Every block has an <strong>address tag</strong> that stores the main memory address of the data stored in the block.</p>
+</li>
+<li>
+<p>When checking the cache, the processor will <strong>compare</strong> the requested <strong>memory address to the cache tag</strong> -- if the two are equal, then there is a cache hit and the data is present in the cache</p>
+</li>
+</ul>
+<p><strong>Valid bit</strong></p>
+<ul>
+<li>Often, each cache block also has a <strong>valid bit</strong> that tells if the contents of the cache block are valid</li>
+</ul>
+<p>对于内存地址，由三部分构成</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20190916.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20190916.png" /></a></p>
+<p><strong>The Index field</strong></p>
+<ul>
+<li>In case of a set-associative cache, has as many bits as <span class="arithmatex">\(log_2(\#sets)\)</span></li>
+<li>In case of a direct-mapped cachr, has as many bits as <span class="arithmatex">\(log_2(\#blocks)\)</span></li>
+</ul>
+<p><strong>The Byte Offset field</strong> has as many bits as <span class="arithmatex">\(log_2(\#size\ of\ blocks)\)</span></p>
+<p><strong>The Tag</strong> is used to find the matching block within a set or in the cache, has many bits as Address_size - Index_size - Byte_Offset_Size</p>
+<div class="admonition example">
+<p class="admonition-title">Block Identification</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Direct-mapped Cache Example</label><label for="__tabbed_1_2">Fully-Associative Cache example</label><label for="__tabbed_1_3">2-Way Set-Associative Cache</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20191032.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20191032.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20191041.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20191041.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20191050.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20191050.png" /></a></p>
+<p>这个图有一点问题，我们引出比较的应该是同一个Set中的内容，并且如上图的话，我们只需要两个比较元件和and元件以及一个选择set的选择器即可</p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="543-block-replacement">5.4.3 Block Replacement<a class="headerlink" href="#543-block-replacement" title="Permanent link">&para;</a></h3>
+<p>当我们的block满了或是set满了的时候，我们还需要往这里面放数据，就需要把一些数据代替掉。</p>
+<p>对于使用 directed-mapped 方法的 cache 来说，只有一个 block 可能被替换。</p>
+<p>然而对于采用 set-associative 和 fully-associative 的cache 来说，就有很多 Block 可以被替换了。替换的方案有三种，分别是 Random replacement, Least-recently used (LRU) and First in, first out.</p>
+<h4 id="random-replacement">Random replacement<a class="headerlink" href="#random-replacement" title="Permanent link">&para;</a></h4>
+<p>我们任意地选择一个可以被替换的 block ，这在硬件上很容易实现，只需要一个随机数生成器。但是这种方法的问题在于我们很有可能把一个即将要用到的 block 给替换掉了</p>
+<h4 id="least-recently-used-lru">Least-recently used (LRU)<a class="headerlink" href="#least-recently-used-lru" title="Permanent link">&para;</a></h4>
+<p>我们选择最近被用的次数最少的那一个 block，这个我们其实是建立在用到次数越多的 block 更有可能被再次使用的基础上的，这种方法需要在缓存中加入额外的位来存储访问的次数</p>
+<h4 id="first-in-first-out-fifo">First in, first out (FIFO)<a class="headerlink" href="#first-in-first-out-fifo" title="Permanent link">&para;</a></h4>
+<p>这个就类似于一个队列，哪个 block 先进入就先替换哪个 block</p>
+<h3 id="544-write-strategy">5.4.4 Write Strategy<a class="headerlink" href="#544-write-strategy" title="Permanent link">&para;</a></h3>
 
 
   

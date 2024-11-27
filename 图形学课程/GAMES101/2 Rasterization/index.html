@@ -93,6 +93,8 @@
     
       <link rel="stylesheet" href="../../../css/custom.css">
     
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -157,8 +159,7 @@
   <nav class="md-header__inner md-grid" aria-label="页眉">
     <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -434,8 +435,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../../logo.png" alt="logo">
 
     </a>
     RoderickShao's NoteBook
@@ -776,7 +776,7 @@
         
   
   <span class="md-ellipsis">
-    0 Introduction
+    Introduction
   </span>
   
 
@@ -865,29 +865,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#22-antialiasing" class="md-nav__link">
-    2.2 Antialiasing
+  <a href="#22-anti-aliasing" class="md-nav__link">
+    2.2 Anti-aliasing
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#23-visibility-occlusion" class="md-nav__link">
-    2.3 Visibility / occlusion
-  </a>
-  
-    <nav class="md-nav" aria-label="2.3 Visibility / occlusion">
+    <nav class="md-nav" aria-label="2.2 Anti-aliasing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#z-buffer" class="md-nav__link">
-    Z-Buffer
+  <a href="#why-undersampling-introduces-aliasing" class="md-nav__link">
+    Why undersampling introduces aliasing?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-domain-and-frequency-domain" class="md-nav__link">
+    Spatial domain and Frequency domain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convolution-theorem" class="md-nav__link">
+    Convolution Theorem |卷积定理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sampling" class="md-nav__link">
+    Sampling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-we-reduce-aliasing-error" class="md-nav__link">
+    How can we reduce aliasing error?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-aliasing-today" class="md-nav__link">
+    Anti-aliasing Today
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-visibility-occlusion" class="md-nav__link">
+    2.3 Visibility / Occlusion
+  </a>
   
 </li>
       
@@ -1076,29 +1111,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#22-antialiasing" class="md-nav__link">
-    2.2 Antialiasing
+  <a href="#22-anti-aliasing" class="md-nav__link">
+    2.2 Anti-aliasing
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#23-visibility-occlusion" class="md-nav__link">
-    2.3 Visibility / occlusion
-  </a>
-  
-    <nav class="md-nav" aria-label="2.3 Visibility / occlusion">
+    <nav class="md-nav" aria-label="2.2 Anti-aliasing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#z-buffer" class="md-nav__link">
-    Z-Buffer
+  <a href="#why-undersampling-introduces-aliasing" class="md-nav__link">
+    Why undersampling introduces aliasing?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-domain-and-frequency-domain" class="md-nav__link">
+    Spatial domain and Frequency domain
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convolution-theorem" class="md-nav__link">
+    Convolution Theorem |卷积定理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sampling" class="md-nav__link">
+    Sampling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-can-we-reduce-aliasing-error" class="md-nav__link">
+    How can we reduce aliasing error?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anti-aliasing-today" class="md-nav__link">
+    Anti-aliasing Today
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-visibility-occlusion" class="md-nav__link">
+    2.3 Visibility / Occlusion
+  </a>
   
 </li>
       
@@ -1128,16 +1198,22 @@
 
 
 <h1 id="2-rasterization"><strong>2 Rasterization</strong><a class="headerlink" href="#2-rasterization" title="Permanent link">&para;</a></h1>
-<p>What’s after MVP(Model/View/Projection transformation)? We need to convert the Canonical Cube to Screen called Rasterize.</p>
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 1916 个字  •  11 行代码  预计阅读时间 7 分钟
+</div>
+
+<p>What’s after MVP(Model/View/Projection transformation)? We need to convert the Canonical Cube to Screen called <strong>Rasterize</strong>.</p>
 <p>Define the screen space:</p>
 <ul>
-<li>Pixels’s indices are in the form of (x,y)</li>
-<li>Pixels’s indices are from (0,0) to (width-1,height-1)</li>
-<li>Pixel (x,y) is centered at (x+0.5,y+0.5)  </li>
-<li>The screen covers range (0,0) to (width,height) </li>
+<li>Pixels ’s indices are in the form of <span class="arithmatex">\((x,y)\)</span></li>
+<li>Pixels ’s indices are from <span class="arithmatex">\((0,0)\)</span> to <span class="arithmatex">\((width-1,height-1)\)</span></li>
+<li>Pixel <span class="arithmatex">\((x,y)\)</span> is centered at <span class="arithmatex">\((x+0.5,y+0.5)\)</span> </li>
+<li>The screen covers range <span class="arithmatex">\((0,0)\)</span> to <span class="arithmatex">\((width,height)\)</span> </li>
 </ul>
-<p>Transform in <span class="arithmatex">\(xy\)</span> plane :<span class="arithmatex">\([-1,1]^2to[0,width]\times[0,height]\)</span></p>
-<p><span class="arithmatex">\(M_{viewport}=\left(\begin{matrix}\frac{width}{2}&amp;0&amp;0&amp;\frac{width}{2}\\0&amp;\frac{height}{2}&amp;0&amp;\frac{height}{2}\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\end{matrix}\right)\)</span></p>
+<p>Transform in <span class="arithmatex">\(xy\)</span> plane :<span class="arithmatex">\([-1,1]^2\)</span> to <span class="arithmatex">\([0,width]\times[0,height]\)</span></p>
+<div class="arithmatex">\[
+M_{viewport}=\left(\begin{matrix}\frac{width}{2}&amp;0&amp;0&amp;\frac{width}{2}\\0&amp;\frac{height}{2}&amp;0&amp;\frac{height}{2}\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\end{matrix}\right)
+\]</div>
 <h2 id="21-sampling"><strong>2.1 Sampling</strong><a class="headerlink" href="#21-sampling" title="Permanent link">&para;</a></h2>
 <p>We use triangles as the fundamental shape primitives.</p>
 <p>WHY?</p>
@@ -1146,65 +1222,139 @@
 <li>Guaranteed to be planar</li>
 <li>Well-defined interior and easy to judge</li>
 </ul>
-<p>Then we need to use set of pixel values to approximating triangle, one way to solve is sampling. If the center of pixel is inside triangle, we sample this point.</p>
-<p><span class="arithmatex">\(inside(t,x,y)=\begin{cases}1 ,&amp;\text{Point (x,y) in triangle t}\\0 ,&amp;\text{otherwise}\end{cases}\)</span></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20113116.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20113116.png" /></a></p>
+<p>Then we need to use set of pixel values to approximating triangle, one way to solve is <strong>sampling（采样）</strong>. If the center of pixel is inside triangle, we sample this point.</p>
+<div class="arithmatex">\[
+inside(t,x,y)=\begin{cases}1 ,&amp;\text{Point (x,y) in triangle t}\\0 ,&amp;\text{otherwise}\end{cases}
+\]</div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">x</span><span class="o">&lt;</span><span class="n">xmax</span><span class="p">;</span><span class="o">++</span><span class="n">x</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">y</span><span class="o">&lt;</span><span class="n">ymax</span><span class="p">;</span><span class="o">++</span><span class="n">y</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="n">image</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inside</span><span class="p">(</span><span class="n">tri</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
 </code></pre></div>
-<p>How do I know if O is in <span class="arithmatex">\(\triangle ABC\)</span> ?</p>
-<p>just calculate <span class="arithmatex">\(\overrightarrow {AO} \times \overrightarrow {AB}\)</span>     <span class="arithmatex">\(\overrightarrow {BO} \times \overrightarrow {BC}\)</span>     <span class="arithmatex">\(\overrightarrow {CO} \times \overrightarrow {CA}\)</span>  if their sign all the same, O is in <span class="arithmatex">\(\triangle ABC\)</span>.</p>
-<p>if there is 0, O is on the boundary of a triangle.</p>
-<h2 id="22-antialiasing"><strong>2.2 Antialiasing</strong><a class="headerlink" href="#22-antialiasing" title="Permanent link">&para;</a></h2>
-<p>Just use the way above has one problem: Jaggies(Aliasing)!</p>
-<p>Sampling artifacts are common in Computer Graphics, including Jaggies, Moire, Wagon Wheel effect... The reason behind the Aliasing Artifacts is that Signals are changing too fast and sampled too slowly.</p>
-<p>Antialiasing Idea: Blurring or Filter before sampling (<strong>NOT Sample then filter!</strong>)</p>
-<p>I raise two question:</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20113246.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20113246.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20113250.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20113250.png" /></a></p>
+<p>How do I know if <span class="arithmatex">\(O\)</span> is in <span class="arithmatex">\(\triangle ABC\)</span> ? Just calculate <span class="arithmatex">\(\overrightarrow {AO} \times \overrightarrow {AB}\)</span> and <span class="arithmatex">\(\overrightarrow {BO} \times \overrightarrow {BC}\)</span> and <span class="arithmatex">\(\overrightarrow {CO} \times \overrightarrow {CA}\)</span> </p>
 <ul>
-<li>Why undersampling introduces aliasing? </li>
-<li>Why pre-filtering then sampling can do antialiasing?</li>
+<li>
+<p>if their sign all the same, <span class="arithmatex">\(O\)</span> is in <span class="arithmatex">\(\triangle ABC\)</span>.</p>
+</li>
+<li>
+<p>if there is 0, <span class="arithmatex">\(O\)</span> is on the boundary of a triangle.</p>
+</li>
 </ul>
+<p>我们做光栅化的时候，是遍历了整个屏幕的所有点去采样的。所以我们只需要取一个Bounding Box (包围盒)，在这个包围盒中处理采样（如下左图）</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20114348.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20114348.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20114354.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20114354.png" /></a></p>
+<p>当然还有更快的方法，就是在每一行中取最小和最大（每一行构成一个包围盒），如上右图，这种方法在较瘦和有一定旋转角度的情况提升较大。</p>
+<h2 id="22-anti-aliasing"><strong>2.2 Anti-aliasing</strong><a class="headerlink" href="#22-anti-aliasing" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20114849.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20114849.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20114845.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20114845.png" /></a></p>
+<p>Just use the way above has one problem: <strong>Jaggies（锯齿）</strong> 学名被称为 aliasing（走样），</p>
+<p>Sampling artifacts are common in Computer Graphics, including <strong>Jaggies</strong>, <strong>Moire</strong>, <strong>Wagon Wheel effect</strong>... </p>
+<p>The reason behind the Aliasing Artifacts is that Signals are changing too fast and sampled too slowly（信息变化过快但是采样速度较慢）.</p>
+<p>Anti-aliasing Idea: Blurring or Filter before sampling (<strong>NOT Sample then filter!</strong>)</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20121127.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20121127.png" /></a></p>
+<h3 id="why-undersampling-introduces-aliasing">Why undersampling introduces aliasing?<a class="headerlink" href="#why-undersampling-introduces-aliasing" title="Permanent link">&para;</a></h3>
 <p>Higher frequencies need faster sampling, so undersampling creates frequency aliases.</p>
-<p>To answer the second question, we need to introduce <strong>spatial domain and frequency domain</strong>.</p>
-<p>By <strong>FFT</strong>, we can transform an image from spatial domain to frequency domain. <strong>Flitering</strong> means getting rid of certain frequency contents.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20160226.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20160226.png" /></a></p>
+<p>比如说两个频率不同的正弦函数，如果采样频率较低，那么这两种不同频率的正弦函数就无法被区分了，这就被称为走样。</p>
+</div>
+<h3 id="spatial-domain-and-frequency-domain">Spatial domain and Frequency domain<a class="headerlink" href="#spatial-domain-and-frequency-domain" title="Permanent link">&para;</a></h3>
+<p>By <strong>FFT</strong>, we can transform an image from spatial domain（时域） to frequency domain（频域）. </p>
+<p><strong>Filtering</strong> means getting rid of certain frequency contents.</p>
+<p>右边这个图越靠近中心频率越低，频率的意思是图像灰度值的梯度，图像变化越剧烈频率越高。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20113725.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20113725.png" /></a></p>
+<p>【高通滤波】将频率较低的部分过滤掉后，图像就只剩下变化剧烈的部分（边缘）</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20113735.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20113735.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20113744.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20113744.png" /></a></p>
-<p><strong>Convolution Theorem</strong>: convolution in spatial domain is equal to mutiplication in the frequency domain. Convolution is similar to averaging.</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20114216.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20114216.png" /></a></p>
-<p>Sampling = repeating frequency contents</p>
-<p>Reference: <a href="https://blog.csdn.net/SanyHo/article/details/107101281">离散信号（一） | 信号的采样和恢复+时域、频域采样定理_时域采样定理 和 频域采样定理-CSDN博客</a></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20115912.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20115912.png" /></a></p>
+<h3 id="convolution-theorem"><strong>Convolution Theorem |卷积定理</strong><a class="headerlink" href="#convolution-theorem" title="Permanent link">&para;</a></h3>
+<p>卷积的意思就是一种平均的操作</p>
+<div class="admonition example">
+<p class="admonition-title">一个一维的卷积操作</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">1</label><label for="__tabbed_1_2">2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20162435.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20162435.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20162440.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20162440.png" /></a></p>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Convolution in spatial domain is equal to mutiplication in the frequency domain</strong>. 时域上的卷积等价于频域上的乘积</p>
+<p>也就是说，我们要完成时域上的卷积，可以直接在时域上操作，也可以先转为频域，然后相乘后通过逆傅里叶变换得到时域的结果，如下图。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20162557.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20162557.png" /></a></p>
+<h3 id="sampling"><strong>Sampling</strong><a class="headerlink" href="#sampling" title="Permanent link">&para;</a></h3>
+<p>什么是采样呢？就是重复原始信号的频谱 Sampling = repeating frequency contents</p>
+<div class="admonition link">
+<p class="admonition-title">Reference</p>
+<p><a href="https://blog.csdn.net/SanyHo/article/details/107101281">离散信号（一） | 信号的采样和恢复+时域、频域采样定理_时域采样定理 和 频域采样定理-CSDN博客</a></p>
+</div>
+<p>a是原始信号，c是冲激信号，e是ac的乘积；b和d分别是a和c经过傅里叶变换后得到的频域上的图像，由卷积定理，时域上的乘积等于频域上的卷积，f则是b和d卷积的结果，得到的就是频谱信号的重复。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20163808.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20163808.png" /></a></p>
+<p>所以当采样频率过低的时候，就会发生混叠。（如下图所示）</p>
 <p>So, aliasing = mixed frequency contents</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20120136.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20120136.png" /></a></p>
-<p>How can we reduce aliasing error?</p>
-<p>Option 1 is increasing sampling rate (But we need to do antialiasing at the same sampling rate), Option 2 is <strong>antialiasing</strong> : </p>
-<ol>
-<li>Flitering out high frequencies before sampling.</li>
-</ol>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20120630.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20120630.png" /></a></p>
-<ol start="2">
-<li>By averaging values in pixel area. In rasterizing one triangle, the average value inside a pixel  area of f(x,y) = inside(triangle,x,y) is equal to the area of the  pixel covered by the triangle.</li>
-</ol>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20121704.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20121704.png" /></a></p>
-<ol start="3">
-<li>By supersampling (<strong>MSAA</strong>). Approximate the effect of the 1-pixel box filter by sampling  multiple locations within a pixel and averaging their values</li>
-</ol>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20121850.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20121850.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20121856.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20121856.png" /></a></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20121913.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20121913.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20121920.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20121920.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20164324.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20164324.png" /></a></p>
+<h3 id="how-can-we-reduce-aliasing-error"><strong>How can we reduce aliasing error?</strong><a class="headerlink" href="#how-can-we-reduce-aliasing-error" title="Permanent link">&para;</a></h3>
+<p>Option 1 is <strong>increasing sampling rate</strong> (But we need to do anti-aliasing at the same sampling rate)</p>
+<p>Option 2 is <strong>anti-aliasing</strong> : </p>
+<p>Filtering out high frequencies before sampling. </p>
+<p>将高频信号过滤掉，那么在较低的采样频率下也不会发生混叠</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20164948.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20164948.png" /></a></p>
+<p>怎么做这样的模糊呢？可以直接选择一个1像素的box filter，对一个像素中的颜色求平均。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20165502.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20165502.png" /></a></p>
+<p>In rasterizing one triangle, the average value inside a pixel  area of <span class="arithmatex">\(f(x,y) = inside(triangle,x,y)\)</span> is equal to the area of the  pixel covered by the triangle.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20165149.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20165149.png" /></a></p>
+<p>那么在实际上，我们不可能把面积算出来之后接着得到相应的灰度值，我们可以使用超采样的方法<strong>（MSAA）</strong></p>
+<p>通过采样一个像素内的多个位置并平均它们的值来近似1像素盒滤波器的效果</p>
+<div class="admonition note">
+<p class="admonition-title">MSAA的过程</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:5"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Step 1</label><label for="__tabbed_2_2">Step 2</label><label for="__tabbed_2_3">Step 3</label><label for="__tabbed_2_4">Step 3</label><label for="__tabbed_2_5">Result</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20170040.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20170040.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20170048.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20170048.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20170101.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20170101.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20170106.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20170106.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>我们得到的最后的采样结果</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20170348.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20170348.png" /></a></p>
+</div>
+</div>
+</div>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This method does not increase the sampling rate, but increases the number of sampling points. The cost of this method is increasing the calculation.</p>
+<p>我们不是通过增加分辨率来解决走样问题的，而是增大采样点的数目来做到的。这样的结果就是计算量变得非常大</p>
 </div>
-<h2 id="23-visibility-occlusion"><strong>2.3 Visibility / occlusion</strong><a class="headerlink" href="#23-visibility-occlusion" title="Permanent link">&para;</a></h2>
-<p>Painter’s Algorithm: Paint from from back to front,  overwrite in the frame buffer</p>
-<h3 id="z-buffer">Z-Buffer<a class="headerlink" href="#z-buffer" title="Permanent link">&para;</a></h3>
-<p>Idea: </p>
+<h3 id="anti-aliasing-today">Anti-aliasing Today<a class="headerlink" href="#anti-aliasing-today" title="Permanent link">&para;</a></h3>
+<p>FXAA (Fast Approximate AA) 先得到有锯齿的结果，然后再进行处理，具体来说就是通过图像处理的办法找到边界，然后将边界换成没有锯齿的边界，它与采样无关，是一种图像的处理技术</p>
+<p>TAA (Temporal AA) 对于静态图像的处理，利用上一帧的图像</p>
+<h2 id="23-visibility-occlusion"><strong>2.3 Visibility / Occlusion</strong><a class="headerlink" href="#23-visibility-occlusion" title="Permanent link">&para;</a></h2>
+<p>Painter’s Algorithm: Paint from from back to front,  <strong>overwrite</strong> in the frame buffer</p>
+<p>先画远的物体，再画近的物体，这种方法看似是对的，但是如果互相遮挡的情况出现了一个环，那么这个算法就不起作用了，比如说下方这个图</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20172731.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20172731.png" /></a></p>
+<p>进一步思考，我们是否可以仅仅对像素进行排序，而不对三角形进行排序？所以我们引入 <strong>Z-buffer</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For simplicity we suppose z is always positive (smaller z -&gt; closer, larger z -&gt; further) 尽管我们的相机是向-z方向的，我们这里定义的z为物体到相机的距离</p>
+</div>
+<p>Idea</p>
 <ul>
-<li>Store current min. Z- value for each sample(pixel)</li>
-<li>Needs an additional buffer for depth values: frame buffer stores color values, depth buffer stores depth.</li>
+<li>Store current min. Z- value for each sample(pixel) 对每个像素存储最小的Z值</li>
+<li>Needs an additional buffer for depth values: frame buffer stores color values, depth buffer stores depth. 同时存储一些颜色数据等等</li>
 </ul>
-<p>Algorithm:</p>
+<p>每次渲染的时候都是同步生成下面这两张图（越黑越近，越白越远）</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20173102.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20173102.png" /></a></p>
+<p>Algorithm</p>
 <ol>
 <li>
 <p>Initialize depth buffer to <span class="arithmatex">\(\infty\)</span></p>
@@ -1222,14 +1372,14 @@
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">            </span><span class="p">;</span><span class="w"> </span><span class="c1">// do nothing, this sample is occluded</span>
 </code></pre></div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20234058.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-27%20234058.png" /></a></p>
-<p>All objects operated on are pixels</p>
+<p>All objects operated on are <strong>pixels</strong> 所有的操作都是针对像素的</p>
 <p>Complexity: </p>
 <ul>
-<li><span class="arithmatex">\(O(n)\)</span> for n triangles (assuming constant coverage)</li>
+<li><span class="arithmatex">\(O(n)\)</span> for <span class="arithmatex">\(n\)</span> triangles (assuming constant coverage)</li>
 <li>we do not sort the triangles, we just need to get the minimum depth</li>
 </ul>
 <p>If different triangles do not have pixels on the same depth, the result is independent with the drawing orders.</p>
-<h2 id="24-shadows">2.4 Shadows<a class="headerlink" href="#24-shadows" title="Permanent link">&para;</a></h2>
+<h2 id="24-shadows"><strong>2.4 Shadows</strong><a class="headerlink" href="#24-shadows" title="Permanent link">&para;</a></h2>
 <p>—— shadow mapping</p>
 <p>An Image-space Algorithm (在生成阴影这一步不需要知道几何信息)</p>
 <ul>
