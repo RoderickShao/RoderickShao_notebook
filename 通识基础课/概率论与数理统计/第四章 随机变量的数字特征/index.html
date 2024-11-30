@@ -1693,7 +1693,7 @@
 
 <h1 id="4"><strong>4 随机变量的数字特征</strong><a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2065 个字  预计阅读时间 7 分钟
+    文本统计：约 2064 个字  预计阅读时间 7 分钟
 </div>
 
 <h2 id="41"><strong>4.1 数学期望</strong><a class="headerlink" href="#41" title="Permanent link">&para;</a></h2>
@@ -2063,18 +2063,18 @@ Cov(X+Y,X-Y)=Cov(X,X)-Cov(Y,Y)=Var(X)-Var(Y)
 <p>若 <span class="arithmatex">\(E\left([X - E(X)]^k [Y - E(Y)]^l\right)\)</span>      <span class="arithmatex">\(k, l = 1, 2, \cdots\)</span> 存在，则称它为 <span class="arithmatex">\(X, Y\)</span> 的 <span class="arithmatex">\(k + l\)</span> 阶混合中心矩；</p>
 <p>显然，最常用到的是一、二阶矩。</p>
 <h3 id="442"><strong>4.4.2 分位数</strong><a class="headerlink" href="#442" title="Permanent link">&para;</a></h3>
-<p><span class="arithmatex">\(X\)</span> 为连续型随机变量，其分布函数和概率密度函数分别为 <span class="arithmatex">\(F(x)\)</span> 和 <span class="arithmatex">\(f(x)\)</span>，称满足条件
-$$
-P{X &gt; x_\alpha} = 1 - F(x_\alpha) = \int_{x_\alpha}^{+\infty} f(x) \, dx = \alpha
-$$</p>
+<p><span class="arithmatex">\(X\)</span> 为连续型随机变量，其分布函数和概率密度函数分别为 <span class="arithmatex">\(F(x)\)</span> 和 <span class="arithmatex">\(f(x)\)</span>，称满足条件</p>
+<div class="arithmatex">\[
+P\{X &gt; x_\alpha\} = 1 - F(x_\alpha) = \int_{x_\alpha}^{+\infty} f(x) \, dx = \alpha
+\]</div>
 <p>的实数 <span class="arithmatex">\(x_\alpha\)</span> 为随机变量 <span class="arithmatex">\(X\)</span>（或此分布）的上（侧）<span class="arithmatex">\(\alpha\)</span> 分位数（点）。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20103515.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20103515.png" /></a></p>
 <h2 id="45"><strong>4.5 多元随机变量的数字特征</strong><a class="headerlink" href="#45" title="Permanent link">&para;</a></h2>
-<p>设 <span class="arithmatex">\(n\)</span> 元随机变量 <span class="arithmatex">\(X=(X_1,X_2,...,X_n)'\)</span> ，若其每一分量的数学期望都存在，则称
-$$
+<p>设 <span class="arithmatex">\(n\)</span> 元随机变量 <span class="arithmatex">\(X=(X_1,X_2,...,X_n)'\)</span> ，若其每一分量的数学期望都存在，则称</p>
+<div class="arithmatex">\[
 E(X)=(E(X_1),E(X_2),...E(X_n))’
-$$
-为 <span class="arithmatex">\(n\)</span> 元随机变量 <span class="arithmatex">\(X\)</span> 的数学期望（向量）</p>
+\]</div>
+<p>为 <span class="arithmatex">\(n\)</span> 元随机变量 <span class="arithmatex">\(X\)</span> 的数学期望（向量）</p>
 <h3 id="451"><strong>4.5.1 协方差矩阵</strong><a class="headerlink" href="#451" title="Permanent link">&para;</a></h3>
 <p>设二维随机变量 <span class="arithmatex">\((X_1, X_2)\)</span> 的四个二阶中心矩存在，将它们排成矩阵：</p>
 <div class="arithmatex">\[
@@ -2101,7 +2101,7 @@ $$
 <div class="arithmatex">\[
 f(x_1, x_2) = \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}} \exp\left\{-\frac{1}{2(1-\rho^2)} \left[ \frac{(x_1-\mu_1)^2}{\sigma_1^2} - \frac{2\rho(x_1-\mu_1)(x_2-\mu_2)}{\sigma_1\sigma_2} + \frac{(x_2-\mu_2)^2}{\sigma_2^2} \right] \right\}
 \]</div>
-<p>引入列向量：<span class="arithmatex">\(X = \begin{pmatrix} X_1 \\ X_2 \end{pmatrix}, \quad \mu = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix} <span class="arithmatex">\(X的协方差矩阵为：\)</span>B = \begin{pmatrix} \sigma_1^2 &amp; \rho\sigma_1\sigma_2 \\ \rho\sigma_1\sigma_2 &amp; \sigma_2^2 \end{pmatrix}\)</span></p>
+<p>引入列向量：<span class="arithmatex">\(X = \begin{pmatrix} X_1 \\ X_2 \end{pmatrix},\mu = \begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}\)</span>，X的协方差矩阵为：<span class="arithmatex">\(B = \begin{pmatrix} \sigma_1^2 &amp; \rho\sigma_1\sigma_2 \\ \rho\sigma_1\sigma_2 &amp; \sigma_2^2 \end{pmatrix}\)</span></p>
 <p>二元正态分布记为：<span class="arithmatex">\(X \sim N(\mu, B)\)</span></p>
 <p><span class="arithmatex">\(B\)</span> 的逆矩阵为：</p>
 <div class="arithmatex">\[
