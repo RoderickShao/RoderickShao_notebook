@@ -842,7 +842,7 @@
         
           <li class="md-nav__item">
   <a href="#322" class="md-nav__link">
-    3.2.2 二维随机变量的联合分布函数
+    3.2.2 二维随机变量的边际分布函数
   </a>
   
 </li>
@@ -1285,7 +1285,7 @@
         
           <li class="md-nav__item">
   <a href="#322" class="md-nav__link">
-    3.2.2 二维随机变量的联合分布函数
+    3.2.2 二维随机变量的边际分布函数
   </a>
   
 </li>
@@ -1397,7 +1397,7 @@
 
 <h1 id="3"><strong>3 多维随机变量及其分布</strong><a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1103 个字  预计阅读时间 4 分钟
+    文本统计：约 855 个字  预计阅读时间 3 分钟
 </div>
 
 <h2 id="31"><strong>3.1 二维离散型随机变量</strong><a class="headerlink" href="#31" title="Permanent link">&para;</a></h2>
@@ -1424,7 +1424,7 @@ P\{Y=y_j\}=\sum_{i=1}^{+\infty}p_{ij}=p_{\cdot j}
 <p>显然有<span class="arithmatex">\(p_{i\cdot}\ge0\)</span>, <span class="arithmatex">\(p_{\cdot j}\ge 0\)</span>, <span class="arithmatex">\(\sum_ip_{i\cdot}=1,\sum_jp_{\cdot j}\)</span>，即<span class="arithmatex">\(p_{i\cdot},i=1,2,...\)</span>与<span class="arithmatex">\(p_{\cdot j},j=1,2,...\)</span>满足概率分布律的性质, 它们分别是随机变量 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span>的概率分布律, 称为 <span class="arithmatex">\(X\)</span> 和 <span class="arithmatex">\(Y\)</span> 的边际分布律 (marginal distribution law) 或边缘分布律.</p>
 <h3 id="313"><strong>3.1.3 二维离散型随机变量的条件分布</strong><a class="headerlink" href="#313" title="Permanent link">&para;</a></h3>
 <p>设二维离散型随机变量 <span class="arithmatex">\((X,Y)\)</span> 的联合分布律为 <span class="arithmatex">\(P\{X=x_i,Y=y_j\}=p_{ij},i,j=1,2,...\)</span></p>
-<p>则 当 <span class="arithmatex">\(P\{Y=y_j\}\ne 0\)</span> 时</p>
+<p>则当 <span class="arithmatex">\(P\{Y=y_j\}\ne 0\)</span> 时</p>
 <div class="arithmatex">\[
 P\{X=x_i|y=y_j\}=\frac{P\{X=x_i,Y=y_j\}}{P\{Y=y_j\}}=\frac{p_{ij}}{p_{\cdot j}},i=1,2,...
 \]</div>
@@ -1439,13 +1439,13 @@ P\{y=y_j|X=x_i\}=\frac{P\{X=x_i,Y=y_j\}}{P\{X=x_i\}}=\frac{p_{ij}}{p_{i\cdot }},
 <div class="arithmatex">\[
 F(x,y)=P\{X\le x,Y\le y\}
 \]</div>
-<p>为 <span class="arithmatex">\((X,Y)\)</span> 的联合概率分布函数, 简称联合分布函数</p>
+<p>为 <span class="arithmatex">\((X,Y)\)</span> 的联合概率分布函数, 简称<strong>联合分布函数</strong></p>
 <p><span class="arithmatex">\(F ( x, y)\)</span> 具有以下性质:</p>
-<p>(1) 当 给定 <span class="arithmatex">\(x = x_0\)</span> 时, <span class="arithmatex">\(F( x_0, y)\)</span> 关于 <span class="arithmatex">\(y\)</span> 单调不减; 当给定 <span class="arithmatex">\(y = y_0\)</span> 时, <span class="arithmatex">\(F(x, y_0)\)</span> 关于 <span class="arithmatex">\(x\)</span> 单调不减</p>
+<p>(1) 当给定 <span class="arithmatex">\(x = x_0\)</span> 时, <span class="arithmatex">\(F( x_0, y)\)</span> 关于 <span class="arithmatex">\(y\)</span> 单调不减; 当给定 <span class="arithmatex">\(y = y_0\)</span> 时, <span class="arithmatex">\(F(x, y_0)\)</span> 关于 <span class="arithmatex">\(x\)</span> 单调不减</p>
 <p>(2) <span class="arithmatex">\(0 ≤ F(x, y) ≤ 1\)</span> , <span class="arithmatex">\(F(x, -\infty)=F(-\infty , y)=F(-\infty, -\infty)=0\)</span>, <span class="arithmatex">\(F(+\infty, +\infty) = 1\)</span> .</p>
 <p>(3) <span class="arithmatex">\(F(x, y)=F(x + 0, y) , F(x, y) = F(x, y + 0)\)</span>，即 <span class="arithmatex">\(F(x,y)\)</span> 关于 <span class="arithmatex">\(x\)</span> 右连续, 关于 <span class="arithmatex">\(y\)</span> 右连续 (证略).</p>
-<h3 id="322"><strong>3.2.2 二维随机变量的联合分布函数</strong><a class="headerlink" href="#322" title="Permanent link">&para;</a></h3>
-<p>记二维随机变量 <span class="arithmatex">\(( X, Y)\)</span> 的联合分布函数为 <span class="arithmatex">\(F( x, y)\)</span> , <span class="arithmatex">\(X, Y\)</span> 的边际分布函数为 <span class="arithmatex">\(F_x( x), F_y(y)\)</span> ,则</p>
+<h3 id="322"><strong>3.2.2 二维随机变量的边际分布函数</strong><a class="headerlink" href="#322" title="Permanent link">&para;</a></h3>
+<p>记二维随机变量 <span class="arithmatex">\(( X, Y)\)</span> 的联合分布函数为 <span class="arithmatex">\(F( x, y)\)</span> , <span class="arithmatex">\(X, Y\)</span> 的<strong>边际分布函数</strong>为 <span class="arithmatex">\(F_x( x), F_y(y)\)</span> ,则</p>
 <div class="arithmatex">\[
 F_X(x)=P\{X\le x\}=P\{X\le x,Y&lt;+\infty\}=F(x,+\infty)
 \]</div>
@@ -1455,14 +1455,14 @@ F_X(x)=P\{X\le x\}=P\{X\le x,Y&lt;+\infty\}=F(x,+\infty)
 <div class="arithmatex">\[
 F_{Y|X}(y|x_i)=P\{Y\le y|X=x_i\}
 \]</div>
-<p>为给定 <span class="arithmatex">\(\{ X = x_i \}\)</span> 的条件下 <span class="arithmatex">\(Y\)</span> 的条件概率分布函数, 简称条件分布函数.</p>
+<p>为给定 <span class="arithmatex">\(\{ X = x_i \}\)</span> 的条件下 <span class="arithmatex">\(Y\)</span> 的条件概率分布函数, 简称<strong>条件分布函数</strong>.</p>
 <h2 id="33"><strong>3.3 二维连续型随机变量</strong><a class="headerlink" href="#33" title="Permanent link">&para;</a></h2>
 <h3 id="331"><strong>3.3.1 二维连续型随机变量的联合分布</strong><a class="headerlink" href="#331" title="Permanent link">&para;</a></h3>
 <p>设二维随机变量 <span class="arithmatex">\(( X, Y )\)</span> 的联合分布函数为 <span class="arithmatex">\(F (x, y )\)</span> , 若存在二元非负函数 <span class="arithmatex">\(f( x , y)\)</span> , 使对任意的实数 <span class="arithmatex">\(x, y\)</span> 有</p>
 <div class="arithmatex">\[
 F(x,y)=\int_{-\infty}^{x}\int_{-\infty}^y f(u,v)dudv
 \]</div>
-<p>则称 <span class="arithmatex">\(( X, Y)\)</span> 为二维连续型随机变量 (bivariate continuous random variable ) ,称 <span class="arithmatex">\(f( x , y)\)</span> 为 <span class="arithmatex">\(( X, Y)\)</span> 的<strong>联合概率密度函数</strong> (joint probability density function ) ,简称联合密度函数.</p>
+<p>则称 <span class="arithmatex">\(( X, Y)\)</span> 为<strong>二维连续型随机变量</strong> (bivariate continuous random variable ) ,称 <span class="arithmatex">\(f( x , y)\)</span> 为 <span class="arithmatex">\(( X, Y)\)</span> 的<strong>联合概率密度函数</strong> (joint probability density function ) ,简称联合密度函数.</p>
 <p><span class="arithmatex">\(f( x, y)\)</span> 具有以下性质 (其中 <span class="arithmatex">\(F (x, y)\)</span> 为 <span class="arithmatex">\((X, Y)\)</span> 的联合分布函数):</p>
 <p>(1) <span class="arithmatex">\(f(x,y)\ge0\)</span></p>
 <p>(2) <span class="arithmatex">\(\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f(x,y)dxdy=F(-\infty,+\infty)=1\)</span></p>
@@ -1475,7 +1475,7 @@ F(x,y)=\int_{-\infty}^{x}\int_{-\infty}^y f(u,v)dudv
 P\{(X,Y)\in D\}=\iint_Df(x,y)dxdy
 \]</div>
 <h3 id="332"><strong>3.3.2 二维连续型随机变量的边际分布</strong><a class="headerlink" href="#332" title="Permanent link">&para;</a></h3>
-<p>设 <span class="arithmatex">\((X, Y)\)</span> 为二维连续型随机变量, <span class="arithmatex">\(F ( x, y)\)</span>, <span class="arithmatex">\(f(x, y)\)</span> 分别为 <span class="arithmatex">\(( X, Y )\)</span> 的联合分布函数及联合密度函数, 称单个随机变量 <span class="arithmatex">\(X\)</span> (或 <span class="arithmatex">\(Y\)</span>) 的密度函数为 <span class="arithmatex">\(X\)</span> (或 <span class="arithmatex">\(Y\)</span> )的边际概率密度函数 (marginal probability density function) , 简称边际密度函数, 且常分别用 <span class="arithmatex">\(f_X( x )\)</span> , <span class="arithmatex">\(f_Y (y)\)</span> 表示, 由于</p>
+<p>设 <span class="arithmatex">\((X, Y)\)</span> 为二维连续型随机变量, <span class="arithmatex">\(F ( x, y)\)</span>, <span class="arithmatex">\(f(x, y)\)</span> 分别为 <span class="arithmatex">\(( X, Y )\)</span> 的联合分布函数及联合密度函数, 称单个随机变量 <span class="arithmatex">\(X\)</span> (或 <span class="arithmatex">\(Y\)</span>) 的密度函数为 <span class="arithmatex">\(X\)</span> (或 <span class="arithmatex">\(Y\)</span> )的边际概率密度函数 (marginal probability density function) , 简称<strong>边际密度函数</strong>, 且常分别用 <span class="arithmatex">\(f_X( x )\)</span> , <span class="arithmatex">\(f_Y (y)\)</span> 表示, 由于</p>
 <div class="arithmatex">\[
 F_X(x)=P\{X\le x\}=P\{X\le x,Y\in (-\infty,+\infty)\}=\int_{-\infty}^x[\int_{-\infty}^{+\infty}f(x,y)dy]dx
 \]</div>
@@ -1489,7 +1489,33 @@ f_X(x)=\int_{-\infty}^{+\infty}f(x,y)dy
 <div class="arithmatex">\[
 f_{Y|X}(y|x)=\frac{f(x,y)}{f_X(y)},-\infty&lt;y&lt;+\infty
 \]</div>
-<p><a class="glightbox" href="../img/%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E7%9A%84%E8%AF%81%E6%98%8E.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E7%9A%84%E8%AF%81%E6%98%8E.png" /></a></p>
+<p>证明过程：</p>
+<p>在下文中，一般用 <span class="arithmatex">\(f(x, y)\)</span> 表示二维连续型随机变量 <span class="arithmatex">\((X, Y)\)</span> 的联合密度函数，用 <span class="arithmatex">\(f_X(x), f_Y(y)\)</span> 分别表示 <span class="arithmatex">\(X, Y\)</span> 的边际密度函数。</p>
+<p>设 <span class="arithmatex">\((X, Y)\)</span> 为二维连续型随机变量<a class="glightbox" href="../img/%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E7%9A%84%E8%AF%81%E6%98%8E.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="right" alt="" src="../img/%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E7%9A%84%E8%AF%81%E6%98%8E.png" /></a></p>
+<div class="arithmatex">\[
+\begin{aligned}
+F_{Y|X}(y|x) &amp;= \lim_{\delta \to 0^+} P\{Y \leq y | x &lt; X \leq x + \delta\} \\
+&amp;= \lim_{\delta \to 0^+} \frac{P\{x &lt; X \leq x + \delta, Y \leq y\}}{P\{x &lt; X \leq x + \delta\}}\\
+&amp;= \lim_{\delta \to 0^+} \frac{F(x + \delta, y) - F(x, y)}{F_X(x + \delta) - F_X(x)}\\
+&amp;= \lim_{\delta \to 0^+} \frac{(F(x + \delta, y) - F(x, y)) / \delta}{(F_X(x + \delta) - F_X(x)) / \delta}\\
+\end{aligned}
+\]</div>
+<p>由于</p>
+<div class="arithmatex">\[
+\lim_{\delta \to 0^+} \frac{F_X(x + \delta) - F_X(x)}{\delta} = f_X(x)
+\]</div>
+<p>且</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\lim_{\delta \to 0^+} \frac{F(x + \delta, y) - F(x, y)}{\delta} 
+&amp;= \frac{\partial}{\partial x} F(x, y) = \frac{\partial}{\partial x} \int_{-\infty}^x \left[ \int_{-\infty}^y f(u, v) \, dv \right] \, du \\
+&amp;= \int_{-\infty}^y f(x, v) \, dv,
+\end{aligned}
+\]</div>
+<p>即此时有</p>
+<div class="arithmatex">\[
+F_{Y|X}(y|x) = \int_{-\infty}^y \frac{f(x, v)}{f_X(x)}dv
+\]</div>
 <h3 id="334"><strong>3.3.4 二元均匀分布和二元正态分布</strong><a class="headerlink" href="#334" title="Permanent link">&para;</a></h3>
 <p><strong>二元均匀分布</strong>：二维随机变量 <span class="arithmatex">\(( X, Y )\)</span> 在二维有界区域 <span class="arithmatex">\(D\)</span> 上取值, 且具有联合密度函数</p>
 <div class="arithmatex">\[
@@ -1517,24 +1543,110 @@ P\{X\le x,Y\le y\}=P\{X\le x\}\cdot P\{Y\le y\}
 \]</div>
 <p>成立, 即 <span class="arithmatex">\(F( x, y) = F_X(x) · F_Y(y )\)</span> , <span class="arithmatex">\(X, Y\)</span> 相互独立.</p>
 <ul>
-<li>当 <span class="arithmatex">\((X,Y)\)</span>​ 为二维离散型随机变量，设 <span class="arithmatex">\(X, Y\)</span> 的可能取值为<span class="arithmatex">\(x_i,y_j , i, j = 1,2, ...\)</span> , <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 相互独立的定义等价于: 对于任意的实数 <span class="arithmatex">\(x_i,y_j\)</span> 都有</li>
+<li>当 <span class="arithmatex">\((X,Y)\)</span> 为二维离散型随机变量，设 <span class="arithmatex">\(X, Y\)</span> 的可能取值为<span class="arithmatex">\(x_i,y_j , i, j = 1,2, ...\)</span> , <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 相互独立的定义等价于: 对于任意的实数 <span class="arithmatex">\(x_i,y_j\)</span> 都有</li>
 </ul>
 <div class="arithmatex">\[
-p_{ij}=p_{i\cdot} \cdot p_{\cdot j}, \ \ \ \ i,j=1,2,...
+p_{ij}=p_{i\cdot} \cdot p_{\cdot j} \ \ \ \ i,j=1,2,...
 \]</div>
 <ul>
-<li>当 <span class="arithmatex">\((X,Y)\)</span> 为二维离散型随机变量，<span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 相互独立的定义等价于 <span class="arithmatex">\(f(x,y)=f_X(x)f_Y(y)\)</span> 在除了面积为0的区域外处处成立</li>
+<li>当 <span class="arithmatex">\((X,Y)\)</span> 为二维连续型随机变量，<span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 相互独立的定义等价于 <span class="arithmatex">\(f(x,y)=f_X(x)f_Y(y)\)</span> 在除了面积为0的区域外处处成立</li>
 </ul>
-<p>如果要说明独立性不成立，只需要找特例即可。</p>
+<p>如果要说明独立性不成立，只需要<strong>找特例</strong>即可。</p>
 <h2 id="35"><strong>3.5 多元随机变量函数的分布</strong><a class="headerlink" href="#35" title="Permanent link">&para;</a></h2>
 <h3 id="351-zxy"><strong>3.5.1 Z=X+Y 的分布</strong><a class="headerlink" href="#351-zxy" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-28%20122141.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-28%20122141.png" /></a></p>
+<p>若 <span class="arithmatex">\((X, Y)\)</span> 为二维离散型随机变量，设 <span class="arithmatex">\(P\{X = x_i, Y = y_j\} = p_{ij}, i, j = 1, 2, \cdots\)</span>，又设 <span class="arithmatex">\(Z\)</span> 的可能取值为 <span class="arithmatex">\(z_1, z_2, \cdots, z_k, \cdots\)</span>，则显然有</p>
+<div class="arithmatex">\[
+\begin{aligned}
+P\{Z = z_k\} &amp;= P\{X + Y = z_k\} \\
+&amp;= \sum_{i=1}^{+\infty} P\{X = x_i, Y = z_k - x_i\} \quad k = 1, 2, \cdots 
+\end{aligned}
+\tag{3.5.1}
+\]</div>
+<p>或</p>
+<div class="arithmatex">\[
+\begin{aligned}
+P\{Z = z_k\} &amp;= P\{X + Y = z_k\}\\  
+&amp;= \sum_{j=1}^{+\infty} P\{X = z_k - y_j, Y = y_j\} \quad k = 1, 2,  \cdots 
+\end{aligned}
+\tag{3.5.2}
+\]</div>
+<p>特别地，当 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 相互独立时，(3.5.1) 与 (3.5.2) 就可写成</p>
+<div class="arithmatex">\[
+P\{Z = z_k\} = \sum_{i=1}^{+\infty} P\{X = x_i\} \cdot P\{Y = z_k - x_i\} \quad k = 1, 2, \cdots \tag{3.5.3}
+\]</div>
+<p>或</p>
+<div class="arithmatex">\[
+P\{Z = z_k\} = \sum_{j=1}^{+\infty} P\{X = z_k - y_j\} \cdot P\{Y = y_j\}, \quad k = 1, 2, \cdots \tag{3.5.4} 
+\]</div>
+<p>若 <span class="arithmatex">\((X, Y)\)</span> 为二维连续型随机变量，设 <span class="arithmatex">\((X, Y)\)</span> 的联合密度函数为 <span class="arithmatex">\(f(x, y)\)</span>，则 <span class="arithmatex">\(Z\)</span> 的分布函数为</p>
+<div class="arithmatex">\[
+F_Z(z) = P\{Z \leq z\} = P\{X + Y \leq z\} 
+\]</div>
+<div class="arithmatex">\[
+\iint_{x+y \leq z} f(x, y) \, dx \, dy = \int_{-\infty}^{+\infty} dx \int_{-\infty}^{z-x} f(x, y) \, dy
+\]</div>
+<p>如图3.5.1所示，作积分变量变换 <span class="arithmatex">\(\begin{cases} u = x, \\ v = x + y, \end{cases}\)</span>可知 <span class="arithmatex">\(dx \, dy = du \, dv\)</span>，所以 </p>
+<div class="arithmatex">\[
+F_Z(z) = \int_{-\infty}^{z} dv \int_{-\infty}^{+\infty} f(u, v - u) \, du
+\]</div>
+<p>从而 </p>
+<div class="arithmatex">\[
+f_Z(z) = F_Z'(z) = \int_{-\infty}^{+\infty} f(u, z - u) \, du = \int_{-\infty}^{+\infty} f(x, z - x) \, dx \tag{3.5.5}
+\]</div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-28%20122158.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-28%20122158.png" /></a></p>
+<p>若作的积分变量变换为 <span class="arithmatex">\(\begin{cases} u = x + y \\ v = y\end{cases}\)</span>，通过同样的计算可得 </p>
+<div class="arithmatex">\[
+f_Z(z) = \int_{-\infty}^{+\infty} f(z - y, y) \, dy \tag{3.5.6}
+\]</div>
+<p>特别地，当 <span class="arithmatex">\(X, Y\)</span> <strong>相互独立</strong>时，(3.5.5) 与 (3.5.6) 就可写成 </p>
+<div class="arithmatex">\[
+f_Z(z) = \int_{-\infty}^{+\infty} f_X(x) \cdot f_Y(z - x) \, dx \tag{3.5.7}
+\]</div>
+<div class="arithmatex">\[
+f_Z(z) = \int_{-\infty}^{+\infty} f_X(z - y) \cdot f_Y(y) \, dy \tag{3.5.8}
+\]</div>
 <p>n 个相互独立的服从泊松分布的随机变量的和仍服从泊松分布, 其参数为 n 个分布的参数之和</p>
 <p>n 个相互独立的正态变量之和仍为正态变量. 即若<span class="arithmatex">\(X_1 , X_2 , ... , X_n\)</span> 相互独立, 且<span class="arithmatex">\(X_i\sim N(\mu_i,\sigma_i^2)\)</span>，则<span class="arithmatex">\(\sum_{i=1}^n\sim N(\sum_{i=1}^n\mu_i,\sum_{i=1}^n\sigma^2_i)\)</span></p>
-<h3 id="352-mmaxxynminxy">3.5.2 M=max{X,Y},N=min{X,Y} 的分布<a class="headerlink" href="#352-mmaxxynminxy" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20100832.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20100832.png" /></a></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20100842.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-04%20100842.png" /></a></p>
+<h3 id="352-mmaxxynminxy"><strong>3.5.2 M=max{X,Y},N=min{X,Y} 的分布</strong><a class="headerlink" href="#352-mmaxxynminxy" title="Permanent link">&para;</a></h3>
+<p>记 <span class="arithmatex">\(X, Y\)</span> 的联合分布函数为 <span class="arithmatex">\(F(x, y)\)</span>，且记 <span class="arithmatex">\(F_X(t), F_Y(t)\)</span> 分别为 <span class="arithmatex">\(X, Y\)</span> 的边际分布函数。</p>
+<p>先来讨论 <span class="arithmatex">\(M\)</span> 的分布函数，由 <span class="arithmatex">\(M\)</span> 的定义可知</p>
+<div class="arithmatex">\[
+F_M(t) = P\{\max\{X, Y\} \leq t\} = P\{X \leq t, Y \leq t\} = F(t, t) \tag{3.5.9}
+\]</div>
+<p>特别地，当 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 相互独立时，</p>
+<div class="arithmatex">\[
+F_M(t) = F_X(t) \cdot F_Y(t)          \tag{3.5.10}
+\]</div>
+<p>再讨论 <span class="arithmatex">\(N\)</span> 的分布函数</p>
+<div class="arithmatex">\[
+\begin{aligned}
+F_N(t) &amp;= P\{\min\{X, Y\} \leq t\} \\&amp;= P\{(X \leq t) \cup (Y \leq t)\} 
+= F_X(t) + F_Y(t) - F(t, t)
+\end{aligned}\tag{3.5.11} 
+\]</div>
+<p>或者</p>
+<div class="arithmatex">\[
+\begin{aligned}
+F_N(t) &amp;= 1 - P\{\min\{X, Y\} &gt; t\} \\&amp;= 1 - P\{X &gt; t, Y &gt; t\}
+\end{aligned} \tag{3.5.12} 
+\]</div>
+<p>特别地，当 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 相互独立时，</p>
+<div class="arithmatex">\[
+\begin{aligned}
+F_N(t) = F_X(t) + F_Y(t) - F_X(t) \cdot F_Y(t) 
+\end{aligned}\tag{3.5.13} 
+\]</div>
+<p>或</p>
+<div class="arithmatex">\[
+F_N(t) = 1 - [1 - F_X(t)] \cdot [1 - F_Y(t)] \tag{3.5.14}
+\]</div>
+<p>以上结果容易推广到 <span class="arithmatex">\(n\)</span> 个变量的情形。特别地，设 <span class="arithmatex">\(X_1, X_2, \cdots, X_n\)</span> 为 <span class="arithmatex">\(n\)</span> 个相互独立的随机变量，相应的分布函数分别为 <span class="arithmatex">\(F_1(x), F_2(x), \cdots, F_n(x)\)</span>，记 <span class="arithmatex">\(M = \max\{X_1, X_2, \cdots, X_n\}\)</span>，<span class="arithmatex">\(N = \min\{X_1, X_2, \cdots, X_n\}\)</span>，则</p>
+<div class="arithmatex">\[
+F_M(t) = \prod_{i=1}^n F_i(t) \tag{3.5.15}
+\]</div>
+<div class="arithmatex">\[
+F_N(t) = 1 - \prod_{i=1}^n [1 - F_i(t)] \tag{3.5.16}
+\]</div>
 
 
   

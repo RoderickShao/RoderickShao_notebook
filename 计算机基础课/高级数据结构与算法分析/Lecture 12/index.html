@@ -1529,14 +1529,14 @@ w(A^*,B^*)\le \sum_{\{u,v\subseteq A\}}w_{uv}+\sum_{\{u,v\subseteq B\}}w_{uv}+w(
 \frac{2\epsilon}{|V|}w(A,B)
 \]</div>
 <p>注意这里的 <span class="arithmatex">\(w(A,B)\)</span> 代表的是当前状态下的 <span class="arithmatex">\(w(A,B)\)</span></p>
-<p><strong>Claim 1</strong>: Upon termination, the big-improvement-flip algorithm returns a cut <span class="arithmatex">\((A, B)\)</span> so that 
-$$
-(2+\epsilon)w(A,B)\ge w(A^<em>,B^</em>)
-$$</p>
-<p><strong>Proof</strong>: 对于 <span class="arithmatex">\(\forall u\in A\)</span>
-$$
+<p><strong>Claim 1</strong>: Upon termination, the big-improvement-flip algorithm returns a cut <span class="arithmatex">\((A, B)\)</span> so that </p>
+<div class="arithmatex">\[
+(2+\epsilon)w(A,B)\ge w(A^*,B^*)
+\]</div>
+<p><strong>Proof</strong>: 对于 <span class="arithmatex">\(\forall u\in A\)</span></p>
+<div class="arithmatex">\[
 \sum_{v\in A}w_{uv}\le \sum_{v\in B}w_{uv}+\frac{2\epsilon}{|V|}w(A,B)
-$$</p>
+\]</div>
 <p>如果大于，算法的循环还会继续（因为这个点是不满足要求的）</p>
 <p>那么对于所有 <span class="arithmatex">\(u\in A\)</span>，我们将式子加起来，得到</p>
 <div class="arithmatex">\[

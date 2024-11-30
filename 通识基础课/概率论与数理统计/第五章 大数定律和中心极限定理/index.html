@@ -1220,12 +1220,16 @@
 
 
 <h1 id="5">5 大数定律和中心极限定理<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 395 个字  预计阅读时间 1 分钟
+</div>
+
 <h2 id="51">5.1 大数定律<a class="headerlink" href="#51" title="Permanent link">&para;</a></h2>
-<p>设 <span class="arithmatex">\(\{ Y_n, n≥1\}\)</span> 为一随机变量序列, <span class="arithmatex">\(c\)</span> 为一常数, 若对任意的<span class="arithmatex">\(\epsilon &gt; 0\)</span>, 都有
-$$
-lim_{n\rightarrow+\infty}P{|Y_n-c|\ge\epsilon}=0
-$$
-成立, 则称 <span class="arithmatex">\(\{ Y_n, n≥1\}\)</span> <strong>依概率收敛</strong> (convergence in probability) 于 <span class="arithmatex">\(c\)</span>, 记为 <span class="arithmatex">\(Y_n\stackrel{P}{\rightarrow} c,n \rightarrow +\infty\)</span></p>
+<p>设 <span class="arithmatex">\(\{ Y_n, n≥1\}\)</span> 为一随机变量序列, <span class="arithmatex">\(c\)</span> 为一常数, 若对任意的<span class="arithmatex">\(\epsilon &gt; 0\)</span>, 都有</p>
+<div class="arithmatex">\[
+lim_{n\rightarrow+\infty}P\{|Y_n-c|\ge\epsilon\}=0
+\]</div>
+<p>成立, 则称 <span class="arithmatex">\(\{ Y_n, n≥1\}\)</span> <strong>依概率收敛</strong> (convergence in probability) 于 <span class="arithmatex">\(c\)</span>, 记为 <span class="arithmatex">\(Y_n\stackrel{P}{\rightarrow} c,n \rightarrow +\infty\)</span></p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20110251.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20110251.png" /></a></p>
@@ -1233,23 +1237,23 @@ $$
 <p>依概率收敛的性质：</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20110512.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20110512.png" /></a></p>
 <h3 id="511">5.1.1 马尔可夫不等式<a class="headerlink" href="#511" title="Permanent link">&para;</a></h3>
-<p>设随机变量Y的k阶矩<span class="arithmatex">\(E(Y^k)\)</span>存在(<span class="arithmatex">\(k\ge1\)</span>) 则对于任意 <span class="arithmatex">\(\epsilon&gt;0\)</span>，都有
-$$
-P{|Y|\ge\epsilon}\le\frac{E(|Y|^k)}{\epsilon^k}
-$$
-成立，特别地，当 <span class="arithmatex">\(Y\)</span> 取非负值的随机变量时，则有
-$$
-P{Y\ge\epsilon}\le\frac{E(Y^k)}{\epsilon^k}
-$$
-证明：</p>
+<p>设随机变量Y的k阶矩<span class="arithmatex">\(E(Y^k)\)</span>存在(<span class="arithmatex">\(k\ge1\)</span>) 则对于任意 <span class="arithmatex">\(\epsilon&gt;0\)</span>，都有</p>
+<div class="arithmatex">\[
+P\{|Y|\ge\epsilon\}\le\frac{E(|Y|^k)}{\epsilon^k}
+\]</div>
+<p>成立，特别地，当 <span class="arithmatex">\(Y\)</span> 取非负值的随机变量时，则有</p>
+<div class="arithmatex">\[
+P\{Y\ge\epsilon\}\le\frac{E(Y^k)}{\epsilon^k}
+\]</div>
+<p>证明：</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20111458.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20111458.png" /></a></p>
 <h3 id="512">5.1.2 切比雪夫不等式<a class="headerlink" href="#512" title="Permanent link">&para;</a></h3>
 <p>直观的理解就是远离平均数的数据量受到方差的影响</p>
-<p>设随机变量X具有数学期望 <span class="arithmatex">\(E(X)=\mu\)</span>，方差为 <span class="arithmatex">\(Var(X)=\sigma^2\)</span>，则对于任意 <span class="arithmatex">\(\epsilon&gt;0\)</span> 都有
-$$
-P{|X-\mu|\ge\epsilon}\le\frac{\sigma^2}{\epsilon^2}
-$$
-只需要在马尔可夫不等式中取<span class="arithmatex">\(Y=X-\mu\)</span>，以及 <span class="arithmatex">\(k=2\)</span></p>
+<p>设随机变量X具有数学期望 <span class="arithmatex">\(E(X)=\mu\)</span>，方差为 <span class="arithmatex">\(Var(X)=\sigma^2\)</span>，则对于任意 <span class="arithmatex">\(\epsilon&gt;0\)</span> 都有</p>
+<div class="arithmatex">\[
+P\{|X-\mu|\ge\epsilon\}\le\frac{\sigma^2}{\epsilon^2}
+\]</div>
+<p>只需要在马尔可夫不等式中取<span class="arithmatex">\(Y=X-\mu\)</span>，以及 <span class="arithmatex">\(k=2\)</span></p>
 <h3 id="513">5.1.3 大数定律<a class="headerlink" href="#513" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20112607.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20112607.png" /></a></p>
 <h3 id="514">5.1.4 伯努利大数定律<a class="headerlink" href="#514" title="Permanent link">&para;</a></h3>
@@ -1310,6 +1314,59 @@ $$
     </fieldset>
   </form>
 
+
+  <h2 id="__comments">评论</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+    data-repo="RoderickShao/RoderickShao_notebook"
+    data-repo-id="R_kgDOMS_5AQ"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
 
                 
               </article>
