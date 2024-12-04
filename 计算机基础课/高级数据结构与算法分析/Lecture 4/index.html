@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -891,13 +895,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1067,6 +1064,46 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%2013/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Homework/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1082,6 +1119,8 @@
   
     
     
+      
+        
       
         
       
@@ -1346,13 +1385,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1373,7 +1405,7 @@
 
 <h1 id="4-leftist-heaps-and-skew-heaps"><strong>4 Leftist Heaps and Skew Heaps</strong><a class="headerlink" href="#4-leftist-heaps-and-skew-heaps" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1171 个字  •  28 行代码  预计阅读时间 4 分钟
+    文本统计：约 907 个字  •  28 行代码  预计阅读时间 3 分钟
 </div>
 
 <h2 id="41-leftist-heaps"><strong>4.1 Leftist Heaps</strong><a class="headerlink" href="#41-leftist-heaps" title="Permanent link">&para;</a></h2>
@@ -1475,33 +1507,6 @@ c_i=l_a+h_a+l_b+h_b
 \]</div>
 <p>其中这个n指的是合并后堆中节点的个数。</p>
 <p>对于插入也是同样的道理，看成特殊的合并即可。</p>
-<h2 id="homework"><strong>Homework</strong><a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
-<p>We can perform BuildHeap for leftist heaps by considering each element as a one-node leftist heap, placing all these heaps on a queue, and performing the following step: Until only one heap is on the queue, dequeue two heaps, merge them, and enqueue the result.  Which one of the following statements is FALSE?</p>
-<p>A.in the <em>k</em>-th run,<span class="arithmatex">\(⌈N/2^k⌉\)</span> leftist heaps are formed, each contains <span class="arithmatex">\(2^k\)</span> nodes</p>
-<p>B.the worst case is when <span class="arithmatex">\(N=2^K\)</span> for some integer <em>K</em></p>
-<p>C.the time complexity <span class="arithmatex">\(T(N)=O(\frac{N}{2}log2^0+\frac{N}{2^2}log2^1+\dots+\frac{N}{2^K}log2^{K-1})\)</span> for some integer <em>K</em> so that <span class="arithmatex">\(N=2^K\)</span></p>
-<p>D.the worst case time complexity of this algorithm is <span class="arithmatex">\(Θ(NlogN)\)</span></p>
-<details class="note">
-<summary>Answer</summary>
-<p>主要想法是，用分治思想来建左式堆。这样建立比一个一个加入要更快
-第1轮：大小为1的堆两两合并
-第2轮：大小为2的堆两两合并
-第3轮：大小为4的堆两两合并
-……
-以此类推。
-由合并堆的时间复杂度为O（logN），我们很容易写出它的递推式：<span class="arithmatex">\(T（N） = 2 T（N/2） +  O（logN）\)</span>
-D 应该为<span class="arithmatex">\(O(N)\)</span></p>
-</details>
-<p>The right path of a skew heap can be arbitrarily long.</p>
-<details class="note">
-<summary>答案</summary>
-<p>T </p>
-</details>
-<p>For a skew heap with N nodes, the worst-case running time of all operations (insert/delete min/merge) is O(N).  </p>
-<details class="note">
-<summary>答案</summary>
-<p>T</p>
-</details>
 
 
   

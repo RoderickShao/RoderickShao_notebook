@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -862,27 +866,20 @@
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    客观指标：
+    客观指标
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    主观指标：
+    主观指标
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hw" class="md-nav__link">
-    HW
-  </a>
   
 </li>
       
@@ -1075,6 +1072,46 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%2013/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Homework/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1090,6 +1127,8 @@
   
     
     
+      
+        
       
         
       
@@ -1345,27 +1384,20 @@
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    客观指标：
+    客观指标
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    主观指标：
+    主观指标
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hw" class="md-nav__link">
-    HW
-  </a>
   
 </li>
       
@@ -1389,7 +1421,7 @@
 
 <h1 id="3-inverted-file-index"><strong>3 Inverted File Index</strong><a class="headerlink" href="#3-inverted-file-index" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1285 个字  •  9 行代码  预计阅读时间 4 分钟
+    文本统计：约 1011 个字  •  9 行代码  预计阅读时间 3 分钟
 </div>
 
 <h2 id="_1"><strong>怎么构建搜索引擎</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -1463,7 +1495,7 @@
 <p><strong>Query</strong>: Sort the query terms by their frequency in ascending order; search according to only some percentage of the original query terms</p>
 <p>对出现的关键词在term dictionary中的频率进行排序，从频率较低的单词开始搜索（或者说定义一个值：这个词在这篇文章的频率/这个词在所有文章中的频率，这个值越高，那么这个词对于这篇文章越重要）</p>
 <h2 id="measures-for-a-search-engine"><strong>Measures for a search engine</strong><a class="headerlink" href="#measures-for-a-search-engine" title="Permanent link">&para;</a></h2>
-<h4 id="_4">客观指标：<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<h3 id="_4">客观指标<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>How fast does it index 建表的速度</p>
 <ul>
 <li>Number of documents/hour</li>
@@ -1477,7 +1509,7 @@
 <li>Ability to express complex information needs</li>
 <li>Speed on complex queries</li>
 </ul>
-<h4 id="_5">主观指标：<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<h3 id="_5">主观指标<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p><strong>Data Retrieval Performance Evaluation</strong> (after establishing correctness)</p>
 <ul>
 <li>
@@ -1523,31 +1555,6 @@
 <p>Recall: <span class="arithmatex">\(R=\frac{R_R}{R_R+R_N}\)</span>（能检索到多少比例的有效信息）</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-23%20145301.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-23%20145301.png" /></a></p>
 <p>评估曲线的一种方法：AUC (Areas under Curves) 曲线下方的面积</p>
-<h2 id="hw">HW<a class="headerlink" href="#hw" title="Permanent link">&para;</a></h2>
-<p>For the document-partitioned strategy in distributed indexing, each node contains a subset of all documents that have a specific range of index.</p>
-<details class="note">
-<summary>答案</summary>
-<p>T</p>
-</details>
-<p>In a search engine, thresholding for query retrieves the top k documents according to their weights. </p>
-<details class="note">
-<summary>答案</summary>
-<p>F,针对文档的阈值是用来检索权重前多少的文档的，而针对检索的阈值，是将检索的内容按照频率分级后选择部分进行搜索的</p>
-</details>
-<p>Two spam mail detection systems are tested on a dataset with 7981 ordinary mails and 2019 spam mails. System A detects 200 ordinary mails and 1800 spam mails, and system B detects 160 ordinary mails and 1500 spam mails. If our primary concern is to keep the important mails safe, which of the following is correct?</p>
-<p>A.Precision is our primary concern and system A is better.</p>
-<p>B.Recall is our primary concern and system B is better.</p>
-<p>C.Precision is our primary concern and system B is better.</p>
-<p>D.Recall is our primary concern and system A is better.</p>
-<details class="note">
-<summary>答案</summary>
-<p>我们要保证重要的文件不被当作垃圾邮件排除掉，我们关注的就应该是precision，A系统的precision为<span class="arithmatex">\(1800/2000=0.9\)</span>，B系统的precision为<span class="arithmatex">\(1500/1660=0.904\)</span>，所以应该选B</p>
-</details>
-<p>When evaluating the performance of data retrieval, it is important to measure the relevancy of the answer set.</p>
-<details class="note">
-<summary>答案</summary>
-<p>应该是information</p>
-</details>
 
 
   

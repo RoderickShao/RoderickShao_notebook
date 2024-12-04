@@ -669,6 +669,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -708,6 +712,8 @@
   
     
     
+      
+        
       
         
       
@@ -1067,8 +1073,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#46-risc-v-pipelined-datapath" class="md-nav__link">
-    4.6 RISC-V Pipelined Datapath
+  <a href="#46-risc-v-pipelined-datapath-and-control" class="md-nav__link">
+    4.6 RISC-V Pipelined Datapath and Control
   </a>
   
 </li>
@@ -1188,6 +1194,26 @@
   
   <span class="md-ellipsis">
     5 Memory Hierarchy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%206/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 I/O
   </span>
   
 
@@ -1568,8 +1594,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#46-risc-v-pipelined-datapath" class="md-nav__link">
-    4.6 RISC-V Pipelined Datapath
+  <a href="#46-risc-v-pipelined-datapath-and-control" class="md-nav__link">
+    4.6 RISC-V Pipelined Datapath and Control
   </a>
   
 </li>
@@ -1689,7 +1715,7 @@
 
 <h1 id="4-the-processor"><strong>4 The Processor</strong><a class="headerlink" href="#4-the-processor" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4320 个字  •  18 行代码  预计阅读时间 15 分钟
+    文本统计：约 4322 个字  •  18 行代码  预计阅读时间 15 分钟
 </div>
 
 <p>Datapath: Elements that process data and addresses in the CPU, like Registers, ALUs, mux’s, memories, …</p>
@@ -1918,7 +1944,7 @@ Time\ between\ instructions_{pipelined}\\
 <li>Dynamic branch prediction</li>
 </ul>
 <p>保存每个条件分支是否发生分支的历史记录，然后根据最近的过去行为来预测未来</p>
-<h2 id="46-risc-v-pipelined-datapath"><strong>4.6 RISC-V Pipelined Datapath</strong><a class="headerlink" href="#46-risc-v-pipelined-datapath" title="Permanent link">&para;</a></h2>
+<h2 id="46-risc-v-pipelined-datapath-and-control"><strong>4.6 RISC-V Pipelined Datapath and Control</strong><a class="headerlink" href="#46-risc-v-pipelined-datapath-and-control" title="Permanent link">&para;</a></h2>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141051.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141051.png" /></a></p>
 <p>我们会注意到执行WB写入寄存器的地址Write register已经发生了变化，以及将PC与立即数相加的时候我希望加的是原来指令的PC但是此时PC已经发生了改变。为了解决这些问题，我们引入<strong>流水线寄存器</strong> (Pipeline register)，用于存储上个阶段得到的数据。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141716.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141716.png" /></a></p>

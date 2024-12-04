@@ -931,26 +931,39 @@
     4.3.2 What if the texture is too large?
   </a>
   
-    <nav class="md-nav" aria-label="4.3.2 What if the texture is too large?">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#433-mip-map" class="md-nav__link">
+    4.3.3 Mip-map
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3.3 Mip-map">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#4321-mipmap" class="md-nav__link">
-    4.3.2.1 Mipmap
+  <a href="#how-to-compute-mip-map-level-d" class="md-nav__link">
+    How to compute Mip-map level D ?
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#4322-trilinear-interpolation" class="md-nav__link">
-    4.3.2.2 Trilinear interpolation
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4323-mipmap-limitations" class="md-nav__link">
-    4.3.2.3 MipMap limitations
+  <a href="#tri-linear-interpolation" class="md-nav__link">
+    Tri-linear interpolation
+  </a>
+  
+    <nav class="md-nav" aria-label="Tri-linear interpolation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mip-map-limitations" class="md-nav__link">
+    Mip-Map limitations
   </a>
   
 </li>
@@ -1177,26 +1190,39 @@
     4.3.2 What if the texture is too large?
   </a>
   
-    <nav class="md-nav" aria-label="4.3.2 What if the texture is too large?">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#433-mip-map" class="md-nav__link">
+    4.3.3 Mip-map
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3.3 Mip-map">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#4321-mipmap" class="md-nav__link">
-    4.3.2.1 Mipmap
+  <a href="#how-to-compute-mip-map-level-d" class="md-nav__link">
+    How to compute Mip-map level D ?
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#4322-trilinear-interpolation" class="md-nav__link">
-    4.3.2.2 Trilinear interpolation
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4323-mipmap-limitations" class="md-nav__link">
-    4.3.2.3 MipMap limitations
+  <a href="#tri-linear-interpolation" class="md-nav__link">
+    Tri-linear interpolation
+  </a>
+  
+    <nav class="md-nav" aria-label="Tri-linear interpolation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mip-map-limitations" class="md-nav__link">
+    Mip-Map limitations
   </a>
   
 </li>
@@ -1279,19 +1305,24 @@
 
 <h1 id="4-texture-mapping"><strong>4 Texture Mapping</strong><a class="headerlink" href="#4-texture-mapping" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2024 个字  •  4 行代码  预计阅读时间 7 分钟
+    文本统计：约 2480 个字  •  4 行代码  预计阅读时间 8 分钟
 </div>
 
-<p>Every 3D surface point also has a place where it goes in the 2D image</p>
-<p>Each triangle vertex is assigned a texture coordinates (u,v) [u and v are both in range(0,1)]</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20152426.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20152426.png" /></a></p>
+<p>Every 3D surface point also has a place where it goes in the 2D image 将三维表面映射到二维表面</p>
+<p>Each triangle vertex is assigned a texture coordinates <span class="arithmatex">\((u,v)\)</span> [ <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(v\)</span> are both in range <span class="arithmatex">\((0,1)\)</span>]</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20152225.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20152225.png" /></a></p>
 <h2 id="41-barycentric-coordinates"><strong>4.1 Barycentric coordinates</strong><a class="headerlink" href="#41-barycentric-coordinates" title="Permanent link">&para;</a></h2>
-<p>Introducing barycentric coordinates aims to interpolate across triangles. Why we want to interpolate? Because we want to obtain smoothly varying values across triangles by values at vertices. Texture coordinates, colors, normal vectors are all we can interpolate.</p>
+<p>引入重心坐标的目的是在三角形之间进行插值。为什么要进行插值？因为我们想要在三角形上通过顶点处的值得到平滑的变化值。纹理坐标，颜色，法向量都是我们可以插值的。</p>
 <p>A coordinates system for triangles <span class="arithmatex">\((\alpha,\beta,\gamma)\)</span>.</p>
-<p>Points <span class="arithmatex">\((x,y)\)</span> can be presented by <span class="arithmatex">\((\alpha,\beta,\gamma)\)</span> , if <span class="arithmatex">\((x,y)=\alpha A+\beta B+\gamma C\)</span>  and  <span class="arithmatex">\(\alpha+\beta+\gamma=1\)</span>. Inside the triangle if all three coordinates are non-negative.</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20163714.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20163714.png" /></a></p>
-<p>By barycentric coordinates, we can linearly interpolate values at vertices.</p>
-<p>$V=\alpha V_A+ \beta V_B + \gamma V_C $, <span class="arithmatex">\(V_A,V_B,V_C\)</span> can be positions, texture coordinates, color, normal, depth, material attributes... , However, barycentric coordinates are <strong>not invariant</strong> under projection</p>
+<p>Points <span class="arithmatex">\((x,y)\)</span> can be presented by <span class="arithmatex">\((\alpha,\beta,\gamma)\)</span> , if <span class="arithmatex">\((x,y)=\alpha A+\beta B+\gamma C\)</span>  and  <span class="arithmatex">\(\alpha+\beta+\gamma=1\)</span>. </p>
+<p>Inside the triangle if all three coordinates are <strong>non-negative</strong>.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20152411.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20152411.png" /></a></p>
+<p>By barycentric coordinates, we can linearly interpolate values at vertices. 通过重心坐标，我们可以根据顶点处的值对三角形内部进行线性插值。
+$$
+V=\alpha V_A+ \beta V_B + \gamma V_C 
+$$</p>
+<p><span class="arithmatex">\(V_A,V_B,V_C\)</span> 可以是位置，纹理坐标，颜色，法线，深度，材质属性…</p>
+<p>However, barycentric coordinates are <strong>not invariant</strong> under projection，所以我们在处理3D的图像时，应该先算重心坐标（无论是深度还是什么属性，然后再投影）</p>
 <h2 id="42-applying-textures"><strong>4.2 Applying Textures</strong><a class="headerlink" href="#42-applying-textures" title="Permanent link">&para;</a></h2>
 <p>简单的纹理应用：定义漫反射系数 Simple Texture Mapping: Diffuse Color</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">for</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="n">rasterized</span><span class="w"> </span><span class="n">screen</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">:</span><span class="w">        </span><span class="c1">//Usually a pixel&#39;s center</span>
@@ -1300,81 +1331,88 @@
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">set</span><span class="w"> </span><span class="n">sample</span><span class="err">’</span><span class="n">s</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">texcolor</span><span class="p">;</span><span class="w"> </span><span class="c1">// usually the diffuse albedo Kd</span>
 </code></pre></div>
 <h2 id="43-texture-magnification"><strong>4.3 Texture magnification</strong><a class="headerlink" href="#43-texture-magnification" title="Permanent link">&para;</a></h2>
+<p>下面所说的纹理大还是小，可以理解为纹理的分辨率大还是小。</p>
 <h3 id="431-what-if-the-texture-is-too-small"><strong>4.3.1 What if the texture is too small?</strong><a class="headerlink" href="#431-what-if-the-texture-is-too-small" title="Permanent link">&para;</a></h3>
-<p>A pixel on a texture —— a <strong>texel</strong></p>
-<p>If the point corresponding to (u, v) on the texture is not an integer, there are several ways to deal with it.</p>
+<p>我们模型的分辨率非常高，但是我们的贴图的分辨率比较低，就会导致我们一个点映射到纹理上的 <span class="arithmatex">\((u,v)\)</span> 很有可能并不是整数，我们有几种处理方法。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>纹理上的像素被称为 texel</p>
+</div>
 <ul>
 <li><strong>Nearest</strong> </li>
 </ul>
 <p>We just can take the nearest integer point.</p>
 <ul>
-<li><strong>Bilinear interpolation</strong></li>
+<li><strong>Bilinear interpolation 双线性插值</strong></li>
 </ul>
-<p>Take 4 nearest sample locations, with texture values as labeled. </p>
-<p>And fractional offsets, (s,t) as shown.</p>
+<p>取4个最近的样本位置，纹理值已被标记在图上。同时得到分数偏移量 <span class="arithmatex">\((s,t)\)</span></p>
+<p>Linear interpolation (1D) 一维插值</p>
+<div class="arithmatex">\[
+lerp(x,v_0,v_1)=v_0+x(v_1-v_0)
+\]</div>
+<p>先进行两次水平的插值</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20220357.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20220357.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20221123.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20221123.png" /></a></p>
-<p>Linear interpolation (1D) : <span class="arithmatex">\(lerp(x,v_0,v_1)=v_0+x(v_1-v_0)\)</span></p>
-<p>Two helper lerps : <span class="arithmatex">\(u_0 =lerp(s,u_{0,0},u_{10})\)</span>   <span class="arithmatex">\(u_1 =lerp(s,u_{01},u_{11})\)</span></p>
-<p>Final vertical lerp, to get result : <span class="arithmatex">\(f(x,y)=lerp(t,u_0,u_1)\)</span></p>
+<div class="arithmatex">\[
+u_0 =lerp(s,u_{0,0},u_{10}),\quad u_1 =lerp(s,u_{01},u_{11})
+\]</div>
+<p>最后进行依次竖直插值得到</p>
+<div class="arithmatex">\[
+f(x,y)=lerp(t,u_0,u_1)
+\]</div>
 <ul>
-<li><strong>Bicubic</strong></li>
+<li><strong>Bi-cubic</strong>：以16个最近的样品点为例，成本很高。</li>
 </ul>
-<p>Take 16 nearest sample locations, it costs a lot.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20213907.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20213907.png" /></a></p>
 <h3 id="432-what-if-the-texture-is-too-large"><strong>4.3.2 What if the texture is too large?</strong><a class="headerlink" href="#432-what-if-the-texture-is-too-large" title="Permanent link">&para;</a></h3>
-<p>原因是近处一个像素覆盖的纹理区域相对较小，远处一个像素覆盖了很大一片纹理。屏幕上各个像素覆盖的纹理区域各不相同。如果一个像素覆盖的纹理区域较小，用这个像素的中心查询一下纹理的值，没有什么问题。但是一旦一个像素覆盖了很大一片区域的纹理（比如远处接近地平线的纹理），现在我还用一个像素的中心去查这块儿区域，用一个点的值去认为是这一个区域的值，那显然是不对的。用一个点的值无法代表一块纹理区域的颜色变化。</p>
+<p>如果纹理比较大会造成严重的走样现象</p>
+<p>原因是近处一个像素覆盖的纹理区域相对较小，远处一个像素覆盖了很大一片纹理。屏幕上各个像素覆盖的纹理区域各不相同。如果一个像素覆盖的纹理区域较小，用这个像素的中心查询一下纹理的值，没有什么问题。但是一旦一个像素覆盖了<strong>很大一片区域的纹理</strong>（比如远处接近地平线的纹理），现在我还用一个像素的中心去查这块儿区域，用一个点的值去认为是这一个区域的值，那显然是不对的。用一个点的值无法代表一块纹理区域的颜色变化。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20222924.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20222924.png" /></a></p>
-<p>Will supersampling work?  </p>
-<ul>
-<li>Yes, high quality, but costly  </li>
-<li>When highly minified, many texels in pixel footprint  </li>
-<li>Signal frequency too large in a pixel  </li>
-<li>Need even higher sampling frequency</li>
-</ul>
-<p>Point Query vs. (Avg.) Range Query</p>
+<p>增加取样点显然有效，但是花费变得非常高。一个像素内纹理的变化过快，需要更高的采样频率</p>
+<p><strong>Point Query vs. (Avg.) Range Query</strong></p>
 <p>点查询：以纹理为例，给你一个点，它的值是多少，可以用双线性插值来解决，这是点查询。</p>
-<p>范围查询：给你任何一个区域，你立刻可以得到这个范围内的平均值，这是范围查询。（范围查询还有查询一个范围内最大值和最小值，这类问题跟现在所说的完全不一样）</p>
-<h4 id="4321-mipmap"><strong>4.3.2.1 Mipmap</strong><a class="headerlink" href="#4321-mipmap" title="Permanent link">&para;</a></h4>
-<p>—— Allowing (fast, approx., square) range queries</p>
+<p>范围查询：给你任何一个区域，你立刻可以得到这个范围内的<strong>平均值</strong>，这是范围查询。（范围查询还有查询一个范围内最大值和最小值，这类问题跟现在所说的完全不一样）</p>
+<h3 id="433-mip-map"><strong>4.3.3 Mip-map</strong><a class="headerlink" href="#433-mip-map" title="Permanent link">&para;</a></h3>
+<p>—— Allowing (fast, approx., square) range queries 做快近似方形的范围查询</p>
+<p>我们生成一系列的纹理，像下图所示【可以提前生成】</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20230132.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20230132.png" /></a></p>
-<p><a class="glightbox" href="E:\邵圣乐\初识图形学\Note\img\屏幕截图 2024-08-29 230143.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="E:\邵圣乐\初识图形学\Note\img\屏幕截图 2024-08-29 230143.png" /></a></p>
-<p>How to compute Mipmap level D ?</p>
-<ul>
-<li>Estimate texture footprint using texture coordinates of neighboring screen samples</li>
-</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20230143.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20230143.png" /></a></p>
+<h4 id="how-to-compute-mip-map-level-d">How to compute Mip-map level D ?<a class="headerlink" href="#how-to-compute-mip-map-level-d" title="Permanent link">&para;</a></h4>
+<p>Estimate texture footprint using texture coordinates of neighboring screen samples</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133559.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133559.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133604.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133604.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133611.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133611.png" /></a></p>
-<ul>
-<li><span class="arithmatex">\(D=log_2L\)</span>    <span class="arithmatex">\(L=max(\sqrt{(\frac{du}{dx})^2+(\frac{dv}{dx})^2},\sqrt{(\frac{du}{dy})^2+(\frac{dv}{dy})^2})\)</span></li>
-</ul>
+<div class="arithmatex">\[
+D=log_2max(\sqrt{(\frac{du}{dx})^2+(\frac{dv}{dx})^2},\sqrt{(\frac{du}{dy})^2+(\frac{dv}{dy})^2})
+\]</div>
 <p>我们可以用如上图所示的一个正方形框来近似这样一个不规则的区域。</p>
-<p>当我们把一个像素在纹理上覆盖区域近似成一个正方形时，如何根据我刚刚已经算好的Mipmap，去查询这样一个边长为L正方形的区域的平均值是多少？</p>
+<p>当我们把一个像素在纹理上覆盖区域近似成一个正方形时，如何根据我刚刚已经算好的Mip-map，去查询这样一个边长为L正方形的区域的平均值是多少？</p>
 <p>如果这个正方形区域就是1×1，那么就表明一个像素正好对应一个边长为L的正方形区域，也就可以直接在最原始（第0层，D=0）的纹理上找对应的像素，就是它的值。</p>
 <p>如果这个正方形区域是2×2，那么这个区域会在第1层（D=1）上对应一个像素</p>
 <p>如果这个正方形区域是4×4，那么这个区域会在第2层（D=2）上对应一个像素</p>
-<p>对于L×L大小的正方形，一定会在D=log2L层上对应到一个像素。</p>
+<p>对于L×L大小的正方形，一定会在 <span class="arithmatex">\(D=log_2L\)</span> 层上对应到一个像素。</p>
 <p>因此我们只需要算出D，即在第几层正方形的区域对应一个像素，就可以得出这个区域内平均值是多少。</p>
-<p>Visualization of Mipmap Level</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20141847.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20141847.png" /></a></p>
-<p>我们发现这个图并不是连续的，还是使用插值方法使图像连续。</p>
-<h4 id="4322-trilinear-interpolation"><strong>4.3.2.2 Trilinear interpolation</strong><a class="headerlink" href="#4322-trilinear-interpolation" title="Permanent link">&para;</a></h4>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20142850.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20142850.png" /></a></p>
-<p>所谓三线性插值，就是在向下取整的D level上进行一次双线性插值(前文提过)，再在D+1 level之上进行一次双线性插值，这二者数据再根据实际的连续D值在向下和向上取整的两个不同level之间的比例，再来一次线性插值，而这整体就是一个三线性插值了。</p>
-<h4 id="4323-mipmap-limitations"><strong>4.3.2.3 MipMap limitations</strong><a class="headerlink" href="#4323-mipmap-limitations" title="Permanent link">&para;</a></h4>
-<p><strong>Overblur</strong> !</p>
-<p>Solution : <strong>Anisotropic Filtering</strong> (各向异性过滤)</p>
-<p>Ripmaps and summed area tables</p>
-<ul>
-<li>can look up axis-aligned rectangular zones</li>
-<li>Diagonal footprints still a problem</li>
-</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221841.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221841.png" /></a></p>
+<p>我们发现这个图并<strong>不是连续</strong>的，还是使用插值方法 (<strong>Tri-linear interpolation</strong>) 使图像连续。</p>
+<h3 id="tri-linear-interpolation"><strong>Tri-linear interpolation</strong><a class="headerlink" href="#tri-linear-interpolation" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221649.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221649.png" /></a></p>
+<p>所谓三线性插值，就是在向下取整的D level上进行一次双线性插值(前文提过)，再在D+1 level之上进行一次双线性插值，这二者数据再根据实际的连续D值在向下和向上取整的两个不同level之间的比例，再来一次线性插值，而这整体就是一个<strong>三线性插值</strong>了。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221801.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221801.png" /></a></p>
+<h4 id="mip-map-limitations"><strong>Mip-Map limitations</strong><a class="headerlink" href="#mip-map-limitations" title="Permanent link">&para;</a></h4>
+<p>我们发现使用Mip-Map有一个问题就是在远处的所有细节都丢失了 <strong>OverBlur</strong></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222035.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222035.png" /></a></p>
+<p>造成 Overblur 的原因在于 Mip-Map 采取的是方形求平均，面对 footprints 为长方形等等，我们就会取一个更大的正方形，这样就会造成overblur </p>
+<p>Solution : <strong>Anisotropic Filtering</strong> (各向异性过滤)，我们不仅仅解决方形的，我们还解决长方形的。我们如下图构建 Rip-Map (存储的内容就变成原来的三倍了)</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222640.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222640.png" /></a></p>
+<p>可以查找轴对齐的矩形区域</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20150304.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20150304.png" /></a></p>
-<p>其实各向异性过滤并不能解决 diagonal的footprint，因为各向异性只能解决水平或竖直的不同大小的矩形footprint</p>
+<p>其实各向异性过滤仍不能解决 diagonal 的 footprint，因为各向异性只能解决水平或竖直的不同大小的矩形footprint</p>
+<p>我们还有其他的方法，比如说 EWA filtering ，可以解决对角线的情况</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222926.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222926.png" /></a></p>
 <h2 id="44-applications-of-texture"><strong>4.4 Applications of texture</strong><a class="headerlink" href="#44-applications-of-texture" title="Permanent link">&para;</a></h2>
-<p>texture = memory + range query (filtering)</p>
+<p>texture = memory + range query (filtering) 在GPU中我们可以把纹理理解为一块内存，并且可以做相应的点查询与范围查询</p>
 <h3 id="441-environment-map"><strong>4.4.1 Environment Map</strong><a class="headerlink" href="#441-environment-map" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20171108.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20171108.png" /></a></p>
-<p>环境贴图，制造环境光，描述来自不同方向的光照信息，照亮整个环境中的物体，也可以被环境中的物体反射。环境光只记录光的方向，即假设环境光来自无限远处，从同一个方向照过来的光强度都是一样的。</p>
+<p>环境贴图，制造环境光，描述来自不同方向的光照信息，照亮整个环境中的物体，也可以被环境中的物体反射。环境光只记录光的方向，即假设环境光来自无限远处，从同一个方向照过来的<strong>光强度都是一样的</strong>。</p>
 <ul>
 <li>Spherical Environment Map</li>
 </ul>

@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -931,13 +935,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1047,6 +1044,46 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%2013/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Homework/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1062,6 +1099,8 @@
   
     
     
+      
+        
       
         
       
@@ -1306,13 +1345,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1333,7 +1365,7 @@
 
 <h1 id="7-divide-conquer"><strong>7 Divide &amp; Conquer</strong><a class="headerlink" href="#7-divide-conquer" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 760 个字  预计阅读时间 3 分钟
+    文本统计：约 516 个字  预计阅读时间 2 分钟
 </div>
 
 <ul>
@@ -1391,39 +1423,6 @@ T(N)=2T(N/2)+O(N)\Rightarrow T(N)=O(NlogN)
 <p><a class="glightbox" href="../img/%E4%B8%BB%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E4%B8%BB%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95.png" /></a></p>
 <p>主方法的证明可以使用递归树来证明</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-26%20121728.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-26%20121728.png" /></a></p>
-<h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
-<p>Consider two disjoint sorted arrays <em>A</em>[1…<em>m</em>] and <em>B</em>[1…<em>n</em>], we would like to compute the <em>k</em>-th smallest element in the union of the two arrays, where <em>k</em>≤min{<em>m</em>,<em>n</em>}. Please choose the smallest possible running time among the following options.</p>
-<p>A.<span class="arithmatex">\(O(logk)\)</span>     B. <span class="arithmatex">\(O(logm)\)</span>    C.<span class="arithmatex">\(O(logn)\)</span>     D.<span class="arithmatex">\(O(logm+logn)\)</span></p>
-<div class="admonition note">
-<p class="admonition-title">Answer</p>
-<p>A
-算法如下：
-比较A[k/2]和B[k/2]谁大小就可以排除对应的前k/2个得到新的A',B'数组
-再比较A'[k/4]和B'[k/4]，就可以排除k/4
-...依次排除，得到排除次数为log(k)
-(不够取了就取最大的那个)</p>
-</div>
-<p>Consider the following function, where the time complexity for function <code>calc()</code> is O(1).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>void fun(int l, int r) {
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    if(r-l+1&lt;=1234) return;
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    int m=(l+r)/2;
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    int m1=(l+m)/2, m2=(m+1+r)/2;
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    fun(l, m);
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    fun(m1+1, m2);
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    for(int k=1;k&lt;=r-l+1;k++)
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        for(int i=1;i&lt;=r-l+1;i++)
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>            for(int j=l;j&lt;=r;j+=i)
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                calc(j, i);
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    fun(m+1, r);
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    fun(m1+1, m2);
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>}
-</code></pre></div>
-<p>Assume the initial input is <code>l=1, r=N</code>, What is the running time of this function? Your answer should be as tight as possible.</p>
-<p>A. <span class="arithmatex">\(O(Nlog^2N)\)</span> B. <span class="arithmatex">\(O(N^{2.5})\)</span> C. <span class="arithmatex">\(O(N^2logN)\)</span> D. <span class="arithmatex">\(O(N^2log^2N)\)</span></p>
-<div class="admonition note">
-<p class="admonition-title">answer</p>
-<p>D   <span class="arithmatex">\(T(n)=4T(n/2)+n(n+n/2+n/3+...n/(n-1))=4T(n/2)+n^2logn\)</span></p>
-</div>
 
 
   

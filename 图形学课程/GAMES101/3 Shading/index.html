@@ -886,15 +886,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#311-specular-term" class="md-nav__link">
-    3.1.1 Specular Term
+  <a href="#311-diffuse-term" class="md-nav__link">
+    3.1.1 Diffuse Term
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#312-ambient-term" class="md-nav__link">
-    3.1.2 Ambient Term
+  <a href="#312-specular-term" class="md-nav__link">
+    3.1.2 Specular Term
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313-ambient-term" class="md-nav__link">
+    3.1.3 Ambient Term
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
   </a>
   
 </li>
@@ -909,12 +923,52 @@
     3.2 Shading Frequencies
   </a>
   
+    <nav class="md-nav" aria-label="3.2 Shading Frequencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#three-methods-of-shading" class="md-nav__link">
+    Three Methods of Shading
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-define-per-vertex-normal-vectors" class="md-nav__link">
+    How to define per-vertex Normal vectors?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-define-per-pixel-normal-vectors" class="md-nav__link">
+    How to define per-pixel normal vectors?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#33-graphicsreal-time-rendering-pipeline" class="md-nav__link">
     3.3 Graphics(Real-time Rendering) Pipeline
   </a>
+  
+    <nav class="md-nav" aria-label="3.3 Graphics(Real-time Rendering) Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shader-programs" class="md-nav__link">
+    Shader programs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1077,15 +1131,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#311-specular-term" class="md-nav__link">
-    3.1.1 Specular Term
+  <a href="#311-diffuse-term" class="md-nav__link">
+    3.1.1 Diffuse Term
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#312-ambient-term" class="md-nav__link">
-    3.1.2 Ambient Term
+  <a href="#312-specular-term" class="md-nav__link">
+    3.1.2 Specular Term
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313-ambient-term" class="md-nav__link">
+    3.1.3 Ambient Term
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
   </a>
   
 </li>
@@ -1100,12 +1168,52 @@
     3.2 Shading Frequencies
   </a>
   
+    <nav class="md-nav" aria-label="3.2 Shading Frequencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#three-methods-of-shading" class="md-nav__link">
+    Three Methods of Shading
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-define-per-vertex-normal-vectors" class="md-nav__link">
+    How to define per-vertex Normal vectors?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-define-per-pixel-normal-vectors" class="md-nav__link">
+    How to define per-pixel normal vectors?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#33-graphicsreal-time-rendering-pipeline" class="md-nav__link">
     3.3 Graphics(Real-time Rendering) Pipeline
   </a>
+  
+    <nav class="md-nav" aria-label="3.3 Graphics(Real-time Rendering) Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shader-programs" class="md-nav__link">
+    Shader programs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1129,74 +1237,135 @@
 
 <h1 id="3-shading"><strong>3 Shading</strong><a class="headerlink" href="#3-shading" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 351 个字  预计阅读时间 1 分钟
+    文本统计：约 914 个字  •  11 行代码  预计阅读时间 3 分钟
 </div>
 
-<p>Definition: the process of applying a material to an object </p>
+<p>Definition: the process of <strong>applying a material</strong> to an object </p>
 <h2 id="31-blinn-phong-reflectance-model"><strong>3.1 Blinn-Phong Reflectance Model</strong><a class="headerlink" href="#31-blinn-phong-reflectance-model" title="Permanent link">&para;</a></h2>
-<p><strong>Shading is local</strong>: we do not need to care about other objects, so no shadows will be generated.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20135527.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20135527.png" /></a></p>
+<p>我们主要来处理高光部分，漫反射部分以及环境光像。</p>
+<p><strong>Shading is local</strong>【着色的局部性】: we do not need to care about other objects, so no shadows will be generated. </p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20131507.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20131507.png" /></a></p>
 <p>(<span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(I\)</span> are both Unit Vector)</p>
-<p><strong>Diffuse Reflection</strong>: Light is scattered uniformly in all directions.</p>
-<p><strong>Lambert’s cosine law</strong>: calculate how much light is received by the surface.</p>
+<h3 id="311-diffuse-term"><strong>3.1.1 Diffuse Term</strong><a class="headerlink" href="#311-diffuse-term" title="Permanent link">&para;</a></h3>
+<p><strong>Diffuse Reflection</strong>: Light is scattered uniformly in all directions. 漫反射的结果就是光被均匀地反射到各个方向</p>
+<p><strong>Lambert’s cosine law</strong>: calculate how much light is received by the surface. 以不同的角度接受光，吸收得到的光强也不同</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20133137.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20133137.png" /></a></p>
 <p><strong>Light Falloff</strong> : Suppose the light intensity at distance 1 is <span class="arithmatex">\(I\)</span>, then at distance <span class="arithmatex">\(r\)</span> the light intensity is <span class="arithmatex">\(I/r^2\)</span>.</p>
-<p><strong>Lambertian (Diffuse) Shading</strong> : <span class="arithmatex">\(L_d = k_d(I/r^2)max(0,n\cdot I)\)</span>, <span class="arithmatex">\(k_d\)</span> means diffuse coefficient.</p>
-<p>Shading is independent with view direction (diffuse reflection).</p>
-<h3 id="311-specular-term"><strong>3.1.1 Specular Term</strong><a class="headerlink" href="#311-specular-term" title="Permanent link">&para;</a></h3>
-<p>It means bright near reflection direction.</p>
-<p>V close to mirror direction <span class="arithmatex">\(\Leftrightarrow\)</span> half vector near normal</p>
-<p><span class="arithmatex">\(\bold{h} = bisector(\bold v, \bold l) = \frac{\bold v +\bold l}{\|\bold v +\bold l \|}\)</span></p>
-<p><span class="arithmatex">\(L_s = k_s(I/r^2)max(0,cos \alpha)^p = k_s(I/r^2)max(0,\bf {n}\cdot \bf {h}) ^p\)</span>, <span class="arithmatex">\(k_s\)</span> means specular coefficient.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20140019.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20140019.png" /></a></p>
+<p><strong>Lambertian (Diffuse) Shading</strong> : </p>
+<div class="arithmatex">\[
+L_d = k_d(I/r^2)max(0,n\cdot I)
+\]</div>
+<p>与 0 取max的原因是当 <span class="arithmatex">\(n\cdot I\)</span> 为负数时，也就是光从下面打上来，这个时没有意义的，这时候就取0，意为没有光照到。</p>
+<p><span class="arithmatex">\(k_d\)</span> means diffuse coefficient. </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20141320.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20141320.png" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>引入 <span class="arithmatex">\(k_d\)</span> 的原因是材料可能有对光的吸收，同时我们可以将光定义为一个RGB表示的三维向量，这样我们可以通过 <span class="arithmatex">\(k_d\)</span> 来表示物体的颜色了 </p>
+</div>
+<p>因为我们考虑的是漫反射，光在四周是均匀的，所以与我们观察的方向无关。</p>
+<h3 id="312-specular-term"><strong>3.1.2 Specular Term</strong><a class="headerlink" href="#312-specular-term" title="Permanent link">&para;</a></h3>
+<p>It means bright near reflection direction. 在这种情况下，光强就与观察角度有关了</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20154918.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20154918.png" /></a></p>
-<p>??? question “Why we need to <span class="arithmatex">\(()^p\)</span>?”</p>
-<div class="highlight"><pre><span></span><code>Increasing p narrows the refelction lobe.Usually p is above 100.
+<p><span class="arithmatex">\(\bold v\)</span> close to mirror direction <span class="arithmatex">\(\Leftrightarrow\)</span> half vector near normal</p>
+<div class="arithmatex">\[
+\bold{h} = bisector(\bold v, \bold l) = \frac{\bold v +\bold l}{\|\bold v +\bold l \|}
+\]</div>
+<p>这样我们得到 Specular term 的光强的值</p>
+<div class="arithmatex">\[
+\begin{aligned}
+L_s &amp;= k_s(I/r^2)max(0,cos \alpha)^p \\
+&amp;= k_s(I/r^2)max(0,\bold {n}\cdot \bold {h}) ^p
+\end{aligned}
+\]</div>
+<p><span class="arithmatex">\(k_s\)</span> means specular coefficient.</p>
+<p>!!! question “Why we need to <span class="arithmatex">\(()^p\)</span>?”</p>
+<div class="highlight"><pre><span></span><code>Increasing p narrows the refelction lobe.
+增加p让我仅在很小的部分才能看到高光
+
+Usually p is above 100.
+
 ![](img/屏幕截图 2024-08-28 155534.png)
 </code></pre></div>
-<h3 id="312-ambient-term"><strong>3.1.2 Ambient Term</strong><a class="headerlink" href="#312-ambient-term" title="Permanent link">&para;</a></h3>
-<p>we assume that light from any direction are the same, shading does not depend on anything.</p>
-<p><span class="arithmatex">\(L_a = k_a I_a\)</span>, <span class="arithmatex">\(k_a\)</span> means ambient coefficient.</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20162315.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20162315.png" /></a></p>
+<p><span class="arithmatex">\(k_s\)</span> 越大，物体亮度越高。 <span class="arithmatex">\(p\)</span> 越大，高光的区域越小</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20142429.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20142429.png" /></a></p>
+<h3 id="313-ambient-term"><strong>3.1.3 Ambient Term</strong><a class="headerlink" href="#313-ambient-term" title="Permanent link">&para;</a></h3>
+<p>我们假设来自任何方向的光都是相同的，阴影不依赖于任何东西。</p>
+<div class="arithmatex">\[
+L_a = k_a I_a
+\]</div>
+<p><span class="arithmatex">\(k_a\)</span> means ambient coefficient. <span class="arithmatex">\(I_a\)</span> 是来自环境的光。</p>
+<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20142732.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20142732.png" /></a></p>
+<div class="arithmatex">\[
+\begin{aligned}
+L&amp;=L_a+L_d+L_s\\
+&amp;=k_aI_a+k_d(I/r^2)max(0,\bold n\cdot \bold l)+k_s(I/r^2)max(0,\bold n\cdot\bold h)^p
+\end{aligned}
+\]</div>
 <h2 id="32-shading-frequencies">3.2 Shading Frequencies<a class="headerlink" href="#32-shading-frequencies" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Flat</strong> shading</li>
-</ol>
-<ul>
-<li>Triangle face is flat ---ONE normal vector</li>
-<li>NOT good for smooth surfaces</li>
-</ul>
-<ol start="2">
-<li><strong>Gouraud</strong> shading</li>
-</ol>
-<ul>
-<li>Interpolate colors from vertices across triangle</li>
-<li>Each vertex has a normal vector</li>
-</ul>
-<ol start="3">
-<li><strong>Phong</strong> shading</li>
-</ol>
-<ul>
-<li>Interpolate normal vectors across triangle</li>
-<li>Compute full shading model at each pixel</li>
-<li>NOT the Blinn-Phong reflectance Model</li>
-</ul>
-<p>There is a question: <strong>How to define per-vertex Normal vectors?</strong></p>
-<p>One way (BEST) is to get vertex normals from the underlying geometry, like consider a sphere</p>
-<p>Otherwise have to infer vertex normals from triangle faces, we can average (or weighted) surrounding face normals <span class="arithmatex">\(N_v=\frac{\sum_i N_i}{\|\sum_i N_i\|}\)</span></p>
+<h3 id="three-methods-of-shading">Three Methods of Shading<a class="headerlink" href="#three-methods-of-shading" title="Permanent link">&para;</a></h3>
+<p>我们有三种不同的 shading 思路</p>
+<p><strong>Shade each triangle——Flat shading</strong></p>
+<p><a class="glightbox" href="../img/Flat%20shading.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Flat%20shading.png" /></a></p>
+<p>三角形面是平的只有一个法向量，对于一些光滑平面来说效果不佳。</p>
+<p><strong>Shade each vertex——Gouraud shading</strong></p>
+<p>对每个顶点进行shading，然后根据顶点的颜色对三角形进行插值，每一个点都有一个法向量（如何定义？）</p>
+<p><strong>Shade each pixel——Phong shading</strong></p>
+<p>对法向量进行插值，然后对每个像素进行 shading</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20145309.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20145309.png" /></a></p>
+<p>从上面我们可以看出，当面比较少的时候，我们发现 Flat shading 比 Phong Shading 要差很多，但是在面较多的时候，会发现其实差距不大。</p>
+<h3 id="how-to-define-per-vertex-normal-vectors"><strong>How to define per-vertex Normal vectors?</strong><a class="headerlink" href="#how-to-define-per-vertex-normal-vectors" title="Permanent link">&para;</a></h3>
+<p>One way (BEST) is to get vertex normals from the underlying geometry, like consider a sphere 直接根据原本的几何形体得到法向量，这肯定是最准的。</p>
+<p>Otherwise have to infer vertex normals from triangle faces, we can average (or weighted) surrounding face normals 根据相邻法线的加权平均，得到点的平均。</p>
+<div class="arithmatex">\[
+N_v=\frac{\sum_i N_i}{\|\sum_i N_i\|}
+\]</div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172719.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172719.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172858.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172858.png" /></a></p>
-<p><strong>How to define per-pixel normal vectors?</strong></p>
-<p>Barycentric interpolation of vertex normals. </p>
+<h3 id="how-to-define-per-pixel-normal-vectors"><strong>How to define per-pixel normal vectors?</strong><a class="headerlink" href="#how-to-define-per-pixel-normal-vectors" title="Permanent link">&para;</a></h3>
+<p><strong>Barycentric interpolation</strong> of vertex normals. </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20145800.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20145800.png" /></a></p>
 <h2 id="33-graphicsreal-time-rendering-pipeline"><strong>3.3 Graphics(Real-time Rendering) Pipeline</strong><a class="headerlink" href="#33-graphicsreal-time-rendering-pipeline" title="Permanent link">&para;</a></h2>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20135837.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20135837.png" /></a></p>
-<p>Shader programs</p>
-<ul>
-<li>
-<p>Program vertex and fragment processing stages  </p>
-</li>
-<li>
-<p>Describe operation on a single vertex (or fragment)</p>
-</li>
-</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20145910.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20145910.png" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Graphics Pipeline</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Step 1</label><label for="__tabbed_1_2">Step 2</label><label for="__tabbed_1_3">Step 3</label><label for="__tabbed_1_4">Step 4</label><label for="__tabbed_1_5">Step 5</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20150245.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20150245.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20150249.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20150249.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20150256.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20150256.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20150301.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20150301.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20150307.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20150307.png" /></a></p>
+</div>
+</div>
+</div>
+</div>
+<p>我们一开始定义模型的时候，可以先定义点，然后定义相应的连接关系。我们将三维空间中的点映射到二维空间上，然后再连线。</p>
+<h3 id="shader-programs">Shader programs<a class="headerlink" href="#shader-programs" title="Permanent link">&para;</a></h3>
+<p>对  vertex and fragment processing 阶段进行编程，我们只需要描述对<strong>某一个</strong>点/像素的操作</p>
+<p>Example <code>GLSL</code> fragment shader program</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">uniform</span><span class="w"> </span><span class="kt">sampler2D</span><span class="w"> </span><span class="n">myTexture</span><span class="p">;</span><span class="w"> </span><span class="c1">// program parameter</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">uniform</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">lightDir</span><span class="p">;</span><span class="w"> </span><span class="c1">// program parameter </span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">varying</span><span class="w"> </span><span class="kt">vec2</span><span class="w"> </span><span class="n">uv</span><span class="p">;</span><span class="w"> </span><span class="c1">// per fragment value (interp. by rasterizer) </span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">varying</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">norm</span><span class="p">;</span><span class="w"> </span><span class="c1">// per fragment value (interp. by rasterizer)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kt">void</span><span class="w"> </span><span class="n">diffuseShader</span><span class="p">()</span><span class="w"> </span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">{</span><span class="w"> </span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="kt">vec3</span><span class="w"> </span><span class="n">kd</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">kd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">texture2d</span><span class="p">(</span><span class="n">myTexture</span><span class="p">,</span><span class="w"> </span><span class="n">uv</span><span class="p">);</span><span class="w"> </span><span class="c1">// material color from texture</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">kd</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">clamp</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="err">–</span><span class="n">lightDir</span><span class="p">,</span><span class="w"> </span><span class="n">norm</span><span class="p">),</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Lambertian shading model</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nb">gl_FragColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec4</span><span class="p">(</span><span class="n">kd</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// output fragment color</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
+</code></pre></div>
 
 
   

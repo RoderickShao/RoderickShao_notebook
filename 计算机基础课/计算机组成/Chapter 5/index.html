@@ -16,7 +16,7 @@
         <link rel="prev" href="../Chapter%204/">
       
       
-        <link rel="next" href="../Appendix%201/">
+        <link rel="next" href="../Chapter%206/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -669,6 +669,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -708,6 +712,8 @@
   
     
     
+      
+        
       
         
       
@@ -1123,8 +1129,63 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decreasing-miss-penalty-with-multilevel-caches" class="md-nav__link">
+    Decreasing miss penalty with multilevel caches
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#56-virtual-memory" class="md-nav__link">
+    5.6 Virtual Memory
+  </a>
+  
+    <nav class="md-nav" aria-label="5.6 Virtual Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#561" class="md-nav__link">
+    5.6.1 虚拟内存技术
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#562" class="md-nav__link">
+    5.6.2 如何完成映射呢
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#563" class="md-nav__link">
+    5.6.3 页表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#554" class="md-nav__link">
+    5.5.4 用多级页表解决页表过大的问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#565-tlb" class="md-nav__link">
+    5.6.5 使用 TLB 加快地址转换
+  </a>
   
 </li>
         
@@ -1137,6 +1198,26 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%206/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 I/O
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1549,8 +1630,63 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#decreasing-miss-penalty-with-multilevel-caches" class="md-nav__link">
+    Decreasing miss penalty with multilevel caches
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#56-virtual-memory" class="md-nav__link">
+    5.6 Virtual Memory
+  </a>
+  
+    <nav class="md-nav" aria-label="5.6 Virtual Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#561" class="md-nav__link">
+    5.6.1 虚拟内存技术
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#562" class="md-nav__link">
+    5.6.2 如何完成映射呢
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#563" class="md-nav__link">
+    5.6.3 页表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#554" class="md-nav__link">
+    5.5.4 用多级页表解决页表过大的问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#565-tlb" class="md-nav__link">
+    5.6.5 使用 TLB 加快地址转换
+  </a>
   
 </li>
         
@@ -1579,7 +1715,7 @@
 
 <h1 id="5-memory-hierarchy"><strong>5 Memory Hierarchy</strong><a class="headerlink" href="#5-memory-hierarchy" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4558 个字  预计阅读时间 15 分钟
+    文本统计：约 7715 个字  预计阅读时间 26 分钟
 </div>
 
 <h2 id="51-storage-unit-introduction"><strong>5.1 Storage unit Introduction</strong><a class="headerlink" href="#51-storage-unit-introduction" title="Permanent link">&para;</a></h2>
@@ -1795,8 +1931,8 @@
 <p>假如我们使用的是 write-through 策略，造成的 write stall 就是每次写操作后 CPU需要等待数据被写入内存，这样的开销是巨大的。于是我们引入 write buffers，每次写操作结束后，我们只需要将数据传输到 write buffer 中而不是到内存中去，这样我们就显著减小了 write stall 的时间。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-28%20190406.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-28%20190406.png" /></a></p>
 <p>面对 Write misses 的时候（要执行写操作，发现缓存中没有目标 block）这个时候我们有两种策略</p>
-<p>Write allcocate: 不管怎么样先把对应的block载入到缓存中</p>
-<p>Write around (no write allocate)：我们只将数据写入 main memory中，比如说在初始化的时候，我们就可以直接将数据写入下游中，并且这样的操作对性能并不会有什么损失，即使接下来需要用到相应的数据，造成 read miss，还要将数据从内存中载入缓存中。</p>
+<p><strong>Write allcocate</strong>: 不管怎么样先把对应的block载入到缓存中</p>
+<p><strong>Write around</strong> (no write allocate)：我们只将数据写入 main memory中，比如说在初始化的时候，我们就可以直接将数据写入下游中，并且这样的操作对性能并不会有什么损失，即使接下来需要用到相应的数据，造成 read miss，还要将数据从内存中载入缓存中。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In general, write-back caches use write-allocate , and write-through caches use write-around . </p>
@@ -1895,8 +2031,114 @@ Memorystall~clock~cycles=\frac{Memory~accesses}{program}\times Miss~rate\times M
 <p>我们发现 associativity 从1增加到2的时候，miss rate 显著降低，后面associativity 增加的时候，miss rate 下降地就不明显了</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-28%20204333.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-28%20204333.png" /></a></p>
 <p>对于 block 的替换，最常用的方法是 LRU。</p>
-<p>For a two-way set associative cache（一个set中只有两个block）, the LRU can be implemented easily. We could keep a single bit in each set. We set the bit whenever a specific block in the set is referenced, and reset the bit whenever another block is referenced.</p>
+<p>For a two-way set associative cache（一个set中只有两个block）, the LRU can be implemented easily. We could keep a single bit in each set. We set the bit whenever a specific block in the set is referenced, and reset the bit whenever another block is referenced.【二叉树？】</p>
 <p>随着一个set中的block数越来越多，LRU的实现就越来越难。</p>
+<h4 id="decreasing-miss-penalty-with-multilevel-caches"><strong>Decreasing miss penalty with multilevel caches</strong><a class="headerlink" href="#decreasing-miss-penalty-with-multilevel-caches" title="Permanent link">&para;</a></h4>
+<p>让L1比较小，降低了 hit time，L2就拿来兜底防止到更低的内存结构中取数据。我们用下面这个例子直观地感受一下。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>CPI of 1.0 on a <span class="arithmatex">\(5\text{GHz}\)</span> machine with a 2% miss rate, <span class="arithmatex">\(\text{100ns}\)</span> DRAM access，Adding 2nd level cache with 5ns access time decreases miss rate to 0.5%</p>
+<p>一开始，Miss penalty 为 </p>
+<div class="arithmatex">\[
+\frac{100ns}{0.2ns/cycle}=500\ \text{clock cycles}
+\]</div>
+<p>相应的CPI为</p>
+<div class="arithmatex">\[
+\text{Total CPI}=1.0+\text{Memory-stall cycles per instruction}=1.0+2\%\times 500=11.0
+\]</div>
+<p>增加了一级缓存之后，数据在二级缓存中找到需要</p>
+<div class="arithmatex">\[
+\frac{5ns}{0.2\text{ns/cycle}}=25\ \text{clock cycles}
+\]</div>
+<p>那么相应的CPI为</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{Total CPI} &amp;= \text{1.0 + Primary stalls per instruction + Secondary stalls per instruction}\\
+&amp;=1+2\%\times25+0.5\%\times500=4.0
+\end{aligned}
+\]</div>
+</div>
+<p><strong>Using multilevel caches:</strong></p>
+<ul>
+<li>
+<p>try and optimize the hit time on the 1st level cache</p>
+</li>
+<li>
+<p>try and optimize the miss rate on the 2nd level cache</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20191629.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20191629.png" /></a></p>
+</div>
+<h2 id="56-virtual-memory"><strong>5.6 Virtual Memory</strong><a class="headerlink" href="#56-virtual-memory" title="Permanent link">&para;</a></h2>
+<h3 id="561"><strong>5.6.1 虚拟内存技术</strong><a class="headerlink" href="#561" title="Permanent link">&para;</a></h3>
+<div class="admonition link">
+<p class="admonition-title">Link</p>
+<p>该节摘自<a href="https://xuan-insr.github.io/computer_organization/5_cache/#55-virtual-memory">5 Cache - 咸鱼暄的代码空间</a></p>
+</div>
+<p>计组把 main memory 描述为 secondary storage (即 disk) 的 "cache"。或者，反过来说，我们把那些在 main memory 里放不下的内容存到 disk 里（这样更能符合我们熟悉的“可执行文件必须加载到内存才能运行”的一贯认知）。这种技术称为 <strong>virtual memory</strong>。</p>
+<p>虚拟内存技术可以让多个程序之间高效、安全地共享内存，同时允许单个程序使用超过内存容量的内存（正如虽然 CPU 取数据时是从 cache 中取的，但是它能访问到的数据的数目比 cache 的容量要大）。在远古时期，很多程序因为需要使用过大的内存而无法被运行；但现在由于虚拟内存技术的广泛使用，这些程序都不成问题了。</p>
+<p>如下图所示，实际上的 main memory（我们称之为 <strong>物理内存, physical memory</strong>）中的地址称为 <strong>物理地址, physical addresses</strong>；而我们给每一个程序内部使用到的内存另外编一套地址，称为 <strong>虚拟地址, virtual addresses</strong>；虚拟内存技术负责了这两个地址之间的转换 (<strong>address translation</strong>，我们稍后再讨论转换的方式)：</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20191830.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20191830.png" /></a></p>
+<p>从这张图中我们也可以很容易地看出“虚拟内存技术可以允许单个程序访问超过物理内存大小限制的内存”的原因，即有一些内存可以被临时地存放在磁盘上，到被访问的时候再被放到 physical memory 中，就像 cache 做的那样。</p>
+<p>从这张图中，我们还可以注意到 physical memory 的存放并没有分组的概念，即用 cache 的术语来说，main memory 是 fully-associative 的。</p>
+<p>虚拟存储的技术和 cache 的原理是一样的，但是一些术语的名字并不相同。对应于 cache 中的 block / line，虚拟存储的内存单元称为 <strong>page</strong>，当我们要访问的 page 不在主存中而是在磁盘里，也就是 miss，我们称之为一次 <strong>page fault</strong>。</p>
+<h3 id="562"><strong>5.6.2 如何完成映射呢</strong><a class="headerlink" href="#562" title="Permanent link">&para;</a></h3>
+<p>首先我们要考虑的一个问题就是，一个 page 应该有多大。我们知道，访问磁盘相比于访问内存是非常慢的（相差大约十万倍），这个主要时延来自于磁盘转到正确的位置上的时间花费；所以我们希望一次读进来多一点从而来分摊这个访问时间。典型的 page 大小从 4KiB ~ 64KiB 不等。</p>
+<p>下面我们考虑映射关系。我们不妨假设一个 page 的大小是 4KiB，那么其页内的偏移 <strong>page offset</strong> 就需要 12 位来表示；那么物理地址中除去后 12 位以外前面的部分就表征着它是属于哪一页的，我们称之为 <strong>physical page number</strong>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如我们之前所说，memory 作为 disk 的 "cache" 是 fully-associative 的，因此 physical page number 其实就是 cache 中的 "tag"，而 page offset 就是 cache 中的 "byte offset"，fully-associative 的 cache 并没有 index 这一字段。</p>
+</div>
+<p>为什么要使用 fully-associative 的存储方式呢？我们在 cache 中讨论过，这种方式的好处是失效率低，坏处是查询难度大。但是我们也讨论到了，page fault 的开销是非常大的，因此比较低的 page fault 的概率相对于额外的查询来说是非常划算的。</p>
+<p>同样，由于读写磁盘是非常慢的，write through 的策略并不合适，因此在 virtual memory 的技术中，我们采取 write back 的方式。</p>
+<p>而 virtual address 的形式与之类似，由若干位 page number 和若干位 page offset 组成。</p>
+<p>我们之前提到，我们有一种方式可以找到 virtual page 对应的 physical page，因此当我们要访问一个虚拟地址时，将其 virtual page number 通过这种 translation 转换为 physical page number（这种 translation 也会负责 page fault 的处理并给出正确的转换），而 page offset 表示的是在一页内的偏移，保持不变即可。这样我们就获得了这个 virtual address 对应的 physical address，也就是它在实际的 main memory 中存储的位置。如下图所示：</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20192239.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20192239.png" /></a></p>
+<p>同时也可以看出，virtual page number 的位数比 physical 的多；这也是显然的，因为我们引入虚拟内存的一个重要原因就是为了使用比 main memory 更大的内存。</p>
+<h3 id="563"><strong>5.6.3 页表</strong><a class="headerlink" href="#563" title="Permanent link">&para;</a></h3>
+<p>我们下面讨论这种 translation 的具体方案。之前也提到，fully-associative 的一个重要问题就是如何去定位某一项；这里我们引入 <strong>page table</strong> 这种结构，它被存放在 main memory 中，每个程序（实际上是进程，但是写课本的人好像现在并不想引入这个概念）都有一个自己的 page table；同时硬件上有一个 <strong>page table register</strong> 保存当前进程这个页表的地址。</p>
+<p>使用页表时，我们根据 virtual page number 找到对应 <strong>page table entry, PTE</strong> 在 page table 中的偏移，然后与 page table register 相加得到对应 entry 的位置，从中读取对应的 entry。其实就是说，page table 就是一个数组， <code>page_table[i]</code> 表示第 <code>i</code> 个 virtual page 对应的 physical page number。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里其实我一开始很难读懂，解释一下。把PTE理解为跟之前指令里面那个<code>ld</code>指令中<code>ld rd,rs1,offset</code>中的offset差不多，<code>page table register</code>中记录的就是这个程序的基地址类似于<code>rs1</code>，这样我们就可以得到相应的entry，从而得到对应的物理地址了，我觉得很难读懂的一大原因是将physical address搞混了(我上面已经改为了位置)</p>
+<p>对于一个多程序的例子，我们可以看下面这幅图</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20193528.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20193528.png" /></a></p>
+</div>
+<p>如下图所示，每个 entry 中包含了一个 valid bit 和 physical page number。如果 valid bit = 1，那么转换完成；否则触发了 page fault，handle 之后再进行转换。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20193412.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20193412.png" /></a></p>
+<p>Page fault 会引发一个 exception，由操作系统接管控制，处理完之后再将控制交还给进程。操作系统要做的事情是在 secondary storage 中找到这一 page，将其放到 main memory 里（可能需要与当前主存中的某个 page 交换），然后更新 page table。</p>
+<p>操作系统在创建进程时在 disk (或者 flash memory) 上创建一个虚拟地址空间那么大的空间，以便上述的交换；这个空间称为 <strong>交换区, swap space</strong>。下面的问题是操作系统如何在 swap space 中找到需要的 page。</p>
+<p>我们可以看到，如果 page table entry 的 valid bit 为 0，那么后面的 physical page number 是没有用到的。我们可以利用这个字段存储对应 page 被交换到了 disk 的哪个位置；或者另外开辟一个索引结构，在其中记录每个 virtual page number 对应的 disk 位置。作为前者的一个例子，请看下图：</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20194547.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20194547.png" /></a></p>
+<p>操作系统还会跟踪哪些进程和虚拟地址正在使用哪个物理页，因为操作系统需要让交换引发后续 page fault 的次数尽可能少。操作系统会使用我们之前提到的 <strong>LRU, Least Recently Used</strong> 的策略处理交换。</p>
+<p>LRU 的代价有点太大了，毕竟如果使用 LRU 的话需要遍历整个 main memory。因此，很多操作系统引入了 <strong>reference bit</strong> (或者称为 <strong>use bit</strong>) 来近似地实现 LRU。当一个 page 被访问时这个 bit 被置为 1；操作系统<strong>定期将 reference bit 清零</strong>。因此，在需要交换时，只需要找一个 reference bit 为 0 的就可以说明它在这段时间内没有被访问过。</p>
+<h3 id="554"><strong>5.5.4 用多级页表解决页表过大的问题</strong><a class="headerlink" href="#554" title="Permanent link">&para;</a></h3>
+<p>如我们之前所说，virtual memory 使用 write back 的策略，因此还需要一个 dirty bit。</p>
+<p>我们不妨关注一下 page table 有多大。在我们之前的例子中，virtual address 有 48 bit，每个 page 的大小为 4KiB，所以 page table entry 的数目是 <span class="arithmatex">\(\frac{2^{48} B}{4 KiB}=\frac{2^{48}}{4×2^{10}}=2^{36}\)</span>；而 RISC-V 每个表项有 8 Byte，所以 page table 的总大小来到了 <span class="arithmatex">\(2^{39}\)</span> B=0.5TiB，这是极其不合理的；尤其是每个进程都有一个 page table 的前提下。</p>
+<p>我们可以通过<strong>多级页表</strong>的方式解决这个问题。</p>
+<p>如我们之前所述，页表是一个数组， <code>page_table[i]</code> 中存储的是 page number 为 i 的 page 所对应的 physcial page number。考虑我们的逻辑地址结构：</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20201457.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20201457.png" /></a></p>
+<p>我们考虑将 <span class="arithmatex">\(p\)</span> 分为 <span class="arithmatex">\(p_1\)</span> 和 <span class="arithmatex">\(p_2\)</span></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20201558.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20201558.png" /></a></p>
+<p>我们使用一个两级页表， <code>outer_page_table[i]</code> 中存储的是 <span class="arithmatex">\(p_1\)</span> 为 i 的 inner page table，即 <code>inner_page_table[i][]</code> 的基地址；而 <code>inner_page_table[i][j]</code> 中存储的就是 <span class="arithmatex">\(p_1\)</span> 为 <span class="arithmatex">\(i\)</span>，<span class="arithmatex">\(p_2\)</span> 为 <span class="arithmatex">\(j\)</span> 的 page 对应的 physical page number，即 page number 为 <span class="arithmatex">\(p_1p_2\)</span> （没有分割时的 p）对应的 physical page number。</p>
+<p>这里，我们称 <span class="arithmatex">\(p_1\)</span> 为 <strong>page directory number</strong> ，<span class="arithmatex">\(p_2\)</span> 为 <strong>page table number</strong>，<span class="arithmatex">\(d\)</span> 为 <strong>page offset</strong>。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20202046.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20202046.png" /></a></p>
+<p>考虑这样做的好处：hierarchical paging 其实就是对页表的分页（page the page table）。因此，它避免了 page table 必须处在连续内存的问题，这一问题在 <em>p</em> 比较大时尤其严重。</p>
+<p>另外，这样做在一般情况下可以节省空间。我们之前提到，页表不一定会全部使用；并且由于逻辑地址是连续的，因此用到的页表项也是连续的，<strong>都排在页表的头部</strong>（很多空间都没有被利用）。因此如果我们采用了二级页表，那么许多排在后面的 inner page table 将完全为空；此时我们可以直接不给这些 inner page table 分配空间，即我们只分配最大的 <span class="arithmatex">\(p_1\)</span> 那么多个 inner page table。这样我们可以节省很多空间。即使在最差的情况下，所有页表都被使用了，我们的页表所用的总条目数也只有 <span class="arithmatex">\(2^{m-n}+2^{m-n}⋅2^n=2^{m-n}+2^m\)</span> 个，只比单级页表结构多了 <span class="arithmatex">\(2^{m-n}\)</span>，是完全可以接受的。</p>
+<p>类似地，我们可以设计更多级的页表。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>多级页表的思路就是分级查询</p>
+</div>
+<h3 id="565-tlb"><strong>5.6.5 使用 TLB 加快地址转换</strong><a class="headerlink" href="#565-tlb" title="Permanent link">&para;</a></h3>
+<p>我们之前提到，使用页表时，我们根据 virtual page number 找到对应 page table entry 在 page table 中的偏移，然后与 page table register 相加得到对应 entry 的地址，从中读取对应的 entry。但是这种方法的效率存在问题。要访问 virtual address 对应的 physical address，我们首先要根据 page table register 和 page number 来找到页表在内存的位置，并在其中得到 page 对应的 physical page number，这需要一次内存访问；然后我们根据 physical page number 和 page offset 算出真实的 physical address，并访问对应的字节内容。即，<strong>访问一个字节需要两次内存访问</strong>，这会加倍原本的内存访问的时间，这是难以接受的。</p>
+<p>这个问题的解决方法用到一个专用的高速查找硬件 cache，这里称它为 <strong>translation look-aside buffer (TLB)</strong>。它实际上就是 page table 的专用 cache（它真的是 cache；page table 并不是 cache，只是像 cache），其 associativity 的设计可以根据实际情况决定。</p>
+<p>下图是一个 fully-associative 的 TLB 的例子；由于是 fully-associative，并不需要 index：</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20195433.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20195433.png" /></a></p>
+<p>当 TLB miss 的时候，处理器去 page table 查找对应的项；如果发现对应项是 valid 的，那么就把他拿到 TLB 里（此时被替换掉的 TLB entry 的 dirty bit 如果是 1，也要写会 page table）；否则就会触发一个 page fault，然后在做上述的事。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20200159.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20200159.png" /></a></p>
 
 
   
@@ -2036,13 +2278,13 @@ Memorystall~clock~cycles=\frac{Memory~accesses}{program}\times Miss~rate\times M
         
         
           
-          <a href="../Appendix%201/" class="md-footer__link md-footer__link--next" aria-label="下一页: Appendix 1" rel="next">
+          <a href="../Chapter%206/" class="md-footer__link md-footer__link--next" aria-label="下一页: 6 I/O" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Appendix 1
+                6 I/O
               </div>
             </div>
             <div class="md-footer__button md-icon">

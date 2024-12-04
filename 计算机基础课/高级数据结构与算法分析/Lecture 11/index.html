@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1086,13 +1090,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1122,6 +1119,46 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%2013/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Homework/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1137,6 +1174,8 @@
   
     
     
+      
+        
       
         
       
@@ -1456,13 +1495,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1483,7 +1515,7 @@
 
 <h1 id="11-approximation"><strong>11 Approximation</strong><a class="headerlink" href="#11-approximation" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1796 个字  •  40 行代码  预计阅读时间 6 分钟
+    文本统计：约 1509 个字  •  40 行代码  预计阅读时间 6 分钟
 </div>
 
 <p>引入近似算法的目的是什么？解决比较困难的问题（NPC）</p>
@@ -1713,27 +1745,6 @@ p_{max}\le P_{greedy}
 <li>同时满足高效性和普遍性，那么这个算法可能是个近似算法；</li>
 </ol>
 <p>就算 N=NP 成立，我们仍然无法保证三个愿望一次满足。</p>
-<h2 id="homework"><strong>Homework</strong><a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
-<p>Assume that you are a real world Chinese postman, which have learned an awesome course "Advanced Data Structures and Algorithm Analysis" (ADS). Given a 2-dimensional map indicating <em>N</em> positions <span class="arithmatex">\(p_i(x_i,y_i)\)</span> of your post office and all the addresses you must visit, you'd like to find a shortest path starting and finishing both at your post office, and visit all the addresses at least once in the circuit. Fortunately, you have a magic item "Bamboo copter &amp; Hopter" from "Doraemon", which makes sure that you can fly between two positions using the directed distance (or displacement).</p>
-<p>However, reviewing the knowledge in the ADS course, it is an <em>NPC</em> problem! Wasting too much time in finding the shortest path is unwise, so you decide to design a 2−approximation algorithm as follows, to achieve an acceptable solution.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Compute a minimum spanning tree T connecting all the addresses.
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Regard the post office as the root of T.
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Start at the post office.
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Visit the addresses in order of a _____ of T.
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Finish at the post office.
-</code></pre></div>
-<p>There are several methods of traversal which can be filled in the blank of the above algorithm. Assume that <span class="arithmatex">\(P\ne NP\)</span>, how many methods of traversal listed below can fulfill the requirement?</p>
-<ul>
-<li>Level-Order Traversal</li>
-<li>Pre-Order Traversal</li>
-<li>Post-Order Traversal</li>
-</ul>
-<p>A. 0    B. 1    C. 2    D. 3</p>
-<details class="answer">
-<summary>Answer</summary>
-<p>C,level-order traversal不行</p>
-<p>注意到最短路径一定比MST要大，而其他两个的走法最多一条边走两次，不会超过2倍的MST，但是level-order就说不准了，可能一条边要走好多次</p>
-</details>
 
 
   

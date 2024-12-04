@@ -671,6 +671,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -945,13 +949,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1041,6 +1038,46 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%2013/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Homework/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1056,6 +1093,8 @@
   
     
     
+      
+        
       
         
       
@@ -1294,13 +1333,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#homework" class="md-nav__link">
-    Homework
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1321,7 +1353,7 @@
 
 <h1 id="8-dynamic-programming"><strong>8 Dynamic Programming</strong><a class="headerlink" href="#8-dynamic-programming" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 416 个字  •  92 行代码  预计阅读时间 3 分钟
+    文本统计：约 757 个字  •  35 行代码  预计阅读时间 3 分钟
 </div>
 
 <h2 id="81-ordering-matrix-multiplication"><strong>8.1 Ordering Matrix Multiplication</strong><a class="headerlink" href="#81-ordering-matrix-multiplication" title="Permanent link">&para;</a></h2>
@@ -1433,97 +1465,6 @@ L(i+1,j−1)+2&amp;\text{if }X[i]=X[j]\text{ and }j≠i+1\\
 max(L(i+1,j),L(i,j−1))&amp;\text{otherwise}
 \end{cases}
 \]</div>
-<h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
-<p><strong>6-1 Programming Contest</strong></p>
-<p>Bob will participate in a programming contest.  There are altogether <code>n</code> problems in the contest.  Unlike in PAT (Programming Ability Test), in a programming contest one can not obtain partial scores.  For problem <code>i</code>, Bob will need <code>time[i]</code> to solve it and obtains the corresponding <code>score[i]</code>, or he may choose not to solve it at all.  Bob will be happy when he obtains a total score no less than <code>happy_score</code>.  You are supposed to find the minimum time needed for Bob to be happy. The function <code>need_time</code> must return the minimum time, or <code>-1</code> if it is impossible for Bob to obtain a score no less than <code>happy_score</code>.</p>
-<p><strong>Format of function:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">need_time</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">time</span><span class="p">[],</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">happy_score</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
-</code></pre></div>
-<p>Here <code>n</code> (1≤<code>n</code>≤ <code>MAXN</code>) is the number of problems;
-<code>happy_score</code> (1≤ <code>happy_score</code> ≤ <code>MAXS</code>) is the minimum score for Bob to be happy;
-<code>time[]</code> is the array to store <code>time[i]</code> (1≤<code>time[i]</code>≤100) which is the time to solve problem <code>i</code>;
-<code>score[]</code> is the array to store <code>score[i]</code> (1≤<code>score[i]</code>≤100) which is the score Bob gets for solving problem <code>i</code>.</p>
-<p><strong>Sample program of judge:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="cp">#define MAXN 10</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="cp">#define MAXS 1000</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="kt">int</span><span class="w"> </span><span class="nf">need_time</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">time</span><span class="p">[],</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">happy_score</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">happy_score</span><span class="p">;</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">time</span><span class="p">[</span><span class="n">MAXN</span><span class="p">],</span><span class="w"> </span><span class="n">score</span><span class="p">[</span><span class="n">MAXN</span><span class="p">];</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">happy_score</span><span class="p">);</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">      </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">      </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">score</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">need_time</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">happy_score</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">));</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="p">}</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="cm">/* Your function will be put here */</span>
-</code></pre></div>
-<p><strong>Sample Input:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>6 121
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>84 87 78 16 94 38
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>87 93 50 22 63 28
-</code></pre></div>
-<p><strong>Sample Output:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>125
-</code></pre></div>
-<p><strong>Analysis</strong></p>
-<p>这是一个0/1背包问题的变种</p>
-<p>0/1背包问题背景：给定背包的承重W，一堆物品的重量weights[ ]和价值values[ ]，求背包能装入物品的最大总value</p>
-<p>0/1背包问题解法</p>
-<p>定义一个二维数组 dp[物品总数][承重+1] 存储当前value，其中 dp[i][j] 表示：从前 i 件物品中找出一些放入背包，在总重不超过承重W的情况下，能达到的最大value。</p>
-<p>第 i 件物品重量为 weight[i]，价值为 value[i]，根据第 i 件物品是否添加到背包中，可以分两种情况讨论：</p>
-<p>① 第 i 件物品的重量超过背包承重，即 weight[i] &gt; j。此时就算拿出背包中的所有物品也无法放下，所以它不可能被放入背包，因此有：dp[i][j] = dp[i-1][j]</p>
-<p>② 第 i 件物品可以添加到背包中（可能拿出一些已有物品）。此时也可以有放入与不放入两种情况，应取value更大的那种。</p>
-<p>（2.1）若不放入，有：dp[i][j] = dp[i-1][j]</p>
-<p>（2.2）若放入，情况变为从某个状态下加入第i件物品并达到dp[i][j]结果，可知前一状态时的背包承重应为 j-weight[i]。因此有：dp[i][j] = dp[i-1][ j-weight[i]] + value[i]。</p>
-<p>综上，递推式为：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>  dp[i][j] = max( dp[i-1][j], max( dp[i-1][ j-weight[i] ] + value[i], dp[i-1][j] ) );
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>即 dp[i][j] = max( dp[i-1][ j-weight[i] ] + value[i], dp[i-1][j] );
-</code></pre></div>
-<p>dp数组的一维简化：</p>
-<p>可以看到不管第 i 件物品有没有加到背包中，新一轮 i 下的dp值都只由 i-1 决定，并且这种决定对于 j 是单方向的（即较大的 j 处的值只和较小或相同的 j 的值有关），因此若 j 从W -&gt; 0 递减，dp的数组可以依次覆盖。</p>
-<p><strong>My code</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">need_time</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">time</span><span class="p">[],</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">happy_score</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sum_1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sum_2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="n">sum_1</span><span class="o">+=</span><span class="n">score</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="n">sum_2</span><span class="o">+=</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sum_1</span><span class="o">&lt;</span><span class="n">happy_score</span><span class="p">)</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="n">sum_1</span><span class="o">=</span><span class="n">sum_1</span><span class="o">-</span><span class="n">happy_score</span><span class="p">;</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">dp</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">sum_1</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="c1">//这里的dp[j]代表的是分数不超过j的最大时间数</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">sum_1</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">        </span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">        </span><span class="c1">//每经过一次循环，新增一样物品score[i]可以放到包里</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="n">sum_1</span><span class="p">;</span><span class="n">j</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">--</span><span class="p">)</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">        </span><span class="p">{</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">            </span><span class="c1">//对于j&gt;=score[i]的dp我们可以从中拿出题并放入score[i]，否则拿不出来</span>
-<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="o">&gt;=</span><span class="n">score</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">            </span><span class="p">{</span>
-<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">                </span><span class="c1">//看看放入score[i]能不能增加time</span>
-<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">                </span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="n">score</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">+</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">            </span><span class="p">}</span>
-<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum_2</span><span class="o">-</span><span class="n">dp</span><span class="p">[</span><span class="n">sum_1</span><span class="p">];</span>
-<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="p">}</span>
-</code></pre></div>
 
 
   

@@ -1932,10 +1932,10 @@ E(X^2) &amp;= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} x^2 \cdot e^{-x^2/2
 <p>即，标准正态分布的方差为 1。</p>
 <p>对于一般的正态分布 <span class="arithmatex">\(X\sim N(\mu,\sigma^2)\)</span>，期望为<span class="arithmatex">\(\mu\)</span>，方差为 <span class="arithmatex">\(\sigma^2\)</span></p>
 <h4 id="_8"><strong>二项分布的方差</strong><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
-<p>设随机变量 <span class="arithmatex">\(X\)</span> 服从二项分布 <span class="arithmatex">\(B(n, p)\)</span> (<span class="arithmatex">\(0 &lt; p &lt; 1\)</span>)。由于服从二项分布 <span class="arithmatex">\(B(n, p)\)</span> 的随机变量都可以看成 <span class="arithmatex">\(n\)</span> 个相互独立且都服从参数为 <span class="arithmatex">\(p\)</span> 的 <span class="arithmatex">\(0-1\)</span> 分布的随机变量的和，即若 <span class="arithmatex">\(Y_i\)</span> 表示服从参数同为 <span class="arithmatex">\(p\)</span> 的 <span class="arithmatex">\(0-1\)</span> 分布的相互独立的随机变量，<span class="arithmatex">\(i = 1, 2, \cdots, n\)</span>，则 <span class="arithmatex">\(\sum_{i=1}^{n} Y_i \sim B(n, p)\)</span>。易知，
-$$
+<p>设随机变量 <span class="arithmatex">\(X\)</span> 服从二项分布 <span class="arithmatex">\(B(n, p)\)</span> (<span class="arithmatex">\(0 &lt; p &lt; 1\)</span>)。由于服从二项分布 <span class="arithmatex">\(B(n, p)\)</span> 的随机变量都可以看成 <span class="arithmatex">\(n\)</span> 个相互独立且都服从参数为 <span class="arithmatex">\(p\)</span> 的 <span class="arithmatex">\(0-1\)</span> 分布的随机变量的和，即若 <span class="arithmatex">\(Y_i\)</span> 表示服从参数同为 <span class="arithmatex">\(p\)</span> 的 <span class="arithmatex">\(0-1\)</span> 分布的相互独立的随机变量，<span class="arithmatex">\(i = 1, 2, \cdots, n\)</span>，则 <span class="arithmatex">\(\sum_{i=1}^{n} Y_i \sim B(n, p)\)</span>。易知，</p>
+<div class="arithmatex">\[
 \operatorname{Var}(X) = \operatorname{Var}\left(\sum_{i=1}^{n} Y_i\right) = \sum_{i=1}^{n} \operatorname{Var}(Y_i) = n \operatorname{Var}(Y_1)
-$$</p>
+\]</div>
 <p>由于 <span class="arithmatex">\(Y_i\)</span> 服从 <span class="arithmatex">\(0-1\)</span> 分布，其方差为 <span class="arithmatex">\(p(1-p)\)</span>，因此</p>
 <div class="arithmatex">\[
 \operatorname{Var}(X) = n p (1-p).
