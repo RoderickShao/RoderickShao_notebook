@@ -1715,7 +1715,7 @@
 
 <h1 id="5-memory-hierarchy"><strong>5 Memory Hierarchy</strong><a class="headerlink" href="#5-memory-hierarchy" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 7715 个字  预计阅读时间 26 分钟
+    文本统计：约 7757 个字  预计阅读时间 26 分钟
 </div>
 
 <h2 id="51-storage-unit-introduction"><strong>5.1 Storage unit Introduction</strong><a class="headerlink" href="#51-storage-unit-introduction" title="Permanent link">&para;</a></h2>
@@ -1922,7 +1922,7 @@
 </ul>
 <p>数据不被写入内存，那么这种方式被称为 <strong>wirte-back</strong></p>
 <ul>
-<li>我们在处理缓存中的数据的时候，我们不能直接将其丢弃，因为可能缓存中的数据还要写回到内存中。</li>
+<li>我们在处理缓存中的数据的时候，我们不能直接将其丢弃，因为缓存中的数据可能还要写回到内存中。</li>
 <li>我们对缓存中的数据控制就不仅仅需要 valid bit, 还需要一位的 dirty bit，来表示现在缓存中的数据是否与内存中的数据相等。</li>
 <li>更加低的 bandwidth, 因为数据经常被多次覆盖，这样就不需要多次给内存数据了</li>
 </ul>
@@ -1986,18 +1986,18 @@
 <h3 id="551-measure-cache-performance"><strong>5.5.1 Measure cache performance</strong><a class="headerlink" href="#551-measure-cache-performance" title="Permanent link">&para;</a></h3>
 <p>我们利用 CPU time 来评估缓存的性能</p>
 <div class="arithmatex">\[
-CPU~time=CPU~exeution~clock~cycles+Memorystall~clock~cycles
+\text{CPU time=CPU exeution clock cycles+Memorystall clock cycles}
 \]</div>
 <p>其中关于内存读取的延迟可分为读延迟以及写延迟（这里采用 write-through 的方法）</p>
 <div class="arithmatex">\[
-Readstall~cycles=\frac{(\#~of~Read)}{program}\times Read~miss~rate\times Read~miss~penalty
+\text{Readstall cycles}=\frac{(\#\text{ of Read})}{\text{program}}\times \text{Read miss rate}\times \text{Read miss penalty}
 \]</div>
 <div class="arithmatex">\[
-Writestall~cycles=(\frac{\#~of~Write}{Program}\times Write~misss~rate\times Write~miss~penalty)+Write~buffer~stalls
+\text{Writestall cycles}=(\frac{\#\text{ of Write}}{\text{Program}}\times \text{Write misss rate}\times \text{Write miss penalty})+\text{Write buffer stalls}
 \]</div>
 <p>如果 write buffer stalls 非常小，我们可以直接忽略掉，我们就可以将 read 和 write 直接合并，得到</p>
 <div class="arithmatex">\[
-Memorystall~clock~cycles=\frac{Memory~accesses}{program}\times Miss~rate\times Miss~penalty
+\text{Memorystall clock cycles}=\frac{\text{Memory accesses}}{\text{program}}\times \text{Miss rate}\times \text{Miss penalty}
 \]</div>
 <p>如果 cache block size 只有一个 word, 那么 write miss penalty 就是 0</p>
 <div class="admonition example">
