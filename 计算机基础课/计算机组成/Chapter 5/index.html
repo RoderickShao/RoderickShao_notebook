@@ -1722,7 +1722,7 @@
 
 <h1 id="5-memory-hierarchy"><strong>5 Memory Hierarchy</strong><a class="headerlink" href="#5-memory-hierarchy" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 7757 个字  预计阅读时间 26 分钟
+    文本统计：约 7755 个字  预计阅读时间 26 分钟
 </div>
 
 <h2 id="51-storage-unit-introduction"><strong>5.1 Storage unit Introduction</strong><a class="headerlink" href="#51-storage-unit-introduction" title="Permanent link">&para;</a></h2>
@@ -1851,9 +1851,9 @@
 <li>write-back: 只把数据写到缓存中，写入内存的操作往后推迟。这种方法的显著特点就是快，但会造成数据的不一致。</li>
 <li>write-through: 数据同步更新到缓存和内存</li>
 </ul>
-<p>Write Misses:  先把整个block读入到内存中，然后再写入字</p>
+<p>Write Misses:  先把整个block读入到cache中，然后再写入字</p>
 <div class="admonition question">
-<p class="admonition-title">为什么要先把数据从内存中先取到内存中？</p>
+<p class="admonition-title">为什么要先把数据从内存中先取到cache中？</p>
 <p>因为我们写入的仅仅只是一个block中的一个字，如果我们不读入的话，这个block中的字下次写回的时候其他字的数据就被清空了</p>
 </div>
 <h2 id="54-more-details-about-53"><strong>5.4 More Details about 5.3</strong><a class="headerlink" href="#54-more-details-about-53" title="Permanent link">&para;</a></h2>

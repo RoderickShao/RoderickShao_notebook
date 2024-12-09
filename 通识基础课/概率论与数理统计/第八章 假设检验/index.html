@@ -1467,13 +1467,13 @@ P_1=\alpha(C) &amp;= P\{\text{拒绝} H_0 \mid H_0 \text{为真}\} \\
 &amp;= P_{\mu \neq \mu_0} \left\{ \left| \bar{X} - \mu_0 \right| &lt; C \right\} \\ &amp;= P_{\mu \neq \mu_0} \left\{ \mu_0 - C &lt; \bar{X} &lt; \mu_0 + C \right\} \\ &amp;= P_{\mu \neq \mu_0} \left\{ \frac{\mu_0 - C - \mu}{\sigma / \sqrt{n}} &lt; \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} &lt; \frac{\mu_0 + C - \mu}{\sigma / \sqrt{n}} \right\} \\ &amp;= \Phi \left\{ \frac{\mu_0 + C - \mu}{\sigma / \sqrt{n}} \right\} - \Phi \left\{ \frac{\mu_0 - C - \mu}{\sigma / \sqrt{n}} \right\}, \quad \mu \neq \mu_0 \end{aligned}
 \]</div>
 <p><span class="arithmatex">\(\therefore\)</span> 只有 <span class="arithmatex">\(\mu\)</span> 已知才能知道犯第II类错误的概率！关于 <span class="arithmatex">\(\mu\)</span> 的函数</p>
-<p>综上所述，我们得到
-$$
+<p>综上所述，我们得到</p>
+<div class="arithmatex">\[
 \begin{aligned}
-\alpha(C) &amp;= 2 - 2\Phi\left(\frac{C}{\sigma / \sqrt{n}}\right)\
-\beta(C) &amp;= \Phi\left{\frac{\mu_0 + C - \mu}{\sigma / \sqrt{n}}\right} - \Phi\left{\frac{\mu_0 - C - \mu}{\sigma / \sqrt{n}}\right}
+\alpha(C) &amp;= 2 - 2\Phi\left(\frac{C}{\sigma / \sqrt{n}}\right)\\
+\beta(C) &amp;= \Phi\left\{\frac{\mu_0 + C - \mu}{\sigma / \sqrt{n}}\right\} - \Phi\left\{\frac{\mu_0 - C - \mu}{\sigma / \sqrt{n}}\right\}
 \end{aligned}
-$$</p>
+\]</div>
 <p>显然，犯第I类错误的概率 <span class="arithmatex">\(\alpha(C)\)</span> 关于 <span class="arithmatex">\(C\)</span> 是单调减函数，而犯第II类错误的概率 <span class="arithmatex">\(\beta(C)\)</span> 关于 <span class="arithmatex">\(C\)</span> 是单调增函数。</p>
 <p>在样本容量 <span class="arithmatex">\(n\)</span> 固定时，不可能找到界值 <span class="arithmatex">\(C\)</span>，同时使得 <span class="arithmatex">\(\alpha(C)\)</span> 和 <span class="arithmatex">\(\beta(C)\)</span> 都很小。即，犯两类错误的概率相互制约！</p>
 <p>实际上，需要同时使得 <span class="arithmatex">\(\alpha(C)\)</span> 和 <span class="arithmatex">\(\beta(C)\)</span> 都在要求范围内时，可以增加样本容量！</p>
@@ -1499,22 +1499,22 @@ $$</p>
 C \geq z_{\alpha/2} \frac{\sigma}{\sqrt{n}}.
 \]</div>
 <p>由于犯第II类错误的概率 <span class="arithmatex">\(\beta(C)\)</span> 关于 <span class="arithmatex">\(C\)</span> 单调增函数，根据Neyman-Pearson原则，应取以上的最小值：</p>
-<p>$$
+<div class="arithmatex">\[
 C = z_{\alpha/2} \frac{\sigma}{\sqrt{n}}
-$$
-因此，假设检验 “<span class="arithmatex">\(H_0: \mu = \mu_0\)</span>, <span class="arithmatex">\(H_1: \mu \neq \mu_0\)</span>” 中</p>
-<p><span class="arithmatex">\(H_0\)</span> 的拒绝域为：
-$$
-W = \left{ \left| \bar{X} - \mu_0 \right| \geq z_{\alpha/2} \frac{\sigma}{\sqrt{n}} \right}
-$$</p>
-<p>或写为：
-$$
-W = \left{ \left| \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}} \right| \geq z_{\alpha/2} \right}
-$$</p>
-<p>一般简单写为：
-$$
+\]</div>
+<p>因此，假设检验 “<span class="arithmatex">\(H_0: \mu = \mu_0\)</span>, <span class="arithmatex">\(H_1: \mu \neq \mu_0\)</span>” 中</p>
+<p><span class="arithmatex">\(H_0\)</span> 的拒绝域为：</p>
+<div class="arithmatex">\[
+W = \left\{ \left| \bar{X} - \mu_0 \right| \geq z_{\alpha/2} \frac{\sigma}{\sqrt{n}} \right\}
+\]</div>
+<p>或写为：</p>
+<div class="arithmatex">\[
+W = \left\{ \left| \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}} \right| \geq z_{\alpha/2} \right\}
+\]</div>
+<p>一般简单写为：</p>
+<div class="arithmatex">\[
 \left| \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}} \right| = |Z| \geq z_{\alpha/2}
-$$</p>
+\]</div>
 <p>虽然这只是一个样本，但如果一个样本使得上述不等式成立，则可根据实际推断原理（小概率事件几乎在一次试验中不发生），就可以拒绝 <span class="arithmatex">\(H_0\)</span>，否则无理由拒绝 <span class="arithmatex">\(H_0\)</span>。</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -1537,10 +1537,10 @@ C = z_{\alpha/2} \frac{\sigma}{\sqrt{n}} = 1.96 \cdot \frac{0.6}{\sqrt{9}} = 0.3
 &amp;H_0: \quad \theta \leq \theta_0, \quad H_1: \quad \theta &gt; \theta_0 \quad \text{(右边检验)}
 \end{aligned}
 \]</div>
-<p>求左边假设问题的拒绝域（右边假设问题类似）
-$$
+<p>求<strong>左边假设问题的拒绝域</strong>（右边假设问题类似）</p>
+<div class="arithmatex">\[
 H_0: \mu \geq \mu_0, \quad H_1: \mu &lt; \mu_0,
-$$</p>
+\]</div>
 <p>其中 <span class="arithmatex">\(\mu_0\)</span> 是已知的常数。</p>
 <p>以 <span class="arithmatex">\(\bar{X}\)</span> 作为 <span class="arithmatex">\(\mu\)</span> 的参考，若 <span class="arithmatex">\(H_0\)</span> 为真，<span class="arithmatex">\(\bar{X}\)</span> 比 <span class="arithmatex">\(\mu_0\)</span> 大些，但是，由于样本的随机波动性，也有可能导致 “<span class="arithmatex">\(\bar{X} &lt; \mu_0\)</span>” 发生，但如果 “<span class="arithmatex">\(\bar{X} - \mu_0 \leq k\)</span>” 时，则认为 <span class="arithmatex">\(H_0\)</span> 为假。因为同样含有 “<span class="arithmatex">\(\bar{X} - \mu_0\)</span>”，所以，检验统计量仍取为</p>
 <div class="arithmatex">\[
@@ -1548,10 +1548,10 @@ Z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}
 \]</div>
 <p>（与双边检验相同）</p>
 <p>拒绝域形式可表示为</p>
-<p>$$
+<div class="arithmatex">\[
 Z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}} \leq C
-$$
-左边检验的拒绝域</p>
+\]</div>
+<p>左边检验的拒绝域</p>
 <div class="arithmatex">\[
 \begin{aligned}
 \alpha(\mu, C) &amp;= P\{\text{拒绝} H_0 \mid H_0 \text{是真的}\} = P_{\mu \geq \mu_0} \left\{ \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}} \leq C \right\}\\
@@ -1692,28 +1692,28 @@ F = \frac{S_1^2}{S_2^2} \sim F(n_1 - 1, n_2 - 1)
 <div class="arithmatex">\[
 F = \frac{\sum_{i=1}^{n_1} \left( \frac{(X_i - \mu_1)^2}{n_1} \right)}{\sum_{i=1}^{n_2} \left( \frac{(Y_i - \mu_2)^2}{n_2} \right)} \sim F(n_1, n_2)
 \]</div>
-<h3 id="822">8.2.2 单个正态总体参数的假设检验<a class="headerlink" href="#822" title="Permanent link">&para;</a></h3>
+<h3 id="822"><strong>8.2.2 单个正态总体参数的假设检验</strong><a class="headerlink" href="#822" title="Permanent link">&para;</a></h3>
 <h4 id="2"><strong>σ² 已知时的双边检验</strong><a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
 <p>假设：<span class="arithmatex">\(H_0: \mu = \mu_0, H_1: \mu \neq \mu_0\)</span></p>
-<p>取检验统计量
-$$
+<p>取检验统计量</p>
+<div class="arithmatex">\[
 Z = \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}
-$$</p>
-<p><span class="arithmatex">\(H_0\)</span> 的拒绝域为：
-$$
+\]</div>
+<p><span class="arithmatex">\(H_0\)</span> 的拒绝域为：</p>
+<div class="arithmatex">\[
 |Z| = \left| \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}} \right| \geq z_{\alpha/2}
-$$</p>
+\]</div>
 <p>称此检验为 “Z检验法”</p>
 <p>利用P值判断 <span class="arithmatex">\(H_0\)</span> 真伪</p>
-<p>参照 <span class="arithmatex">\(H_0\)</span> 的拒绝域
-$$
+<p>参照 <span class="arithmatex">\(H_0\)</span> 的拒绝域</p>
+<div class="arithmatex">\[
 |Z| = \left| \frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}} \right| \geq z_{\alpha/2}
-$$</p>
+\]</div>
 <p>对给定的样本观察值 <span class="arithmatex">\(x_1, \cdots, x_n\)</span>,</p>
-<p>记检验统计量 <span class="arithmatex">\(Z\)</span> 的取值为
-$$
+<p>记检验统计量 <span class="arithmatex">\(Z\)</span> 的取值为</p>
+<div class="arithmatex">\[
 z_0 = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
-$$</p>
+\]</div>
 <div class="arithmatex">\[
 P_- = P_{H_0} \left\{ |Z| \geq |z_0| \right\} = 2 P_{H_0} \left\{ Z \geq |z_0| \right\} = 2 \left( 1 - \Phi(|z_0|) \right)
 \]</div>
@@ -1723,7 +1723,7 @@ P_- = P_{H_0} \left\{ |Z| \geq |z_0| \right\} = 2 P_{H_0} \left\{ Z \geq |z_0| \
 <ul>
 <li>否则，接受原假设。</li>
 </ul>
-<h4 id="2_1">σ²未知时的双边检验<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<h4 id="2_1"><strong>σ²未知时的双边检验</strong><a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
 <p>原假设和备择假设：<span class="arithmatex">\(H_0: \mu = \mu_0, \quad H_1: \mu \neq \mu_0\)</span></p>
 <p>由于<span class="arithmatex">\(σ^2\)</span>未知，故不能用 <span class="arithmatex">\(\frac{\bar{X} - \mu_0}{\sigma / \sqrt{n}}\)</span> 来确定拒绝域了。</p>
 <p>取检验统计量：<span class="arithmatex">\(t = \frac{\bar{X} - \mu_0}{S / \sqrt{n}}\)</span></p>
@@ -1732,11 +1732,11 @@ P_- = P_{H_0} \left\{ |Z| \geq |z_0| \right\} = 2 P_{H_0} \left\{ Z \geq |z_0| \
 |t| = \left| \frac{\bar{X} - \mu_0}{S / \sqrt{n}} \right| \geq t_{\alpha/2}(n - 1)
 \]</div>
 <p>称此检验为 <span class="arithmatex">\(t\)</span> 检验法</p>
-<p>对给定的样本观察值 <span class="arithmatex">\(x_1, \cdots, x_n\)</span>，记检验统计量 <span class="arithmatex">\(t\)</span> 的取值为
-$$
+<p>对给定的样本观察值 <span class="arithmatex">\(x_1, \cdots, x_n\)</span>，记检验统计量 <span class="arithmatex">\(t\)</span> 的取值为</p>
+<div class="arithmatex">\[
 t_0 = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}
-$$
-则有（拒绝域为：<span class="arithmatex">\(|t| \geq t_{\alpha/2}(n-1)\)</span>）</p>
+\]</div>
+<p>则有（拒绝域为：<span class="arithmatex">\(|t| \geq t_{\alpha/2}(n-1)\)</span>）</p>
 <div class="arithmatex">\[
 \begin{aligned}
 P_- &amp;= P_{H_0} \left( |t| \geq |t_0| \right) = P_{H_0} \left( \{ t \geq |t_0| \} \cup \{ t \leq -|t_0| \} \right)\\
@@ -1746,7 +1746,7 @@ P_- &amp;= P_{H_0} \left( |t| \geq |t_0| \right) = P_{H_0} \left( \{ t \geq |t_0
 <p>当 <span class="arithmatex">\(P_- \leq \alpha\)</span> 时，拒绝原假设，</p>
 <p>当 <span class="arithmatex">\(P_- &gt; \alpha\)</span> 时，接受原假设。</p>
 <h4 id="2_2">σ²未知时的左右边检验<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h4>
-<p><strong>右边检验</strong>的原假设和备择假设：$H_0: \mu \leq \mu_0, \quad H_1: \mu &gt; \mu_0 $</p>
+<p><strong>右边检验</strong>的原假设和备择假设：<span class="arithmatex">\(H_0: \mu \leq \mu_0, \quad H_1: \mu &gt; \mu_0\)</span></p>
 <p>取检验统计量：<span class="arithmatex">\(t = \frac{\bar{X} - \mu_0}{S / \sqrt{n}}\)</span></p>
 <p><span class="arithmatex">\(H_0\)</span> 的拒绝域为</p>
 <div class="arithmatex">\[
