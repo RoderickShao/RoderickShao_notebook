@@ -1350,16 +1350,20 @@
   
 
 
-<h1 id="13">13 光的干涉<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
+<h1 id="13"><strong>13 光的干涉</strong><a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 1832 个字  预计阅读时间 6 分钟
+</div>
+
 <p>当波长 <span class="arithmatex">\(\lambda\)</span> 远小于 <span class="arithmatex">\(d\)</span> 时，考虑的是几何光学；</p>
 <p>而当波长 <span class="arithmatex">\(\lambda\)</span> 与 <span class="arithmatex">\(d\)</span> 相近的时候，考虑的是波动光学。</p>
-<h2 id="_1">定态光波<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1"><strong>定态光波</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>定态波：在观测时间中，光源作持续稳定的振荡，波长中各点均以同一频率作稳定的振荡。</p>
-<p>实际背景中，时间均为有限的。但当振荡时间 <span class="arithmatex">\(t&gt;10^6 ·T\)</span> 远大于光源扰动周期 <span class="arithmatex">\(T≈10^{-14} s\)</span>。我们常常选择定态波作为我们的研究对象，其特点：频率单一、振幅稳定。
-$$
+<p>实际背景中，时间均为有限的。但当振荡时间 <span class="arithmatex">\(t&gt;10^6 ·T\)</span> 远大于光源扰动周期 <span class="arithmatex">\(T≈10^{-14} s\)</span>。我们常常选择定态波作为我们的研究对象，其特点：频率单一、振幅稳定。</p>
+<div class="arithmatex">\[
 U(P,t)=A(P)cos[\omega t-\varphi(P)]
-$$
-其中 <span class="arithmatex">\(A(P)\)</span> 和 <span class="arithmatex">\(\varphi(P)\)</span> 只是跟空间有关的函数，与时间无关</p>
+\]</div>
+<p>其中 <span class="arithmatex">\(A(P)\)</span> 和 <span class="arithmatex">\(\varphi(P)\)</span> 只是跟空间有关的函数，与时间无关</p>
 <p>对于一个定态平面波</p>
 <div class="arithmatex">\[
 \begin{aligned}
@@ -1371,13 +1375,13 @@ A(P) = \text{constant}, \text{ It is independent of } (x, y, z) \\
 \end{aligned}
 \]</div>
 <p>对于一个定态球面波</p>
-<p>$$
+<div class="arithmatex">\[
 \begin{cases}
-A(P) = \frac{a}{r} \
+A(P) = \frac{a}{r} \\
 \varphi(P) = kr + \varphi_0
 \end{cases}
-$$
-对于振幅来说，满足能量守恒定律，<span class="arithmatex">\(I\propto E_{max}^2\)</span>，<span class="arithmatex">\(I\propto \frac1{r^2}\)</span>，从而的得到振幅应与距离呈反比</p>
+\]</div>
+<p>对于振幅来说，满足能量守恒定律，<span class="arithmatex">\(I\propto E_{max}^2\)</span>，<span class="arithmatex">\(I\propto \frac1{r^2}\)</span>，从而的得到振幅应与距离呈反比</p>
 <p>我们还可以将波方程用复数形式描述</p>
 <p>一般波方程可以用余弦形式和指数形式表示：</p>
 <div class="arithmatex">\[
@@ -1391,7 +1395,7 @@ U(P, t) = A(P) e^{i[\omega t - \varphi(P)]}
 <div class="arithmatex">\[
 U(P, t) = A(P) e^{i[\varphi(P) - \omega t]} = A(P) e^{i\varphi(P)} e^{-i\omega t}
 \]</div>
-<p>其中，$ A(P) e^{i\varphi(P)} $ 表示复振幅。</p>
+<p>其中，<span class="arithmatex">\(A(P) e^{i\varphi(P)}\)</span> 表示复振幅。</p>
 <p>对于平面波，波方程为：</p>
 <div class="arithmatex">\[
 U(P) = A e^{i\varphi(P)} = A e^{i(\vec{k} \cdot \vec{r} + \varphi_0)} = A e^{i(k_x x + k_y y + k_z z + \varphi_0)}
@@ -1406,14 +1410,14 @@ U(P) = \frac{a}{r} e^{i(kr + \varphi_0)}
 <ul>
 <li><span class="arithmatex">\(r\)</span> 是从波源到点 $ P $ 的径向距离，<span class="arithmatex">\(k\)</span> 是波数，<span class="arithmatex">\(\varphi_0\)</span> 是初始相位，<span class="arithmatex">\(a\)</span> 是与振幅相关的常数。</li>
 </ul>
-<h2 id="_2">波的叠加与干涉<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>$$
+<h2 id="_2"><strong>波的叠加与干涉</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="arithmatex">\[
 \begin{aligned}
-\tilde{U}_1(P, t) &amp;= A_1 e^{i\varphi_1(P)} e^{-i\omega t}\</p>
-<p>\tilde{U}_2(P, t) &amp;= A_2 e^{i\varphi_2(P)} e^{-i\omega t}\</p>
-<p>\tilde{U}(P, t) &amp;= \tilde{U}_1(P, t) + \tilde{U}_2(P, t) =A_1 e^{i\varphi_1(P)} e^{-i\omega t}+A_2 e^{i\varphi_2(P)} e^{-i\omega t}
+\tilde{U}_1(P, t) &amp;= A_1 e^{i\varphi_1(P)} e^{-i\omega t}\\
+\tilde{U}_2(P, t) &amp;= A_2 e^{i\varphi_2(P)} e^{-i\omega t}\\
+\tilde{U}(P, t) &amp;= \tilde{U}_1(P, t) + \tilde{U}_2(P, t) =A_1 e^{i\varphi_1(P)} e^{-i\omega t}+A_2 e^{i\varphi_2(P)} e^{-i\omega t}
 \end{aligned}
-$$</p>
+\]</div>
 <p>从而得到 </p>
 <div class="arithmatex">\[
 \begin{aligned}
@@ -1426,23 +1430,23 @@ I(P,t)&amp;=\tilde{U}^*(P, t)\cdot \tilde{U}(P, t)\\
 <p>（1）<span class="arithmatex">\(\omega_1=\omega_1=\omega\)</span></p>
 <p>（2）<span class="arithmatex">\(\vec U_1||\vec U_2\)</span></p>
 <p>（3）<span class="arithmatex">\(\varphi_1(P)-\varphi_2(P)\)</span> 稳定</p>
-<h2 id="_3">杨氏双缝干涉<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_3"><strong>杨氏双缝干涉</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>英国物理学者托马斯·杨于1801年做实验演示光的干涉演示，称为杨氏双缝实验。这实验对于光波动说给出有力支持，由于实验观测到的干涉条纹是艾萨克·牛顿所代表的光微粒说无法解释的现象，双缝实验使大多数的物理学家从此逐渐接受了光波动说。杨氏双缝的实验设置如右图所示，从一个点光源出射的单色波传播到一面有两条狭缝的挡板，两条狭缝到点光源的距离相等，并且两条狭缝间的距离很小。由于点光源到这两条狭缝的距离相等，这两条狭缝就成为了同相位的次级单色点光源，从它们出射的相干光发生干涉，因此可以在远距离的屏上得到干涉条纹</p>
 <p><a class="glightbox" href="../img/%E6%9D%A8%E6%B0%8F%E5%8F%8C%E7%BC%9D.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E6%9D%A8%E6%B0%8F%E5%8F%8C%E7%BC%9D.png" /></a></p>
-<p>如果两条狭缝之间的距离为 <span class="arithmatex">\(a\)</span>，狭缝到观察屏的垂直距离为 <span class="arithmatex">\(d\)</span>，则根据几何关系，在观察屏上以对称中心点为原点，坐标为 <span class="arithmatex">\((x,y)\)</span> 处两束相干光的光程分别为
-$$
+<p>如果两条狭缝之间的距离为 <span class="arithmatex">\(a\)</span>，狭缝到观察屏的垂直距离为 <span class="arithmatex">\(d\)</span>，则根据几何关系，在观察屏上以对称中心点为原点，坐标为 <span class="arithmatex">\((x,y)\)</span> 处两束相干光的光程分别为</p>
+<div class="arithmatex">\[
 \begin{aligned}
-L_1=\sqrt{d^2+y^2+(x-\frac a2)^2}\
+L_1=\sqrt{d^2+y^2+(x-\frac a2)^2}\\
 L_2=\sqrt{d^2+y^2+(x+\frac a2)^2}
 \end{aligned}
-$$
-当狭缝到观察屏的垂直距离 <span class="arithmatex">\(d\)</span> 远大于 <span class="arithmatex">\(x\)</span> 时，这两条光路长度的差值可以近似在图上表示为：从狭缝1向光程2作垂线所构成的直角三角形中，角 <span class="arithmatex">\(α′\)</span> 所对的直角边 <span class="arithmatex">\(Δs\)</span>。而根据几何近似，这段差值为
-$$
+\]</div>
+<p>当狭缝到观察屏的垂直距离 <span class="arithmatex">\(d\)</span> 远大于 <span class="arithmatex">\(x\)</span> 时，这两条光路长度的差值可以近似在图上表示为：从狭缝1向光程2作垂线所构成的直角三角形中，角 <span class="arithmatex">\(α′\)</span> 所对的直角边 <span class="arithmatex">\(Δs\)</span>。而根据几何近似，这段差值为</p>
+<div class="arithmatex">\[
 \Delta s=asin\alpha'\approx a\frac xd
-$$
-如果实验在真空或空气中进行，则认为介质折射率等于1，从而有光程差 <span class="arithmatex">\(ΔL=Δs=a\frac xd\)</span>，相位差<span class="arithmatex">\(δ=\frac{2π}{λ}\frac{ax}{d}\)</span>。</p>
-<p>(1) 当相位差 <span class="arithmatex">\(\var\)</span> 等于 <span class="arithmatex">\(2mπ,|m|=0,1,2,...\)</span> 时光强有极大值，从而当 <span class="arithmatex">\(x=\frac{mdλ}{a},|m|=0,1,2,...\)</span> 时有极大值；</p>
-<p>(2) 当相位差 <span class="arithmatex">\(\var\)</span> 等于 <span class="arithmatex">\(2mπ,|m|=0,1,2,...\)</span> 时光强有极大值，从而当 <span class="arithmatex">\(x=\frac{mdλ}{a},|m|=\frac12,\frac32,\frac52,...\)</span> 时有极大值</p>
+\]</div>
+<p>如果实验在真空或空气中进行，则认为介质折射率等于1，从而有光程差 <span class="arithmatex">\(ΔL=Δs=a\frac xd\)</span>，相位差<span class="arithmatex">\(δ=\frac{2π}{λ}\frac{ax}{d}\)</span>。</p>
+<p>(1) 当相位差 <span class="arithmatex">\(\delta\)</span> 等于 <span class="arithmatex">\(2mπ,|m|=0,1,2,...\)</span> 时光强有极大值，从而当 <span class="arithmatex">\(x=\frac{mdλ}{a},|m|=0,1,2,...\)</span> 时有极大值；</p>
+<p>(2) 当相位差 <span class="arithmatex">\(\delta\)</span> 等于 <span class="arithmatex">\(2mπ,|m|=0,1,2,...\)</span> 时光强有极大值，从而当 <span class="arithmatex">\(x=\frac{mdλ}{a},|m|=\frac12,\frac32,\frac52,...\)</span> 时有极大值</p>
 <p>从而杨氏双缝干涉会形成等间距的明暗交替条纹，间隔为 <span class="arithmatex">\(\frac{dλ}{a}\)</span></p>
 <h2 id="_4">薄膜干涉<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>考虑一个均匀的厚度为 <span class="arithmatex">\(L\)</span> ，折射率为 <span class="arithmatex">\(n_2\)</span> 的薄透膜，被一个无穷远处的波长为 <span class="arithmatex">\(\lambda\)</span> 的光照射。我们设光几乎是垂直地打在薄膜上，需要判断对于几乎垂直看向薄膜的人来说薄膜是亮的还是暗的。</p>
@@ -1454,18 +1458,18 @@ $$
 <p><a class="glightbox" href="../img/%E5%8D%8A%E6%B3%A2%E6%8D%9F%E5%A4%B11.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%8D%8A%E6%B3%A2%E6%8D%9F%E5%A4%B11.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%8D%8A%E6%B3%A2%E6%8D%9F%E5%A4%B12.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%8D%8A%E6%B3%A2%E6%8D%9F%E5%A4%B12.png" /></a></p>
 </div>
-<p>对于光线 <span class="arithmatex">\(r_1\)</span> 来说，会有半波损失，而对于光线 <span class="arithmatex">\(r_2\)</span> 来说则没有这样的损失。从而 <span class="arithmatex">\(r_1\)</span> 与 <span class="arithmatex">\(r_2\)</span> 的光程差 <span class="arithmatex">\(\var\)</span> 为 <span class="arithmatex">\(2n_2L\)</span> </p>
-<p>从而干涉加强的情况为
-$$
+<p>对于光线 <span class="arithmatex">\(r_1\)</span> 来说，会有半波损失，而对于光线 <span class="arithmatex">\(r_2\)</span> 来说则没有这样的损失。从而 <span class="arithmatex">\(r_1\)</span> 与 <span class="arithmatex">\(r_2\)</span> 的光程差 <span class="arithmatex">\(\delta\)</span> 为 <span class="arithmatex">\(2n_2L\)</span> </p>
+<p>从而干涉加强的情况为</p>
+<div class="arithmatex">\[
 2n_2L+\frac12\lambda=m\lambda\quad m\in Z^+
-$$
- 干涉减弱的情况是为
-$$
+\]</div>
+<p>干涉减弱的情况是为</p>
+<div class="arithmatex">\[
 2n_2L+\frac12\lambda=(m+\frac12)\lambda\quad m\in Z^+
-$$
-而对于薄膜的厚度相对于光的波长太小的情况 (<span class="arithmatex">\(L&lt;0.1\lambda\)</span>)，这样的话 <span class="arithmatex">\(2L\)</span> 便可以被忽略，这样光线 <span class="arithmatex">\(r_1\)</span> 和 <span class="arithmatex">\(r_2\)</span> 之间的相位差仅仅来源于半波损失。</p>
+\]</div>
+<p>而对于薄膜的厚度相对于光的波长太小的情况 (<span class="arithmatex">\(L&lt;0.1\lambda\)</span>)，这样的话 <span class="arithmatex">\(2L\)</span> 便可以被忽略，这样光线 <span class="arithmatex">\(r_1\)</span> 和 <span class="arithmatex">\(r_2\)</span> 之间的相位差仅仅来源于半波损失。</p>
 <p>所以此时薄膜是暗的，这与光的波长和强度都无关。</p>
-<h2 id="_5">牛顿环<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_5"><strong>牛顿环</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p><a class="glightbox" href="../img/%E7%89%9B%E9%A1%BF%E7%8E%AF.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E7%89%9B%E9%A1%BF%E7%8E%AF.png" /></a></p>
 <p>直接套用刚刚的光程差公式，<span class="arithmatex">\(\delta = 2nd\)</span>。但是这时候有一个问题间距在变，这个d不是一个线性变化的。假设一点距离O点的水平距离是r。此时根据几何，易知 <span class="arithmatex">\(d = R - \sqrt{R^2 - r^2}\)</span></p>
 <p>依旧可以得到</p>
@@ -1531,6 +1535,59 @@ $$
     </fieldset>
   </form>
 
+
+  <h2 id="__comments">评论</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+    data-repo="RoderickShao/RoderickShao_notebook"
+    data-repo-id="R_kgDOMS_5AQ"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
 
                 
               </article>
