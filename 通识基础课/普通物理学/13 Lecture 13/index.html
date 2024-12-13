@@ -16,7 +16,7 @@
         <link rel="prev" href="../12%20Lecture%2012/">
       
       
-        <link rel="next" href="../Appendix%201/">
+        <link rel="next" href="../14%20Lecture%2014/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>13 波动光学 - RoderickShao's NoteBook</title>
+        <title>13 光的干涉 - RoderickShao's NoteBook</title>
       
     
     
@@ -179,7 +179,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              13 波动光学
+              13 光的干涉
             
           </span>
         </div>
@@ -603,6 +603,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -910,7 +912,7 @@
           
   
   <span class="md-ellipsis">
-    13 波动光学
+    13 光的干涉
   </span>
   
 
@@ -921,7 +923,7 @@
         
   
   <span class="md-ellipsis">
-    13 波动光学
+    13 光的干涉
   </span>
   
 
@@ -970,10 +972,37 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    牛顿环
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14%20Lecture%2014/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14 光的衍射
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1296,6 +1325,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    牛顿环
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1314,7 +1350,7 @@
   
 
 
-<h1 id="13">13 波动光学<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
+<h1 id="13">13 光的干涉<a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
 <p>当波长 <span class="arithmatex">\(\lambda\)</span> 远小于 <span class="arithmatex">\(d\)</span> 时，考虑的是几何光学；</p>
 <p>而当波长 <span class="arithmatex">\(\lambda\)</span> 与 <span class="arithmatex">\(d\)</span> 相近的时候，考虑的是波动光学。</p>
 <h2 id="_1">定态光波<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -1409,6 +1445,46 @@ $$
 <p>(2) 当相位差 <span class="arithmatex">\(\var\)</span> 等于 <span class="arithmatex">\(2mπ,|m|=0,1,2,...\)</span> 时光强有极大值，从而当 <span class="arithmatex">\(x=\frac{mdλ}{a},|m|=\frac12,\frac32,\frac52,...\)</span> 时有极大值</p>
 <p>从而杨氏双缝干涉会形成等间距的明暗交替条纹，间隔为 <span class="arithmatex">\(\frac{dλ}{a}\)</span></p>
 <h2 id="_4">薄膜干涉<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>考虑一个均匀的厚度为 <span class="arithmatex">\(L\)</span> ，折射率为 <span class="arithmatex">\(n_2\)</span> 的薄透膜，被一个无穷远处的波长为 <span class="arithmatex">\(\lambda\)</span> 的光照射。我们设光几乎是垂直地打在薄膜上，需要判断对于几乎垂直看向薄膜的人来说薄膜是亮的还是暗的。</p>
+<div class="admonition note">
+<p class="admonition-title">半波损失</p>
+<p>在界面处的反射会引起相位的变化，这取决于界面两侧的折射率</p>
+<p>从折射率低的介质射入折射率高的介质的反射会有半波损失，而从折射率高的介质射入折射率低的介质的反射没有半波损失</p>
+<p>折射不会发生半波损失</p>
+<p><a class="glightbox" href="../img/%E5%8D%8A%E6%B3%A2%E6%8D%9F%E5%A4%B11.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%8D%8A%E6%B3%A2%E6%8D%9F%E5%A4%B11.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%8D%8A%E6%B3%A2%E6%8D%9F%E5%A4%B12.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%8D%8A%E6%B3%A2%E6%8D%9F%E5%A4%B12.png" /></a></p>
+</div>
+<p>对于光线 <span class="arithmatex">\(r_1\)</span> 来说，会有半波损失，而对于光线 <span class="arithmatex">\(r_2\)</span> 来说则没有这样的损失。从而 <span class="arithmatex">\(r_1\)</span> 与 <span class="arithmatex">\(r_2\)</span> 的光程差 <span class="arithmatex">\(\var\)</span> 为 <span class="arithmatex">\(2n_2L\)</span> </p>
+<p>从而干涉加强的情况为
+$$
+2n_2L+\frac12\lambda=m\lambda\quad m\in Z^+
+$$
+ 干涉减弱的情况是为
+$$
+2n_2L+\frac12\lambda=(m+\frac12)\lambda\quad m\in Z^+
+$$
+而对于薄膜的厚度相对于光的波长太小的情况 (<span class="arithmatex">\(L&lt;0.1\lambda\)</span>)，这样的话 <span class="arithmatex">\(2L\)</span> 便可以被忽略，这样光线 <span class="arithmatex">\(r_1\)</span> 和 <span class="arithmatex">\(r_2\)</span> 之间的相位差仅仅来源于半波损失。</p>
+<p>所以此时薄膜是暗的，这与光的波长和强度都无关。</p>
+<h2 id="_5">牛顿环<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E7%89%9B%E9%A1%BF%E7%8E%AF.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E7%89%9B%E9%A1%BF%E7%8E%AF.png" /></a></p>
+<p>直接套用刚刚的光程差公式，<span class="arithmatex">\(\delta = 2nd\)</span>。但是这时候有一个问题间距在变，这个d不是一个线性变化的。假设一点距离O点的水平距离是r。此时根据几何，易知 <span class="arithmatex">\(d = R - \sqrt{R^2 - r^2}\)</span></p>
+<p>依旧可以得到</p>
+<ul>
+<li>光程差：<span class="arithmatex">\(\delta = 2nd = 2n(R - \sqrt{R^2 - r^2})\)</span></li>
+<li>干涉加强（明条纹）：<span class="arithmatex">\(\delta + \frac{\lambda}{2} = k\lambda, \quad k \in Z^+\)</span></li>
+<li>干涉减弱（暗条纹）：<span class="arithmatex">\(\delta + \frac{\lambda}{2} = (2k + 1)\frac{\lambda}{2}, \quad k \in Z^+\)</span></li>
+</ul>
+<p>那么可以进一步解出明条纹和暗条纹的半径是：</p>
+<ul>
+<li>干涉加强（明环）：<span class="arithmatex">\(r = \sqrt{\frac{(2k-1)R\lambda}{2n}}, \quad k \in Z^+\)</span></li>
+<li>干涉减弱（暗环）：<span class="arithmatex">\(r = \sqrt{\frac{kR\lambda}{n}}, \quad k \in N\)</span></li>
+</ul>
+<p><a class="glightbox" href="../img/%E7%89%9B%E9%A1%BF%E7%8E%AF2.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E7%89%9B%E9%A1%BF%E7%8E%AF2.jpg" /></a></p>
+<p>观察公式我们就可以知道牛顿环的半径不是等差的，之间有根号的关系。满足<strong>内疏外密</strong></p>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p><a href="https://zhuanlan.zhihu.com/p/145785676">大物学习笔记（二十一）——薄膜干涉 - 知乎</a></p>
+</div>
 
 
   
@@ -1495,13 +1571,13 @@ $$
         
         
           
-          <a href="../Appendix%201/" class="md-footer__link md-footer__link--next" aria-label="下一页: Appendix 1" rel="next">
+          <a href="../14%20Lecture%2014/" class="md-footer__link md-footer__link--next" aria-label="下一页: 14 光的衍射" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Appendix 1
+                14 光的衍射
               </div>
             </div>
             <div class="md-footer__button md-icon">
