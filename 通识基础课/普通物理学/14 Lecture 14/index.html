@@ -1019,6 +1019,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    14.5 双缝衍射
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1372,6 +1379,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    14.5 双缝衍射
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1392,7 +1406,7 @@
 
 <h1 id="14"><strong>14 光的衍射</strong><a class="headerlink" href="#14" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1875 个字  预计阅读时间 6 分钟
+    文本统计：约 2672 个字  预计阅读时间 9 分钟
 </div>
 
 <h2 id="141"><strong>14.1 单缝衍射</strong><a class="headerlink" href="#141" title="Permanent link">&para;</a></h2>
@@ -1505,6 +1519,74 @@ I_{sq}(\theta)=I_{max}[\frac{sin\alpha}{\alpha}]^2
 <div class="arithmatex">\[
 \theta_R = \sin^{-1}\left(\frac{1.22\lambda}{a}\right) \approx \frac{1.22\lambda}{a}
 \]</div>
+<h2 id="145">14.5 双缝衍射<a class="headerlink" href="#145" title="Permanent link">&para;</a></h2>
+<p>在我们研究杨的双缝干涉时，忽略了每个狭缝中的衍射效应。之前我们研究的时候，假设缝隙非常窄，以至于在屏幕上只能看到两个光源干涉的结果。但是如果狭缝变宽，我们就不能忽略每个缝的衍射。</p>
+<p>之前得到的干涉条纹的位置
+$$
+d~sin\theta=m\lambda
+$$
+但是衍射效应会降低条纹的强度，于是干涉和衍射效应同时起作用，在不同的角度产生最小值，这时候在屏幕上产生了一个复杂的图案。如果干涉条纹的明条纹处和衍射条纹的暗条纹处重合时，那么这时候干涉的明条纹就会消失。</p>
+<p><a class="glightbox" href="../img/%E5%8F%8C%E7%BC%9D%E8%A1%8D%E5%B0%84.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%8F%8C%E7%BC%9D%E8%A1%8D%E5%B0%84.jpg" /></a></p>
+<p>具有相同高度的紫线来自两个狭缝的波浪的干扰；中间有一个大驼峰的蓝线是波从一个缝隙内的衍射；而粗红线是两者的乘积，这是屏幕上观察到的图案。 该图显示了狭缝宽 <span class="arithmatex">\(a=2λ\)</span> 度和狭缝间距的预期结果 <span class="arithmatex">\(d=6λ\)</span>。 缺少干涉的最大 <span class="arithmatex">\(m=±3\)</span> 阶数，因为衍射的最小值出现在相同的方向上。</p>
+<p>当然我们也可以用傅里叶变换来解释双缝衍射</p>
+<p>Consider the double slit with its long side in the y-direction, illuminated by a plane wave. Assuming the one-dimensional aperture function along the x direction has the following form:</p>
+<div class="arithmatex">\[
+E_{\text{ds}}(x) = \begin{cases} 
+0 &amp; |x| &lt; (d - a)/2, \\
+E_0 &amp; (d - a)/2 \leq |x| \leq (d + a)/2, \\
+0 &amp; |x| &gt; (d + a)/2.
+\end{cases}
+\]</div>
+<p>The Fourier transform of $ E_{\text{ds}}(x) $ is</p>
+<div class="arithmatex">\[
+\tilde{E}_{\text{ds}}(k_x) = \int_{-\infty}^{\infty} E_{\text{ds}}(x) e^{ik_x x} \, dx.
+\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+\tilde{E}_{\text{ds}}(k_x) &amp;= \int_{-(d-a)/2}^{-(d+a)/2} E_0 e^{ik_x x} \, dx + \int_{(d-a)/2}^{(d+a)/2} E_0 e^{ik_x x} \, dx \\
+&amp;= \int_{-a/2}^{a/2} E_0 e^{ik_x(-d/2 + x')} \, dx' + \int_{-a/2}^{a/2} E_0 e^{ik_x(d/2 + x')} \, dx' \\
+&amp;= \underbrace{\left(e^{-ik_x d/2} + e^{ik_x d/2}\right)}_{\text{double-slit interference}} \underbrace{\int_{-a/2}^{a/2} E_0 e^{ik_x x'} \, dx'}_{\text{single-slit diffraction}}
+\end{aligned}
+\]</div>
+<p>当然我们也可以利用卷积来理解两者的叠加</p>
+<p>The interference pattern can be understood by a convolution theorem for the Fourier transformation: The transform of the convolution of two functions is the product of their transforms.</p>
+<p>Recall that the single-slit aperture function has the form</p>
+<div class="arithmatex">\[
+E_{\text{sq}}(x) = 
+  \begin{cases} 
+  E_0 &amp; |x| \leq a/2, \\
+  0 &amp; |x| &gt; a/2.
+  \end{cases}
+\]</div>
+<p>The Fourier transform (with $ k \equiv k_x $) of $ E_{\text{sq}}(x) $ is</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathcal{F}[E_{\text{sq}}(x)] &amp;= \int_{-a/2}^{a/2} E_0 e^{ikx} \, dx = \frac{E_0}{ik} \left[ e^{ikx} \right]_{x=-a/2}^{a/2}\\
+&amp;= -i \frac{E_0 a/2}{ka/2} \left[ e^{ika/2} - e^{-ika/2} \right]\\
+&amp;= E_0 a \frac{\sin(ka/2)}{ka/2}.
+\end{aligned}
+\]</div>
+<p>Likewise, we can also write Young's double-slit interference result (with negligible slit width) as the Fourier transform of an aperture function.</p>
+<div class="arithmatex">\[
+h(x) = \delta(x + d/2) + \delta(x - d/2).
+\]</div>
+<div class="arithmatex">\[
+\mathcal{F}[h(x)] &amp;= \int_{-\infty}^{\infty} h(x) e^{ikx} dx\\
+&amp;= e^{-ikd/2} + e^{ikd/2}\\
+&amp;= 2 \cos(kd/2)
+\]</div>
+<p>Note that <span class="arithmatex">\(\int_{-\infty}^{\infty} f(x) \delta(x - a) dx = f(a)\)</span> and <span class="arithmatex">\(\delta(-x) = \delta(x)\)</span>.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-16%20095232.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-16%20095232.png" /></a></p>
+<div class="arithmatex">\[
+E_{\text{ds}}(x) = \int_{-\infty}^{\infty} E_{\text{sq}}(x') h(x - x') \, dx' 
+\]</div>
+<div class="arithmatex">\[
+\mathcal{F}[E_{\text{ds}}(x)] = \mathcal{F}[E_{\text{sq}}(x)] \mathcal{F}[h(x)].
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">本文部分内容摘自</p>
+<p><a href="https://query.libretexts.org/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E5%AD%A6_III-%E5%85%89%E5%AD%A6%E4%B8%8E%E7%8E%B0%E4%BB%A3%E7%89%A9%E7%90%86%E5%AD%A6_(OpenSTAX)/04%3A_%E8%A1%8D%E5%B0%84/4.04%3A_%E5%8F%8C%E7%BC%9D%E8%A1%8D%E5%B0%84">https://query.libretexts.org/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E5%AD%A6_III-%E5%85%89%E5%AD%A6%E4%B8%8E%E7%8E%B0%E4%BB%A3%E7%89%A9%E7%90%86%E5%AD%A6_(OpenSTAX)/04%3A_%E8%A1%8D%E5%B0%84/4.04%3A_%E5%8F%8C%E7%BC%9D%E8%A1%8D%E5%B0%84</a></p>
+</div>
 
 
   
