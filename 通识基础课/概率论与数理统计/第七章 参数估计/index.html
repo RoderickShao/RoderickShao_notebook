@@ -603,6 +603,8 @@
       
         
       
+        
+      
     
     
       
@@ -1393,7 +1395,7 @@
 
 <h2 id="71"><strong>7.1 参数的点估计</strong><a class="headerlink" href="#71" title="Permanent link">&para;</a></h2>
 <p>点估计的问题就是根据样本 <span class="arithmatex">\((X_1,X_2,...,X_n)\)</span>，对每一个总体中的未知参数 <span class="arithmatex">\(\theta_i(i=1,2,..,k)\)</span>，构造出一个统计量 <span class="arithmatex">\(\hat\theta_i=\hat\theta_i(X_1,X_2,...,X_n)\)</span> ，作为参数 <span class="arithmatex">\(\theta_i\)</span>的估计，称为 <span class="arithmatex">\(\theta_i\)</span> 的估计量，<span class="arithmatex">\(\hat\theta_i=\hat\theta_i(X_1,X_2,...,X_n)\)</span>称为 <span class="arithmatex">\(\theta_i\)</span> 的估计值.</p>
-<p>常用的点估计有：矩估计法、极大似然估计法.</p>
+<p>常用的点估计有：<strong>矩估计法、极大似然估计法</strong>.</p>
 <h3 id="711"><strong>7.1.1 矩估计法</strong><a class="headerlink" href="#711" title="Permanent link">&para;</a></h3>
 <p>设总体 <span class="arithmatex">\(X\)</span> 的分布函数为 <span class="arithmatex">\(F(x;\theta_1,\theta_2,...,\theta_m)\)</span>，<span class="arithmatex">\((\theta_1,\theta_2,...,\theta_m)\)</span> 是待估计的未知参数，假定总体 <span class="arithmatex">\(X\)</span> 的 <span class="arithmatex">\(i(i=1,2,...,m)\)</span> 阶原点矩 <span class="arithmatex">\(\mu_i=E(X^i)\)</span> 存在且含有未知参数 （否则用到下一阶矩）,然后我求解相应的反函数</p>
 <div class="arithmatex">\[
@@ -1426,28 +1428,28 @@
 \right .
 \]</div>
 <p>对于一个样本的矩估计量，我们可以选择任意阶矩，但是我们约定取含未知参数的最小阶矩，作为矩估计量。</p>
-<div class="admonition example">
-<p class="admonition-title">Ex1</p>
+<details class="example">
+<summary>Ex1</summary>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105858.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105858.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105903.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105903.png" /></a></p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Ex2</p>
+</details>
+<details class="example">
+<summary>Ex2</summary>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105915.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105915.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105924.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105924.png" /></a></p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Ex3</p>
+</details>
+<details class="example">
+<summary>Ex3</summary>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105941.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105941.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105949.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20105949.png" /></a></p>
 <p>注意我们是用样本二阶中心矩来估计的，而不是样本方差</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Ex4</p>
+</details>
+<details class="example">
+<summary>Ex4</summary>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20111423.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20111423.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20111427.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20111427.png" /></a></p>
 <p>使用前者的方法更好</p>
-</div>
+</details>
 <p>若 <span class="arithmatex">\(\hat \theta\)</span> 是 <span class="arithmatex">\(\theta_i\)</span> 的矩估计，<span class="arithmatex">\(g(\theta)\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的连续函数，则 <span class="arithmatex">\(g(\hat\theta)\)</span> 是 <span class="arithmatex">\(g(\theta)\)</span> 的矩估计</p>
 <div class="admonition example">
 <p class="admonition-title">未知函数的矩估计</p>
@@ -1514,7 +1516,7 @@ L(\theta)=P\{X_1=x_1,X_2=x_2,...,X_n=x_n\}=\prod_{i=1}^{n}p(x_i;\theta)
 <h2 id="72"><strong>7.2 估计量的评价准则</strong><a class="headerlink" href="#72" title="Permanent link">&para;</a></h2>
 <p>无偏性，有效性，均方误差，相和性</p>
 <h3 id="721"><strong>7.2.1 无偏性准则</strong><a class="headerlink" href="#721" title="Permanent link">&para;</a></h3>
-<p>定义：若参数 <span class="arithmatex">\(\theta\)</span> 的估计量 <span class="arithmatex">\(\hat \theta=\theta(X_1,X_2,...,X_n)\)</span>，满足 <span class="arithmatex">\(E(\hat \theta)=\theta\)</span>，则称 <span class="arithmatex">\(\hat \theta\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的一个无偏估计量。若 <span class="arithmatex">\(E(\hat \theta)\ne \theta\)</span>，那么 <span class="arithmatex">\(E(\theta)-\theta\)</span> 称为 估计量 $\hat \theta $ 的偏差，若 <span class="arithmatex">\(lim_{n\rightarrow\infty}E(\theta)=\theta\)</span>，则称 <span class="arithmatex">\(\hat \theta\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的渐近无偏估计量。</p>
+<p>定义：若参数 <span class="arithmatex">\(\theta\)</span> 的估计量 <span class="arithmatex">\(\hat \theta=\theta(X_1,X_2,...,X_n)\)</span>，满足 <span class="arithmatex">\(E(\hat \theta)=\theta\)</span>，则称 <span class="arithmatex">\(\hat \theta\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的一个无偏估计量。若 <span class="arithmatex">\(E(\hat \theta)\ne \theta\)</span>，那么 <span class="arithmatex">\(E(\theta)-\theta\)</span> 称为 估计量 <span class="arithmatex">\(\hat \theta\)</span> 的偏差，若 <span class="arithmatex">\(lim_{n\rightarrow\infty}E(\theta)=\theta\)</span>，则称 <span class="arithmatex">\(\hat \theta\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的渐近无偏估计量。</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20122028.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20122028.png" /></a></p>

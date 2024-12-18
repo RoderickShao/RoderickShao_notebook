@@ -603,6 +603,8 @@
       
         
       
+        
+      
     
     
       
@@ -877,9 +879,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#514_1" class="md-nav__link">
-    5.1.4 辛钦大数定律
+  <a href="#515" class="md-nav__link">
+    5.1.5 辛钦大数定律
   </a>
+  
+    <nav class="md-nav" aria-label="5.1.5 辛钦大数定律">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    推论
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -892,6 +907,26 @@
   <a href="#52" class="md-nav__link">
     5.2 中心极限定理
   </a>
+  
+    <nav class="md-nav" aria-label="5.2 中心极限定理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    定理 (独立同分布的中心极限定理）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    推论 (德莫弗-拉普拉斯定理)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1214,9 +1249,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#514_1" class="md-nav__link">
-    5.1.4 辛钦大数定律
+  <a href="#515" class="md-nav__link">
+    5.1.5 辛钦大数定律
   </a>
+  
+    <nav class="md-nav" aria-label="5.1.5 辛钦大数定律">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    推论
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1229,6 +1277,26 @@
   <a href="#52" class="md-nav__link">
     5.2 中心极限定理
   </a>
+  
+    <nav class="md-nav" aria-label="5.2 中心极限定理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    定理 (独立同分布的中心极限定理）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    推论 (德莫弗-拉普拉斯定理)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1250,12 +1318,12 @@
   
 
 
-<h1 id="5">5 大数定律和中心极限定理<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
+<h1 id="5"><strong>5 大数定律和中心极限定理</strong><a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 395 个字  预计阅读时间 1 分钟
+    文本统计：约 1581 个字  预计阅读时间 5 分钟
 </div>
 
-<h2 id="51">5.1 大数定律<a class="headerlink" href="#51" title="Permanent link">&para;</a></h2>
+<h2 id="51"><strong>5.1 大数定律</strong><a class="headerlink" href="#51" title="Permanent link">&para;</a></h2>
 <p>设 <span class="arithmatex">\(\{ Y_n, n≥1\}\)</span> 为一随机变量序列, <span class="arithmatex">\(c\)</span> 为一常数, 若对任意的<span class="arithmatex">\(\epsilon &gt; 0\)</span>, 都有</p>
 <div class="arithmatex">\[
 lim_{n\rightarrow+\infty}P\{|Y_n-c|\ge\epsilon\}=0
@@ -1266,39 +1334,151 @@ lim_{n\rightarrow+\infty}P\{|Y_n-c|\ge\epsilon\}=0
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20110251.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20110251.png" /></a></p>
 </div>
 <p>依概率收敛的性质：</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20110512.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20110512.png" /></a></p>
-<h3 id="511">5.1.1 马尔可夫不等式<a class="headerlink" href="#511" title="Permanent link">&para;</a></h3>
-<p>设随机变量Y的k阶矩<span class="arithmatex">\(E(Y^k)\)</span>存在(<span class="arithmatex">\(k\ge1\)</span>) 则对于任意 <span class="arithmatex">\(\epsilon&gt;0\)</span>，都有</p>
+<p>若当 <span class="arithmatex">\(n \to \infty\)</span> 时，<span class="arithmatex">\(X_n \xrightarrow{P} a\)</span>，<span class="arithmatex">\(Y_n \xrightarrow{P} b\)</span>，且函数 <span class="arithmatex">\(g(x, y)\)</span> 在点 <span class="arithmatex">\((a, b)\)</span> 连续，则</p>
 <div class="arithmatex">\[
-P\{|Y|\ge\epsilon\}\le\frac{E(|Y|^k)}{\epsilon^k}
+g(X_n, Y_n) \xrightarrow{P} g(a, b)
+\]</div>
+<p>例如当 $ n \to \infty $ 时，</p>
+<div class="arithmatex">\[
+\begin{aligned}
+X_n + Y_n &amp;\xrightarrow{P} a + b,\\
+X_n \times Y_n &amp;\xrightarrow{P} a \times b,\\
+X_n / Y_n &amp;\xrightarrow{P} a / b \quad (b \neq 0),\\
+X_n e^{-Y_n} &amp;\xrightarrow{P} a e^{-b}. 
+\end{aligned}
+\]</div>
+<h3 id="511"><strong>5.1.1 马尔可夫不等式</strong><a class="headerlink" href="#511" title="Permanent link">&para;</a></h3>
+<p>设随机变量 Y 的 k 阶矩 <span class="arithmatex">\(E(Y^k)\)</span> 存在 (<span class="arithmatex">\(k\ge1\)</span>) 则对于任意 <span class="arithmatex">\(\varepsilon&gt;0\)</span>，都有</p>
+<div class="arithmatex">\[
+P\{|Y|\ge\varepsilon\}\le\frac{E(|Y|^k)}{\varepsilon^k}
 \]</div>
 <p>成立，特别地，当 <span class="arithmatex">\(Y\)</span> 取非负值的随机变量时，则有</p>
 <div class="arithmatex">\[
-P\{Y\ge\epsilon\}\le\frac{E(Y^k)}{\epsilon^k}
+P\{Y\ge\varepsilon\}\le\frac{E(Y^k)}{\varepsilon^k}
 \]</div>
-<p>证明：</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20111458.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20111458.png" /></a></p>
-<h3 id="512">5.1.2 切比雪夫不等式<a class="headerlink" href="#512" title="Permanent link">&para;</a></h3>
-<p>直观的理解就是远离平均数的数据量受到方差的影响</p>
+<p><strong>证明</strong>：</p>
+<div class="arithmatex">\[
+E(|Y|^k)\ge P\{|Y|\ge \varepsilon\}\cdot\varepsilon^k+(1-P\{|Y|\ge\varepsilon\})\cdot 0
+\]</div>
+<p>化简即得马尔可夫不等式</p>
+<h3 id="512"><strong>5.1.2 切比雪夫不等式</strong><a class="headerlink" href="#512" title="Permanent link">&para;</a></h3>
+<p>直观的理解就是<strong>远离平均数的数据量受到方差的影响</strong></p>
 <p>设随机变量X具有数学期望 <span class="arithmatex">\(E(X)=\mu\)</span>，方差为 <span class="arithmatex">\(Var(X)=\sigma^2\)</span>，则对于任意 <span class="arithmatex">\(\epsilon&gt;0\)</span> 都有</p>
 <div class="arithmatex">\[
-P\{|X-\mu|\ge\epsilon\}\le\frac{\sigma^2}{\epsilon^2}
+P\{|X-\mu|\ge\varepsilon\}\le\frac{\sigma^2}{\varepsilon^2}
 \]</div>
-<p>只需要在马尔可夫不等式中取<span class="arithmatex">\(Y=X-\mu\)</span>，以及 <span class="arithmatex">\(k=2\)</span></p>
-<h3 id="513">5.1.3 大数定律<a class="headerlink" href="#513" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20112607.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20112607.png" /></a></p>
-<h3 id="514">5.1.4 伯努利大数定律<a class="headerlink" href="#514" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20112824.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20112824.png" /></a></p>
-<p>揭示了在大量重复独立试验中事件出现频率的稳定性，正因为这种稳定性，概率的概念才有客观意义。</p>
-<h3 id="514_1">5.1.4 辛钦大数定律<a class="headerlink" href="#514_1" title="Permanent link">&para;</a></h3>
-<p>描述了随着测试量的增加，随机变量序列的平均值会无限趋近于数学期望</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20113155.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20113155.png" /></a></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20113538.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20113538.png" /></a></p>
-<h2 id="52">5.2 中心极限定理<a class="headerlink" href="#52" title="Permanent link">&para;</a></h2>
-<p>独立同分布的随机变量重复次数越多，均值的分布越接近正态分布</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20115302.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20115302.png" /></a></p>
-<p>伯努利试验可以看成很多0-1试验的重复</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20115501.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-11%20115501.png" /></a></p>
+<p>只需要在马尔可夫不等式中取 <span class="arithmatex">\(Y=X-\mu\)</span>，以及 <span class="arithmatex">\(k=2\)</span></p>
+<h3 id="513"><strong>5.1.3 大数定律</strong><a class="headerlink" href="#513" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(Y_1, \ldots, Y_n, \ldots\)</span> 为一个随机变量序列，若存在常数序列 <span class="arithmatex">\(\{c_n, n \geq 1\}\)</span>，使得对 <span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，均有：</p>
+<div class="arithmatex">\[
+\lim_{n \to +\infty} P \left\{ \left| \frac{1}{n} \sum_{i=1}^n Y_i - c_n \right| \geq \varepsilon \right\} = 0
+~或
+\lim_{n \to +\infty} P \left\{ \left| \frac{1}{n} \sum_{i=1}^n Y_i - c_n \right| &lt; \varepsilon \right\} = 1
+\]</div>
+<p>成立，即有当 <span class="arithmatex">\(n \to +\infty\)</span>，</p>
+<div class="arithmatex">\[
+\frac{1}{n} \sum_{i=1}^n Y_i \xrightarrow{P} c_n
+\]</div>
+<p>则<strong>称</strong>随机变量序列 <span class="arithmatex">\(\{Y_i, i \geq 1\}\)</span> 服从<strong>（弱）大数定律</strong>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>随机变量序列前 <span class="arithmatex">\(n\)</span> 个变量的算术平均依概率收敛于 <span class="arithmatex">\(c\)</span>，则这个随机变量序列服从大数定律。</p>
+</div>
+<h3 id="514"><strong>5.1.4 伯努利大数定律</strong><a class="headerlink" href="#514" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(n_A\)</span> 为 <span class="arithmatex">\(n\)</span> 重贝努里试验中事件 <span class="arithmatex">\(A\)</span> 发生的次数，并记事件 <span class="arithmatex">\(A\)</span> 在每次试验中发生的概率为 <span class="arithmatex">\(p\)</span>，则对 <span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，有：</p>
+<div class="arithmatex">\[
+\lim_{n \to +\infty} P \left\{ \left| \frac{n_A}{n} - p \right| \geq \varepsilon \right\} = 0 \quad (n_A \text{ 为 } n \text{ 个 } 0-1 \text{ 分布变量之和})
+\]</div>
+<p>证明:  ∵ <span class="arithmatex">\(n_A \sim B(n, p)\)</span> 我们可以得到 <span class="arithmatex">\(\frac{n_A}{n}\)</span> 的期望与方差</p>
+<div class="arithmatex">\[
+E \left( \frac{n_A}{n} \right) = \frac{1}{n} E(n_A) = \frac{1}{n} \cdot np = p,
+\]</div>
+<div class="arithmatex">\[
+Var \left( \frac{n_A}{n} \right) = \frac{1}{n^2} Var(n_A) = \frac{1}{n^2} \cdot npq = \frac{pq}{n},
+\]</div>
+<p>由切比雪夫不等式:</p>
+<div class="arithmatex">\[
+P \left\{ \left| \frac{n_A}{n} - p \right| \geq \varepsilon \right\} \leq \frac{pq}{n \varepsilon^2} \xrightarrow[n \to +\infty]{} 0
+\]</div>
+<p>推论：0-1分布 <span class="arithmatex">\(\{X_i \sim B(1, p), i \geq 1\}\)</span> 的随机变量序列服从大数定律。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>关于依概率收敛之类的证明，往往是通过马尔可夫或者切比雪夫不等式得到</p>
+</div>
+<p>揭示了在大量重复独立试验中事件出现频率的<strong>稳定性</strong>，正因为这种稳定性，概率的概念才有客观意义。</p>
+<h3 id="515"><strong>5.1.5 辛钦大数定律</strong><a class="headerlink" href="#515" title="Permanent link">&para;</a></h3>
+<p>描述了随着测试量的增加，随机变量序列的<strong>平均值</strong>会无限趋近于<strong>数学期望</strong></p>
+<p>设 <span class="arithmatex">\(\{X_i, i \geq 1\}\)</span> 为独立同分布的随机变量序列，且其期望存在，记为 <span class="arithmatex">\(\mu\)</span>，则对 <span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，有：</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} P \left\{ \left| \frac{1}{n} \sum_{k=1}^n X_k - \mu \right| \geq \varepsilon \right\} = 0
+\]</div>
+<p>即随机变量序列 <span class="arithmatex">\(\{X_i, i \geq 1\}\)</span> 服从大数定律，</p>
+<p>也即，当 <span class="arithmatex">\(n \to +\infty\)</span> 时，</p>
+<div class="arithmatex">\[
+\frac{1}{n} \sum_{i=1}^n X_i \xrightarrow{P} \mu
+\]</div>
+<h4 id="_1">推论<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p>设 <span class="arithmatex">\(\{X_i, i \geq 1\}\)</span> 为独立同分布的随机变量序列，若 <span class="arithmatex">\(h(x)\)</span> 为连续函数，且 <span class="arithmatex">\(E |h(X_1)| &lt; +\infty\)</span>，则对 <span class="arithmatex">\(\forall \varepsilon &gt; 0\)</span>，有：</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} P \left\{ \left| \frac{1}{n} \sum_{i=1}^n h(X_i) - E(h(X_1)) \right| \geq \varepsilon \right\} = 0
+\]</div>
+<p>即随机变量 <span class="arithmatex">\(\{h(X_i), i \geq 1\}\)</span> 也服从大数定律。</p>
+<p>即</p>
+<div class="arithmatex">\[
+\frac{1}{n} \sum_{i=1}^n h(X_i) \xrightarrow{P} E(h(X_1))
+\]</div>
+<p>可由依概率收敛的性质推出。（见 5.1 节）</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>若 <span class="arithmatex">\(X_1, X_2, \ldots, X_n\)</span> 为独立同分布的，<span class="arithmatex">\(h(x)\)</span> 为连续函数，则 <span class="arithmatex">\(h(X_1), h(X_2), \ldots, h(X_n)\)</span> 也为独立同分布的。</p>
+</div>
+<h2 id="52"><strong>5.2 中心极限定理</strong><a class="headerlink" href="#52" title="Permanent link">&para;</a></h2>
+<p>某些指标(随机变量)是由大量的相互独立因素的综合影响所形成的，而其中每个因素作用都很小,则这种指标(随机变量)往往服从或近似服从正态分布，或者说它的极限分布是正态分布。中心极限定理正是从数学上论证了这一现象，它在长达两个世纪的时期内曾是概率论研究的中心课题。</p>
+<p>独立同分布的随机变量重复次数越多，<strong>均值的分布越接近正态分布</strong></p>
+<h3 id="_2"><strong>定理 (独立同分布的中心极限定理）</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>设随机变量 <span class="arithmatex">\(X_1, X_2, \ldots, X_n, \ldots\)</span> 相互独立同分布，</p>
+<div class="arithmatex">\[
+E(X_i) = \mu, \quad Var(X_i) = \sigma^2, \quad i = 1, 2, \ldots, \forall x \in R
+\]</div>
+<p>有：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\lim_{n \to +\infty} P \left( \frac{\sum_{i=1}^n X_i - E(\sum_{i=1}^n X_i)}{\sqrt{Var(\sum_{i=1}^n X_i)}} \leq x \right) &amp;= \lim_{n \to +\infty} P \left( \frac{\sum_{i=1}^n X_i - n\mu}{\sqrt{n\sigma}} \leq x \right)\\ 
+&amp;= \lim_{n \to +\infty} P(Y_n \leq x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt = \Phi(x)
+\end{aligned}
+\]</div>
+<p>此定理表明，当 <span class="arithmatex">\(n\)</span> 充分大时，<span class="arithmatex">\(Y_n\)</span> 近似服从 <span class="arithmatex">\(N(0, 1)\)</span>。</p>
+<p>也即：<span class="arithmatex">\(\sum_{i=1}^n X_i \sim N(n\mu, n\sigma^2)\)</span> ，对应的期望与方差为：<span class="arithmatex">\(E\left(\sum_{i=1}^n X_i\right) = n\mu, Var\left(\sum_{i=1}^n X_i\right) = n\sigma^2\)</span></p>
+<div class="admonition question">
+<p class="admonition-title">思考题（<span class="arithmatex">\(n\)</span> 足够大)</p>
+<p><span class="arithmatex">\(\bar{X} = \frac{1}{n} \sum_{i=1}^n X_i\)</span> 的近似分布是什么？</p>
+<p>答：<span class="arithmatex">\(N\left(\mu, \frac{\sigma^2}{n}\right)\)</span></p>
+</div>
+<h3 id="-"><strong>推论 (德莫弗-拉普拉斯定理)</strong><a class="headerlink" href="#-" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(n_A\)</span> 为 <strong><span class="arithmatex">\(n\)</span> 重贝努里试验</strong>中事件 <span class="arithmatex">\(A\)</span> 发生的次数，<span class="arithmatex">\(P(A) = p\)</span>  (<span class="arithmatex">\(0 &lt; p &lt; 1\)</span>)，则</p>
+<div class="arithmatex">\[
+\forall x \in R, \text{ 有: } \lim_{n \to +\infty} P \left( \frac{n_A - np}{\sqrt{np(1 - p)}} \leq x \right) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt = \Phi(x)
+\]</div>
+<p>若 $ n $ 足够大，$ n_A \sim B(n, p) $，则 $ n_A \sim N(np, npq) $。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>伯努利试验看为多个 0-1试验的叠加，并应用中心极限定理</p>
+</div>
+<p>证明：令 <span class="arithmatex">\(X_i = \begin{cases} 
+1 &amp; \text{第 } i \text{ 次试验时 } A \text{ 发生} \\
+0 &amp; \text{第 } i \text{ 次试验时 } A \text{ 未发生}
+\end{cases}\)</span></p>
+<p>则 $ X_1, X_2, \ldots, X_n, \ldots $ 相互独立同分布，$ X_i \sim B(1, p) $。</p>
+<p>由于 $ n_A = X_1 + X_2 + \cdots + X_n $，</p>
+<p>符合<strong>独立同分布</strong>的中心极限定理，所以 $ n_A \sim N(np, npq) $。</p>
+<p>计算公式：</p>
+<div class="arithmatex">\[
+P(a &lt; n_A \leq b) \approx \Phi \left( \frac{b - np}{\sqrt{np(1 - p)}} \right) - \Phi \left( \frac{a - np}{\sqrt{np(1 - p)}} \right)
+\]</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-17%20220414.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-17%20220414.png" /></a></p>
+</div>
 
 
   

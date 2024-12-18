@@ -1916,10 +1916,10 @@ I(\omega) \equiv\frac{\text{d} \Phi}{\text{d} \omega}
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-22%20232959.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-22%20232959.png" /></a></p>
 <h3 id="643-irradiance-e"><strong>6.4.3 Irradiance (E)</strong><a class="headerlink" href="#643-irradiance-e" title="Permanent link">&para;</a></h3>
 <p>Definition: The <strong>irradiance</strong> is the power per (perpendicular/<strong>projected</strong>) unit area incident on a surface point.</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-27%20215749.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-27%20215749.png" /></a>
-$$
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-27%20215749.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-27%20215749.png" /></a></p>
+<div class="arithmatex">\[
 E(\pmb x)\equiv \frac{\text{d}\Phi(\pmb x)}{\text{d}A}
-$$</p>
+\]</div>
 <div class="arithmatex">\[
 [\frac{\text{W}}{\text{m}^2}][\frac{\text{lm}}{\text{m}^2}=\text{lux}]
 \]</div>
@@ -1958,10 +1958,10 @@ f_r(\omega_i \rightarrow \omega_r)=\frac{\text{d}L_r(\omega_r)}{\text{d}E_i(\ome
 <div class="arithmatex">\[
 L_r(p, \omega_r) = \int_{H^2} f_r(p, \omega_i \rightarrow \omega_r) L_i(p, \omega_i) \cos \theta_i \, \mathrm{d}\omega_i
 \]</div>
-<p>如果物体本身也发光，那么我们可以增加 <span class="arithmatex">\(L_e(p,\omega_o)\)</span> 来代表物体发出的radiance。然后又因为cos为负数时光线会被遮挡，所以只考虑上半球面，接着用法向量与方向向量的乘积代表相应的余弦值，这样我们可以得到 了Rendering equation。
-$$
-L_o(p,\omega_o)=L_e(p,\omega_o)+\int_{\Omega^+}L_i(p,\omega_i)f_r(p,\omega_i,\omega_o) (n\cdot\omega_i)  \text{d}\omega_i
-$$</p>
+<p>如果物体本身也发光，那么我们可以增加 <span class="arithmatex">\(L_e(p,\omega_o)\)</span> 来代表物体发出的radiance。然后又因为cos为负数时光线会被遮挡，所以只考虑上半球面，接着用法向量与方向向量的乘积代表相应的余弦值，这样我们可以得到 了Rendering equation。</p>
+<div class="arithmatex">\[
+L_o(p,\omega_o)=L_e(p,\omega_o)+\int_{\Omega^+}L_i(p,\omega_i)f_r(p,\omega_i,\omega_o)\ (n\cdot\omega_i) \ \text{d}\omega_i
+\]</div>
 <p>同时我们也注意到 Reflected radiance depends on incoming radiance, But incoming radiance depends on reflected radiance (at another point in the scene) </p>
 <div class="arithmatex">\[
 L_r(x,\omega_r)=L_e(x,\omega_r)+\int_{\Omega}L_r(x',-\omega_i)f(x,\omega_i, \omega_r)\ cos\theta_i\text{ d}\omega_i
