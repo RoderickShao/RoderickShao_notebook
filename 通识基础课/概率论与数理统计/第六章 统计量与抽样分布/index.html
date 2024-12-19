@@ -1546,14 +1546,14 @@ X=\sum_{i=1}^nX_i^2
 <p>随机变量相互独立，每个随机变量遵循标准正态分布</p>
 </div>
 <h4 id="_1"><strong>概率密度函数</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
-<p><span class="arithmatex">\(\chi^2(n)\)</span> 分布的概率密度为：
-$$
-f(x)=\left{ 
+<p><span class="arithmatex">\(\chi^2(n)\)</span> 分布的概率密度为：</p>
+<div class="arithmatex">\[
+f(x)=\left\{ 
 \begin{aligned}
-&amp;\frac{1}{2^{n/2}\Gamma(n/2)}x^{\frac n2-1}e^{-\frac x2}, &amp;&amp;x &gt; 0,\
+&amp;\frac{1}{2^{n/2}\Gamma(n/2)}x^{\frac n2-1}e^{-\frac x2},\ &amp;&amp;x &gt; 0,\\
 &amp;0, &amp;&amp;x \le0,
 \end{aligned}\right.
-$$</p>
+\]</div>
 <p>其中 <span class="arithmatex">\(\Gamma(\alpha)=\int_0^{+\infty}t^{\alpha-1}e^{-t}dt\)</span></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20110240.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20110240.png" /></a></p>
 <h4 id="_2"><strong>上侧 α 分位数</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
@@ -1564,7 +1564,7 @@ $$</p>
 \int_{\chi^2_\alpha(n)}^{\infty} f(x) \, dx = \alpha
 \]</div>
 <p>的点 <span class="arithmatex">\(\chi^2_\alpha(n)\)</span> 为 <span class="arithmatex">\(\chi^2(n)\)</span> 分布的上侧 <span class="arithmatex">\(\alpha\)</span> 分位数。</p>
-<p><strong>性质</strong>：若 $ X \sim \chi^2(n)$, <span class="arithmatex">\(P(X &gt; \chi^2_\alpha(n)) = \alpha\)</span>,</p>
+<p><strong>性质</strong>：若 <span class="arithmatex">\(X \sim \chi^2(n)\)</span>, <span class="arithmatex">\(P(X &gt; \chi^2_\alpha(n)) = \alpha\)</span>,</p>
 <p>上 <span class="arithmatex">\(\alpha\)</span> 分位数 <span class="arithmatex">\(\chi^2_\alpha(n)\)</span> 的值可查 <span class="arithmatex">\(\chi^2\)</span> 分布表：<span class="arithmatex">\(\chi^2_{0.1}(40) = 51.805\)</span></p>
 <div class="admonition note">
 <p class="admonition-title">n&gt;40的情况</p>
@@ -1574,7 +1574,7 @@ $$</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">n非常大的时候</p>
-<p>若 $ n $ 足够大，<span class="arithmatex">\(X \sim \chi^2(n)\)</span>，由中心极限定理可知，<span class="arithmatex">\(X \sim N(n, 2n)\)</span></p>
+<p>若 <span class="arithmatex">\(n\)</span> 足够大，<span class="arithmatex">\(X \sim \chi^2(n)\)</span>，由中心极限定理可知，<span class="arithmatex">\(X \sim N(n, 2n)\)</span></p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -1585,7 +1585,7 @@ $$</p>
 <p>设 <span class="arithmatex">\(Y_1\sim\chi^2(n_1),Y_2\sim\chi^2(n_2)\)</span>，且 <span class="arithmatex">\(Y_1,Y_2\)</span> 相互独立，则有 <span class="arithmatex">\(Y_1+Y_2\sim\chi^2(n_1+n_2)\)</span></p>
 <p>（2）<span class="arithmatex">\(\chi^2\)</span> 分布的<strong>数学期望</strong>和<strong>方差</strong></p>
 <p>设 <span class="arithmatex">\(Y\sim \chi^2(n)\)</span>，则有 <span class="arithmatex">\(E(Y)=n,Var(Y)=2n\)</span></p>
-<p><strong>证明</strong>：设 <span class="arithmatex">\(Y = X_1^2 + X_2^2 + \cdots + X_n^2\)</span>，$ X_1, X_2, \ldots, X_n $ 均服从 $ N(0, 1) $ 的独立随机变量。</p>
+<p><strong>证明</strong>：设 <span class="arithmatex">\(Y = X_1^2 + X_2^2 + \cdots + X_n^2\)</span>，<span class="arithmatex">\(X_1, X_2, \ldots, X_n\)</span> 均服从 <span class="arithmatex">\(N(0, 1)\)</span> 的独立随机变量。</p>
 <p>期望和方差的计算</p>
 <div class="arithmatex">\[
 E(Y) = E(X_1^2 + X_2^2 + \cdots + X_n^2) = n E(X_1^2) = n [Var(X_1) + E^2(X_1)] = n 
@@ -1609,10 +1609,10 @@ t=\frac{X}{\sqrt {Y/n}}
 \]</div>
 <p>服从自由度为 <span class="arithmatex">\(n\)</span> 的 t-分布，记为 <span class="arithmatex">\(t\sim t(n)\)</span></p>
 <h4 id="_4"><strong>概率密度函数</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
-<p><span class="arithmatex">\(t(n)\)</span> 分布的<strong>概率密度函数</strong>为：
-$$
+<p><span class="arithmatex">\(t(n)\)</span> 分布的<strong>概率密度函数</strong>为：</p>
+<div class="arithmatex">\[
 f(t) = \frac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n\pi} \cdot \Gamma\left(\frac{n}{2}\right)} \left(1 + \frac{t^2}{n}\right)^{-\frac{n+1}{2}}, \quad -\infty &lt; t &lt; +\infty
-$$</p>
+\]</div>
 <h4 id="_5"><strong>上侧 α 分位数</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <p>对给定的 <span class="arithmatex">\(\alpha\)</span>，<span class="arithmatex">\(0 &lt; \alpha &lt; 1\)</span>，称满足条件 <span class="arithmatex">\(P(t &gt; t_\alpha(n)) = \int_{t_\alpha(n)}^\infty f(t) \, dt = \alpha\)</span> 的点 <span class="arithmatex">\(t_\alpha(n)\)</span> 为 t(n) 分布的<strong>上侧 <span class="arithmatex">\(\alpha\)</span> 分位数</strong>。t 分布的上 <span class="arithmatex">\(\alpha\)</span> 分位数可查 t 分布表.</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20112317.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20112317.png" /></a></p>
@@ -1649,11 +1649,11 @@ f(x) = \begin{cases}
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>(2) 设 <span class="arithmatex">\(t = \frac{X}{\sqrt{Y/n}} \sim t(n)\)</span></p>
-<p>其中 <span class="arithmatex">\(X \sim N(0, 1) <span class="arithmatex">\(，\)</span>Y \sim \chi^2(n)\)</span>，并且两者独立。</p>
+<p>其中 <span class="arithmatex">\(X \sim N(0, 1)\)</span>，<span class="arithmatex">\(Y \sim \chi^2(n)\)</span>，并且两者独立。</p>
 <p>因此：<span class="arithmatex">\(t^2 = \frac{X^2}{Y/n} = \frac{X^2 / 1}{Y/n} \sim F(1, n)\)</span></p>
-<p>(3) 设 <span class="arithmatex">\(t \sim t(n)\)</span>，则 $ t^2 \sim F(1, n) $</p>
+<p>(3) 设 <span class="arithmatex">\(t \sim t(n)\)</span>，则 $ t^2 \sim F(1, n)$</p>
 <p><span class="arithmatex">\(P(t^2 &gt; (t_{\alpha/2}(n))^2)= P(\{t &gt; t_{\alpha/2}(n)\} \cup \{t &lt; -t_{\alpha/2}(n)\}) = \frac{\alpha}{2} + \frac{\alpha}{2} = \alpha\)</span></p>
-<p>因此：$(t_{\alpha/2}(n))^2 = F_\alpha(1, n) $</p>
+<p>因此：<span class="arithmatex">\((t_{\alpha/2}(n))^2 = F_\alpha(1, n)\)</span></p>
 <p>(4) 设 <span class="arithmatex">\(F \sim F(n_1, n_2)\)</span>，则 <span class="arithmatex">\(\frac{1}{F} \sim F(n_2, n_1)\)</span></p>
 <p><span class="arithmatex">\(1 - \alpha = P(F &gt; F_{1-\alpha}(n_1, n_2)) = P(\frac{1}{F} &lt; \frac{1}{F_{1-\alpha}(n_1, n_2)})= 1 - P(\frac{1}{F} \geq \frac{1}{F_{1-\alpha}(n_1, n_2)})\)</span> </p>
 <p>即 <span class="arithmatex">\(P(\frac{1}{F} \geq \frac{1}{F_{1-\alpha}(n_1, n_2)}) = \alpha\)</span></p>
