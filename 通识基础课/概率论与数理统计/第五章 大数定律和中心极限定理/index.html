@@ -1338,7 +1338,7 @@ lim_{n\rightarrow+\infty}P\{|Y_n-c|\ge\epsilon\}=0
 <div class="arithmatex">\[
 g(X_n, Y_n) \xrightarrow{P} g(a, b)
 \]</div>
-<p>例如当 $ n \to \infty $ 时，</p>
+<p>例如当 <span class="arithmatex">\(n \to \infty\)</span> 时，</p>
 <div class="arithmatex">\[
 \begin{aligned}
 X_n + Y_n &amp;\xrightarrow{P} a + b,\\
@@ -1459,7 +1459,7 @@ E(X_i) = \mu, \quad Var(X_i) = \sigma^2, \quad i = 1, 2, \ldots, \forall x \in R
 <div class="arithmatex">\[
 \forall x \in R, \text{ 有: } \lim_{n \to +\infty} P \left( \frac{n_A - np}{\sqrt{np(1 - p)}} \leq x \right) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt = \Phi(x)
 \]</div>
-<p>若 $ n $ 足够大，$ n_A \sim B(n, p) $，则 $ n_A \sim N(np, npq) $。</p>
+<p>若 <span class="arithmatex">\(n\)</span> 足够大，<span class="arithmatex">\(n_A \sim B(n, p)\)</span>，则 <span class="arithmatex">\(n_A \sim N(np, npq)\)</span>。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>伯努利试验看为多个 0-1试验的叠加，并应用中心极限定理</p>
@@ -1468,9 +1468,9 @@ E(X_i) = \mu, \quad Var(X_i) = \sigma^2, \quad i = 1, 2, \ldots, \forall x \in R
 1 &amp; \text{第 } i \text{ 次试验时 } A \text{ 发生} \\
 0 &amp; \text{第 } i \text{ 次试验时 } A \text{ 未发生}
 \end{cases}\)</span></p>
-<p>则 $ X_1, X_2, \ldots, X_n, \ldots $ 相互独立同分布，$ X_i \sim B(1, p) $。</p>
-<p>由于 $ n_A = X_1 + X_2 + \cdots + X_n $，</p>
-<p>符合<strong>独立同分布</strong>的中心极限定理，所以 $ n_A \sim N(np, npq) $。</p>
+<p>则 <span class="arithmatex">\(X_1, X_2, \ldots, X_n, \ldots\)</span> 相互独立同分布，<span class="arithmatex">\(X_i \sim B(1, p)\)</span>。</p>
+<p>由于 <span class="arithmatex">\(n_A = X_1 + X_2 + \cdots + X_n\)</span>，</p>
+<p>符合<strong>独立同分布</strong>的中心极限定理，所以 <span class="arithmatex">\(n_A \sim N(np, npq)\)</span>。</p>
 <p>计算公式：</p>
 <div class="arithmatex">\[
 P(a &lt; n_A \leq b) \approx \Phi \left( \frac{b - np}{\sqrt{np(1 - p)}} \right) - \Phi \left( \frac{a - np}{\sqrt{np(1 - p)}} \right)
