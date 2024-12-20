@@ -1724,7 +1724,7 @@
 
 <h1 id="4-the-processor"><strong>4 The Processor</strong><a class="headerlink" href="#4-the-processor" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4322 个字  •  18 行代码  预计阅读时间 15 分钟
+    文本统计：约 4327 个字  •  18 行代码  预计阅读时间 15 分钟
 </div>
 
 <p>Datapath: Elements that process data and addresses in the CPU, like Registers, ALUs, mux’s, memories, …</p>
@@ -1918,8 +1918,8 @@
 </details>
 <p>当所有阶段都是平衡的时候，</p>
 <div class="arithmatex">\[
-Time\ between\ instructions_{pipelined}\\
-= Time\ between\ instructions_{nonpipelined}/Number\ of\ stages
+\text{Time between instructions}_{\text{pipelined}}
+= \text{Time between instructions}_{\text{nonpipelined}}/\text{Number of stages}
 \]</div>
 <p>当然我们不可能做到全部阶段都平衡，实际上速度会稍慢一些</p>
 <p>流水线未提高latency（time for each instruction）, 但是提高了throughput (吞吐量)</p>
@@ -1987,7 +1987,7 @@ Time\ between\ instructions_{pipelined}\\
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102617.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102617.png" /></a></p>
 <p>执行WB阶段</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102630.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102630.png" /></a></p>
-<p>我们注意到在执行WB阶段的时候写回寄存器的地址并不是ld指令的地址，而是另一条指令的<code>Write register</code>部分，这样会造成数据写入错误，所以我们应该将<code>ld</code>指令的<code>Write register</code>信息一直保存在流水线寄存器中并在执行WB阶段的时候使用对应寄存器中的内容。</p>
+<p>我们注意到在执行WB阶段的时候写回寄存器的地址<strong>并不是ld指令的地址</strong>，而是<strong>另一条指令</strong>的<code>Write register</code>部分，这样会造成数据写入错误，所以我们应该将<code>ld</code>指令的<code>Write register</code>信息<strong>一直保存</strong>在流水线寄存器中并在执行WB阶段的时候使用对应寄存器中的内容。</p>
 <p>正确的电路如下图所示</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102637.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102637.png" /></a></p>
 <p>对于相应的控制信号，我们也要将其存储到相应的流水线寄存器中</p>
