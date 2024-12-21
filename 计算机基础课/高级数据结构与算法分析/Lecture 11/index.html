@@ -1564,7 +1564,7 @@
 
 <h1 id="11-approximation"><strong>11 Approximation</strong><a class="headerlink" href="#11-approximation" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1509 个字  •  40 行代码  预计阅读时间 6 分钟
+    文本统计：约 1777 个字  •  40 行代码  预计阅读时间 6 分钟
 </div>
 
 <p>引入近似算法的目的是什么？解决比较困难的问题（NPC）</p>
@@ -1575,7 +1575,7 @@
 <p>用多项式时间解决一些重要的特殊情况</p>
 </li>
 <li>
-<p>用多项式时间找到一个近似最优的solution，这个就被称为近似算法。我们这章就主要围绕这一点展开。</p>
+<p>用多项式时间找到一个近似最优的solution，这个就被称为<strong>近似算法</strong>。我们这章就主要围绕这一点展开。</p>
 </li>
 </ul>
 <h2 id="111-definition"><strong>11.1 Definition</strong><a class="headerlink" href="#111-definition" title="Permanent link">&para;</a></h2>
@@ -1585,8 +1585,8 @@
 max(\frac{C}{C^*},\frac{C^*}{C})\le \rho(n)
 \]</div>
 <p>If an algorithm achieves an approximation ratio of <span class="arithmatex">\(\rho(n)\)</span>, we call it a <strong><span class="arithmatex">\(\rho(n)\)</span>-approximation algorithm</strong>.</p>
-<p>An <strong>approximation scheme（近似方案）</strong> for an optimization problem is an approximation algorithm that takes as input not only an instance of the problem, but also a value <span class="arithmatex">\(\epsilon\)</span> &gt; 0 such that for any fixed <span class="arithmatex">\(\epsilon\)</span>, the scheme is a (1+ <span class="arithmatex">\(\epsilon\)</span>)-approximation algorithm.</p>
-<p>We say that an approximation scheme is a <strong>polynomial-time approximation scheme (PTAS)</strong> if for any fixed <span class="arithmatex">\(\epsilon\)</span> &gt; 0, the scheme runs in time polynomial in the size <span class="arithmatex">\(n\)</span> of its input instance.</p>
+<p>An <strong>approximation scheme（近似方案）</strong> for an optimization problem is an approximation algorithm that takes as input not only an instance of the problem, but also a value <span class="arithmatex">\(\varepsilon\)</span> &gt; 0 such that for any fixed <span class="arithmatex">\(\varepsilon\)</span>, the scheme is a (1+ <span class="arithmatex">\(\varepsilon\)</span>)-approximation algorithm.</p>
+<p>We say that an approximation scheme is a <strong>polynomial-time approximation scheme (PTAS)</strong> if for any fixed <span class="arithmatex">\(\varepsilon\)</span> &gt; 0, the scheme runs in time polynomial in the size <span class="arithmatex">\(n\)</span> of its input instance.</p>
 <p>若对于每一个固定的 <span class="arithmatex">\(ϵ &gt; 0\)</span> ，算法 A 的运行时间以实例 <span class="arithmatex">\(I\)</span> 的规模的多项式为上界，则称 A 是一个多项时间近似方案 (PTAS) 。比如说 <span class="arithmatex">\(O(n^{2/\epsilon})\)</span></p>
 <p>在 PTAS 的基础上，进一步要求算法 A 的运行时间以实例 <span class="arithmatex">\(I\)</span> 的规模和 <span class="arithmatex">\(1/\epsilon\)</span> 的多项式为上界，则称 A 是一个完全多项时间近似方案 (FPTAS) 。比如说 <span class="arithmatex">\(O((1/\epsilon)^2n^3)\)</span></p>
 <h2 id="112-approximate-bin-packing"><strong>11.2 Approximate Bin Packing</strong><a class="headerlink" href="#112-approximate-bin-packing" title="Permanent link">&para;</a></h2>
@@ -1697,8 +1697,7 @@ FFD(I)FFD(L)\le (11/9)OPT(L) + 1&lt;(3/2)OPT(L)
 <p>A knapsack with a capacity <span class="arithmatex">\(M\)</span>  is to be packed.  Given <span class="arithmatex">\(N\)</span> items.  Each item <span class="arithmatex">\(i\)</span> has a weight <span class="arithmatex">\(w_i\)</span> and a profit <span class="arithmatex">\(p_i\)</span> .  </p>
 <h3 id="1131-fractional-version"><strong>11.3.1 Fractional version</strong><a class="headerlink" href="#1131-fractional-version" title="Permanent link">&para;</a></h3>
 <p>If <span class="arithmatex">\(x_i\)</span> is the percentage of the item <span class="arithmatex">\(i\)</span> being packed, then the packed profit will be <span class="arithmatex">\(p_ix_i\)</span> . </p>
-<p>An optimal packing is a feasible one with maximum profit.  That is, 
-we are supposed to find the values of <span class="arithmatex">\(x_i\)</span> such that <span class="arithmatex">\(\sum_{i=1}^np_ix_i\)</span> obtains its maximum under the constrains <span class="arithmatex">\(\sum_{i=1}^n w_ix_i\le M\)</span> and <span class="arithmatex">\(x_i\in [0,1]\)</span> for <span class="arithmatex">\(1\le i \le n\)</span></p>
+<p>An optimal packing is a feasible one with maximum profit.  That is, we are supposed to find the values of <span class="arithmatex">\(x_i\)</span> such that <span class="arithmatex">\(\sum_{i=1}^np_ix_i\)</span> obtains its maximum under the constrains <span class="arithmatex">\(\sum_{i=1}^n w_ix_i\le M\)</span> and <span class="arithmatex">\(x_i\in [0,1]\)</span> for <span class="arithmatex">\(1\le i \le n\)</span></p>
 <p>一个容易的贪心算法就是永远选择性价比最高的那个物体，反正可以放一部分，所以这个算法得到的就是最优解。</p>
 <h3 id="1132-0-1-version"><strong>11.3.2 0-1 version</strong><a class="headerlink" href="#1132-0-1-version" title="Permanent link">&para;</a></h3>
 <p>如果只能要么放入物体，要么不放入物体。这样的问题是NP-hard的</p>
@@ -1723,8 +1722,8 @@ p_{max}\le P_{greedy}
 <p>我们也可以证明这个0-1背包问题有FPTAS的算法（将数据同时除以一个值，降低了精度（可控制））</p>
 <h2 id="114-the-k-center-problem"><strong>11.4 The K-center Problem</strong><a class="headerlink" href="#114-the-k-center-problem" title="Permanent link">&para;</a></h2>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20224709.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20224709.png" /></a></p>
-<p>定义 <span class="arithmatex">\(dist(s_i,C)=min_{c\in C}dist(s_i,c)\)</span> <span class="arithmatex">\(r(C)=max\{dist(s_i,C),i=1,2,..,n\}\)</span></p>
-<p>我们要取K个中心点构成集合C使得 <span class="arithmatex">\(r(C)\)</span> 最小。</p>
+<p>定义 <span class="arithmatex">\(\text{dist}(s_i,C)=\min_{c\in C}\text{dist}(s_i,c)\)</span> <span class="arithmatex">\(r(C)=\max\{\text{dist}(s_i,C),i=1,2,..,n\}\)</span></p>
+<p>我们要取K个中心点构成集合 <span class="arithmatex">\(C\)</span> 使得 <span class="arithmatex">\(r(C)\)</span> 最小。</p>
 <h3 id="1141-naive-greedy"><strong>11.4.1 Naive greedy</strong><a class="headerlink" href="#1141-naive-greedy" title="Permanent link">&para;</a></h3>
 <p>一个做法是，我们每次都选择最可能成为中心的那个点，具体来说：</p>
 <ol>
@@ -1776,10 +1775,13 @@ p_{max}\le P_{greedy}
 <h3 id="1143-2"><strong>11.4.3 近似比可以小于2吗</strong><a class="headerlink" href="#1143-2" title="Permanent link">&para;</a></h3>
 <p>答案是否定的</p>
 <p>【Theorem】 Unless <span class="arithmatex">\(P = NP\)</span>, there is no <span class="arithmatex">\(\rho\)</span> -approximation for center-selection problem for any <span class="arithmatex">\(\rho\)</span> &lt; 2.</p>
-<p>Sketch of the proof: By contradiction.</p>
-<p>If we can obtain a <span class="arithmatex">\((2-\epsilon)\)</span>-approximation in polynomial time, then we can solve <strong>DOMINATING-SET</strong> (which is NP-complete) in polynomial time.</p>
-<p>Dominating set problem has a solution of size <span class="arithmatex">\(K\)</span> iff there exists <span class="arithmatex">\(K\)</span> centers <span class="arithmatex">\(C^*\)</span> with <span class="arithmatex">\(r(C^*) = 1\)</span>.</p>
-<p>Then a <span class="arithmatex">\((2-\epsilon)\)</span>-approximation must give the optimal solution since all the distances involved are integers.</p>
+<p><strong>DOMINATING-SET problem</strong>: 支配集问题，对于图 <span class="arithmatex">\(G(V,E)\)</span> 来说，称 <span class="arithmatex">\(V\)</span> 的子集 <span class="arithmatex">\(V'\)</span> 为支配集，若对 <span class="arithmatex">\(\forall u \in V,\exist v\in V',s.t. (u,v)\in E\)</span>，问个数最小的支配集为多少？</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在该问题中，我们可以定义点到点之间的距离为点到点之间最短通路的边数，那么在该问题中距离均为整数</p>
+</div>
+<p>已知这个问题是一个 NPC 问题，如果存在近似比小于2的多项式算法 <span class="arithmatex">\(A\)</span>，那么对于该支配集问题，我们可以（下面会讨论）在多项式时间内解决该问题，这样就产生了矛盾</p>
+<p>怎么解决？我们设顶点数为 <span class="arithmatex">\(n\)</span>，那么我们从 <span class="arithmatex">\(1\)</span> 开始，依次令 <span class="arithmatex">\(K=1,2,..n-n-1\)</span> ，运用算法 <span class="arithmatex">\(A\)</span>，得到最短的距离。由于这个算法的近似比小于2，那么如果最佳的最短距离为1，由于近似比小于2，那么运用算法 <span class="arithmatex">\(A\)</span> 得到的最短距离就为1；如果最佳的最短距离不为1，那么算法 <span class="arithmatex">\(A\)</span> 得到的距离显然不为1。所以我们只要不断递增 <span class="arithmatex">\(K\)</span>, 当第一次得到的最短距离为1的时候，这时的 <span class="arithmatex">\(K\)</span> 就是支配集问题的解。这个算法是多项式算法。</p>
 <h2 id="summary"><strong>Summary</strong><a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>关于算法的设计，我们考虑这三个维度：</p>
 <ol>

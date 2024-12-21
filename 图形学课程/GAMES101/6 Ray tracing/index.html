@@ -1566,7 +1566,7 @@
 
 <h1 id="6-ray-tracing"><strong>6 Ray tracing</strong><a class="headerlink" href="#6-ray-tracing" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4225 个字  •  98 行代码  预计阅读时间 15 分钟
+    文本统计：约 4640 个字  •  98 行代码  预计阅读时间 17 分钟
 </div>
 
 <h2 id="60-introduction"><strong>6.0 Introduction</strong><a class="headerlink" href="#60-introduction" title="Permanent link">&para;</a></h2>
@@ -1664,8 +1664,119 @@ t=\frac{(\pmb p'-\pmb o)\cdot \pmb N}{\pmb d\cdot \pmb N}
 \]</div>
 <p>并验证t是不是正的。</p>
 <p>有一个更快的算法：<strong>Moller Trumbore Algorithm</strong></p>
-<p>利用三角形的重心坐标，然后利用Crammer法则，解得三个变量。当三个量都是非负的时候，交点就在三角形内。</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-20%20121638.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-20%20121638.png" /></a></p>
+<p>利用三角形的重心坐标，然后利用Crammer法则，解得三个变量。当三个量都是非负的时候，交点就在三角形内。
+$$
+\vec{O} + t\vec{D} = (1 - b_1 - b_2)\vec{P}_0 + b_1\vec{P}_1 + b_2\vec{P}_2
+$$</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+t \\
+b_1 \\
+b_2
+\end{bmatrix}
+=
+\frac{1}{\vec{S}_1 \cdot \vec{E}_1}
+\begin{bmatrix}
+\vec{S}_2 \cdot \vec{E}_2 \\
+\vec{S}_1 \cdot \vec{S} \\
+\vec{S}_2 \cdot \vec{D}
+\end{bmatrix}
+\]</div>
+<p>其中</p>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+&amp;\vec{E}_1 = \vec{P}_1 - \vec{P}_0\\
+&amp;\vec{E}_2 = \vec{P}_2 - \vec{P}_0\\
+&amp;\vec{S} = \vec{O} - \vec{P}_0\\
+&amp;\vec{S}_1 = \vec{D} \times \vec{E}_2\\
+&amp;\vec{S}_2 = \vec{S} \times \vec{E}_1
+\end{aligned}
+\right.
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>具体推导过程:</p>
+<div class="arithmatex">\[
+\vec{O} + t\vec{D} = (1 - b_1 - b_2)\vec{P}_0 + b_1\vec{P}_1 + b_2\vec{P}_2
+\]</div>
+<p>用矩阵来表达就是:</p>
+<div class="arithmatex">\[
+\vec O - \vec P_2
+=
+\begin{bmatrix} -\vec D &amp; \vec P_1-\vec P_2 &amp; \vec P_2 -\vec P_1
+\end{bmatrix}
+\begin{bmatrix}
+t \\
+b_1 \\
+b_2
+\end{bmatrix}
+\]</div>
+<p>再进行换元:</p>
+<div class="arithmatex">\[
+\vec O - \vec P_2
+=
+\begin{bmatrix} -\vec D &amp; \vec E_1 &amp; \vec E_2
+\end{bmatrix}
+\begin{bmatrix}
+t \\
+b_1 \\
+b_2
+\end{bmatrix}
+\]</div>
+<p>根据 Crammer 法则解得</p>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+t=\frac{|\begin{matrix}
+\vec S &amp;
+\vec E_1 &amp;
+\vec E_2
+\end{matrix}|}
+{|\begin{matrix}
+-\vec D &amp;
+\vec E_1 &amp;
+\vec E_2
+\end{matrix}|}=\frac{(\vec S_1\times\vec E_1)\cdot \vec E_2}{(\vec D\times \vec E_2)\cdot \vec E_1}\\
+b_1=\frac{|\begin{matrix}
+-\vec D &amp;
+\vec S &amp;
+\vec E_2
+\end{matrix}|}
+{|\begin{matrix}
+-\vec D &amp;
+\vec E_1 &amp;
+\vec E_2
+\end{matrix}|}=\frac{(\vec D\times\vec E_2)\cdot \vec S}{(\vec D\times \vec E_2)\cdot \vec E_1}\\
+b_2=\frac{|\begin{matrix}
+-\vec D &amp;
+\vec E_1 &amp;
+\vec S
+\end{matrix}|}
+{|\begin{matrix}
+-\vec D &amp;
+\vec E_1 &amp;
+\vec E_2
+\end{matrix}|}=\frac{(\vec S\times\vec E_1)\cdot \vec D}{(\vec D\times \vec E_2)\cdot \vec E_1}\\
+\end{aligned}
+\right.
+\]</div>
+<p>再换元即得:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+t \\
+b_1 \\
+b_2
+\end{bmatrix}
+=
+\frac{1}{\vec{S}_1 \cdot \vec{E}_1}
+\begin{bmatrix}
+\vec{S}_2 \cdot \vec{E}_2 \\
+\vec{S}_1 \cdot \vec{S} \\
+\vec{S}_2 \cdot \vec{D}
+\end{bmatrix}
+\]</div>
+</div>
 <h2 id="63-accelerating-ray-surface-intersection"><strong>6.3 Accelerating Ray-Surface Intersection</strong><a class="headerlink" href="#63-accelerating-ray-surface-intersection" title="Permanent link">&para;</a></h2>
 <p>我们当然可以简单地就计算每个三角形与光线是否有交点，但这样计算量太大了，运行速度也比较慢。</p>
 <p>于是我们引入一个方法：<strong>Bounding Volumes</strong></p>

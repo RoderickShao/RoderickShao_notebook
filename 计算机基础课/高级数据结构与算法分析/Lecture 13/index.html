@@ -1386,7 +1386,7 @@
 
 <h1 id="13-randomized-algorithms"><strong>13 Randomized Algorithms</strong><a class="headerlink" href="#13-randomized-algorithms" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1178 个字  •  38 行代码  预计阅读时间 4 分钟
+    文本统计：约 1244 个字  •  37 行代码  预计阅读时间 5 分钟
 </div>
 
 <p>随机的概念：随机在算法一般有两种含义，一种是指输入在指定的集合内是随机生成的，另一种是指算法的行为具有随机性（相同输入，相同步骤时，下一步操作可能不同）。随机算法一般指的是第二种。</p>
@@ -1486,17 +1486,25 @@ P(S)=\sum_{i=k+1}^NP(S_i)=\sum_{i=k+1}^N\frac{k}{N(i-1)}=\frac{k}{N}\sum_{i=k}^{
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>FI
 </code></pre></div>
 <p>首先，我们知道<code>Partition</code>函数被调用了<span class="arithmatex">\(n\)</span>次，并且该函数用于将数组<span class="arithmatex">\(A\)</span>中的每个元素与枢轴进行比较。因此，时间成本主要取决于比较的次数。</p>
-<p>然后，回到两个数<span class="arithmatex">\(Z_i\)</span>和<span class="arithmatex">\(Z_j\)</span>的情况，我们需要了解它们被比较的可能性（假设每对比较都是独立的)。我们设定序列<span class="arithmatex">\(Z\)</span>是<strong>升序</strong>排列的，并且知道<span class="arithmatex">\(Z_i\)</span>和<span class="arithmatex">\(Z_j\)</span>只有在其中一个作为枢轴时才会被比较；如果存在一个位于<span class="arithmatex">\(Z_i\)</span>和<span class="arithmatex">\(Z_j\)</span>之间的枢轴，那么<span class="arithmatex">\(Z_i\)</span>和<span class="arithmatex">\(Z_j\)</span>将会分开。</p>
+<p>然后，回到两个数 <span class="arithmatex">\(Z_i\)</span> 和 <span class="arithmatex">\(Z_j\)</span> 的情况，我们需要了解它们被比较的可能性（假设每对比较都是独立的)。我们设定序列<span class="arithmatex">\(Z\)</span>是<strong>升序</strong>排列的，并且知道<span class="arithmatex">\(Z_i\)</span>和<span class="arithmatex">\(Z_j\)</span>只有在其中一个作为枢轴时才会被比较；如果存在一个位于<span class="arithmatex">\(Z_i\)</span>和<span class="arithmatex">\(Z_j\)</span>之间的枢轴，那么<span class="arithmatex">\(Z_i\)</span>和<span class="arithmatex">\(Z_j\)</span>将会分开。</p>
 <p>因此，它们被比较的概率为：<span class="arithmatex">\(P = \frac{2}{j-i+1}\)</span></p>
-<p>期望值<span class="arithmatex">\(E(X)\)</span>可以表示为：$ E(X) = \sum_{i=1}^{n-1} \sum_{j=i+1}^n \frac{2}{j-i+1} $</p>
-<p>考虑到<span class="arithmatex">\(\sum_{j=i+1}^n \frac{2}{j-i+1}\)</span>近似于<span class="arithmatex">\(\log n\)</span>，而<span class="arithmatex">\(\sum_{i=1}^{n-1} = n\)</span>，所以总的时间复杂度大约为<span class="arithmatex">\(n\log n\)</span>。</p>
+<p>期望值 <span class="arithmatex">\(E(X)\)</span>可以表示为：<span class="arithmatex">\(E(X) = \sum_{i=1}^{n-1} \sum_{j=i+1}^n \frac{2}{j-i+1}\)</span></p>
+<p>考虑到 <span class="arithmatex">\(\sum_{j=i+1}^n \frac{2}{j-i+1}\)</span> 近似于 <span class="arithmatex">\(\log n\)</span>，而 <span class="arithmatex">\(\sum_{i=1}^{n-1} = n\)</span>，所以总的时间复杂度大约为 <span class="arithmatex">\(n\log n\)</span>。</p>
 <p>这样我们就得到了快速排序算法中比较操作的平均时间复杂度估计。</p>
 <p>我们对上述算法稍微做一些改进，希望这个 pivot 更靠中间一点</p>
 <p><strong>Central splitter</strong>: the pivot that divides the set so that each side contains at least <span class="arithmatex">\(n/4\)</span></p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-21%20180327.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-21%20180327.png" /></a></center></p>
 <p>我们随机选取pivot，然后验证这个是不是central splitter，失败就再选一个，期望的查找次数为2</p>
+<div class="arithmatex">\[
+E(\# \text{find})=\sum_{i=1}^{+\infty}\frac{i}{2^i}=2
+\]</div>
 <p>算法时间复杂度分析：</p>
-<p>法一：我们定义 Type j 为复杂度在 <span class="arithmatex">\(N(\frac34)^{j+1}\)</span> 到 <span class="arithmatex">\(N(\frac34)^j\)</span> 之间的子问题。</p>
-<p>那么 Type j 的子问题个数最多有 <span class="arithmatex">\((\frac43)^{j+1}\)</span> 个，这类子问题的复杂度总和为 <span class="arithmatex">\(O(N)\)</span>，一共有 <span class="arithmatex">\(log_{\frac43}N=O(logN)\)</span> 类，所以整个算法的时间复杂度是 <span class="arithmatex">\(O(NlogN)\)</span></p>
+<p>法一：我们定义 Type j 为规模在 <span class="arithmatex">\(N(\frac34)^{j+1}\)</span> 到 <span class="arithmatex">\(N(\frac34)^j\)</span> 之间的子问题。</p>
+<p>那么 Type j 的子问题个数最多有 <span class="arithmatex">\((\frac43)^{j+1}\)</span> 个，因为总共的规模为 <span class="arithmatex">\(N\)</span>，而处理每个子问题，我们需要做的是将这个与另一部分合并，以及寻找下一个pivot的工作（期望是2轮）这两个都是线性时间的</p>
+<div class="arithmatex">\[
+E[T_{type~j}]=O(N(\frac34)^j)\times (\frac43)^j=O(N)
+\]</div>
+<p>一共有 <span class="arithmatex">\(log_{\frac43}N=O(logN)\)</span> 类，所以整个算法的时间复杂度是 <span class="arithmatex">\(O(NlogN)\)</span></p>
 <p>法二：利用递推公式</p>
 <div class="arithmatex">\[
 f(N)=f(N/4)+f(3N/4)+O(N)

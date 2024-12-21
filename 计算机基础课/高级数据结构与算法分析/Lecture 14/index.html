@@ -1510,14 +1510,14 @@
 
 <h1 id="14-parallel-algorithm"><strong>14 Parallel Algorithm</strong><a class="headerlink" href="#14-parallel-algorithm" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1723 个字  •  38 行代码  预计阅读时间 6 分钟
+    文本统计：约 1751 个字  •  38 行代码  预计阅读时间 6 分钟
 </div>
 
 <h2 id="141-introduction"><strong>14.1 Introduction</strong><a class="headerlink" href="#141-introduction" title="Permanent link">&para;</a></h2>
 <p>并行：</p>
 <ul>
 <li>Machine parallelism：硬件上的并行</li>
-<li>Parallel algorithms：算法并行，这其中有两个模型，<strong>Parallel Random Access Machine (PRAM)模型</strong> <strong>和 </strong>Work-depth measurement模型**</li>
+<li>Parallel algorithms：算法并行，这其中有两个模型，<strong>Parallel Random Access Machine (PRAM)模型</strong> 和 <strong>Work-depth measurement模型</strong></li>
 </ul>
 <p>并行算法，目的是利用cpu可以同时执行多条指令（通过流水线、多核、超长指令字等）的特性，合理调度指令的执行方式，使得工作量不增加的情况下减少运行时间。</p>
 <h3 id="1411-pram"><strong>14.1.1 PRAM</strong><a class="headerlink" href="#1411-pram" title="Permanent link">&para;</a></h3>
@@ -1551,15 +1551,15 @@
 <p>Work load – total number of operations 总工作量: <span class="arithmatex">\(W(n)\)</span></p>
 <p>Worst-case running time 时间复杂度: <span class="arithmatex">\(T(n)\)</span></p>
 <p><strong>Claim</strong>: A parallel algorithm with workload <span class="arithmatex">\(W\)</span> and depth <span class="arithmatex">\(D\)</span> can be implemented in <span class="arithmatex">\(W/p+ D\)</span> time using p processors for any <span class="arithmatex">\(p &gt; 0\)</span>.</p>
-<p>设第 <span class="arithmatex">\(i\)</span> 层的工作量为 <span class="arithmatex">\(W_i\)</span>，则可以得到
-$$
+<p>设第 <span class="arithmatex">\(i\)</span> 层的工作量为 <span class="arithmatex">\(W_i\)</span>，则可以得到</p>
+<div class="arithmatex">\[
 \begin{aligned}
-W&amp;=\sum_{i=1}^DW_i\
-T_p&amp;=\sum_{i=1}^D[\frac{W_i}{p}]+1\
-&amp;=\sum_{i=1}^D[\frac{W_i}{p}]+D\le\sum_{i=1}^D\frac{W_i}{p}+D=\frac{W}{p}+D\
+W&amp;=\sum_{i=1}^DW_i\\
+T_p&amp;=\sum_{i=1}^D[\frac{W_i}{p}]+1\\
+&amp;=\sum_{i=1}^D[\frac{W_i}{p}]+D\le\sum_{i=1}^D\frac{W_i}{p}+D=\frac{W}{p}+D\\
 &amp;\ge\sum_{i=1}^D\frac{W_i}{p}=\frac{W}{p}
 \end{aligned}
-$$</p>
+\]</div>
 <p>从而我们完成证明</p>
 <h2 id="143-prefix-sums"><strong>14.3 Prefix-Sums</strong><a class="headerlink" href="#143-prefix-sums" title="Permanent link">&para;</a></h2>
 <p>问题描述：输入n个数，分别输出前k个数的和 (<span class="arithmatex">\(k=1,2,...,n\)</span>) </p>
@@ -1601,7 +1601,7 @@ $$</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20145253.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20145253.png" /></a></p>
 <p>因为上述操作不会往同一个位置写元素，所以他们是独立的，所以可以并行。</p>
 <hr />
-<p><strong>那么我们如何求出RANK？</strong>第一种是<strong>二分查找法</strong>，第二种是<strong>串型算法</strong>，类似于普通的归并排序算法的合并，也就是两个指针指着两个数组前进。</p>
+<p><strong>那么我们如何求出RANK？</strong>第一种是<strong>二分查找法</strong>；第二种是<strong>串型算法</strong>，类似于普通的归并排序算法的合并，也就是两个指针指着两个数组前进。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151322.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151322.png" /></a></p>
 <p>以上两种算法的<strong>比较</strong>：</p>
 <ul>
@@ -1619,7 +1619,7 @@ $$</p>
 <p>以上，通过二分查找来获得RANK需要 <span class="arithmatex">\(T(logn)\)</span>，总工作量为 <span class="arithmatex">\(O(plogn)=O(n)\)</span>。</p>
 <p>第二步：</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151418.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151418.png" /></a></p>
-<p>对每个子任务应用串性算法，得到子序列的排序</p>
+<p>对每个子任务应用<strong>串行算法</strong>，得到子序列的排序</p>
 <p>总结：<span class="arithmatex">\(T=O(logn), W=O(n)\)</span></p>
 <h2 id="145-maximum-finding"><strong>14.5 Maximum Finding</strong><a class="headerlink" href="#145-maximum-finding" title="Permanent link">&para;</a></h2>
 <h3 id="_1"><strong>法一</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
@@ -1642,8 +1642,9 @@ $$</p>
 <h3 id="_3"><strong>法三</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>将问题按照<span class="arithmatex">\(\sqrt n\)</span>的规模分成<span class="arithmatex">\(\sqrt n\)</span>个子问题。之后用法二来算出最大的。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151453.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151453.png" /></a></p>
-<p>将上述算法进行改进，让每个子问题的规模都是h，然后合并的时候调用上面这个方法，这样工作量可以减少到<span class="arithmatex">\(O(n)\)</span></p>
+<p>将上述算法进行改进，让每个子问题的规模都是 <span class="arithmatex">\(h\)</span> ，然后合并的时候调用上面这个方法，这样工作量可以减少到<span class="arithmatex">\(O(n)\)</span></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151509.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151509.png" /></a></p>
+<p>注：每个子问题是通过线性查找的方式进行的，时间为 <span class="arithmatex">\(O(h)\)</span> , work 为 <span class="arithmatex">\(O(h)\)</span></p>
 <h3 id="_4"><strong>法四</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>先从<span class="arithmatex">\(n\)</span>个元素中随机筛选出<span class="arithmatex">\(n^{7/8}\)</span>个元素，找出<span class="arithmatex">\(n^{7/8}\)</span>个处理器，去随机找出一个元素，但是这样的话不能保证不重复，但是无伤大雅。<span class="arithmatex">\(T=O(1), W=O(n^{7/8})\)</span></p>
 <p>把上述<span class="arithmatex">\(n^{7/8}\)</span>个元素分成<span class="arithmatex">\(n^{3/4}\)</span>个每组有<span class="arithmatex">\(n^{1/8}\)</span>元素。对于每个<span class="arithmatex">\(n^{1/8}\)</span>的子问题都使用法二来暴力求解，找到最大值。每个子问题<span class="arithmatex">\(T=O(1), W=O((n^{1/8})^2 = O(n^{1/4})\)</span>，所有加起来为<span class="arithmatex">\(T=O(1), W=O(n^{1/4}) \times n^{3/4}=O(n)\)</span></p>

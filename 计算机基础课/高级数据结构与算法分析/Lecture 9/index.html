@@ -1360,32 +1360,28 @@
 
 <h1 id="9-greedy-algorithm"><strong>9 Greedy Algorithm</strong><a class="headerlink" href="#9-greedy-algorithm" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 808 个字  预计阅读时间 3 分钟
+    文本统计：约 810 个字  预计阅读时间 3 分钟
 </div>
 
 <p>Make the best decision at each stage, under some greedy criterion.  A decision made in one stage is not changed in a later stage, so each decision should assure feasibility.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Greedy algorithm works only if the local optimum is equal to the global optimum.
+<p>Greedy algorithm works only if the <strong>local optimum</strong> is equal to the <strong>global optimum</strong>.
 Greedy algorithm does not guarantee optimal solutions.  However, it generally produces solutions that are very close in value (heuristics) to the optimal, and hence is intuitively appealing when finding the optimal solution takes too much time.</p>
 </div>
 <h2 id="91-activity-selection-problem"><strong>9.1 Activity Selection Problem</strong><a class="headerlink" href="#91-activity-selection-problem" title="Permanent link">&para;</a></h2>
 <p>Given a set of activities <span class="arithmatex">\(S = { a_1, a_2, …, a_n }\)</span> that wish to use a resource (e.g. a classroom).  Each <span class="arithmatex">\(a_i\)</span> takes place during a time interval <span class="arithmatex">\([s_i, f_i)\)</span>.</p>
-<p>Activities <span class="arithmatex">\(a_i\)</span> and <span class="arithmatex">\(a_j\)</span> are compatible if <span class="arithmatex">\(s_i\ge f_j\)</span> or <span class="arithmatex">\(s_j\ge f_i\)</span> (i.e. their time intervals do not overlap).</p>
-<p>QUESTION: Select a maximum-size subset of mutually compatible activities.</p>
+<p>Activities <span class="arithmatex">\(a_i\)</span> and <span class="arithmatex">\(a_j\)</span> are compatible if <span class="arithmatex">\(s_i\ge f_j\)</span> or <span class="arithmatex">\(s_j\ge f_i\)</span> (i.e. their time intervals <strong>do not overlap</strong>).</p>
+<p><strong>QUESTION</strong>: Select a maximum-size subset of mutually compatible activities.</p>
 <p><strong>SOLUTION 1 (DP)</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>S(i,j)={ak,fi&lt;=sk&lt;fk&lt;=sj}表示在活动ai结束之后，在aj开始之前的活动集，则整个问题空间可表示为S(0,n+1), 
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>其中添加活动a0和an+1，s0=f0=0,sn+1=fn+1=2^32-1 
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>根据dp[i][j]的含义,假设S(i,j)中不包含任何的活动序列(即满足S(i,j)定义的活动不存在)，则dp[i][j]=0； 
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>否则，假设ak时S(i,j)中存在的一个兼容活动,那 
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>么这里存在问题S(i,j)的最优子结构:S(i,k)和S(k,j). 
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>根据上面叙述，可以定义问题的递归解结构: 
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>dp[i][j]=0,如果S(i,j) =NULL  
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>dp[i][j]=max{dp[i][k]+dp[k][j]+1},i&lt;k&lt;j 
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>最后要求的结果是dp[0][n+1]  
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>需要注意的是： 在对区间队列进行动态规划之前，要对区间的结束时间按照时间从小到大进行排序，保证
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>f1 &lt;= f2 &lt;= f3 &lt;= ...&lt;= fn  
-</code></pre></div>
+<p><span class="arithmatex">\(S(i,j)={a_k,f_i&lt;=s_k&lt;f_k&lt;=s_j}\)</span> 表示在活动 <span class="arithmatex">\(a_i\)</span> 结束之后，在 <span class="arithmatex">\(a_j\)</span> 开始之前的活动集，则整个问题空间可表示为 <span class="arithmatex">\(S(0,n+1)\)</span>, 其中添加活动 <span class="arithmatex">\(a_0\)</span> 和 <span class="arithmatex">\(a_{n+1}\)</span>，<span class="arithmatex">\(s_0=f_0=0\)</span>, <span class="arithmatex">\(s_{n+1}=f_{n+1}=2^{32}-1\)</span></p>
+<p>根据 <span class="arithmatex">\(\text{dp}[i][j]\)</span> 的含义,假设 <span class="arithmatex">\(S(i,j)\)</span> 中不包含任何的活动序列(即满足 <span class="arithmatex">\(S(i,j)\)</span> 定义的活动不存在)，则 <span class="arithmatex">\(\text{dp}[i][j]=0\)</span>； 否则，假设 <span class="arithmatex">\(a_k\)</span> 时 <span class="arithmatex">\(S(i,j)\)</span> 中存在的一个兼容活动,那么这里存在问题<span class="arithmatex">\(S(i,j)\)</span>的最优子结构: <span class="arithmatex">\(S(i,k)和S(k,j)\)</span>. </p>
+<p>根据上面叙述，可以定义问题的递归解结构: </p>
+<p><span class="arithmatex">\(\text{dp}[i][j]=0\)</span>, 如果 <span class="arithmatex">\(S(i,j) =NULL\)</span>  </p>
+<p><span class="arithmatex">\(\text{dp}[i][j]=\max\{\text{dp}[i][k]+\text{dp}[k][j]+1\},i&lt;k&lt;j\)</span> </p>
+<p>最后要求的结果是<span class="arithmatex">\(\text{dp}[0][n+1]\)</span>  </p>
+<p>需要注意的是： 在对区间队列进行动态规划之前，要对区间的结束时间按照时间从小到大进行排序，保证
+<span class="arithmatex">\(f_1 &lt;= f_2 &lt;= f_3 &lt;= ...&lt;= f_n\)</span>  </p>
 <p><strong>SOLUTION 2 (Greedy)</strong></p>
 <p>在当前环境下选择<strong>最早结束</strong>的那一个课程</p>
 <p>正确性验证：</p>

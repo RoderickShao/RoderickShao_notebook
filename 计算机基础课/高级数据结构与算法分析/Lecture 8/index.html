@@ -1402,7 +1402,7 @@
 
 <h1 id="8-dynamic-programming"><strong>8 Dynamic Programming</strong><a class="headerlink" href="#8-dynamic-programming" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 757 个字  •  35 行代码  预计阅读时间 3 分钟
+    文本统计：约 761 个字  •  35 行代码  预计阅读时间 3 分钟
 </div>
 
 <h2 id="81-ordering-matrix-multiplication"><strong>8.1 Ordering Matrix Multiplication</strong><a class="headerlink" href="#81-ordering-matrix-multiplication" title="Permanent link">&para;</a></h2>
@@ -1412,8 +1412,8 @@
 <div class="arithmatex">\[
 m_{ij}=\left\{ 
 \begin{aligned}
-&amp;0&amp;&amp;if\ i=j\\
-&amp;min_{i\le l\le j}\{m_{il}+m_{l+1j}+r_{i-1}r_lr_j\}&amp;&amp;if\ j&gt;i
+&amp;0&amp;&amp;\text{if}\ i=j\\
+&amp;min_{i\le l\le j}\{m_{il}+m_{l+1j}+r_{i-1}r_lr_j\}&amp;&amp;\text{if}\ j&gt;i
 \end{aligned}\right.
 \]</div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cm">/* r contains number of columns for each of the N matrices */</span><span class="w"> </span>
@@ -1447,7 +1447,7 @@ m_{ij}=\left\{
 <li>BellmanFord <span class="arithmatex">\(O(V^2E)\)</span></li>
 </ul>
 <p>法2：<strong>Floyd - Warshell 算法</strong></p>
-<p>定义：<span class="arithmatex">\(D^k[i][j]=min\{length\ of\ path\ i\rightarrow\{l\le k\}\rightarrow j\}\)</span> 记 <span class="arithmatex">\(D^{-1}[i][j]=Cost[i][j]\)</span></p>
+<p>定义：<span class="arithmatex">\(D^k[i][j]=\min\{\text{length of path } i\rightarrow\{l\le k\}\rightarrow j\}\)</span> 记 <span class="arithmatex">\(D^{-1}[i][j]=\text{Cost}[i][j]\)</span></p>
 <p>Then the length of the shortest path from <span class="arithmatex">\(i\)</span> to <span class="arithmatex">\(j\)</span>  is <span class="arithmatex">\(D^{|V|-1}[i][j]\)</span></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-02%20185028.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-02%20185028.png" /></a></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cm">/* A[ ] contains the adjacency matrix with A[ i ][ i ] = 0 */</span><span class="w"> </span>
