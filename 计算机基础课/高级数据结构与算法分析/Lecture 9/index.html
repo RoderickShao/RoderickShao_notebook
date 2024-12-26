@@ -1360,7 +1360,7 @@
 
 <h1 id="9-greedy-algorithm"><strong>9 Greedy Algorithm</strong><a class="headerlink" href="#9-greedy-algorithm" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 810 个字  预计阅读时间 3 分钟
+    文本统计：约 814 个字  预计阅读时间 3 分钟
 </div>
 
 <p>Make the best decision at each stage, under some greedy criterion.  A decision made in one stage is not changed in a later stage, so each decision should assure feasibility.</p>
@@ -1388,14 +1388,14 @@ Greedy algorithm does not guarantee optimal solutions.  However, it generally pr
 <p>记贪心算法所求得的解为<span class="arithmatex">\(G = &lt; x_1,x_2,...,x_p&gt;\)</span>，而任意最优解为<span class="arithmatex">\(O = &lt; y_1 , y_2 , . . . , y_q &gt;\)</span> 。由于 <span class="arithmatex">\(O\)</span> 是最优解，一定有<span class="arithmatex">\(p ≤ q\)</span></p>
 <p>从下标为 <span class="arithmatex">\(1\)</span> 开始比较，假设第一个不同的活动为 <span class="arithmatex">\(x_i ≠ y _i\)</span> ，那么一定有<span class="arithmatex">\(s_{x_i} ≥ f_{x_{i − 1}}\)</span>，<span class="arithmatex">\(s_{y_i} ≥ f_{y_{i − 1}}=f_{x_{i − 1}}\)</span>。又因为贪心算法总是选择结束时间最早的活动，有<span class="arithmatex">\(f_{x_i}\le f_{y_i}\)</span>。因此，方案 <span class="arithmatex">\(O\)</span> 可以不选择<span class="arithmatex">\(y_i\)</span>活动而选择<span class="arithmatex">\(x_i\)</span>活动，且保持一天参加活动数不变。</p>
 <p>重复以上动作，可以使 <span class="arithmatex">\(O\)</span> 的前 <span class="arithmatex">\(p\)</span> 个活动与 <span class="arithmatex">\(G\)</span> 的 <span class="arithmatex">\(p\)</span> 个活动相同。由于 <span class="arithmatex">\(x_p\)</span> 之后已经安排不下任何活动了，转化后的 <span class="arithmatex">\(O\)</span> 也只有 <span class="arithmatex">\(p\)</span> 个活动（或者说转化前就一定有 <span class="arithmatex">\(p = q\)</span>）。这样，最优解 <span class="arithmatex">\(O\)</span> 就被转化为了我们贪心算法的解 <span class="arithmatex">\(G\)</span> 。贪心算法的正确性得证。</p>
-<p>算法复杂度：<span class="arithmatex">\(N\)</span>门课程，时间复杂度 <span class="arithmatex">\(O(NlogN)\)</span></p>
+<p>算法复杂度：<span class="arithmatex">\(N\)</span>门课程，时间复杂度 <span class="arithmatex">\(O(N\log N)\)</span></p>
 <p>如果我将每门课程加上一个权重，那么此时贪心算法就不成立了，我们只能使用动态规划来做</p>
 <p>将式子改为<code>dp[i][j]=max{dp[i][k]+dp[k][j]+Wj},i&lt;k&lt;j</code></p>
 <p>所以贪心能做的，动态规划一定可以做；动态规划能做的，贪心就不一定能做了。</p>
 <h2 id="92-huffman-codes"><strong>9.2 Huffman Codes</strong><a class="headerlink" href="#92-huffman-codes" title="Permanent link">&para;</a></h2>
 <p>我们将文本的各个字符进行编码得到一串数字，为了防止有歧义，我们不能让其中一个字符的编码是另一个字符的前缀，那么为了让文本转化后的数字串长度尽可能短，那么我们需要让频率出现高的字符编码尽可能短。表示编码可以使用二叉树</p>
 <p>一个简单的贪心思路就是先将字符按照频率从小往大排列，选出最小的两个进行合并成一棵子树然后再加入原先的堆，接着继续选择最小的两个合并，如此往复，直到得到一棵编码树。</p>
-<p>这样的时间复杂度是 <span class="arithmatex">\(O(nlogn)\)</span></p>
+<p>这样的时间复杂度是 <span class="arithmatex">\(O(n\log n)\)</span></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-05%20144132.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-05%20144132.png" /></a></p>
 <p>如果一开始给你的就是一个排好序的序列，那么我们能找到 <span class="arithmatex">\(O(n)\)</span> 的算法吗？</p>
 <p>我们可以再开一个队列，现有队列1，队列2。每次只要从队列1和队列2中选出最小的两个合并，然后进入队列2即可（由于合并的肯定是当前最小的，故每次合并得到的结果一定是单增的）</p>

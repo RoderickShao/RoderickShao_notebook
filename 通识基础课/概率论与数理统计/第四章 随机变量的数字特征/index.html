@@ -1982,7 +1982,7 @@ E(X^2) &amp;= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} x^2 \cdot e^{-x^2/2
 <div class="arithmatex">\[
 Cov(X,Y)=E[(X-E(X))(Y-E(Y))]
 \]</div>
-<p>为 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 的协方差 (covariance) </p>
+<p>为 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 的<strong>协方差 (covariance)</strong> </p>
 <p>(1) 若二维离散型随机变量 <span class="arithmatex">\((X, Y)\)</span> 的联合分布律为</p>
 <div class="arithmatex">\[
 P\{X = x_i, Y = y_j\} = p_{ij}, \quad i = 1, 2, \cdots, \quad j = 1, 2, \cdots,
@@ -1993,7 +1993,7 @@ P\{X = x_i, Y = y_j\} = p_{ij}, \quad i = 1, 2, \cdots, \quad j = 1, 2, \cdots,
 \]</div>
 <p>(2) 若二维连续型随机变量 <span class="arithmatex">\((X, Y)\)</span> 的联合密度函数为 <span class="arithmatex">\(f(x, y)\)</span>，则 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 的协方差为</p>
 <div class="arithmatex">\[
-\operatorname{Cov}(X, Y) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} (x - E(X))(y - E(Y)) f(x, y) \, dx \, dy.
+\operatorname{Cov}(X, Y) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} (x - E(X))(y - E(Y)) f(x, y) \, \text{d}x \, \text{d}y.
 \]</div>
 <p>直接按上述定义计算协方差往往比较麻烦，在实际应用中常常使用下面给出的计算公式来得到协方差：</p>
 <div class="arithmatex">\[
@@ -2011,7 +2011,7 @@ P\{X = x_i, Y = y_j\} = p_{ij}, \quad i = 1, 2, \cdots, \quad j = 1, 2, \cdots,
 <p>(1) <span class="arithmatex">\(Cov( X, Y) = Cov(Y, X)\)</span> ;</p>
 <p>(2) <span class="arithmatex">\(Cov(X, X) =Var(X)\)</span>;</p>
 <p>(3) <span class="arithmatex">\(Cov(aX, bY) = abCov(X, Y)\)</span>, 其中a, b 为两个实数 ;</p>
-<p>(4) 若<span class="arithmatex">\(Cov(X_i , Y) ( i = 1,2)\)</span>存在则 <span class="arithmatex">\(Cov(X_1+X_2, Y) = Cov(X_1, Y) + Cov(X_2, Y)\)</span>;</p>
+<p>(4) 若<span class="arithmatex">\(Cov(X_i , Y) ( i = 1,2)\)</span>存在，则 <span class="arithmatex">\(Cov(X_1+X_2, Y) = Cov(X_1, Y) + Cov(X_2, Y)\)</span>;</p>
 <div class="admonition note">
 <p class="admonition-title">关于上述四条性质的推论</p>
 <div class="arithmatex">\[
@@ -2081,7 +2081,7 @@ Cov(X+Y,X-Y)=Cov(X,X)-Cov(Y,Y)=Var(X)-Var(Y)
 <p>那么 <span class="arithmatex">\(X,Y\)</span> 独立性等价于 <span class="arithmatex">\(\rho=0\)</span> (前面已证) 等价于 <span class="arithmatex">\(\rho_{XY}=0\)</span> 等价于 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 不相关</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>一般情况下，相关一定不独立，独立一定不相关，独立性不等价于不相关，因为不相关不一定独立。但是在正态分布的条件下，二者等价</p>
+<p>一般情况下，相关一定不独立，独立一定不相关，独立性不等价于不相关，因为不相关不一定独立。但是在XY满足而e正态分布的条件下，二者等价</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>

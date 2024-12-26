@@ -1627,10 +1627,10 @@ max(\frac{C}{C^*},\frac{C^*}{C})\le \rho(n)
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="cm">/* end-while */</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
 </code></pre></div>
-<p>这个算法可以用 <span class="arithmatex">\(O(NlogN)\)</span> 来实现（只需要用堆即可）</p>
+<p>这个算法可以用 <span class="arithmatex">\(O(N\log N)\)</span> 来实现（只需要用堆即可）</p>
 <p>【Theorem】Let <span class="arithmatex">\(M\)</span> be the optimal number of bins required to pack a list <span class="arithmatex">\(I\)</span> of items.  Then first fit never uses more than <span class="arithmatex">\(17M / 10\)</span> bins.  There exist sequences such that first fit uses <span class="arithmatex">\(17(M – 1) / 10\)</span> bins.</p>
 <p>这个定理的证明比较繁琐，就不证了</p>
-<p>Best Fit 的算法就是找到那个把它放进去后剩余空间最少的盒子。听上去好像应该更优了，实际上近似系数与First Fit类似。这个算法同样可以通过 <span class="arithmatex">\(O(NlogN)\)</span> 的方法实现。</p>
+<p>Best Fit 的算法就是找到那个把它放进去后剩余空间最少的盒子。听上去好像应该更优了，实际上近似系数与First Fit类似。这个算法同样可以通过 <span class="arithmatex">\(O(N\log N)\)</span> 的方法实现。</p>
 <h3 id="1123-on-line-algorithms"><strong>11.2.3 On-line Algorithms</strong><a class="headerlink" href="#1123-on-line-algorithms" title="Permanent link">&para;</a></h3>
 <p>Place an item before processing the next one, and can NOT change decision. 已经放进去的不能再拿出来，我们不知道输入什么时候结束，在线算法永远无法给出最优解</p>
 <p>【Theorem】There are inputs that force any on-line bin-packing algorithm to use at least <span class="arithmatex">\(5/3\)</span> the optimal number of bins. 存在一种输入使任何的在线算法的近似系数大于等于 <span class="arithmatex">\(5/3\)</span></p>
@@ -1717,7 +1717,7 @@ p_{max}\le P_{greedy}
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20222239.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-18%20222239.png" /></a></p>
 <div class="admonition warning">
 <p class="admonition-title">明明已经有动态规划算法了，为什么还是NPC问题</p>
-<p>利用动态规划的确是<span class="arithmatex">\(O(n*w)\)</span>的时间复杂度，但是要知道，n的确是输入规模的一部分，输入了n个重量与价值，但是w并不是输入规模，对于一个数W，需要m=log w的位数来表示。因此，m才是输入规模的一部分。所以<span class="arithmatex">\(O(n*w)=O(n2^m)\)</span>，所以是NPC问题。</p>
+<p>利用动态规划的确是<span class="arithmatex">\(O(n*w)\)</span>的时间复杂度，但是要知道，n的确是输入规模的一部分，输入了n个重量与价值，但是w并不是输入规模，对于一个数W，需要m=<span class="arithmatex">\(\log  w\)</span>的位数来表示。因此，m才是输入规模的一部分。所以<span class="arithmatex">\(O(n*w)=O(n2^m)\)</span>，所以是NPC问题。</p>
 </div>
 <p>我们也可以证明这个0-1背包问题有FPTAS的算法（将数据同时除以一个值，降低了精度（可控制））</p>
 <h2 id="114-the-k-center-problem"><strong>11.4 The K-center Problem</strong><a class="headerlink" href="#114-the-k-center-problem" title="Permanent link">&para;</a></h2>

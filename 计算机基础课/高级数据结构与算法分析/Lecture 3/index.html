@@ -1470,7 +1470,7 @@
 
 <h1 id="3-inverted-file-index"><strong>3 Inverted File Index</strong><a class="headerlink" href="#3-inverted-file-index" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1011 个字  •  9 行代码  预计阅读时间 3 分钟
+    文本统计：约 1042 个字  •  9 行代码  预计阅读时间 4 分钟
 </div>
 
 <h2 id="_1"><strong>怎么构建搜索引擎</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -1544,7 +1544,7 @@
 <p><strong>Query</strong>: Sort the query terms by their frequency in ascending order; search according to only some percentage of the original query terms</p>
 <p>对出现的关键词在term dictionary中的频率进行排序，从频率较低的单词开始搜索（或者说定义一个值：这个词在这篇文章的频率/这个词在所有文章中的频率，这个值越高，那么这个词对于这篇文章越重要）</p>
 <h2 id="measures-for-a-search-engine"><strong>Measures for a search engine</strong><a class="headerlink" href="#measures-for-a-search-engine" title="Permanent link">&para;</a></h2>
-<h3 id="_4">客观指标<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_4"><strong>客观指标</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>How fast does it index 建表的速度</p>
 <ul>
 <li>Number of documents/hour</li>
@@ -1558,17 +1558,17 @@
 <li>Ability to express complex information needs</li>
 <li>Speed on complex queries</li>
 </ul>
-<h3 id="_5">主观指标<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p><strong>Data Retrieval Performance Evaluation</strong> (after establishing correctness)</p>
+<h3 id="_5"><strong>主观指标</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><strong>Data Retrieval Performance Evaluation</strong> (after establishing correctness) 数据检索性能评估</p>
 <ul>
 <li>
-<p>Response time</p>
+<p>Response time 相应时间</p>
 </li>
 <li>
-<p>Index space</p>
+<p>Index space 索引占用空间</p>
 </li>
 </ul>
-<p><strong>Information Retrieval Performance Evaluation</strong></p>
+<p><strong>Information Retrieval Performance Evaluation</strong> 信息检索性能评估</p>
 <ul>
 <li>How relevant is the answer set?</li>
 </ul>
@@ -1601,7 +1601,7 @@
 </tbody>
 </table>
 <p>Precision: <span class="arithmatex">\(P=\frac{R_R}{R_R+I_R}\)</span> （精确度，检索到的东西有多少是有效的）</p>
-<p>Recall: <span class="arithmatex">\(R=\frac{R_R}{R_R+R_N}\)</span>（能检索到多少比例的有效信息）</p>
+<p>Recall: <span class="arithmatex">\(R=\frac{R_R}{R_R+R_N}\)</span>（所有有意义的文档中，有多少是被检索到的）</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-23%20145301.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-23%20145301.png" /></a></p>
 <p>评估曲线的一种方法：AUC (Areas under Curves) 曲线下方的面积</p>
 

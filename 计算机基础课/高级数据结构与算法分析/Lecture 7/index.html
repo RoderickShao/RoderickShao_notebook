@@ -1414,7 +1414,7 @@
 
 <h1 id="7-divide-conquer"><strong>7 Divide &amp; Conquer</strong><a class="headerlink" href="#7-divide-conquer" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 516 个字  预计阅读时间 2 分钟
+    文本统计：约 517 个字  预计阅读时间 2 分钟
 </div>
 
 <ul>
@@ -1454,9 +1454,9 @@ T(N)=2T(N/2)+O(N)\Rightarrow T(N)=O(NlogN)
 <h3 id="723-master-method"><strong>7.2.3  Master method</strong><a class="headerlink" href="#723-master-method" title="Permanent link">&para;</a></h3>
 <p>【Master Theorem】Let <span class="arithmatex">\(a\ge1\)</span> and <span class="arithmatex">\(b &gt; 1\)</span> be constants, let <span class="arithmatex">\(f(N)\)</span> be a function, and let <span class="arithmatex">\(T(N)\)</span> be defined on the nonnegative integers by the recurrence  <span class="arithmatex">\(T(N) = aT(N/b) + f(N)\)</span>.  Then:</p>
 <ol>
-<li>If <span class="arithmatex">\(f(N)=O(N^{log_ba-\epsilon})\)</span> for some constant <span class="arithmatex">\(\epsilon&gt;0\)</span>, then <span class="arithmatex">\(T(N)=\Theta(N^{log_b a})\)</span></li>
-<li>If <span class="arithmatex">\(f(N)=\Theta(N^{log_b a})\)</span>, then <span class="arithmatex">\(T(N)=\Theta(N^{log_b a}logN)\)</span></li>
-<li>If <span class="arithmatex">\(f(N)=\Omega(N^{log_b a+\epsilon})\)</span> for some constant <span class="arithmatex">\(\epsilon&gt;0\)</span>, and if <span class="arithmatex">\(af(N/b)&lt;cf(N)\)</span> for some constant <span class="arithmatex">\(c &lt; 1\)</span> and all sufficiently large <span class="arithmatex">\(N\)</span>, then <span class="arithmatex">\(T(N)=\Theta(f(N))\)</span></li>
+<li>If <span class="arithmatex">\(f(N)=O(N^{\log _ba-\epsilon})\)</span> for some constant <span class="arithmatex">\(\epsilon&gt;0\)</span>, then <span class="arithmatex">\(T(N)=\Theta(N^{\log _b a})\)</span></li>
+<li>If <span class="arithmatex">\(f(N)=\Theta(N^{\log _b a})\)</span>, then <span class="arithmatex">\(T(N)=\Theta(N^{\log _b a}\log N)\)</span></li>
+<li>If <span class="arithmatex">\(f(N)=\Omega(N^{\log _b a+\epsilon})\)</span> for some constant <span class="arithmatex">\(\epsilon&gt;0\)</span>, and if <span class="arithmatex">\(af(N/b)&lt;cf(N)\)</span> for some constant <span class="arithmatex">\(c &lt; 1\)</span> and all sufficiently large <span class="arithmatex">\(N\)</span>, then <span class="arithmatex">\(T(N)=\Theta(f(N))\)</span></li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Case3</p>
@@ -1466,8 +1466,8 @@ T(N)=2T(N/2)+O(N)\Rightarrow T(N)=O(NlogN)
 <p>【Master Theorem】The recurrence  <span class="arithmatex">\(T(N) = aT(N/b) + f(N)\)</span> can be solved as follows:</p>
 <ol>
 <li>If  <span class="arithmatex">\(af(N/b) = \kappa f(N)\)</span> for some constant <span class="arithmatex">\(\kappa&lt; 1\)</span>, then <span class="arithmatex">\(T(N)=\Theta(f(N))\)</span></li>
-<li>If  <span class="arithmatex">\(af(N/b) = K f(N)\)</span> for some constant <span class="arithmatex">\(K\)</span> &gt; 1, then <span class="arithmatex">\(T(N)=\Theta(N^{log_b a})\)</span></li>
-<li>If  <span class="arithmatex">\(af(N/b) = f(N)\)</span>, then <span class="arithmatex">\(T(N)=\Theta(f(N)log_bN)\)</span></li>
+<li>If  <span class="arithmatex">\(af(N/b) = K f(N)\)</span> for some constant <span class="arithmatex">\(K\)</span> &gt; 1, then <span class="arithmatex">\(T(N)=\Theta(N^{\log _b a})\)</span></li>
+<li>If  <span class="arithmatex">\(af(N/b) = f(N)\)</span>, then <span class="arithmatex">\(T(N)=\Theta(f(N)\log _bN)\)</span></li>
 </ol>
 <p><a class="glightbox" href="../img/%E4%B8%BB%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E4%B8%BB%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95.png" /></a></p>
 <p>主方法的证明可以使用递归树来证明</p>

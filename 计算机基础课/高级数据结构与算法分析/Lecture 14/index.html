@@ -1510,7 +1510,7 @@
 
 <h1 id="14-parallel-algorithm"><strong>14 Parallel Algorithm</strong><a class="headerlink" href="#14-parallel-algorithm" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1751 个字  •  38 行代码  预计阅读时间 6 分钟
+    文本统计：约 1760 个字  •  38 行代码  预计阅读时间 6 分钟
 </div>
 
 <h2 id="141-introduction"><strong>14.1 Introduction</strong><a class="headerlink" href="#141-introduction" title="Permanent link">&para;</a></h2>
@@ -1541,7 +1541,7 @@
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    output B(log n, 1); 
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  for i &gt; 1: stay idle
 </code></pre></div>
-<p>这样的时间开销为 <span class="arithmatex">\(T(n)=logn+2\)</span></p>
+<p>这样的时间开销为 <span class="arithmatex">\(T(n)=\log n+2\)</span></p>
 <p>PRAM缺陷：会造成资源的浪费，因为并不是所有的处理器都需要工作；我们不知道某条指令分配给哪个处理器。</p>
 <h3 id="1412-work-depth"><strong>14.1.2 Work-Depth</strong><a class="headerlink" href="#1412-work-depth" title="Permanent link">&para;</a></h3>
 <p>PRAM是获得若干个处理器，那么在任务完成之前，这些处理器就算没有工作也不会释放。</p>
@@ -1591,7 +1591,7 @@ T_p&amp;=\sum_{i=1}^D[\frac{W_i}{p}]+1\\
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>for Pi , 1 &lt;= i &lt;= n pardo
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>  Output C(0, i)
 </code></pre></div>
-<p>这样的话 <span class="arithmatex">\(T(n)=O(log n)\)</span>，<span class="arithmatex">\(W(n)=O(n)\)</span></p>
+<p>这样的话 <span class="arithmatex">\(T(n)=O(\log  n)\)</span>，<span class="arithmatex">\(W(n)=O(n)\)</span></p>
 <h2 id="144-merging"><strong>14.4 Merging</strong><a class="headerlink" href="#144-merging" title="Permanent link">&para;</a></h2>
 <p>Merging – merge two non-decreasing arrays <span class="arithmatex">\(A(1), A(2), …, A(n)\)</span> and <span class="arithmatex">\(B(1), B(2), …, B(m)\)</span> into another non-decreasing array <span class="arithmatex">\(C(1), C(2), …, C(n+m)\)</span> </p>
 <p>分割法 Partitioning Paradigm：分割成若干个问题，这些问题互相之间没有依赖关系。</p>
@@ -1611,16 +1611,16 @@ T_p&amp;=\sum_{i=1}^D[\frac{W_i}{p}]+1\\
 <p><strong>算法改进</strong></p>
 <p>第一步：任务划分 (分为p块)</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151335.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151335.png" /></a></p>
-<p>把数组分成每个大小为 <span class="arithmatex">\(log~n\)</span> 的块。对于每一块的第一个元素，我们利用二分查找计算RANK。</p>
+<p>把数组分成每个大小为 <span class="arithmatex">\(\log ~n\)</span> 的块。对于每一块的第一个元素，我们利用二分查找计算RANK。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151405.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151405.png" /></a></p>
 <p>把以上任意两条线之间定义为一个子任务。（注意红线和蓝线不相交）</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151409.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151409.png" /></a></p>
-<p>这样就能划分出 <span class="arithmatex">\(2p\)</span> 个子任务，每个子任务最大为 <span class="arithmatex">\(O(logn)\)</span>，因为每个 block 的大小最多为 <span class="arithmatex">\(2logn\)</span>。</p>
-<p>以上，通过二分查找来获得RANK需要 <span class="arithmatex">\(T(logn)\)</span>，总工作量为 <span class="arithmatex">\(O(plogn)=O(n)\)</span>。</p>
+<p>这样就能划分出 <span class="arithmatex">\(2p\)</span> 个子任务，每个子任务最大为 <span class="arithmatex">\(O(\log n)\)</span>，因为每个 block 的大小最多为 <span class="arithmatex">\(2\log n\)</span>。</p>
+<p>以上，通过二分查找来获得RANK需要 <span class="arithmatex">\(T(\log n)\)</span>，总工作量为 <span class="arithmatex">\(O(p\log n)=O(n)\)</span>。</p>
 <p>第二步：</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151418.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-09%20151418.png" /></a></p>
 <p>对每个子任务应用<strong>串行算法</strong>，得到子序列的排序</p>
-<p>总结：<span class="arithmatex">\(T=O(logn), W=O(n)\)</span></p>
+<p>总结：<span class="arithmatex">\(T=O(\log n), W=O(n)\)</span></p>
 <h2 id="145-maximum-finding"><strong>14.5 Maximum Finding</strong><a class="headerlink" href="#145-maximum-finding" title="Permanent link">&para;</a></h2>
 <h3 id="_1"><strong>法一</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>可以直接套用刚刚的算法，因为找最大值比加法容易，可以把加号替换成max。</p>

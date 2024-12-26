@@ -1724,7 +1724,7 @@
 
 <h1 id="5-memory-hierarchy"><strong>5 Memory Hierarchy</strong><a class="headerlink" href="#5-memory-hierarchy" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 7755 个字  预计阅读时间 26 分钟
+    文本统计：约 7757 个字  预计阅读时间 26 分钟
 </div>
 
 <h2 id="51-storage-unit-introduction"><strong>5.1 Storage unit Introduction</strong><a class="headerlink" href="#51-storage-unit-introduction" title="Permanent link">&para;</a></h2>
@@ -1825,7 +1825,7 @@
 <li>越小的cache，miss rate 越高</li>
 <li>同样大小的cache，miss rate 呈现一个先小后大的趋势。Block size 较小会导致一个block中存储的数据较少，由于数据有空间局部性，miss rate较稍大一点的block来说就更高。而Block size在较大的情况，在cache大小固定的条件下，数量变少了，造成冲突更多了，失效率也就变高了。（当然在cache容量较大的情况下，就显得不那么明显了）</li>
 </ul>
-<h3 id="532-handling-cache-reads-hit-and-misses">5.3.2 Handling Cache Reads Hit and Misses<a class="headerlink" href="#532-handling-cache-reads-hit-and-misses" title="Permanent link">&para;</a></h3>
+<h3 id="532-handling-cache-reads-hit-and-misses"><strong>5.3.2 Handling Cache Reads Hit and Misses</strong><a class="headerlink" href="#532-handling-cache-reads-hit-and-misses" title="Permanent link">&para;</a></h3>
 <p>Read hits: 这就是我想要得到的结果，读取的数据刚好就在cache之中</p>
 <p>Read misses: 有两种misses</p>
 <ul>
@@ -1847,7 +1847,7 @@
 <p>Restart the instruction execution at the first step, which will refetch the instruction again, this time finding it in the cache</p>
 </li>
 </ol>
-<h3 id="533-handling-cache-write-hit-and-misses">5.3.3 Handling Cache Write hit and Misses<a class="headerlink" href="#533-handling-cache-write-hit-and-misses" title="Permanent link">&para;</a></h3>
+<h3 id="533-handling-cache-write-hit-and-misses"><strong>5.3.3 Handling Cache Write hit and Misses</strong><a class="headerlink" href="#533-handling-cache-write-hit-and-misses" title="Permanent link">&para;</a></h3>
 <p>Write Hits: 面对写的地方已经在内存中，我们有不同的解决方法</p>
 <ul>
 <li>write-back: 只把数据写到缓存中，写入内存的操作往后推迟。这种方法的显著特点就是快，但会造成数据的不一致。</li>
@@ -1999,10 +1999,10 @@
 \]</div>
 <p>其中关于内存读取的延迟可分为读延迟以及写延迟（这里采用 write-through 的方法）</p>
 <div class="arithmatex">\[
-\text{Readstall cycles}=\frac{(\#\text{ of Read})}{\text{program}}\times \text{Read miss rate}\times \text{Read miss penalty}
+\text{Read stall cycles}=\frac{(\#\text{ of Read})}{\text{program}}\times \text{Read miss rate}\times \text{Read miss penalty}
 \]</div>
 <div class="arithmatex">\[
-\text{Writestall cycles}=(\frac{\#\text{ of Write}}{\text{Program}}\times \text{Write misss rate}\times \text{Write miss penalty})+\text{Write buffer stalls}
+\text{Write stall cycles}=(\frac{\#\text{ of Write}}{\text{Program}}\times \text{Write misss rate}\times \text{Write miss penalty})+\text{Write buffer stalls}
 \]</div>
 <p>如果 write buffer stalls 非常小，我们可以直接忽略掉，我们就可以将 read 和 write 直接合并，得到</p>
 <div class="arithmatex">\[
@@ -2146,7 +2146,7 @@
 <p>这个问题的解决方法用到一个专用的高速查找硬件 cache，这里称它为 <strong>translation look-aside buffer (TLB)</strong>。它实际上就是 page table 的专用 cache（它真的是 cache；page table 并不是 cache，只是像 cache），其 associativity 的设计可以根据实际情况决定。</p>
 <p>下图是一个 fully-associative 的 TLB 的例子；由于是 fully-associative，并不需要 index：</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20195433.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20195433.png" /></a></p>
-<p>当 TLB miss 的时候，处理器去 page table 查找对应的项；如果发现对应项是 valid 的，那么就把他拿到 TLB 里（此时被替换掉的 TLB entry 的 dirty bit 如果是 1，也要写会 page table）；否则就会触发一个 page fault，然后在做上述的事。</p>
+<p>当 TLB miss 的时候，处理器去 page table 查找对应的项；如果发现对应项是 valid 的，那么就把他拿到 TLB 里（此时被替换掉的 TLB entry 的 dirty bit 如果是 1，也要写回 page table）；否则就会触发一个 page fault，然后在做上述的事。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20200159.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-03%20200159.png" /></a></p>
 
 

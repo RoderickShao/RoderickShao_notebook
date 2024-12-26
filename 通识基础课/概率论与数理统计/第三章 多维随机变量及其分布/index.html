@@ -1430,7 +1430,7 @@
 
 <h1 id="3"><strong>3 多维随机变量及其分布</strong><a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 855 个字  预计阅读时间 3 分钟
+    文本统计：约 845 个字  预计阅读时间 3 分钟
 </div>
 
 <h2 id="31"><strong>3.1 二维离散型随机变量</strong><a class="headerlink" href="#31" title="Permanent link">&para;</a></h2>
@@ -1638,47 +1638,78 @@ f_Z(z) = \int_{-\infty}^{+\infty} f_X(x) \cdot f_Y(z - x) \, dx \tag{3.5.7}
 <div class="arithmatex">\[
 f_Z(z) = \int_{-\infty}^{+\infty} f_X(z - y) \cdot f_Y(y) \, dy \tag{3.5.8}
 \]</div>
-<p>n 个相互独立的服从泊松分布的随机变量的和仍服从泊松分布, 其参数为 n 个分布的参数之和</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>已知 <span class="arithmatex">\(f(x,y),Z=X+Y\)</span>，求 <span class="arithmatex">\(f_Z(z)\)</span> 步骤（<span class="arithmatex">\(X,Y \text{ 独立}\)</span>） </p>
+<div class="arithmatex">\[
+f_Z(z)=\int_{-\infty}^{+\infty}f(x,z-x)\text{d}x=\int_{-\infty}^{+\infty}f_X(x)f_Y(z-x)\text{d}x
+\]</div>
+<ol>
+<li>
+<p>确定由 <span class="arithmatex">\(x\)</span> 与 <span class="arithmatex">\(z\)</span> 构成的被积函数非零区域</p>
+</li>
+<li>
+<p>在 <span class="arithmatex">\(x\)</span> 与 <span class="arithmatex">\(z\)</span> 作为坐标系统上，画出非零区域图形</p>
+</li>
+<li>
+<p>根据 <span class="arithmatex">\(z\)</span> 分段，在各段上对 <span class="arithmatex">\(x\)</span> 求积分</p>
+</li>
+</ol>
+</div>
+<div class="admonition note">
+<p class="admonition-title">离散变量的独立和分布</p>
+<ol>
+<li>
+<p>$X_1, X_2, \cdots, X_n $ 独立且均服从 $ B(1, p) $，则 $ X_1 + X_2 + \cdots + X_n \sim B(n, p)$</p>
+</li>
+<li>
+<p>$X \sim B(n_1, p), Y \sim B(n_2, p) $，两者独立，则 $ X + Y \sim B(n_1 + n_2, p)$</p>
+</li>
+<li>
+<p>$X \sim \pi(\lambda_1), Y \sim \pi(\lambda_2) $，两者独立，则 $ X + Y \sim \pi(\lambda_1 + \lambda_2)$</p>
+</li>
+</ol>
+</div>
 <p>n 个相互独立的正态变量之和仍为正态变量. 即若<span class="arithmatex">\(X_1 , X_2 , ... , X_n\)</span> 相互独立, 且<span class="arithmatex">\(X_i\sim N(\mu_i,\sigma_i^2)\)</span>，则<span class="arithmatex">\(\sum_{i=1}^n\sim N(\sum_{i=1}^n\mu_i,\sum_{i=1}^n\sigma^2_i)\)</span></p>
 <h3 id="352-mmaxxynminxy"><strong>3.5.2 M=max{X,Y},N=min{X,Y} 的分布</strong><a class="headerlink" href="#352-mmaxxynminxy" title="Permanent link">&para;</a></h3>
 <p>记 <span class="arithmatex">\(X, Y\)</span> 的联合分布函数为 <span class="arithmatex">\(F(x, y)\)</span>，且记 <span class="arithmatex">\(F_X(t), F_Y(t)\)</span> 分别为 <span class="arithmatex">\(X, Y\)</span> 的边际分布函数。</p>
 <p>先来讨论 <span class="arithmatex">\(M\)</span> 的分布函数，由 <span class="arithmatex">\(M\)</span> 的定义可知</p>
 <div class="arithmatex">\[
-F_M(t) = P\{\max\{X, Y\} \leq t\} = P\{X \leq t, Y \leq t\} = F(t, t) \tag{3.5.9}
+F_M(t) = P\{\max\{X, Y\} \leq t\} = P\{X \leq t, Y \leq t\} = F(t, t) 
 \]</div>
 <p>特别地，当 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 相互独立时，</p>
 <div class="arithmatex">\[
-F_M(t) = F_X(t) \cdot F_Y(t)          \tag{3.5.10}
+F_M(t) = F_X(t) \cdot F_Y(t)          
 \]</div>
 <p>再讨论 <span class="arithmatex">\(N\)</span> 的分布函数</p>
 <div class="arithmatex">\[
 \begin{aligned}
 F_N(t) &amp;= P\{\min\{X, Y\} \leq t\} \\&amp;= P\{(X \leq t) \cup (Y \leq t)\} 
 = F_X(t) + F_Y(t) - F(t, t)
-\end{aligned}\tag{3.5.11} 
+\end{aligned}
 \]</div>
 <p>或者</p>
 <div class="arithmatex">\[
 \begin{aligned}
 F_N(t) &amp;= 1 - P\{\min\{X, Y\} &gt; t\} \\&amp;= 1 - P\{X &gt; t, Y &gt; t\}
-\end{aligned} \tag{3.5.12} 
+\end{aligned} 
 \]</div>
 <p>特别地，当 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 相互独立时，</p>
 <div class="arithmatex">\[
 \begin{aligned}
 F_N(t) = F_X(t) + F_Y(t) - F_X(t) \cdot F_Y(t) 
-\end{aligned}\tag{3.5.13} 
+\end{aligned}
 \]</div>
 <p>或</p>
 <div class="arithmatex">\[
-F_N(t) = 1 - [1 - F_X(t)] \cdot [1 - F_Y(t)] \tag{3.5.14}
+F_N(t) = 1 - [1 - F_X(t)] \cdot [1 - F_Y(t)] 
 \]</div>
 <p>以上结果容易推广到 <span class="arithmatex">\(n\)</span> 个变量的情形。特别地，设 <span class="arithmatex">\(X_1, X_2, \cdots, X_n\)</span> 为 <span class="arithmatex">\(n\)</span> 个相互独立的随机变量，相应的分布函数分别为 <span class="arithmatex">\(F_1(x), F_2(x), \cdots, F_n(x)\)</span>，记 <span class="arithmatex">\(M = \max\{X_1, X_2, \cdots, X_n\}\)</span>，<span class="arithmatex">\(N = \min\{X_1, X_2, \cdots, X_n\}\)</span>，则</p>
 <div class="arithmatex">\[
-F_M(t) = \prod_{i=1}^n F_i(t) \tag{3.5.15}
+F_M(t) = \prod_{i=1}^n F_i(t) 
 \]</div>
 <div class="arithmatex">\[
-F_N(t) = 1 - \prod_{i=1}^n [1 - F_i(t)] \tag{3.5.16}
+F_N(t) = 1 - \prod_{i=1}^n [1 - F_i(t)] 
 \]</div>
 
 

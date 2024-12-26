@@ -1644,7 +1644,7 @@ $$</p>
 <div class="arithmatex">\[
 w(A^*,B^*)\le \sum_{\{u,v\subseteq A\}}w_{uv}+\sum_{\{u,v\subseteq B\}}w_{uv}+w(A,B)=(2+\varepsilon)w(A,B)
 \]</div>
-<p><strong>Claim 2</strong>: The big-improvement-flip algorithm terminates after at most <span class="arithmatex">\(O(n/\varepsilon log W)\)</span> flips.</p>
+<p><strong>Claim 2</strong>: The big-improvement-flip algorithm terminates after at most <span class="arithmatex">\(O(n/\varepsilon \log  W)\)</span> flips.</p>
 <p><strong>Proof</strong>: 每次 <span class="arithmatex">\(\Phi(S)\)</span> 都要扩大到原来的 <span class="arithmatex">\(1+\frac{2\epsilon}{|V|}\)</span> 倍，所以迭代的次数最多为</p>
 <div class="arithmatex">\[
 log_{1+\frac{2\varepsilon}{|V|}}W=\frac{lnW}{ln(1+\frac{2\varepsilon}{|V|})}=\frac{|V|}{2\varepsilon}lnW

@@ -873,6 +873,40 @@
     5.2 Operations
   </a>
   
+    <nav class="md-nav" aria-label="5.2 Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#findmin" class="md-nav__link">
+    Findmin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    Merge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert" class="md-nav__link">
+    Insert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteminh" class="md-nav__link">
+    DeleteMin(H)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1359,6 +1393,40 @@
     5.2 Operations
   </a>
   
+    <nav class="md-nav" aria-label="5.2 Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#findmin" class="md-nav__link">
+    Findmin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    Merge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert" class="md-nav__link">
+    Insert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteminh" class="md-nav__link">
+    DeleteMin(H)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1402,7 +1470,7 @@
 
 <h1 id="5-binomial-queue"><strong>5 Binomial Queue</strong><a class="headerlink" href="#5-binomial-queue" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 625 个字  •  100 行代码  预计阅读时间 3 分钟
+    文本统计：约 628 个字  •  100 行代码  预计阅读时间 3 分钟
 </div>
 
 <h2 id="51-definition"><strong>5.1 Definition</strong><a class="headerlink" href="#51-definition" title="Permanent link">&para;</a></h2>
@@ -1415,15 +1483,23 @@
 <p><span class="arithmatex">\(B_k\)</span> consists of a root with <span class="arithmatex">\(k\)</span> children, which are <span class="arithmatex">\(B_0,B_1,B_2\dots,B_k\)</span>.  <span class="arithmatex">\(B_k\)</span> has exactly <span class="arithmatex">\(2^k\)</span> nodes. The number of nodes at depth <span class="arithmatex">\(d\)</span> is <span class="arithmatex">\(C_k^d\)</span>.</p>
 <p>一个数组可以唯一地被一个二项堆来表示，A priority queue of any size can be uniquely represented by a collection of binomial trees. 比如说13就可以表示为<span class="arithmatex">\(2^0+0\times2^1+2^2+2^3=1101_2\)</span></p>
 <h2 id="52-operations"><strong>5.2 Operations</strong><a class="headerlink" href="#52-operations" title="Permanent link">&para;</a></h2>
-<p><strong>Findmin</strong></p>
-<p>最小值一定在根处取到，一共有<span class="arithmatex">\(\lceil logN \rceil\)</span>个根，所以<span class="arithmatex">\(T_p=(logN)\)</span></p>
-<p><strong>Merge</strong></p>
+<h3 id="findmin"><strong>Findmin</strong><a class="headerlink" href="#findmin" title="Permanent link">&para;</a></h3>
+<p>最小值一定在根处取到，一共有<span class="arithmatex">\(\lceil \log  N \rceil\)</span>个根，所以<span class="arithmatex">\(T_p=(\log  N)\)</span></p>
+<h3 id="merge"><strong>Merge</strong><a class="headerlink" href="#merge" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20184906.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20184906.png" /></a></p>
 <p>Must keep the trees in the binomial queue <strong>sorted</strong> by height.</p>
-<p><strong>Insert</strong></p>
+<h3 id="insert"><strong>Insert</strong><a class="headerlink" href="#insert" title="Permanent link">&para;</a></h3>
 <p>把它看作是<strong>合并</strong>的特殊情况。</p>
-<p>时间复杂度分析：插入一次的时间复杂度可能是<span class="arithmatex">\(O(logN)\)</span>也可能是<span class="arithmatex">\(O(1)\)</span>，那么我们要通过均摊分析来计算均摊复杂度。设置势能函数为#trees, 第i次最小的未出现的堆为<span class="arithmatex">\(B_j\)</span>，那么<span class="arithmatex">\(\hat c_i=c_i+\Phi_i-\Phi_{i-1}=1+j+1-j=2\)</span>, 则 <span class="arithmatex">\(\sum_{i=1}^n\hat c_i=\sum_{i=1}^nc_i+\Phi_n-\Phi_0=O(n)\)</span>，而<span class="arithmatex">\(\Phi_n&gt;0,\Phi_0=0\)</span>，那么相应的均摊复杂度就为<span class="arithmatex">\(O(1)\)</span>了</p>
-<p><strong>DeleteMin(H)</strong></p>
+<p>时间复杂度分析：插入一次的时间复杂度可能是<span class="arithmatex">\(O(\log  N)\)</span>也可能是<span class="arithmatex">\(O(1)\)</span>，那么我们要通过均摊分析来计算均摊复杂度。设置势能函数为<strong>#trees</strong>, 第i次最小的未出现的堆为<span class="arithmatex">\(B_j\)</span>，那么</p>
+<div class="arithmatex">\[
+\hat c_i=c_i+\Phi_i-\Phi_{i-1}=1+j+1-j=2
+\]</div>
+<p>则 </p>
+<div class="arithmatex">\[
+\sum_{i=1}^n\hat c_i=\sum_{i=1}^nc_i+\Phi_n-\Phi_0=O(n)
+\]</div>
+<p>而 <span class="arithmatex">\(\Phi_n&gt;0,\Phi_0=0\)</span>，那么相应的均摊复杂度就为<span class="arithmatex">\(O(1)\)</span>了</p>
+<h3 id="deleteminh"><strong>DeleteMin(H)</strong><a class="headerlink" href="#deleteminh" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20194250.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20194250.png" /></a></p>
 <h2 id="53-implementation"><strong>5.3 Implementation</strong><a class="headerlink" href="#53-implementation" title="Permanent link">&para;</a></h2>
 <p>Binomial queue = array of binomial trees</p>

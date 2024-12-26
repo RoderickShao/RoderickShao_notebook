@@ -1451,7 +1451,7 @@
 </div>
 </div>
 </div>
-<p>在上述例子中，我们进行了四次 pass, 那么对于一般的情况，N个数据，internal memory 最多可处理 M 个数据的时候，则需要 <span class="arithmatex">\(1+\lceil log_2(N/M)\rceil\)</span></p>
+<p>在上述例子中，我们进行了四次 pass, 那么对于一般的情况，N个数据，internal memory 最多可处理 M 个数据的时候，则需要 <span class="arithmatex">\(1+\lceil \log _2(N/M)\rceil\)</span></p>
 <p>于是我们可以考虑的优化空间</p>
 <ul>
 <li>一个 pass 意味着若干次 seek，所以减少 pass 可以是一个方向；</li>

@@ -1374,7 +1374,7 @@
 
 <h1 id="1-avl-trees-and-splay-trees"><strong>1 AVL trees and Splay trees</strong><a class="headerlink" href="#1-avl-trees-and-splay-trees" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 832 个字  预计阅读时间 3 分钟
+    文本统计：约 894 个字  预计阅读时间 3 分钟
 </div>
 
 <h2 id="11-avl-trees"><strong>1.1 AVL trees</strong><a class="headerlink" href="#11-avl-trees" title="Permanent link">&para;</a></h2>
@@ -1383,7 +1383,7 @@
 <ol>
 <li>空二叉树是一个 AVL 树</li>
 <li>如果 T 是一棵 AVL 树，那么其左右子树也是 AVL 树，并且 <span class="arithmatex">\(|h(l_s)−h(r_s)|≤1\)</span>，<span class="arithmatex">\(h\)</span> 是其左右子树的高度</li>
-<li>树高为 <span class="arithmatex">\(O(log⁡n)\)</span></li>
+<li>树高为 <span class="arithmatex">\(O(\log ⁡n)\)</span></li>
 </ol>
 <p>Balance Factor: 左子树和右子树高度差</p>
 <p><strong>如何维护？</strong></p>
@@ -1405,11 +1405,11 @@
 <p>得到递推公式后，利用斐波那契数列求出<span class="arithmatex">\(n_h=\frac{1}{\sqrt 5}(\frac{1+\sqrt{5}}{2})^{h+3}-1\)</span> <span class="arithmatex">\(\Rightarrow h=O(lnn)\)</span></p>
 <h2 id="12-splay-trees"><strong>1.2 Splay trees</strong><a class="headerlink" href="#12-splay-trees" title="Permanent link">&para;</a></h2>
 <p>——Self-Adjusting Tree</p>
-<p><strong>目标</strong>：任何从空字数开始的连续M次树操作至多<span class="arithmatex">\(O(MlogN)\)</span></p>
+<p><strong>目标</strong>：任何从空字数开始的连续M次树操作至多<span class="arithmatex">\(O(M\log N)\)</span></p>
 <p>每当一个节点被访问，便将他移到根节点的位置上。然而我们并不能仅仅通过AVL树操作达成这一目标。</p>
 <p>比如下面这种情况，经过一番操作并没有让树的高度下降。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20171342.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20171342.png" /></a></p>
-<p><strong>如何操作？</strong></p>
+<p><strong>Splay操作</strong></p>
 <p>对于节点<span class="arithmatex">\(X\)</span>，标记其父节点为<span class="arithmatex">\(P\)</span>和爷节点<span class="arithmatex">\(G\)</span>。</p>
 <p>情况1：<span class="arithmatex">\(P\)</span>是根节点，直接交换<span class="arithmatex">\(P\)</span>和<span class="arithmatex">\(G\)</span>，并更新子节点</p>
 <p>情况2：<span class="arithmatex">\(P\)</span>不是根节点，这时也分为两种情况。</p>
@@ -1423,6 +1423,10 @@
 <p class="admonition-title">splay trees 的一次查询</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20172522.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20172522.png" /></a></p>
 </div>
+<p><strong>插入操作</strong></p>
+<p>​   先按照二叉树的插入方法，将其插入到某个空位置上，然后再进行splay操作</p>
+<p><strong>查询操作</strong></p>
+<p>​   按照正常的二叉树查询方法，然后多进行一步 splay 操作</p>
 <p><strong>删除操作</strong></p>
 <ul>
 <li>Find <span class="arithmatex">\(X\)</span>; (<span class="arithmatex">\(X\)</span> will be at the root)</li>
@@ -1445,7 +1449,7 @@
 <p>这样就可以得到<span class="arithmatex">\(\sum_{i=1}^n\hat c_i=\sum_{i=1}^n(c_i+\Phi(D_i)-\Phi(D_{i-1})=\sum_{i=1}^nc_i+\Phi(D_n)-\Phi(D_0)\)</span></p>
 <p>一般情况下，一个好的势能函数总能保证一开始的势能是最小的</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20175743.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20175743.png" /></a></p>
-<p>然后由上述知识解释<span class="arithmatex">\(Splay\ Trees:\ T_{amortized}=O(logN)\)</span></p>
+<p>然后由上述知识解释<span class="arithmatex">\(Splay\ Trees:\ T_{amortized}=O(\log N)\)</span></p>
 
 
   
