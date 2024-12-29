@@ -1402,7 +1402,7 @@
 
 <h1 id="15-external-sorting"><strong>15 External Sorting</strong><a class="headerlink" href="#15-external-sorting" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 3233 个字  预计阅读时间 11 分钟
+    文本统计：约 3236 个字  预计阅读时间 11 分钟
 </div>
 
 <p>为什么我们不能在硬盘上完成快速排序？</p>
@@ -1468,7 +1468,7 @@
 </div>
 <p>每一次 run 的数量变为原来的 1/k ，所以 pass 的数量为 </p>
 <div class="arithmatex">\[
-1+\lceil log_k(N/M)\rceil
+1+\lceil \log_k(N/M)\rceil
 \]</div>
 <p>但是这种方法会带来另一个问题就是 tapes 的数量需要 2k 个（k个负责输入，k个负责输出）而这并不利于我通过增加 k 来减少 pass 的数量，因而我们考虑某种策略来优化 tape 的使用。</p>
 <h2 id="tape"><strong># Tape 优化</strong><a class="headerlink" href="#tape" title="Permanent link">&para;</a></h2>
@@ -1676,7 +1676,7 @@ r_1 &gt; r_k - r_1 &gt; r_{k-1} - r_1 &gt; ... &gt; r_{2} - r_1
 <p>这时候我们就要将 output buffer 中的内容写到 T1 中去，并且在这个期间我们归并的操作需要停止</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-16%20201943.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-16%20201943.png" /></a></p>
 </div>
-<p>于是我们考虑增加一个 output buffer，这样我们在归并满一个buffer后，我们可以继续归并。但是这样我们还有一个问题，就是当其中一个 input buffer 满的时候，我们还需要等待读取下一个buffer，所以我们还需要增加2个 input buffer（因为我们不知道哪一个先满，所以我们一开始都要读进来），扩展到 k 的情况，我们就需要 <span class="arithmatex">\(2k\)</span> 个 input buffer 以及 2 output buffer </p>
+<p>于是我们考虑增加一个 output buffer，这样我们在归并满一个buffer后，我们可以继续归并。但是这样我们还有一个问题，就是当其中一个 input buffer 消耗完的时候，我们还需要等待读取下一个buffer，所以我们还需要增加2个 input buffer（因为我们不知道哪一个先耗完，所以我们一开始都要读进来），扩展到 <span class="arithmatex">\(k\)</span> 的情况，我们就需要 <span class="arithmatex">\(2k\)</span> 个 input buffer 以及 2 output buffer </p>
 <p>但是，并行优化的缺点就是占据了更多的内存空间——原先 <span class="arithmatex">\(k+1\)</span> 个 buffer 平分的用于处理数据的内存，现在需要被 <span class="arithmatex">\(2k+2\)</span> 个 buffer 平分，所以每一个 buffer 的大小会变小。进而导致每一次从 disk 中读取的数据变少，所以要读完数据所需要的读取次数就增加，即 seek 次数增加。</p>
 <p>Beyond a certain k value, the I\O time would actually increase despite the decrease in the number of passes being made.  The optimal value for k clearly depends on disk parameters and the amount of internal memory available for buffers. 我们需要取一个合适的k</p>
 <h2 id="run"><strong>怎样得到一个更长的run？</strong><a class="headerlink" href="#run" title="Permanent link">&para;</a></h2>

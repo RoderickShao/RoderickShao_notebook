@@ -1167,6 +1167,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#hw9" class="md-nav__link">
+    HW9
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hw10" class="md-nav__link">
+    HW10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hw11" class="md-nav__link">
     HW11
   </a>
@@ -1174,8 +1188,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#hw12" class="md-nav__link">
+    HW12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hw13" class="md-nav__link">
     HW13
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hw14" class="md-nav__link">
+    HW14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hw15" class="md-nav__link">
+    HW15
   </a>
   
 </li>
@@ -1499,6 +1534,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#hw9" class="md-nav__link">
+    HW9
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hw10" class="md-nav__link">
+    HW10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hw11" class="md-nav__link">
     HW11
   </a>
@@ -1506,8 +1555,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#hw12" class="md-nav__link">
+    HW12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hw13" class="md-nav__link">
     HW13
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hw14" class="md-nav__link">
+    HW14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hw15" class="md-nav__link">
+    HW15
   </a>
   
 </li>
@@ -1581,7 +1651,7 @@
 <li>the expectation (round to 0.01) of access time is 2.75</li>
 <li>there are 2 nodes with a balance factor of -1</li>
 </ul>
-<p>A.0     B.1     C.2     D.3</p>
+<p>A. 0        B. 1        C. 2        D. 3</p>
 <details class="note">
 <summary>答案</summary>
 <p><a class="glightbox" href="../img/Lectrue1%20%E8%A7%A3%E7%AD%941.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Lectrue1%20%E8%A7%A3%E7%AD%941.jpg" /></a></p>
@@ -1590,6 +1660,11 @@
 <details class="note">
 <summary>答案</summary>
 <p>插入完成后的 splay tree 为 7 6,8 3,,,9 1 正确</p>
+</details>
+<p>Amortized bounds are weaker than the corresponding worst-case bounds, because there is no guarantee for any single operation.</p>
+<details class="note">
+<summary>Note</summary>
+<p>单次操作的最差复杂度并不能保证，均摊的界是要比最差的界对每个操作的限制要更r</p>
 </details>
 <h3 id="_2">编程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p><strong>Root of AVL Tree</strong>：给一串输入，找到AVL树的根节点</p>
@@ -1733,6 +1808,22 @@
 <details class="note">
 <summary>答案</summary>
 <p>F, 16不满足</p>
+</details>
+<p>A 2-3 tree with 12 leaves may have at most 10 nonleaf nodes</p>
+<details class="note">
+<summary>答案</summary>
+<p>2-3树叶子节点是用来存数据的，12个叶子节点，上一层最多有6个非叶子节点，再上一层最多有3个非叶子节点，再上一层最多一个非叶子节点，共最多10个非叶子节点。</p>
+</details>
+<p>If we insert <span class="arithmatex">\(N(N⩾2)\)</span> nodes (with different integer elements) consecutively to build a red-black tree <span class="arithmatex">\(T\)</span> from an empty tree, which of the following situations is possible:</p>
+<p>A.All nodes in T are black</p>
+<p>B.The number of leaf nodes (NIL) in <span class="arithmatex">\(T\)</span> is <span class="arithmatex">\(2N−1\)</span></p>
+<p>C.<span class="arithmatex">\(2N\)</span> rotations occurred during the construction of <span class="arithmatex">\(T\)</span></p>
+<p>D.The height of <span class="arithmatex">\(T\)</span> is <span class="arithmatex">\(⌈3\log_2(N+1)⌉\)</span> (assume the height of the empty tree is 0)</p>
+<details class="note">
+<summary>答案</summary>
+<p>A 显然不可能 </p>
+<p>B N个节点，算上NIL，只有根节点的度数为2，所以所有点的度数和为 <span class="arithmatex">\(3N-1\)</span>， </p>
+<p>D 黑色节点最多 N 个黑高最多为 <span class="arithmatex">\(⌈\log_2(N+1)⌉\)</span>，所以树高最多 <span class="arithmatex">\(⌈2\log_2(N+1)⌉\)</span></p>
 </details>
 <h3 id="_4"><strong>编程</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>写出一个B+树，可以判断是否有重复元素并最后层序输出全部数据</p>
@@ -2077,7 +2168,7 @@ D 应该为<span class="arithmatex">\(O(N)\)</span></p>
 <p>T</p>
 </details>
 <h2 id="hw6"><strong>HW6</strong><a class="headerlink" href="#hw6" title="Permanent link">&para;</a></h2>
-<p>In the Tic-tac-toe game, a "goodness" function of a position is defined as<span class="arithmatex">\(f(P)=W_{computer}−W_{human}\)</span>where <span class="arithmatex">\(W\)</span> is the number of potential wins at position <em>P</em>. In the following figure, <code>O</code> represents the computer and <span class="arithmatex">\(X\)</span> the human. What is the goodness of the position of the figure?</p>
+<p>In the Tic-tac-toe game, a "goodness" function of a position is defined as<span class="arithmatex">\(f(P)=W_{\text{computer}}−W_{\text{human}}\)</span>where <span class="arithmatex">\(W\)</span> is the number of potential wins at position <em>P</em>. In the following figure, <code>O</code> represents the computer and <span class="arithmatex">\(X\)</span> the human. What is the goodness of the position of the figure?</p>
 <p><a class="glightbox" href="https://images.ptausercontent.com/412" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="img" src="https://images.ptausercontent.com/412" /></a></p>
 <details class="note">
 <summary>答案</summary>
@@ -2090,12 +2181,12 @@ D 应该为<span class="arithmatex">\(O(N)\)</span></p>
 </details>
 <h2 id="hw7"><strong>HW7</strong><a class="headerlink" href="#hw7" title="Permanent link">&para;</a></h2>
 <p>Consider two disjoint sorted arrays <em>A</em>[1…<em>m</em>] and <em>B</em>[1…<em>n</em>], we would like to compute the <em>k</em>-th smallest element in the union of the two arrays, where <em>k</em>≤min{<em>m</em>,<em>n</em>}. Please choose the smallest possible running time among the following options.</p>
-<p>A.<span class="arithmatex">\(O(logk)\)</span>     B. <span class="arithmatex">\(O(logm)\)</span>    C.<span class="arithmatex">\(O(logn)\)</span>     D.<span class="arithmatex">\(O(logm+logn)\)</span></p>
+<p>A.<span class="arithmatex">\(O(\log k)\)</span>       B. <span class="arithmatex">\(O(\log m)\)</span>  C.<span class="arithmatex">\(O(\log n)\)</span>       D.<span class="arithmatex">\(O(\log m+\log n)\)</span></p>
 <div class="admonition note">
 <p class="admonition-title">Answer</p>
 <p>A
 算法如下：
-比较A[k/2]和B[k/2]谁大小就可以排除对应的前k/2个得到新的A',B'数组
+比较A[k/2]和B[k/2]谁小就可以排除对应的前k/2个得到新的A',B'数组，因为小的那个数组的前k/2个数都不可能为那个第k小的数
 再比较A'[k/4]和B'[k/4]，就可以排除k/4
 ...依次排除，得到排除次数为log(k)
 (不够取了就取最大的那个)</p>
@@ -2212,7 +2303,76 @@ D 应该为<span class="arithmatex">\(O(N)\)</span></p>
 <a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum_2</span><span class="o">-</span><span class="n">dp</span><span class="p">[</span><span class="n">sum_1</span><span class="p">];</span>
 <a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="p">}</span>
 </code></pre></div>
+<h2 id="hw9"><strong>HW9</strong><a class="headerlink" href="#hw9" title="Permanent link">&para;</a></h2>
+<p>Consider the problem of making change for <em>n</em> cents using the fewest number of coins. Assume that each coin's value is an integer.
+The coins of the lowest denomination（面额） is the cent.</p>
+<p>(I) Suppose that the available coins are quarters (25 cents), dimes (10 cents), nickels (5 cents), and pennies (1 cent). The greedy algorithm always yields an optimal solution.</p>
+<p>(II) Suppose that the available coins are in the denominations that are powers of c, that is, the denominations are <span class="arithmatex">\(c^0, c^1, ..., c^k\)</span> for some integers <em>c</em>&gt;1 and <em>k</em>&gt;=1. The greedy algorithm always yields an optimal solution.</p>
+<p>(III) Given any set of <span class="arithmatex">\(k\)</span> different coin denominations which includes a penny (1 cent) so that there is a solution for every value of n, greedy algorithm always yields an optimal solution.</p>
+<p>Which of the following is correct?</p>
+<p>A. Statement (I) is false.</p>
+<p>B. Statement (II) is false.</p>
+<p>C. Statement (III) is false.</p>
+<p>D. All of the three statements are correct.</p>
+<details class="note">
+<summary>Note</summary>
+<p>第三个是错的，比若说我需要 10 cents，coins的面额分别是 6，5，1, 如果按照贪心的做法，应该是 <span class="arithmatex">\(6+1\times4\)</span>，事实上最好的方法应该是 <span class="arithmatex">\(5\times 2\)</span></p>
+</details>
+<h2 id="hw10"><strong>HW10</strong><a class="headerlink" href="#hw10" title="Permanent link">&para;</a></h2>
+<p>All the languages can be decided by a non-deterministic machine. </p>
+<details class="note">
+<summary>Note</summary>
+<p>F，并不是所有语言都可以被非确定性图灵机所验证 </p>
+</details>
+<p>All NP problems can be solved in polynomial time in a non-deterministic machine.</p>
+<details class="note">
+<summary>Note</summary>
+<p>T，而所有NP问题都可以被非确定性图灵机所验证，因为非确定性图灵机的每一步都是正确的</p>
+</details>
+<p>If a problem can be solved by dynamic programming, it must be solved in polynomial time. </p>
+<details class="note">
+<summary>Note</summary>
+<p>能用动态规划做的问题不一定可以被多项式解决，因为动态规划得到的复杂度可能和问题中的某个参数有关，这个参数确可以无限大</p>
+</details>
+<p>Suppose Q is a problem in NP, but not necessarily NP-complete.  Which of the following is FALSE?</p>
+<p>A. A polynomial-time algorithm for SAT would sufficiently imply a polynomial-time algorithm for Q.</p>
+<p>B. A polynomial-time algorithm for Q would sufficiently imply a polynomial-time algorithm for SAT.</p>
+<p>C. If <span class="arithmatex">\(Q ∈P\)</span>, then <span class="arithmatex">\(P=NP\)</span>.</p>
+<p>D. If Q is NP-hard, then Q is NP-complete.</p>
+<details class="note">
+<summary>答案</summary>
+<p>A. 由于 SAT 问题为 NPC 问题，那么 Q 问题可以被多项式规约为 SAT 问题，而如果 SAT 问题存在多项式算法，那么 Q 问题也有相应的多项式算法</p>
+<p>B. A 选项反过来就不能这么说了</p>
+<p>C选项是显然的，D是因为 Q 是 NP 问题</p>
+<p>综上，本题应该选择 B</p>
+</details>
+<p>NP-complete problems are the hardest problems in NP-hard problems in terms of computational complexity.</p>
+<details class="note">
+<summary>答案</summary>
+<p>F, 两者都是可被所有NP问题规约而来，所以所有 NP-hard 问题都可以被 NPC 问题多项式转化，但是这也并不能说明 NP-hard 比 NPC 问题难。</p>
+</details>
 <h2 id="hw11"><strong>HW11</strong><a class="headerlink" href="#hw11" title="Permanent link">&para;</a></h2>
+<p>Suppose ALG is an <span class="arithmatex">\(α\)</span>-approximation algorithm for an optimization problem <span class="arithmatex">\(Π\)</span> whose approximation ratio is tight. Then for every <span class="arithmatex">\(\varepsilon&gt;0\)</span> there is no <span class="arithmatex">\((α−\varepsilon)\)</span>-approximation algorithm for <span class="arithmatex">\(Π\)</span>  unless P = NP.</p>
+<p>???  note "答案"</p>
+<div class="highlight"><pre><span></span><code>这里近似比 $\alpha$ 针对的是 ALG 这个算法的最佳近似比，而这并不代表该问题不存在更好的近似比的解法，比如说对与装箱问题来说，next-fit的解法的最佳近似比就是2，而first-fit的解法的最佳近似比就可以小于2.
+</code></pre></div>
+<p>As we know there is a 2-approximation algorithm for the Vertex Cover problem.  Then we must be able to obtain a 2-approximation algorithm for the Clique problem, since the Clique problem can be polynomially reduced to the Vertex Cover problem.  </p>
+<details class="note">
+<summary>答案</summary>
+<p>注意问题可以相互转化，但是近似比不能相互转化！</p>
+</details>
+<p>To approximate a maximum spanning tree <em>T</em> of an undirected graph <span class="arithmatex">\(G=(V,E)\)</span> with distinct edge weights  <span class="arithmatex">\(w(u,v)\)</span> on each edge <span class="arithmatex">\((u,v)∈E\)</span>, let's denote the set of maximum-weight edges incident on each vertex by <em>S</em>.  Also let <span class="arithmatex">\(w(E′)=\sum_{(u,v)∈E′}w(u,v)\)</span> for any edge set <span class="arithmatex">\(E′\)</span>.  Which of the following statements is TRUE?</p>
+<p>A. <span class="arithmatex">\(S=T\)</span> for any graph <span class="arithmatex">\(G\)</span></p>
+<p>B. <span class="arithmatex">\(S\ne T\)</span> for any graph <span class="arithmatex">\(G\)</span></p>
+<p>C. <span class="arithmatex">\(w(T)≥w(S)/2\)</span> for any graph <span class="arithmatex">\(G\)</span></p>
+<p>D. None of the above</p>
+<details class="note">
+<summary>答案</summary>
+<p>S 包括的是每个点出射的最大权重的边，这个与T可能相同也可能不相同</p>
+<p>S 最多 n-1 条边，因为每个点会选择一条边，同时对于最大的那条边会有两个点选择它这条边，所以 S 最多有 n-1 条边。</p>
+<p>而对于最大生成树 T 来说，我们采用 Kruskal 算法，每次选择不成环的最大的那条边。如果我们选择的这条边引入了一个新的点，那么新加进来的这条边一定属于S；如果我们新引入的这条边未引入一个新的点，那么说明S已经被全部引入到T中（为什么？因为如果存在S中的一条边不在T中，那么对应的那个点是由另一条边而引入T中的，这是不可能的）。这样我们就说明了 <span class="arithmatex">\(w(T)≥w(S)\)</span></p>
+<p>于是该问题应该选C</p>
+</details>
 <p>Assume that you are a real world Chinese postman, which have learned an awesome course "Advanced Data Structures and Algorithm Analysis" (ADS). Given a 2-dimensional map indicating <em>N</em> positions <span class="arithmatex">\(p_i(x_i,y_i)\)</span> of your post office and all the addresses you must visit, you'd like to find a shortest path starting and finishing both at your post office, and visit all the addresses at least once in the circuit. Fortunately, you have a magic item "Bamboo copter &amp; Hopter" from "Doraemon", which makes sure that you can fly between two positions using the directed distance (or displacement).</p>
 <p>However, reviewing the knowledge in the ADS course, it is an <em>NPC</em> problem! Wasting too much time in finding the shortest path is unwise, so you decide to design a 2−approximation algorithm as follows, to achieve an acceptable solution.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Compute a minimum spanning tree T connecting all the addresses.
@@ -2233,6 +2393,89 @@ D 应该为<span class="arithmatex">\(O(N)\)</span></p>
 <p>C,level-order traversal不行</p>
 <p>注意到最短路径一定比MST要大，而其他两个的走法最多一条边走两次，不会超过2倍的MST，但是level-order就说不准了，可能一条边要走好多次</p>
 </details>
+<p>Revisit the activity selection problem. Given a set of activities <span class="arithmatex">\(S={a_1,a_2,⋯,a_n}\)</span> that wish to use a resource, each <span class="arithmatex">\(a_i\)</span> takes place during a time interval. The goal is to arrange as many compatible activities as possible. Recall that several greedy approaches are introduced in the class, among which the one selecting an activity with the shortest length, denoted by <span class="arithmatex">\(SF\)</span>, is not always optimal. However, we claim that <span class="arithmatex">\(SF\)</span> accepts at least <span class="arithmatex">\(∣OPT∣/2\)</span> activities, given that the optimal value is <span class="arithmatex">\(∣OPT∣\)</span>, where <span class="arithmatex">\(OPT\)</span> is an optimal solution. Check if the following is a correct proof. </p>
+<p>We use a technique, called the charging scheme, similarly as the amortized analysis. Suppose each accepted activity of <span class="arithmatex">\(OPT\)</span> holds one dollar, which will be given to the activities accepted by <span class="arithmatex">\(SF\)</span> in the following way. For any activity <span class="arithmatex">\(a_i\)</span> of <span class="arithmatex">\(OPT\)</span>, if <span class="arithmatex">\(a_i\)</span> is also accepted by <span class="arithmatex">\(SF\)</span>, give the dolloar to itself. Otherwise, there must be some activity <span class="arithmatex">\(a_j\)</span>, accepted by <span class="arithmatex">\(SF\)</span>, is not compatible with <span class="arithmatex">\(a_i\)</span>. Then <span class="arithmatex">\(a_j\)</span> receives one dollar from <span class="arithmatex">\(a_i\)</span>. Along this line, each activity of <span class="arithmatex">\(OPT\)</span> sends out one dollar to an activity in <span class="arithmatex">\(SF\)</span>, while each activity of <span class="arithmatex">\(SF\)</span> receives at most two dollars. It implies that <span class="arithmatex">\(SF\)</span> accepts as least <span class="arithmatex">\(∣OPT∣/2\)</span> activities.</p>
+<details class="note">
+<summary>Note</summary>
+<p>T,这个类似于摊还分析的分析方式为设每一个OPT中的活动有一美元，然后</p>
+</details>
+<p>In the bin packing problem, we are asked to pack a list of items L to the minimum number of bins of capacity 1.  For the instance <span class="arithmatex">\(L\)</span>, let <span class="arithmatex">\(FF(L)\)</span> denote the number of bins used by the algorithm First Fit.  The instance <span class="arithmatex">\(L'\)</span> is derived from <span class="arithmatex">\(L\)</span> by deleting one item from <span class="arithmatex">\(L\)</span>.  Then <span class="arithmatex">\(FF(L')\)</span> is at most of <span class="arithmatex">\(FF(L)\)</span>. </p>
+<details class="note">
+<summary>答案</summary>
+<p>F，反例如下：Bin size = 1</p>
+<p>L = {0.55,0.7,0.55,0.1,0.45,0.15,0.3,0.2}</p>
+<p>L' = L- {0.1} = {0.55,0.7,0.55,0.45,0.15,0.3,0.2}</p>
+<p>L 的情况只用了三个，而L'的情况却用了4个</p>
+</details>
+<p>For an approximation algorithm for a minimization problem, given that the algorithm does not guarantee to find the optimal solution, the best approximation ratio possible to achieve is a constant <span class="arithmatex">\(α&gt;1\)</span>.</p>
+<details class="note">
+<summary>答案</summary>
+<p>对于有FPTAS近似方案的情况，近似比与 <span class="arithmatex">\(\varepsilon\)</span> 有关 </p>
+</details>
+<p>Consider the bin packing problem which uses a minimum number of bins to accommodate a given list of items. Recall that Next Fit (NF) and First Fit (FF) are two simple approaches, whose (asymptotic) approximation ratios are 2 and 1.7, respectively. Now we focus on a special class <span class="arithmatex">\(I2\)</span> of instances in which only two distinct item sizes appear. Check which of the following statements is true by applying NF and FF on <span class="arithmatex">\(I2\)</span>.  </p>
+<p>A. NF and FF both have improved approximation ratios.</p>
+<p>B. NF has an improved approximation ratio, while FF does not.</p>
+<p>C. FF has an improved approximation ratio, while NF does not.</p>
+<p>D. Neither of NF or FF has an improved approximation ratio.</p>
+<details class="note">
+<summary>答案</summary>
+<p>貌似选C，等会再看</p>
+</details>
+<p>Assume P≠NP, please identify the false statement.</p>
+<p>A. There cannot exist a <span class="arithmatex">\(ρ-approximation\)</span> algorithm for bin packing problem for any <span class="arithmatex">\(ρ&lt;3/2\)</span>.</p>
+<p>B. In the minimum-degree spanning problem, we are given a graph G=(V, E) and wish to find a spanning tree T of G so as to minimize the maximum degree of nodes in T. Then it is NP-complete to decide whether or not a given graph has minimum-degree spanning tree of maximum degree two.</p>
+<p>C. In the minimum-degree spanning problem, we are given a graph <span class="arithmatex">\(G=(V, E)\)</span> and wish to find a spanning tree T of G so as to minimize the maximum degree of nodes in T. Then there exists an algorithm with approximation ratio less than 3/2.</p>
+<p>D. In the knapsack problem, for any given real number <span class="arithmatex">\(ϵ&gt;0\)</span>, there exists an algorithm with approximation ratio less than <span class="arithmatex">\(1+ϵ\)</span>.</p>
+<details class="note">
+<summary>答案</summary>
+<p>A. 装箱问题不可能存在近似比小于3/2的多项式算法，这是因为分箱问题（将一堆物品分成等重的两部分）是一个NPC问题</p>
+<p>B. 判断是否存在最大度数为2的最小生成树等价于哈密顿路径问题，而这个是 NPC 问题</p>
+<p>C. 不可能存在近似比小于3/2的多项式算法，如果存在，那么我就可以用其来解决哈密顿路径问题</p>
+<p>D. 背包问题可用一个 <span class="arithmatex">\(\varepsilon\)</span> 来控制精度</p>
+</details>
+<p>In the bin packing problem, suppose that the maximum size of the items is bounded from above by <span class="arithmatex">\(α&lt;1\)</span>. Now let's apply the Next Fit algorithm to pack a set of items <em>L</em> into bins with capacity 1. Let <span class="arithmatex">\(NF(L)\)</span> and <span class="arithmatex">\(OPT(L)\)</span> denote the numbers of bins used by algorithms Next Fit and the optimal solution. Then for all <span class="arithmatex">\(L\)</span>, we have <span class="arithmatex">\(NF(L)&lt;ρ⋅OPT(L)+1\)</span> for some <span class="arithmatex">\(ρ\)</span>.  Which one of the following statements is FALSE?</p>
+<p>A. <span class="arithmatex">\(ρ=\frac{1}{1-\alpha}\)</span>,  if <span class="arithmatex">\(0≤α≤1/2\)</span>.</p>
+<p>B. <span class="arithmatex">\(ρ=2\)</span>,  if <span class="arithmatex">\(α&gt;1/2\)</span>.</p>
+<p>C. If <span class="arithmatex">\(L\)</span> = (0.5, 0.3, 0.4, 0.8, 0.2, 0.3), then <span class="arithmatex">\(NF(L)=4\)</span>.</p>
+<p>D. <span class="arithmatex">\(ρ=2α\)</span>  if <span class="arithmatex">\(0≤α≤1\)</span></p>
+<details class="note">
+<summary>答案</summary>
+<p>选择 D</p>
+<p>A. 最大的物品不会超过 <span class="arithmatex">\(\alpha\)</span>, 那么每个箱子至少有 <span class="arithmatex">\(1-\alpha\)</span> 的货物，那么当<span class="arithmatex">\(0≤α≤1/2\)</span> 时，物品总重至少 <span class="arithmatex">\((1-\alpha)\times NF(L)\)</span>，那么相应的最佳值肯定至少为该值，相应的近似比就是 <span class="arithmatex">\(\frac{1}{1-\alpha}\)</span></p>
+<p>B. 而对于 <span class="arithmatex">\(α&gt;1/2\)</span> 的情况就按照上课讲的内容来求近似解</p>
+</details>
+<h2 id="hw12"><strong>HW12</strong><a class="headerlink" href="#hw12" title="Permanent link">&para;</a></h2>
+<p>For the graph given in the following figure, if we start from deleting the black vertex, then local search can always find the minimum vertex cover. </p>
+<p><a class="glightbox" href="../img/HW12.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/HW12.jpg" /></a></p>
+<details class="note">
+<summary>Note</summary>
+<p>我们从黑色的点开始删除，那么接下来可以删除的就是下方的两个点，这都能得到最优的情况</p>
+</details>
+<p><strong>Spanning Tree Problem</strong>: Given an undirected graph <span class="arithmatex">\(G=(V,E)\)</span>, where <span class="arithmatex">\(|V|=n\)</span> and <span class="arithmatex">\(|E|=m\)</span>. Let <span class="arithmatex">\(F\)</span> be the set of all spanning trees of <span class="arithmatex">\(G\)</span>. Define <span class="arithmatex">\(d(u)\)</span> to be the degree of a vertex <span class="arithmatex">\(u∈V\)</span>. Define <em>w</em>(<em>e</em>) to be the weight of an edge <span class="arithmatex">\(e∈E\)</span>.</p>
+<p>We have the following three variants of spanning tree problems:</p>
+<ul>
+<li>(1) Max Leaf Spanning Tree: find a spanning tree <em>T</em>∈<em>F</em> with a maximum number of leaves.</li>
+<li>(2) Minimum Spanning Tree: find a spanning tree <em>T</em>∈<em>F</em> with a minimum total weight of all the edges in <em>T</em>.</li>
+<li>(3) Minimum Degree Spanning Tree: find a spanning tree <em>T</em>∈<em>F</em> such that its maximum degree of all the vertices is the smallest.</li>
+</ul>
+<p>For a pair of edges <span class="arithmatex">\((e,e')\)</span> where <span class="arithmatex">\(e∈T\)</span> and <span class="arithmatex">\(e'∈(G−T)\)</span> such that <span class="arithmatex">\(e\)</span> belongs to the unique cycle of <span class="arithmatex">\(T∪e'\)</span>, we define <strong>edge-swap(<span class="arithmatex">\(e,e'\)</span>)</strong> to be <span class="arithmatex">\((T−e)∪e'\)</span>.</p>
+<p>Here is a local search algorithm:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>T = any spanning tree in F;
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>while (there is an edge-swap(e, e&#39;) which reduces Cost(T)) {
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    T = T - e + e&#39;;
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>}
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>return T;
+</code></pre></div>
+<p>Here <code>Cost(T)</code> is the number of leaves in <code>T</code> in Max Leaf Spanning Tree; or is the total weight of <code>T</code> in Minimum Spanning Tree; or else is the minimum degree of <code>T</code> in Minimum Degree Spanning Tree.</p>
+<p>Which of the following statements is TRUE?</p>
+<p>A. The local search always return an optimal solution for Max Leaf Spanning Tree</p>
+<p>B. The local search always return an optimal solution for Minimum Spanning Tree</p>
+<p>C. The local search always return an optimal solution for Minimum Degree Spanning Tree</p>
+<p>D. For neither of the problems that this local search always return an optimal solution</p>
+<details class="note">
+<summary>Note</summary>
+<p>应该只有 B 是可以证明的，其他两个应该都存在那些非极小值点，但不是最小值的点</p>
+</details>
 <h2 id="hw13"><strong>HW13</strong><a class="headerlink" href="#hw13" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(a=(a_1,a_2,…,a_i,…,a_j,…,a_n)\)</span> denote the list of elements we want to sort. In the quicksort algorithm, if the pivot is selected uniformly at random. Then any two elements get compared at most once and the probability of <span class="arithmatex">\(a_i\)</span> and <span class="arithmatex">\(a_j\)</span> being compared is <span class="arithmatex">\(2/(j−i+1)\)</span> for <span class="arithmatex">\(j&gt;i\)</span>, given that <span class="arithmatex">\(a_i\)</span> or <span class="arithmatex">\(a_j\)</span> is selected as the pivot. </p>
 <div class="admonition answer">
@@ -2242,23 +2485,23 @@ D 应该为<span class="arithmatex">\(O(N)\)</span></p>
 <p>事实上，如果是已经被排序好的，这就是对的，也就是说这里的i,j指的是第i大以及第j大时，结论是成立的</p>
 </div>
 <p>The Online Hiring Algorithm ( hire only once ) is described as the following:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>int OnlineHiring ( EventType C[ ], int N, int k )
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>{
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    int Best = N;
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    int BestQ = -INFINITY ;
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    for ( i=1; i&lt;=k; i++ ) {
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>        Qi = interview( i );
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        if ( Qi &gt; BestQ )   BestQ = Qi;
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    }
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    for ( i=k+1; i&lt;=N; i++ ) {
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        Qi = interview( i );
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        if ( Qi &gt; BestQ ) {
-<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>            Best = i;
-<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>            break;
-<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>        }
-<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>    }
-<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>    return Best;
-<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>int OnlineHiring ( EventType C[ ], int N, int k )
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>{
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    int Best = N;
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    int BestQ = -INFINITY ;
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    for ( i=1; i&lt;=k; i++ ) {
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>        Qi = interview( i );
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>        if ( Qi &gt; BestQ )   BestQ = Qi;
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    }
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    for ( i=k+1; i&lt;=N; i++ ) {
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        Qi = interview( i );
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        if ( Qi &gt; BestQ ) {
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>            Best = i;
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>            break;
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>        }
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    }
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>    return Best;
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>}
 </code></pre></div>
 <p>Assume that the quality input <span class="arithmatex">\(C[~]\)</span> is uniformly random. When <span class="arithmatex">\(N\)</span> = 271 and <span class="arithmatex">\(k\)</span> = 90,  the probability of hiring the <span class="arithmatex">\(N\)</span> th candidate is__.</p>
 <p>A.1/<em>e</em></p>
@@ -2281,6 +2524,41 @@ D 应该为<span class="arithmatex">\(O(N)\)</span></p>
 a_n=\frac{1}{N}\sum_{i=1}^{N-1}a_i+O(1)
 \]</div>
 </div>
+<h2 id="hw14">HW14<a class="headerlink" href="#hw14" title="Permanent link">&para;</a></h2>
+<p>In order to solve  the maximum finding problem by a parallel  algorithm  with <span class="arithmatex">\(T(n)=O(1)\)</span> , we need work load <span class="arithmatex">\(W(n)=Ω(n^2)\)</span> in return.</p>
+<details class="note">
+<summary>答案</summary>
+<p>F，我们使用随机选择那个方法就可以做到 O(1) 的workload</p>
+</details>
+<h2 id="hw15">HW15<a class="headerlink" href="#hw15" title="Permanent link">&para;</a></h2>
+<p>If only one tape drive is available to perform the external sorting, then the tape access time for any algorithm will be <span class="arithmatex">\(Ω(N^2)\)</span>.  </p>
+<details class="note">
+<summary>答案</summary>
+<p>T, 考虑寻道时间从 <span class="arithmatex">\(O(1)\)</span> 上升到了 <span class="arithmatex">\(O(n)\)</span>，而对于每个数据都需要访问，所以复杂度至少为 <span class="arithmatex">\(\Omega(N^2)\)</span></p>
+</details>
+<p>Given 100,000,000 records of 256 bytes each, and the size of the internal memory is 128 MB.  If simple 2-way merges are used, how many passes do we have to do?</p>
+<p>A. 10</p>
+<p>B. 9</p>
+<p>C. 8</p>
+<p>D. 7</p>
+<details class="note">
+<summary>答案</summary>
+<div class="arithmatex">\[
+1+\lceil \log_2(\frac{10000000}{128\times2^10/256})\rceil=9
+\]</div>
+</details>
+<p>Suppose we have the internal memory that can handle 12 numbers at a time, and the following two runs on the tapes:</p>
+<p><strong>Run 1</strong>: 1, 3, 5, 7, 8, 9, 10, 12</p>
+<p><strong>Run 2</strong>: 2, 4, 6, 15, 20, 25, 30, 32</p>
+<p>Use 2-way merge with 4 input buffers and 2 output buffers for parallel operations.  Which of the following three operations are NOT done in parallel?</p>
+<p>A. 1 and 2 are written onto the third tape; 3 and 4 are merged into an output buffer; 6 and 15 are read into an input buffer</p>
+<p>B. 3 and 4 are written onto the third tape; 5 and 6 are merged into an output buffer; 8 and 9 are read into an input buffer</p>
+<p>C. 5 and 6 are written onto the third tape; 7 and 8 are merged into an output buffer; 20 and 25 are read into an input buffer</p>
+<p>D. 7 and 8 are written onto the third tape; 9 and 15 are merged into an output buffer; 10 and 12 are read into an input buffer</p>
+<details class="note">
+<summary>Note</summary>
+<p><a class="glightbox" href="../img/HW15.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/HW15.png" /></a></p>
+</details>
 
 
   

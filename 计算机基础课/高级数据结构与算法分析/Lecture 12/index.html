@@ -1482,7 +1482,7 @@
 
 <h1 id="12-local-search"><strong>12 Local Search</strong><a class="headerlink" href="#12-local-search" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2186 个字  •  41 行代码  预计阅读时间 8 分钟
+    文本统计：约 2175 个字  •  41 行代码  预计阅读时间 8 分钟
 </div>
 
 <p>从一个可行解开始，我们在它的邻域内寻找更好的解，如果邻域内没有更好的解了，那么我们就称这个解是一个 local optimum (局部最优解)</p>
@@ -1604,7 +1604,7 @@
 <div class="arithmatex">\[
 \sum_{v\in A}w_{uv}\le \sum_{v\in B}w_{uv}
 \]</div>
-<p>如果大于，算法的循环还会继续（因为这个点是不满足要求的）</p>
+<p>否则我就将这个点从 A 移到 B</p>
 <p>那么对于所有 <span class="arithmatex">\(u\in A\)</span>，我们将式子加起来，得到</p>
 <div class="arithmatex">\[
 \begin{aligned}
@@ -1647,7 +1647,7 @@ w(A^*,B^*)\le \sum_{\{u,v\subseteq A\}}w_{uv}+\sum_{\{u,v\subseteq B\}}w_{uv}+w(
 <p><strong>Claim 2</strong>: The big-improvement-flip algorithm terminates after at most <span class="arithmatex">\(O(n/\varepsilon \log  W)\)</span> flips.</p>
 <p><strong>Proof</strong>: 每次 <span class="arithmatex">\(\Phi(S)\)</span> 都要扩大到原来的 <span class="arithmatex">\(1+\frac{2\epsilon}{|V|}\)</span> 倍，所以迭代的次数最多为</p>
 <div class="arithmatex">\[
-log_{1+\frac{2\varepsilon}{|V|}}W=\frac{lnW}{ln(1+\frac{2\varepsilon}{|V|})}=\frac{|V|}{2\varepsilon}lnW
+\log_{1+\frac{2\varepsilon}{|V|}}W=\frac{\ln W}{\ln(1+\frac{2\varepsilon}{|V|})}=\frac{|V|}{2\varepsilon}\lnW
 \]</div>
 <h3 id="1233"><strong>12.3.3 一些思考</strong><a class="headerlink" href="#1233" title="Permanent link">&para;</a></h3>
 <p>对于 Local search 来说，怎么样的Local才是好的？</p>

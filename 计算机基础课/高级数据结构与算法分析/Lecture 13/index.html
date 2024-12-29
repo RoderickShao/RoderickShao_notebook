@@ -1386,7 +1386,7 @@
 
 <h1 id="13-randomized-algorithms"><strong>13 Randomized Algorithms</strong><a class="headerlink" href="#13-randomized-algorithms" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1244 个字  •  37 行代码  预计阅读时间 5 分钟
+    文本统计：约 1249 个字  •  37 行代码  预计阅读时间 5 分钟
 </div>
 
 <p>随机的概念：随机在算法一般有两种含义，一种是指输入在指定的集合内是随机生成的，另一种是指算法的行为具有随机性（相同输入，相同步骤时，下一步操作可能不同）。随机算法一般指的是第二种。</p>
@@ -1474,7 +1474,7 @@ P(S)=\sum_{i=k+1}^NP(S_i)=\sum_{i=k+1}^N\frac{k}{N(i-1)}=\frac{k}{N}\sum_{i=k}^{
 \]</div>
 <p>从而得到</p>
 <div class="arithmatex">\[
-\frac kNln(\frac Nk)\le P(S)\le\frac kNln(\frac{N-1}{k-1})
+\frac kN\ln(\frac Nk)\le P(S)\le\frac kN\ln(\frac{N-1}{k-1})
 \]</div>
 <p>对下界求导得到 <span class="arithmatex">\(k\)</span> 取 <span class="arithmatex">\(N/e\)</span> 时，下界最大，使得 <span class="arithmatex">\(P(S)\)</span> 最大</p>
 <h2 id="132-quick-sort"><strong>13.2 Quick-sort</strong><a class="headerlink" href="#132-quick-sort" title="Permanent link">&para;</a></h2>
@@ -1504,7 +1504,7 @@ E(\# \text{find})=\sum_{i=1}^{+\infty}\frac{i}{2^i}=2
 <div class="arithmatex">\[
 E[T_{type~j}]=O(N(\frac34)^j)\times (\frac43)^j=O(N)
 \]</div>
-<p>一共有 <span class="arithmatex">\(log_{\frac43}N=O(logN)\)</span> 类，所以整个算法的时间复杂度是 <span class="arithmatex">\(O(NlogN)\)</span></p>
+<p>一共有 <span class="arithmatex">\(\log_{\frac43}N=O(\log N)\)</span> 类，所以整个算法的时间复杂度是 <span class="arithmatex">\(O(N\log N)\)</span></p>
 <p>法二：利用递推公式</p>
 <div class="arithmatex">\[
 f(N)=f(N/4)+f(3N/4)+O(N)

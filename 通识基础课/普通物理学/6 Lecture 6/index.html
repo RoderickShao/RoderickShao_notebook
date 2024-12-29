@@ -1400,29 +1400,42 @@
 
 <h1 id="6"><strong>6 恒定电流</strong><a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 546 个字  预计阅读时间 2 分钟
+    文本统计：约 587 个字  预计阅读时间 2 分钟
 </div>
 
 <h2 id="61"><strong>6.1 电流强度与电流密度</strong><a class="headerlink" href="#61" title="Permanent link">&para;</a></h2>
-<p><strong>电流强度</strong>：单位时间通过某截面的电荷量</p>
-<div class="arithmatex">\[
-i=lim_{\triangle t\rightarrow0}\frac{\Delta q}{\Delta t}=\frac{dq}{dt}
-\]</div>
+<p><strong>电流强度</strong>：单位时间通过某截面（有面积的，所以可以继续引入电流密度矢量）的电荷量
+$$
+i=\lim_{\triangle t\rightarrow0}\frac{\Delta q}{\Delta t}=\frac{\text{d} q}{\text{d}t}
+$$</p>
 <p><strong>电流密度矢量</strong> <span class="arithmatex">\(\vec j\)</span>：通过单位面积的电流</p>
 <div class="arithmatex">\[
-i=\iint_A \vec j\cdot d\vec A=\iint_A j cos \theta dA
+i=\iint_A \vec j\cdot \text{d}\vec A=\iint_A j \cos \theta \text{ d}A
 \]</div>
 <p><strong>电流连续方程</strong>（实质是电荷守恒定律）</p>
 <div class="arithmatex">\[
-\iint_A \vec j\cdot d\vec A=-\frac{dq}{dt}
+\iint_{闭合曲面} \vec j\cdot \text{ d}\vec A=-\frac{\text{d}q}{\text{d}t}
 \]</div>
-<p>左边为单位时间里面S面流出的电量，设时间<span class="arithmatex">\(dt\)</span>里包含在S面内的电量增量为<span class="arithmatex">\(dq\)</span>，右边亦是单位时间里S面内的电量减少量。</p>
+<p>左边为单位时间里面S面流出的电量，设时间 <span class="arithmatex">\(\text{d}t\)</span> 里包含在S面内的电量增量为<span class="arithmatex">\(\text{d}q\)</span>，右边亦是单位时间里S面内的电量减少量。</p>
 <p>恒定电流不随时间的变化，要求电荷的分布不随时间而变化。</p>
-<p>从而<span class="arithmatex">\(\iint_A \vec j\cdot d\vec A=0\)</span></p>
+<p>从而</p>
+<div class="arithmatex">\[
+\iint_{闭合曲面} \vec j\cdot d\vec A=0
+\]</div>
 <h2 id="62"><strong>6.2 欧姆定律，电阻，电阻率</strong><a class="headerlink" href="#62" title="Permanent link">&para;</a></h2>
-<p>微分电阻：<span class="arithmatex">\(R=\frac{dV}{dI}\)</span></p>
+<p>微分电阻</p>
+<div class="arithmatex">\[
+R=\frac{dV}{dI}
+\]</div>
 <p>电导：<span class="arithmatex">\(G=\frac{1}{R}\)</span>，单位西门子<span class="arithmatex">\(S\)</span></p>
-<p>电阻率 <span class="arithmatex">\(\rho\)</span> 与电导率 <span class="arithmatex">\(\sigma\)</span>：<span class="arithmatex">\(R=\rho\frac{L}{A}=\frac{L}{\sigma A}\)</span>，相应的积分形式<span class="arithmatex">\(R=\int\rho\frac{dl}{A}\)</span></p>
+<p>电阻率 <span class="arithmatex">\(\rho\)</span> 与电导率 <span class="arithmatex">\(\sigma\)</span></p>
+<div class="arithmatex">\[
+R=\rho\frac{L}{A}=\frac{L}{\sigma A}
+\]</div>
+<p>相应的积分形式</p>
+<div class="arithmatex">\[
+R=\int\rho\frac{dl}{A}
+\]</div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-18%20131226.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-18%20131226.png" /></a></p>
 <h3 id="621">6.2.1 欧姆定律的微分形式<a class="headerlink" href="#621" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-18%20133905.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-18%20133905.png" /></a></p>

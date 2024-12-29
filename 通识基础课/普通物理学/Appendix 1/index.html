@@ -145,11 +145,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#_1" class="md-skip">
-          跳转至
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -967,19 +962,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Appendix 1
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -990,39 +972,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    库仑定律
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    高斯定理
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1289,30 +1238,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    库仑定律
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    高斯定理
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1330,19 +1255,76 @@
   
 
 
-<h1 id="_1"><strong>公式</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 58 个字 
-</div>
+  <h1>Appendix 1</h1>
 
-<h2 id="_2"><a href="../1%20Lecture%201/#库仑定律"><strong>库仑定律</strong></a><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="arithmatex">\[
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 341 个字  预计阅读时间 1 分钟
+</div>
+<p>库仑定律
+$$
 \vec F_{12}=\frac{1}{4\pi\epsilon_0}\frac{q_1q_2}{r_{12}^2}\hat r_{12}
-\]</div>
+$$</p>
 <p><span class="arithmatex">\(\hat r_{12}\)</span>意思是从1指向2单位向量</p>
-<h2 id="_3"><a href="../3%20Lecture%203/#高斯定理"><strong>高斯定理</strong></a><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>电偶极矩：<span class="arithmatex">\(p=2Qa=Ql\)</span>，方向是从负方向指向正方向</p>
+<p>电偶极子在电场中的<strong>力矩</strong>：<span class="arithmatex">\(\vec\tau=\vec p\times \vec E\)</span></p>
+<p>电偶极子在电场中的<strong>能量</strong>：<span class="arithmatex">\(U=-\vec p\cdot \vec E\)</span></p>
+<p>高斯定理</p>
 <div class="arithmatex">\[
-\epsilon_0\iint_{闭合曲面}\hat E\cdot d\hat A=q_{enclosed}
+\varepsilon_0\iint_{闭合曲面}\hat E\cdot d\hat A=q_{enclosed}
+\]</div>
+<p>将无限远处定义为零势能面</p>
+<p>那么点电荷周围的电势为 </p>
+<div class="arithmatex">\[
+V=\frac{q}{4\pi\varepsilon_0r}
+\]</div>
+<p>电偶极子周围的电势为 </p>
+<div class="arithmatex">\[
+V=\frac{\vec p\cdot \hat r}{4\pi\varepsilon_0r^2}
+\]</div>
+<p>带电球壳周围的电势</p>
+<div class="arithmatex">\[
+V=\left\{
+\begin{aligned}
+\frac{q}{4\pi\varepsilon_0r_p}\quad r_p&gt;R\\
+\frac{q}{4\pi\varepsilon_0R}\quad r_p&lt;R\\
+\end{aligned}
+\right.
+\]</div>
+<p>带电球壳的能量为</p>
+<div class="arithmatex">\[
+E=\frac{q^2}{8\pi\varepsilon_0R}
+\]</div>
+<p>平行板电容器电容</p>
+<div class="arithmatex">\[
+C=\frac{\varepsilon_0A}{d}
+\]</div>
+<p>电容器中储存的能量</p>
+<div class="arithmatex">\[
+U=\frac12CV^2
+\]</div>
+<p>电场能量密度</p>
+<div class="arithmatex">\[
+u=\frac12\varepsilon_0E^2
+\]</div>
+<p>电介质表面极化电荷密度</p>
+<div class="arithmatex">\[
+\sigma'=\vec P \cdot \vec n
+\]</div>
+<p>S面内净余的极化电荷 <span class="arithmatex">\(\sum q'\)</span> 为</p>
+<div class="arithmatex">\[
+\iint_SP\cdot \text{d} S=-\sum_{S_内}q'
+\]</div>
+<p>极化强度与总电场的关系为</p>
+<div class="arithmatex">\[
+P=\chi_e\varepsilon_0E
+\]</div>
+<p>电位移矢量</p>
+<div class="arithmatex">\[
+D=\varepsilon_0\vec E+\vec P=(1+\chi_e)\varepsilon_0\vec E
+\]</div>
+<p>有电介质时的高斯定理</p>
+<div class="arithmatex">\[
+\iint_S D\cdot \text{d}S=\sum_{S_内}q_0
 \]</div>
 
 
