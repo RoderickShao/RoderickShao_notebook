@@ -1412,13 +1412,13 @@
 
 <h1 id="8"><strong>8 电磁感应定律</strong><a class="headerlink" href="#8" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1134 个字  预计阅读时间 4 分钟
+    文本统计：约 1153 个字  预计阅读时间 4 分钟
 </div>
 
 <h2 id="81"><strong>8.1 电磁感应</strong><a class="headerlink" href="#81" title="Permanent link">&para;</a></h2>
 <p><strong>The electromotive force</strong> (emf, 电动势) e  induced in a circuit is determined by the time rate of change of the magnetic flux through that circuit.</p>
 <div class="arithmatex">\[
-\epsilon =-\frac{d\Phi_B}{dt}
+\varepsilon =-\frac{\text{d}\Phi_B}{\text{d}t}
 \]</div>
 <p>其中 <span class="arithmatex">\(\epsilon\)</span> 的方向遵循右手法则p</p>
 <div class="admonition note">
@@ -1463,12 +1463,12 @@
 \]</div>
 <p>从而 </p>
 <div class="arithmatex">\[
-\epsilon=\int_{-}^{+}\vec K\cdot d\vec l=\int_C^D(\vec v\times \vec B)\cdot d\vec l
+\varepsilon=\int_{-}^{+}\vec K\cdot \text{d}\vec l=\int_C^D(\vec v\times \vec B)\cdot \text{d}\vec l
 \]</div>
 <div class="admonition note">
 <p class="admonition-title">洛伦兹力不应该不做功吗？</p>
 <p><a class="glightbox" href="../img/%E6%B4%9B%E4%BC%A6%E5%85%B9%E5%8A%9B%E4%B8%8D%E5%81%9A%E5%8A%9F.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="right" alt="" src="../img/%E6%B4%9B%E4%BC%A6%E5%85%B9%E5%8A%9B%E4%B8%8D%E5%81%9A%E5%8A%9F.jpg" /></a>
-由于F<span class="arithmatex">\(\bot\)</span>0，洛伦兹力永远对电荷不作功，而这里又说动生电动势是由洛伦兹力作功引起的，两者岂不矛盾？其实并不矛盾，我们这里的讨论只计及洛伦兹力的一部分。全面考虑的话，在运动导体中的电子不但具有导体本身的速度，而且还有相对导体的定向运动速度比，如上图所示，正是由于电子的后一运动构成了感应电流。因此，电子所受的总的洛伦兹力为</p>
+由于F<span class="arithmatex">\(\bot\)</span>\vec v，洛伦兹力永远对电荷不作功，而这里又说动生电动势是由洛伦兹力作功引起的，两者岂不矛盾？其实并不矛盾，我们这里的讨论只计及洛伦兹力的一部分。全面考虑的话，在运动导体中的电子不但具有导体本身的速度，而且还有相对导体的定向运动速度比，如上图所示，正是由于电子的后一运动构成了感应电流。因此，电子所受的总的洛伦兹力为</p>
 <div class="arithmatex">\[
 F_总 =-e(u +v)\times B.
 \]</div>
@@ -1489,31 +1489,31 @@ F'=-e(u ×B)，
 <h3 id="_1"><strong>相关应用：发电机与电动机</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-06%20113926.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-06%20113926.png" /></a></p>
 <h2 id="84"><strong>8.4 感生电动势</strong><a class="headerlink" href="#84" title="Permanent link">&para;</a></h2>
-<p>电荷 <span class="arithmatex">\(q_0\)</span> 在激发的环形电场中做的功 <span class="arithmatex">\(W\)</span> 是 <span class="arithmatex">\(q_0\epsilon\)</span></p>
+<p>电荷 <span class="arithmatex">\(q_0\)</span> 在激发的环形电场中做的功 <span class="arithmatex">\(W\)</span> 是 <span class="arithmatex">\(q_0\varepsilon\)</span></p>
 <div class="arithmatex">\[
 \begin{aligned}
-\epsilon q_0&amp;=q_0E_{induced}\cdot 2\pi r\\
-\epsilon&amp;=E_{induced}\cdot 2\pi r=\oint\vec E_{induced}\cdot d\vec l
+\varepsilon q_0&amp;=q_0E_{induced}\cdot 2\pi r\\
+\varepsilon&amp;=E_{induced}\cdot 2\pi r=\oint\vec E_{induced}\cdot d\vec l
 \end{aligned}
 \]</div>
 <p>而又有法拉第电磁感应定律</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\epsilon&amp;=-\frac{d\Phi_B}{dt}\\
-\oint\vec E_{induced}\cdot d\vec l&amp;=-\frac{d\Phi_B}{dt}\\
-&amp;=-\iint_{闭合}\frac{\partial \vec B}{\partial t}d\vec A
+\varepsilon&amp;=-\frac{\text{d}\Phi_B}{\text{d}t}\\
+\oint\vec E_{induced}\cdot \text{d}\vec l&amp;=-\frac{\text{d}\Phi_B}{\text{d}t}\\
+&amp;=-\iint_{闭合}\frac{\partial \vec B}{\partial t}\text{d}\vec A
 \end{aligned}
 \]</div>
 <p>（这里为什么用的是偏导？因为此时B被看成了一个关于面积与时间的二元函数）</p>
 <p>由于空间总电场是由静电场 <span class="arithmatex">\(\vec E_{sta}\)</span>与激发电场 <span class="arithmatex">\(\vec E_{ind}\)</span> 组成，静电场是保守场，而激发电场是非保守场。</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\oint\vec E\cdot d\vec l=\oint(\vec E_{sta}+\vec E_{ind})\cdot d\vec l=0+(-\iint_{闭合}\frac{\partial \vec B}{\partial t}d\vec A)=-\iint_{闭合}\frac{\partial \vec B}{\partial t}d\vec A
+\oint\vec E\cdot \text{d}\vec l=\oint(\vec E_{sta}+\vec E_{ind})\cdot \text{d}\vec l=0+(-\iint_{闭合}\frac{\partial \vec B}{\partial t}\text{d}\vec A)=-\iint_{闭合}\frac{\partial \vec B}{\partial t}\text{d}\vec A
 \end{aligned}
 \]</div>
 <p>左边再由斯托克斯定律，得到</p>
 <div class="arithmatex">\[
-\oint\vec E\cdot d\vec l=\iint(\nabla\times\vec E)d\vec A
+\oint\vec E\cdot d\vec l=\iint(\nabla\times\vec E)\text{d}\vec A
 \]</div>
 <p>从而得到 法拉第电磁感应定律的微分形式</p>
 <div class="arithmatex">\[

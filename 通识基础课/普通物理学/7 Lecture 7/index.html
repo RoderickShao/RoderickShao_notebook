@@ -1768,7 +1768,7 @@
 
 <h1 id="7"><strong>7 稳恒磁场</strong><a class="headerlink" href="#7" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2324 个字  预计阅读时间 8 分钟
+    文本统计：约 2429 个字  预计阅读时间 8 分钟
 </div>
 
 <h2 id="71"><strong>7.1 磁学基本现象</strong><a class="headerlink" href="#71" title="Permanent link">&para;</a></h2>
@@ -1798,22 +1798,22 @@
 <p><a class="glightbox" href="../img/%E7%94%B5%E6%B5%81%E5%85%83%E7%9B%B8%E4%BA%92%E4%BD%9C%E7%94%A8.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E7%94%B5%E6%B5%81%E5%85%83%E7%9B%B8%E4%BA%92%E4%BD%9C%E7%94%A8.png" /></a></p>
 <p>通过安培精妙的试验，我们得到</p>
 <div class="arithmatex">\[
-dF_{12}\propto \frac{i_1i_2d_{s_1}d_{s_2}}{r_{12}^2}
+\text{d}F_{12}\propto \frac{i_1i_2\text{d}{s_1}\text{d}{s_2}}{r_{12}^2}
 \]</div>
-<p>同时亦得到<span class="arithmatex">\(dF_{12}\)</span>的大小与两电流元的取向也有关</p>
+<p>同时亦得到<span class="arithmatex">\(\text{d}F_{12}\)</span>的大小与两电流元的取向也有关</p>
 <div class="arithmatex">\[
 \begin{align*}
-dF_{12}\propto sin \theta_1\\
-dF_{12}\propto sin \theta_2
+\text{d}F_{12}\propto \sin \theta_1\\
+\text{d}F_{12}\propto \sin \theta_2
 \end{align*}
 \]</div>
-<p>其中<span class="arithmatex">\(\theta_1\)</span>为<span class="arithmatex">\(r_{12}\)</span>与<span class="arithmatex">\(dl_1\)</span>之间的夹角，<span class="arithmatex">\(\theta_2\)</span>为 <span class="arithmatex">\(\Pi\)</span> 平面与<span class="arithmatex">\(dl_1\)</span>之间的夹角。</p>
+<p>其中<span class="arithmatex">\(\theta_1\)</span>为<span class="arithmatex">\(r_{12}\)</span>与<span class="arithmatex">\(\text{d}s_1\)</span>之间的夹角，<span class="arithmatex">\(\theta_2\)</span>为 <span class="arithmatex">\(\Pi\)</span> 平面法向量与<span class="arithmatex">\(\text{d}s_2\)</span>之间的夹角。</p>
 <p><a class="glightbox" href="../img/%E5%AE%89%E5%9F%B9%E5%AE%9A%E5%BE%8B.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%AE%89%E5%9F%B9%E5%AE%9A%E5%BE%8B.png" /></a></p>
 <p>综上所述，我们可以写出矢量式</p>
 <div class="arithmatex">\[
 d\vec{F_{12}}=\frac{\mu_0}{4\pi}\frac{i_2d\vec{s_2}\times(i_1d\vec{s_1}\times\hat{r_{12}})}{r_{12}^2}
 \]</div>
-<p>其中<span class="arithmatex">\(\mu_0=4\pi\times10^{-7}N/A^2\)</span></p>
+<p>其中<span class="arithmatex">\(\mu_0=4\pi\times10^{-7}N/A^2\)</span>，<span class="arithmatex">\(\vec F_{12}\)</span> 代表电流元1对电流元2的力</p>
 <div class="admonition example">
 <p class="admonition-title">安培定律的例子</p>
 <p><a class="glightbox" href="../img/%E5%B9%B3%E8%A1%8C%E7%9B%B4%E5%AF%BC%E7%BA%BF.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B9%B3%E8%A1%8C%E7%9B%B4%E5%AF%BC%E7%BA%BF.png" /></a>
@@ -1823,18 +1823,22 @@ d\vec{F_{12}}=\frac{\mu_0}{4\pi}\frac{i_2d\vec{s_2}\times(i_1d\vec{s_1}\times\ha
 <p>借鉴引入电场强度矢量的方法，根据安培定律我们可以定义出相应的<strong>磁感应强度</strong></p>
 <div class="arithmatex">\[
 \begin{align*}
-d\vec{F_{2}}&amp;=i_2d\vec{s_2}\times\frac{\mu_0}{4\pi}\oint_{L1}\frac{i_1d\vec{s_1}\times\hat{r_{12}}}{r_{12}^2}\\
-\vec B&amp;=\frac{\mu_0}{4\pi}\oint_{L1}\frac{i_1d\vec{s_1}\times\hat{r_{12}}}{r_{12}^2}\\
-d\vec{F_2}&amp;=i_2d\vec{s_2}\times \vec B
+\text{d}\vec{F_{2}}&amp;=i_2\text{d}\vec{s_2}\times\frac{\mu_0}{4\pi}\oint_{L1}\frac{i_1\text{d}\vec{s_1}\times\hat{r_{12}}}{r_{12}^2}\\
+\vec B&amp;=\frac{\mu_0}{4\pi}\oint_{L1}\frac{i_1\text{d}\vec{s_1}\times\hat{r_{12}}}{r_{12}^2}\\
+\text{d}\vec{F_2}&amp;=i_2\text{d}\vec{s_2}\times \vec B
 \end{align*}
 \]</div>
 <p><span class="arithmatex">\(\vec B\)</span> 的单位是 Tesla(T), <span class="arithmatex">\(1T=1N/m\cdot A=10^4Gauss\)</span></p>
-<p><span class="arithmatex">\(\vec B\)</span> 的大小为 <span class="arithmatex">\(\frac{(dF_2)_{max}}{i_2ds_2}\)</span></p>
+<p><span class="arithmatex">\(\vec B\)</span> 的大小为 </p>
+<div class="arithmatex">\[
+\frac{(\text{d}F_2)_{max}}{i_2\text{d}\vec {s_2}}
+\]</div>
+<p>我认为上面公式里的max应该指的是改变 <span class="arithmatex">\(s_2\)</span> 的不同方向以达到的最大的力</p>
 <h2 id="73-"><strong>7.3 毕奥-萨伐尔定律</strong><a class="headerlink" href="#73-" title="Permanent link">&para;</a></h2>
 <p>——用于计算闭合电流在某一点产生的磁感应强度</p>
 <p>公式：</p>
 <div class="arithmatex">\[
-\vec B =\frac{\mu_0}{4\pi}\oint_L\frac{id\vec s\times \hat r}{r^2}
+\vec B =\frac{\mu_0}{4\pi}\oint_L\frac{i\text{d}\vec s\times \hat r}{r^2}
 \]</div>
 <p>把任何闭合回路产生的磁感应强度<span class="arithmatex">\(B\)</span> 看成各个电流元 <span class="arithmatex">\(Idl\)</span> 的产生磁感应强度<span class="arithmatex">\(dB\)</span>矢量叠加。<span class="arithmatex">\(\hat r\)</span> 的方向为电流元指向所求点</p>
 <h3 id="731"><strong>7.3.1 直导线周围的磁场</strong><a class="headerlink" href="#731" title="Permanent link">&para;</a></h3>
@@ -1859,17 +1863,20 @@ d\vec{F_2}&amp;=i_2d\vec{s_2}\times \vec B
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-23%20110833.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-23%20110833.png" /></a></p>
 <h2 id="74"><strong>7.4 磁场的高斯定律与安培环路定律</strong><a class="headerlink" href="#74" title="Permanent link">&para;</a></h2>
 <h3 id="741"><strong>7.4.1 公式</strong><a class="headerlink" href="#741" title="Permanent link">&para;</a></h3>
-<p>磁通量：<span class="arithmatex">\(\Phi_B=\iint_环\vec B\cdot d\vec A=\iint Bcos\theta dA\)</span></p>
+<p>磁通量</p>
+<div class="arithmatex">\[
+\Phi_B=\iint\vec B\cdot \text{d}\vec A=\iint B\cos\theta \text{d}A
+\]</div>
 <p>单位：<span class="arithmatex">\(T\cdot m^2=Wb\)</span></p>
 <p><strong>高斯定律</strong></p>
 <div class="arithmatex">\[
-\iint_{闭合} \vec B\cdot d\vec A=0
+\iint_{闭合曲面} \vec B\cdot d\vec A=0
 \]</div>
-<p>在磁场中通过任意闭合曲面的磁感应强度通量等于零。这说明了磁场是无源场，磁感线连接成了一个闭环。（不同于我们前面说的电场是有源场，由电荷作为起点或则终点）</p>
-<p><strong>磁场安培环路定律</strong></p>
-<div class="arithmatex">\[
-\oint\vec B\cdot d\vec l =\mu_0\sum_{inloop}i
-\]</div>
+<p>在磁场中通过任意闭合曲面的磁感应强度通量等于零。这说明了磁场是<strong>无源场</strong>，磁感线连接成了一个闭环。（不同于我们前面说的电场是有源场，由电荷作为起点或则终点）</p>
+<p><strong>磁场安培环路定律</strong>
+$$
+\oint\vec B\cdot \text{d}\vec l =\mu_0\sum_{\text{inloop}}i
+$$</p>
 <p>其中电流的符号定义为：符合右手定律的记为 “+”，不符合的记为 “-”</p>
 <p>在<strong>恒定电流</strong>的磁场中，磁感应强度沿<strong>任何闭合路径一周的线</strong>积分（即环路积分），等于闭合路径内所包围并穿过的电流的代数和的 <span class="arithmatex">\(μ_0\)</span> 倍，而与路径的形状大小无关。 这个定理说明了磁场是有旋场，非保守力场。（这个定理需要细细品一下，可能看着例题想这个定理会简单一下。实际上就是磁场与电场的高斯定理与安培（静电）环路定理的地位反过来了，在电场 的计算里面高斯定理尤为重要，而在磁场的计算里面，安培环路定理尤为重要）</p>
 <p>与电场对比</p>
@@ -1888,17 +1895,17 @@ d\vec{F_2}&amp;=i_2d\vec{s_2}\times \vec B
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-28%20092853.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-28%20092853.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-28%20092902.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-28%20092902.png" /></a></p>
 <h3 id="745-toroidal"><strong>7.4.5 螺绕环(Toroidal)周围的磁场</strong><a class="headerlink" href="#745-toroidal" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../img/%E8%9E%BA%E7%BB%95%E7%8E%AF.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E8%9E%BA%E7%BB%95%E7%8E%AF.png" /></a></p>
+<p><center><a class="glightbox" href="../img/%E8%9E%BA%E7%BB%95%E7%8E%AF.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E8%9E%BA%E7%BB%95%E7%8E%AF.png" /></a></center></p>
 <p>螺绕环就是绕在环面上的螺线型线圈</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-28%20093512.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-28%20093512.png" /></a></p>
 <h2 id="75"><strong>7.5 带电导线在磁场中受到力的作用</strong><a class="headerlink" href="#75" title="Permanent link">&para;</a></h2>
 <p>由安培定律</p>
 <div class="arithmatex">\[
-d\vec{F_{12}}=\frac{\mu_0}{4\pi}\frac{i_2d\vec{s_2}\times(i_1d\vec{s_1}\times\hat{r_{12}})}{r_{12}^2}
+\text{d}\vec{F_{12}}=\frac{\mu_0}{4\pi}\frac{i_2\text{d}\vec{s_2}\times(i_1\text{d}\vec{s_1}\times\hat{r_{12}})}{r_{12}^2}
 \]</div>
 <p>得出电流在磁场中会受到力的作用</p>
 <div class="arithmatex">\[
-\vec B_1=\frac{\mu_0}{4\pi}\int_{L1}\frac{i_1d\vec{s_1}\times\hat{r_{12}}}{r_{12}^2}\Rightarrow d\vec F_2=i_2d\vec s_2\times \vec B_1
+\vec B_1=\frac{\mu_0}{4\pi}\int_{L1}\frac{i_1\text{d}\vec{s_1}\times\hat{r_{12}}}{r_{12}^2}\Rightarrow \text{d}\vec F_2=i_2\text{d}\vec s_2\times \vec B_1
 \]</div>
 <div class="admonition example">
 <p class="admonition-title">简单的例子</p>
@@ -1919,17 +1926,17 @@ d\vec{F_{12}}=\frac{\mu_0}{4\pi}\frac{i_2d\vec{s_2}\times(i_1d\vec{s_1}\times\ha
 <p>也可以进一步引入磁偶极子在磁场中的势能的概念</p>
 <div class="arithmatex">\[
 \begin{aligned}
-W&amp;=\int_{\theta_1}^{\theta_2}\vec \tau\cdot d\vec \theta\\
-&amp;=\int_{\theta_1}^{\theta_2}\mu Bsin\theta\cdot d\vec \theta\\
-&amp;=-\mu Bcos \theta|_{\theta_1}^{\theta_2}\\
-&amp;=\mu B(cos\theta_1-cos\theta_2)\\
+W&amp;=\int_{\theta_1}^{\theta_2}\vec \tau\cdot \text{d}\vec \theta\\
+&amp;=\int_{\theta_1}^{\theta_2}\mu B\sin\theta\cdot \text{d}\vec \theta\\
+&amp;=-\mu B\cos \theta|_{\theta_1}^{\theta_2}\\
+&amp;=\mu B(\cos\theta_1-\cos\theta_2)\\
 &amp;=-(U_末-U_初)
 \end{aligned}
 \]</div>
 <p>我们定义 <span class="arithmatex">\(U=-\vec \mu \cdot \vec B\)</span></p>
 <div class="admonition quote">
 <p class="admonition-title">关于电偶极子的回忆</p>
-<p><a href="../2%20Lecture%202/#电偶极子">电偶极子x</a></p>
+<p><a href="../2%20Lecture%202/#电偶极子">电偶极子</a></p>
 </div>
 <p>这样，磁偶极矩与磁场同向的时候，势能最小；反向的时候，势能最大。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20174157.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20174157.png" /></a></p>

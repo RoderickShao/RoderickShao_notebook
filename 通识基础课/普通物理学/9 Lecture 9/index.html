@@ -1764,7 +1764,7 @@
 
 <h1 id="9"><strong>9 电感与材料的磁性质</strong><a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2225 个字  预计阅读时间 7 分钟
+    文本统计：约 2264 个字  预计阅读时间 8 分钟
 </div>
 
 <h2 id="91"><strong>9.1 互感</strong><a class="headerlink" href="#91" title="Permanent link">&para;</a></h2>
@@ -1774,19 +1774,19 @@
 <p>线圈2中的磁通匝链数由线圈1中的电流决定 <span class="arithmatex">\(\Psi_{12}=M_{12}i_1\)</span>，同理线圈1中的磁通匝链数由线圈2中的电流决定 <span class="arithmatex">\(\Psi_{21}=M_{21}i_2\)</span></p>
 <p>由法拉第电磁感应定律，可知</p>
 <div class="arithmatex">\[
-\epsilon_2=-\frac{d\Psi}{dt}=-M_{12}\frac{di_1}{dt}
+\varepsilon_2=-\frac{\text{d}\Psi}{\text{d}t}=-M_{12}\frac{\text{d}i_1}{\text{d}t}
 \]</div>
-<p>相应的，<span class="arithmatex">\(\epsilon_1\)</span> 也是同样的算法。</p>
+<p>相应的，<span class="arithmatex">\(\varepsilon_1\)</span> 也是同样的算法。</p>
 <p>其中 <span class="arithmatex">\(M_{12}\)</span> 和 <span class="arithmatex">\(M_{21}\)</span> 被称为互感系数，单位是 Hery (亨利)。</p>
 <div class="admonition note">
-<p class="admonition-title">说明<span class="arithmatex">\(M_{12}=M_{21}\)</span></p>
+<p class="admonition-title">说明 <span class="arithmatex">\(M_{12}=M_{21}\)</span></p>
 <p>以单匝线圈为例说明 <span class="arithmatex">\(M_{12}=M_{21}\)</span></p>
 <div class="arithmatex">\[
 \begin{aligned}
 M_{12}&amp;=\frac{\Phi_{12}}{I_1}\\
-&amp;=\oint_{(L_2)}A_1\cdot d\ l_2/I_1\\
-&amp;=\frac{\oint_{(L_2)}\frac{\mu_0}{4\pi}I_1\oint_{(L_1)}\frac{dl_1}{r_{12}}\cdot d\ l_2}{I_1}\\
-&amp;=\frac{\mu_0}{4\pi}\oint_{(L_2)}\oint_{(L_1)}\frac{d\ l_1\cdot d\ l_2}{r_{12}}\\
+&amp;=\oint_{(L_2)}A_1\cdot \text{d}\ l_2/I_1\\
+&amp;=\frac{\oint_{(L_2)}\frac{\mu_0}{4\pi}I_1\oint_{(L_1)}\frac{\text{d}l_1}{r_{12}}\cdot \text{d}\ l_2}{I_1}\\
+&amp;=\frac{\mu_0}{4\pi}\oint_{(L_2)}\oint_{(L_1)}\frac{\text{d}\ l_1\cdot \text{d}\ l_2}{r_{12}}\\
 \end{aligned}
 \]</div>
 <p>同理可得 <span class="arithmatex">\(M_{21}\)</span> 的表达式，可以明显看出二者相同</p>
@@ -1808,7 +1808,7 @@ M_{12}&amp;=\frac{\Phi_{12}}{I_1}\\
 <div class="arithmatex">\[
 \begin{aligned}
 \Psi&amp;=NBA=Li\\
-\epsilon_L&amp;=-\frac{d\Psi}{dt}=-L\frac{di}{dt}\\
+\varepsilon_L&amp;=-\frac{\text{d}\Psi}{dt}=-L\frac{\text{d}i}{\text{d}t}\\
 \end{aligned}
 \]</div>
 <div class="admonition example">
@@ -1843,10 +1843,9 @@ M_{12}&amp;=\frac{\Phi_{12}}{I_1}\\
 <div class="arithmatex">\[
 \begin{aligned}
 u_B=\frac{B^2}{2\mu_0}=\frac{1}{2}\vec B\cdot \vec H\\
-u_E=\frac{1}{2}\epsilon_0E^2=\frac{1}{2}\vec D\cdot \vec E
+u_E=\frac{1}{2}\varepsilon_0E^2=\frac{1}{2}\vec D\cdot \vec E
 \end{aligned}
 \]</div>
-<p><a id="1"></a></p>
 <h2 id="93"><strong>9.3 磁介质</strong><a class="headerlink" href="#93" title="Permanent link">&para;</a></h2>
 <h3 id="931"><strong>9.3.1 磁介质的磁化</strong><a class="headerlink" href="#931" title="Permanent link">&para;</a></h3>
 <p>我们用分子电流观点来解释为什么铁芯能够使线圈中的磁通量增加。</p>
@@ -1862,7 +1861,7 @@ M=\frac{\sum m_{分子}}{\Delta V}
 <p><a class="glightbox" href="../img/%E7%A3%81%E5%8C%96%E5%BC%BA%E5%BA%A6%E4%B8%8E%E7%A3%81%E5%8C%96%E7%94%B5%E6%B5%81.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E7%A3%81%E5%8C%96%E5%BC%BA%E5%BA%A6%E4%B8%8E%E7%A3%81%E5%8C%96%E7%94%B5%E6%B5%81.jpg" /></a></p>
 <p>我们现在得到了</p>
 <div class="arithmatex">\[
-\oint_{(L)}M \cdot dl =\sum_{L_内}I'
+\oint_{(L)}M \cdot \text{d}l =\sum_{L_内}I'
 \]</div>
 <p>进而我们可以得到磁化强度与介质表面磁化电流之间的关系，我们可以在介质表面取一个矩形回路（如下图），由于只有磁介质内部的那一段M的积分不为0，贡献为 <span class="arithmatex">\(M_t\Delta l\)</span>，从而我们有 <span class="arithmatex">\(M_t\Delta l=i'\Delta l\Rightarrow M_t=i'\)</span></p>
 <p><a class="glightbox" href="../img/%E7%A3%81%E5%8C%96%E5%BC%BA%E5%BA%A6%E4%B8%8E%E7%A3%81%E5%8C%96%E7%94%B5%E6%B5%812.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="right" alt="" src="../img/%E7%A3%81%E5%8C%96%E5%BC%BA%E5%BA%A6%E4%B8%8E%E7%A3%81%E5%8C%96%E7%94%B5%E6%B5%812.jpg" /></a></p>
@@ -1875,11 +1874,11 @@ B=B_0+B'
 <h3 id="933-h"><strong>9.3.3 磁场强度矢量H 有磁介质时的安培环路定理</strong><a class="headerlink" href="#933-h" title="Permanent link">&para;</a></h3>
 <p>对于磁介质中的安培环路定理，可以借鉴有电介质时的高斯定理</p>
 <div class="arithmatex">\[
-\oint_{(L)}B\cdot dl=\mu_0[\sum_{(L_内)}I_0+\sum_{(L_内)}I']
+\oint_{(L)}B\cdot \text{d}l=\mu_0[\sum_{(L_内)}I_0+\sum_{(L_内)}I']
 \]</div>
 <p>其中 <span class="arithmatex">\(\sum_{(L_内)}I_0\)</span> 和 <span class="arithmatex">\(\sum_{(L_内)}I'\)</span> 分别穿过安培环路L的传导电流和磁化电流的总和，进而我们引进辅助矢量磁感应强度矢量 <span class="arithmatex">\(H=\frac{B}{\mu_0}-M\)</span></p>
 <div class="arithmatex">\[
-\oint_{(L)}H \cdot dl=\oint_{(L)}(\frac{B}{\mu_0}-M)\cdot dl=\sum_{L_内}I_0
+\oint_{(L)}H \cdot \text{d}l=\oint_{(L)}(\frac{B}{\mu_0}-M)\cdot \text{d}l=\sum_{L_内}I_0
 \]</div>
 <p>磁场强度 <span class="arithmatex">\(H\)</span> 的单位是<span class="arithmatex">\(A/m\)</span>，另一种单位是奥斯特，记为<span class="arithmatex">\(Oe\)</span>，其中<span class="arithmatex">\(1A/m=4\pi\times 10^{-3}Oe\)</span></p>
 <div class="admonition example">
@@ -1950,9 +1949,9 @@ B=B_0+B'
 <p>根据电势列出相应方程</p>
 <div class="arithmatex">\[
 \begin{aligned}
-iR+\frac{q}{c}&amp;=\epsilon\\
-\frac{dq}{dt}+\frac{1}{RC}q&amp;=\frac{\epsilon}{R}\\
-\Rightarrow q&amp;=C\epsilon(1-e^{-t/RC})
+iR+\frac{q}{C}&amp;=\varepsilon\\
+\frac{\text{d}q}{\text{d}t}+\frac{1}{RC}q&amp;=\frac{\varepsilon}{R}\\
+\Rightarrow q&amp;=C_0\varepsilon(1-e^{-t/RC})
 \end{aligned}
 \]</div>
 <h3 id="942-rl-circuits"><strong>9.4.2 RL Circuits</strong><a class="headerlink" href="#942-rl-circuits" title="Permanent link">&para;</a></h3>
@@ -1960,10 +1959,10 @@ iR+\frac{q}{c}&amp;=\epsilon\\
 <p>开关K从b到a，根据电势列出方程</p>
 <div class="arithmatex">\[
 \begin{aligned}
-&amp;iR+L\frac{di}{dt}=\epsilon\\
-&amp;\frac{di}{dt}=\frac{1}{L}(\epsilon-iR)=-\frac{R}{L}(i-\epsilon/R)\\
-&amp;i-\epsilon/R=C'e^{-\frac{R}{L}t}\\
-t=0,i=0&amp; \Rightarrow C'=-\frac{\epsilon}{R}
+&amp;iR+L\frac{\text{d}i}{\text{d}t}=\varepsilon\\
+&amp;\frac{\text{d}i}{\text{d}t}=\frac{1}{L}(\varepsilon-iR)=-\frac{R}{L}(i-\varepsilon/R)\\
+&amp;i-\varepsilon/R=C'e^{-\frac{R}{L}t}\\
+t=0,i=0&amp; \Rightarrow C'=-\frac{\vepsilon}{R}
 \end{aligned}
 \]</div>
 <p>整理可得</p>
