@@ -607,6 +607,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -971,11 +973,31 @@
   
   
     <li class="md-nav__item">
+      <a href="../16%20Lecture%2016/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16 光的本质
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Appendix%201/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Appendix 1
+    Appendix
   </span>
   
 
@@ -1266,27 +1288,27 @@
 
 <h1 id="10"><strong>10 麦克斯韦方程组</strong><a class="headerlink" href="#10" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 930 个字  预计阅读时间 3 分钟
+    文本统计：约 1062 个字  预计阅读时间 4 分钟
 </div>
 
 <p>根据前几章的内容，我们得到了以下公式</p>
 <p>在真空中，我们有</p>
 <div class="arithmatex">\[
 \begin{aligned}
-&amp;电场高斯定律：\iint_{闭合曲面}\vec E \cdot d\vec A=\frac{q_0}{\epsilon_0}\\
-&amp;磁场高斯定律：\iint_{闭合曲面}\vec B \cdot d\vec A=0\\
-&amp;法拉第电磁感应定律：\oint\vec E\cdot d\vec l=-\frac{d\Phi_B}{dt}=-\iint\frac{\partial \vec B}{\partial t}\cdot d\vec A\\
-&amp;安培环路定律：\oint\vec B\cdot d\vec l=\mu_0i
+&amp;电场高斯定律：\iint_{闭合曲面}\vec E \cdot \text{d}\vec A=\frac{q_0}{\varepsilon_0}\\
+&amp;磁场高斯定律：\iint_{闭合曲面}\vec B \cdot \text{d}\vec A=0\\
+&amp;法拉第电磁感应定律：\oint\vec E\cdot \text{d}\vec l=-\frac{\text{d}\Phi_B}{\text{d}t}=-\iint\frac{\partial \vec B}{\partial t}\cdot \text{d}\vec A\\
+&amp;安培环路定律：\oint\vec B\cdot \text{d}\vec l=\mu_0i
 \end{aligned}
 \]</div>
 <p>在电介质和磁介质中，</p>
 <div class="arithmatex">\[
 \left\{ 
 \begin{aligned}
-&amp;\iint_{闭合曲面}\vec D \cdot d\vec A=q_0\\
-&amp;\iint_{闭合曲面}\vec B \cdot d\vec A=0\\
-&amp;\oint\vec E\cdot d\vec l=-\frac{d\Phi_B}{dt}=-\iint\frac{\partial \vec B}{\partial t}\cdot d\vec A\\
-&amp;\oint\vec H\cdot d\vec l=i=\iint\vec j\cdot d\vec A
+&amp;\iint_{闭合曲面}\vec D \cdot \text{d}\vec A=q_0\\
+&amp;\iint_{闭合曲面}\vec B \cdot \text{d}\vec A=0\\
+&amp;\oint\vec E\cdot d\vec l=-\frac{\text{d}\Phi_B}{\text{d}t}=-\iint\frac{\partial \vec B}{\partial t}\cdot \text{d}\vec A\\
+&amp;\oint\vec H\cdot \text{d}\vec l=i=\iint\vec j\cdot \text{d}\vec A
 \end{aligned}\right.
 \]</div>
 <p>微分形式：</p>
@@ -1300,11 +1322,36 @@
 \end{aligned}
 \right.
 \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="arithmatex">\(\nabla\)</span> 算子为 <span class="arithmatex">\((\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z})\)</span></p>
+</div>
 <p>既然变化的磁场会产生涡旋电场，那么变化的电场是否会产生相应的磁场呢？上述公式在面对非恒定电流的情况时，出现了矛盾，于是麦克斯韦提出了”位移电流“的假设。</p>
-<p>在非恒定电流条件下，<span class="arithmatex">\(\iint_{闭合曲面S}j_0\cdot dS=-\frac{dq_0}{dt}\)</span>，这里的 <span class="arithmatex">\(q_0\)</span> 就是积累在S面内的自由电荷。</p>
-<p>根据 <span class="arithmatex">\(\iint_{闭合曲面}\vec D \cdot d\vec S=q_0\)</span>，可得 <span class="arithmatex">\(\frac{dq_0}{dt}=\frac{d}{dt}\iint_{闭合曲面}\vec D \cdot d\vec S=\iint_{闭合曲面}\frac{\partial D}{\partial t}\cdot dS\)</span></p>
-<p>从而我们可以得到 <span class="arithmatex">\(\iint_{闭合曲面}(j_0+\frac{\partial D}{\partial t})\cdot dS=0\)</span></p>
-<p>我们称 <span class="arithmatex">\(\Phi_D=\iint\vec D\cdot d\vec S\)</span> 为电位移通量，<span class="arithmatex">\(i_D=\frac{\Phi D}{dt}=-\iint\frac{\partial D}{\partial t}\cdot dS\)</span> 称为位移电流，<span class="arithmatex">\(\vec j_D=\frac{\partial D}{\partial t}\)</span> 称为 位移电流密度。</p>
+<p>在非恒定电流条件下，</p>
+<div class="arithmatex">\[
+\iint_{闭合曲面}\vec j_0\cdot \text{d}\vec S=-\frac{\text{d}q_0}{\text{d}t}
+\]</div>
+<p>这里的 <span class="arithmatex">\(q_0\)</span> 就是积累在S面内的自由电荷。</p>
+<p>根据 <span class="arithmatex">\(\iint_{闭合曲面}\vec D \cdot d\vec S=q_0\)</span>，可得 </p>
+<div class="arithmatex">\[
+\frac{\text{d}q_0}{\text{d}t}=\frac{\text{d}}{\text{d}t}\iint_{闭合曲面}\vec D \cdot \text{d}\vec S=\iint_{闭合曲面}\frac{\partial \vec D}{\partial t}\cdot \text{d}\vec S
+\]</div>
+<p>从而我们可以得到 </p>
+<div class="arithmatex">\[
+\iint_{闭合曲面}(\vec j_0+\frac{\partial \vec D}{\partial t})\cdot \text{d}\vec S=0
+\]</div>
+<p>我们称电位移通量为</p>
+<div class="arithmatex">\[
+\Phi_D=\iint\vec D\cdot \text{d}\vec S
+\]</div>
+<p>称位移电流为</p>
+<div class="arithmatex">\[
+i_D=\frac{\Phi_D}{\text{d}t}=-\iint\frac{\partial \vec D}{\partial t}\cdot \text{d}\vec S
+\]</div>
+<p>称位移电流密度为</p>
+<div class="arithmatex">\[
+\vec j_D=\frac{\partial \vec D}{\partial t}
+\]</div>
 <p>以电容器为例来理解全电流（<span class="arithmatex">\(i_0+i_D\)</span>) 是连续的</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -1312,20 +1359,20 @@
 <p>在一个极板的内外两侧各作一面<span class="arithmatex">\(S_1\)</span>和<span class="arithmatex">\(S_2\)</span>, 通过前者的有传导电流也有位移电流，后者则只有位移电流
 通过<span class="arithmatex">\(S_1\)</span>的全电流为</p>
 <div class="arithmatex">\[
-    (j_0+\frac{\partial D_内}{\partial t})S=j_0S=I_0
+    (j_0+\frac{\partial \vec D_内}{\partial t})S=j_0S=I_0
 \]</div>
 <p>通过<span class="arithmatex">\(S_2\)</span>的全电流为</p>
 <div class="arithmatex">\[
-\frac{\Phi_D}{dt}=\frac{\partial D_外}{\partial t}S=\frac{\partial \sigma_{e0}}{\partial t}S
+\frac{\Phi_D}{\text{d}t}=\frac{\partial D_外}{\partial t}S=\frac{\partial \sigma_{e0}}{\partial t}S
 \]</div>
 <p>而<span class="arithmatex">\(j_0=\frac{\partial \sigma_{e0}}{\partial t}\)</span>,从而可得上述两个式子相等</p>
 </div>
 <p>在真空中我们可以得到电容器内部变化的电场产生涡旋磁场的公式为</p>
 <div class="arithmatex">\[
 \begin{aligned}
-&amp;\oint\vec H\cdot d\vec l=\iint\frac{\partial \vec D}{\partial t}\cdot d\vec A\\
-&amp;\oint\frac{\vec B}{\mu_0}\cdot d\vec l=\iint\epsilon_0\frac{\partial \vec E}{\partial t}\cdot d\vec A\\
-&amp;\oint\vec B\cdot d\vec l=\mu_0\epsilon_0\iint\frac{\partial \vec E}{\partial t}\cdot d\vec A\\
+&amp;\oint\vec H\cdot \text{d}\vec l=\iint\frac{\partial \vec D}{\partial t}\cdot \text{d}\vec A\\
+&amp;\oint\frac{\vec B}{\mu_0}\cdot \text{d}\vec l=\iint\varepsilon_0\frac{\partial \vec E}{\partial t}\cdot \text{d}\vec A\\
+&amp;\oint\vec B\cdot \text{d}\vec l=\mu_0\varepsilon_0\iint\frac{\partial \vec E}{\partial t}\cdot \text{d}\vec A\\
 \end{aligned}
 \]</div>
 <div class="admonition example">
@@ -1333,15 +1380,18 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-20%20113245.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-20%20113245.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-20%20113428.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-20%20113428.png" /></a></p>
 </div>
-<p>由上述内容，我们得到新的安培环路定律 <span class="arithmatex">\(\oint\vec H\cdot d\vec l=i_0+i_D=\iint(\vec j_0+\frac{\partial \vec D}{\partial t})\cdot d\vec A\)</span></p>
+<p>由上述内容，我们得到新的安培环路定律 </p>
+<div class="arithmatex">\[
+\oint\vec H\cdot \text{d}\vec l=i_0+i_D=\iint(\vec j_0+\frac{\partial \vec D}{\partial t})\cdot \text{d}\vec A
+\]</div>
 <p>进而我们得到麦克斯韦方程组</p>
 <div class="arithmatex">\[
 \left\{ 
 \begin{aligned}
-&amp;\iint_{闭合曲面}\vec D \cdot d\vec A=q_0\\
-&amp;\iint_{闭合曲面}\vec B \cdot d\vec A=0\\
-&amp;\oint\vec E\cdot d\vec l=-\frac{d\Phi_B}{dt}=-\iint\frac{\partial \vec B}{\partial t}\cdot d\vec A\\
-&amp;\oint\vec H\cdot d\vec l=\iint(\vec j_0+\frac{\partial \vec D}{\partial t})\cdot d\vec A=I_0+\iint\frac{\partial \vec D}{\partial t}\cdot d\vec A
+&amp;\iint_{闭合曲面}\vec D \cdot \text{d}\vec A=q_0\\
+&amp;\iint_{闭合曲面}\vec B \cdot \text{d}\vec A=0\\
+&amp;\oint\vec E\cdot \text{d}\vec l=-\frac{\text{d}\Phi_B}{\text{d}t}=-\iint\frac{\partial \vec B}{\partial t}\cdot \text{d}\vec A\\
+&amp;\oint\vec H\cdot \text{d}\vec l=\iint(\vec j_0+\frac{\partial \vec D}{\partial t})\cdot \text{d}\vec A=I_0+\iint\frac{\partial \vec D}{\partial t}\cdot \text{d}\vec A
 \end{aligned}\right.
 \]</div>
 <p>微分形式</p>
@@ -1356,6 +1406,16 @@
 \right.
 \]</div>
 <p>如果我们存在磁单极子，那么麦克斯韦方程就具有完全的对称性了。</p>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+&amp;\nabla\cdot \vec D=\rho_{e0}\\
+&amp;\nabla\cdot \vec H=\rho_m\\
+&amp;\nabla\times \vec E=-\frac{\partial \vec B}{\partial t}-\mu_0\vec j_m\\
+&amp;\nabla \times \vec H=\vec j_e+\frac{\partial \vec D}{\partial t}
+\end{aligned}
+\right.
+\]</div>
 <div class="admonition example">
 <p class="admonition-title">Cavity Oscillations (谐振腔)</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-20%20165947.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-20%20165947.png" /></a></p>
@@ -1524,7 +1584,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 - 2024 RoderickShao
+      Copyright &copy; 2024 - 2025 RoderickShao
     </div>
   
   

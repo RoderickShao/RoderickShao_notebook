@@ -607,6 +607,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1036,11 +1038,31 @@
   
   
     <li class="md-nav__item">
+      <a href="../16%20Lecture%2016/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16 光的本质
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Appendix%201/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Appendix 1
+    Appendix
   </span>
   
 
@@ -1374,7 +1396,7 @@
 
 <h1 id="13"><strong>13 光的干涉</strong><a class="headerlink" href="#13" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1832 个字  预计阅读时间 6 分钟
+    文本统计：约 1835 个字  预计阅读时间 6 分钟
 </div>
 
 <p>当波长 <span class="arithmatex">\(\lambda\)</span> 远小于 <span class="arithmatex">\(d\)</span> 时，考虑的是几何光学；</p>
@@ -1383,7 +1405,7 @@
 <p>定态波：在观测时间中，光源作持续稳定的振荡，波长中各点均以同一频率作稳定的振荡。</p>
 <p>实际背景中，时间均为有限的。但当振荡时间 <span class="arithmatex">\(t&gt;10^6 ·T\)</span> 远大于光源扰动周期 <span class="arithmatex">\(T≈10^{-14} s\)</span>。我们常常选择定态波作为我们的研究对象，其特点：频率单一、振幅稳定。</p>
 <div class="arithmatex">\[
-U(P,t)=A(P)cos[\omega t-\varphi(P)]
+U(P,t)=A(P)\cos[\omega t-\varphi(P)]
 \]</div>
 <p>其中 <span class="arithmatex">\(A(P)\)</span> 和 <span class="arithmatex">\(\varphi(P)\)</span> 只是跟空间有关的函数，与时间无关</p>
 <p>对于一个定态平面波</p>
@@ -1445,7 +1467,7 @@ U(P) = \frac{a}{r} e^{i(kr + \varphi_0)}
 \begin{aligned}
 I(P,t)&amp;=\tilde{U}^*(P, t)\cdot \tilde{U}(P, t)\\
 &amp;=(A_1 e^{-i\varphi_1(P)} e^{i\omega t}+A_2 e^{-i\varphi_2(P)} e^{i\omega t})(A_1 e^{i\varphi_1(P)} e^{-i\omega t}+A_2e^{i\varphi_2(P)} e^{-i\omega t})\\
-&amp;=A_1^2+A_2^2+2A_1A_2cos[(\varphi_1-\varphi_2)-(\omega_1-\omega_2)t]
+&amp;=A_1^2+A_2^2+2A_1A_2\cos[(\varphi_1-\varphi_2)-(\omega_1-\omega_2)t]
 \end{aligned}
 \]</div>
 <p>产生干涉的条件</p>
@@ -1464,13 +1486,13 @@ L_2=\sqrt{d^2+y^2+(x+\frac a2)^2}
 \]</div>
 <p>当狭缝到观察屏的垂直距离 <span class="arithmatex">\(d\)</span> 远大于 <span class="arithmatex">\(x\)</span> 时，这两条光路长度的差值可以近似在图上表示为：从狭缝1向光程2作垂线所构成的直角三角形中，角 <span class="arithmatex">\(α′\)</span> 所对的直角边 <span class="arithmatex">\(Δs\)</span>。而根据几何近似，这段差值为</p>
 <div class="arithmatex">\[
-\Delta s=asin\alpha'\approx a\frac xd
+\Delta s=a\sin\alpha'\approx a\frac xd
 \]</div>
 <p>如果实验在真空或空气中进行，则认为介质折射率等于1，从而有光程差 <span class="arithmatex">\(ΔL=Δs=a\frac xd\)</span>，相位差<span class="arithmatex">\(δ=\frac{2π}{λ}\frac{ax}{d}\)</span>。</p>
 <p>(1) 当相位差 <span class="arithmatex">\(\delta\)</span> 等于 <span class="arithmatex">\(2mπ,|m|=0,1,2,...\)</span> 时光强有极大值，从而当 <span class="arithmatex">\(x=\frac{mdλ}{a},|m|=0,1,2,...\)</span> 时有极大值；</p>
-<p>(2) 当相位差 <span class="arithmatex">\(\delta\)</span> 等于 <span class="arithmatex">\(2mπ,|m|=0,1,2,...\)</span> 时光强有极大值，从而当 <span class="arithmatex">\(x=\frac{mdλ}{a},|m|=\frac12,\frac32,\frac52,...\)</span> 时有极大值</p>
+<p>(2) 当相位差 <span class="arithmatex">\(\delta\)</span> 等于 <span class="arithmatex">\((2m+1)π,|m|=0,1,2,...\)</span> 时光强有极小值，从而当 <span class="arithmatex">\(x=\frac{(2m+1)dλ}{2a},|m|=\frac12,\frac32,\frac52,...\)</span> 时有极大值</p>
 <p>从而杨氏双缝干涉会形成等间距的明暗交替条纹，间隔为 <span class="arithmatex">\(\frac{dλ}{a}\)</span></p>
-<h2 id="_4">薄膜干涉<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_4"><strong>薄膜干涉</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>考虑一个均匀的厚度为 <span class="arithmatex">\(L\)</span> ，折射率为 <span class="arithmatex">\(n_2\)</span> 的薄透膜，被一个无穷远处的波长为 <span class="arithmatex">\(\lambda\)</span> 的光照射。我们设光几乎是垂直地打在薄膜上，需要判断对于几乎垂直看向薄膜的人来说薄膜是亮的还是暗的。</p>
 <div class="admonition note">
 <p class="admonition-title">半波损失</p>
@@ -1673,7 +1695,7 @@ L_2=\sqrt{d^2+y^2+(x+\frac a2)^2}
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 - 2024 RoderickShao
+      Copyright &copy; 2024 - 2025 RoderickShao
     </div>
   
   

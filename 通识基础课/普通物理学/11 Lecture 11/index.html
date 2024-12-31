@@ -607,6 +607,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1043,11 +1045,31 @@
   
   
     <li class="md-nav__item">
+      <a href="../16%20Lecture%2016/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16 光的本质
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Appendix%201/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Appendix 1
+    Appendix
   </span>
   
 
@@ -1388,7 +1410,7 @@
 
 <h1 id="11"><strong>11 电磁波与光波</strong><a class="headerlink" href="#11" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 3133 个字  •  -2 行代码  预计阅读时间 10 分钟
+    文本统计：约 3182 个字  •  -2 行代码  预计阅读时间 11 分钟
 </div>
 
 <h2 id="111"><strong>11.1 电磁波谱</strong><a class="headerlink" href="#111" title="Permanent link">&para;</a></h2>
@@ -1406,7 +1428,7 @@
 <li>电磁波的频率需要足够高</li>
 </ul>
 <div class="arithmatex">\[
-\frac{dW}{dt}\propto f^4,f&gt;10^5Hz
+\frac{\text{d}W}{\text{d}t}\propto f^4,f&gt;10^5Hz
 \]</div>
 <p>由于 <span class="arithmatex">\(f=\frac{\omega}{2\pi}=\frac{1}{2\pi}\frac{1}{\sqrt{LC}}\)</span>，所以 L 和 C 都要非常的小</p>
 <ul>
@@ -1436,7 +1458,7 @@
 <li>电磁波传播的速度为</li>
 </ol>
 <div class="arithmatex">\[
-v=\frac{1}{\sqrt{\kappa_e\epsilon_0\kappa_m\mu_0}}
+v=\frac{1}{\sqrt{\kappa_e\varepsilon_0\kappa_m\mu_0}}
 \]</div>
 <p>下面我们开始推导上述性质</p>
 <div class="arithmatex">\[
@@ -1453,10 +1475,10 @@ v=\frac{1}{\sqrt{\kappa_e\epsilon_0\kappa_m\mu_0}}
 <div class="arithmatex">\[
 \left\{
 \begin{aligned}
-&amp;\nabla\cdot \vec e=0\\
+&amp;\nabla\cdot \vec E=0\\
 &amp;\nabla\cdot \vec H=0\\
 &amp;\nabla\times \vec E=-\frac{\partial \vec B}{\partial t}=-\kappa_m\mu_0\frac{\partial \vec H}{\partial t}\\
-&amp;\nabla \times \vec H=\frac{\partial \vec D}{\partial t}=\kappa_e\epsilon_0\frac{\partial \vec E}{\partial t}
+&amp;\nabla \times \vec H=\frac{\partial \vec D}{\partial t}=\kappa_e\varepsilon_0\frac{\partial \vec E}{\partial t}
 \end{aligned}
 \right.
 \]</div>
@@ -1496,7 +1518,7 @@ H_x &amp; H_y &amp; H_z
 \end{aligned}
 \right.
 \]</div>
-<p>我们设电磁波沿z轴传播，则波面垂直于z轴。在波面上相位相同，即相位与 x,y 变量无关，为简单起见，我们假设振幅也与 x,y 无关，这样上式所有关于 <span class="arithmatex">\(x,y\)</span> 的偏微分全部等于0，于是可以将 (1) (2-3) (3) (4-3) 化简为</p>
+<p>我们设电磁波沿z轴传播，则波面垂直于 <span class="arithmatex">\(z\)</span> 轴。在波面上相位相同，即相位与 <span class="arithmatex">\(x,y\)</span> 变量无关，为简单起见，我们假设振幅也与 <span class="arithmatex">\(x,y\)</span> 无关，这样上式所有关于 <span class="arithmatex">\(x,y\)</span> 的偏微分全部等于0，于是可以将 (1) (2-3) (3) (4-3) 化简为</p>
 <div class="arithmatex">\[
 \frac{\partial E_z}{\partial z}=0,\ \frac{\partial H_z}{\partial t}=0,\ \frac{\partial H_z}{\partial z}=0,\ \frac{\partial E_z}{\partial t}=0
 \]</div>
@@ -1539,8 +1561,8 @@ H_x &amp; H_y &amp; H_z
 <div class="arithmatex">\[
 \left\{
 \begin{aligned}
-E_x &amp;= E_{x0} e^{i(\omega t - kz)} \\
-H_y &amp;= H_{y0} e^{i(\omega t - kz)}
+E_x &amp;= E_{x_0} e^{i(\omega t - kz)} \\
+H_y &amp;= H_{y_0} e^{i(\omega t - kz)}
 \end{aligned}
 \right.
 \]</div>
@@ -1557,12 +1579,12 @@ v=\frac{\omega}{k}=\frac{1}{\sqrt{\kappa_e \varepsilon_0 \kappa_m \mu_0}}
 <p>我们再把【3】带入【1】可以得到</p>
 <div class="arithmatex">\[
 \begin{aligned}
--i k E_{x0} e^{i(\alpha t-kz)} &amp;= -\kappa_m \mu_0 i \omega H_{y0} e^{i(\omega t-kz)} \\
-k E_{x0} &amp;= \kappa_m \mu_0 \omega H_{y0} \\
-\sqrt{k E_{x0}} &amp;= \sqrt{\kappa_m \mu_0 \omega H_{y0}} \\
-E_{x0} &amp;= \kappa_m \mu_0 \frac{\omega}{k} H_{y0} = \kappa_m \mu_0 v H_{y0} \\
-\sqrt{\kappa_m \mu_0 \kappa_e \varepsilon_0} E_{x0} &amp;= \sqrt{\kappa_m \mu_0 \kappa_e \varepsilon_0} H_{y0} \\
-\sqrt{\kappa_e \varepsilon_0} E_{x0} &amp;= \sqrt{\kappa_m \mu_0} H_{y0} \\
+-i k E_{x_0} e^{i(\alpha t-kz)} &amp;= -\kappa_m \mu_0 i \omega H_{y_0} e^{i(\omega t-kz)} \\
+k E_{x_0} &amp;= \kappa_m \mu_0 \omega H_{y_0} \\
+\sqrt{k E_{x_0}} &amp;= \sqrt{\kappa_m \mu_0 \omega H_{y_0}} \\
+E_{x_0} &amp;= \kappa_m \mu_0 \frac{\omega}{k} H_{y_0} = \kappa_m \mu_0 v H_{y_0} \\
+\sqrt{\kappa_m \mu_0 \kappa_e \varepsilon_0} E_{x_0} &amp;= \sqrt{\kappa_m \mu_0 \kappa_e \varepsilon_0} H_{y_0} \\
+\sqrt{\kappa_e \varepsilon_0} E_{x_0} &amp;= \sqrt{\kappa_m \mu_0} H_{y_0} \\
 \sqrt{\kappa_e \varepsilon_0} E_0 e^{i\varphi_E} &amp;= \sqrt{\kappa_m \mu_0} H_0 e^{i\varphi_H}
 \end{aligned}
 \]</div>
@@ -1579,13 +1601,13 @@ E_{x0} &amp;= \kappa_m \mu_0 \frac{\omega}{k} H_{y0} = \kappa_m \mu_0 v H_{y0} \
 <h2 id="114"><strong>11.4 电磁波的能流密度和动量</strong><a class="headerlink" href="#114" title="Permanent link">&para;</a></h2>
 <p>在空间中任取一个空间，体积为 <span class="arithmatex">\(V\)</span>，表面积为 <span class="arithmatex">\(A\)</span>，从而体积 <span class="arithmatex">\(V\)</span> 中的电磁能为</p>
 <div class="arithmatex">\[
-U=U_E+U_B=\iiint (\frac12\vec D\cdot\vec E+\frac12\vec B\cdot\vec H)dv
+U=U_E+U_B=\iiint (\frac12\vec D\cdot\vec E+\frac12\vec B\cdot\vec H)\text{d}v
 \]</div>
 <p>在非恒定的情况下，各场量随时间变化</p>
 <div class="arithmatex">\[
 \begin{split}
-\frac{dU}{dt} &amp;= \frac{d}{dt} \iiint \left( \frac{1}{2} \vec{D} \cdot \vec{E} + \frac{1}{2} \vec{B} \cdot \vec{H} \right) dv \\
-&amp;= \frac{1}{2} \iiint \frac{\partial}{\partial t} \left( \vec{D} \cdot \vec{E} + \vec{B} \cdot \vec{H} \right) dv
+\frac{\text{d}U}{\text{d}t} &amp;= \frac{\text{d}}{\text{d}t} \iiint \left( \frac{1}{2} \vec{D} \cdot \vec{E} + \frac{1}{2} \vec{B} \cdot \vec{H} \right) \text{d}v \\
+&amp;= \frac{1}{2} \iiint \frac{\partial}{\partial t} \left( \vec{D} \cdot \vec{E} + \vec{B} \cdot \vec{H} \right) \text{d}v
 \end{split}
 \]</div>
 <p>由于 <span class="arithmatex">\(D=\kappa_e\varepsilon_0E,B=\kappa_m\mu_0H\)</span> ,从而我们得到</p>
@@ -1616,8 +1638,8 @@ U=U_E+U_B=\iiint (\frac12\vec D\cdot\vec E+\frac12\vec B\cdot\vec H)dv
 <p>从而</p>
 <div class="arithmatex">\[
 \begin{split}
-\frac{dU}{dt} &amp;= - \iiint \nabla \bullet (\vec{E} \times \vec{H}) dv - \iiint (j_0 \bullet \vec{E}) dv \\
-&amp;= - \iint_{闭合曲面} (\vec{E} \times \vec{H}) \bullet dA - \iiint (j_0 \bullet \vec{E}) dv
+\frac{\text{d}U}{\text{d}t} &amp;= - \iiint \nabla \bullet (\vec{E} \times \vec{H}) \text{d}v - \iiint (j_0 \bullet \vec{E}) \text{d}v \\
+&amp;= - \iint_{闭合曲面} (\vec{E} \times \vec{H}) \bullet \text{d}A - \iiint (j_0 \bullet \vec{E}) \text{d}v
 \end{split}
 \]</div>
 <p>针对上式第二项的内容，我们应用欧姆定律 <span class="arithmatex">\(\vec j_0=\sigma(\vec E+\vec K)\)</span>，对某一个体积元如下图处理<a class="glightbox" href="../img/%E6%AC%A7%E5%A7%86%E5%AE%9A%E5%BE%8B.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E6%AC%A7%E5%A7%86%E5%AE%9A%E5%BE%8B.png" /></a></p>
@@ -1626,17 +1648,17 @@ U=U_E+U_B=\iiint (\frac12\vec D\cdot\vec E+\frac12\vec B\cdot\vec H)dv
 \iiint (j_0 \bullet \vec{E}) dv &amp;= (j_0 \bullet \vec{E}) \Delta A \cdot \Delta l \\
 &amp;= j_0 \bullet (\rho j_0 - K) \Delta A \cdot \Delta l \\
 &amp;= \rho j_0^2 \Delta A \cdot \Delta l - j_0 \bullet K \Delta A \cdot \Delta l \\
-&amp;= R i_0^2 - i_0 \Delta \epsilon\\
+&amp;= R i_0^2 - i_0 \Delta \varepsilon\\
 &amp;=Q-P
 \end{split}
 \]</div>
 <p>上式的前一项代表的是单位时间产生的焦耳热，后面那项则是非静电力做的功。</p>
-<p>对于第一项的内容，我们引入一个新的矢量 <span class="arithmatex">\(\vec S=\vec E\times \vec H\)</span>，被称为 Poynting Vector</p>
+<p>对于第一项的内容，我们引入一个新的矢量 <span class="arithmatex">\(\vec S=\vec E\times \vec H\)</span>，被称为 <strong>Poynting Vector</strong> </p>
 <div class="arithmatex">\[
-\frac{dU}{dt}=-\iint_{闭合曲面}\vec S\bullet d\vec A-Q+P
+\frac{\text{d}U}{\text{d}t}=-\iint_{闭合曲面}\vec S\bullet \text{d}\vec A-Q+P
 \]</div>
 <p>从能量守恒的角度来看，这面积分代表单位时间从体积 V 中的表面流出的电磁能量（叫做电磁能流），那么 Poynting Vector 的方向就代表电磁能传递的方向，其大小代表单位时间流过与之垂直的的单位面积的电磁能量，<span class="arithmatex">\(S\)</span> 代表电磁能流密度矢量，由电磁波构成右旋系可以得出，<span class="arithmatex">\(S\)</span> 的方向总是沿着电磁波的传播方向的。</p>
-<p>上述 <span class="arithmatex">\(S\)</span> 代表的是瞬时能流密度，在实际中重要的是一个周期内的平均值，即电磁波的平均能量密度</p>
+<p>上述 <span class="arithmatex">\(S\)</span> 代表的是<strong>瞬时能流密度</strong>，在实际中重要的是一个周期内的平均值，即<strong>电磁波的平均能流密度</strong></p>
 <div class="arithmatex">\[
 I=&lt;S&gt;=\frac{&lt;E^2&gt;}{\mu_0c}=\frac{E_{max}^2}{\mu_0c}&lt;sin^2(kz-\omega t)&gt;=\frac12 \frac{E_{max}^2}{\mu_0c}
 \]</div>
@@ -1699,7 +1721,7 @@ f=f_0(1-u/v)
 \]</div>
 <p>光波的多普勒效应来源于相对论效应，经过洛伦兹变换等复杂的推导过程，我们得到以下公式</p>
 <div class="arithmatex">\[
-f=f_0\frac{\sqrt{1-u^2/c^2}}{1+\frac{u}{c}cos\theta}
+f=f_0\frac{\sqrt{1-u^2/c^2}}{1+\frac{u}{c}\cos\theta}
 \]</div>
 <p>其中 <span class="arithmatex">\(u\)</span> 代表光源相对于观测者的运动速度，<span class="arithmatex">\(f_0\)</span> 代表光源本身的频率，<span class="arithmatex">\(f\)</span> 代表观测者观测到的频率，<span class="arithmatex">\(\theta\)</span> 代表光的传播方向与光源运动方向的夹角。</p>
 <ul>
@@ -1886,7 +1908,7 @@ f=f_0\sqrt{\frac{1-u/c}{1+u/c}}
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 - 2024 RoderickShao
+      Copyright &copy; 2024 - 2025 RoderickShao
     </div>
   
   

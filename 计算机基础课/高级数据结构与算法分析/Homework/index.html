@@ -2353,9 +2353,10 @@ The coins of the lowest denomination（面额） is the cent.</p>
 </details>
 <h2 id="hw11"><strong>HW11</strong><a class="headerlink" href="#hw11" title="Permanent link">&para;</a></h2>
 <p>Suppose ALG is an <span class="arithmatex">\(α\)</span>-approximation algorithm for an optimization problem <span class="arithmatex">\(Π\)</span> whose approximation ratio is tight. Then for every <span class="arithmatex">\(\varepsilon&gt;0\)</span> there is no <span class="arithmatex">\((α−\varepsilon)\)</span>-approximation algorithm for <span class="arithmatex">\(Π\)</span>  unless P = NP.</p>
-<p>???  note "答案"</p>
-<div class="highlight"><pre><span></span><code>这里近似比 $\alpha$ 针对的是 ALG 这个算法的最佳近似比，而这并不代表该问题不存在更好的近似比的解法，比如说对与装箱问题来说，next-fit的解法的最佳近似比就是2，而first-fit的解法的最佳近似比就可以小于2.
-</code></pre></div>
+<details class="note">
+<summary>答案</summary>
+<p>这里近似比 <span class="arithmatex">\(\alpha\)</span> 针对的是 ALG 这个算法的最佳近似比，而这并不代表该问题不存在更好的近似比的解法，比如说对与装箱问题来说，next-fit的解法的最佳近似比就是2，而first-fit的解法的最佳近似比就可以小于2.</p>
+</details>
 <p>As we know there is a 2-approximation algorithm for the Vertex Cover problem.  Then we must be able to obtain a 2-approximation algorithm for the Clique problem, since the Clique problem can be polynomially reduced to the Vertex Cover problem.  </p>
 <details class="note">
 <summary>答案</summary>
@@ -2394,7 +2395,7 @@ The coins of the lowest denomination（面额） is the cent.</p>
 <p>注意到最短路径一定比MST要大，而其他两个的走法最多一条边走两次，不会超过2倍的MST，但是level-order就说不准了，可能一条边要走好多次</p>
 </details>
 <p>Revisit the activity selection problem. Given a set of activities <span class="arithmatex">\(S={a_1,a_2,⋯,a_n}\)</span> that wish to use a resource, each <span class="arithmatex">\(a_i\)</span> takes place during a time interval. The goal is to arrange as many compatible activities as possible. Recall that several greedy approaches are introduced in the class, among which the one selecting an activity with the shortest length, denoted by <span class="arithmatex">\(SF\)</span>, is not always optimal. However, we claim that <span class="arithmatex">\(SF\)</span> accepts at least <span class="arithmatex">\(∣OPT∣/2\)</span> activities, given that the optimal value is <span class="arithmatex">\(∣OPT∣\)</span>, where <span class="arithmatex">\(OPT\)</span> is an optimal solution. Check if the following is a correct proof. </p>
-<p>We use a technique, called the charging scheme, similarly as the amortized analysis. Suppose each accepted activity of <span class="arithmatex">\(OPT\)</span> holds one dollar, which will be given to the activities accepted by <span class="arithmatex">\(SF\)</span> in the following way. For any activity <span class="arithmatex">\(a_i\)</span> of <span class="arithmatex">\(OPT\)</span>, if <span class="arithmatex">\(a_i\)</span> is also accepted by <span class="arithmatex">\(SF\)</span>, give the dolloar to itself. Otherwise, there must be some activity <span class="arithmatex">\(a_j\)</span>, accepted by <span class="arithmatex">\(SF\)</span>, is not compatible with <span class="arithmatex">\(a_i\)</span>. Then <span class="arithmatex">\(a_j\)</span> receives one dollar from <span class="arithmatex">\(a_i\)</span>. Along this line, each activity of <span class="arithmatex">\(OPT\)</span> sends out one dollar to an activity in <span class="arithmatex">\(SF\)</span>, while each activity of <span class="arithmatex">\(SF\)</span> receives at most two dollars. It implies that <span class="arithmatex">\(SF\)</span> accepts as least <span class="arithmatex">\(∣OPT∣/2\)</span> activities.</p>
+<p>We use a technique, called the charging scheme, similarly as the amortized analysis. Suppose each accepted activity of <span class="arithmatex">\(OPT\)</span> holds one dollar, which will be given to the activities accepted by <span class="arithmatex">\(SF\)</span> in the following way. For any activity <span class="arithmatex">\(a_i\)</span> of <span class="arithmatex">\(OPT\)</span>, if <span class="arithmatex">\(a_i\)</span> is also accepted by <span class="arithmatex">\(SF\)</span>, give the dollar to itself. Otherwise, there must be some activity <span class="arithmatex">\(a_j\)</span>, accepted by <span class="arithmatex">\(SF\)</span>, is not compatible with <span class="arithmatex">\(a_i\)</span>. Then <span class="arithmatex">\(a_j\)</span> receives one dollar from <span class="arithmatex">\(a_i\)</span>. Along this line, each activity of <span class="arithmatex">\(OPT\)</span> sends out one dollar to an activity in <span class="arithmatex">\(SF\)</span>, while each activity of <span class="arithmatex">\(SF\)</span> receives at most two dollars. It implies that <span class="arithmatex">\(SF\)</span> accepts as least <span class="arithmatex">\(∣OPT∣/2\)</span> activities.</p>
 <details class="note">
 <summary>Note</summary>
 <p>T,这个类似于摊还分析的分析方式为设每一个OPT中的活动有一美元，然后</p>
@@ -2410,7 +2411,7 @@ The coins of the lowest denomination（面额） is the cent.</p>
 <p>For an approximation algorithm for a minimization problem, given that the algorithm does not guarantee to find the optimal solution, the best approximation ratio possible to achieve is a constant <span class="arithmatex">\(α&gt;1\)</span>.</p>
 <details class="note">
 <summary>答案</summary>
-<p>近似比k与 <span class="arithmatex">\(\varepsilon\)</span> 有关 </p>
+<p>近似比可与 <span class="arithmatex">\(\varepsilon\)</span> 有关 </p>
 </details>
 <p>Consider the bin packing problem which uses a minimum number of bins to accommodate a given list of items. Recall that Next Fit (NF) and First Fit (FF) are two simple approaches, whose (asymptotic) approximation ratios are 2 and 1.7, respectively. Now we focus on a special class <span class="arithmatex">\(I2\)</span> of instances in which only two distinct item sizes appear. Check which of the following statements is true by applying NF and FF on <span class="arithmatex">\(I2\)</span>.  </p>
 <p>A. NF and FF both have improved approximation ratios.</p>
@@ -2428,6 +2429,7 @@ The coins of the lowest denomination（面额） is the cent.</p>
 <p>D. In the knapsack problem, for any given real number <span class="arithmatex">\(ϵ&gt;0\)</span>, there exists an algorithm with approximation ratio less than <span class="arithmatex">\(1+ϵ\)</span>.</p>
 <details class="note">
 <summary>答案</summary>
+<p>选C</p>
 <p>A. 装箱问题不可能存在近似比小于3/2的多项式算法，这是因为分箱问题（将一堆物品分成等重的两部分）是一个NPC问题</p>
 <p>B. 判断是否存在最大度数为2的最小生成树等价于哈密顿路径问题，而这个是 NPC 问题</p>
 <p>C. 不可能存在近似比小于3/2的多项式算法，如果存在，那么我就可以用其来解决哈密顿路径问题</p>
@@ -2476,14 +2478,45 @@ The coins of the lowest denomination（面额） is the cent.</p>
 <summary>Note</summary>
 <p>应该只有 B 是可以证明的，其他两个应该都存在那些非极小值点，但不是最小值的点</p>
 </details>
+<p>Consider the <strong>Minimum Degree Spanning Tree</strong> problem: Given a connected undirected graph <span class="arithmatex">\(G(V,E)\)</span>, find a spanning tree <span class="arithmatex">\(T\)</span> whose maximum degree over its vertices is minimized over all spanning trees of <span class="arithmatex">\(G\)</span>. The problem can be shown to be NP-hard by reduction from the Hamiltonian Path Problem. On the other hand, we can use local search to design approximating algorithms. Denote <span class="arithmatex">\(d(u)\)</span> as the degree of vertex <span class="arithmatex">\(u\)</span> on a tree <span class="arithmatex">\(T\)</span>. Consider the following algorithm:</p>
+<ol>
+<li>Find an arbitrary spanning tree <span class="arithmatex">\(T\)</span> of <span class="arithmatex">\(G\)</span>.</li>
+<li>If there's some edge <span class="arithmatex">\(e∈E(G)\textbackslash E(T)\)</span> with endpoints <span class="arithmatex">\(u,v\)</span>, and there's some other vertex <span class="arithmatex">\(w\)</span> on the path between <span class="arithmatex">\(u,v\)</span> on <span class="arithmatex">\(T\)</span> such that <span class="arithmatex">\(\max\{d(u),d(v)\}+1&lt;d(w)\)</span>, then we replace an edge <em>e</em>′ incident to <span class="arithmatex">\(w\)</span> on <span class="arithmatex">\(T\)</span> with <span class="arithmatex">\(e\)</span>, i.e. <span class="arithmatex">\(T:=T∪{e}\textbackslash\{e’\}\)</span>.</li>
+<li>Repeat Step (2) until there's no edge to replace.</li>
+</ol>
+<p>It can be shown that this algorithm will terminate at a solution with maximum vertex degree <span class="arithmatex">\(OPT+O(log∣V∣)\)</span>. To show the algorithm will terminate in finite steps, a useful technique is to define a nonnegative potential function <span class="arithmatex">\(ϕ(T)\)</span> and to show <span class="arithmatex">\(ϕ(T)\)</span> is strictly decreasing after each step. Which of the following potential functions below satisfies the above requirements?</p>
+<p>A. <span class="arithmatex">\(\phi(T) = \sum_{v \in V} d(v)\)</span>.</p>
+<p>B. <span class="arithmatex">\(\phi(T) = \sum_{(u,v) \in E(T)} \max\{d(u), d(v)\}\)</span>.</p>
+<p>C. <span class="arithmatex">\(\phi(T) = \sum_{u \in V} \sum_{v \in V, v \neq u} \sum_{w \in V, w \neq u, v} \max\{d(u), d(v), d(w)\}\)</span>.</p>
+<p>D. <span class="arithmatex">\(\phi(T) = \sum_{v \in V} 3^{d(v)}\)</span>.</p>
+<details class="note">
+<summary>答案</summary>
+<p>等会再看</p>
+</details>
+<p>Consider the metric <strong>Facility Location</strong> problem. A company wants to distribute its product to various cities. There is a set <span class="arithmatex">\(I\)</span> of potential locations where a storage facility can be opened and a fixed “facility cost” <span class="arithmatex">\(f_i\)</span> associated with opening a storage facility at location <span class="arithmatex">\(i∈I\)</span>. (Sometimes we will say “facility <span class="arithmatex">\(i\)</span>” to mean “facility at location <span class="arithmatex">\(i\)</span>”). There also is a set <span class="arithmatex">\(J\)</span> of cities to which the product needs to be sent, and a “routing cost” <span class="arithmatex">\(c(i,j)\)</span> associated with transporting the goods from a facility at location <span class="arithmatex">\(i\)</span> to city <span class="arithmatex">\(j\)</span>. The goal is to pick a subset <span class="arithmatex">\(S\)</span> of <span class="arithmatex">\(I\)</span> so that the total cost of opening the facilities and transporting the goods is minimized. In short, we want to minimize <span class="arithmatex">\(C(S)=C_f(S)+C_r(S)\)</span>, where <span class="arithmatex">\(C_f(S)=∑{i∈S}fi\)</span> and <span class="arithmatex">\(Cr(S)=∑_{j∈J}\min_{i∈S}c(i,j)\)</span>. Consider the following local serach algorithm:</p>
+<ol>
+<li>Picking any subset <span class="arithmatex">\(S\)</span> of the set <span class="arithmatex">\(I\)</span> of facilities. This give us a feasible solution right away.</li>
+<li>We then search for the local neighborhood of the current feasible solution to see if there is a solution with a smaller objective value; if we find one we update our feasible solution to that one.</li>
+<li>We repeat step 2 until we do not find a local neighbor that yields a reduction in the objective value.</li>
+</ol>
+<p>There are two types of “local steps” that we take in searching for a neighbor: i) remove/add a facility from/to the current feasible solution, or ii) swap a facility in our current solution with one that is not.</p>
+<p>Which of the following statement is true?</p>
+<p>A. This algorithm is 2-approximation.</p>
+<p>B. Let <span class="arithmatex">\(S\)</span> be a local optimum that the above algorithm terminates with, and <span class="arithmatex">\(S^∗\)</span> be a global optimum. Then <span class="arithmatex">\(C_r(S)≥C(S^∗)\)</span>.</p>
+<p>C. Let <span class="arithmatex">\(S\)</span> be a local optimum that the above algorithm terminates with, and <span class="arithmatex">\(S^∗\)</span> be a global optimum. Then <span class="arithmatex">\(C_r(S)≤C(S^∗)\)</span>.</p>
+<p>D. None of the other options are correct.</p>
+<details class="note">
+<summary>答案</summary>
+<p>我感觉应该选C</p>
+</details>
 <h2 id="hw13"><strong>HW13</strong><a class="headerlink" href="#hw13" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(a=(a_1,a_2,…,a_i,…,a_j,…,a_n)\)</span> denote the list of elements we want to sort. In the quicksort algorithm, if the pivot is selected uniformly at random. Then any two elements get compared at most once and the probability of <span class="arithmatex">\(a_i\)</span> and <span class="arithmatex">\(a_j\)</span> being compared is <span class="arithmatex">\(2/(j−i+1)\)</span> for <span class="arithmatex">\(j&gt;i\)</span>, given that <span class="arithmatex">\(a_i\)</span> or <span class="arithmatex">\(a_j\)</span> is selected as the pivot. </p>
-<div class="admonition answer">
-<p class="admonition-title">Answer</p>
+<details class="note">
+<summary>答案</summary>
 <p>F,举反例如下：{3, 4, 1, 2,}。如果第一次选 pivot 选中 3 或者 2，那么 1 和 4 会被分开，不会被比较。</p>
 <p>如果第一次就选中 1 或 4，它们才会被比较。因此它们被比较的概率是 ½。按照 <span class="arithmatex">\(2/(j−i+1)\)</span> 计算，应该是 1。</p>
 <p>事实上，如果是已经被排序好的，这就是对的，也就是说这里的i,j指的是第i大以及第j大时，结论是成立的</p>
-</div>
+</details>
 <p>The Online Hiring Algorithm ( hire only once ) is described as the following:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>int OnlineHiring ( EventType C[ ], int N, int k )
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>{
@@ -2513,10 +2546,10 @@ The coins of the lowest denomination（面额） is the cent.</p>
 <p>我们要把它分为两种情况，一种是刚好最后一个就是最大的，另一种是最大的在前k个，最后一个是迫不得已选的。分别计算概率得到 <span class="arithmatex">\(1/3\)</span></p>
 </div>
 <p>Given a linked list containg <span class="arithmatex">\(N\)</span> nodes.  Our task is to remove all the nodes. At each step, we randomly choose one node in the current list, then delete the selected node together with all the nodes after it. Here we assume that each time we choose one node uniformly among all the remaining nodes. What is the expected number of steps to remove all the nodes?</p>
-<p>A.<span class="arithmatex">\(Θ(logN)\)</span></p>
+<p>A.<span class="arithmatex">\(Θ(\log N)\)</span></p>
 <p>B.<span class="arithmatex">\(N/e\)</span></p>
 <p>C.<span class="arithmatex">\(N/2\)</span></p>
-<p>D.<span class="arithmatex">\(N\)</span></p>
+<p>D.<span class="arithmatex">\(\sqrt N\)</span></p>
 <div class="admonition answer">
 <p class="admonition-title">Answer</p>
 <p>这个题的意思是要删掉所有节点，删除的方式是随机选取一个点，将它和它之后的节点都删掉。得到相应的关系式</p>
@@ -2528,7 +2561,7 @@ a_n=\frac{1}{N}\sum_{i=1}^{N-1}a_i+O(1)
 <p>In order to solve  the maximum finding problem by a parallel  algorithm  with <span class="arithmatex">\(T(n)=O(1)\)</span> , we need work load <span class="arithmatex">\(W(n)=Ω(n^2)\)</span> in return.</p>
 <details class="note">
 <summary>答案</summary>
-<p>F，我们使用随机选择那个方法就可以做到 O(1) 的workload</p>
+<p>F，我们使用随机选择那个方法就可以做到 O(n) 的workload</p>
 </details>
 <h2 id="hw15">HW15<a class="headerlink" href="#hw15" title="Permanent link">&para;</a></h2>
 <p>If only one tape drive is available to perform the external sorting, then the tape access time for any algorithm will be <span class="arithmatex">\(Ω(N^2)\)</span>.  </p>
@@ -2668,7 +2701,7 @@ a_n=\frac{1}{N}\sum_{i=1}^{N-1}a_i+O(1)
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 - 2024 RoderickShao
+      Copyright &copy; 2024 - 2025 RoderickShao
     </div>
   
   

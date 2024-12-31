@@ -607,6 +607,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1231,11 +1233,31 @@
   
   
     <li class="md-nav__item">
+      <a href="../16%20Lecture%2016/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16 光的本质
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Appendix%201/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Appendix 1
+    Appendix
   </span>
   
 
@@ -1764,7 +1786,7 @@
 
 <h1 id="9"><strong>9 电感与材料的磁性质</strong><a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2264 个字  预计阅读时间 8 分钟
+    文本统计：约 2273 个字  预计阅读时间 8 分钟
 </div>
 
 <h2 id="91"><strong>9.1 互感</strong><a class="headerlink" href="#91" title="Permanent link">&para;</a></h2>
@@ -1951,7 +1973,7 @@ B=B_0+B'
 \begin{aligned}
 iR+\frac{q}{C}&amp;=\varepsilon\\
 \frac{\text{d}q}{\text{d}t}+\frac{1}{RC}q&amp;=\frac{\varepsilon}{R}\\
-\Rightarrow q&amp;=C_0\varepsilon(1-e^{-t/RC})
+\Rightarrow q&amp;=C\varepsilon(1-e^{-t/RC})
 \end{aligned}
 \]</div>
 <h3 id="942-rl-circuits"><strong>9.4.2 RL Circuits</strong><a class="headerlink" href="#942-rl-circuits" title="Permanent link">&para;</a></h3>
@@ -1962,29 +1984,29 @@ iR+\frac{q}{C}&amp;=\varepsilon\\
 &amp;iR+L\frac{\text{d}i}{\text{d}t}=\varepsilon\\
 &amp;\frac{\text{d}i}{\text{d}t}=\frac{1}{L}(\varepsilon-iR)=-\frac{R}{L}(i-\varepsilon/R)\\
 &amp;i-\varepsilon/R=C'e^{-\frac{R}{L}t}\\
-t=0,i=0&amp; \Rightarrow C'=-\frac{\vepsilon}{R}
+t=0,i=0&amp; \Rightarrow C'=-\frac{\varepsilon}{R}
 \end{aligned}
 \]</div>
 <p>整理可得</p>
 <div class="arithmatex">\[
 \begin{aligned}
-i&amp;=\frac{\epsilon}{R}(1-e^{-\frac{R}{L}t})\\
-V_L&amp;=-L\frac{di}{dt}=-\epsilon e^{-\frac{R}{L}t}
+i&amp;=\frac{\varepsilon}{R}(1-e^{-\frac{R}{L}t})\\
+V_L&amp;=-L\frac{\text{i}}{\text{t}}=-\varepsilon e^{-\frac{R}{L}t}
 \end{aligned}
 \]</div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-13%20214404.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-13%20214404.png" /></a></p>
 <p>经过很长一段时间电路稳定后，开关K从a到b，根据电势列出方程</p>
 <div class="arithmatex">\[
 \begin{aligned}
-iR+L\frac{di}{dt}=0 \Rightarrow i=ce^{-\frac{R}{L}t}
+iR+L\frac{\text{d}i}{\text{d}t}=0 \Rightarrow i=ce^{-\frac{R}{L}t}
 \end{aligned}
 \]</div>
-<p>再根据 <span class="arithmatex">\(t=0\)</span>时，<span class="arithmatex">\(i=\frac{\epsilon}{R}\)</span>，从而确定c</p>
+<p>再根据 <span class="arithmatex">\(t=0\)</span>时，<span class="arithmatex">\(i=\frac{\varepsilon}{R}\)</span>，从而确定c</p>
 <p>整理可得</p>
 <div class="arithmatex">\[
 \begin{aligned}
-i&amp;=\frac{\epsilon}{R}e^{-\frac{R}{L}t}\\
-V_L&amp;=L\frac{di}{dt}=-\epsilon e^{-\frac{R}{L}t}
+i&amp;=\frac{\varepsilon}{R}e^{-\frac{R}{L}t}\\
+V_L&amp;=L\frac{\text{d}i}{\text{d}t}=-\vepsilon e^{-\frac{R}{L}t}
 \end{aligned}
 \]</div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-13%20215052.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-13%20215052.png" /></a></p>
@@ -2161,7 +2183,7 @@ V_L&amp;=L\frac{di}{dt}=-\epsilon e^{-\frac{R}{L}t}
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 - 2024 RoderickShao
+      Copyright &copy; 2024 - 2025 RoderickShao
     </div>
   
   

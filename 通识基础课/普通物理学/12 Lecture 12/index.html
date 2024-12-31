@@ -607,6 +607,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1090,11 +1092,31 @@
   
   
     <li class="md-nav__item">
+      <a href="../16%20Lecture%2016/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16 光的本质
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Appendix%201/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Appendix 1
+    Appendix
   </span>
   
 
@@ -1482,7 +1504,7 @@
 
 <h1 id="12"><strong>12 几何光学</strong><a class="headerlink" href="#12" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1205 个字  预计阅读时间 4 分钟
+    文本统计：约 1315 个字  预计阅读时间 4 分钟
 </div>
 
 <p><strong>Geometrical Optics (几何光学)</strong>: the case in which light travels in straight line and encounters objects whose size is much larger than <span class="arithmatex">\(\lambda\)</span>.</p>
@@ -1491,10 +1513,10 @@
 <h3 id="1211"><strong>12.1.1 几何光学三定律</strong><a class="headerlink" href="#1211" title="Permanent link">&para;</a></h3>
 <p><strong>The law of straight line propagation of light</strong>: Light propagates in a straight line in a uniform materials.</p>
 <p><strong>The Law of Reflection</strong>: The reflected ray lies in the plane of incidence, and <span class="arithmatex">\(\theta_r=\theta_I\)</span></p>
-<p><strong>The law of Refraction</strong>: The refracted ray lies in the plane of incidence, and <span class="arithmatex">\(n_1sin\theta_1 = n_2sin\theta_2\)</span></p>
+<p><strong>The law of Refraction</strong>: The refracted ray lies in the plane of incidence, and <span class="arithmatex">\(n_1\sin\theta_1 = n_2\sin\theta_2\)</span></p>
 <h3 id="1212"><strong>12.1.2 折射率</strong><a class="headerlink" href="#1212" title="Permanent link">&para;</a></h3>
-<p>根据麦克斯韦方程组推出来的光速为 <span class="arithmatex">\(v=\frac{1}{\kappa_e\kappa_m\varepsilon_0\mu_0}\)</span></p>
-<p>由于对于绝大多数材料 <span class="arithmatex">\(\kappa_m\approx1\)</span>，从而 <span class="arithmatex">\(v\approx\frac{c}{\sqrt\kappa_e}\)</span></p>
+<p>根据麦克斯韦方程组推出来的光速为 <span class="arithmatex">\(v=\frac{1}{\sqrt{\kappa_e\kappa_m\varepsilon_0\mu_0}}\)</span></p>
+<p>由于对于绝大多数材料 <span class="arithmatex">\(\kappa_m\approx1\)</span>，从而 <span class="arithmatex">\(v\approx\frac{c}{\sqrt\kappa_e}\)</span>，其中 <span class="arithmatex">\(c\)</span> 为真空中的光速</p>
 <p>这样我们得到了光在某一物质中的折射率 <span class="arithmatex">\(n\approx\sqrt{\kappa_e}\)</span>，这个折射率也与光的频率有关，频率越高折射率越高，频率越低，折射率越低</p>
 <h3 id="1213"><strong>12.1.3 全反射</strong><a class="headerlink" href="#1213" title="Permanent link">&para;</a></h3>
 <p>从光密介质射入光疏介质，当入射角达到一定值时会发生全反射现象</p>
@@ -1509,11 +1531,11 @@
 <h2 id="123"><strong>12.3 费马原理</strong><a class="headerlink" href="#123" title="Permanent link">&para;</a></h2>
 <p><strong>光程</strong> (The Optical Path Length) 定义为从一点到另一点的等效光在真空中走的距离</p>
 <div class="arithmatex">\[
-\int_{start}^{finish}ndl
+\int_{\text{start}}^{\text{finish}}n\text{d}l
 \]</div>
 <p>从一个固定点 (Q) 到另一个固定点 (P) 的光线所遵循的路径，与附近的路径相比，所需的时间要么是最小的，要么是最大的，要么保持不变。（这是静止的）</p>
 <div class="arithmatex">\[
-\delta(QP)=\delta(\int_Q^Pndl)=0
+\delta(QP)=\delta(\int_Q^Pn\text{d}l)=0
 \]</div>
 <p>我们根据<strong>费马原理验证光的反射和折射定律</strong></p>
 <p><a class="glightbox" href="../img/%E5%85%89%E7%9A%84%E5%8F%8D%E5%B0%84.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%85%89%E7%9A%84%E5%8F%8D%E5%B0%84.png" /></a></p>
@@ -1544,16 +1566,28 @@ n \sin \theta = n' \sin \theta', \\
 \theta - u = \theta' + u' = \phi.
 \end{cases}
 \]</div>
-<p>再根据余弦定理</p>
+<p>根据前三个式子可以推出</p>
 <div class="arithmatex">\[
+\left\{
+\begin{aligned}
+\frac{p}{o + r} &amp;= \frac{\sin \phi}{\sin \theta}, \\
+\frac{p'}{i - r} &amp;= \frac{\sin \phi}{\sin \theta'},
+\end{aligned}
+\right.
+\]</div>
+<div class="arithmatex">\[
+\therefore \frac{p}{n(o + r)} = \frac{p'}{n'(i - r)}
+\]</div>
+<p>再根据余弦定理
+$$
 \begin{cases}
-p^2 = (o + r)^2 + r^2 - 2r(o + r)\cos \phi = o^2 + 4r(o + r)\sin^2 \frac{\phi}{2}, \\
+p^2 = (o + r)^2 + r^2 - 2r(o + r)\cos \phi = o^2 + 4r(o + r)\sin^2 \frac{\phi}{2}, \
 p'^2 = (i - r)^2 + r^2 + 2r(i - r)\cos \phi = i^2 - 4r(i - r)\sin^2 \frac{\phi}{2}.
 \end{cases}
-\]</div>
+$$</p>
 <p>上下两个式子分别除以 <span class="arithmatex">\(n^2(o+r)^2\)</span> 以及 <span class="arithmatex">\(n'^2(i-r)^2\)</span> 得到</p>
 <div class="arithmatex">\[
-\frac{o^2}{n^2(o + r)^2} - \frac{i^2}{n^2(i - r)^2} = -4r \sin^2 \frac{\phi}{2} \left[ \frac{1}{n^2(o + r)} + \frac{1}{n^2(i - r)} \right].
+\frac{o^2}{n^2(o + r)^2} - \frac{i^2}{n'^2(i - r)^2} = -4r \sin^2 \frac{\phi}{2} \left[ \frac{1}{n^2(o + r)} + \frac{1}{n'^2(i - r)} \right].
 \]</div>
 <p>我们发现上述公式中，不同的 <span class="arithmatex">\(\phi\)</span> 得到不同的 <span class="arithmatex">\(i\)</span> ，这样我们就不能成像了。</p>
 <p>我们要让 <span class="arithmatex">\(i\)</span> 与 <span class="arithmatex">\(\phi\)</span> 无关，就需要满足</p>
@@ -1574,8 +1608,8 @@ p'^2 = (i - r)^2 + r^2 + 2r(i - r)\cos \phi = i^2 - 4r(i - r)\sin^2 \frac{\phi}{
 \end{align*}
 \]</div>
 <p>对于任意Q点（物体距离 <span class="arithmatex">\(o\)</span>），存在图像Q'点（图像距离 <span class="arithmatex">\(i\)</span>）。</p>
-<p>第一个焦点：<span class="arithmatex">\(i\rightarrow\infty,o=f=\frac{n}{n'-n}r\)</span></p>
-<p>第二个焦点：<span class="arithmatex">\(o\rightarrow\infty,i=f'=\frac{n'}{n'-n}r\)</span></p>
+<p>第一个焦点，物体在这个位置使得像无穷远：<span class="arithmatex">\(i\rightarrow\infty,o=f=\frac{n}{n'-n}r\)</span></p>
+<p>第二个焦点，物体在无穷远处像在这个位置：<span class="arithmatex">\(o\rightarrow\infty,i=f'=\frac{n'}{n'-n}r\)</span></p>
 <div class="arithmatex">\[
 \frac{f}{f'}=\frac{n}{n'},\quad\frac{f}{o}+\frac{f'}{i}=1
 \]</div>
@@ -1584,29 +1618,31 @@ p'^2 = (i - r)^2 + r^2 + 2r(i - r)\cos \phi = i^2 - 4r(i - r)\sin^2 \frac{\phi}{
 <p>如果我们假设入射光从左向右。</p>
 <p>(1)If the Q point is at the left of A point (实物) <span class="arithmatex">\(o&gt;0\)</span>，If the Q point is at the right of A point (虚物) <span class="arithmatex">\(o&lt;0\)</span></p>
 <p>(2) If the Q’ point is at the left of A point (虚像) <span class="arithmatex">\(i&lt;0\)</span>，If the Q’ point is at the right of A point (实像) <span class="arithmatex">\(i&gt;0\)</span></p>
-<p>对于球面的情况是
-(2') If the Q’ point is at the left of A point (虚像) <span class="arithmatex">\(i&lt;0\)</span>，If the Q’ point is at the right of A point (实像) <span class="arithmatex">\(i&gt;0\)</span></p>
 <p>(3) If the C point (球心) is at the left of A point (凹)，<span class="arithmatex">\(r&lt;0\)</span>，If the C point (球心) is at the right of A point (凸)，<span class="arithmatex">\(r&gt;0\)</span></p>
 </div>
-<p>对于球面反射成像</p>
+<p>对于<strong>球面反射成像</strong></p>
 <p><a class="glightbox" href="../img/%E7%90%83%E9%9D%A2%E5%8F%8D%E5%B0%84%E6%88%90%E5%83%8F.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E7%90%83%E9%9D%A2%E5%8F%8D%E5%B0%84%E6%88%90%E5%83%8F.png" /></a></p>
 <p>对于球面反射的情况，定义 <span class="arithmatex">\(n'=-n\)</span></p>
-<p>那么 <span class="arithmatex">\(f=\frac{n}{n'-n}r=-\frac{r}{2}\)</span>，<span class="arithmatex">\(f'=\frac{n'}{n'-n}=\frac12r\)</span></p>
+<p>那么 <span class="arithmatex">\(f=\frac{n}{n'-n}r=-\frac{r}{2}\)</span>，<span class="arithmatex">\(f'=\frac{n'}{n'-n}r=\frac12r\)</span></p>
 <p>这样我们根据前面得到的公式，得到</p>
-<p>$$
+<div class="arithmatex">\[
 \begin{align*}
-\frac{f}{o} + \frac{f'}{i} &amp;= 1, \</p>
-<p>\frac{\left(-\frac{r}{2}\right)}{o} + \frac{\frac{r}{2}}{(-i)} &amp;= 1, \text{注意这里的i和上述公式中的i符号相反}\\
-\Rightarrow \frac{1}{o} + \frac{1}{i} &amp;= -\frac{2}{r}
+\frac{f}{o} + \frac{f'}{i} &amp;= 1, \\
+\frac{\left(-\frac{r}{2}\right)}{o} + \frac{\frac{r}{2}}{i} &amp;= 1\\
+\Rightarrow \frac{1}{o} - \frac{1}{i} &amp;= -\frac{2}{r}
 \end{align*}
-$$</p>
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意一下这里的符号，在这里我与ppt不同的地方是我一直定义 <span class="arithmatex">\(i\)</span> 为左负右正，这样我们可以保证公式的连贯性，同时还要注意的一点是这里的折射角定义为负的，同时折射率定义也为负的</p>
+</div>
 <h3 id="_1"><strong>旁轴物点成像和横向放大率</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E6%97%81%E8%BD%B4%E7%89%A9%E7%82%B9%E6%88%90%E5%83%8F.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E6%97%81%E8%BD%B4%E7%89%A9%E7%82%B9%E6%88%90%E5%83%8F.png" /></a></p>
 <div class="admonition note">
 <p class="admonition-title">符号约定</p>
 <p>(4) If P (or P’) is above the light axis, y (or y’)&gt;0，If P (or P’) is below the light axis, y (or y’)&lt;0</p>
 </div>
-<p>我们定义横向放大率 (Lateral magnificaition)</p>
+<p>我们定义横向<strong>放大率</strong> (Lateral magnificaition)</p>
 <div class="arithmatex">\[
 m = \frac{\text{Lateral Size of Image}}{\text{Lateral Size of Object}} = \frac{y'}{y}
 \]</div>
@@ -1616,7 +1652,7 @@ m = \frac{\text{Lateral Size of Image}}{\text{Lateral Size of Object}} = \frac{y
 &amp;\therefore m = \frac{y'}{y} = -\frac{i\theta'}{o\theta} = -\frac{n \cdot i}{n' \cdot o}
 \end{align*}
 \]</div>
-<p>对于反射的情况 <span class="arithmatex">\(m=-\frac{i}{o}\)</span></p>
+<p>对于反射的情况 <span class="arithmatex">\(m=\frac{i}{o}\)</span>（注意这里 <span class="arithmatex">\(i\)</span> 也是负的）</p>
 <h3 id="_2"><strong>复杂光路成像</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%A4%8D%E6%9D%82%E5%85%89%E8%B7%AF%E6%88%90%E5%83%8F.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%A4%8D%E6%9D%82%E5%85%89%E8%B7%AF%E6%88%90%E5%83%8F.png" /></a></p>
 <div class="arithmatex">\[
@@ -1691,8 +1727,8 @@ ynu=y'n'u'=y''n''u''=...
 <p>其中</p>
 <div class="arithmatex">\[
 \begin{align*}
-f' &amp;= \frac{f_1' f_2'}{f_1' + f_2'} = \frac{\frac{n_L}{n_L - n} \cdot \frac{n'}{n' - n_L} r_1 r_2}{\frac{n_L}{n_L - n} r_1 + \frac{n_L}{n' - n_L} r_2} = \frac{n'}{\frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2}} \\
-f &amp;= \frac{f_1 f_2}{f_1' + f_2'} = \frac{\frac{n}{n_L - n} \cdot \frac{n_L}{n' - n_L} r_1 r_2}{\frac{n_L}{n_L - n} r_1 + \frac{n_L}{n' - n_L} r_2} = \frac{n}{\frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2}}
+f' &amp;= \frac{f_1' f_2'}{f_1' + f_2} = \frac{\frac{n_L}{n_L - n} \cdot \frac{n'}{n' - n_L} r_1 r_2}{\frac{n_L}{n_L - n} r_1 + \frac{n_L}{n' - n_L} r_2} = \frac{n'}{\frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2}} \\
+f &amp;= \frac{f_1 f_2}{f_1' + f_2} = \frac{\frac{n}{n_L - n} \cdot \frac{n_L}{n' - n_L} r_1 r_2}{\frac{n_L}{n_L - n} r_1 + \frac{n_L}{n' - n_L} r_2} = \frac{n}{\frac{n_L - n}{r_1} + \frac{n' - n_L}{r_2}}
 \end{align*}
 \]</div>
 <p>故 <span class="arithmatex">\(\frac{f'}{f}=\frac{n'}{n}\)</span>，当 <span class="arithmatex">\(n=n'=1\)</span>时，我们得到</p>
@@ -1700,21 +1736,23 @@ f &amp;= \frac{f_1 f_2}{f_1' + f_2'} = \frac{\frac{n}{n_L - n} \cdot \frac{n_L}{
 f = f' = \frac{1}{(n_L - 1) \left( \frac{1}{r_1} - \frac{1}{r_2} \right)}
 \]</div>
 <p>我们称上述公式为 <strong>Lens maker’s Equation</strong> (磨镜者公式)</p>
-<p>If f&gt;0, f’&gt;0 Converging lens (凸透镜): A lens that is thicker at the center than at the edges.</p>
-<p>If f&lt;0, f’&lt;0 diverging lens (凹透镜): A lens that is thicker at the edges than at the center.</p>
-<p>Additional Notes: If $ n = n' $, $ f = f' $</p>
+<p>If <span class="arithmatex">\(f&gt;0, f’&gt;0\)</span> <strong>Converging Lens (凸透镜)</strong>: A lens that is thicker at the center than at the edges.</p>
+<p>If <span class="arithmatex">\(f&lt;0, f’&lt;0\)</span> <strong>Diverging Lens (凹透镜)</strong>: A lens that is thicker at the edges than at the center.</p>
+<p>Additional Notes: If <span class="arithmatex">\(n = n'\)</span>, <span class="arithmatex">\(f = f'\)</span></p>
 <p>得到 <strong>Gauss' Form</strong></p>
 <div class="arithmatex">\[
 \frac{1}{i} + \frac{1}{o} = \frac{1}{f}
 \]</div>
 <p><a class="glightbox" href="../img/Newton%27s%20Form.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Newton%27s%20Form.png" /></a></p>
-<p>Sign Convention:</p>
+<div class="admonition note">
+<p class="admonition-title">Sign Convention</p>
 <ol>
-<li>If $ Q $ is at the left of $ F $ point, $ x &gt; 0 $</li>
-<li>If $ Q $ is at the right of $ F $ point, $ x &lt; 0 $</li>
-<li>If $ Q' $ is at the left of $ F' $ point, $ x' &lt; 0 $</li>
-<li>If $ Q' $ is at the right of $ F' $ point, $ x' &gt; 0 $</li>
+<li>If <span class="arithmatex">\(Q\)</span> is at the left of <span class="arithmatex">\(F\)</span> point, <span class="arithmatex">\(x &gt; 0\)</span></li>
+<li>If <span class="arithmatex">\(Q\)</span> is at the right of <span class="arithmatex">\(F\)</span> point, <span class="arithmatex">\(x &lt; 0\)</span></li>
+<li>If <span class="arithmatex">\(Q'\)</span> is at the left of <span class="arithmatex">\(F'\)</span> point, <span class="arithmatex">\(x' &lt; 0\)</span></li>
+<li>If <span class="arithmatex">\(Q'\)</span> is at the right of <span class="arithmatex">\(F'\)</span> point, <span class="arithmatex">\(x' &gt; 0\)</span></li>
 </ol>
+</div>
 <div class="arithmatex">\[
 \begin{aligned}
 &amp;o = f + x\\
@@ -1722,7 +1760,7 @@ f = f' = \frac{1}{(n_L - 1) \left( \frac{1}{r_1} - \frac{1}{r_2} \right)}
 &amp;\frac{1}{f + x} + \frac{1}{f' + x'} = \frac{1}{f}\\
 \end{aligned}
 \]</div>
-<p>得到 <strong>Newton's Form</strong></p>
+<p>得到 <strong>Newton's Form</strong> (注意 <span class="arithmatex">\(f=f'\)</span>)</p>
 <div class="arithmatex">\[
 xx' = f^2 = ff'
 \]</div>
@@ -1890,7 +1928,7 @@ xx' = f^2 = ff'
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 - 2024 RoderickShao
+      Copyright &copy; 2024 - 2025 RoderickShao
     </div>
   
   
