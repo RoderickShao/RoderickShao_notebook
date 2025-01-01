@@ -1724,7 +1724,7 @@
 
 <h1 id="5-memory-hierarchy"><strong>5 Memory Hierarchy</strong><a class="headerlink" href="#5-memory-hierarchy" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 7757 个字  预计阅读时间 26 分钟
+    文本统计：约 7763 个字  预计阅读时间 26 分钟
 </div>
 
 <h2 id="51-storage-unit-introduction"><strong>5.1 Storage unit Introduction</strong><a class="headerlink" href="#51-storage-unit-introduction" title="Permanent link">&para;</a></h2>
@@ -1781,7 +1781,7 @@
 </div>
 <p>下面介绍一些重要的概念</p>
 <p><strong>Block</strong> (aka line): Block可以理解为一种组织内存的方式，将内存一段一段地划分开来形成许多Blocks，可能包含很多字。</p>
-<p>如果需要访问的数据在更高的层次，那么我们称这次访问是<strong>Hit</strong>，相应的<strong>Hit ratio</strong>就是 hits/accesses; 如果访问的数据没有，那么我们就称这次访问为依次<strong>miss</strong>，需要从更低的层级中调用数据上来，相应的 <strong>Miss ratio</strong> 就是 misses/accesses=1- hit ratio</p>
+<p>如果需要访问的数据在更高的层次，那么我们称这次访问是<strong>Hit</strong>，相应的<strong>Hit ratio</strong>就是 hits/accesses; 如果访问的数据没有，那么我们就称这次访问为一次<strong>miss</strong>，需要从更低的层级中调用数据上来，相应的 <strong>Miss ratio</strong> 就是 misses/accesses=1- hit ratio</p>
 <p><strong>Hit time</strong>: The time to access the upper level of the memory hierarchy, which includes the time needed to determine whether the access is a hit or a miss.</p>
 <p><strong>miss penalty</strong>: The time to replace a block in the upper level with the corresponding block from the lower level, plus the time to deliver this block to the processor. </p>
 <h2 id="53-the-basics-of-cache"><strong>5.3 The Basics of Cache</strong><a class="headerlink" href="#53-the-basics-of-cache" title="Permanent link">&para;</a></h2>
@@ -1890,11 +1890,11 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20190916.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-26%20190916.png" /></a></p>
 <p><strong>The Index field</strong></p>
 <ul>
-<li>In case of a set-associative cache, has as many bits as <span class="arithmatex">\(log_2(\#sets)\)</span></li>
-<li>In case of a direct-mapped cachr, has as many bits as <span class="arithmatex">\(log_2(\#blocks)\)</span></li>
+<li>In case of a set-associative cache, has as many bits as <span class="arithmatex">\(\log_2(\#\text{sets})\)</span></li>
+<li>In case of a direct-mapped cachr, has as many bits as <span class="arithmatex">\(\log_2(\#\text{blocks})\)</span></li>
 </ul>
-<p><strong>The Byte Offset field</strong> has as many bits as <span class="arithmatex">\(log_2(\#size\ of\ blocks)\)</span></p>
-<p><strong>The Tag</strong> is used to find the matching block within a set or in the cache, has many bits as Address_size - Index_size - Byte_Offset_Size</p>
+<p><strong>The Byte Offset field</strong> has as many bits as <span class="arithmatex">\(\log_2(\#\text{size of blocks})\)</span></p>
+<p><strong>The Tag</strong> is used to find the matching block within a set or in the cache, has many bits as <span class="arithmatex">\(\text{Address\_size} - \text{Index\_size} - \text{Byte\_Offset\_Size}\)</span></p>
 <div class="admonition example">
 <p class="admonition-title">Block Identification</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Direct-mapped Cache Example</label><label for="__tabbed_1_2">Fully-Associative Cache example</label><label for="__tabbed_1_3">2-Way Set-Associative Cache</label></div>
@@ -2213,7 +2213,7 @@
   
   </br>
   
-  快来跟我探讨！！！
+  欢迎跟我探讨！！！
   
   </div>
   
