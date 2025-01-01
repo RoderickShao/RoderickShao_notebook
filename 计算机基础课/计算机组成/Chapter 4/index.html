@@ -1939,7 +1939,7 @@
 <p>我们可以改变指令的顺序，让I型指令和R型指令不要连在一起，来避免这种情况发生，下面就是一个例子</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145834.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20145834.png" /></a></p>
 <h4 id="3-control-hazard"><strong>3 Control hazard</strong><a class="headerlink" href="#3-control-hazard" title="Permanent link">&para;</a></h4>
-<p>Fetching next instruction depends on branch outcome，选取的指令受到前面branch的结果影响</p>
+<p>Fetching <strong>next instruction</strong> depends on branch outcome，选取的指令受到前面branch的结果影响</p>
 <p>branch再怎么优化都会有一级的停顿，因为下一条指令的产生必须要在ID之后。我们可以优化电路将计算部分往前提，让其在ID后出结果</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20174005.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-31%20174005.png" /></a></p>
 <p><strong>Branch Prediction</strong></p>
@@ -1957,8 +1957,8 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141051.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141051.png" /></a></p>
 <p>我们会注意到执行WB写入寄存器的地址Write register已经发生了变化，以及将PC与立即数相加的时候我希望加的是原来指令的PC但是此时PC已经发生了改变。为了解决这些问题，我们引入<strong>流水线寄存器</strong> (Pipeline register)，用于存储上个阶段得到的数据。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141716.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-12%20141716.png" /></a></p>
-<div class="admonition note">
-<p class="admonition-title">Single-clock-cycle and Multi-clock-cycle</p>
+<details class="note">
+<summary>Single-clock-cycle and Multi-clock-cycle</summary>
 <p>1."Single-clock-cycle" pipeline diagram</p>
 <ul>
 <li>shows pipeline usage in a single cycle </li>
@@ -1975,7 +1975,7 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20103238.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20103238.png" /></a></p>
 <p>也可以这样表示</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20103243.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20103243.png" /></a></p>
-</div>
+</details>
 <p>我们以 “single-clock-cycle” diagrams 来看<code>load</code>指令</p>
 <p>执行IF阶段</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102602.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-14%20102602.png" /></a></p>
@@ -2218,60 +2218,79 @@
     </fieldset>
   </form>
 
+<div id="__comments">
 
-  <h2 id="__comments">评论</h2>
-  <!-- Insert generated snippet here -->
-  <script src="https://giscus.app/client.js"
-    data-repo="RoderickShao/RoderickShao_notebook"
-    data-repo-id="R_kgDOMS_5AQ"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="preferred_color_scheme"
-    data-lang="zh-CN"
-    crossorigin="anonymous"
-    async>
+  <script>
+  var buttons = document.querySelectorAll("button[data-md-color-primary]")
+  buttons.forEach(function(button) {
+          button.addEventListener("click", function() {
+          var attr = this.getAttribute("data-md-color-primary")
+          document.body.setAttribute("data-md-color-primary", attr)
+          localStorage.setItem("data-md-color-primary",attr);
+          })
+  })
   </script>
+  
+  <h2 ><!-- 评论 -->评论区</h2>
+  
+  对你有帮助的话请给我个赞和 star => <a href="https://github.com/RoderickShao/RoderickShao_notebook"><img alt="GitHub stars" src="https://img.shields.io/github/stars/RoderickShao/RoderickShao_notebook.svg?style=plastic&amp;label=Stars"></a>
+  
+  </br>
+  
+  快来跟我探讨！！！
+  
+  </div>
+  
+  <script src="https://giscus.app/client.js"
+      data-repo="RoderickShao/RoderickShao_notebook"
+      data-repo-id="R_kgDOMS_5AQ"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+          
+  
+  updateScheme();
+  
+  </script>
+  
   <!-- Synchronize Giscus theme with palette -->
   <script>
-    var giscus = document.querySelector("script[src*=giscus]")
-
-    // Set palette on initial load
-    var palette = __md_get("__palette")
-    if (palette && typeof palette.color === "object") {
-      var theme = palette.color.scheme === "slate"
-        ? "transparent_dark"
-        : "light"
-
-      // Instruct Giscus to set theme
+  var giscus = document.querySelector("script[src*=giscus]")
+  
+  /* Set palette on initial load */
+  var palette = __md_get("__palette")
+  if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
       giscus.setAttribute("data-theme", theme) 
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener("DOMContentLoaded", function() {
+  }
+  
+  /* Register event handlers after documented loaded */
+  document.addEventListener("DOMContentLoaded", function() {
       var ref = document.querySelector("[data-md-component=palette]")
       ref.addEventListener("change", function() {
-        var palette = __md_get("__palette")
-        if (palette && typeof palette.color === "object") {
-          var theme = palette.color.scheme === "slate"
-            ? "transparent_dark"
-            : "light"
-
-          // Instruct Giscus to change theme
+      var palette = __md_get("__palette")
+      if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+          localStorage.setItem("data-md-color-scheme", palette.color.scheme === "slate" ? "slate" : "default");
+          /* Instruct Giscus to change theme */
           var frame = document.querySelector(".giscus-frame")
           frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            "https://giscus.app"
+          { giscus: { setConfig: { theme } } },
+          "https://giscus.app"
           )
-        }
+      }
       })
-    })
+  })
   </script>
-
+  
                 
               </article>
             </div>

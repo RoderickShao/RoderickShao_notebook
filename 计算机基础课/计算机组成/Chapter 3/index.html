@@ -1480,7 +1480,7 @@
 
 <h1 id="3-arithmetic-for-computer"><strong>3 Arithmetic for Computer</strong><a class="headerlink" href="#3-arithmetic-for-computer" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2373 个字  预计阅读时间 8 分钟
+    文本统计：约 2377 个字  预计阅读时间 8 分钟
 </div>
 
 <h2 id="31-numbers"><strong>3.1 Numbers</strong><a class="headerlink" href="#31-numbers" title="Permanent link">&para;</a></h2>
@@ -1520,7 +1520,7 @@
 <ul>
 <li>Hardware detection in the ALU</li>
 <li>Save the instruction address (not PC) in special register EPC</li>
-<li>Jump th specific routine in OS (将下一条地址改为OS处理异常情况的入口地址)</li>
+<li>Jump the specific routine in OS (将下一条地址改为OS处理异常情况的入口地址)</li>
 <li>Correct &amp; return to program</li>
 <li>Return to program with error code</li>
 <li>Abort program</li>
@@ -1699,7 +1699,7 @@
 </ul>
 <p><strong>Summary</strong>：</p>
 <div class="arithmatex">\[
-(−1)^{sign}⋅(1+significand)⋅2^{exponent−bias}
+(−1)^{\text{sign}}⋅(1+\text{significand})⋅2^{\text{exponent−bias}}
 \]</div>
 <p>一定要注意有bias这个偏移量！！！</p>
 <div class="admonition example">
@@ -1715,7 +1715,7 @@
 <ul>
 <li>Exponent: 00000001</li>
 <li>Fraction: 000...000</li>
-<li><span class="arithmatex">\(±1.0×2{−126}≈±1.2×10^{−38}\)</span></li>
+<li><span class="arithmatex">\(±1.0×2^{−126}≈±1.2×10^{−38}\)</span></li>
 </ul>
 <p>Largest value</p>
 <ul>
@@ -1740,8 +1740,8 @@
 <li><span class="arithmatex">\(±2.0×2^{1023}≈±1.8×10^{308}\)</span></li>
 </ul>
 <h3 id="353-floating-point-precision"><strong>3.5.3 Floating - Point Precision</strong><a class="headerlink" href="#353-floating-point-precision" title="Permanent link">&para;</a></h3>
-<p>Single: approx <span class="arithmatex">\(2^{-23}\)</span>，相当于<span class="arithmatex">\(23\times log_{10}2≈23×0.3≈6\)</span>，十进制下大概是小数点后六位的精度</p>
-<p>Double: approx <span class="arithmatex">\(2^{-52}\)</span>，相当于<span class="arithmatex">\(52×log_{10}2≈52×0.3≈16\)</span>，十进制下大概是小数点后十六位的精度</p>
+<p>Single: approx <span class="arithmatex">\(2^{-23}\)</span>，相当于<span class="arithmatex">\(23\times \log_{10}2≈23×0.3≈6\)</span>，十进制下大概是小数点后六位的精度</p>
+<p>Double: approx <span class="arithmatex">\(2^{-52}\)</span>，相当于<span class="arithmatex">\(52×\log_{10}2≈52×0.3≈16\)</span>，十进制下大概是小数点后十六位的精度</p>
 <p>所以我们写浮点数时一般使用双精度浮点数</p>
 <h3 id="354-limitations"><strong>3.5.4 Limitations</strong><a class="headerlink" href="#354-limitations" title="Permanent link">&para;</a></h3>
 <p>注意Limitations不仅有上界也有下界，太小的数精度要求太高</p>
@@ -1919,60 +1919,79 @@
     </fieldset>
   </form>
 
+<div id="__comments">
 
-  <h2 id="__comments">评论</h2>
-  <!-- Insert generated snippet here -->
-  <script src="https://giscus.app/client.js"
-    data-repo="RoderickShao/RoderickShao_notebook"
-    data-repo-id="R_kgDOMS_5AQ"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="preferred_color_scheme"
-    data-lang="zh-CN"
-    crossorigin="anonymous"
-    async>
+  <script>
+  var buttons = document.querySelectorAll("button[data-md-color-primary]")
+  buttons.forEach(function(button) {
+          button.addEventListener("click", function() {
+          var attr = this.getAttribute("data-md-color-primary")
+          document.body.setAttribute("data-md-color-primary", attr)
+          localStorage.setItem("data-md-color-primary",attr);
+          })
+  })
   </script>
+  
+  <h2 ><!-- 评论 -->评论区</h2>
+  
+  对你有帮助的话请给我个赞和 star => <a href="https://github.com/RoderickShao/RoderickShao_notebook"><img alt="GitHub stars" src="https://img.shields.io/github/stars/RoderickShao/RoderickShao_notebook.svg?style=plastic&amp;label=Stars"></a>
+  
+  </br>
+  
+  快来跟我探讨！！！
+  
+  </div>
+  
+  <script src="https://giscus.app/client.js"
+      data-repo="RoderickShao/RoderickShao_notebook"
+      data-repo-id="R_kgDOMS_5AQ"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+          
+  
+  updateScheme();
+  
+  </script>
+  
   <!-- Synchronize Giscus theme with palette -->
   <script>
-    var giscus = document.querySelector("script[src*=giscus]")
-
-    // Set palette on initial load
-    var palette = __md_get("__palette")
-    if (palette && typeof palette.color === "object") {
-      var theme = palette.color.scheme === "slate"
-        ? "transparent_dark"
-        : "light"
-
-      // Instruct Giscus to set theme
+  var giscus = document.querySelector("script[src*=giscus]")
+  
+  /* Set palette on initial load */
+  var palette = __md_get("__palette")
+  if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
       giscus.setAttribute("data-theme", theme) 
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener("DOMContentLoaded", function() {
+  }
+  
+  /* Register event handlers after documented loaded */
+  document.addEventListener("DOMContentLoaded", function() {
       var ref = document.querySelector("[data-md-component=palette]")
       ref.addEventListener("change", function() {
-        var palette = __md_get("__palette")
-        if (palette && typeof palette.color === "object") {
-          var theme = palette.color.scheme === "slate"
-            ? "transparent_dark"
-            : "light"
-
-          // Instruct Giscus to change theme
+      var palette = __md_get("__palette")
+      if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+          localStorage.setItem("data-md-color-scheme", palette.color.scheme === "slate" ? "slate" : "default");
+          /* Instruct Giscus to change theme */
           var frame = document.querySelector(".giscus-frame")
           frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            "https://giscus.app"
+          { giscus: { setConfig: { theme } } },
+          "https://giscus.app"
           )
-        }
+      }
       })
-    })
+  })
   </script>
-
+  
                 
               </article>
             </div>
