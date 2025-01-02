@@ -2398,7 +2398,8 @@ The coins of the lowest denomination（面额） is the cent.</p>
 <p>We use a technique, called the charging scheme, similarly as the amortized analysis. Suppose each accepted activity of <span class="arithmatex">\(OPT\)</span> holds one dollar, which will be given to the activities accepted by <span class="arithmatex">\(SF\)</span> in the following way. For any activity <span class="arithmatex">\(a_i\)</span> of <span class="arithmatex">\(OPT\)</span>, if <span class="arithmatex">\(a_i\)</span> is also accepted by <span class="arithmatex">\(SF\)</span>, give the dollar to itself. Otherwise, there must be some activity <span class="arithmatex">\(a_j\)</span>, accepted by <span class="arithmatex">\(SF\)</span>, is not compatible with <span class="arithmatex">\(a_i\)</span>. Then <span class="arithmatex">\(a_j\)</span> receives one dollar from <span class="arithmatex">\(a_i\)</span>. Along this line, each activity of <span class="arithmatex">\(OPT\)</span> sends out one dollar to an activity in <span class="arithmatex">\(SF\)</span>, while each activity of <span class="arithmatex">\(SF\)</span> receives at most two dollars. It implies that <span class="arithmatex">\(SF\)</span> accepts as least <span class="arithmatex">\(∣OPT∣/2\)</span> activities.</p>
 <details class="note">
 <summary>Note</summary>
-<p>T,这个类似于摊还分析的分析方式为设每一个OPT中的活动有一美元，然后</p>
+<p>T,这个类似于摊还分析的分析方式为设每一个OPT中的活动有一美元，如果OPT中的活动在SF中出现了，那么给1美元。如果一个活动在OPT中出现，但是在SF中没有出现，那么给SF中与该活动有重复的活动一美元。</p>
+<p>本题目的关键在于在没有出现在SF中的OPT活动，该活动最多与SF中的两个有重复，否则根据OPT的选取规则，我应该会选择中间更短的那个活动</p>
 </details>
 <p>In the bin packing problem, we are asked to pack a list of items L to the minimum number of bins of capacity 1.  For the instance <span class="arithmatex">\(L\)</span>, let <span class="arithmatex">\(FF(L)\)</span> denote the number of bins used by the algorithm First Fit.  The instance <span class="arithmatex">\(L'\)</span> is derived from <span class="arithmatex">\(L\)</span> by deleting one item from <span class="arithmatex">\(L\)</span>.  Then <span class="arithmatex">\(FF(L')\)</span> is at most of <span class="arithmatex">\(FF(L)\)</span>. </p>
 <details class="note">
@@ -2411,7 +2412,7 @@ The coins of the lowest denomination（面额） is the cent.</p>
 <p>For an approximation algorithm for a minimization problem, given that the algorithm does not guarantee to find the optimal solution, the best approximation ratio possible to achieve is a constant <span class="arithmatex">\(α&gt;1\)</span>.</p>
 <details class="note">
 <summary>答案</summary>
-<p>近似比可与 <span class="arithmatex">\(\varepsilon\)</span> 有关 </p>
+<p>近似比可以无限差，比如说没有限制的TSP问题</p>
 </details>
 <p>Consider the bin packing problem which uses a minimum number of bins to accommodate a given list of items. Recall that Next Fit (NF) and First Fit (FF) are two simple approaches, whose (asymptotic) approximation ratios are 2 and 1.7, respectively. Now we focus on a special class <span class="arithmatex">\(I2\)</span> of instances in which only two distinct item sizes appear. Check which of the following statements is true by applying NF and FF on <span class="arithmatex">\(I2\)</span>.  </p>
 <p>A. NF and FF both have improved approximation ratios.</p>
@@ -2481,17 +2482,20 @@ The coins of the lowest denomination（面额） is the cent.</p>
 <p>Consider the <strong>Minimum Degree Spanning Tree</strong> problem: Given a connected undirected graph <span class="arithmatex">\(G(V,E)\)</span>, find a spanning tree <span class="arithmatex">\(T\)</span> whose maximum degree over its vertices is minimized over all spanning trees of <span class="arithmatex">\(G\)</span>. The problem can be shown to be NP-hard by reduction from the Hamiltonian Path Problem. On the other hand, we can use local search to design approximating algorithms. Denote <span class="arithmatex">\(d(u)\)</span> as the degree of vertex <span class="arithmatex">\(u\)</span> on a tree <span class="arithmatex">\(T\)</span>. Consider the following algorithm:</p>
 <ol>
 <li>Find an arbitrary spanning tree <span class="arithmatex">\(T\)</span> of <span class="arithmatex">\(G\)</span>.</li>
-<li>If there's some edge <span class="arithmatex">\(e∈E(G)\textbackslash E(T)\)</span> with endpoints <span class="arithmatex">\(u,v\)</span>, and there's some other vertex <span class="arithmatex">\(w\)</span> on the path between <span class="arithmatex">\(u,v\)</span> on <span class="arithmatex">\(T\)</span> such that <span class="arithmatex">\(\max\{d(u),d(v)\}+1&lt;d(w)\)</span>, then we replace an edge <em>e</em>′ incident to <span class="arithmatex">\(w\)</span> on <span class="arithmatex">\(T\)</span> with <span class="arithmatex">\(e\)</span>, i.e. <span class="arithmatex">\(T:=T∪{e}\textbackslash\{e’\}\)</span>.</li>
+<li>If there's some edge <span class="arithmatex">\(e∈E(G)-E(T)\)</span> with endpoints <span class="arithmatex">\(u,v\)</span>, and there's some other vertex <span class="arithmatex">\(w\)</span> on the path between <span class="arithmatex">\(u,v\)</span> on <span class="arithmatex">\(T\)</span> such that <span class="arithmatex">\(\max\{d(u),d(v)\}+1&lt;d(w)\)</span>, then we replace an edge <span class="arithmatex">\(e'\)</span> incident to <span class="arithmatex">\(w\)</span> on <span class="arithmatex">\(T\)</span> with <span class="arithmatex">\(e\)</span>, i.e. <span class="arithmatex">\(T:=T∪{e}-\{e’\}\)</span>.</li>
 <li>Repeat Step (2) until there's no edge to replace.</li>
 </ol>
-<p>It can be shown that this algorithm will terminate at a solution with maximum vertex degree <span class="arithmatex">\(OPT+O(log∣V∣)\)</span>. To show the algorithm will terminate in finite steps, a useful technique is to define a nonnegative potential function <span class="arithmatex">\(ϕ(T)\)</span> and to show <span class="arithmatex">\(ϕ(T)\)</span> is strictly decreasing after each step. Which of the following potential functions below satisfies the above requirements?</p>
+<p>It can be shown that this algorithm will terminate at a solution with maximum vertex degree <span class="arithmatex">\(OPT+O(\log∣V∣)\)</span>. To show the algorithm will terminate in finite steps, a useful technique is to define a nonnegative potential function <span class="arithmatex">\(ϕ(T)\)</span> and to show <span class="arithmatex">\(ϕ(T)\)</span> is strictly decreasing after each step. Which of the following potential functions below satisfies the above requirements?</p>
 <p>A. <span class="arithmatex">\(\phi(T) = \sum_{v \in V} d(v)\)</span>.</p>
 <p>B. <span class="arithmatex">\(\phi(T) = \sum_{(u,v) \in E(T)} \max\{d(u), d(v)\}\)</span>.</p>
 <p>C. <span class="arithmatex">\(\phi(T) = \sum_{u \in V} \sum_{v \in V, v \neq u} \sum_{w \in V, w \neq u, v} \max\{d(u), d(v), d(w)\}\)</span>.</p>
 <p>D. <span class="arithmatex">\(\phi(T) = \sum_{v \in V} 3^{d(v)}\)</span>.</p>
 <details class="note">
 <summary>答案</summary>
-<p>等会再看</p>
+<p>应该选D</p>
+<p>这个题目的意思是从T的补图中选择一条边e，两个顶点分别是u，v；然后w是u,v在T中的经过路径的一个中间点，我们选择w发出的一条边e'与e进行替换
+只有D是严格递减的</p>
+<p>要注意我们这番操作不仅与u，v，w有关，还与e'连接的另一个点有关，其他几个选项都会被这个点所影响</p>
 </details>
 <p>Consider the metric <strong>Facility Location</strong> problem. A company wants to distribute its product to various cities. There is a set <span class="arithmatex">\(I\)</span> of potential locations where a storage facility can be opened and a fixed “facility cost” <span class="arithmatex">\(f_i\)</span> associated with opening a storage facility at location <span class="arithmatex">\(i∈I\)</span>. (Sometimes we will say “facility <span class="arithmatex">\(i\)</span>” to mean “facility at location <span class="arithmatex">\(i\)</span>”). There also is a set <span class="arithmatex">\(J\)</span> of cities to which the product needs to be sent, and a “routing cost” <span class="arithmatex">\(c(i,j)\)</span> associated with transporting the goods from a facility at location <span class="arithmatex">\(i\)</span> to city <span class="arithmatex">\(j\)</span>. The goal is to pick a subset <span class="arithmatex">\(S\)</span> of <span class="arithmatex">\(I\)</span> so that the total cost of opening the facilities and transporting the goods is minimized. In short, we want to minimize <span class="arithmatex">\(C(S)=C_f(S)+C_r(S)\)</span>, where <span class="arithmatex">\(C_f(S)=∑{i∈S}fi\)</span> and <span class="arithmatex">\(Cr(S)=∑_{j∈J}\min_{i∈S}c(i,j)\)</span>. Consider the following local serach algorithm:</p>
 <ol>
@@ -2541,22 +2545,27 @@ The coins of the lowest denomination（面额） is the cent.</p>
 <p>B.1/<em>N</em></p>
 <p>C.1/3</p>
 <p>D.1/<em>k</em></p>
-<div class="admonition answer">
-<p class="admonition-title">Answer</p>
+<details class="note">
+<summary>答案</summary>
 <p>我们要把它分为两种情况，一种是刚好最后一个就是最大的，另一种是最大的在前k个，最后一个是迫不得已选的。分别计算概率得到 <span class="arithmatex">\(1/3\)</span></p>
-</div>
+</details>
 <p>Given a linked list containg <span class="arithmatex">\(N\)</span> nodes.  Our task is to remove all the nodes. At each step, we randomly choose one node in the current list, then delete the selected node together with all the nodes after it. Here we assume that each time we choose one node uniformly among all the remaining nodes. What is the expected number of steps to remove all the nodes?</p>
 <p>A.<span class="arithmatex">\(Θ(\log N)\)</span></p>
 <p>B.<span class="arithmatex">\(N/e\)</span></p>
 <p>C.<span class="arithmatex">\(N/2\)</span></p>
 <p>D.<span class="arithmatex">\(\sqrt N\)</span></p>
-<div class="admonition answer">
-<p class="admonition-title">Answer</p>
+<details class="note">
+<summary>答案</summary>
 <p>这个题的意思是要删掉所有节点，删除的方式是随机选取一个点，将它和它之后的节点都删掉。得到相应的关系式</p>
 <div class="arithmatex">\[
 a_n=\frac{1}{N}\sum_{i=1}^{N-1}a_i+O(1)
 \]</div>
-</div>
+</details>
+<p>A randomized Quick-sort algorithm has an <span class="arithmatex">\(O(N\log N)\)</span> expected running time, only if all the input permutations are equally likely.  </p>
+<details class="note">
+<summary>答案</summary>
+<p>F，随机快排应该与输入没什么关系，只要每次的选择是随机的就行</p>
+</details>
 <h2 id="hw14">HW14<a class="headerlink" href="#hw14" title="Permanent link">&para;</a></h2>
 <p>In order to solve  the maximum finding problem by a parallel  algorithm  with <span class="arithmatex">\(T(n)=O(1)\)</span> , we need work load <span class="arithmatex">\(W(n)=Ω(n^2)\)</span> in return.</p>
 <details class="note">
