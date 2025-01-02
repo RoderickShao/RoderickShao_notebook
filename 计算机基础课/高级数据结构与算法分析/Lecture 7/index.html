@@ -1414,7 +1414,7 @@
 
 <h1 id="7-divide-conquer"><strong>7 Divide &amp; Conquer</strong><a class="headerlink" href="#7-divide-conquer" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 517 个字  预计阅读时间 2 分钟
+    文本统计：约 520 个字  预计阅读时间 2 分钟
 </div>
 
 <ul>
@@ -1427,7 +1427,7 @@
 <li>Combine the solutions to the sub-problems into the solution for the original problem</li>
 </ul>
 <div class="arithmatex">\[
-General\ recurrence:   T(N) = aT(N/b) + f(N)
+\text{General recurrence}:   T(N) = aT(N/b) + f(N)
 \]</div>
 <h2 id="71-closest-points-problem"><strong>7.1 Closest Points Problem</strong><a class="headerlink" href="#71-closest-points-problem" title="Permanent link">&para;</a></h2>
 <p>Given <span class="arithmatex">\(N\)</span> points in a plane.  Find the closest pair of points.  (If two points have the same position, then that pair is the closest with distance 0.)</p>
@@ -1442,7 +1442,7 @@ General\ recurrence:   T(N) = aT(N/b) + f(N)
 <p>现在需要考虑的就是合并的时间复杂度</p>
 <p>我们取 <span class="arithmatex">\(\delta\)</span> 为两部分最小的距离，并以中轴线左右 <span class="arithmatex">\(\delta\)</span> 为考虑范围（在这个范围之外的不用考虑），然后最差情况在这个区域内的点共有 <span class="arithmatex">\(N\)</span> 个，对于每个点来说考虑对面的点，如果y方向差距超过 <span class="arithmatex">\(\delta\)</span> ，那么不需考虑，从而又由于假设对面的点之间的距离不能超过 <span class="arithmatex">\(\delta\)</span> ，那么需考虑的点则是常数个，从而合并的复杂度为 <span class="arithmatex">\(O(N)\)</span></p>
 <div class="arithmatex">\[
-T(N)=2T(N/2)+O(N)\Rightarrow T(N)=O(NlogN)
+T(N)=2T(N/2)+O(N)\Rightarrow T(N)=O(N\log N)
 \]</div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-26%20113337.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-26%20113337.png" /></a></p>
 <h2 id="72"><strong>7.2 解决递推式</strong><a class="headerlink" href="#72" title="Permanent link">&para;</a></h2>

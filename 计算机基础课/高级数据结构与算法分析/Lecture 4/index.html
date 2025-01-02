@@ -1454,14 +1454,17 @@
 
 <h1 id="4-leftist-heaps-and-skew-heaps"><strong>4 Leftist Heaps and Skew Heaps</strong><a class="headerlink" href="#4-leftist-heaps-and-skew-heaps" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 912 个字  •  28 行代码  预计阅读时间 3 分钟
+    文本统计：约 921 个字  •  28 行代码  预计阅读时间 3 分钟
 </div>
 
 <h2 id="41-leftist-heaps"><strong>4.1 Leftist Heaps</strong><a class="headerlink" href="#41-leftist-heaps" title="Permanent link">&para;</a></h2>
 <h3 id="411-definition-and-property"><strong>4.1.1 Definition and Property</strong><a class="headerlink" href="#411-definition-and-property" title="Permanent link">&para;</a></h3>
 <p>一般的堆的合并复杂度分析：<a href="../%E5%90%88%E5%B9%B6%E5%A0%86%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/">合并堆的复杂度分析</a></p>
-<p>Definition: <strong>The null path length(零路径), Npl(X)</strong>, of any node X is the length of the shortest path from X to a node without two children.  Define Npl(NULL) = –1.</p>
-<p>零路径怎么计算？<span class="arithmatex">\(Npl(X)=\min\{Npl(C)+1\ \text{for\ all\ C\ as\ children\ of\ X\}}\)</span></p>
+<p>Definition: <strong>The null path length(零路径), Npl(X)</strong>, of any node X is the length of the shortest path from X to a node without two children.  Define <span class="arithmatex">\(\text{Npl}(NULL) = –1\)</span>.</p>
+<p>零路径怎么计算？</p>
+<div class="arithmatex">\[
+\text{Npl}(X)=\min\{\text{Npl}(C)+1\ \text{for all C as children of X\}}
+\]</div>
 <p>Definition: <strong>The leftist heap</strong> property is that for every node X in the heap, the null path length of the left child is at least as large as that of the right child.（左孩子的零路径比右孩子的零路径大）</p>
 <p><strong>Theorem</strong>: A leftist tree with <span class="arithmatex">\(r\)</span> nodes on the right path must have at least <span class="arithmatex">\(2^r – 1\)</span> nodes.</p>
 <p>Proof: </p>
@@ -1543,15 +1546,15 @@
 <div class="arithmatex">\[
 c_i=l_a+h_a+l_b+h_b
 \]</div>
-<p>本次合并之后，在右路径上，一个重结点右儿子本来就比左儿子重，合并又发生在右儿子，交换后左儿子大于右儿子，所以<strong>合并后重结点一定会变轻结点</strong>。考虑最坏情况，所有轻结点都变成重结点。并且由于轻结点的性质，一条右路径上的轻结点的数量小于<span class="arithmatex">\(lgn\)</span>。</p>
+<p>本次合并之后，在右路径上，一个重结点右儿子本来就比左儿子重，合并又发生在右儿子，交换后左儿子大于右儿子，所以<strong>合并后重结点一定会变轻结点</strong>。考虑最坏情况，所有轻结点都变成重结点。并且由于轻结点的性质，一条右路径上的轻结点的数量小于<span class="arithmatex">\(\lg n\)</span>。</p>
 <p>所以本次合并过程的势能变化为</p>
 <div class="arithmatex">\[
-ΔΦ&lt;l_a+l_b−h_a−h_b
+\Delta \Phi&lt;l_a+l_b−h_a−h_b
 \]</div>
 <p>均摊开销等于势能变化加上实际开销</p>
 <div class="arithmatex">\[
 \begin{align*}
-\hat c_i&amp;=ΔΦ+c_i\\&amp;&lt;2(l_a+l_b)\\&amp;&lt;2lgn
+\hat c_i&amp;=\Delta \Phi+c_i\\&amp;&lt;2(l_a+l_b)\\&amp;&lt;2\lg n
 \end{align*}
 \]</div>
 <p>其中这个n指的是合并后堆中节点的个数。</p>

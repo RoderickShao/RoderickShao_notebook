@@ -1374,7 +1374,7 @@
 
 <h1 id="1-avl-trees-and-splay-trees"><strong>1 AVL trees and Splay trees</strong><a class="headerlink" href="#1-avl-trees-and-splay-trees" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 894 个字  预计阅读时间 3 分钟
+    文本统计：约 893 个字  预计阅读时间 3 分钟
 </div>
 
 <h2 id="11-avl-trees"><strong>1.1 AVL trees</strong><a class="headerlink" href="#11-avl-trees" title="Permanent link">&para;</a></h2>
@@ -1402,7 +1402,7 @@
 <p><strong>验证搜索的复杂度</strong></p>
 <p>我们不从一个固定的n去求搜索复杂度，我们考虑高度为h的树所含节点的最小值。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20170334.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20170334.png" /></a></p>
-<p>得到递推公式后，利用斐波那契数列求出<span class="arithmatex">\(n_h=\frac{1}{\sqrt 5}(\frac{1+\sqrt{5}}{2})^{h+3}-1\)</span> <span class="arithmatex">\(\Rightarrow h=O(lnn)\)</span></p>
+<p>得到递推公式后，利用斐波那契数列求出<span class="arithmatex">\(n_h=\frac{1}{\sqrt 5}(\frac{1+\sqrt{5}}{2})^{h+3}-1\)</span> <span class="arithmatex">\(\Rightarrow h=O(\ln n)\)</span></p>
 <h2 id="12-splay-trees"><strong>1.2 Splay trees</strong><a class="headerlink" href="#12-splay-trees" title="Permanent link">&para;</a></h2>
 <p>——Self-Adjusting Tree</p>
 <p><strong>目标</strong>：任何从空字数开始的连续M次树操作至多<span class="arithmatex">\(O(M\log N)\)</span></p>
@@ -1414,8 +1414,8 @@
 <p>情况1：<span class="arithmatex">\(P\)</span>是根节点，直接交换<span class="arithmatex">\(P\)</span>和<span class="arithmatex">\(G\)</span>，并更新子节点</p>
 <p>情况2：<span class="arithmatex">\(P\)</span>不是根节点，这时也分为两种情况。</p>
 <ul>
-<li>第一种是double rotation</li>
-<li>第二钟是single rotation</li>
+<li>第一种是Zig-Zag</li>
+<li>第二钟是Zig-Zig</li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20172014.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20172014.png" /></a></p>
 <p>其中Zig-zag是先对P和X进行左旋转，然后对G和X做右旋转。Zig-zig先对P和G进行右旋转，然后对P和X进行右旋转。</p>

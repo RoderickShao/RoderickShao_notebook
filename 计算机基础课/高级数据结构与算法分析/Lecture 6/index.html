@@ -1388,7 +1388,7 @@
 
 <h1 id="6-backtracking"><strong>6 Backtracking</strong><a class="headerlink" href="#6-backtracking" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 440 个字  •  64 行代码  预计阅读时间 2 分钟
+    文本统计：约 442 个字  •  64 行代码  预计阅读时间 2 分钟
 </div>
 
 <p>回溯算法就是深度优先搜索</p>
@@ -1458,7 +1458,7 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-25%20210553.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-25%20210553.png" /></a></p>
 <p>Use an evaluation function to quantify the "goodness" of a position.  For example:</p>
 <div class="arithmatex">\[
-f(P)=W_{Computer}-W_{Human}
+f(P)=W_{\text{Computer}}-W_{\text{Human}}
 \]</div>
 <p>where <span class="arithmatex">\(W\)</span> is the number of potential wins at position <span class="arithmatex">\(P\)</span>.</p>
 <div class="admonition note">
@@ -1470,7 +1470,7 @@ f(P)=W_{Computer}-W_{Human}
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-25%20211553.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-25%20211553.png" /></a></p>
 <p><span class="arithmatex">\(α-β\)</span> pruning: when both techniques are combined.  In practice, it limits the searching to only <span class="arithmatex">\(O(\sqrt N)\)</span> nodes, where <span class="arithmatex">\(N\)</span> is the size of the full game tree.</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-25%20211611.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-25%20211611.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-25%20211617.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-25%20211617.png" /></a></p>
-<p>that the best-case performance is <span class="arithmatex">\(O((2b)^{d/2})\)</span> where b is thebranching factor and d is the depth.</p>
+<p>that the best-case performance is <span class="arithmatex">\(O((2b)^{d/2})\)</span> where <span class="arithmatex">\(b\)</span> is thebranching factor and <span class="arithmatex">\(d\)</span> is the depth.</p>
 <p>上述定理的证明：</p>
 <div class="arithmatex">\[
 \begin{align*}

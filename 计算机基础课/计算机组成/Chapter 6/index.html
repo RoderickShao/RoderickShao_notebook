@@ -1508,7 +1508,7 @@
 
 <h1 id="6-io"><strong>6 I/O</strong><a class="headerlink" href="#6-io" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4918 个字  预计阅读时间 16 分钟
+    文本统计：约 4932 个字  预计阅读时间 16 分钟
 </div>
 
 <h2 id="61-introduction"><strong>6.1 Introduction</strong><a class="headerlink" href="#61-introduction" title="Permanent link">&para;</a></h2>
@@ -1687,7 +1687,7 @@ controller time:0.2ms
 <p><strong>异步总线</strong>：don’t use a clock and instead use handshaking</p>
 <p><strong>Handshaking protocol</strong>: A serial of steps used to coordinate asynchronous bus transfers.</p>
 <div class="admonition example">
-<p class="admonition-title">Example</p>
+<p class="admonition-title">Asynchronous Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-12%20133332.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-12%20133332.png" /></a></p>
 <ol>
 <li>When memory sees the ReadReq line, it reads the address from the data bus, begin the memory read operation，then raises Ack to tell the device that the ReadReq signal has been seen. </li>
@@ -1824,15 +1824,15 @@ transfer of the most recently read data and a read of the next four words can be
 <p>相邻两个总线操作之间需要2个时钟周期</p>
 </li>
 </ol>
-<p>从而每一个 block 需要 45 个周期，而一共有 256 words(64 blocks), 所以需要 $45\times 64 =2880 \text{clock cycles} $</p>
-<p>这样传输 256 words 需要的时间为 <span class="arithmatex">\(2880 \text{cycles}\times (5ns/\text{cycles})=14400ns\)</span></p>
+<p>从而每一个 block 需要 45 个周期，而一共有 256 words(64 blocks), 所以需要 <span class="arithmatex">\(45\times 64 =2880 \text{clock cycles}\)</span></p>
+<p>这样传输 256 words 需要的时间为 <span class="arithmatex">\(2880 \text{cycles}\times (5ns/\text{cycles})=14400\text{ns}\)</span></p>
 <p>得到计算得到一秒可以在总线传输 </p>
 <div class="arithmatex">\[
-64 \text{transactions}\times \frac{1\text{second}}{14400ns}=4.44M \text{transactions/second}
+64 \text{transactions}\times \frac{1\text{second}}{14400\text{ns}}=4.44 \text{M transactions/second}
 \]</div>
 <p>总线的带宽为 </p>
 <div class="arithmatex">\[
-(256\times4)bytes\times \frac{1\text{second}}{14400ns}=71.11MB/\text{sec}
+(256\times4)\text{bytes}\times \frac{1\text{second}}{14400\text{ns}}=71.11MB/\text{sec}
 \]</div>
 </div>
 <div class="tabbed-block">
@@ -1857,11 +1857,11 @@ transfer of the most recently read data and a read of the next four words can be
 <p>一共有16个blocks,共需要 <span class="arithmatex">\(57\times 16=912 \text{cycles}\)</span>, 时间为 <span class="arithmatex">\(912 \text{cycles}\times 5 \text{ns/cycles}=4560 \text{ns}\)</span></p>
 <p>得到每秒可进行多少次总线传输</p>
 <div class="arithmatex">\[
-16 \text{transactions}\times \frac{1\text{second}}{4560ns}=3.51 \text{M transactions/second}
+16 \text{transactions}\times \frac{1\text{second}}{4560\text{ns}}=3.51 \text{M transactions/second}
 \]</div>
 <p>总线的带宽为 </p>
 <div class="arithmatex">\[
-(256\times4) \text{bytes}\times \frac{1\text{second}}{4560ns}=224.56 \text{MB}/\text{sec}
+(256\times4) \text{bytes}\times \frac{1\text{second}}{4560\text{ns}}=224.56 \text{MB}/\text{sec}
 \]</div>
 </div>
 </div>

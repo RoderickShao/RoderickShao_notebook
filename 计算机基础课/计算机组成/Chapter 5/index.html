@@ -1724,7 +1724,7 @@
 
 <h1 id="5-memory-hierarchy"><strong>5 Memory Hierarchy</strong><a class="headerlink" href="#5-memory-hierarchy" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 7763 个字  预计阅读时间 26 分钟
+    文本统计：约 7789 个字  预计阅读时间 26 分钟
 </div>
 
 <h2 id="51-storage-unit-introduction"><strong>5.1 Storage unit Introduction</strong><a class="headerlink" href="#51-storage-unit-introduction" title="Permanent link">&para;</a></h2>
@@ -2002,7 +2002,7 @@
 \text{Read stall cycles}=\frac{(\#\text{ of Read})}{\text{program}}\times \text{Read miss rate}\times \text{Read miss penalty}
 \]</div>
 <div class="arithmatex">\[
-\text{Write stall cycles}=(\frac{\#\text{ of Write}}{\text{Program}}\times \text{Write misss rate}\times \text{Write miss penalty})+\text{Write buffer stalls}
+\text{Write stall cycles}=(\frac{\#\text{ of Write}}{\text{Program}}\times \text{Write miss rate}\times \text{Write miss penalty})+\text{Write buffer stalls}
 \]</div>
 <p>如果 write buffer stalls 非常小，我们可以直接忽略掉，我们就可以将 read 和 write 直接合并，得到</p>
 <div class="arithmatex">\[
@@ -2040,8 +2040,9 @@
 <p>我们发现 associativity 从1增加到2的时候，miss rate 显著降低，后面associativity 增加的时候，miss rate 下降地就不明显了</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-28%20204333.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-28%20204333.png" /></a></p>
 <p>对于 block 的替换，最常用的方法是 LRU。</p>
-<p>For a two-way set associative cache（一个set中只有两个block）, the LRU can be implemented easily. We could keep a single bit in each set. We set the bit whenever a specific block in the set is referenced, and reset the bit whenever another block is referenced.【二叉树？】</p>
+<p>For a two-way set associative cache（一个set中只有两个block）, the LRU can be implemented easily. We could keep a single bit in each set. We set the bit whenever a specific block in the set is referenced, and reset the bit whenever another block is referenced.</p>
 <p>随着一个set中的block数越来越多，LRU的实现就越来越难。</p>
+<p>lp老师还讲了一个二叉树的方法，在这里不再多说。</p>
 <h4 id="decreasing-miss-penalty-with-multilevel-caches"><strong>Decreasing miss penalty with multilevel caches</strong><a class="headerlink" href="#decreasing-miss-penalty-with-multilevel-caches" title="Permanent link">&para;</a></h4>
 <p>让L1比较小，降低了 hit time，L2就拿来兜底防止到更低的内存结构中取数据。我们用下面这个例子直观地感受一下。</p>
 <div class="admonition example">
@@ -2049,7 +2050,7 @@
 <p>CPI of 1.0 on a <span class="arithmatex">\(5\text{GHz}\)</span> machine with a 2% miss rate, <span class="arithmatex">\(\text{100ns}\)</span> DRAM access，Adding 2nd level cache with 5ns access time decreases miss rate to 0.5%</p>
 <p>一开始，Miss penalty 为 </p>
 <div class="arithmatex">\[
-\frac{100ns}{0.2ns/cycle}=500\ \text{clock cycles}
+\frac{100\text{ns}}{0.2\text{ns}/\text{cycle}}=500\ \text{clock cycles}
 \]</div>
 <p>相应的CPI为</p>
 <div class="arithmatex">\[
@@ -2057,7 +2058,7 @@
 \]</div>
 <p>增加了一级缓存之后，数据在二级缓存中找到需要</p>
 <div class="arithmatex">\[
-\frac{5ns}{0.2\text{ns/cycle}}=25\ \text{clock cycles}
+\frac{5\text{ns}}{0.2\text{ns/cycle}}=25\ \text{clock cycles}
 \]</div>
 <p>那么相应的CPI为</p>
 <div class="arithmatex">\[
@@ -2067,7 +2068,7 @@
 \end{aligned}
 \]</div>
 </div>
-<p><strong>Using multilevel caches:</strong></p>
+<p><strong>Using multi-level caches:</strong></p>
 <ul>
 <li>
 <p>try and optimize the hit time on the 1st level cache</p>

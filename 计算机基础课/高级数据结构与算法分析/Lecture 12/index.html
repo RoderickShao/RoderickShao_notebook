@@ -1482,7 +1482,7 @@
 
 <h1 id="12-local-search"><strong>12 Local Search</strong><a class="headerlink" href="#12-local-search" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2176 个字  •  41 行代码  预计阅读时间 8 分钟
+    文本统计：约 2190 个字  •  41 行代码  预计阅读时间 8 分钟
 </div>
 
 <p>从一个可行解开始，我们在它的邻域内寻找更好的解，如果邻域内没有更好的解了，那么我们就称这个解是一个 local optimum (局部最优解)</p>
@@ -1655,7 +1655,7 @@ w(A^*,B^*)\le \sum_{\{u,v\subseteq A\}}w_{uv}+\sum_{\{u,v\subseteq B\}}w_{uv}+w(
 <p>一个构建邻域的思路是将一次反转改为多次反转，比如说我们每次循环从k次反转中找到最优的那一个，显然这样的方法时间复杂度太可怕了</p>
 <p>有一个更好的构建邻域【邻域更广，但是寻找的时间复杂度是多项式级别的】的方法：[Kernighan-Lin 1970] <strong>K-L heuristic</strong></p>
 <p>第一步我们改变一个点的状态，选择最优的那一个，时间复杂度是 <span class="arithmatex">\(O(n)\)</span>，得到的解为 <span class="arithmatex">\((A_1,B_1)\)</span> 反转的点为 <span class="arithmatex">\(v_1\)</span></p>
-<p>第二步建立在第一步的基础上，我们再翻转一个点，时间复杂度就是 <span class="arithmatex">\(O(n-1)\)</span>，得到的解为 <span class="arithmatex">\((A_2,B_2)\)</span>，反转的点为 <span class="arithmatex">\(v_2\)</span></p>
+<p>第二步建立在第一步的基础上，我们再翻转一个点选择这 <span class="arithmatex">\(n-1\)</span> 个情况中最优的那一个，时间复杂度就是 <span class="arithmatex">\(O(n-1)\)</span>，得到的解为 <span class="arithmatex">\((A_2,B_2)\)</span>，反转的点为 <span class="arithmatex">\(v_2\)</span></p>
 <p>...</p>
 <p>最后一步都反转过来了，所以与一开始是等价的</p>
 <p>那么 <span class="arithmatex">\((A,B)\)</span> 的<strong>邻域</strong>是 <span class="arithmatex">\((A,B)=\{(A_1,B_1),...,(A_{n-1},B_{n-1})\}\)</span>，时间复杂度是 <span class="arithmatex">\(O(n^2)\)</span>，我们接着从这些邻域中找最大的哪一个，这样我们的邻域变大了，同时也不会导致搜索邻域的时间复杂度太大。</p>
