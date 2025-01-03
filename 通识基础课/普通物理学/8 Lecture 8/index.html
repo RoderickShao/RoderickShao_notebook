@@ -1536,30 +1536,30 @@ F'=-e(u ×B)，
 <p>电荷 <span class="arithmatex">\(q_0\)</span> 在激发的环形电场中做的功 <span class="arithmatex">\(W\)</span> 是 <span class="arithmatex">\(q_0\varepsilon\)</span></p>
 <div class="arithmatex">\[
 \begin{aligned}
-\varepsilon q_0&amp;=q_0E_{induced}\cdot 2\pi r\\
-\varepsilon&amp;=E_{induced}\cdot 2\pi r=\oint\vec E_{induced}\cdot d\vec l
+\varepsilon q_0&amp;=q_0E_{\text{induced}}\cdot 2\pi r\\
+\varepsilon&amp;=E_\text{{induced}}\cdot 2\pi r=\oint\vec E_{\text{induced}}\cdot \text{d}\vec l
 \end{aligned}
 \]</div>
 <p>而又有法拉第电磁感应定律</p>
 <div class="arithmatex">\[
 \begin{aligned}
 \varepsilon&amp;=-\frac{\text{d}\Phi_B}{\text{d}t}\\
-\oint\vec E_{induced}\cdot \text{d}\vec l&amp;=-\frac{\text{d}\Phi_B}{\text{d}t}\\
-&amp;=-\iint_{闭合}\frac{\partial \vec B}{\partial t}\text{d}\vec A
+\oint\vec E_{\text{induced}}\cdot \text{d}\vec l&amp;=-\frac{\text{d}\Phi_B}{\text{d}t}\\
+&amp;=-\iint\frac{\partial \vec B}{\partial t}\text{d}\vec A
 \end{aligned}
 \]</div>
 <p>（这里为什么用的是偏导？因为此时B被看成了一个关于面积与时间的二元函数）</p>
 <p>由于空间总电场是由静电场 <span class="arithmatex">\(\vec E_{sta}\)</span>与激发电场 <span class="arithmatex">\(\vec E_{ind}\)</span> 组成，静电场是保守场，而激发电场是非保守场。</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\oint\vec E\cdot \text{d}\vec l=\oint(\vec E_{sta}+\vec E_{ind})\cdot \text{d}\vec l=0+(-\iint_{闭合}\frac{\partial \vec B}{\partial t}\text{d}\vec A)=-\iint_{闭合}\frac{\partial \vec B}{\partial t}\text{d}\vec A
+\oint\vec E\cdot \text{d}\vec l=\oint(\vec E_{sta}+\vec E_{ind})\cdot \text{d}\vec l=0+(-\iint\frac{\partial \vec B}{\partial t}\text{d}\vec A)=-\iint\frac{\partial \vec B}{\partial t}\text{d}\vec A
 \end{aligned}
 \]</div>
 <p>左边再由斯托克斯定律，得到</p>
 <div class="arithmatex">\[
-\oint\vec E\cdot d\vec l=\iint(\nabla\times\vec E)\text{d}\vec A
+\oint\vec E\cdot \text{d}\vec l=\iint(\nabla\times\vec E)\text{d}\vec A
 \]</div>
-<p>从而得到 法拉第电磁感应定律的微分形式</p>
+<p>从而得到法拉第电磁感应定律的微分形式</p>
 <div class="arithmatex">\[
 \nabla\times\vec E=-\frac{\partial \vec B}{\partial t}
 \]</div>
