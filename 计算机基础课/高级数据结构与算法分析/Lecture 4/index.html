@@ -1454,7 +1454,7 @@
 
 <h1 id="4-leftist-heaps-and-skew-heaps"><strong>4 Leftist Heaps and Skew Heaps</strong><a class="headerlink" href="#4-leftist-heaps-and-skew-heaps" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 921 个字  •  28 行代码  预计阅读时间 3 分钟
+    文本统计：约 956 个字  •  28 行代码  预计阅读时间 4 分钟
 </div>
 
 <h2 id="41-leftist-heaps"><strong>4.1 Leftist Heaps</strong><a class="headerlink" href="#41-leftist-heaps" title="Permanent link">&para;</a></h2>
@@ -1529,6 +1529,7 @@
 <p>目标：Any M consecutive operations take at most <span class="arithmatex">\(O(M\log N)\)</span> time</p>
 <p>Merge: Always swap the left and right children except that the largest of all the nodes on the right paths does not have its children swapped. (Not really a special case, but a natural stop in the recursions递归终点的条件) </p>
 <p>还是将两个堆按照右路径拆开，然后将左子树甩到右子树然后拼接起来，但是如果只剩下的部分只属于一个堆了，那么我们就可以直接不变直接接上去。</p>
+<p>而当我们用循环来实现的时候，只有右路经最大的那个节点是不转的，其余都是转的。</p>
 <p>与Leftist heap的区别在于不用严格遵守Leftist heap的特征，取而代之的就是合并的时候将左子树放到右边再合并。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-30%20190108.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-30%20190108.png" /></a></p>
 <p><strong>Insert operation</strong></p>

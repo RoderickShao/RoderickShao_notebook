@@ -1482,7 +1482,7 @@
 
 <h1 id="2-red-black-trees-and-b-trees"><strong>2 Red-Black Trees and B+ trees</strong><a class="headerlink" href="#2-red-black-trees-and-b-trees" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1487 个字  预计阅读时间 5 分钟
+    文本统计：约 1488 个字  预计阅读时间 5 分钟
 </div>
 
 <h2 id="21-red-black-trees"><strong>2.1 Red-Black Trees</strong><a class="headerlink" href="#21-red-black-trees" title="Permanent link">&para;</a></h2>
@@ -1550,6 +1550,10 @@
 <p>case1 <span class="arithmatex">\(\rightarrow\)</span> case 2,3,4</p>
 <p>case3 <span class="arithmatex">\(\rightarrow\)</span> case 4</p>
 <p><a class="glightbox" href="../img/Red-Black%20Trees%20Delete.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Red-Black%20Trees%20Delete.jpg" /></a></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-02%20193756.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-02%20193756.png" /></a></p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>一次删除操作最多进行三次旋转操作：case1-&gt;case3-&gt;case4</p>
@@ -1574,7 +1578,7 @@
 <p>其中M代表B+树的阶数，N代表B+树的节点数。</p>
 <p><span class="arithmatex">\(Depth(M,N)=O(\lceil \log _{\lceil M/2\rceil}N\rceil)\)</span></p>
 <p><span class="arithmatex">\(T_{find}(M,N)=Depth(M,N)\times O(\log M) =O(\log N)\)</span>其中<span class="arithmatex">\(O(\log M)\)</span>指的是在叶子节点上利用二叉树找点的时间复杂度。</p>
-<h2 id="2-3-4">补充: 2-3-4 树和红黑树的对应关系<a class="headerlink" href="#2-3-4" title="Permanent link">&para;</a></h2>
+<h2 id="2-3-4"><strong>补充: 2-3-4 树和红黑树的对应关系</strong><a class="headerlink" href="#2-3-4" title="Permanent link">&para;</a></h2>
 <ul>
 <li>红黑树的黑色节点个数=234树的节点数</li>
 <li>234树的每一个节点中：黑色节点必为父节点，红色节点为子节点（黑色中间，红色两边)</li>

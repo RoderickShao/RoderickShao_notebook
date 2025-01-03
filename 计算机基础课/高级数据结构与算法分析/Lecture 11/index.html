@@ -1564,7 +1564,7 @@
 
 <h1 id="11-approximation"><strong>11 Approximation</strong><a class="headerlink" href="#11-approximation" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1777 个字  •  40 行代码  预计阅读时间 6 分钟
+    文本统计：约 1774 个字  •  40 行代码  预计阅读时间 6 分钟
 </div>
 
 <p>引入近似算法的目的是什么？解决比较困难的问题（NPC）</p>
@@ -1587,8 +1587,8 @@ max(\frac{C}{C^*},\frac{C^*}{C})\le \rho(n)
 <p>If an algorithm achieves an approximation ratio of <span class="arithmatex">\(\rho(n)\)</span>, we call it a <strong><span class="arithmatex">\(\rho(n)\)</span>-approximation algorithm</strong>.</p>
 <p>An <strong>approximation scheme（近似方案）</strong> for an optimization problem is an approximation algorithm that takes as input not only an instance of the problem, but also a value <span class="arithmatex">\(\varepsilon\)</span> &gt; 0 such that for any fixed <span class="arithmatex">\(\varepsilon\)</span>, the scheme is a (1+ <span class="arithmatex">\(\varepsilon\)</span>)-approximation algorithm.</p>
 <p>We say that an approximation scheme is a <strong>polynomial-time approximation scheme (PTAS)</strong> if for any fixed <span class="arithmatex">\(\varepsilon\)</span> &gt; 0, the scheme runs in time polynomial in the size <span class="arithmatex">\(n\)</span> of its input instance.</p>
-<p>若对于每一个固定的 <span class="arithmatex">\(ϵ &gt; 0\)</span> ，算法 A 的运行时间以实例 <span class="arithmatex">\(I\)</span> 的规模的多项式为上界，则称 A 是一个多项时间近似方案 (PTAS) 。比如说 <span class="arithmatex">\(O(n^{2/\epsilon})\)</span></p>
-<p>在 PTAS 的基础上，进一步要求算法 A 的运行时间以实例 <span class="arithmatex">\(I\)</span> 的规模和 <span class="arithmatex">\(1/\epsilon\)</span> 的多项式为上界，则称 A 是一个完全多项时间近似方案 (FPTAS) 。比如说 <span class="arithmatex">\(O((1/\epsilon)^2n^3)\)</span></p>
+<p>若对于每一个固定的 <span class="arithmatex">\(\varepsilon &gt; 0\)</span> ，算法 A 的运行时间以实例 <span class="arithmatex">\(I\)</span> 的规模的多项式为上界，则称 A 是一个多项时间近似方案 (PTAS) 。比如说 <span class="arithmatex">\(O(n^{2/\)</span>\varepsilon})$</p>
+<p>如果进一步要求算法 A 的运行时间以实例 <span class="arithmatex">\(I\)</span> 的规模和 <span class="arithmatex">\(1/\epsilon\)</span> 的多项式为上界，则称 A 是一个完全多项时间近似方案 (FPTAS) 。比如说 <span class="arithmatex">\(O((1/\varepsilon)^2n^3)\)</span></p>
 <h2 id="112-approximate-bin-packing"><strong>11.2 Approximate Bin Packing</strong><a class="headerlink" href="#112-approximate-bin-packing" title="Permanent link">&para;</a></h2>
 <p>Given N items of sizes  <span class="arithmatex">\(S_1 , S_2 , …, S_N\)</span> , such that <span class="arithmatex">\(0 &lt; S_i \le1\)</span> for all <span class="arithmatex">\(1 \le i \le N\)</span> .  Pack these items in the fewest number of bins, each of which has unit capacity.</p>
 <p>装箱问题是一个NP-Hard的问题</p>
