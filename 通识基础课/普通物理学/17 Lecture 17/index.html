@@ -1494,12 +1494,12 @@
   
 
 
-<h1 id="17">17 物质波<a class="headerlink" href="#17" title="Permanent link">&para;</a></h1>
+<h1 id="17"><strong>17 物质波</strong><a class="headerlink" href="#17" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
     文本统计：约 1567 个字  预计阅读时间 5 分钟
 </div>
 
-<h2 id="171">17.1 波函数概述<a class="headerlink" href="#171" title="Permanent link">&para;</a></h2>
+<h2 id="171"><strong>17.1 波函数概述</strong><a class="headerlink" href="#171" title="Permanent link">&para;</a></h2>
 <p>物质波沿着 <span class="arithmatex">\(x\)</span> 正方向传播</p>
 <div class="arithmatex">\[
 \Psi(x, t) = \psi_0 e^{i(kx - \omega t)} = \psi_0 e^{\frac{i}{\hbar}(px - Et)}
@@ -1511,7 +1511,7 @@
 \hbar k = \frac{h}{\lambda} = p
 \end{aligned}
 \]</div>
-<h3 id="_1">波函数的物理解释<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h3 id="_1"><strong>波函数的物理解释</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>The product <span class="arithmatex">\(\Psi\Psi^*\text{d}x\)</span> gives the probability that the particle in question will be found between positions <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(x+\text{d}x\)</span>.</p>
 <ul>
 <li>Probability density <span class="arithmatex">\(P(x)\)</span></li>
@@ -1539,18 +1539,18 @@ P(x) = [ \psi_0 e^{i(kx - \omega t)} ][ \psi_0^* e^{-i(kx - \omega t)} ] = \left
 <summary>Note</summary>
 <p>对于自由粒子来说，每一处的概率均为常数，物理意义就是该粒子在空间中的每一个位置被找到的概率相同，又由归一化条件，我认为这里的 <span class="arithmatex">\(\psi_0^2\)</span> 非常小</p>
 </details>
-<h3 id="_2">预期值<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>预期值的意思就是某一个变量的期望
-$$
-\bar{x} = \frac{\int_{-\infty}^{\infty} x \Psi^<em> \Psi \, dx}{\int_{-\infty}^{\infty} \Psi^</em> \Psi \, dx} = \int_{-\infty}^{\infty} \Psi^<em> x \Psi \, dx = \langle \psi | x | \psi \rangle = \langle |x| \rangle,
-(\int_{-\infty}^{\infty} \Psi^</em> \Psi \, dx = 1)
-$$
-The average value of the potential energy <span class="arithmatex">\(U(x)\)</span> is</p>
+<h3 id="_2"><strong>预期值</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>预期值的意思就是某一个变量的期望</p>
+<div class="arithmatex">\[
+\bar{x} = \frac{\int_{-\infty}^{\infty} x \Psi^* \Psi \, dx}{\int_{-\infty}^{\infty} \Psi^* \Psi \, dx} = \int_{-\infty}^{\infty} \Psi^* x \Psi \, dx = \langle \psi | x | \psi \rangle = \langle |x| \rangle,
+(\int_{-\infty}^{\infty} \Psi^* \Psi \, dx = 1)
+\]</div>
+<p>The average value of the potential energy <span class="arithmatex">\(U(x)\)</span> is</p>
 <div class="arithmatex">\[
 \bar{U} = \int_{-\infty}^{\infty} \Psi^* U(x) \Psi \, dx = \langle \psi | U(x) | \psi \rangle
 \]</div>
-<h2 id="172">17.2 动量算符与能量算符<a class="headerlink" href="#172" title="Permanent link">&para;</a></h2>
-<h3 id="_3">动量算符<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h2 id="172"><strong>17.2 动量算符与能量算符</strong><a class="headerlink" href="#172" title="Permanent link">&para;</a></h2>
+<h3 id="_3"><strong>动量算符</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>Consider the free particle wave-function</p>
 <div class="arithmatex">\[
 \Psi = \psi_0 e^{i(kx - \omega t)}, \quad p = \hbar k, \quad E = \hbar \omega,
@@ -1579,7 +1579,7 @@ p \leftrightarrow -i\hbar \frac{\partial}{\partial x}
 &amp;= \hbar k \int_{-\infty}^{\infty} \Psi^* \Psi \, \text{d}x = \hbar k
 \end{aligned}
 \]</div>
-<h3 id="_4">能量算符<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="_4"><strong>能量算符</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>运用同样的方法，我们可以得到相应的能量算符</p>
 <div class="arithmatex">\[
 \begin{aligned}
@@ -1599,7 +1599,7 @@ E \leftrightarrow i\hbar \frac{\partial}{\partial t}
 &amp;= \hbar \omega \int_{-\infty}^{\infty} \Psi^* \Psi \, \text{d}x = \hbar \omega
 \end{aligned}
 \]</div>
-<h2 id="173">17.3 薛定谔方程<a class="headerlink" href="#173" title="Permanent link">&para;</a></h2>
+<h2 id="173"><strong>17.3 薛定谔方程</strong><a class="headerlink" href="#173" title="Permanent link">&para;</a></h2>
 <p><strong>Schrödinger’s Equation</strong> tell us how to obtain the wave-function <span class="arithmatex">\(\Psi(x,t)\)</span> associated with a particle that is not free.</p>
 <p>一个物体的总体能量为 </p>
 <div class="arithmatex">\[
@@ -1665,7 +1665,7 @@ i \hbar \frac{\partial \Psi(x, t)}{\partial t} = -\frac{\hbar^2}{2m} \frac{\text
 <div class="arithmatex">\[
 E=\frac{p^2}{2m}
 \]</div>
-<h3 id="_5">定态薛定谔方程<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="_5"><strong>定态薛定谔方程</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>If the potential independent of $ t $: $ U(x) $</p>
 <div class="arithmatex">\[
 i \hbar \frac{\partial \Psi}{\partial t} = -\frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} + U \Psi
