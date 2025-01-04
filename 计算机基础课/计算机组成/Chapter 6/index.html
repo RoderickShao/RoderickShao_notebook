@@ -1508,7 +1508,7 @@
 
 <h1 id="6-io"><strong>6 I/O</strong><a class="headerlink" href="#6-io" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4928 个字  预计阅读时间 16 分钟
+    文本统计：约 4956 个字  预计阅读时间 17 分钟
 </div>
 
 <h2 id="61-introduction"><strong>6.1 Introduction</strong><a class="headerlink" href="#61-introduction" title="Permanent link">&para;</a></h2>
@@ -1688,11 +1688,12 @@ controller time:0.2ms
 <p><strong>Handshaking protocol</strong>: A serial of steps used to coordinate asynchronous bus transfers.</p>
 <div class="admonition example">
 <p class="admonition-title">Asynchronous Example</p>
+<p>设备（要向内存请求数据，下图中橙色部分为I/O的部分</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-12%20133332.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-12%20133332.png" /></a></p>
 <ol>
 <li>When memory sees the ReadReq line, it reads the address from the data bus, begin the memory read operation，then raises Ack to tell the device that the ReadReq signal has been seen. </li>
 </ol>
-<p>当ReadReq上升沿的时候，从数据总线中读地址，然后使Ack为1告诉设备ReadReqy</p>
+<p>当ReadReq上升沿的时候，从数据总线中读地址，然后使Ack为1告诉设备ReadReq已经被看见了</p>
 <ol start="2">
 <li>I/O device sees the Ack line high and releases the ReadReq data lines.</li>
 </ol>
