@@ -2303,7 +2303,7 @@ Simplicity enables higher performance at lower cost</p>
 <p>immediate: offset added to base address (Split so that rs1 and rs2 fields always in the same place)</p>
 </li>
 </ul>
-<p>特意设置一种S-Format是因为S型和I型数据的流动方向并不一样，I型是rs1+immediate到rd，R型是rs2到rs1+immediate。</p>
+<p>特意设置一种S-Format是因为S型和I型数据的流动方向并不一样，I型是rs1+immediate到rd，S型是rs2到rs1+immediate。</p>
 <h3 id="244-from-c-to-machine-instruction"><strong>2.4.4 From C to Machine Instruction</strong><a class="headerlink" href="#244-from-c-to-machine-instruction" title="Permanent link">&para;</a></h3>
 <p>C code</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">A</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>

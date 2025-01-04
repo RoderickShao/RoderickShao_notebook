@@ -1513,10 +1513,10 @@
 <p><a class="glightbox" href="../img/%E5%9B%BE%E5%BD%A2%E6%9E%84%E9%80%A0.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%9B%BE%E5%BD%A2%E6%9E%84%E9%80%A0.png" /></a></p>
 <p>于是我们可以构建出相应的相位图，每一小段都代表的是某一波源到达该处的电场矢量，然后对这些小段进行矢量相加，就得到了上面这幅图。而当 N 非常大的时候就趋近于一段圆弧。</p>
 <p>MN代表的就是该点的电场强度，而弧线的长度代表的是原先的电场强度，从而我们可以根据长度关系计算该点的光强。</p>
-<p>缝最上面和最下面的相位差为 <span class="arithmatex">\(\frac{2\pi}{\lambda}a\sin\theta\)</span> ，记为 <span class="arithmatex">\(2\alpha\)</span>，那么弧MN与直线MN的长度之比为 <span class="arithmatex">\(\frac{\sin\alpha}{\alpha}\)</span>，而光强之比为电场强度之比的平方，故该点的光强为
-$$
+<p>缝最上面和最下面的相位差为 <span class="arithmatex">\(\frac{2\pi}{\lambda}a\sin\theta\)</span> ，记为 <span class="arithmatex">\(2\alpha\)</span>，那么弧MN与直线MN的长度之比为 <span class="arithmatex">\(\frac{\sin\alpha}{\alpha}\)</span>，而光强之比为电场强度之比的平方，故该点的光强为</p>
+<div class="arithmatex">\[
 \frac{I(\theta)}{I_{\text{max}}} = \frac{E_{\theta}^2}{E_m^2} =  \left[\frac{\sin \alpha}{\alpha}\right]^2
-$$</p>
+\]</div>
 <p>于是我们可以通过上面这个公式快速计算衍射的亮条纹和暗条纹的位置了</p>
 <p>我们先计算暗条纹的位置，这个比较简单，当 <span class="arithmatex">\(\alpha=m\pi\)</span> 时，其中 <span class="arithmatex">\(m=\pm1,\pm 2,...\)</span> 光强为0</p>
 <p>而计算亮条纹时，我们对 <span class="arithmatex">\(\frac{\sin \alpha}{\alpha}\)</span> 进行求导，得到 <span class="arithmatex">\(\alpha=\tan \alpha\)</span> 时，<span class="arithmatex">\(\frac{\sin \alpha}{\alpha}\)</span> 取得最大值，其中当 <span class="arithmatex">\(\alpha=0\)</span> 时，<span class="arithmatex">\(I_{\theta}=I_m\)</span> 被称为主极大，而其他的情况被称为次极大，约为 <span class="arithmatex">\(\pm1.43\pi,\pm2.46\pi,\pm3.47\pi\)</span>，越来越接近 <span class="arithmatex">\(x.5\pi\)</span></p>
