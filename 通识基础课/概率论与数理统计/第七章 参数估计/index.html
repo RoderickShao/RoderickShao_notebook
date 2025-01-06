@@ -1394,7 +1394,7 @@
 
 <h1 id="7"><strong>7 参数估计</strong><a class="headerlink" href="#7" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 3106 个字  预计阅读时间 10 分钟
+    文本统计：约 3107 个字  预计阅读时间 10 分钟
 </div>
 
 <h2 id="71"><strong>7.1 参数的点估计</strong><a class="headerlink" href="#71" title="Permanent link">&para;</a></h2>
@@ -1478,7 +1478,7 @@
 <div class="arithmatex">\[
 L(\theta)=P\{X_1=x_1,X_2=x_2,...,X_n=x_n\}=\prod_{i=1}^{n}p(x_i;\theta) 
 \]</div>
-<p>其中 <span class="arithmatex">\(L(\theta)\)</span> 被称为似然函数，极大似然原理：<span class="arithmatex">\(L(\hat\theta(x_1,..,x_n))=max_{\theta\in\Theta}L(\theta)\)</span> 称 <span class="arithmatex">\(\hat\theta(x_1,..,x_n)\)</span> 为 <span class="arithmatex">\(\theta\)</span> 的极大似然估计值，称统计量 <span class="arithmatex">\(\hat\theta(x_1,..,x_n)\)</span> 为 <span class="arithmatex">\(\theta\)</span> 的极大似然估计量。</p>
+<p>其中 <span class="arithmatex">\(L(\theta)\)</span> 被称为似然函数，极大似然原理：<span class="arithmatex">\(L(\hat\theta(x_1,..,x_n))=\max_{\theta\in\Theta}L(\theta)\)</span> 称 <span class="arithmatex">\(\hat\theta(x_1,..,x_n)\)</span> 为 <span class="arithmatex">\(\theta\)</span> 的极大似然估计值，称统计量 <span class="arithmatex">\(\hat\theta(x_1,..,x_n)\)</span> 为 <span class="arithmatex">\(\theta\)</span> 的极大似然估计量。</p>
 <p>如果总体 <span class="arithmatex">\(X\)</span> 为连续性，概率密度为 <span class="arithmatex">\(f(x,\theta)\)</span>，<span class="arithmatex">\(\theta\in \Theta\)</span>，<span class="arithmatex">\(\theta\)</span> 为未知函数，则对于样本 <span class="arithmatex">\((X_1,X_2,...,X_n)\)</span> 的观察值为 <span class="arithmatex">\((x_1,x_2,...,x_n)\)</span>，似然函数 <span class="arithmatex">\(L(\theta)=\prod_{i=1}^{n}f(x_i,\theta)\)</span></p>
 <div class="admonition note">
 <p class="admonition-title">说明</p>
@@ -1520,7 +1520,7 @@ L(\theta)=P\{X_1=x_1,X_2=x_2,...,X_n=x_n\}=\prod_{i=1}^{n}p(x_i;\theta)
 <h2 id="72"><strong>7.2 估计量的评价准则</strong><a class="headerlink" href="#72" title="Permanent link">&para;</a></h2>
 <p>无偏性，有效性，均方误差，相和性</p>
 <h3 id="721"><strong>7.2.1 无偏性准则</strong><a class="headerlink" href="#721" title="Permanent link">&para;</a></h3>
-<p>定义：若参数 <span class="arithmatex">\(\theta\)</span> 的估计量 <span class="arithmatex">\(\hat \theta=\theta(X_1,X_2,...,X_n)\)</span>，满足 <span class="arithmatex">\(E(\hat \theta)=\theta\)</span>，则称 <span class="arithmatex">\(\hat \theta\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的一个无偏估计量。若 <span class="arithmatex">\(E(\hat \theta)\ne \theta\)</span>，那么 <span class="arithmatex">\(E(\theta)-\theta\)</span> 称为 估计量 <span class="arithmatex">\(\hat \theta\)</span> 的偏差，若 <span class="arithmatex">\(lim_{n\rightarrow\infty}E(\theta)=\theta\)</span>，则称 <span class="arithmatex">\(\hat \theta\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的渐近无偏估计量。</p>
+<p>定义：若参数 <span class="arithmatex">\(\theta\)</span> 的估计量 <span class="arithmatex">\(\hat \theta=\theta(X_1,X_2,...,X_n)\)</span>，满足 <span class="arithmatex">\(E(\hat \theta)=\theta\)</span>，则称 <span class="arithmatex">\(\hat \theta\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的一个无偏估计量。若 <span class="arithmatex">\(E(\hat \theta)\ne \theta\)</span>，那么 <span class="arithmatex">\(E(\theta)-\theta\)</span> 称为 估计量 <span class="arithmatex">\(\hat \theta\)</span> 的偏差，若 <span class="arithmatex">\(\lim_{n\rightarrow\infty}E(\theta)=\theta\)</span>，则称 <span class="arithmatex">\(\hat \theta\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的渐近无偏估计量。</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20122028.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-25%20122028.png" /></a></p>
@@ -1531,7 +1531,7 @@ L(\theta)=P\{X_1=x_1,X_2=x_2,...,X_n=x_n\}=\prod_{i=1}^{n}p(x_i;\theta)
 </div>
 <p>纠偏方法：若 <span class="arithmatex">\(E(\hat \theta)=a\theta+b,\theta\in\Theta\)</span>，其中 <span class="arithmatex">\(a,b\)</span> 是常数，且 <span class="arithmatex">\(a\ne0\)</span>，则 <span class="arithmatex">\(\frac1a(\hat \theta-b)\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的无偏估计</p>
 <p>若 <span class="arithmatex">\(\hat \theta\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的无偏估计，且 <span class="arithmatex">\(Var(\hat\theta)&gt;0\)</span>， 则<span class="arithmatex">\(\hat\theta^2\)</span> 不是 <span class="arithmatex">\(\theta^2\)</span> 的无偏估计</p>
-<p>证明：<span class="arithmatex">\(E(\theta^2)=Var(\theta)+E^2(\theta)=Var+\theta^2\ne\theta^2\)</span></p>
+<p>证明：<span class="arithmatex">\(E(\theta^2)=Var(\theta)+E^2(\theta)=Var(\theta)+\theta^2\ne\theta^2\)</span></p>
 <h3 id="722"><strong>7.2.2 有效性准则</strong><a class="headerlink" href="#722" title="Permanent link">&para;</a></h3>
 <p>设 <span class="arithmatex">\(\hat{\theta}_1, \hat{\theta}_2\)</span> 是 <span class="arithmatex">\(\theta\)</span> 的两个无偏估计，如果 <span class="arithmatex">\(Var(\hat{\theta}_1) \leq Var(\hat{\theta}_2)\)</span>，对一切 <span class="arithmatex">\(\theta \in \Theta\)</span> 成立，且至少有一个 <span class="arithmatex">\(\theta \in \Theta\)</span> 使不等号成立，则称 <span class="arithmatex">\(\hat{\theta}_1\)</span> 比 <span class="arithmatex">\(\hat{\theta}_2\)</span> 有效。</p>
 <div class="admonition example">
@@ -1554,7 +1554,7 @@ L(\theta)=P\{X_1=x_1,X_2=x_2,...,X_n=x_n\}=\prod_{i=1}^{n}p(x_i;\theta)
 \]</div>
 <p>则称 <span class="arithmatex">\(\theta_n\)</span> 为 <span class="arithmatex">\(\theta\)</span> 的<strong>相合估计量</strong>或<strong>一致估计量</strong>。</p>
 <p>估计量具有相合性是估计的基本要求若某估计不具备此要求，那么不管 <span class="arithmatex">\(n\)</span> 多大，都不能得到一个足够精度的估计，这样的估计当然是不理想的。</p>
-<p>判断一个估计量是否具有相合或一致性，一般需要用大数定律、切比雪夫不等式。</p>
+<p>判断一个估计量是否具有相合或一致性，一般需要用<strong>大数定律</strong>、<strong>切比雪夫不等式</strong>。</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-02%20105127.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-02%20105127.png" /></a></p>

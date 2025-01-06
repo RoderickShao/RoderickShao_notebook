@@ -1508,7 +1508,7 @@
 
 <h1 id="6-io"><strong>6 I/O</strong><a class="headerlink" href="#6-io" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4956 个字  预计阅读时间 17 分钟
+    文本统计：约 4973 个字  预计阅读时间 17 分钟
 </div>
 
 <h2 id="61-introduction"><strong>6.1 Introduction</strong><a class="headerlink" href="#61-introduction" title="Permanent link">&para;</a></h2>
@@ -1684,7 +1684,7 @@ controller time:0.2ms
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-10%20195811.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-10%20195811.png" /></a></p>
 <h3 id="synchronous-vs-asynchronous"><strong>Synchronous vs. Asynchronous</strong><a class="headerlink" href="#synchronous-vs-asynchronous" title="Permanent link">&para;</a></h3>
 <p><strong>同步总线</strong>：use a clock and a fixed protocol, fast and small but every device must operate at same rate and clock skew requires the bus to be short</p>
-<p><strong>异步总线</strong>：don’t use a clock and instead use handshaking</p>
+<p><strong>异步总线</strong>：don’t use a clock and instead use <strong>handshaking</strong></p>
 <p><strong>Handshaking protocol</strong>: A serial of steps used to coordinate asynchronous bus transfers.</p>
 <div class="admonition example">
 <p class="admonition-title">Asynchronous Example</p>
@@ -1747,7 +1747,7 @@ controller time:0.2ms
 <p>故传输一个4字节的数据需要300ns，bandwidth 为 <span class="arithmatex">\(4\text{bytes}/300\text{ns}=13.3\text{MB}/\text{second}\)</span></p>
 </div>
 <div class="tabbed-block">
-<p>我们注意到在内存读取的那一段时间，可以有好几步一起同时完成，第一步做完后，Ack就变为高电平了，那么数据这个时候就可以开始从内存中读取了，2，3，4步就可以同时完成了，第5步数据准备好了就可以放入总线了</p>
+<p>我们注意到在内存读取的那一段时间，可以有好几步一起同时完成，第一步做完后，Ack就变为高电平了，那么数据这个时候就可以开始从内存中读取了，其中第四步是可调控的，看2，3步进行的快还是数据从内存中读取d，第5步数据准备好了就可以放入总线了</p>
 <p>这样我们计算得到时间为</p>
 <ol>
 <li>step 1: 40ns</li>
