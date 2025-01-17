@@ -1566,7 +1566,7 @@
 
 <h1 id="6-ray-tracing"><strong>6 Ray tracing</strong><a class="headerlink" href="#6-ray-tracing" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4640 个字  •  98 行代码  预计阅读时间 17 分钟
+    文本统计：约 4648 个字  •  98 行代码  预计阅读时间 17 分钟
 </div>
 
 <h2 id="60-introduction"><strong>6.0 Introduction</strong><a class="headerlink" href="#60-introduction" title="Permanent link">&para;</a></h2>
@@ -1664,10 +1664,10 @@ t=\frac{(\pmb p'-\pmb o)\cdot \pmb N}{\pmb d\cdot \pmb N}
 \]</div>
 <p>并验证t是不是正的。</p>
 <p>有一个更快的算法：<strong>Moller Trumbore Algorithm</strong></p>
-<p>利用三角形的重心坐标，然后利用Crammer法则，解得三个变量。当三个量都是非负的时候，交点就在三角形内。
-$$
+<p>利用三角形的重心坐标，然后利用Crammer法则，解得三个变量。当三个量都是非负的时候，交点就在三角形内。</p>
+<div class="arithmatex">\[
 \vec{O} + t\vec{D} = (1 - b_1 - b_2)\vec{P}_0 + b_1\vec{P}_1 + b_2\vec{P}_2
-$$</p>
+\]</div>
 <div class="arithmatex">\[
 \begin{bmatrix}
 t \\
@@ -1786,17 +1786,17 @@ b_2
 <p>那么如何判断光线和box是否相交？</p>
 <p>我们由二维的情况引入：Compute intersections with slabs  and take intersection of <span class="arithmatex">\(t_{min},t_{max}\)</span> intervals</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-21%20220751.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-21%20220751.png" /></a></p>
-<p>计算两个 <span class="arithmatex">\(x,y\)</span> 的<span class="arithmatex">\(t_{min},t_{max}\)</span>，然后将两个区间求交集，即得光线在box中的部分（交集满足 <span class="arithmatex">\(x,y\)</span> 均在长方体范围内）</p>
-<p>在三维的情况就是光线在三个平面都在盒子中，于是只要分别计算<span class="arithmatex">\(t_{min}\)</span> 和 <span class="arithmatex">\(t_{max}\)</span>，然后 <span class="arithmatex">\(t_{enter}=max\{t_{min}\}\)</span> , <span class="arithmatex">\(t_{exit}=min\{t_{max}\}\)</span>, 如果<span class="arithmatex">\(t_{enter}&lt;t_{exit}\)</span>，那么这个情况就是光线穿过盒子的情况。</p>
+<p>计算两个 <span class="arithmatex">\(x,y\)</span> 的 <span class="arithmatex">\(t_{\min},t_{\max}\)</span>，然后将两个区间求交集，即得光线在box中的部分（交集满足 <span class="arithmatex">\(x,y\)</span> 均在长方体范围内）</p>
+<p>在三维的情况就是光线在三个平面都在盒子中，于是只要分别计算<span class="arithmatex">\(t_{\min}\)</span> 和 <span class="arithmatex">\(t_{\max}\)</span>，然后 <span class="arithmatex">\(t_{enter}=\max\{t_{\min}\}\)</span> , <span class="arithmatex">\(t_{exit}=\min\{t_{\max}\}\)</span>, 如果<span class="arithmatex">\(t_{enter}&lt;t_{exit}\)</span>，那么这个情况就是光线穿过盒子的情况。</p>
 <p>然而光线并不是一条直线，而是一条射线，所以我们应该检查 <span class="arithmatex">\(t\)</span> 是否小于0</p>
 <ul>
 <li><span class="arithmatex">\(t_{exit}&lt;0\)</span>  <span class="arithmatex">\(\Rightarrow\)</span> The box is “behind” the ray - no intersection</li>
 <li><span class="arithmatex">\(t_{exit}\geq 0\)</span> and <span class="arithmatex">\(t_{enter}&lt;0\ \Rightarrow\)</span> The ray’s origin is inside the box - have intersection</li>
 </ul>
-<p><strong>In summary</strong>, ray and AABB intersect iff</p>
-<div class="arithmatex">\[
+<p><strong>In summary</strong>, ray and AABB intersect iff
+$$
 t_{enter}&lt;t_{exit} \text{ and }t_{exit}\geq0
-\]</div>
+$$</p>
 <h3 id="632-using-aabbs-to-accelerate-ray-tracing"><strong>6.3.2 Using AABBs to accelerate ray tracing</strong><a class="headerlink" href="#632-using-aabbs-to-accelerate-ray-tracing" title="Permanent link">&para;</a></h3>
 <p>Pre-Processing，对画面进行预处理，让我们使用 bounding volumes 求交的时候会更快。</p>
 <h4 id="1-uniform-spatial-partitions-grids"><strong>1 Uniform Spatial Partitions (Grids)</strong><a class="headerlink" href="#1-uniform-spatial-partitions-grids" title="Permanent link">&para;</a></h4>
@@ -1991,7 +1991,7 @@ Q[\text{J=Joule}]
 \]</div>
 <p>Definition: <strong>Radiant flux</strong> (<strong>power</strong>) is the energy emitted,  reflected, transmitted or received, per unit time.</p>
 <div class="arithmatex">\[
-\Phi \equiv \frac{dQ}{dt}[\text{W=Watt}][\text{lm=lumen}]^*
+\Phi \equiv \frac{\text{d}Q}{\text{d}t}[\text{W=Watt}][\text{lm=lumen}]^*
 \]</div>
 <p>Flux - #photons flowing through through a sensor in unit time</p>
 <h3 id="642-radiant-intensity-i"><strong>6.4.2 Radiant Intensity (I)</strong><a class="headerlink" href="#642-radiant-intensity-i" title="Permanent link">&para;</a></h3>
@@ -2016,11 +2016,11 @@ I(\omega) \equiv\frac{\text{d} \Phi}{\text{d} \omega}
 </ul>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-22%20232310.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-22%20232310.png" /></a></center></p>
 <div class="arithmatex">\[
-\text{d}A=(r\ \text{d}\theta)(rsin\theta\ \text{d}\phi)=r^2sin\theta \ \text{d}\theta\ \text{d}\phi
+\text{d}A=(r\ \text{d}\theta)(r\sin\theta\ \text{d}\phi)=r^2\sin\theta \ \text{d}\theta\ \text{d}\phi
 \]</div>
 <p>微分立体角</p>
 <div class="arithmatex">\[
-\text{d}\omega=\frac{\text{d}A}{r^2}=sin\theta\ \text{d}\theta\ \text{d} \phi
+\text{d}\omega=\frac{\text{d}A}{r^2}=\sin\theta\ \text{d}\theta\ \text{d} \phi
 \]</div>
 </div>
 <p>Isotropic Point Source</p>
@@ -2075,7 +2075,7 @@ L_o(p,\omega_o)=L_e(p,\omega_o)+\int_{\Omega^+}L_i(p,\omega_i)f_r(p,\omega_i,\om
 \]</div>
 <p>同时我们也注意到 Reflected radiance depends on incoming radiance, But incoming radiance depends on reflected radiance (at another point in the scene) </p>
 <div class="arithmatex">\[
-L_r(x,\omega_r)=L_e(x,\omega_r)+\int_{\Omega}L_r(x',-\omega_i)f(x,\omega_i, \omega_r)\ cos\theta_i\text{ d}\omega_i
+L_r(x,\omega_r)=L_e(x,\omega_r)+\int_{\Omega}L_r(x',-\omega_i)f(x,\omega_i, \omega_r)\ \cos\theta_i\text{ d}\omega_i
 \]</div>
 <p>这样我们可以解一个积分方程 （第二类 Fredholm 积分方程）</p>
 <div class="arithmatex">\[
@@ -2095,7 +2095,7 @@ L&amp;=E+KE+K^2E+K^3E+\dots
 <p>对这个式子进行物理意义进行解释：<span class="arithmatex">\(E\)</span> 为直接从光源发出的光，<span class="arithmatex">\(KE\)</span> 就是光源直接照到物体表面进入眼睛的光，其余的都是间接光照，经过几次反射得到的结果。光栅化只处理了前两个部分，较难处理后面部分的内容。</p>
 <h2 id="65-monte-carlo-path-tracing"><strong>6.5 Monte Carlo Path Tracing</strong><a class="headerlink" href="#65-monte-carlo-path-tracing" title="Permanent link">&para;</a></h2>
 <h3 id="651-monte-carlo-integration"><strong>6.5.1 Monte Carlo Integration</strong><a class="headerlink" href="#651-monte-carlo-integration" title="Permanent link">&para;</a></h3>
-<p>我们需要计算一个定积分：<span class="arithmatex">\(\int_a^bf(x)dx\)</span>，但是我们无法求出该函数的原函数，我们便可以通过<strong>蒙特卡洛方法</strong>求出相应的数值。</p>
+<p>我们需要计算一个定积分：<span class="arithmatex">\(\int_a^bf(x)\text{d}x\)</span>，但是我们无法求出该函数的原函数，我们便可以通过<strong>蒙特卡洛方法</strong>求出相应的数值。</p>
 <p>怎么做呢？ 通过对函数值的随机抽样求平均值来估计函数的积分</p>
 <div class="arithmatex">\[
 \begin{aligned}
@@ -2113,7 +2113,7 @@ E(F_N)&amp;=E(\frac{1}{N}\sum_{i=1}^N\frac{f(X_i)}{p(X_i)})\\
 &amp;=\frac{1}{N}\sum_{i=1}^N E(\frac{f(X_i)}{p(X_i)})\\
 &amp;=\frac{1}{N}\sum_{i=1}^N \int_a^b\frac{f(x)}{p(x)}\cdot p(x)\\
 &amp;=\frac{1}{N}\sum_{i=1}^N \int_a^b\frac{f(x)}{p(x)}\cdot p(x)\\
-&amp;=f(x)
+&amp;=\int_a^b f(x)
 \end{aligned}
 \]</div>
 </div>
@@ -2227,9 +2227,9 @@ E=P∗(L_o/P)+(1−P)∗0=L_o
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-29%20145242.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-29%20145242.png" /></a></p>
 <p>如果我们可以<strong>对光源进行均匀采样</strong> </p>
 <div class="arithmatex">\[
-pdf=\frac{1}{A}(\text{because}\int pdf\ dA=1)
+pdf=\frac{1}{A}(\text{because}\int pdf\ \text{d}A=1)
 \]</div>
-<p>渲染方程的积分域是在立体角上，而蒙特卡洛积分要求 采样是在积分域上进行，所以如果我们想要继续使用蒙特卡洛方法，就得重新写一下渲染方程，使其积分域是在光源上，这个也是可以办到的，只需要知道<span class="arithmatex">\(\text{d}A\)</span>和 <span class="arithmatex">\(\text{d}w\)</span> 的关系</p>
+<p>渲染方程的积分域是在立体角上，而蒙特卡洛积分要求采样是在积分域上进行，所以如果我们想要继续使用蒙特卡洛方法，就得重新写一下渲染方程，使其积分域是在光源上，这个也是可以办到的，只需要知道<span class="arithmatex">\(\text{d}A\)</span>和 <span class="arithmatex">\(\text{d}w\)</span> 的关系</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-29%20183144.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-29%20183144.png" /></a></p>
 <div class="arithmatex">\[
 \text{d}\omega = \frac{\text{d}A cos\theta'}{||x'-x||^2}
@@ -2237,8 +2237,8 @@ pdf=\frac{1}{A}(\text{because}\int pdf\ dA=1)
 <p>这样我们可以重写渲染方程</p>
 <div class="arithmatex">\[
 \begin{align*}
-L_o(x,\omega_o)&amp;=\int_{\Omega^+}L_i(x,\omega_i)f_r(x,\omega_i,\omega_o)cos\theta\ \text{d}\omega_i\\
-&amp;=\int_AL_i(x,\omega_i)f_r(x,\omega_i,\omega_o)\frac{cos\theta cos\theta'}{||x'-x||^2}\text{d}A
+L_o(x,\omega_o)&amp;=\int_{\Omega^+}L_i(x,\omega_i)f_r(x,\omega_i,\omega_o)\cos\theta\ \text{d}\omega_i\\
+&amp;=\int_AL_i(x,\omega_i)f_r(x,\omega_i,\omega_o)\frac{\cos\theta \cos\theta'}{||x'-x||^2}\text{d}A
 \end{align*}
 \]</div>
 <p>Previously, we assume the light is “accidentally” shot by uniform hemisphere sampling </p>
