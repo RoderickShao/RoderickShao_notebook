@@ -16,6 +16,8 @@
         <link rel="prev" href="../7%20Materials%20and%20Appearances/">
       
       
+        <link rel="next" href="../9%20Cameras%2C%20Lenses%20and%20Light%20Fields/">
+      
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.2.0-b3">
@@ -741,6 +743,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1158,6 +1162,26 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9%20Cameras%2C%20Lenses%20and%20Light%20Fields/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 Cameras, Lenses and Light Fields
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1476,14 +1500,14 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20130504.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20130504.png" /></a></p>
 <h2 id="82-advanced-appearance-modeling"><strong>8.2 Advanced Appearance Modeling</strong><a class="headerlink" href="#82-advanced-appearance-modeling" title="Permanent link">&para;</a></h2>
 <h3 id="821-non-surface-models"><strong>8.2.1 Non-Surface Models</strong><a class="headerlink" href="#821-non-surface-models" title="Permanent link">&para;</a></h3>
-<h4 id="8211-participating-media">8.2.1.1 Participating Media<a class="headerlink" href="#8211-participating-media" title="Permanent link">&para;</a></h4>
+<h4 id="8211-participating-media"><strong>8.2.1.1 Participating Media</strong><a class="headerlink" href="#8211-participating-media" title="Permanent link">&para;</a></h4>
 <p>云，雾。光打过来会被小颗粒散射到四面八方。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20195856.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20195856.png" /></a></p>
 <p>使用相位函数 (Phase Function) 来描述光在散射介质中的分布</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20200233.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20200233.png" /></a></p>
 <p>如何渲染？光线往某方向走多远取决于介质的吸收能力，遇到小颗粒会反射，在任何一点都可能改变方向，找到一个与光源相连的路径计算其贡献。</p>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20201324.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20201324.png" /></a></center></p>
-<h4 id="8212-hair-appearance">8.2.1.2 Hair Appearance<a class="headerlink" href="#8212-hair-appearance" title="Permanent link">&para;</a></h4>
+<h4 id="8212-hair-appearance"><strong>8.2.1.2 Hair Appearance</strong><a class="headerlink" href="#8212-hair-appearance" title="Permanent link">&para;</a></h4>
 <p>考虑光线与每根头发的作用</p>
 <p><strong>Kajiya-Kay Model</strong>: 光线打到头发上发生散射形成一个圆锥</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20202616.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20202616.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20202644.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-11%20202644.png" /></a></p>
@@ -1496,11 +1520,11 @@
 <p>使用双层圆柱模型来建模动物毛发，更为复杂。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-24%20203816.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-24%20203816.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-24%20203941.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-24%20203941.png" /></a></p>
-<h4 id="8213-granular-material">8.2.1.3 Granular (颗粒) Material<a class="headerlink" href="#8213-granular-material" title="Permanent link">&para;</a></h4>
+<h4 id="8213-granular-material"><strong>8.2.1.3 Granular (颗粒) Material</strong><a class="headerlink" href="#8213-granular-material" title="Permanent link">&para;</a></h4>
 <p>远看是沙丘，近看是小颗粒堆积的。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-24%20204221.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-24%20204221.png" /></a></p>
-<h3 id="822-surface-models">8.2.2 Surface Models<a class="headerlink" href="#822-surface-models" title="Permanent link">&para;</a></h3>
-<h4 id="8221-translucent-material">8.2.2.1 Translucent Material<a class="headerlink" href="#8221-translucent-material" title="Permanent link">&para;</a></h4>
+<h3 id="822-surface-models"><strong>8.2.2 Surface Models</strong><a class="headerlink" href="#822-surface-models" title="Permanent link">&para;</a></h3>
+<h4 id="8221-translucent-material"><strong>8.2.2.1 Translucent Material</strong><a class="headerlink" href="#8221-translucent-material" title="Permanent link">&para;</a></h4>
 <p>透光性材质，比如说玉石，水母等等物体的材质</p>
 <p><a class="glightbox" href="../img/jade.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/jade.png" /></a></p>
 <p><strong>Subsurface Scattering</strong>: 次表面散射</p>
@@ -1522,7 +1546,7 @@ L(x_o,\omega_o)=\int_A\int_{H^2}S(x_i,\omega_i,x_o,\omega_o)L_i(x_i,\omega_i)\co
 <p class="admonition-title">BRDF vs BSSRDF</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20145202.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20145202.png" /></a></p>
 </div>
-<h4 id="8222-cloth">8.2.2.2 Cloth<a class="headerlink" href="#8222-cloth" title="Permanent link">&para;</a></h4>
+<h4 id="8222-cloth"><strong>8.2.2.2 Cloth</strong><a class="headerlink" href="#8222-cloth" title="Permanent link">&para;</a></h4>
 <p>布料是一系列缠绕的纤维组成的</p>
 <p>缠绕有两级：纤维（Fiber）第一次缠绕会成为股（Ply），股（Ply）缠绕会成为线（Yarn）。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20145701.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20145701.png" /></a></p>
@@ -1535,7 +1559,7 @@ L(x_o,\omega_o)=\int_A\int_{H^2}S(x_i,\omega_i,x_o,\omega_o)L_i(x_i,\omega_i)\co
 <p>（2）Render as participating Media: 把单根纤维的性质与纤维的分布转化为散射有关的参数，渲染布料就如同渲染云和雾那样来做。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20150418.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20150418.png" /></a></p>
 <p>（3）Render as Actual Fibers: Render every fiber explicitly，对每根纤维都进行单独渲染</p>
-<h2 id="83-detailed-appearance">8.3 Detailed Appearance<a class="headerlink" href="#83-detailed-appearance" title="Permanent link">&para;</a></h2>
+<h2 id="83-detailed-appearance"><strong>8.3 Detailed Appearance</strong><a class="headerlink" href="#83-detailed-appearance" title="Permanent link">&para;</a></h2>
 <p>尽管说我们得到结果已经很不错了，但是看上去依然缺少真实感，主要原因是我们渲染出来的结果太完美了。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20150904.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20150904.png" /></a></p>
 <p>比如说上面的车子，即使是新车也不可能表面如此光滑，现实中的结果往往如下图所示</p>
@@ -1548,11 +1572,11 @@ L(x_o,\omega_o)=\int_A\int_{H^2}S(x_i,\omega_i,x_o,\omega_o)L_i(x_i,\omega_i)\co
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20161603.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20161603.png" /></a></p>
 <p>然后对于不同的范围，法线分布随着范围的增大越有统计学特征，在范围较小的情况下，细节更多。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20161720.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20161720.png" /></a></p>
-<h2 id="84-recent-trend-wave-optics">8.4 Recent Trend: Wave Optics<a class="headerlink" href="#84-recent-trend-wave-optics" title="Permanent link">&para;</a></h2>
+<h2 id="84-recent-trend-wave-optics"><strong>8.4 Recent Trend: Wave Optics</strong><a class="headerlink" href="#84-recent-trend-wave-optics" title="Permanent link">&para;</a></h2>
 <p>当我们引入细节的时候，几何光学的结果不能满足我们的需求了，需要引入波动光学</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20161921.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-18%20161921.png" /></a></p>
 <p>波动光学得到的 BRDF 相比于几何光学是不连续的</p>
-<h2 id="85-procedural-appearance">8.5 Procedural Appearance<a class="headerlink" href="#85-procedural-appearance" title="Permanent link">&para;</a></h2>
+<h2 id="85-procedural-appearance"><strong>8.5 Procedural Appearance</strong><a class="headerlink" href="#85-procedural-appearance" title="Permanent link">&para;</a></h2>
 <p>程序化生成图像，不需要纹理贴图来定义细节。需要查询的时候生成</p>
 <p><strong>3D noise（噪声函数）</strong> 可以直接通过噪声函数来计算细节，使用这种方法可以看到被切割或断裂的内部纹理。</p>
 <p>比如说</p>
@@ -1719,6 +1743,22 @@ L(x_o,\omega_o)=\int_A\int_{H^2}S(x_i,\omega_i,x_o,\omega_o)L_i(x_i,\omega_i)\co
             </div>
           </a>
         
+        
+          
+          <a href="../9%20Cameras%2C%20Lenses%20and%20Light%20Fields/" class="md-footer__link md-footer__link--next" aria-label="下一页: 9 Cameras, Lenses and Light Fields" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                9 Cameras, Lenses and Light Fields
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
