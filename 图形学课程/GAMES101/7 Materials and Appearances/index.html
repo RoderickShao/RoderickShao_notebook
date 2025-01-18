@@ -1338,25 +1338,34 @@
 
 <h1 id="7-materials-and-appearances"><strong>7 Materials and Appearances</strong><a class="headerlink" href="#7-materials-and-appearances" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1297 个字  •  5 行代码  预计阅读时间 4 分钟
+    文本统计：约 1531 个字  •  5 行代码  预计阅读时间 5 分钟
 </div>
 
-<p>外观是光照和材质共同作用的结果。</p>
-<p>由于材质不同，光线作用后会得到不同的结果，同样的模型会渲染出不同的结果。</p>
+<p>外观是<strong>光照</strong>和<strong>材质</strong>共同作用的结果。由于材质不同，光线作用后会得到不同的结果，同样的模型会渲染出不同的结果。</p>
 <p>在渲染方程中，由<strong>BRDF</strong>来决定材质。</p>
 <h2 id="71-some-materials"><strong>7.1 Some Materials</strong><a class="headerlink" href="#71-some-materials" title="Permanent link">&para;</a></h2>
 <h3 id="711-diffuse-lambertian-material"><strong>7.1.1 Diffuse / Lambertian Material</strong><a class="headerlink" href="#711-diffuse-lambertian-material" title="Permanent link">&para;</a></h3>
 <p>Light is equally reflected in each output direction</p>
 <p>我们现在假设进来的光的是均匀的，同时反射的光也是均匀的。如果这个点不发光并且不吸收光，那么该点入射的radiance与出射的radiance是相同的。</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20204618.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20204618.png" /></a></p>
-<p>albedo: 反射率（0到1之间），可以是单通道的也可以由RGB三个值</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20162205.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20162205.png" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp;\int_{H^2}\cos \theta_i \text{ d}\omega_i\\
+=&amp;\int_0^{2\pi}\text{d} \varphi \int_0^{\frac{\pi}{2}}\cos\theta \sin\theta \text{ d}\theta\\
+=&amp;\pi
+\end{aligned}
+\]</div>
+</div>
+<p>albedo <span class="arithmatex">\(\rho\)</span>: 反射率（0到1之间）可以是单通道的也可以由RGB三个值组成</p>
 <h3 id="712-glossy-material"><strong>7.1.2 Glossy Material</strong><a class="headerlink" href="#712-glossy-material" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20210230.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20210230.png" /></a></p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20210230.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20210230.png" /></a></center></p>
 <p>看似平整，实际上还是有一点粗糙，并不是标准的镜面</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20205817.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20205817.png" /></a></p>
 <h3 id="713-ideal-reflective-refractive-material-bsdf"><strong>7.1.3 Ideal reflective / refractive material (BSDF)</strong><a class="headerlink" href="#713-ideal-reflective-refractive-material-bsdf" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20210238.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20210238.png" /></a></p>
-<p>有一定的折射情况发生，也有反射，比如水或者玻璃这样的材质</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20210238.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20210238.png" /></a></center></p>
+<p>有一定的<strong>折射</strong>情况发生，也有<strong>反射</strong>，比如水或者玻璃这样的材质</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20210510.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20210510.png" /></a></p>
 <h2 id="72-reflection-and-refraction"><strong>7.2 Reflection and Refraction</strong><a class="headerlink" href="#72-reflection-and-refraction" title="Permanent link">&para;</a></h2>
 <h3 id="721-perfect-specular-reflection"><strong>7.2.1 Perfect Specular Reflection</strong><a class="headerlink" href="#721-perfect-specular-reflection" title="Permanent link">&para;</a></h3>
@@ -1364,41 +1373,42 @@
 <ul>
 <li>法一：直接根据向量法求解</li>
 </ul>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20212320.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20212320.png" /></a></p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20212320.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20212320.png" /></a></center></p>
 <div class="arithmatex">\[
 \begin{align*}
-&amp;\omega_o+\omega_i=2cos\theta\ \vec{n}= 2(\omega_i\cdot\vec{n})\vec{n}\\
+&amp;\omega_o+\omega_i=2\cos\theta\ \vec{n}= 2(\omega_i\cdot\vec{n})\vec{n}\\
 &amp;\omega_o=-\omega_i+2(\omega_i\cdot\vec{n})\vec{n}
 \end{align*}
 \]</div>
 <ul>
-<li>法二：将方向向量拆成某个投影的方位角加上一个仰角，出射光的方向方位角相反，仰角不变</li>
+<li>法二：将方向向量拆成某个投影的方位角加上一个仰角（与法线的夹角），出射光的方向方位角相反，仰角不变</li>
 </ul>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20212324.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20212324.png" /></a></p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20212324.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20212324.png" /></a></center></p>
+<p>镜面反射当然也可以用BRDF来表达，所有的光线都集中在反射方向上，会引入狄拉克函数</p>
 <h3 id="722-specular-refraction"><strong>7.2.2  Specular Refraction</strong><a class="headerlink" href="#722-specular-refraction" title="Permanent link">&para;</a></h3>
-<p>In addition to reflecting off surface, light may be transmitted through surface. </p>
-<p>Light refracts when it enters a new medium.</p>
+<p>光除了被表面反射外，还可以通过表面传播。光线进入新介质时发生折射。</p>
 <h4 id="snells-law"><strong>Snell’s Law</strong><a class="headerlink" href="#snells-law" title="Permanent link">&para;</a></h4>
 <p>拆成方位角与仰角分别计算</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20214856.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20214856.png" /></a></p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20214856.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20214856.png" /></a></center></p>
 <p>折射角的计算：</p>
 <div class="arithmatex">\[
 \begin{align*}
-\eta_isin\theta_i&amp;=\eta_tsin\theta_t\\
-cos\theta_t&amp;=\sqrt{1-sin^2\theta_t}\\
-&amp;=\sqrt{1-(\frac{\eta_i}{\eta_t})^2sin^2\theta_i}\\
-&amp;=\sqrt{1-(\frac{\eta_i}{\eta_t})^2(1-cos^2\theta_i
+\eta_i\sin\theta_i&amp;=\eta_t\sin\theta_t\\
+\cos\theta_t&amp;=\sqrt{1-\sin^2\theta_t}\\
+&amp;=\sqrt{1-(\frac{\eta_i}{\eta_t})^2\sin^2\theta_i}\\
+&amp;=\sqrt{1-(\frac{\eta_i}{\eta_t})^2(1-\cos^2\theta_i
 )}
 \end{align*}
 \]</div>
 <h4 id="total-internal-reflection"><strong>Total internal reflection  (全反射)</strong><a class="headerlink" href="#total-internal-reflection" title="Permanent link">&para;</a></h4>
 <p>如果根号里面算出来的是负数，那么折射就变成了全反射。要想发生全反射那么必须要从光密介质进入光疏介质才行。</p>
 <h4 id="snells-window-circle"><strong>Snell’s Window /Circle</strong><a class="headerlink" href="#snells-window-circle" title="Permanent link">&para;</a></h4>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20230346.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-02%20230346.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20170034.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20170034.png" /></a></p>
 <h2 id="73-fresnel-reflection-term"><strong>7.3 Fresnel Reflection / Term (菲涅尔项)</strong><a class="headerlink" href="#73-fresnel-reflection-term" title="Permanent link">&para;</a></h2>
-<p>Reflectance depends on incident angle (and polarization), 意思是反射率与入射的角度有关。举一个生活中的例子，在一辆大巴车上，在你面对的玻璃上可以看到玻璃反射出来的脸，但是观察前几排座位的玻璃那就只是窗外的风景。</p>
+<p>Reflectance depends on incident angle (and polarization), 意思是反射率与入射的角度有关。举一个生活中的例子，在车子中面对面前的玻璃可以看到外面的风景，而看前面的玻璃，那么看到大多为反射的司机等等。入射角越大，反射率越大！</p>
+<p>不同材质（绝缘体与导体）的菲涅尔项并不相同</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20111020.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20111020.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20111028.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20111028.png" /></a></p>
-<p>精确的刻画反射率与入射角度的关系需要考虑极化的影响</p>
+<p>精确的刻画反射率与入射角度的关系需要考虑极化的影响，<span class="arithmatex">\(R_s\)</span> 是 <span class="arithmatex">\(s\)</span> 方向偏振光的反射率，<span class="arithmatex">\(R_p\)</span> 是 <span class="arithmatex">\(p\)</span> 方向偏振光的反射率，考虑非偏振光的时候就两者取平均就可以了。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20111259.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20111259.png" /></a></p>
 <p>但是上述内容比较复杂，我们可以作一个估计：Schlick’s approximation</p>
 <div class="arithmatex">\[
@@ -1418,10 +1428,11 @@ R_0&amp;=(\frac{n_1-n_2}{n_1+n_2})^2
 <li>Known as Microfacets</li>
 <li>Each microfacet has its own normal</li>
 </ul>
-<p>对于一个粗糙的表面，我们在宏观上可以认为它是平整的，但是在微观上我们可以把它看成很多小镜子的集合，研究一个微表面的BRDF关键就在于研究微表面法线的分布情况 (the distribution of microfacets’ normals)</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20115335.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20115335.png" /></a></p>
+<p>对于一个粗糙的表面，我们在宏观上可以认为它是平整的，但是在微观上我们可以把它看成很多小镜子的集合，研究一个微表面的BRDF关键就在于研究<strong>微表面法线的分布情况</strong> (the distribution of microfacets’ normals)</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20175053.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20175053.png" /></a></center></p>
+<p>如果微表面模型法线是比较集中的，那么它的材质可以被认为是 glossy；而微表面模型的法线是分散开来的，那么它的材质就被认为是 diffuse 的</p>
 <p>由此我们可以推导相应的BRDF</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20115617.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20115617.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20175425.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20175425.png" /></a></p>
 <p>解释一下：</p>
 <ul>
 <li><span class="arithmatex">\(\bf F(i,h)\)</span>代表的是菲涅尔项，反射的总能量是多少</li>
@@ -1429,8 +1440,9 @@ R_0&amp;=(\frac{n_1-n_2}{n_1+n_2})^2
 <li><span class="arithmatex">\(\bf D(h)\)</span>代表的就是法线的分布</li>
 </ul>
 <h2 id="75-isotropic-anisotropic-materials-bdrfs"><strong>7.5 Isotropic / Anisotropic Materials (BDRFs)</strong><a class="headerlink" href="#75-isotropic-anisotropic-materials-bdrfs" title="Permanent link">&para;</a></h2>
-<p>Key: directionality of underlying surface</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20124636.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20124636.png" /></a></p>
+<p>我们将材料分为各向同性材质，各向异性材质</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20190601.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20190601.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20190908.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20190908.png" /></a></p>
 <p><strong>区别：</strong>如果BRDF不满足在方位角上旋转得到的还是相同的BRDF，则称为是各向异性材质。</p>
 <p><strong>各向同性的 BRDF 只和相对的方位角有关，而各向异性材质不止和相对方位角有关还和绝对方位角有关</strong></p>
 <p>各项同性：<span class="arithmatex">\(f_r(\theta_i,\theta_r,\phi_r-\phi_i)=f_r(\theta_r,\theta_i,\phi_i-\phi_r)=f_r(\theta_i,\theta_r,|\phi_r-\phi_i|)\)</span></p>
@@ -1439,13 +1451,13 @@ R_0&amp;=(\frac{n_1-n_2}{n_1+n_2})^2
 <ul>
 <li>Non-negativity (非负性): <span class="arithmatex">\(f_r(\omega_i\rightarrow \omega_r)\geq0\)</span></li>
 <li>
-<p>Linearity (线性性): <span class="arithmatex">\(L_r(p,\omega_r)=\int_{H^2}f_r(p,\omega_i\rightarrow\omega_r)L_i(p,\omega_i)cos\theta_i\ d\omega_i\)</span></p>
+<p>Linearity (线性性): <span class="arithmatex">\(L_r(p,\omega_r)=\int_{H^2}f_r(p,\omega_i\rightarrow\omega_r)L_i(p,\omega_i)\cos\theta_i\ \text{d}\omega_i\)</span></p>
 </li>
 <li>
 <p>Reciprocity principle (可逆性): <span class="arithmatex">\(f_r(\omega_r\rightarrow\omega_i)=f_r(\omega_i\rightarrow\omega_r)\)</span></p>
 </li>
 <li>
-<p>Energy conservation (能量守恒）: <span class="arithmatex">\(\forall\omega_r\ \int_{H^2}f_r(p,\omega_i\rightarrow\omega_r)L_i(p,\omega_i)cos\theta_i\ d\omega_i\leq 1\)</span></p>
+<p>Energy conservation (能量守恒）: <span class="arithmatex">\(\forall\omega_r\ \int_{H^2}f_r(p,\omega_i\rightarrow\omega_r)L_i(p,\omega_i)\cos\theta_i\ \text{d}\omega_i\leq 1\)</span></p>
 </li>
 <li>
 <p>Isotropic vs. anostropic</p>
@@ -1459,7 +1471,7 @@ R_0&amp;=(\frac{n_1-n_2}{n_1+n_2})^2
 </ul>
 <h3 id="752-measuring-method"><strong>7.5.2 Measuring method</strong><a class="headerlink" href="#752-measuring-method" title="Permanent link">&para;</a></h3>
 <p>测量 BRDF 就是让光影和相机从各个方向去照去拍。</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20135238.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20135238.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20193026.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-17%20193026.png" /></a></p>
 <p>General approach:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>for each outgoing direction wo
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    move light to illuminate surface with a thin beam from wo
@@ -1482,7 +1494,7 @@ R_0&amp;=(\frac{n_1-n_2}{n_1+n_2})^2
 </ul>
 <p><strong>Tabular Representation</strong></p>
 <p>Store regularly-spaced samples in <span class="arithmatex">\((\theta_i,\theta_o,|\phi_i-\phi_o|)\)</span></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20135936.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20135936.png" /></a></p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20135936.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-10-03%20135936.png" /></a></center></p>
 
 
   

@@ -1793,10 +1793,10 @@ b_2
 <li><span class="arithmatex">\(t_{exit}&lt;0\)</span>  <span class="arithmatex">\(\Rightarrow\)</span> The box is “behind” the ray - no intersection</li>
 <li><span class="arithmatex">\(t_{exit}\geq 0\)</span> and <span class="arithmatex">\(t_{enter}&lt;0\ \Rightarrow\)</span> The ray’s origin is inside the box - have intersection</li>
 </ul>
-<p><strong>In summary</strong>, ray and AABB intersect iff
-$$
+<p><strong>In summary</strong>, ray and AABB intersect iff</p>
+<div class="arithmatex">\[
 t_{enter}&lt;t_{exit} \text{ and }t_{exit}\geq0
-$$</p>
+\]</div>
 <h3 id="632-using-aabbs-to-accelerate-ray-tracing"><strong>6.3.2 Using AABBs to accelerate ray tracing</strong><a class="headerlink" href="#632-using-aabbs-to-accelerate-ray-tracing" title="Permanent link">&para;</a></h3>
 <p>Pre-Processing，对画面进行预处理，让我们使用 bounding volumes 求交的时候会更快。</p>
 <h4 id="1-uniform-spatial-partitions-grids"><strong>1 Uniform Spatial Partitions (Grids)</strong><a class="headerlink" href="#1-uniform-spatial-partitions-grids" title="Permanent link">&para;</a></h4>
