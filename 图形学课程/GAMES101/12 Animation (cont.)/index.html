@@ -13,10 +13,8 @@
       
       
       
-        <link rel="prev" href="../3%20Shading/">
+        <link rel="prev" href="../11%20Animation/">
       
-      
-        <link rel="next" href="../5%20Geometry/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -24,7 +22,7 @@
     
     
       
-        <title>4 Texture Mapping - RoderickShao's NoteBook</title>
+        <title>12 Animation(cont.) - RoderickShao's NoteBook</title>
       
     
     
@@ -150,7 +148,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#4-texture-mapping" class="md-skip">
+        <a href="#11-animation-cont" class="md-skip">
           跳转至
         </a>
       
@@ -183,7 +181,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4 Texture Mapping
+              12 Animation(cont.)
             
           </span>
         </div>
@@ -896,29 +894,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    4 Texture Mapping
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../4%20Texture%20Mapping/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -927,175 +905,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#41-barycentric-coordinates" class="md-nav__link">
-    4.1 Barycentric coordinates
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#42-applying-textures" class="md-nav__link">
-    4.2 Applying Textures
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#43-texture-magnification" class="md-nav__link">
-    4.3 Texture magnification
-  </a>
-  
-    <nav class="md-nav" aria-label="4.3 Texture magnification">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#431-what-if-the-texture-is-too-small" class="md-nav__link">
-    4.3.1 What if the texture is too small?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#432-what-if-the-texture-is-too-large" class="md-nav__link">
-    4.3.2 What if the texture is too large?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#433-mip-map" class="md-nav__link">
-    4.3.3 Mip-map
-  </a>
-  
-    <nav class="md-nav" aria-label="4.3.3 Mip-map">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-to-compute-mip-map-level-d" class="md-nav__link">
-    How to compute Mip-map level D ?
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tri-linear-interpolation" class="md-nav__link">
-    Tri-linear interpolation
-  </a>
-  
-    <nav class="md-nav" aria-label="Tri-linear interpolation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mip-map-limitations" class="md-nav__link">
-    Mip-Map limitations
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#44-applications-of-texture" class="md-nav__link">
-    4.4 Applications of texture
-  </a>
-  
-    <nav class="md-nav" aria-label="4.4 Applications of texture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#441-environment-map" class="md-nav__link">
-    4.4.1 Environment Map
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#442-texture-can-affect-shading" class="md-nav__link">
-    4.4.2 Texture can affect shading
-  </a>
-  
-    <nav class="md-nav" aria-label="4.4.2 Texture can affect shading">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bump-mapping" class="md-nav__link">
-    Bump Mapping
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#displacement-mapping-a-more-advanced-approach" class="md-nav__link">
-    Displacement mapping —— a more advanced approach
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#443-3d-procedural-noise-solid-modeling" class="md-nav__link">
-    4.4.3 3D Procedural Noise + Solid Modeling
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#444-precomputed-shading" class="md-nav__link">
-    4.4.4 Precomputed Shading
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#445-solid-modeling-and-volume-rendering" class="md-nav__link">
-    4.4.5 Solid modeling and Volume rendering
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1245,9 +1054,29 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../12%20Animation%20%28cont.%29/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    12 Animation(cont.)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1256,6 +1085,128 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#111-simple-particle-simulation" class="md-nav__link">
+    11.1 Simple particle Simulation
+  </a>
+  
+    <nav class="md-nav" aria-label="11.1 Simple particle Simulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1111" class="md-nav__link">
+    11.1.1 欧拉方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1112" class="md-nav__link">
+    11.1.2 克服不确定性的方法
+  </a>
+  
+    <nav class="md-nav" aria-label="11.1.2 克服不确定性的方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#midpoint-method" class="md-nav__link">
+    Midpoint Method 中点法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adaptive-step-size" class="md-nav__link">
+    Adaptive Step Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implicit-euler-method" class="md-nav__link">
+    Implicit Euler Method
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runge-kutta-families" class="md-nav__link">
+    Runge - Kutta Families
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#position-based-verlet-integration" class="md-nav__link">
+    Position - Based / Verlet Integration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-rigid-body-simulation" class="md-nav__link">
+    11.2 Rigid Body Simulation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-fluid-simulation" class="md-nav__link">
+    11.3 Fluid Simulation
+  </a>
+  
+    <nav class="md-nav" aria-label="11.3 Fluid Simulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eulerian-vs-lagrangian" class="md-nav__link">
+    Eulerian vs. Lagrangian
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#material-point-method-mpm" class="md-nav__link">
+    Material Point Method (MPM)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1303,72 +1254,59 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#41-barycentric-coordinates" class="md-nav__link">
-    4.1 Barycentric coordinates
+  <a href="#111-simple-particle-simulation" class="md-nav__link">
+    11.1 Simple particle Simulation
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#42-applying-textures" class="md-nav__link">
-    4.2 Applying Textures
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#43-texture-magnification" class="md-nav__link">
-    4.3 Texture magnification
-  </a>
-  
-    <nav class="md-nav" aria-label="4.3 Texture magnification">
+    <nav class="md-nav" aria-label="11.1 Simple particle Simulation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#431-what-if-the-texture-is-too-small" class="md-nav__link">
-    4.3.1 What if the texture is too small?
+  <a href="#1111" class="md-nav__link">
+    11.1.1 欧拉方法
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#432-what-if-the-texture-is-too-large" class="md-nav__link">
-    4.3.2 What if the texture is too large?
+  <a href="#1112" class="md-nav__link">
+    11.1.2 克服不确定性的方法
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#433-mip-map" class="md-nav__link">
-    4.3.3 Mip-map
-  </a>
-  
-    <nav class="md-nav" aria-label="4.3.3 Mip-map">
+    <nav class="md-nav" aria-label="11.1.2 克服不确定性的方法">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#how-to-compute-mip-map-level-d" class="md-nav__link">
-    How to compute Mip-map level D ?
+  <a href="#midpoint-method" class="md-nav__link">
+    Midpoint Method 中点法
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#adaptive-step-size" class="md-nav__link">
+    Adaptive Step Size
+  </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#tri-linear-interpolation" class="md-nav__link">
-    Tri-linear interpolation
+  <a href="#implicit-euler-method" class="md-nav__link">
+    Implicit Euler Method
   </a>
   
-    <nav class="md-nav" aria-label="Tri-linear interpolation">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#mip-map-limitations" class="md-nav__link">
-    Mip-Map limitations
+  <a href="#runge-kutta-families" class="md-nav__link">
+    Runge - Kutta Families
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#position-based-verlet-integration" class="md-nav__link">
+    Position - Based / Verlet Integration
   </a>
   
 </li>
@@ -1384,64 +1322,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#44-applications-of-texture" class="md-nav__link">
-    4.4 Applications of texture
+  <a href="#112-rigid-body-simulation" class="md-nav__link">
+    11.2 Rigid Body Simulation
   </a>
   
-    <nav class="md-nav" aria-label="4.4 Applications of texture">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-fluid-simulation" class="md-nav__link">
+    11.3 Fluid Simulation
+  </a>
+  
+    <nav class="md-nav" aria-label="11.3 Fluid Simulation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#441-environment-map" class="md-nav__link">
-    4.4.1 Environment Map
+  <a href="#eulerian-vs-lagrangian" class="md-nav__link">
+    Eulerian vs. Lagrangian
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#442-texture-can-affect-shading" class="md-nav__link">
-    4.4.2 Texture can affect shading
-  </a>
-  
-    <nav class="md-nav" aria-label="4.4.2 Texture can affect shading">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bump-mapping" class="md-nav__link">
-    Bump Mapping
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#displacement-mapping-a-more-advanced-approach" class="md-nav__link">
-    Displacement mapping —— a more advanced approach
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#443-3d-procedural-noise-solid-modeling" class="md-nav__link">
-    4.4.3 3D Procedural Noise + Solid Modeling
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#444-precomputed-shading" class="md-nav__link">
-    4.4.4 Precomputed Shading
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#445-solid-modeling-and-volume-rendering" class="md-nav__link">
-    4.4.5 Solid modeling and Volume rendering
+  <a href="#material-point-method-mpm" class="md-nav__link">
+    Material Point Method (MPM)
   </a>
   
 </li>
@@ -1469,179 +1373,101 @@
   
 
 
-<h1 id="4-texture-mapping"><strong>4 Texture Mapping</strong><a class="headerlink" href="#4-texture-mapping" title="Permanent link">&para;</a></h1>
-<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2675 个字  •  4 行代码 
-</div>
-
-<p>Every 3D surface point also has a place where it goes in the 2D image 将三维表面映射到二维表面</p>
-<p>Each triangle vertex is assigned a texture coordinates <span class="arithmatex">\((u,v)\)</span> [ <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(v\)</span> are both in range <span class="arithmatex">\((0,1)\)</span>]</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20152225.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20152225.png" /></a></p>
-<h2 id="41-barycentric-coordinates"><strong>4.1 Barycentric coordinates</strong><a class="headerlink" href="#41-barycentric-coordinates" title="Permanent link">&para;</a></h2>
-<p>引入重心坐标的目的是在三角形之间进行插值。为什么要进行插值？因为我们想要在三角形上通过顶点处的值得到平滑的变化值。纹理坐标，颜色，法向量都是我们可以插值的。</p>
-<p>A coordinates system for triangles <span class="arithmatex">\((\alpha,\beta,\gamma)\)</span>.</p>
-<p>Points <span class="arithmatex">\((x,y)\)</span> can be presented by <span class="arithmatex">\((\alpha,\beta,\gamma)\)</span> , if <span class="arithmatex">\((x,y)=\alpha A+\beta B+\gamma C\)</span>  and  <span class="arithmatex">\(\alpha+\beta+\gamma=1\)</span>. </p>
-<p>Inside the triangle if all three coordinates are <strong>non-negative</strong>.</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20152411.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20152411.png" /></a></p>
-<p>By barycentric coordinates, we can linearly interpolate values at vertices. 通过重心坐标，我们可以根据顶点处的值对三角形内部进行线性插值。</p>
+<h1 id="11-animation-cont"><strong>11 Animation (Cont.)</strong><a class="headerlink" href="#11-animation-cont" title="Permanent link">&para;</a></h1>
+<h2 id="111-simple-particle-simulation"><strong>11.1 Simple particle Simulation</strong><a class="headerlink" href="#111-simple-particle-simulation" title="Permanent link">&para;</a></h2>
+<p>首先研究单个粒子的运动然后泛化到大多数粒子。我们现认为粒子的运动由速度场 (velocity vector field) 决定，这个速度场就是一个位置和时间的函数 <span class="arithmatex">\(v(x,t)\)</span></p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20192202.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20192202.png" /></a></center></p>
+<p>计算粒子的位置（随时间变化）需要解一个一阶常微分方程</p>
 <div class="arithmatex">\[
-V=\alpha V_A+ \beta V_B + \gamma V_C
+\frac{\text{d}x}{\text{d}t}=\dot{x}=v(x,t)
 \]</div>
-<p><span class="arithmatex">\(V_A,V_B,V_C\)</span> 可以是位置，纹理坐标，颜色，法线，深度，材质属性…</p>
-<p>However, barycentric coordinates are <strong>not invariant</strong> under projection，所以我们在处理3D的图像时，应该先算重心坐标（无论是深度还是什么属性，然后再投影）</p>
-<p>透视插值可参考：[<a href="https://zhuanlan.zhihu.com/p/448575965">数学] 重心坐标插值与透视校正插值 - 知乎</a></p>
-<h2 id="42-applying-textures"><strong>4.2 Applying Textures</strong><a class="headerlink" href="#42-applying-textures" title="Permanent link">&para;</a></h2>
-<p>简单的纹理应用：定义漫反射系数 Simple Texture Mapping: Diffuse Color</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">for</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="n">rasterized</span><span class="w"> </span><span class="n">screen</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="o">:</span><span class="w">        </span><span class="c1">//Usually a pixel&#39;s center</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evaluate</span><span class="w"> </span><span class="n">texture</span><span class="w"> </span><span class="n">coordinate</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="c1">//Using barycentric coordinates</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">texcolor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">texture</span><span class="p">.</span><span class="n">sample</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">);</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">set</span><span class="w"> </span><span class="n">sample</span><span class="err">’</span><span class="n">s</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">texcolor</span><span class="p">;</span><span class="w"> </span><span class="c1">// usually the diffuse albedo Kd</span>
-</code></pre></div>
-<h2 id="43-texture-magnification"><strong>4.3 Texture magnification</strong><a class="headerlink" href="#43-texture-magnification" title="Permanent link">&para;</a></h2>
-<p>下面所说的纹理大还是小，可以理解为纹理的分辨率大还是小。</p>
-<h3 id="431-what-if-the-texture-is-too-small"><strong>4.3.1 What if the texture is too small?</strong><a class="headerlink" href="#431-what-if-the-texture-is-too-small" title="Permanent link">&para;</a></h3>
-<p>我们模型的分辨率非常高，但是我们的贴图的分辨率比较低，就会导致我们一个点映射到纹理上的 <span class="arithmatex">\((u,v)\)</span> 很有可能并不是整数，我们有几种处理方法。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>纹理上的像素被称为 texel</p>
+<p>一阶的原因：只存在一阶导数</p>
+<p>常微分：不存在对其他变量的微分或者倒数</p>
 </div>
-<ul>
-<li><strong>Nearest</strong> </li>
-</ul>
-<p>We just can take the nearest integer point.</p>
-<ul>
-<li><strong>Bilinear interpolation 双线性插值</strong></li>
-</ul>
-<p>取4个最近的样本位置，纹理值已被标记在图上。同时得到分数偏移量 <span class="arithmatex">\((s,t)\)</span></p>
-<p>Linear interpolation (1D) 一维插值</p>
+<h3 id="1111"><strong>11.1.1 欧拉方法</strong><a class="headerlink" href="#1111" title="Permanent link">&para;</a></h3>
+<p>可以使用欧拉方法对给定初始位置和速度场的点求解经过时间t后所处的位置。</p>
+<p><strong>特点</strong> 欧拉方法是一种简单的<strong>迭代方法</strong>，经常被使用、<strong>不准确</strong>、大多数都<strong>不稳定</strong>。</p>
 <div class="arithmatex">\[
-lerp(x,v_0,v_1)=v_0+x(v_1-v_0)
+x^{t+\Delta t}=x^t+\Delta t\dot{x}^t\\
+\dot{x}^{t+\Delta t}=\dot{x}^t+\Delta t\ddot{x}^t\\
 \]</div>
-<p>先进行两次水平的插值</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20220357.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20220357.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20221123.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20221123.png" /></a></p>
-<div class="arithmatex">\[
-u_0 =lerp(s,u_{0,0},u_{10}),\quad u_1 =lerp(s,u_{01},u_{11})
-\]</div>
-<p>最后进行依次竖直插值得到</p>
-<div class="arithmatex">\[
-f(x,y)=lerp(t,u_0,u_1)
-\]</div>
-<ul>
-<li><strong>Bi-cubic</strong>：以16个最近的样品点为例，成本很高。</li>
-</ul>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20213907.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20213907.png" /></a></p>
-<h3 id="432-what-if-the-texture-is-too-large"><strong>4.3.2 What if the texture is too large?</strong><a class="headerlink" href="#432-what-if-the-texture-is-too-large" title="Permanent link">&para;</a></h3>
-<p>如果纹理比较大会造成严重的走样现象</p>
-<p>原因是近处一个像素覆盖的纹理区域相对较小，远处一个像素覆盖了很大一片纹理。屏幕上各个像素覆盖的纹理区域各不相同。如果一个像素覆盖的纹理区域较小，用这个像素的中心查询一下纹理的值，没有什么问题。但是一旦一个像素覆盖了<strong>很大一片区域的纹理</strong>（比如远处接近地平线的纹理），现在我还用一个像素的中心去查这块儿区域，用一个点的值去认为是这一个区域的值，那显然是不对的。用一个点的值无法代表一块纹理区域的颜色变化。</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20222924.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20222924.png" /></a></p>
-<p>增加取样点显然有效，但是花费变得非常高。一个像素内纹理的变化过快，需要更高的采样频率</p>
-<p><strong>Point Query vs. (Avg.) Range Query</strong></p>
-<p>点查询：以纹理为例，给你一个点，它的值是多少，可以用双线性插值来解决，这是点查询。</p>
-<p>范围查询：给你任何一个区域，你立刻可以得到这个范围内的<strong>平均值</strong>，这是范围查询。（范围查询还有查询一个范围内最大值和最小值，这类问题跟现在所说的完全不一样）</p>
-<h3 id="433-mip-map"><strong>4.3.3 Mip-map</strong><a class="headerlink" href="#433-mip-map" title="Permanent link">&para;</a></h3>
-<p>—— Allowing (fast, approx., square) range queries 做快近似方形的范围查询</p>
-<p>我们生成一系列的纹理，像下图所示【可以提前生成】</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20230132.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20230132.png" /></a></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20230143.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-29%20230143.png" /></a></p>
-<h4 id="how-to-compute-mip-map-level-d">How to compute Mip-map level D ?<a class="headerlink" href="#how-to-compute-mip-map-level-d" title="Permanent link">&para;</a></h4>
-<p>Estimate texture footprint using texture coordinates of neighboring screen samples</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133559.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133559.png" /></a></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133604.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133604.png" /></a></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133611.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20133611.png" /></a></p>
-<div class="arithmatex">\[
-D=log_2max(\sqrt{(\frac{du}{dx})^2+(\frac{dv}{dx})^2},\sqrt{(\frac{du}{dy})^2+(\frac{dv}{dy})^2})
-\]</div>
-<p>我们可以用如上图所示的一个正方形框来近似这样一个不规则的区域。</p>
-<p>当我们把一个像素在纹理上覆盖区域近似成一个正方形时，如何根据我刚刚已经算好的Mip-map，去查询这样一个边长为L正方形的区域的平均值是多少？</p>
-<p>如果这个正方形区域就是1×1，那么就表明一个像素正好对应一个边长为L的正方形区域，也就可以直接在最原始（第0层，D=0）的纹理上找对应的像素，就是它的值。</p>
-<p>如果这个正方形区域是2×2，那么这个区域会在第1层（D=1）上对应一个像素</p>
-<p>如果这个正方形区域是4×4，那么这个区域会在第2层（D=2）上对应一个像素</p>
-<p>对于L×L大小的正方形，一定会在 <span class="arithmatex">\(D=log_2L\)</span> 层上对应到一个像素。</p>
-<p>因此我们只需要算出D，即在第几层正方形的区域对应一个像素，就可以得出这个区域内平均值是多少。</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221841.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221841.png" /></a></p>
-<p>我们发现这个图并<strong>不是连续</strong>的，还是使用插值方法 (<strong>Tri-linear interpolation</strong>) 使图像连续。</p>
-<h3 id="tri-linear-interpolation"><strong>Tri-linear interpolation</strong><a class="headerlink" href="#tri-linear-interpolation" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221649.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221649.png" /></a></p>
-<p>所谓三线性插值，就是在向下取整的D level上进行一次双线性插值(前文提过)，再在D+1 level之上进行一次双线性插值，这二者数据再根据实际的连续D值在向下和向上取整的两个不同level之间的比例，再来一次线性插值，而这整体就是一个<strong>三线性插值</strong>了。</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221801.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221801.png" /></a></p>
-<h4 id="mip-map-limitations"><strong>Mip-Map limitations</strong><a class="headerlink" href="#mip-map-limitations" title="Permanent link">&para;</a></h4>
-<p>我们发现使用Mip-Map有一个问题就是在远处的所有细节都丢失了 <strong>OverBlur</strong></p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222035.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222035.png" /></a></p>
-<p>造成 Overblur 的原因在于 Mip-Map 采取的是方形求平均，面对 footprints 为长方形等等，我们就会取一个更大的正方形，这样就会造成overblur </p>
-<p>Solution : <strong>Anisotropic Filtering</strong> (各向异性过滤)，我们不仅仅解决方形的，我们还解决长方形的。我们如下图构建 Rip-Map (存储的内容就变成原来的三倍了)</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222640.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222640.png" /></a></p>
-<p>可以查找轴对齐的矩形区域</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20150304.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20150304.png" /></a></p>
-<p>其实各向异性过滤仍不能解决 diagonal 的 footprint，因为各向异性只能解决水平或竖直的不同大小的矩形footprint</p>
-<p>我们还有其他的方法，比如说 EWA filtering ，可以解决对角线的情况</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222926.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20222926.png" /></a></p>
-<h2 id="44-applications-of-texture"><strong>4.4 Applications of texture</strong><a class="headerlink" href="#44-applications-of-texture" title="Permanent link">&para;</a></h2>
-<p>texture = memory + range query (filtering) 在GPU中我们可以把纹理理解为一块内存，并且可以做相应的点查询与范围查询</p>
-<h3 id="441-environment-map"><strong>4.4.1 Environment Map</strong><a class="headerlink" href="#441-environment-map" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20171108.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20171108.png" /></a></p>
-<p>环境贴图，制造环境光，描述来自不同方向的光照信息，照亮整个环境中的物体，也可以被环境中的物体反射。环境光只记录光的方向，即假设环境光来自无限远处，从同一个方向照过来的<strong>光强度都是一样的</strong>。</p>
-<p>如何记录环境光？</p>
-<p>(1) Spherical Environment Map</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-07%20201808.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-07%20201808.png" /></a></p>
-<p>可以把整个环境光记录在球上，<strong>用球去存储环境光的信息</strong>。</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-07%20201700.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-07%20201700.png" /></a></p>
-<p>缺点在于我们来看一个环境光球展开后的顶部和底部，可以发现出现了不同程度的变形。</p>
-<p>（2) Cube Map</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-07%20202256.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-07%20202256.png" /></a></p>
-<p>用一个立方体盒子，把这个球包围起来。当光从中心打到包围的球上时，我们不管，让光继续走，直到碰到立方体的一个面，记录下来信息。这样可以减少扭曲。</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-07%20201849.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-07%20201849.png" /></a></p>
-<h3 id="442-texture-can-affect-shading"><strong>4.4.2 Texture can affect shading</strong><a class="headerlink" href="#442-texture-can-affect-shading" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20171141.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20171141.png" /></a></p>
-<p>贴图不光可以表示颜色信息，还可以表示<strong>高度信息</strong>。高度贴图可以定义任意一个点，沿着他的法线向上向下走的相对高度。如右图，原本就是一个很普通的球，可以用很少的三角形来表示，如果想通过直接改变模型的方法得到右边那种凹凸不平的效果，会用很多三角形，开销会很大，那么在这里通过<strong>凹凸（高度）贴图</strong>，改变高度信息，高度信息变化，就会使法线信息变化，从而使着色结果发生变化（人们看到的明暗对比一定程度上就是因为法线变化），得到右图的效果。</p>
-<p>纹理贴图并未改变几何特性，只是通过改变高度从而影响法线的方向以改变着色结果。</p>
-<h4 id="bump-mapping"><strong>Bump Mapping</strong><a class="headerlink" href="#bump-mapping" title="Permanent link">&para;</a></h4>
-<p>在不添加更多的三角形的情况下，添加更多表面的细节</p>
-<ul>
-<li>Perturb surface normal per pixel</li>
-<li>“Height shift” per texel defined by texture</li>
-<li>Modify normal vector</li>
-</ul>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20172930.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20172930.png" /></a></p>
-<p>（1）在二维平面上，怎么对法线进行扰动？[flatland case]</p>
-<p>设原先表面的法线为 <span class="arithmatex">\(n(p)=(0,1)\)</span>，扰动后计算切线（利用相邻两点的切线）</p>
-<div class="arithmatex">\[
-dp=c*[h(p+1)-h(p)]
-\]</div>
-<p>然后将切线旋转90度，得到相应的法线</p>
-<div class="arithmatex">\[
- n(p)=(-dp,1)
-\]</div>
-<p>最后再归一化就可以了</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20194944.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20194944.png" /></a></p>
-<p>（2）在三维立体空间中，怎对法线进行扰动？</p>
-<p>设原先表面的法线为 <span class="arithmatex">\(n(p)=(0,0,1)\)</span>，求出相应的梯度</p>
+<p>欧拉方法的误差：使用数值计算的方法积分，误差会累计。并且 <span class="arithmatex">\(\Delta t\)</span> 越大，得到的结果也相差越大。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20193416.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20193416.png" /></a></p>
+<p>欧拉方法的不稳定性：如下图，粒子的轨迹始终不能沿着圆形或指定的轨迹，因为间隔并不能取到无限小。</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20193624.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20193624.png" /></a></center></p>
+<p>综上所述，通过数值积分求解会导致的两个问题是 Errors 和 Instability。</p>
+<p>每一步的errors会累计，随着模拟的进行，accuracy会下降，但是可以增大步长来环节这个问题，所以误差<strong>errors</strong>在图形应用中<strong>不是关键问题</strong>。</p>
+<p>instability会导致diverge（不管怎么模拟都可能和正确的结果相差较远），<strong>缺乏稳定性</strong>是仿真中的基本问题，<strong>不容忽视</strong></p>
+<h3 id="1112"><strong>11.1.2 克服不确定性的方法</strong><a class="headerlink" href="#1112" title="Permanent link">&para;</a></h3>
+<p>那么我们应当如何克服不稳定性呢？</p>
+<h4 id="midpoint-method"><strong>Midpoint Method 中点法</strong><a class="headerlink" href="#midpoint-method" title="Permanent link">&para;</a></h4>
+<p>先计算到达 (a)，然后得到 (a) 处的导数，接着利用该导数更新下一个位置得到 (c)</p>
 <div class="arithmatex">\[
 \begin{aligned}
-\frac{dp}{du} = c1*[h(u+1)-h(u)]\\
-\frac{dp}{dv} = c2*[h(v+1)-h(v)]
+x_{\text{mid}}=x(t)+\Delta t/2\cdot v(x(t),t)\\
+x(t+\Delta t)=x(t)+\Delta t \cdot v(x_{\text{mid}},t)
 \end{aligned}
 \]</div>
-<p>从而得到扰动后的法线为 </p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20204352.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20204352.png" /></a></center></p>
+<p>补充上加速度的式子，我们可以得到</p>
 <div class="arithmatex">\[
-n=(-dp/du,-dp/dv,1)
+\begin{aligned}
+x^{t+\Delta t}&amp;=x^t+\Delta t \dot{x}^{\text{mid}}\\
+&amp;=x^t+\Delta t(\dot{x}^t+\frac{\Delta t}{2}\ddot{x}^t)\\
+&amp;=x^t+\Delta t\dot{x}^t+\frac{({\Delta t})^2}{2}\ddot{x}^t\\
+\end{aligned}
 \]</div>
-<p>最后再归一化就可以了</p>
-<p>c1,c2 表示纹理定义的法线对真实物体法线的影响系数（程度）</p>
-<p>我们可以构建一个局部的坐标系，这样我们的法线都是 <span class="arithmatex">\((0,0,1)\)</span> ，之后得到原先坐标系的法向量只需要做一个坐标变换就可以了。</p>
-<h4 id="displacement-mapping-a-more-advanced-approach"><strong>Displacement mapping</strong> —— a more advanced approach<a class="headerlink" href="#displacement-mapping-a-more-advanced-approach" title="Permanent link">&para;</a></h4>
-<p>改变了几何的形状！改变了顶点的位置。</p>
-<p>真实改变高度，解决了前一个方法边缘处以及<strong>凸起投影到自身无法显现</strong>的不足。但是我们需要原本几何体的三角形<strong>足够细</strong>，因为改变的是三角形顶点的高度，模型需要跟得上纹理的变化速度。</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-07%20204150.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-07%20204150.png" /></a></p>
-<h3 id="443-3d-procedural-noise-solid-modeling"><strong>4.4.3 3D Procedural Noise + Solid Modeling</strong><a class="headerlink" href="#443-3d-procedural-noise-solid-modeling" title="Permanent link">&para;</a></h3>
-<p>定义了三维空间中的噪声函数，并没有真正生成一张图像</p>
-<p>函数可以经过各种处理变成自己想要的样子，如使用纹理表示山脉起伏的信息</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20205013.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20205013.png" /></a></p>
-<h3 id="444-precomputed-shading"><strong>4.4.4 Precomputed Shading</strong><a class="headerlink" href="#444-precomputed-shading" title="Permanent link">&para;</a></h3>
-<p>环境光遮蔽(Ambient occlusion)可以<strong>==提前==计算好储存在贴图</strong>中，使用时将其他着色结果乘以环境光遮蔽的结果得到带有环境光遮蔽的结果</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20205019.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20205019.png" /></a></p>
-<h3 id="445-solid-modeling-and-volume-rendering"><strong>4.4.5 Solid modeling and Volume rendering</strong><a class="headerlink" href="#445-solid-modeling-and-volume-rendering" title="Permanent link">&para;</a></h3>
-<p>三维纹理广泛应用到体渲染之中，比如在医学领域使用核磁共振得到三维空间中的密度信息进行渲染</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20205030.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-06%20205030.png" /></a></p>
+<p>这个式子跟泰勒展开就比较像了</p>
+<h4 id="adaptive-step-size"><strong>Adaptive Step Size</strong><a class="headerlink" href="#adaptive-step-size" title="Permanent link">&para;</a></h4>
+<p>使用步长 <span class="arithmatex">\(T\)</span> 计算一个欧拉步骤来获得 <span class="arithmatex">\(X_T\)</span>，然后相应地计算经过两次步长为 <span class="arithmatex">\(T/2\)</span> 的欧拉步骤，获得 <span class="arithmatex">\(X_{T/2}\)</span>，计算两点的差距 <span class="arithmatex">\(||X_T-X_{T/2}||\)</span> ，如果它比我们设定的阈值要大，那么我就继续减少步长，直到两者差距比阈值小，最后确定最后的步长。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20210346.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20210346.png" /></a></p>
+<h4 id="implicit-euler-method"><strong>Implicit Euler Method</strong><a class="headerlink" href="#implicit-euler-method" title="Permanent link">&para;</a></h4>
+<p>也被称作后向方法，使用下一时间的导数来计算当前步骤</p>
+<div class="arithmatex">\[
+x^{t+\Delta t}=x^t+\Delta t\dot{x}^{t+\Delta t}\\
+\dot{x}^{t+\Delta t}=\dot{x}^t+\Delta t\ddot{x}^{t+\Delta t}\\
+\]</div>
+<p>求解非线性的 <span class="arithmatex">\(x^{t+\Delta t}\)</span> 和 <span class="arithmatex">\(\dot{x}^{t+\Delta t}\)</span> 较为困难，可以认为在这个时刻位置知道且已知下一个时刻的加速度，使用求根公式来求解。也可以使用优化方法来解出来。</p>
+<div class="admonition note">
+<p class="admonition-title">定义与量化"stability"的方法</p>
+<p>We use the local truncation error (every step) / total accumulated error (overall) 使用局部误差（每一步）或者说是总体误差来衡量，注意到随着步长的减小误差会下降，所以我们需要研究的是二者的阶。</p>
+<p>隐式欧拉方法的阶数为1，意味着局部误差为 <span class="arithmatex">\(O(h^2)\)</span> 且总体误差为 <span class="arithmatex">\(O(h)\)</span> ，其中 <span class="arithmatex">\(h\)</span> 为步长。<span class="arithmatex">\(O(h)\)</span> 的理解为如果将 <span class="arithmatex">\(h\)</span> 减半，那么预期误差也会减半。</p>
+</div>
+<h4 id="runge-kutta-families"><strong>Runge - Kutta Families</strong><a class="headerlink" href="#runge-kutta-families" title="Permanent link">&para;</a></h4>
+<p>Runge-Kutta方法是一系列用于求解 ODE 的高级方法。特别擅长处理非线性问题，其中四阶的方法（RK4)是使用最为广泛的。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20213544.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20213544.png" /></a></p>
+<h4 id="position-based-verlet-integration"><strong>Position - Based / Verlet Integration</strong><a class="headerlink" href="#position-based-verlet-integration" title="Permanent link">&para;</a></h4>
+<p>这是一种不基于物理的方法，通过调整物体的位置使物体满足某种性质。</p>
+<p><strong>主要思想</strong></p>
+<ul>
+<li>After modified Euler forward-step, constrain positions of particles to prevent divergent, unstable behavior  在修改欧拉前步（forward-step）之后，约束粒子的位置以防止divergent、不稳定的现象。</li>
+<li>Use constrained positions to calculate velocity  使用约束位置计算速度。</li>
+<li>Both of these ideas will dissipate energy, stabilize  这两种思想都会耗散能量，使其具有稳定性。</li>
+</ul>
+<p><strong>特点</strong> 快速又简单，但是不是基于物理模拟的，不满足能量守恒。</p>
+<h2 id="112-rigid-body-simulation"><strong>11.2 Rigid Body Simulation</strong><a class="headerlink" href="#112-rigid-body-simulation" title="Permanent link">&para;</a></h2>
+<p>刚体模拟与模拟单个粒子相似，只需额外考虑一些属性，如下所示</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20214428.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20214428.png" /></a></p>
+<h2 id="113-fluid-simulation"><strong>11.3 Fluid Simulation</strong><a class="headerlink" href="#113-fluid-simulation" title="Permanent link">&para;</a></h2>
+<p>将水是由很多小的刚体球组成的，同时假设水是不可压缩的</p>
+<p>So, as long as the density changes somewhere, it should be “corrected” via changing the positions of particles. 这句话的意思是每个地方的密度都要往一开始的密度分布来修正 </p>
+<p>我们可以求得每个点对于另一个点的密度的梯度，接下来运用梯度下降的方法来更新粒子</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20215116.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20215116.png" /></a></center></p>
+<h3 id="eulerian-vs-lagrangian"><strong>Eulerian vs. Lagrangian</strong><a class="headerlink" href="#eulerian-vs-lagrangian" title="Permanent link">&para;</a></h3>
+<p>Lagrangian 质点法：摄影师全程跟踪同一只鸟。把每个点都正确模拟</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20215521.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20215521.png" /></a></center></p>
+<p>Eulerian 网格法：摄影师是静止的，只能拍摄经过一帧的所有鸟（比如在时间“t”）。把空间分成很多网格，关注每个网格中随着时间是怎么变化的</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20215526.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20215526.png" /></a></center></p>
+<h3 id="material-point-method-mpm"><strong>Material Point Method (MPM)</strong><a class="headerlink" href="#material-point-method-mpm" title="Permanent link">&para;</a></h3>
+<p>MPM是一种混合的(Hybrid)，结合Eulerian和Lagrangian的方法。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20215722.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20215722.png" /></a></p>
+<ul>
+<li>Lagrangian：认为粒子带有材质属性。</li>
+<li>Eulerian：使用网格来做数值积分。</li>
+<li>lnteraction：粒子将属性传递给网格，网格执行更新，然后插值回粒子。</li>
+</ul>
 
 
   
@@ -1783,7 +1609,7 @@ n=(-dp/du,-dp/dv,1)
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../3%20Shading/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 3 Shading" rel="prev">
+          <a href="../11%20Animation/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 11 Animation" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1793,27 +1619,11 @@ n=(-dp/du,-dp/dv,1)
                 上一页
               </span>
               <div class="md-ellipsis">
-                3 Shading
+                11 Animation
               </div>
             </div>
           </a>
         
-        
-          
-          <a href="../5%20Geometry/" class="md-footer__link md-footer__link--next" aria-label="下一页: 5 Geometry" rel="next">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                下一页
-              </span>
-              <div class="md-ellipsis">
-                5 Geometry
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
         
       </nav>
     
