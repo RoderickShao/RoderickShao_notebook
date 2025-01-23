@@ -1363,7 +1363,7 @@
 
 <h1 id="3-shading"><strong>3 Shading</strong><a class="headerlink" href="#3-shading" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 914 个字  •  11 行代码 
+    文本统计：约 915 个字  •  11 行代码 
 </div>
 
 <p>Definition: the process of <strong>applying a material</strong> to an object </p>
@@ -1381,7 +1381,7 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20140019.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20140019.png" /></a></p>
 <p><strong>Lambertian (Diffuse) Shading</strong> : </p>
 <div class="arithmatex">\[
-L_d = k_d(I/r^2)max(0,n\cdot I)
+L_d = k_d(I/r^2)\max(0,n\cdot I)
 \]</div>
 <p>与 0 取max的原因是当 <span class="arithmatex">\(n\cdot I\)</span> 为负数时，也就是光从下面打上来，这个时没有意义的，这时候就取0，意为没有光照到。</p>
 <p><span class="arithmatex">\(k_d\)</span> means diffuse coefficient. </p>
@@ -1396,12 +1396,12 @@ L_d = k_d(I/r^2)max(0,n\cdot I)
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20154918.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20154918.png" /></a></p>
 <p><span class="arithmatex">\(\bold v\)</span> close to mirror direction <span class="arithmatex">\(\Leftrightarrow\)</span> half vector near normal</p>
 <div class="arithmatex">\[
-\pmb{h} = bisector(\pmb v, \pmb l) = \frac{\pmb v +\pmb l}{\|\pmb v +\pmb l \|}
+\pmb{h} = \text{bisector}(\pmb v, \pmb l) = \frac{\pmb v +\pmb l}{\|\pmb v +\pmb l \|}
 \]</div>
 <p>这样我们得到 Specular term 的光强的值</p>
 <div class="arithmatex">\[
 \begin{aligned}
-L_s &amp;= k_s(I/r^2)max(0,cos \alpha)^p \\
+L_s &amp;= k_s(I/r^2)max(0,\cos \alpha)^p \\
 &amp;= k_s(I/r^2)max(0,\pmb {n}\cdot \pmb {h}) ^p
 \end{aligned}
 \]</div>

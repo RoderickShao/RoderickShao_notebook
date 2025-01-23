@@ -1325,20 +1325,20 @@
 
 <h1 id="2-rasterization"><strong>2 Rasterization</strong><a class="headerlink" href="#2-rasterization" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2016 个字  •  11 行代码 
+    文本统计：约 2028 个字  •  11 行代码 
 </div>
 
 <p>What’s after MVP(Model/View/Projection transformation)? We need to convert the Canonical Cube to Screen called <strong>Rasterize</strong>.</p>
 <p>Define the screen space:</p>
 <ul>
 <li>Pixels ’s indices are in the form of <span class="arithmatex">\((x,y)\)</span></li>
-<li>Pixels ’s indices are from <span class="arithmatex">\((0,0)\)</span> to <span class="arithmatex">\((width-1,height-1)\)</span></li>
+<li>Pixels ’s indices are from <span class="arithmatex">\((0,0)\)</span> to <span class="arithmatex">\((\text{width}-1,\text{height}-1)\)</span></li>
 <li>Pixel <span class="arithmatex">\((x,y)\)</span> is centered at <span class="arithmatex">\((x+0.5,y+0.5)\)</span> </li>
-<li>The screen covers range <span class="arithmatex">\((0,0)\)</span> to <span class="arithmatex">\((width,height)\)</span> </li>
+<li>The screen covers range <span class="arithmatex">\((0,0)\)</span> to <span class="arithmatex">\((\text{width},\text{height})\)</span> </li>
 </ul>
-<p>Transform in <span class="arithmatex">\(xy\)</span> plane :<span class="arithmatex">\([-1,1]^2\)</span> to <span class="arithmatex">\([0,width]\times[0,height]\)</span></p>
+<p>Transform in <span class="arithmatex">\(xy\)</span> plane :<span class="arithmatex">\([-1,1]^2\)</span> to <span class="arithmatex">\([0,\text{width}]\times[0,height]\)</span></p>
 <div class="arithmatex">\[
-M_{viewport}=\left(\begin{matrix}\frac{width}{2}&amp;0&amp;0&amp;\frac{width}{2}\\0&amp;\frac{height}{2}&amp;0&amp;\frac{height}{2}\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\end{matrix}\right)
+M_{viewport}=\left(\begin{matrix}\frac{\text{width}}{2}&amp;0&amp;0&amp;\frac{\text{width}}{2}\\0&amp;\frac{\text{height}}{2}&amp;0&amp;\frac{\text{height}}{2}\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\end{matrix}\right)
 \]</div>
 <h2 id="21-sampling"><strong>2.1 Sampling</strong><a class="headerlink" href="#21-sampling" title="Permanent link">&para;</a></h2>
 <p>We use triangles as the fundamental shape primitives.</p>
@@ -1351,7 +1351,7 @@ M_{viewport}=\left(\begin{matrix}\frac{width}{2}&amp;0&amp;0&amp;\frac{width}{2}
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20113116.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20113116.png" /></a></p>
 <p>Then we need to use set of pixel values to approximating triangle, one way to solve is <strong>sampling（采样）</strong>. If the center of pixel is inside triangle, we sample this point.</p>
 <div class="arithmatex">\[
-inside(t,x,y)=\begin{cases}1 ,&amp;\text{Point (x,y) in triangle t}\\0 ,&amp;\text{otherwise}\end{cases}
+\text{inside}(t,x,y)=\begin{cases}1 ,&amp;\text{Point (x,y) in triangle t}\\0 ,&amp;\text{otherwise}\end{cases}
 \]</div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">x</span><span class="o">&lt;</span><span class="n">xmax</span><span class="p">;</span><span class="o">++</span><span class="n">x</span><span class="p">)</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">y</span><span class="o">&lt;</span><span class="n">ymax</span><span class="p">;</span><span class="o">++</span><span class="n">y</span><span class="p">)</span>
