@@ -524,6 +524,8 @@
       
         
       
+        
+      
     
     
       
@@ -695,6 +697,8 @@
   
     
     
+      
+        
       
         
       
@@ -1196,6 +1200,50 @@
 
               
             
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../6.837/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    6.837
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1325,7 +1373,7 @@
 
 <h1 id="2-rasterization"><strong>2 Rasterization</strong><a class="headerlink" href="#2-rasterization" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2028 个字  •  11 行代码 
+    文本统计：约 2030 个字  •  11 行代码 
 </div>
 
 <p>What’s after MVP(Model/View/Projection transformation)? We need to convert the Canonical Cube to Screen called <strong>Rasterize</strong>.</p>
@@ -1429,7 +1477,7 @@ M_{viewport}=\left(\begin{matrix}\frac{\text{width}}{2}&amp;0&amp;0&amp;\frac{\t
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20164948.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20164948.png" /></a></p>
 <p>怎么做这样的模糊呢？可以直接选择一个1像素的box filter，对一个像素中的颜色求平均。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20165502.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20165502.png" /></a></p>
-<p>In rasterizing one triangle, the average value inside a pixel  area of <span class="arithmatex">\(f(x,y) = inside(triangle,x,y)\)</span> is equal to the area of the  pixel covered by the triangle.</p>
+<p>In rasterizing one triangle, the average value inside a pixel  area of <span class="arithmatex">\(f(x,y) = \text{inside}(\text{triangle},x,y)\)</span> is equal to the area of the  pixel covered by the triangle.</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20165149.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20165149.png" /></a></p>
 <p>那么在实际上，我们不可能把面积算出来之后接着得到相应的灰度值，我们可以使用超采样的方法<strong>（MSAA）</strong></p>
 <p>通过采样一个像素内的多个位置并平均它们的值来近似1像素盒滤波器的效果</p>
