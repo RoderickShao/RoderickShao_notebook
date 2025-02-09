@@ -1066,6 +1066,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gridintersect" class="md-nav__link">
+    Grid::intersect
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1184,6 +1191,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gridintersect" class="md-nav__link">
+    Grid::intersect
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1222,7 +1236,7 @@
 <h1 id="assignment-5"><strong>Assignment 5</strong><a class="headerlink" href="#assignment-5" title="Permanent link">&para;</a></h1>
 <p>这一次作业实现的内容是增加了网格结构，为后续加速图形相交提供了基础。整体难度比之前要大，各种函数的使用逻辑更加复杂。</p>
 <p>整体思路是将 grid 视为一个 primitive，但是这个是不放到 group 里面去的，可以选择单独渲染。</p>
-<h2 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h2>
+<h2 id="tasks"><strong>Tasks</strong><a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h2>
 <p>（1）给 <code>Object3D</code> 类 增加一个指向 BoundingBox的指针，代表这个物体的包围盒，相应地增加访问函数 <code>BoundingBox* Object3D::getBoundingBox()</code></p>
 <p>同时对派生类的包围盒进行初始化，注意不用初始化平面的包围盒。</p>
 <p>（2）增加 <code>Object3D</code> 的派生类 <code>Grid</code>，相应的参数有网格在三个维度的分割数量，同时还有一个记录每个网格信息的变量，一开始仅仅只需要存储一个网格中是否含有物体，之后改为存储包含这个网格的物体的数组。</p>
@@ -1295,7 +1309,7 @@
 <a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="p">}</span>
 </code></pre></div>
 <p>transform 类的包围盒就是先得到未变换的物体的包围盒，然后将包围盒的八个点进行变换，得到的东西再求一个包围盒。代码比较冗长，这里略。</p>
-<h3 id="grid">Grid<a class="headerlink" href="#grid" title="Permanent link">&para;</a></h3>
+<h3 id="grid"><strong>Grid</strong><a class="headerlink" href="#grid" title="Permanent link">&para;</a></h3>
 <p>这是这次作业的重点，分为 (1) 类的定义 (2) <code>insertIntoGrid()</code>(3) <code>Grid::paint()</code> (4) <code>Grid::intersect</code> 四部分来阐述。</p>
 <h4 id="_1">类的定义<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Grid</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Object3D</span><span class="w"> </span><span class="p">{</span>
@@ -1398,7 +1412,7 @@
 <a id="__codelineno-7-98" name="__codelineno-7-98" href="#__codelineno-7-98"></a><span class="w">        </span><span class="n">Object3DVector</span><span class="w"> </span><span class="o">*</span><span class="n">objects</span><span class="p">;</span>
 <a id="__codelineno-7-99" name="__codelineno-7-99" href="#__codelineno-7-99"></a><span class="p">};</span>
 </code></pre></div>
-<h4 id="insertintogrid"><code>insertIntoGrid</code><a class="headerlink" href="#insertintogrid" title="Permanent link">&para;</a></h4>
+<h4 id="insertintogrid"><strong><code>insertIntoGrid</code></strong><a class="headerlink" href="#insertintogrid" title="Permanent link">&para;</a></h4>
 <p><code>insertIntoGrid</code> 为 Object3D 的一个虚函数，可以被派生类所重写</p>
 <p><code>sphere</code> 类，注意一下这里处理变换的细节，采用的是逆变换网格来判断变换后的球是否在网格中，因为球相应的变换写起来比较困难</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Sphere::insertIntoGrid</span><span class="p">(</span><span class="n">Grid</span><span class="w"> </span><span class="o">*</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">Matrix</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1571,6 +1585,7 @@
 <a id="__codelineno-13-77" name="__codelineno-13-77" href="#__codelineno-13-77"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-13-78" name="__codelineno-13-78" href="#__codelineno-13-78"></a><span class="p">}</span>
 </code></pre></div>
+<h4 id="gridintersect"><strong><code>Grid::intersect</code></strong><a class="headerlink" href="#gridintersect" title="Permanent link">&para;</a></h4>
 <p><code>Grid::intersect</code> 的难度要更大一些，需要两个辅助函数 <code>Grid::initializeRayMarch</code> 以及<code>MarchingInfo::nextCell</code> 以及一个辅助的类 <code>MarchingInfo</code>，来记录光线的移动</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MarchingInfo</span><span class="p">{</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">public</span><span class="o">:</span>
