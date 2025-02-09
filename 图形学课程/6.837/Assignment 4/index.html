@@ -16,6 +16,8 @@
         <link rel="prev" href="../Assignment%203/">
       
       
+        <link rel="next" href="../Assignment%205/">
+      
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.2.0-b3">
@@ -834,6 +836,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1023,6 +1027,26 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Assignment%205/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assignment 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1103,9 +1127,9 @@
   
 
 
-<h1 id="assignment-4">Assignment 4<a class="headerlink" href="#assignment-4" title="Permanent link">&para;</a></h1>
+<h1 id="assignment-4"><strong>Assignment 4</strong><a class="headerlink" href="#assignment-4" title="Permanent link">&para;</a></h1>
 <p>这次作业实现了光线追踪基本的内容，考虑了折射与反射的内容，并且加入了阴影的判断。</p>
-<h2 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h2>
+<h2 id="tasks"><strong>Tasks</strong><a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h2>
 <p>（1）给 <code>PhongMaterial</code> 类中加入折射与反射相关的参数 <code>relfectiveColor</code> <code>transparentColor</code> 以及 <code>indexOfRefraction</code> 并添加相应的访问函数。</p>
 <div class="admonition note">
 <p class="admonition-title"><code>relfectiveColor</code> <code>transparentColor</code> 的解释</p>
@@ -1153,7 +1177,7 @@
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">attenuation</span><span class="p">;</span>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="ray-tracer">Ray tracer<a class="headerlink" href="#ray-tracer" title="Permanent link">&para;</a></h2>
+<h2 id="ray-tracer"><strong>Ray tracer</strong><a class="headerlink" href="#ray-tracer" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">RayTracer</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="n">RayTracer</span><span class="p">(</span><span class="n">SceneParser</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">max_bounces</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">cutoff_weight</span><span class="p">)</span>
@@ -1415,7 +1439,7 @@
 <a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="n">tracer</span><span class="o">-&gt;</span><span class="n">traceRay</span><span class="p">(</span><span class="n">ray</span><span class="p">,</span><span class="w"> </span><span class="n">camera</span><span class="o">-&gt;</span><span class="n">getTMin</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">hit</span><span class="p">);</span>
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<h2 id="summary"><strong>Summary</strong><a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>这次作业基本完成了光线追踪的大部分内容，简化的部分为</p>
 <p>（1）将半透明的物体的阴影设置的跟不透明的一样，这部分是本次作业的credit</p>
 <p>（2）折射部分的简化</p>
@@ -1578,6 +1602,22 @@
             </div>
           </a>
         
+        
+          
+          <a href="../Assignment%205/" class="md-footer__link md-footer__link--next" aria-label="下一页: Assignment 5" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Assignment 5
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
         
       </nav>
     

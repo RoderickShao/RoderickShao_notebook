@@ -836,6 +836,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1038,6 +1040,26 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Assignment%205/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assignment 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1131,9 +1153,9 @@
   
 
 
-<h1 id="assignment-3">Assignment 3<a class="headerlink" href="#assignment-3" title="Permanent link">&para;</a></h1>
+<h1 id="assignment-3"><strong>Assignment 3</strong><a class="headerlink" href="#assignment-3" title="Permanent link">&para;</a></h1>
 <p>本次作业使用到了 OpenGL 的相关内容，做之前需要进行相关的环境配置</p>
-<h2 id="opengl">OpenGL 相关函数的解析<a class="headerlink" href="#opengl" title="Permanent link">&para;</a></h2>
+<h2 id="opengl"><strong>OpenGL 相关函数的解析</strong><a class="headerlink" href="#opengl" title="Permanent link">&para;</a></h2>
 <p><code>glPushMatrix</code> 和<code>glPopMatrix</code></p>
 <p>Use the <code>glPushMatrix()</code> and <code>glPopMatrix()</code> commands to save the current transformation to the stack or restore a transformation matrix from the top of the stack.</p>
 <p>要理解这两个函数，首先要理解 OpenGL 的建模方式：OpenGL物体建模实际上是分两步走的。第一步，在世界坐标系的原点位置绘制出该物体；第二步，通过modelview变换矩阵对世界坐标系原点处的物体进行仿射变换，将该物体移动到世界坐标系的目标位置处。</p>
@@ -1191,7 +1213,7 @@
 <p>(1) 支持相机的三种操作，分别是平移旋转以及放缩</p>
 <p>(2) 利用 OpenGL相关函数绘制相关物体，在每个 Object3d 的子类中增加函数 <code>paint()</code> </p>
 <p>Phong Material 类中需要完成的就是增加一个函数 shade，用于得到相应的染色结果</p>
-<h3 id="_2">相机操作<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_2"><strong>相机操作</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>将相机拉远和拉近</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">OrthographicCamera::dollyCamera</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">dist</span><span class="p">)</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
@@ -1222,7 +1244,7 @@
 <a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">  </span><span class="n">rotMat</span><span class="p">.</span><span class="n">TransformDirection</span><span class="p">(</span><span class="n">horizontal</span><span class="p">);</span>
 <a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="paint"><code>paint()</code> 函数<a class="headerlink" href="#paint" title="Permanent link">&para;</a></h3>
+<h3 id="paint"><strong><code>paint()</code> 函数</strong><a class="headerlink" href="#paint" title="Permanent link">&para;</a></h3>
 <p>Group类中的 <code>paint</code> 函数就是一次调用各个 object 的 <code>paint</code> 函数</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Group::paint</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">objectNum</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>

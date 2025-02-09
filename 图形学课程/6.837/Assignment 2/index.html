@@ -836,6 +836,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1046,6 +1048,26 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Assignment%205/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assignment 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1147,7 +1169,7 @@
   
 
 
-<h1 id="assignment-2">Assignment 2<a class="headerlink" href="#assignment-2" title="Permanent link">&para;</a></h1>
+<h1 id="assignment-2"><strong>Assignment 2</strong><a class="headerlink" href="#assignment-2" title="Permanent link">&para;</a></h1>
 <p>本次作业需要完成的任务是</p>
 <ul>
 <li>增加平面以及三角形等基础图形</li>
@@ -1156,7 +1178,7 @@
 <li>完成三种shading 分别是 normal shading, diffuse shading, depth shading</li>
 </ul>
 <p>尤其关注一下这里的 diffuse shading，其实就是简单的实现了一下直接光照部分以及环境光部分</p>
-<h2 id="plane">Plane<a class="headerlink" href="#plane" title="Permanent link">&para;</a></h2>
+<h2 id="plane"><strong>Plane</strong><a class="headerlink" href="#plane" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Plane</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Object3D</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="n">Plane</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3f</span><span class="w"> </span><span class="o">&amp;</span><span class="n">normal</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">Material</span><span class="w"> </span><span class="o">*</span><span class="n">m</span><span class="p">)</span><span class="o">:</span>
@@ -1191,7 +1213,7 @@
 <p class="admonition-title">Warning</p>
 <p>我第一次写的时候，犯的错误是处理光线与平面几乎平行的情况时，没有增加 fabs，导致出错</p>
 </div>
-<h2 id="triangle">Triangle<a class="headerlink" href="#triangle" title="Permanent link">&para;</a></h2>
+<h2 id="triangle"><strong>Triangle</strong><a class="headerlink" href="#triangle" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Transform</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Object3D</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="n">Transform</span><span class="p">(</span><span class="n">Matrix</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="n">Object3D</span><span class="w"> </span><span class="o">*</span><span class="n">object</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">object</span><span class="p">(</span><span class="n">object</span><span class="p">),</span><span class="w"> </span><span class="n">m</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1229,7 +1251,7 @@
 <a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="p">}</span>
 </code></pre></div>
 <p>这里三角形求交的方法是 Moller Trumbore Algorithm</p>
-<h2 id="transform">Transform<a class="headerlink" href="#transform" title="Permanent link">&para;</a></h2>
+<h2 id="transform"><strong>Transform</strong><a class="headerlink" href="#transform" title="Permanent link">&para;</a></h2>
 <p>我们将 Transform 也理解为 <code>Object3D</code> 的一个子类，虽然比较抽象</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Transform</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Object3D</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
@@ -1354,7 +1376,7 @@ N'=(M^{-1})^TN
 <a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="p">}</span>
 </code></pre></div>
 <p>将处理点和处理线的步骤单独用函数进行处理，代码更加简洁清晰。</p>
-<h2 id="perspective-camera">Perspective Camera<a class="headerlink" href="#perspective-camera" title="Permanent link">&para;</a></h2>
+<h2 id="perspective-camera"><strong>Perspective Camera</strong><a class="headerlink" href="#perspective-camera" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">PerspectiveCamera</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Camera</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="n">PerspectiveCamera</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3f</span><span class="w"> </span><span class="o">&amp;</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3f</span><span class="w"> </span><span class="o">&amp;</span><span class="n">direction</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3f</span><span class="w"> </span><span class="o">&amp;</span><span class="n">up</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">angle</span><span class="p">)</span>
@@ -1401,7 +1423,7 @@ N'=(M^{-1})^TN
 <p class="admonition-title">the distance to the image plane and the size of the image plane are unnecessary. Why?</p>
 <p>我们只需要角度信息就可以了，产生的光线角度就可以确定了。</p>
 </div>
-<h2 id="light">Light<a class="headerlink" href="#light" title="Permanent link">&para;</a></h2>
+<h2 id="light"><strong>Light</strong><a class="headerlink" href="#light" title="Permanent link">&para;</a></h2>
 <p>本作业的光线为平行光 DirectionalLight，有方向和颜色</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">DirectionalLight</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Light</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
@@ -1432,7 +1454,7 @@ N'=(M^{-1})^TN
 <a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="p">};</span>
 </code></pre></div>
 <p>当然后面还会有不同的光，构成 <code>Light</code> 的派生类</p>
-<h2 id="renderer">Renderer<a class="headerlink" href="#renderer" title="Permanent link">&para;</a></h2>
+<h2 id="renderer"><strong>Renderer</strong><a class="headerlink" href="#renderer" title="Permanent link">&para;</a></h2>
 <p>将渲染器单独写了两个文件，用来实现 <code>DepthRenderer</code>，<code>ColorRenderer</code>，<code>nomaralRenderer</code>，<code>DiffuseRenderer</code> 前两个在之前的作业中已经写过</p>
 <p>这个是 <code>NormalRenderer</code> 根据法线来染色</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">NormalRenderer::Render</span><span class="p">()</span>
