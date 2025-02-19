@@ -577,6 +577,8 @@
       
         
       
+        
+      
     
     
       
@@ -1256,6 +1258,8 @@
       
         
       
+        
+      
     
     
       
@@ -1440,6 +1444,10 @@
 
 
 <h1 id="11-animation-cont"><strong>11 Animation (Cont.)</strong><a class="headerlink" href="#11-animation-cont" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 1424 个字 
+</div>
+
 <h2 id="111-simple-particle-simulation"><strong>11.1 Simple particle Simulation</strong><a class="headerlink" href="#111-simple-particle-simulation" title="Permanent link">&para;</a></h2>
 <p>首先研究单个粒子的运动然后泛化到大多数粒子。我们现认为粒子的运动由速度场 (velocity vector field) 决定，这个速度场就是一个位置和时间的函数 <span class="arithmatex">\(v(x,t)\)</span></p>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20192202.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20192202.png" /></a></center></p>
@@ -1456,8 +1464,10 @@
 <p>可以使用欧拉方法对给定初始位置和速度场的点求解经过时间t后所处的位置。</p>
 <p><strong>特点</strong> 欧拉方法是一种简单的<strong>迭代方法</strong>，经常被使用、<strong>不准确</strong>、大多数都<strong>不稳定</strong>。</p>
 <div class="arithmatex">\[
+\begin{aligned}
 x^{t+\Delta t}=x^t+\Delta t\dot{x}^t\\
 \dot{x}^{t+\Delta t}=\dot{x}^t+\Delta t\ddot{x}^t\\
+\end{aligned}
 \]</div>
 <p>欧拉方法的误差：使用数值计算的方法积分，误差会累计。并且 <span class="arithmatex">\(\Delta t\)</span> 越大，得到的结果也相差越大。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20193416.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20193416.png" /></a></p>
@@ -1491,10 +1501,11 @@ x^{t+\Delta t}&amp;=x^t+\Delta t \dot{x}^{\text{mid}}\\
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20210346.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20210346.png" /></a></p>
 <h4 id="implicit-euler-method"><strong>Implicit Euler Method</strong><a class="headerlink" href="#implicit-euler-method" title="Permanent link">&para;</a></h4>
 <p>也被称作后向方法，使用下一时间的导数来计算当前步骤</p>
-<div class="arithmatex">\[
-x^{t+\Delta t}=x^t+\Delta t\dot{x}^{t+\Delta t}\\
-\dot{x}^{t+\Delta t}=\dot{x}^t+\Delta t\ddot{x}^{t+\Delta t}\\
-\]</div>
+<p>$$
+\begin{aligned}
+x^{t+\Delta t}=x^t+\Delta t\dot{x}^{t+\Delta t}\
+\dot{x}^{t+\Delta t}=\dot{x}^t+\Delta t\ddot{x}^{t+\Delta t}\</p>
+<p>$$</p>
 <p>求解非线性的 <span class="arithmatex">\(x^{t+\Delta t}\)</span> 和 <span class="arithmatex">\(\dot{x}^{t+\Delta t}\)</span> 较为困难，可以认为在这个时刻位置知道且已知下一个时刻的加速度，使用求根公式来求解。也可以使用优化方法来解出来。</p>
 <div class="admonition note">
 <p class="admonition-title">定义与量化"stability"的方法</p>

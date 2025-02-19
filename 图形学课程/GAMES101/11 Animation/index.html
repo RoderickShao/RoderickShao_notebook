@@ -577,6 +577,8 @@
       
         
       
+        
+      
     
     
       
@@ -1236,6 +1238,8 @@
       
         
       
+        
+      
     
     
       
@@ -1419,11 +1423,11 @@
 <p>很多物体的动态模拟都可以被看作为质点弹簧系统，比如说人的头发，一张纸之类的，只不过弹簧的结构不太一样而已。</p>
 <p>而这样的质点弹簧系统是一系列连接的质点和弹簧，<strong>基础的单元</strong>就是一段理想的弹簧。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-20%20214329.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="right" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-20%20214329.png" /></a></p>
-<p>根据胡克定律可以得到力与两点拉长的距离呈正比，下面公式中 <span class="arithmatex">\(l\)</span> 为原始长度，<span class="arithmatex">\(f_{a\rightarrow b}\)</span> 表示从 <span class="arithmatex">\(a\)</span> 到 <span class="arithmatex">\(b\)</span> 的这样一个力。
-$$
+<p>根据胡克定律可以得到力与两点拉长的距离呈正比，下面公式中 <span class="arithmatex">\(l\)</span> 为原始长度，<span class="arithmatex">\(f_{a\rightarrow b}\)</span> 表示从 <span class="arithmatex">\(a\)</span> 到 <span class="arithmatex">\(b\)</span> 的这样一个力。</p>
+<div class="arithmatex">\[
 f_{a\rightarrow b}=k_s\frac{\pmb b-\pmb a}{||\pmb b-\pmb a||}(||\pmb b-\pmb a||-l)
-$$
-用这个模型得到的结果，由于能量守恒，弹簧会一直振动。考虑现实情况，我们增加一个摩擦力。</p>
+\]</div>
+<p>用这个模型得到的结果，由于能量守恒，弹簧会一直振动。考虑现实情况，我们增加一个摩擦力。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-20%20223118.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-20%20223118.png" /></a></p>
 <p>其中红色框中的部分是一个标量，这个表示的是投影到 <span class="arithmatex">\(\vec{ab}\)</span> 方向的相对速度，然后摩擦力与该相对速度呈正比。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-20%20225449.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="right" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-20%20225449.png" /></a></p>
@@ -1441,7 +1445,7 @@ $$
 <p>改进之后，我们在对角线处增加了两根弹簧来防止切变，然后每隔一个质点增加一根弹簧避免了 out of plane bending </p>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-20%20225932.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-20%20225932.png" /></a></center></p>
 <p>对于布料来说我们还可以使用<strong>有限元方法FEM（Finite Element Method）</strong>来代替弹簧系统</p>
-<h2 id="113-particle-systems">11.3 Particle Systems<a class="headerlink" href="#113-particle-systems" title="Permanent link">&para;</a></h2>
+<h2 id="113-particle-systems"><strong>11.3 Particle Systems</strong><a class="headerlink" href="#113-particle-systems" title="Permanent link">&para;</a></h2>
 <p>粒子系统就是把动态的系统建模为大量粒子的集合，同时每个粒子的运动都是由一组物理（或者非物理）力所定义，采用的粒子越多，结果越好但是生成的速度越慢。</p>
 <p>对于动画里的任意一帧的生成，采用粒子系统，大致步骤如下</p>
 <ul>
@@ -1474,8 +1478,8 @@ $$
 <li>alignment toward average trajectory of neighbors 考虑周围的鸟飞的方向</li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20155250.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20155250.png" /></a></p>
-<h2 id="114-kinematics">11.4 Kinematics<a class="headerlink" href="#114-kinematics" title="Permanent link">&para;</a></h2>
-<h3 id="1141-forward-kinematics">11.4.1 Forward Kinematics<a class="headerlink" href="#1141-forward-kinematics" title="Permanent link">&para;</a></h3>
+<h2 id="114-kinematics"><strong>11.4 Kinematics</strong><a class="headerlink" href="#114-kinematics" title="Permanent link">&para;</a></h2>
+<h3 id="1141-forward-kinematics"><strong>11.4.1 Forward Kinematics</strong><a class="headerlink" href="#1141-forward-kinematics" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20160210.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="right" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20160210.png" /></a></p>
 <p>Articulated skeleton 关节骨骼系统，是一种拓扑结构（描述了什么和什么连接）</p>
 <p>关节有三种类型</p>
@@ -1491,7 +1495,7 @@ $$
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20161153.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20161153.png" /></a></p>
 </div>
 <p>优点是直接控制比较方便，实施也比较直接；缺点在于不是特别直观（艺术家操控起来比较困难）</p>
-<h3 id="1142-inverse-kinematics">11.4.2 Inverse Kinematics<a class="headerlink" href="#1142-inverse-kinematics" title="Permanent link">&para;</a></h3>
+<h3 id="1142-inverse-kinematics"><strong>11.4.2 Inverse Kinematics</strong><a class="headerlink" href="#1142-inverse-kinematics" title="Permanent link">&para;</a></h3>
 <p>根据尖端的位置来获得关节的位置</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20162213.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20162213.png" /></a></p>
 <p>为什么这样的逆向求解问题是困难的？因为逆运动学的解并不唯一或者说根本不存在</p>
@@ -1500,8 +1504,8 @@ $$
 <p>（2）定义一个 error metric（如：目标与当前位置之间距离的平方）。</p>
 <p>（3）计算误差梯度作为构形的函数</p>
 <p>（4）应用梯度下降(或牛顿法，或其他优化程序)</p>
-<h3 id="1143">11.4.3 应用<a class="headerlink" href="#1143" title="Permanent link">&para;</a></h3>
-<h4 id="rigging">Rigging<a class="headerlink" href="#rigging" title="Permanent link">&para;</a></h4>
+<h3 id="1143"><strong>11.4.3 应用</strong><a class="headerlink" href="#1143" title="Permanent link">&para;</a></h3>
+<h4 id="rigging"><strong>Rigging</strong><a class="headerlink" href="#rigging" title="Permanent link">&para;</a></h4>
 <p>Rigging是一套高级角色控制，允许更快速和直观地修改姿势、变形、表情等。</p>
 <ul>
 <li>就像提线木偶的线一样。</li>
@@ -1510,13 +1514,13 @@ $$
 </ul>
 <p>制作昂贵：具有人工误差并需要艺术和技术的训练。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20162800.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20162800.png" /></a></p>
-<h4 id="blend-shapes">Blend Shapes<a class="headerlink" href="#blend-shapes" title="Permanent link">&para;</a></h4>
+<h4 id="blend-shapes"><strong>Blend Shapes</strong><a class="headerlink" href="#blend-shapes" title="Permanent link">&para;</a></h4>
 <p>Instead of skeleton, interpolate directly between surfaces 直接在表面间进行插值</p>
 <p>E.g., model a collection of facial expressions: </p>
 <p>Simplest scheme: take linear combination of vertex positions 对于控制点进行线性插值</p>
 <p>Spline used to control choice of weights over time 样条用于控制随着时间的推移权重的选择。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20163318.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20163318.png" /></a></p>
-<h4 id="motion-capture">Motion Capture<a class="headerlink" href="#motion-capture" title="Permanent link">&para;</a></h4>
+<h4 id="motion-capture"><strong>Motion Capture</strong><a class="headerlink" href="#motion-capture" title="Permanent link">&para;</a></h4>
 <p>Motion Capture 动作捕捉是创建动画序列的数据驱动方法，记录真实世界的表现（例如执行活动的人），从收集到的数据中提取姿态作为时间函数。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20164033.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-01-21%20164033.png" /></a></p>
 <p><strong>优点</strong> 是非常<strong>贴近真实</strong>并且可以快速的获取大量的真实数据。</p>
