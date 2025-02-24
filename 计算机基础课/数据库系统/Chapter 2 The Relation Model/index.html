@@ -1565,7 +1565,7 @@
 
 <h1 id="chapter-2-the-relation-model"><strong>Chapter 2 The Relation Model</strong><a class="headerlink" href="#chapter-2-the-relation-model" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1880 个字 
+    文本统计：约 1899 个字 
 </div>
 
 <h2 id="21-structure-of-relational-databases"><strong>2.1 Structure of Relational Databases</strong><a class="headerlink" href="#21-structure-of-relational-databases" title="Permanent link">&para;</a></h2>
@@ -1587,7 +1587,7 @@ r = \{
 (\text{Singh, Finance}, 80000)
 \}
 \]</div>
-<p>is a relation over <span class="arithmatex">\(\text{name} \times \text{dept\_name} \times \text{salary}\)</span></p>
+<p>is a relation over <span class="arithmatex">\(\text{name} \times \text{dept}\_\text{name} \times \text{salary}\)</span></p>
 </div>
 <p><span class="arithmatex">\(A_1, A_2, \ldots, A_n\)</span> are attributes 属性，<span class="arithmatex">\(R = (A_1, A_2, \ldots, A_n)\)</span> is a <strong>relation schema</strong> 关系模式, <strong><em>e.g.</em></strong>  instructor = (ID, name, dept_name, salary)</p>
 <p>A relation instance <span class="arithmatex">\(r\)</span> defined over schema <span class="arithmatex">\(R\)</span> is denoted by <span class="arithmatex">\(r(R)\)</span>  and the current values a relation are specified by a <strong>table</strong>.</p>
@@ -1607,23 +1607,23 @@ r = \{
 </div>
 <h2 id="23-keys"><strong>2.3 Keys</strong><a class="headerlink" href="#23-keys" title="Permanent link">&para;</a></h2>
 <p>Let <span class="arithmatex">\(K \subseteq R\)</span></p>
-<p>$ K $ is a <strong>Super-key</strong> (超键) of $ R $ if values for $ K $ are sufficient to identify a unique tuple of each possible relation $ r(R) $</p>
+<p><span class="arithmatex">\(K\)</span> is a <strong>Super-key</strong> (超键) of <span class="arithmatex">\(R\)</span> if values for <span class="arithmatex">\(K\)</span> are sufficient to identify a unique tuple of each possible relation <span class="arithmatex">\(r(R)\)</span></p>
 <div class="admonition example">
 <p class="admonition-title">Super-key example</p>
-<p><span class="arithmatex">\(\{ID\}\)</span> and <span class="arithmatex">\(\{ID, name\}\)</span> are both superkeys of <code>instructor</code>.</p>
+<p><span class="arithmatex">\(\{ID\}\)</span> and <span class="arithmatex">\(\{ID, \text{name}\}\)</span> are both superkeys of <code>instructor</code>.</p>
 </div>
-<p>Super-key $ K $ is a <strong>candidate key</strong> (候选键) if $ K $ is minimal.</p>
+<p>Super-key <span class="arithmatex">\(K\)</span> is a <strong>candidate key</strong> (候选键) if <span class="arithmatex">\(K\)</span> is minimal.</p>
 <div class="admonition example">
 <p class="admonition-title">candidate key example</p>
-<p><span class="arithmatex">\(\{ID\}\)</span> is a candidate key for <code>Instructor</code>.</p>
+<p><span class="arithmatex">\(\{\text{ID}\}\)</span> is a candidate key for <code>Instructor</code>.</p>
 </div>
 <p>One of the candidate keys is selected to be the <strong>primary key</strong> (主键).</p>
-<p><strong>Foreign key（外键）</strong>constraint  from attribute(s) A  of  relation <span class="arithmatex">\(r1\)</span> to the primary  key  B  of  relation <span class="arithmatex">\(r2\)</span> states that on any database instance, the value of A for each tuple in <span class="arithmatex">\(r1\)</span> must also be the value of B for some tuple in <span class="arithmatex">\(r2\)</span>. </p>
+<p><strong>Foreign key（外键）</strong>constraint  from attribute(s) A  of  relation <span class="arithmatex">\(r_1\)</span> to the primary  key  B  of  relation <span class="arithmatex">\(r_2\)</span> states that on any database instance, the value of A for each tuple in <span class="arithmatex">\(r_1\)</span> must also be the value of B for some tuple in <span class="arithmatex">\(r_2\)</span>. </p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20105228.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20105228.png" /></a></p>
 </div>
-<p><strong>Referential integrity（参照完整性）</strong>constraint  requires that  the values appearing in specified attribute(s) A of any tuples in the referencing relation <span class="arithmatex">\(r1\)</span> also appear in specified attribute(s) B of at least one tuple in the referenced relation <span class="arithmatex">\(r2\)</span>.</p>
+<p><strong>Referential integrity（参照完整性）</strong>constraint  requires that  the values appearing in specified attribute(s) A of any tuples in the referencing relation <span class="arithmatex">\(r_1\)</span> also appear in specified attribute(s) B of at least one tuple in the referenced relation <span class="arithmatex">\(r_2\)</span>.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20105357.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20105357.png" /></a></p>
@@ -1687,11 +1687,13 @@ r = \{
 <div class="admonition example">
 <p class="admonition-title">Example of Selection</p>
 <div class="arithmatex">\[
-\begin{aligned}
-&amp;\sigma_{\text{dept\_name}=\text{"Physics"}}(\text{instructor})\\
-&amp;\sigma_{\text{salary} &gt; 90000}(\text{instructor})\\
-&amp;\sigma_{\text{dept\_name}=\text{"Physics"} \land \text{salary} &gt; 90000}(\text{instructor})
-\end{aligned}
+\sigma_{\text{dept}\_\text{name}}=\text{"Physics"}}(\text{instructor})
+\]</div>
+<div class="arithmatex">\[
+\sigma_{\text{salary} &gt; 90000}(\text{instructor})
+\]</div>
+<div class="arithmatex">\[
+\sigma_{\text{dept}\_\text{name}}=\text{"Physics"} \land \text{salary} &gt; 90000}(\text{instructor})
 \]</div>
 </div>
 <h3 id="242-project-operation"><strong>2.4.2 Project Operation</strong><a class="headerlink" href="#242-project-operation" title="Permanent link">&para;</a></h3>
@@ -1722,18 +1724,16 @@ r \cup s = \{ t \mid t \in r \text{ or } t \in s \}
 <p>To find all courses taught in the Fall 2009 semester, or in the Spring 2010 semester, or in both:</p>
 <div class="arithmatex">\[
 \Pi_{\text{course_id}} \left( \sigma_{\text{semester}=\text{"Fall"} \land \text{year}=2009} (\text{section}) \right) \cup 
-\]</div>
-<div class="arithmatex">\[
 \Pi_{\text{course_id}} \left( \sigma_{\text{semester}=\text{"Spring"} \land \text{year}=2010} (\text{section}) \right) 
 \]</div>
 </div>
 <h3 id="244-set-difference"><strong>2.4.4 Set difference</strong><a class="headerlink" href="#244-set-difference" title="Permanent link">&para;</a></h3>
 <p>The <strong>set-difference</strong> operation allows us to find tuples that are in one relation but are not in another.</p>
 <p>Notation: <span class="arithmatex">\(r - s\)</span></p>
-<p>Definition:</p>
-<div class="arithmatex">\[
-r - s = \{ t \mid t \in r \text{ and } t \notin s \} 
-\]</div>
+<p><strong>Definition</strong>:
+$$
+r - s = { t \mid t \in r \text{ and } t \notin s } 
+$$</p>
 <p>Conditions for Set-Difference:</p>
 <ul>
 <li>
@@ -1748,10 +1748,8 @@ r - s = \{ t \mid t \in r \text{ and } t \notin s \}
 <p class="admonition-title">Set Difference Operation</p>
 <p>To find all courses taught in the Fall 2009 semester, but not in the Spring 2010 semester:</p>
 <div class="arithmatex">\[
-\Pi_{\text{course\_id}} \left( \sigma_{\text{semester}=\text{"Fall"} \land \text{year}=2009} (\text{section}) \right) - 
-\]</div>
-<div class="arithmatex">\[
-\Pi_{\text{course\_id}} \left( \sigma_{\text{semester}=\text{"Spring"} \land \text{year}=2010} (\text{section}) \right) 
+\Pi_{\text{course}\_\text{id}} \left( \sigma_{\text{semester}=\text{"Fall"} \land \text{year}=2009} (\text{section}) \right) - 
+\Pi_{\text{course}\_\text{id}} \left( \sigma_{\text{semester}=\text{"Spring"} \land \text{year}=2010} (\text{section}) \right) 
 \]</div>
 </div>
 <h3 id="245-cartesian-product-operation"><strong>2.4.5 Cartesian-Product Operation</strong><a class="headerlink" href="#245-cartesian-product-operation" title="Permanent link">&para;</a></h3>
@@ -1782,11 +1780,11 @@ r - s = \{ t \mid t \in r \text{ and } t \notin s \}
 <p><strong>Example 1</strong>: Find the names of all instructors in the Physics department, along with the <code>course_id</code> of all courses they have taught</p>
 <p>Query 1</p>
 <div class="arithmatex">\[
-\Pi_{\text{instructor.name}, \text{course\_id}} \left( \sigma_{\text{dept\_name}=\text{"Physics"}} \left( \sigma_{\text{instructor.ID}=\text{teaches.ID}} (\text{instructor} \times \text{teaches}) \right) \right)
+\Pi_{\text{instructor.name}, \text{course}\_\text{id}} \left( \sigma_{\text{dept}\_\text{name}}=\text{"Physics"}} \left( \sigma_{\text{instructor.ID}=\text{teaches.ID}} (\text{instructor} \times \text{teaches}) \right) \right)
 \]</div>
 <p>Query 2</p>
 <div class="arithmatex">\[
-\Pi_{\text{instructor.name}, \text{course\_id}} \left( \sigma_{\text{instructor.ID}=\text{teaches.ID}} \left( \sigma_{\text{dept\_name}=\text{"Physics"}} (\text{instructor} \times \text{teaches}) \right) \right)
+\Pi_{\text{instructor.name},\text{course}\_\text{id}} \left( \sigma_{\text{instructor.ID}=\text{teaches.ID}} \left( \sigma_{\text{dept}\_\text{name}}=\text{"Physics"}} (\text{instructor} \times \text{teaches}) \right) \right)
 \]</div>
 <p><strong>Example 2</strong>: Find the largest salary in the university</p>
 <p>Step 1: Find instructor salaries that are less than some other instructor salary (i.e., not maximum)
@@ -1820,10 +1818,10 @@ r - s = \{ t \mid t \in r \text{ and } t \notin s \}
 <p>(6) <strong>Division Operator</strong>: <span class="arithmatex">\(r \div s\)</span></p>
 <p>The <strong>set-intersection</strong> operation allows us to find tuples that are in both input relations.</p>
 <h4 id="set-intersection"><strong>Set Intersection</strong><a class="headerlink" href="#set-intersection" title="Permanent link">&para;</a></h4>
-<p>Definition:
-$$
-r \cap s = { t \mid t \in r \text{ and } t \in s }
-$$</p>
+<p>Definition:</p>
+<div class="arithmatex">\[
+r \cap s = \{ t \mid t \in r \text{ and } t \in s \}
+\]</div>
 <p>Assumptions:</p>
 <ul>
 <li>
@@ -1904,35 +1902,28 @@ $$</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Null Values</p>
+<p>Comparisons with null values return the special truth value: <code>unknown</code>.</p>
+<p>Three-Valued Logic using the Truth Value <code>unknown</code>:</p>
+<p>(1) <strong>OR</strong>:
+  - <code>(unknown or true) = true</code>
+  - <code>(unknown or false) = unknown</code>
+  - <code>(unknown or unknown) = unknown</code></p>
+<p>(2) <strong>AND</strong>:
+  - <code>(true and unknown) = unknown</code>
+  - <code>(false and unknown) = false</code>
+  - <code>(unknown and unknown) = unknown</code></p>
+<p>(3) <strong>NOT</strong>:
+  - <code>(not unknown) = unknown</code></p>
+<p><strong>SQL Predicate</strong>: In SQL <code>"P is unknown"</code> evaluates to true if predicate <code>P</code> evaluates to <code>unknown</code>.</p>
+<p>Result of Select Predicate: The result of a select predicate is treated as <code>false</code> if it evaluates to <code>unknown</code>.</p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Comparisons with null values return the special truth value: `unknown`.
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Three-Valued Logic using the Truth Value `unknown`:
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>(1) **OR**:
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  - `(unknown or true) = true`
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  - `(unknown or false) = unknown`
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  - `(unknown or unknown) = unknown`
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>(2) **AND**:
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  - `(true and unknown) = unknown`
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  - `(false and unknown) = false`
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  - `(unknown and unknown) = unknown`
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>(3) **NOT**:
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  - `(not unknown) = unknown`
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>**SQL Predicate**: In SQL `&quot;P is unknown&quot;` evaluates to true if predicate `P` evaluates to `unknown`.
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>Result of Select Predicate: The result of a select predicate is treated as `false` if it evaluates to `unknown`.
-</code></pre></div>
 <h4 id="semi-join-operation"><strong>Semi-join Operation</strong><a class="headerlink" href="#semi-join-operation" title="Permanent link">&para;</a></h4>
 <p><strong>Notation</strong>: <span class="arithmatex">\(r \ltimes_{\theta} s\)</span></p>
-<p><strong>Definition</strong>: Is a <strong>subset</strong> of <span class="arithmatex">\(r\)</span>, in which every tuple <span class="arithmatex">\(r_i\)</span> matches at least one tuple <span class="arithmatex">\(s_j\)</span> in <span class="arithmatex">\(s\)</span> under the condition <span class="arithmatex">\(\theta\)</span>.
-$$
+<p><strong>Definition</strong>: Is a <strong>subset</strong> of <span class="arithmatex">\(r\)</span>, in which every tuple <span class="arithmatex">\(r_i\)</span> matches at least one tuple <span class="arithmatex">\(s_j\)</span> in <span class="arithmatex">\(s\)</span> under the condition <span class="arithmatex">\(\theta\)</span>.</p>
+<div class="arithmatex">\[
 r \ltimes_{\theta} s = \Pi_R (\sigma_{\theta}(r \bowtie s))
-$$</p>
-<p><center><a class="glightbox" href="C:\Users\user020\Pictures\Screenshots\屏幕截图 2025-02-24 161329.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="C:\Users\user020\Pictures\Screenshots\屏幕截图 2025-02-24 161329.png" /></a></center></p>
+\]</div>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20200946.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20200946.png" /></a></center></p>
 <h4 id="assignment-operation"><strong>Assignment Operation</strong><a class="headerlink" href="#assignment-operation" title="Permanent link">&para;</a></h4>
 <p>The assignment operation (<span class="arithmatex">\(\leftarrow\)</span>) provides a convenient way to express complex queries. </p>
 <p>(1) Write query as a sequential program consisting of</p>
@@ -1946,26 +1937,32 @@ $$</p>
 </ul>
 <p>(2) Assignment must always be made to a temporary relation variable.</p>
 <h4 id="division-operation"><strong>Division Operation</strong><a class="headerlink" href="#division-operation" title="Permanent link">&para;</a></h4>
-<p><strong>Definition</strong>: Given relations $ r(R) $ and $ s(S) $, such that $ S \subseteq R $, $ r \div s $ is the largest relation $ t(R-S) $ such that
-$$
+<p><strong>Definition</strong>: Given relations <span class="arithmatex">\(r(R)\)</span> and <span class="arithmatex">\(s(S)\)</span>, such that <span class="arithmatex">\(S \subseteq R\)</span>, <span class="arithmatex">\(r \div s\)</span> is the largest relation <span class="arithmatex">\(t(R-S)\)</span> such that</p>
+<div class="arithmatex">\[
     t \times s \subseteq r
-$$</p>
+\]</div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>Let <span class="arithmatex">\(r(\text{ID}, \text{course}\_id) = \Pi_{\text{ID}, \text{course\_id}(\text{takes})\)</span> and <span class="arithmatex">\(s(\text{course\_id}) = \Pi_{\text{course\_id}}(\sigma_{\text{dept\_name}=\text{Biology}}(\text{course}))\)</span></p>
 <p>then <span class="arithmatex">\(r \div s\)</span> gives us students who have taken all courses in the Biology department.</p>
 </div>
-<p>Can write $ r \div s $ as:
-$$
+<p>Can write <span class="arithmatex">\(r \div s\)</span> as:</p>
+<div class="arithmatex">\[
 \begin{aligned}
-    &amp;\text{temp}1 \leftarrow \Pi_{R-S}(r)\
-    &amp;\text{temp}2 \leftarrow \Pi_{R-S}((\text{temp}1 \times s) - \Pi_{R-S,S}(r))\
-    &amp;result = \text{temp}1 - \text{temp}2\
+    &amp;\text{temp}1 \leftarrow \Pi_{R-S}(r)\\
+    &amp;\text{temp}2 \leftarrow \Pi_{R-S}((\text{temp}1 \times s) - \Pi_{R-S,S}(r))\\
+    &amp;result = \text{temp}1 - \text{temp}2\\
     \end{aligned}
-$$</p>
-<p><strong>Notes</strong>:
-  - The result to the right of the <span class="arithmatex">\(\leftarrow\)</span> is assigned to the relation variable on the left of the <span class="arithmatex">\(\leftarrow\)</span>.
-  - May use variable in subsequent expressions.</p>
+\]</div>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li>
+<p>The result to the right of the <span class="arithmatex">\(\leftarrow\)</span> is assigned to the relation variable on the left of the <span class="arithmatex">\(\leftarrow\)</span>.</p>
+</li>
+<li>
+<p>May use variable in subsequent expressions.</p>
+</li>
+</ul>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20165332.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20165332.png" /></a></center></p>
 <h3 id="248-generalized-projection"><strong>2.4.8 Generalized Projection</strong><a class="headerlink" href="#248-generalized-projection" title="Permanent link">&para;</a></h3>
 <p>Extends the projection operation by allowing arithmetic functions to be used in the projection list.</p>
@@ -1973,14 +1970,14 @@ $$</p>
 \Pi_{F_1, F_2, \ldots, F_n}(E)
 \]</div>
 <ul>
-<li>$ E $ is any relational-algebra expression.</li>
-<li>Each of $ F_1, F_2, \ldots, F_n $ are arithmetic expressions involving constants and attributes in the schema of $ E $.</li>
+<li><span class="arithmatex">\(E\)</span> is any relational-algebra expression.</li>
+<li>Each of <span class="arithmatex">\(F_1, F_2, \ldots, F_n\)</span> are arithmetic expressions involving constants and attributes in the schema of <span class="arithmatex">\(E\)</span>.</li>
 </ul>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>Given relation <code>instructor(ID, name, dept_name, salary)</code> where salary is annual salary, get the same information but with monthly salary.</p>
 <div class="arithmatex">\[
-\Pi_{ID, name, dept_name, salary/12}(instructor)
+\Pi_{ID, name, \text{dept}\_\text{name}, salary/12}(instructor)
 \]</div>
 </div>
 <h3 id="249-aggregate-functions-and-operations"><strong>2.4.9 Aggregate Functions and Operations</strong><a class="headerlink" href="#249-aggregate-functions-and-operations" title="Permanent link">&para;</a></h3>
@@ -2008,10 +2005,10 @@ _{G_1, G_2, \ldots, G_n} \; \mathcal{G} \; _{F_1(A_1), F_2(A_2), \ldots, F_n(A_n
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20173002.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20173002.png" /></a></p>
 </div>
-<p>Result of aggregation does not have a name, Can use rename operation to give it a name. For convenience, we permit renaming as part of aggregate operation
-$$
-<em avg_text_salary="avg(\text{salary">{\text{dept_name}}\mathcal G</em>)
-$$}) \text{ as } \text{avg_sal} }(\text{instructor</p>
+<p>Result of aggregation does not have a name, Can use rename operation to give it a name. For convenience, we permit renaming as part of aggregate operation</p>
+<div class="arithmatex">\[
+_{\text{dept\_name}}\mathcal G_{avg(\text{salary}) \text{ as } \text{avg\_sal} }(\text{instructor})
+\]</div>
 <h3 id="2410-multi-set-relational-algebra"><strong>2.4.10 Multi-set Relational Algebra</strong><a class="headerlink" href="#2410-multi-set-relational-algebra" title="Permanent link">&para;</a></h3>
 <p>Pure relational algebra removes <strong>all duplicates</strong> e.g. after projection</p>
 <p>Multiset (多重集) relational algebra retains duplicates, to match SQL semantics</p>
@@ -2021,7 +2018,7 @@ $$}) \text{ as } \text{avg_sal} }(\text{instructor</p>
 <p>Multi-set relational algebra defined as follows</p>
 <p>(1) <strong>selection</strong>: has as many duplicates of a tuple as in the input, if the tuple satisfies the selection</p>
 <p>(2) <strong>projection</strong>: one tuple per input tuple, even if it is a duplicate</p>
-<p>(3) <strong>cross product</strong>: If there are <span class="arithmatex">\(m\)</span> copies of <span class="arithmatex">\(t1\)</span> in <span class="arithmatex">\(r\)</span>, and <span class="arithmatex">\(n\)</span> copies of <span class="arithmatex">\(t2\)</span> in <span class="arithmatex">\(s\)</span>, there are <span class="arithmatex">\(m \times n\)</span> copies of <span class="arithmatex">\(t1.t2\)</span> in <span class="arithmatex">\(r \times s\)</span></p>
+<p>(3) <strong>cross product</strong>: If there are <span class="arithmatex">\(m\)</span> copies of <span class="arithmatex">\(t_1\)</span> in <span class="arithmatex">\(r\)</span>, and <span class="arithmatex">\(n\)</span> copies of <span class="arithmatex">\(t_2\)</span> in <span class="arithmatex">\(s\)</span>, there are <span class="arithmatex">\(m \times n\)</span> copies of $t_1.t_2 in <span class="arithmatex">\(r \times s\)</span></p>
 <p>(4) <strong>set operators</strong></p>
 <ul>
 <li><strong>union</strong>: <span class="arithmatex">\(m + n\)</span> copies</li>
