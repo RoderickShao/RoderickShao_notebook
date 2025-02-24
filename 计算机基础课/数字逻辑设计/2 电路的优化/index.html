@@ -797,26 +797,6 @@
     2.1 评判一个电路的复杂性
   </a>
   
-    <nav class="md-nav" aria-label="2.1 评判一个电路的复杂性">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#211" class="md-nav__link">
-    2.1.1 标准
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#212" class="md-nav__link">
-    2.1.2 例子
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1231,6 +1211,8 @@
       
         
       
+        
+      
     
     
       
@@ -1266,36 +1248,16 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/OOP/" class="md-nav__link">
         
-      
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Introduction/" class="md-nav__link">
-      
   
   <span class="md-ellipsis">
     面向对象程序设计
   </span>
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
+      </a>
     </li>
   
 
@@ -1508,26 +1470,6 @@
     2.1 评判一个电路的复杂性
   </a>
   
-    <nav class="md-nav" aria-label="2.1 评判一个电路的复杂性">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#211" class="md-nav__link">
-    2.1.1 标准
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#212" class="md-nav__link">
-    2.1.2 例子
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1727,24 +1669,13 @@
 
 <h1 id="2"><strong>2 电路的优化</strong><a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 884 个字 
+    文本统计：约 874 个字 
 </div>
 
 <h2 id="21"><strong>2.1 评判一个电路的复杂性</strong><a class="headerlink" href="#21" title="Permanent link">&para;</a></h2>
-<h3 id="211"><strong>2.1.1 标准</strong><a class="headerlink" href="#211" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Literal cost</li>
-<li>Gate input cost</li>
-<li>Gate input cost with NOTs</li>
-</ul>
-<p><strong>Literal Cost</strong></p>
-<p>出现变量的个数（重复的也计算在内）</p>
-<p>缺点：只评价了第一层的电路数量</p>
-<p><strong>Gate Input Cost（门输入代价）</strong></p>
-<p>输入给逻辑门的总和</p>
-<p><strong>Gate input cost with NOTs</strong></p>
-<p>加上了非门（重复的算一个）</p>
-<h3 id="212"><strong>2.1.2 例子</strong><a class="headerlink" href="#212" title="Permanent link">&para;</a></h3>
+<p><strong>Literal Cost (L)</strong>：出现变量的个数（重复的也计算在内）它的缺点是只评价了第一层的电路数量</p>
+<p><strong>Gate Input Cost (G)（门输入代价）</strong>：输入给逻辑门的总和</p>
+<p><strong>Gate input cost with NOTs (GN)</strong>：加上了非门（重复的算一个）</p>
 <p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705204148.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705204148.jpg" /></a></p>
 <p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705204937.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705204937.jpg" /></a></p>
 <p>（G=10）</p>
