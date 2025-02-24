@@ -1565,7 +1565,7 @@
 
 <h1 id="chapter-2-the-relation-model"><strong>Chapter 2 The Relation Model</strong><a class="headerlink" href="#chapter-2-the-relation-model" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1898 个字 
+    文本统计：约 1902 个字 
 </div>
 
 <h2 id="21-structure-of-relational-databases"><strong>2.1 Structure of Relational Databases</strong><a class="headerlink" href="#21-structure-of-relational-databases" title="Permanent link">&para;</a></h2>
@@ -1730,10 +1730,10 @@ r \cup s = \{ t \mid t \in r \text{ or } t \in s \}
 <h3 id="244-set-difference"><strong>2.4.4 Set difference</strong><a class="headerlink" href="#244-set-difference" title="Permanent link">&para;</a></h3>
 <p>The <strong>set-difference</strong> operation allows us to find tuples that are in one relation but are not in another.</p>
 <p>Notation: <span class="arithmatex">\(r - s\)</span></p>
-<p><strong>Definition</strong>:
-$$
-r - s = { t \mid t \in r \text{ and } t \notin s } 
-$$</p>
+<p><strong>Definition</strong>:</p>
+<div class="arithmatex">\[
+r - s = \{ t \mid t \in r \text{ and } t \notin s \}
+\]</div>
 <p>Conditions for Set-Difference:</p>
 <ul>
 <li>
@@ -1780,11 +1780,11 @@ $$</p>
 <p><strong>Example 1</strong>: Find the names of all instructors in the Physics department, along with the <code>course_id</code> of all courses they have taught</p>
 <p>Query 1</p>
 <div class="arithmatex">\[
-\Pi_{\text{instructor.name}, \text{course}\_\text{id}} \left( \sigma_{\text{dept}\_\text{name}}=\text{"Physics"}} \left( \sigma_{\text{instructor.ID}=\text{teaches.ID}} (\text{instructor} \times \text{teaches}) \right) \right)
+\Pi_{\text{instructor.name}, \text{course}\_\text{id}} \left( \sigma_{\text{dept}\_\text{name}=\text{"Physics"}} \left( \sigma_{\text{instructor.ID}=\text{teaches.ID}} (\text{instructor} \times \text{teaches}) \right) \right)
 \]</div>
 <p>Query 2</p>
 <div class="arithmatex">\[
-\Pi_{\text{instructor.name},\text{course}\_\text{id}} \left( \sigma_{\text{instructor.ID}=\text{teaches.ID}} \left( \sigma_{\text{dept}\_\text{name}}=\text{"Physics"}} (\text{instructor} \times \text{teaches}) \right) \right)
+\Pi_{\text{instructor.name},\text{course}\_\text{id}} \left( \sigma_{\text{instructor.ID}=\text{teaches.ID}} \left( \sigma_{\text{dept}\_\text{name}=\text{"Physics"}} (\text{instructor} \times \text{teaches}) \right) \right)
 \]</div>
 <p><strong>Example 2</strong>: Find the largest salary in the university</p>
 <p>Step 1: Find instructor salaries that are less than some other instructor salary (i.e., not maximum)
@@ -1839,9 +1839,9 @@ r \cap s = \{ t \mid t \in r \text{ and } t \in s \}
 <h4 id="natural-join"><strong>Natural Join</strong><a class="headerlink" href="#natural-join" title="Permanent link">&para;</a></h4>
 <p><strong>Definition</strong>:</p>
 <p>Let <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(s\)</span> be relations on schemas <span class="arithmatex">\(R\)</span> and <span class="arithmatex">\(S\)</span> respectively.</p>
-<p>Then, <span class="arithmatex">\(r \bowtie s\)</span> is a relation on schema <span class="arithmatex">\(R \cup S\)</span> obtained as follows:
-- Consider each pair of tuples <span class="arithmatex">\(t_r\)</span> from <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(t_s\)</span> from <span class="arithmatex">\(s\)</span>.
-- If <span class="arithmatex">\(t_r\)</span> and <span class="arithmatex">\(t_s\)</span> have the same value on each of the attributes in <span class="arithmatex">\(R \cap S\)</span>, add a tuple <span class="arithmatex">\(t\)</span> to the result, where
+<p>Then, <span class="arithmatex">\(r \bowtie s\)</span> is a relation on schema <span class="arithmatex">\(R \cup S\)</span> obtained as follows:</p>
+<p>Consider each pair of tuples <span class="arithmatex">\(t_r\)</span> from <span class="arithmatex">\(r\)</span> and <span class="arithmatex">\(t_s\)</span> from <span class="arithmatex">\(s\)</span>.</p>
+<p>If <span class="arithmatex">\(t_r\)</span> and <span class="arithmatex">\(t_s\)</span> have the same value on each of the attributes in <span class="arithmatex">\(R \cap S\)</span>, add a tuple <span class="arithmatex">\(t\)</span> to the result, where
   - <span class="arithmatex">\(t\)</span> has the same value as <span class="arithmatex">\(t_r\)</span> on <span class="arithmatex">\(r\)</span>
   - <span class="arithmatex">\(t\)</span> has the same value as <span class="arithmatex">\(t_s\)</span> on <span class="arithmatex">\(s\)</span></p>
 <p>Natural Join 有交换律与结合律，然后还引出一个更广的操作为 theta 操作，记为 <span class="arithmatex">\(\bowtie_\theta\)</span>，定义为 </p>
@@ -1885,14 +1885,14 @@ r\bowtie_\theta s = \sigma_\theta(r\times s)
 </div>
 <div class="admonition note">
 <p class="admonition-title">Outer Join using Joins</p>
-<p><strong>Left Outer Join (r ⟕ s)</strong> can be written as:
-$$
-  (r \bowtie s) \cup (r - \Pi_R(r \bowtie s)) \times {(null, ..., null)}
-$$</p>
-<p><strong>Right Outer Join (r ⟖ s)</strong> can be written as:
-$$
-  (r \bowtie s) \cup {(null, ..., null)} \times (s - \Pi_S(r \bowtie s))
-$$</p>
+<p><strong>Left Outer Join (r ⟕ s)</strong> can be written as:</p>
+<div class="arithmatex">\[
+  (r \bowtie s) \cup (r - \Pi_R(r \bowtie s)) \times \{(null, ..., null)\}
+\]</div>
+<p><strong>Right Outer Join (r ⟖ s)</strong> can be written as:</p>
+<div class="arithmatex">\[
+  (r \bowtie s) \cup \{(null, ..., null)\} \times (s - \Pi_S(r \bowtie s))
+\]</div>
 <p><strong>Full Outer Join (r ⟗ s)</strong> can be written as:</p>
 <div class="arithmatex">\[
   (r \bowtie s) \cup 
@@ -1943,7 +1943,7 @@ r \ltimes_{\theta} s = \Pi_R (\sigma_{\theta}(r \bowtie s))
 \]</div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p>Let <span class="arithmatex">\(r(\text{ID}, \text{course}\_id) = \Pi_{\text{ID}, \text{course\_id}(\text{takes})\)</span> and <span class="arithmatex">\(s(\text{course\_id}) = \Pi_{\text{course\_id}}(\sigma_{\text{dept\_name}=\text{Biology}}(\text{course}))\)</span></p>
+<p>Let <span class="arithmatex">\(r(\text{ID}, \text{course}\_id) = \Pi_{\text{ID}, \text{course}\_\text{id}}(\text{takes})\)</span> and <span class="arithmatex">\(s(\text{course}\_\text{id}) = \Pi_{\text{course}\_\text{id}}(\sigma_{\text{dept}\_\text{name}=\text{Biology}}(\text{course}))\)</span></p>
 <p>then <span class="arithmatex">\(r \div s\)</span> gives us students who have taken all courses in the Biology department.</p>
 </div>
 <p>Can write <span class="arithmatex">\(r \div s\)</span> as:</p>
