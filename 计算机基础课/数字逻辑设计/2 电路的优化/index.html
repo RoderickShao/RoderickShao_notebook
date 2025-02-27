@@ -804,81 +804,6 @@
     2.2 优化方法（K-Maps）
   </a>
   
-    <nav class="md-nav" aria-label="2.2 优化方法（K-Maps）">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#221" class="md-nav__link">
-    2.2.1 特点
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#222" class="md-nav__link">
-    2.2.2 步骤
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#223" class="md-nav__link">
-    2.2.3 例子
-  </a>
-  
-    <nav class="md-nav" aria-label="2.2.3 例子">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#k-maps" class="md-nav__link">
-    三维K-maps
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#k-maps_1" class="md-nav__link">
-    四维K-Maps
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#224" class="md-nav__link">
-    2.2.4 常见错误
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#225-dont-cares" class="md-nav__link">
-    2.2.5 无关项（Don't cares)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#226" class="md-nav__link">
-    2.2.6 算法
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#227" class="md-nav__link">
-    2.2.7 总结
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1410,6 +1335,8 @@
       
         
       
+        
+      
     
     
       
@@ -1476,81 +1403,6 @@
   <a href="#22-k-maps" class="md-nav__link">
     2.2 优化方法（K-Maps）
   </a>
-  
-    <nav class="md-nav" aria-label="2.2 优化方法（K-Maps）">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#221" class="md-nav__link">
-    2.2.1 特点
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#222" class="md-nav__link">
-    2.2.2 步骤
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#223" class="md-nav__link">
-    2.2.3 例子
-  </a>
-  
-    <nav class="md-nav" aria-label="2.2.3 例子">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#k-maps" class="md-nav__link">
-    三维K-maps
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#k-maps_1" class="md-nav__link">
-    四维K-Maps
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#224" class="md-nav__link">
-    2.2.4 常见错误
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#225-dont-cares" class="md-nav__link">
-    2.2.5 无关项（Don't cares)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#226" class="md-nav__link">
-    2.2.6 算法
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#227" class="md-nav__link">
-    2.2.7 总结
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1669,75 +1521,117 @@
 
 <h1 id="2"><strong>2 电路的优化</strong><a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 874 个字 
+    文本统计：约 1303 个字 
 </div>
 
 <h2 id="21"><strong>2.1 评判一个电路的复杂性</strong><a class="headerlink" href="#21" title="Permanent link">&para;</a></h2>
-<p><strong>Literal Cost (L)</strong>：出现变量的个数（重复的也计算在内）它的缺点是只评价了第一层的电路数量</p>
+<p><strong>Literal Cost (L)</strong>：出现变量的个数（重复的也计算在内）它的缺点是只评价了第一层的电路数量。</p>
+<div class="admonition example">
+<p class="admonition-title">Literal Cost</p>
+<div class="arithmatex">\[
+F=BD+A\overline BC + A\overline C\overline D
+\]</div>
+<p>这里的 Literal cost 就是 8</p>
+</div>
 <p><strong>Gate Input Cost (G)（门输入代价）</strong>：输入给逻辑门的总和</p>
 <p><strong>Gate input cost with NOTs (GN)</strong>：加上了非门（重复的算一个）</p>
-<p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705204148.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705204148.jpg" /></a></p>
-<p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705204937.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705204937.jpg" /></a></p>
-<p>（G=10）</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20134013.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20134013.png" /></a></p>
+<p>计算 G 和 GN 只需要一层一层数就可以了，非常简单</p>
+</div>
 <h2 id="22-k-maps"><strong>2.2 优化方法（K-Maps）</strong><a class="headerlink" href="#22-k-maps" title="Permanent link">&para;</a></h2>
-<p>直观的方法：对规范形式使用minimization theorem(最小化定理)</p>
-<p>更进一步引入工具：K-Map</p>
-<h3 id="221"><strong>2.2.1 特点</strong><a class="headerlink" href="#221" title="Permanent link">&para;</a></h3>
+<p>直观的方法：对规范形式使用 Minimization Theorem(最小化定理)，更进一步引入工具：K-Map.</p>
+<p>K-Maps 具有的特点</p>
+<ul>
+<li>表格每个方块代表最小项与最大项</li>
+<li>将真值表转换成二维表</li>
+<li>相邻的格子中仅有一个变量是不同的（按照格雷码排布）</li>
+</ul>
+<p>也就是 K-Maps 是真值表的一种组织方式，以更加方便地完成项的合并。</p>
+<p>使用 K-Maps 完成布尔代数式的优化，步骤可以总结为下面四步</p>
+<p><strong>Step 1: Identify min-terms or max-terms</strong> 判断是最小项还是最大项</p>
+<p><strong>Step 2: Fill the K-map with min-terms or max-terms</strong> 将这些最大项与最小项填入 K-Maps</p>
+<ul>
+<li>For SOM, put 1's in squares respective to the min-terms 最小项填1</li>
+<li>For POM, put 0's in squares respective to the max-terms 最大项填2</li>
+</ul>
+<p><strong>Step 3: Form the rectangular groups containing maximum number of terms in power of two</strong></p>
+<p><strong>Step 4: Obtain the simplified expression for groups</strong></p>
+<ul>
+<li>For SOM, find the product terms and sum them up</li>
+<li>For POM, find the sum terms and take product of them</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Two Variable Maps</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20140539.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20140539.png" /></a></p>
+<p>找相邻想项，应用 Minimization Theorem 即可。</p>
+<p>如果出现了重复项，也就是某一项可以与好几项合并，只需要将其复制即可。</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20140756.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20140756.png" /></a></p>
+</div>
+<p>三维的 K-Maps 的排布如下图</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20141730.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20141730.png" /></a></p>
+<p>然后合并的规则就是</p>
+<ul>
+<li><strong>One square</strong> represents a min-term with three variables.</li>
+<li><strong>Two adjacent squares</strong> represent a product term with two variables.</li>
+<li><strong>Four “adjacent” terms</strong> represent a product term with one variable.</li>
+<li><strong>Eight “adjacent” terms</strong> is the function of all ones (no variables) = 1.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Three Variable Maps</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20142112.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20142112.png" /></a></p>
+<p>注意项的合并不只是图上所看到的，还可以头尾连接</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20142222.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20142222.png" /></a></p>
+<p>再举个例子</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20142401.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20142401.png" /></a></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Pitfalls of Combining Squares</p>
 <ul>
 <li>
-<p>表格每个方块代表最小项与最大项</p>
+<p>Only <span class="arithmatex">\(2^n\)</span> number of squares in each group.</p>
 </li>
 <li>
-<p>将真值表转换成二维表</p>
-</li>
-<li>
-<p>相邻的格子中仅有一个变量是不同的（按照格雷码排布）</p>
+<p>Groups should be as large as possible.</p>
 </li>
 </ul>
-<h3 id="222"><strong>2.2.2 步骤</strong><a class="headerlink" href="#222" title="Permanent link">&para;</a></h3>
-<p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705211333.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705211333.jpg" /></a></p>
-<p>两个变量的格雷码编排：00 01 11 10（注意头尾也是<strong>相邻</strong>的）</p>
-<p>在K-Map中存在交叉的时候，复制一下就行</p>
-<h3 id="223"><strong>2.2.3 例子</strong><a class="headerlink" href="#223" title="Permanent link">&para;</a></h3>
-<h4 id="k-maps">三维K-maps<a class="headerlink" href="#k-maps" title="Permanent link">&para;</a></h4>
-<p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705212913.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705212913.jpg" /></a></p>
-<p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705212917.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705212917.jpg" /></a></p>
-<p>（注意一下例子中xyz的标注方式）</p>
-<p>技巧：观察不变量（上面这个例子就是Y）</p>
-<p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705213944.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705213944.jpg" /></a></p>
-<h4 id="k-maps_1">四维K-Maps<a class="headerlink" href="#k-maps_1" title="Permanent link">&para;</a></h4>
-<p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705214545.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240705214545.jpg" /></a></p>
-<p>注意数字的排布</p>
-<h3 id="224"><strong>2.2.4 常见错误</strong><a class="headerlink" href="#224" title="Permanent link">&para;</a></h3>
-<ul>
-<li>只能圈1</li>
-<li>贪心地圈</li>
-<li>圈只能圈<span class="arithmatex">\(2^n\)</span>个，不能圈3，5个（去掉1个变量圈两个，去掉2个变量圈4个，去掉n个圈<span class="arithmatex">\(2^n\)</span>个）</li>
-</ul>
-<h3 id="225-dont-cares"><strong>2.2.5 无关项（Don't cares)</strong><a class="headerlink" href="#225-dont-cares" title="Permanent link">&para;</a></h3>
-<p>有些输入不可能出现，比如BCD码中只有0~9被使用，其他的就是无关项，这些项可0可1，所以就可以获得更多的优化机会。</p>
-<p><strong>例1</strong></p>
-<p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240706141723.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240706141723.jpg" /></a></p>
-<p>X取合适的0和1进行优化</p>
-<p><strong>例2</strong>（独热码（one-hot)与一般二进制编码的比较）</p>
+</div>
+<p>而对于四维K-Maps，相应的排列如下所示</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20142744.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20142744.png" /></a></p>
+<p>无关项：有些输入不可能出现，比如BCD码中只有0~9被使用，其他的就是无关项，这些项可0可1，所以就可以获得更多的优化机会。</p>
+<div class="admonition example">
+<p class="admonition-title">BCD "5 or More"</p>
+<p>这里 BCD 码中10-15都是无关项，所以可以随意赋值</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20143818.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20143818.png" /></a></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">独热码 (one-hot) 与一般二进制编码的比较</p>
 <p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240706142232.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240706142232.jpg" /></a></p>
 <p>独热码读取最小项时可以直接读特征项，比如说F1直接读Z，F2直接读Y+X，但这样就少了最小项之间可能存在的优化机会。</p>
 <p>编码稀疏，优化机会可能更多，减少门输入代价</p>
-<h3 id="226"><strong>2.2.6 算法</strong><a class="headerlink" href="#226" title="Permanent link">&para;</a></h3>
-<p><strong>蕴含项</strong>（implicant)：就是SOP中的每项积以及POS中的每项和</p>
-<p>可分为：Prime Implicant and Essential Prime Implicant</p>
-<ul>
-<li>Prime Implicant（主蕴含项）：包含尽可能多的相邻项，且是$ 2^n $个</li>
-<li>Essential Prime Implicant（基本主蕴含项）：包含特殊蕴含项，可能没有（比如说循环的K-maps）【必选】</li>
-</ul>
+</div>
+<p><strong>K-Maps 的优势与劣势</strong>：优势在于这个方法比较简单，同时相比于其他简化方式，步骤更少，然后得到的结果必然是最简的。但是随着变量的增多，K-Maps 的过程会变得越来越复杂，难以程序化，并且 K-Maps 得到的结果不一定是唯一的。</p>
+<p>在计算机中使用的简化算法为 <strong>Quine-McCluskey algorithm</strong> </p>
+<p><strong>蕴含项</strong>（implicant)：就是SOP中的每项积以及POS中的每项和，比如说 <span class="arithmatex">\(F = AB+ABC+BC\)</span>，蕴含项就是 <span class="arithmatex">\(AB,ABC,BC\)</span>，在 K-Maps 中， the implicant is a group containing <span class="arithmatex">\(2^n\)</span> squares. </p>
+<p>蕴含项可分为两类：Prime Implicant and Essential Prime Implicant</p>
+<p>A <strong>Prime Implicant</strong> is a product term obtained by combining the maximum possible number of adjacent squares in the map with <span class="arithmatex">\(2^n\)</span> number of squares. 包含尽可能多的相邻项，且是$ 2^n $个</p>
+<p>An <strong>Essential Prime Implicant</strong> is a prime implicant that covers one or more minterms that no combination of other prime implicants are able to include.</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20152159.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20152159.png" /></a></p>
+<div class="admonition example">
+<p class="admonition-title">Example of Prime Implicants</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20161900.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20161900.png" /></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Cyclic Boolean Function</p>
+<p>However a cyclic Boolean function doesn’t have Essential Prime Implicant. Every minterm is covered by at least two prime implicants and every prime implicant is of same size.</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20161131.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-27%20161131.png" /></a></p>
+</div>
 <p><strong>Quien McCluskey 算法</strong></p>
-<ol>
-<li>找到所有主蕴含项</li>
-<li>包含进所有基本主蕴含项</li>
-<li>挑选尽可能少的非基本主蕴含项去包含所有最小项</li>
-</ol>
+<p>（1）找到所有主蕴含项</p>
+<p>（2）包含进所有基本主蕴含项</p>
+<p>（3）挑选尽可能少的非基本主蕴含项去包含所有最小项</p>
 <p><strong>多层电路优化</strong>（提取公因式，不一定会减少）</p>
-<h3 id="227"><strong>2.2.7 总结</strong><a class="headerlink" href="#227" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240706194845.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240706194845.jpg" /></a></p>
 <h2 id="23"><strong>2.3 其他门介绍</strong><a class="headerlink" href="#23" title="Permanent link">&para;</a></h2>
 <h3 id="231"><strong>2.3.1 与非门</strong><a class="headerlink" href="#231" title="Permanent link">&para;</a></h3>
