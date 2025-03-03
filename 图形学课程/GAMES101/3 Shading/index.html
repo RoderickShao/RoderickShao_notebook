@@ -1299,6 +1299,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1508,26 +1514,25 @@ L_d = k_d(I/r^2)\max(0,n\cdot I)
 <h3 id="312-specular-term"><strong>3.1.2 Specular Term</strong><a class="headerlink" href="#312-specular-term" title="Permanent link">&para;</a></h3>
 <p>It means bright near reflection direction. 在这种情况下，光强就与观察角度有关了</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20154918.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20154918.png" /></a></p>
-<p><span class="arithmatex">\(\bold v\)</span> close to mirror direction <span class="arithmatex">\(\Leftrightarrow\)</span> half vector near normal</p>
+<p><span class="arithmatex">\(\bf v\)</span> close to mirror direction <span class="arithmatex">\(\Leftrightarrow\)</span> half vector near normal</p>
 <div class="arithmatex">\[
 \pmb{h} = \text{bisector}(\pmb v, \pmb l) = \frac{\pmb v +\pmb l}{\|\pmb v +\pmb l \|}
 \]</div>
 <p>这样我们得到 Specular term 的光强的值</p>
 <div class="arithmatex">\[
 \begin{aligned}
-L_s &amp;= k_s(I/r^2)max(0,\cos \alpha)^p \\
-&amp;= k_s(I/r^2)max(0,\pmb {n}\cdot \pmb {h}) ^p
+L_s &amp;= k_s(I/r^2)\max(0,\cos \alpha)^p \\
+&amp;= k_s(I/r^2)\max(0,\pmb {n}\cdot \pmb {h}) ^p
 \end{aligned}
 \]</div>
 <p><span class="arithmatex">\(k_s\)</span> means specular coefficient.</p>
-<p>!!! question “Why we need to <span class="arithmatex">\(()^p\)</span>?”</p>
-<div class="highlight"><pre><span></span><code>Increasing p narrows the refelction lobe.
-增加p让我仅在很小的部分才能看到高光
-
-Usually p is above 100.
-
-![](img/屏幕截图 2024-08-28 155534.png)
-</code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Why we need to <span class="arithmatex">\(()^p\)</span>?</p>
+<p>Increasing p narrows the refelction lobe.
+增加p让我仅在很小的部分才能看到高光</p>
+<p>Usually p is above 100.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20155534.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20155534.png" /></a></p>
+</div>
 <p><span class="arithmatex">\(k_s\)</span> 越大，物体亮度越高。 <span class="arithmatex">\(p\)</span> 越大，高光的区域越小</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20142429.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20142429.png" /></a></p>
 <h3 id="313-ambient-term"><strong>3.1.3 Ambient Term</strong><a class="headerlink" href="#313-ambient-term" title="Permanent link">&para;</a></h3>
@@ -1536,7 +1541,7 @@ Usually p is above 100.
 L_a = k_a I_a
 \]</div>
 <p><span class="arithmatex">\(k_a\)</span> means ambient coefficient. <span class="arithmatex">\(I_a\)</span> 是来自环境的光。</p>
-<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<h3 id="summary"><strong>Summary</strong><a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20142732.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20142732.png" /></a></p>
 <div class="arithmatex">\[
 \begin{aligned}
@@ -1544,8 +1549,8 @@ L&amp;=L_a+L_d+L_s\\
 &amp;=k_aI_a+k_d(I/r^2)max(0,\bold n\cdot \bold l)+k_s(I/r^2)max(0,\bold n\cdot\bold h)^p
 \end{aligned}
 \]</div>
-<h2 id="32-shading-frequencies">3.2 Shading Frequencies<a class="headerlink" href="#32-shading-frequencies" title="Permanent link">&para;</a></h2>
-<h3 id="three-methods-of-shading">Three Methods of Shading<a class="headerlink" href="#three-methods-of-shading" title="Permanent link">&para;</a></h3>
+<h2 id="32-shading-frequencies"><strong>3.2 Shading Frequencies</strong><a class="headerlink" href="#32-shading-frequencies" title="Permanent link">&para;</a></h2>
+<h3 id="three-methods-of-shading"><strong>Three Methods of Shading</strong><a class="headerlink" href="#three-methods-of-shading" title="Permanent link">&para;</a></h3>
 <p>我们有三种不同的 shading 思路</p>
 <p><strong>Shade each triangle——Flat shading</strong></p>
 <p><a class="glightbox" href="../img/Flat%20shading.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Flat%20shading.png" /></a></p>
@@ -1562,7 +1567,7 @@ L&amp;=L_a+L_d+L_s\\
 <div class="arithmatex">\[
 N_v=\frac{\sum_i N_i}{\|\sum_i N_i\|}
 \]</div>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172719.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172719.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172858.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172858.png" /></a></p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172719.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172719.png" /></a><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172858.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-08-28%20172858.png" /></a></center></p>
 <h3 id="how-to-define-per-pixel-normal-vectors"><strong>How to define per-pixel normal vectors?</strong><a class="headerlink" href="#how-to-define-per-pixel-normal-vectors" title="Permanent link">&para;</a></h3>
 <p><strong>Barycentric interpolation</strong> of vertex normals. </p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20145800.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20145800.png" /></a></p>

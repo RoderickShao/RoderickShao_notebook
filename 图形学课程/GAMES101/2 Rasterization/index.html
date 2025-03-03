@@ -1280,6 +1280,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1491,14 +1497,14 @@ M_{viewport}=\left(\begin{matrix}\frac{\text{width}}{2}&amp;0&amp;0&amp;\frac{\t
 <p>The reason behind the Aliasing Artifacts is that Signals are changing too fast and sampled too slowly（信息变化过快但是采样速度较慢）.</p>
 <p>Anti-aliasing Idea: Blurring or Filter before sampling (<strong>NOT Sample then filter!</strong>)</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20121127.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20121127.png" /></a></p>
-<h3 id="why-undersampling-introduces-aliasing">Why undersampling introduces aliasing?<a class="headerlink" href="#why-undersampling-introduces-aliasing" title="Permanent link">&para;</a></h3>
+<h3 id="why-undersampling-introduces-aliasing"><strong>Why undersampling introduces aliasing?</strong><a class="headerlink" href="#why-undersampling-introduces-aliasing" title="Permanent link">&para;</a></h3>
 <p>Higher frequencies need faster sampling, so undersampling creates frequency aliases.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20160226.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-11-24%20160226.png" /></a></p>
 <p>比如说两个频率不同的正弦函数，如果采样频率较低，那么这两种不同频率的正弦函数就无法被区分了，这就被称为走样。</p>
 </div>
-<h3 id="spatial-domain-and-frequency-domain">Spatial domain and Frequency domain<a class="headerlink" href="#spatial-domain-and-frequency-domain" title="Permanent link">&para;</a></h3>
+<h3 id="spatial-domain-and-frequency-domain"><strong>Spatial domain and Frequency domain</strong><a class="headerlink" href="#spatial-domain-and-frequency-domain" title="Permanent link">&para;</a></h3>
 <p>By <strong>FFT</strong>, we can transform an image from spatial domain（时域） to frequency domain（频域）. </p>
 <p><strong>Filtering</strong> means getting rid of certain frequency contents.</p>
 <p>右边这个图越靠近中心频率越低，频率的意思是图像灰度值的梯度，图像变化越剧烈频率越高。</p>
@@ -1575,7 +1581,7 @@ M_{viewport}=\left(\begin{matrix}\frac{\text{width}}{2}&amp;0&amp;0&amp;\frac{\t
 <p>This method does not increase the sampling rate, but increases the number of sampling points. The cost of this method is increasing the calculation.</p>
 <p>我们不是通过增加分辨率来解决走样问题的，而是增大采样点的数目来做到的。这样的结果就是计算量变得非常大</p>
 </div>
-<h3 id="anti-aliasing-today">Anti-aliasing Today<a class="headerlink" href="#anti-aliasing-today" title="Permanent link">&para;</a></h3>
+<h3 id="anti-aliasing-today"><strong>Anti-aliasing Today</strong><a class="headerlink" href="#anti-aliasing-today" title="Permanent link">&para;</a></h3>
 <p>FXAA (Fast Approximate AA) 先得到有锯齿的结果，然后再进行处理，具体来说就是通过图像处理的办法找到边界，然后将边界换成没有锯齿的边界，它与采样无关，是一种图像的处理技术</p>
 <p>TAA (Temporal AA) 对于静态图像的处理，利用上一帧的图像</p>
 <h2 id="23-visibility-occlusion"><strong>2.3 Visibility / Occlusion</strong><a class="headerlink" href="#23-visibility-occlusion" title="Permanent link">&para;</a></h2>

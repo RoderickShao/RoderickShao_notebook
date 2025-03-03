@@ -1353,6 +1353,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1585,7 +1591,7 @@
 
 <h1 id="4-texture-mapping"><strong>4 Texture Mapping</strong><a class="headerlink" href="#4-texture-mapping" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2675 个字  •  4 行代码 
+    文本统计：约 2676 个字  •  4 行代码 
 </div>
 
 <p>Every 3D surface point also has a place where it goes in the 2D image 将三维表面映射到二维表面</p>
@@ -1670,7 +1676,7 @@ D=log_2max(\sqrt{(\frac{du}{dx})^2+(\frac{dv}{dx})^2},\sqrt{(\frac{du}{dy})^2+(\
 <p>如果这个正方形区域就是1×1，那么就表明一个像素正好对应一个边长为L的正方形区域，也就可以直接在最原始（第0层，D=0）的纹理上找对应的像素，就是它的值。</p>
 <p>如果这个正方形区域是2×2，那么这个区域会在第1层（D=1）上对应一个像素</p>
 <p>如果这个正方形区域是4×4，那么这个区域会在第2层（D=2）上对应一个像素</p>
-<p>对于L×L大小的正方形，一定会在 <span class="arithmatex">\(D=log_2L\)</span> 层上对应到一个像素。</p>
+<p>对于L×L大小的正方形，一定会在 <span class="arithmatex">\(D=\log_2L\)</span> 层上对应到一个像素。</p>
 <p>因此我们只需要算出D，即在第几层正方形的区域对应一个像素，就可以得出这个区域内平均值是多少。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221841.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-12-01%20221841.png" /></a></p>
 <p>我们发现这个图并<strong>不是连续</strong>的，还是使用插值方法 (<strong>Tri-linear interpolation</strong>) 使图像连续。</p>
