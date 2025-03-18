@@ -869,6 +869,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#234-the-3-state-buffer" class="md-nav__link">
+    2.3.4 The 3-State Buffer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#235-more-complex-gates" class="md-nav__link">
+    2.3.5 More Complex Gates
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1115,6 +1129,8 @@
       
         
       
+        
+      
     
     
       
@@ -1170,36 +1186,16 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/Introduction/" class="md-nav__link">
         
-      
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/Introduction/" class="md-nav__link">
-      
   
   <span class="md-ellipsis">
     计算机体系结构
   </span>
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
+      </a>
     </li>
   
 
@@ -1219,8 +1215,6 @@
   
     
     
-      
-        
       
         
       
@@ -1446,6 +1440,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#234-the-3-state-buffer" class="md-nav__link">
+    2.3.4 The 3-State Buffer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#235-more-complex-gates" class="md-nav__link">
+    2.3.5 More Complex Gates
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1471,7 +1479,7 @@
 
 <h1 id="2-circuit-optimization"><strong>2 Circuit Optimization</strong><a class="headerlink" href="#2-circuit-optimization" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1664 个字 
+    文本统计：约 1798 个字 
 </div>
 
 <h2 id="21-cost-criteria"><strong>2.1 Cost Criteria</strong><a class="headerlink" href="#21-cost-criteria" title="Permanent link">&para;</a></h2>
@@ -1687,9 +1695,44 @@ X \bigoplus Y = X \overline Y + \overline XY\\
 </ul>
 </div>
 <h3 id="233-buffer"><strong>2.3.3 Buffer</strong><a class="headerlink" href="#233-buffer" title="Permanent link">&para;</a></h3>
-<p>A buffer is an electronic amplifier used to improve circuit voltage levels and increase the speed of circuit operation.</p>
+<p>A buffer is an electronic amplifier used to improve circuit voltage levels and increase the speed of circuit operation. </p>
+<p>缓冲器是一种电子放大器，用于提高电路电压水平和提高电路运行速度。</p>
 <p>The buffer is a gate with the function <span class="arithmatex">\(F = X\)</span></p>
-<p>多个电路的信号输入一个门，需要一个buffer（0/1竞争问题造成短路）</p>
+<h3 id="234-the-3-state-buffer">2.3.4 The 3-State Buffer<a class="headerlink" href="#234-the-3-state-buffer" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-13%20135120.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-13%20135120.png" /></a></p>
+<p>IN = data input, EN = Enable control input, OUT = data output</p>
+<p>(1) If EN = 0, then OUT = Hi-Z</p>
+<ul>
+<li>
+<p>Regardless of the value on IN</p>
+</li>
+<li>
+<p>Output disconnected from input</p>
+</li>
+</ul>
+<p>(2) If EN = 1, then OUT =IN</p>
+<ul>
+<li>Output follows the input value</li>
+</ul>
+<p>引入三态门的主要原因是为了解决多个信号源同时驱动同一信号线时可能产生的电气冲突问题。</p>
+<div class="admonition example">
+<p class="admonition-title">Data Selection Circut</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-13%20135635.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-13%20135635.png" /></a></p>
+</div>
+<h3 id="235-more-complex-gates">2.3.5 More Complex Gates<a class="headerlink" href="#235-more-complex-gates" title="Permanent link">&para;</a></h3>
+<p>The remaining complex gates are SOP or POS structures with and without an output inverter.</p>
+<p>The names are derived using:</p>
+<ul>
+<li>A - AND</li>
+<li>O - OR</li>
+<li>I - Inverter</li>
+<li>Numbers of inputs on first-level “gates” or directly to second-level “gates”</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-13%20135909.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-13%20135909.png" /></a></p>
+<p><a class="glightbox" href="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-13%20140326.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%202/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-13%20140326.png" /></a></p>
+</div>
 
 
   
