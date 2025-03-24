@@ -149,6 +149,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#gamma" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1088,6 +1093,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Gamma Correction
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1097,6 +1113,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gamma" class="md-nav__link">
+    应用 gamma 校正的方式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#srgb" class="md-nav__link">
+    sRGB 纹理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    衰减
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1196,6 +1250,35 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gamma" class="md-nav__link">
+    应用 gamma 校正的方式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#srgb" class="md-nav__link">
+    sRGB 纹理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    衰减
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1214,7 +1297,18 @@
 
   <h1>Gamma Correction</h1>
 
-
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 554 个字 
+</div>
+<p>伽马校正主要是为了解决人眼对颜色的感觉与物理世界的颜色的不同。</p>
+<h3 id="gamma">应用 gamma 校正的方式<a class="headerlink" href="#gamma" title="Permanent link">&para;</a></h3>
+<p>第一种直接启用 sRGB 帧缓冲，这样片段着色器输出的颜色自动就会进行伽马校正，但是这种方式的缺陷就在于如果使用多个帧缓冲，那么中间操作的时候就不是线性空间颜色了，就会出现问题，因为我们只需要在最后进行伽马校正</p>
+<p>而第二种方法则是在片段着色器中进行伽马校正，这样我们可以完全控制伽马校正。这种方法的一个问题是，为了保持一致性，你必须对每个有助于最终输出的片段着色器应用伽玛校正。如果你有多个对象的十几个片段着色器，你必须为每个着色器添加伽马校正代码。一个更简单的解决方案是在你的渲染循环中引入一个<strong>后处理阶段</strong>，并在后处理的四边形上应用伽马校正作为最后一步，这样你只需要做一次伽马矫正即可。</p>
+<h3 id="srgb">sRGB 纹理<a class="headerlink" href="#srgb" title="Permanent link">&para;</a></h3>
+<p>将纹理存储为 sRGB 纹理，它会自动将纹理转换为线性空间。</p>
+<p>因为不是所有纹理都是在sRGB空间中的所以当你把纹理指定为sRGB纹理时要格外小心。比如diffuse纹理，这种为物体上色的纹理几乎都是在sRGB空间中的。而为了获取光照参数的纹理，像specular贴图和法线贴图几乎都在线性空间中，所以如果你把它们也配置为sRGB纹理的话，光照就坏掉了。指定sRGB纹理时要当心。</p>
+<h3 id="_1">衰减<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>按照物理模型来说光照的衰减随着距离的平方呈线性，但是经过gamma校正后，我们看到的颜色随着距离的4.4次方而衰弱，这样显示的颜色显得衰弱得非常快，所以我们在线性空间随着距离而衰弱，这样在颜色空间就符合衰弱规律了。</p>
 
 
   

@@ -1,0 +1,2372 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="RoderickShao's NoteBook">
+      
+      
+        <meta name="author" content="RoderickShao">
+      
+      
+      
+        <link rel="prev" href="../Chapter%205%20Advanced%20SQL/">
+      
+      
+        <link rel="next" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/OOP/">
+      
+      
+      <link rel="icon" href="../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.2.0-b3">
+    
+    
+      
+        <title>Chapter 6 Entity-Relationship Model - RoderickShao's NoteBook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.83068744.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13.274 9.537v-.001l-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75Z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.484 4.484 0 0 1-.563-1.191 3.835 3.835 0 0 1-.05-2.063 4.647 4.647 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .748.748 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.425 2.425 0 0 1-.507-.441 3.075 3.075 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.884.884 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.737 3.737 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75Z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343h-.001a8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746Zm1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275ZM6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L6.94 8 4.97 6.03a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.488 3.488 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.036 5.036 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.677 1.677 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06Zm.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.172.172 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173Z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z"/></svg>');--md-admonition-icon--link:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+      <link rel="stylesheet" href="../../../css/card.css">
+    
+      <link rel="stylesheet" href="../../../css/flink.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config",""),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-6-entity-relationship-model" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RoderickShao's NoteBook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 6 Entity-Relationship Model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="关闭自动模式"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="关闭自动模式" for="__palette_3" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="default" data-md-color-accent="blue"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_3">
+            
+              <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/RoderickShao/RoderickShao_notebook" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RoderickShao_notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+    
+  
+  主页
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  通识基础课
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  计算机基础课
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  计算机语言学习
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  计算机相关技能
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  图形学课程
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    RoderickShao's NoteBook
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/RoderickShao/RoderickShao_notebook" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RoderickShao_notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../.." class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    通识基础课
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    计算机基础课
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机基础课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    离散数学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数字逻辑设计
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机组成
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
+        
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数据库系统
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%201%20Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1 Database Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%202%20The%20Relation%20Model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2 The Relation Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%203%20Introduction%20to%20SQL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3 Introduction to SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%204%20Intermediate%20SQL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4 Intermediate SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%205%20Advanced%20SQL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5 Advanced SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 6 Entity-Relationship Model
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6 Entity-Relationship Model
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61-database-design-process" class="md-nav__link">
+    6.1 Database Design Process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-database-modeling" class="md-nav__link">
+    6.2 Database Modeling
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Database Modeling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621-entity" class="md-nav__link">
+    6.2.1 Entity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-relationship" class="md-nav__link">
+    6.2.2 Relationship
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623-roles" class="md-nav__link">
+    6.2.3 Roles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#624-degree-of-a-relationship-set" class="md-nav__link">
+    6.2.4 Degree of a Relationship Set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#625-attributes" class="md-nav__link">
+    6.2.5 Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-mapping-cardinality-constraints" class="md-nav__link">
+    6.3 Mapping Cardinality Constraints
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3 Mapping Cardinality Constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#631-notation-for-expressing-more-complex-constraints" class="md-nav__link">
+    6.3.1 Notation for Expressing More Complex Constraints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#632-cardinality-constraints-on-ternary-relationship" class="md-nav__link">
+    6.3.2 Cardinality Constraints on Ternary Relationship
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#633-primary-key" class="md-nav__link">
+    6.3.3 Primary Key
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3.3 Primary Key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-key-for-entity-sets" class="md-nav__link">
+    Primary key for Entity Sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primary-key-for-relationship-sets" class="md-nav__link">
+    Primary Key for Relationship Sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weak-entity-sets" class="md-nav__link">
+    Weak Entity Sets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#634-redundant-attributes" class="md-nav__link">
+    6.3.4 Redundant Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64-reduction-to-relational-schemas" class="md-nav__link">
+    6.4 Reduction to Relational Schemas
+  </a>
+  
+    <nav class="md-nav" aria-label="6.4 Reduction to Relational Schemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#641-representing-entity-sets-with-simple-attributes" class="md-nav__link">
+    6.4.1 Representing Entity Sets With Simple Attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#642-representing-relationship-sets" class="md-nav__link">
+    6.4.2 Representing Relationship Sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#643-redundancy-of-schemas" class="md-nav__link">
+    6.4.3 Redundancy of Schemas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#644-composite-and-multivalued-attributes" class="md-nav__link">
+    6.4.4 Composite and Multivalued Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65-design-issues" class="md-nav__link">
+    6.5 Design Issues
+  </a>
+  
+    <nav class="md-nav" aria-label="6.5 Design Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#651-common-mistakes-in-e-r-diagrams" class="md-nav__link">
+    6.5.1 Common Mistakes in E-R Diagrams
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#652-use-of-entity-sets-vs-attributes" class="md-nav__link">
+    6.5.2 Use of entity sets vs. attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#653-use-of-entity-sets-vs-relationship-sets" class="md-nav__link">
+    6.5.3 Use of entity sets vs. relationship sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#654-placement-of-relationship-attributes" class="md-nav__link">
+    6.5.4 Placement of relationship attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#655-binary-vs-non-binary-relationships" class="md-nav__link">
+    6.5.5 Binary Vs. Non-Binary Relationships
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66-extended-er-features" class="md-nav__link">
+    6.6 Extended ER Features
+  </a>
+  
+    <nav class="md-nav" aria-label="6.6 Extended ER Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#661-specializationgeneralization" class="md-nav__link">
+    6.6.1 Specialization/Generalization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/OOP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面向对象程序设计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机体系结构
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机语言学习
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3%E6%8A%80%E8%83%BD/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机相关技能
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    图形学课程
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61-database-design-process" class="md-nav__link">
+    6.1 Database Design Process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-database-modeling" class="md-nav__link">
+    6.2 Database Modeling
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Database Modeling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621-entity" class="md-nav__link">
+    6.2.1 Entity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-relationship" class="md-nav__link">
+    6.2.2 Relationship
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623-roles" class="md-nav__link">
+    6.2.3 Roles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#624-degree-of-a-relationship-set" class="md-nav__link">
+    6.2.4 Degree of a Relationship Set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#625-attributes" class="md-nav__link">
+    6.2.5 Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-mapping-cardinality-constraints" class="md-nav__link">
+    6.3 Mapping Cardinality Constraints
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3 Mapping Cardinality Constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#631-notation-for-expressing-more-complex-constraints" class="md-nav__link">
+    6.3.1 Notation for Expressing More Complex Constraints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#632-cardinality-constraints-on-ternary-relationship" class="md-nav__link">
+    6.3.2 Cardinality Constraints on Ternary Relationship
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#633-primary-key" class="md-nav__link">
+    6.3.3 Primary Key
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3.3 Primary Key">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-key-for-entity-sets" class="md-nav__link">
+    Primary key for Entity Sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primary-key-for-relationship-sets" class="md-nav__link">
+    Primary Key for Relationship Sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weak-entity-sets" class="md-nav__link">
+    Weak Entity Sets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#634-redundant-attributes" class="md-nav__link">
+    6.3.4 Redundant Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64-reduction-to-relational-schemas" class="md-nav__link">
+    6.4 Reduction to Relational Schemas
+  </a>
+  
+    <nav class="md-nav" aria-label="6.4 Reduction to Relational Schemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#641-representing-entity-sets-with-simple-attributes" class="md-nav__link">
+    6.4.1 Representing Entity Sets With Simple Attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#642-representing-relationship-sets" class="md-nav__link">
+    6.4.2 Representing Relationship Sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#643-redundancy-of-schemas" class="md-nav__link">
+    6.4.3 Redundancy of Schemas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#644-composite-and-multivalued-attributes" class="md-nav__link">
+    6.4.4 Composite and Multivalued Attributes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65-design-issues" class="md-nav__link">
+    6.5 Design Issues
+  </a>
+  
+    <nav class="md-nav" aria-label="6.5 Design Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#651-common-mistakes-in-e-r-diagrams" class="md-nav__link">
+    6.5.1 Common Mistakes in E-R Diagrams
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#652-use-of-entity-sets-vs-attributes" class="md-nav__link">
+    6.5.2 Use of entity sets vs. attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#653-use-of-entity-sets-vs-relationship-sets" class="md-nav__link">
+    6.5.3 Use of entity sets vs. relationship sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#654-placement-of-relationship-attributes" class="md-nav__link">
+    6.5.4 Placement of relationship attributes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#655-binary-vs-non-binary-relationships" class="md-nav__link">
+    6.5.5 Binary Vs. Non-Binary Relationships
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66-extended-er-features" class="md-nav__link">
+    6.6 Extended ER Features
+  </a>
+  
+    <nav class="md-nav" aria-label="6.6 Extended ER Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#661-specializationgeneralization" class="md-nav__link">
+    6.6.1 Specialization/Generalization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="chapter-6-entity-relationship-model"><strong>Chapter 6 Entity-Relationship Model</strong><a class="headerlink" href="#chapter-6-entity-relationship-model" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 4452 个字  •  1 行代码 
+</div>
+
+<h2 id="61-database-design-process"><strong>6.1 Database Design Process</strong><a class="headerlink" href="#61-database-design-process" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20101925.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20101925.png" /></a></p>
+<p>**Initial phase (Requirement Specification) ** -- characterize fully the data needs of the prospective database users. </p>
+<p><strong>Second phase (Conceptual Design)</strong>  -- choosing  a data model</p>
+<ul>
+<li>Applying the concepts of the chosen data model</li>
+<li>Translating  these requirements into a conceptual schema of the database.</li>
+<li>A fully developed conceptual schema indicates the functional requirements of the enterprise. (Describe the kinds of operations (or transactions) that will be performed on the data.)</li>
+</ul>
+<p><strong>Final Phase (Database Design)</strong>-- Moving from an abstract data model to the implementation of the database</p>
+<ul>
+<li>
+<p>Logical Design –  Deciding on the database schema. </p>
+</li>
+<li>
+<p>Physical Design – Deciding on the physical layout of the database</p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In designing a database schema, we must ensure that we avoid two major pitfalls:</p>
+<ul>
+<li>
+<p><strong>Redundancy</strong>:  a bad design  may result in repeat information. Redundant representation of information may lead to data inconsistency among the various copies of information </p>
+</li>
+<li>
+<p><strong>Incompleteness</strong>: a bad design may make certain aspects of the enterprise difficult or impossible to model.</p>
+</li>
+</ul>
+<p>Avoiding bad designs is not enough. There may be a  large number  of  good designs from which we must choose.</p>
+<p>Database design can be a challenging problem.</p>
+</div>
+<p>设计方法主要包括实体关系模型和规范化理论</p>
+<p><strong>Entity Relationship Model</strong>: models an enterprise as a collection of entities and relationships</p>
+<ul>
+<li>
+<p>Entity: a “thing” or “object” in the enterprise that is distinguishable from other objects, Described by a set of attributes</p>
+</li>
+<li>
+<p>Relationship: an association among several entities</p>
+</li>
+</ul>
+<p>Represented diagrammatically by an entity-relationship diagram:</p>
+<p><strong>Normalization Theory:</strong> Formalize what designs are bad, and test for them</p>
+<p>下面所展示的是 university 的一个 Entity Relationship Model，接下来几节我们都会讨论其中的一些细节</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20104723.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20104723.png" /></a></p>
+<h2 id="62-database-modeling"><strong>6.2 Database Modeling</strong><a class="headerlink" href="#62-database-modeling" title="Permanent link">&para;</a></h2>
+<p>A database can be modeled as:</p>
+<ul>
+<li>a collection of entities</li>
+<li>relationship among entities.</li>
+</ul>
+<h3 id="621-entity"><strong>6.2.1 Entity</strong><a class="headerlink" href="#621-entity" title="Permanent link">&para;</a></h3>
+<p>An <strong>entity</strong> is an object that exists and is distinguishable from other objects. Entities have attributes</p>
+<ul>
+<li>entity like specific person, company, event and attributes like names </li>
+</ul>
+<p>An <strong>entity set</strong> is a set of entities of the same type that share the same properties.</p>
+<ul>
+<li>example: set of all persons, companies</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Representing Entity sets in ER Diagram</p>
+<p>Entity sets can be represented graphically as follows:</p>
+<ul>
+<li>Rectangles represent entity sets.</li>
+<li>Attributes listed inside entity rectangle</li>
+<li>Underline indicates primary key attributes</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20105821.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20105821.png" /></a></p>
+</div>
+<h3 id="622-relationship"><strong>6.2.2 Relationship</strong><a class="headerlink" href="#622-relationship" title="Permanent link">&para;</a></h3>
+<p>A <strong>relationship</strong> is an association among several entities</p>
+<p>A relationship set is a mathematical relation among <span class="arithmatex">\(n \ge 2\)</span> entities, each taken from entity sets
+$$
+{(e_1, e_2, … e_n) | e_1 \in E_1, e_2 \in E_2, …, e_n \in E_n}
+$$
+where <span class="arithmatex">\((e_1, e_2, … e_n)\)</span> is a relationship</p>
+<div class="admonition note">
+<p class="admonition-title">Representing Relationship Sets in ER Diagrams </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20105926.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20105926.png" /></a></p>
+</div>
+<p>An attribute can also be property of a relationship set.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>For instance, the advisor relationship set between entity sets instructor and student may have the attribute date which tracks when the student started being associated with the advisor 学生和导师的关系还可以附加一个属性：确认关系的时间</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20110230.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20110230.png" /></a></p>
+</div>
+<h3 id="623-roles"><strong>6.2.3 Roles</strong><a class="headerlink" href="#623-roles" title="Permanent link">&para;</a></h3>
+<p>Entity sets of a relationship need not be distinct</p>
+<p>Each occurrence of an entity set plays a “<strong>role</strong>” in the relationship</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The labels “course_id” and “prereq_id” are called roles.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20131515.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20131515.png" /></a></p>
+</div>
+<h3 id="624-degree-of-a-relationship-set"><strong>6.2.4 Degree of a Relationship Set</strong><a class="headerlink" href="#624-degree-of-a-relationship-set" title="Permanent link">&para;</a></h3>
+<p>Binary relationship（二元联系）</p>
+<ul>
+<li>involve two entity sets (or degree two). </li>
+<li>most relationship sets in a database system are binary.</li>
+</ul>
+<p>There are  occasions when it is more convenient to represent relationships as non-binary.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20131948.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20131948.png" /></a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>当然这些多元关系可以很好地转化为二元关系，这样增加了便携性与扩展性</p>
+</div>
+<h3 id="625-attributes"><strong>6.2.5 Attributes</strong><a class="headerlink" href="#625-attributes" title="Permanent link">&para;</a></h3>
+<p>An entity is represented by a set of attributes, that is descriptive properties possessed by all members of an entity set.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>instructor = (ID, name, street, city, salary )
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>course= (course_id, title, credits)
+</code></pre></div>
+<p><strong>Domain</strong> – the set of permitted values for each attribute </p>
+<p><strong>Attribute types</strong>:</p>
+<ul>
+<li><strong>Simple</strong> （简单）and <strong>composite</strong>（复合） attributes.</li>
+<li><strong>Single-valued</strong>（单值） and <strong>multivalued</strong>（多值） attributes, example: multivalued attribute: phone_numbers</li>
+<li><strong>Derived（派生） attributes</strong>. Can be computed from other attributes, example:  age, given date_of_birth</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20132331.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="align" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20132331.png" /></a></p>
+<p>右边这个表格中</p>
+<ul>
+<li>name 和 address 就是复合属性</li>
+<li>{phone_number} 就是一个多值属性，指的是一个 instructor 可以有多个电话号码</li>
+<li>age() 就是一个派生属性，可以通过 date_of_birth 得到 </li>
+</ul>
+</div>
+<h2 id="63-mapping-cardinality-constraints"><strong>6.3 Mapping Cardinality Constraints</strong><a class="headerlink" href="#63-mapping-cardinality-constraints" title="Permanent link">&para;</a></h2>
+<p>Express the number of entities to which another entity can be associated via a relationship set.</p>
+<p>Most useful in describing binary relationship sets.</p>
+<p>For a binary relationship set the mapping cardinality must be one of the following types: <strong>One to One, One to Many, Many to One, Many to Many</strong>.</p>
+<p>We express cardinality constraints by drawing either <strong>a directed line</strong> (<span class="arithmatex">\(\rightarrow\)</span>), signifying “<strong>one</strong>,” or an <strong>undirected line</strong> (—), signifying “<strong>many</strong>,” between the relationship set and the entity set.</p>
+<div class="admonition note">
+<p class="admonition-title">Four types of relationship between an instructor and a student</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">One-to-one relationship</label><label for="__tabbed_1_2">one-to-many relationship</label><label for="__tabbed_1_3">many-to-one relationship</label><label for="__tabbed_1_4">Many-to-Many Relationship</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>A student is associated with at most one instructor via the relationship advisor</p>
+<p>A instructor is associated with at most one student via the relationship advisor</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20111735.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20111735.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>an instructor is associated with several (including 0) students via advisor </p>
+<p>a student is associated with at most one instructor via advisor, </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20112053.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20112053.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>an instructor  is associated with at most one student via advisor, </p>
+<p>and a student is associated with several (including 0) instructors via advisor </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20112228.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20112228.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>An instructor is associated with several (possibly 0) students via advisor</p>
+<p>A student is associated with several (possibly 0) instructors via advisor </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20112339.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20112339.png" /></a></p>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Total participation</strong> (indicated by double line):  every entity in the entity set participates in at least one relationship in the relationship set 每个 entity 必须要在这个关系模式里</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20132941.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20132941.png" /></a></p>
+</div>
+<p><strong>Partial participation</strong>:  some entities may not participate in any relationship in the relationship set</p>
+<h3 id="631-notation-for-expressing-more-complex-constraints"><strong>6.3.1 Notation for Expressing More Complex Constraints</strong><a class="headerlink" href="#631-notation-for-expressing-more-complex-constraints" title="Permanent link">&para;</a></h3>
+<p>A line may have an associated minimum and maximum cardinality, shown in the form <span class="arithmatex">\(l..h\)</span>, where <span class="arithmatex">\(l\)</span> is the minimum and <span class="arithmatex">\(h\)</span> the maximum cardinality</p>
+<ul>
+<li>A minimum value of 1 indicates total participation.</li>
+<li>A maximum value of 1 indicates that the entity participates  in at most one relationship</li>
+<li>A maximum value of * indicates no limit.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20133747.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20133747.png" /></a></p>
+</div>
+<h3 id="632-cardinality-constraints-on-ternary-relationship"><strong>6.3.2 Cardinality Constraints on Ternary Relationship</strong><a class="headerlink" href="#632-cardinality-constraints-on-ternary-relationship" title="Permanent link">&para;</a></h3>
+<p>We allow at most one arrow out of a ternary (or greater degree) relationship to indicate a cardinality constraint</p>
+<p>To avoid confusion we outlaw(禁止) more than one arrow. 如果允许从关系指向实体集的多条箭头，可能会导致理解上的混乱。例如，如果同时有箭头指向 <code>instructor</code> 和 <code>student</code>，可能无法明确表示具体是哪个实体集的基数受到限制</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20134944.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20134944.png" /></a></p>
+<h3 id="633-primary-key">6.3.3 Primary Key<a class="headerlink" href="#633-primary-key" title="Permanent link">&para;</a></h3>
+<p>Primary keys provide a way to specify how entities and  relations are distinguished.  We will consider:</p>
+<ul>
+<li>Entity sets</li>
+<li>Relationship sets</li>
+<li>Weak entity sets</li>
+</ul>
+<h4 id="primary-key-for-entity-sets">Primary key for Entity Sets<a class="headerlink" href="#primary-key-for-entity-sets" title="Permanent link">&para;</a></h4>
+<p>By definition, individual entities are <strong>distinct</strong>.</p>
+<p>From database perspective, the differences among them must be expressed in terms of their attributes.</p>
+<p>The values of the attribute values of an entity must be such that they can uniquely identify the entity.</p>
+<ul>
+<li>No two entities in an entity set are allowed to have exactly the same value for all attributes.</li>
+</ul>
+<p>A key for an entity is a set of attributes that suffice to distinguish entities from each other</p>
+<p>Primary key 是标识 entity 在 entity set 的唯一标识</p>
+<h4 id="primary-key-for-relationship-sets">Primary Key for Relationship Sets<a class="headerlink" href="#primary-key-for-relationship-sets" title="Permanent link">&para;</a></h4>
+<p>To distinguish among the various relationships of a relationship set we use the individual primary keys of the entities in the relationship set.</p>
+<ul>
+<li>Let R be a relationship set involving entity sets <span class="arithmatex">\(E_1, E_2, .. E_n\)</span></li>
+<li>The primary key for R is consists of the <strong>union of the primary keys</strong> of entity sets  <span class="arithmatex">\(E_1, E_2, .. E_n\)</span></li>
+<li>If the relationship set R has attributes <span class="arithmatex">\(a_1, a_2, .., a_m\)</span> associated with it, then the  primary key of R  also includes the attributes  <span class="arithmatex">\(a_1, a_2, .., a_m\)</span></li>
+<li>The choice of the primary key for a relationship set depends on  the mapping cardinality of the relationship set.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20143735.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20143735.png" /></a></p>
+</div>
+<p><strong>多对多（Many-to-Many）关系</strong></p>
+<ul>
+<li>定义：在多对多关系中，一个实体可以与多个其他实体相关联，反之亦然。</li>
+<li>主键选择：在这种情况下，两个参与实体集的主键组合起来形成一个新的复合主键。这个复合主键是一个最小超键（minimal superkey），并被选作关系表的主键。</li>
+</ul>
+<p>e.g. 假设有一个“课程”和“学生”之间的多对多关系，表示一个学生可以注册多门课程，一门课程也可以有多个学生注册。那么，关系表的主键将是“学生ID”和“课程ID”的组合。</p>
+<hr />
+<p><strong>一对多（One-to-Many）关系</strong></p>
+<ul>
+<li>定义：在一个实体集中，一个实体可以与多个其他实体相关联，但另一个实体只能与一个实体关联。</li>
+<li><strong>主键选择</strong>：在这种情况下，“多”侧实体集的主键作为关系表的主键。这个主键是一个最小超键，并被选作关系表的主键。</li>
+</ul>
+<p>e.g. 假设有一个“教师”和“课程”之间的一对多关系，表示一个教师可以教授多门课程，但一门课程只能由一个教师教授。那么，关系表的主键将是“课程ID”。</p>
+<hr />
+<p><strong>多对一（Many-to-One）关系</strong></p>
+<ul>
+<li>定义：在一个实体集中，多个实体可以与同一个其他实体相关联，但另一个实体只能与一个实体关联。</li>
+<li>主键选择：在这种情况下，“多”侧实体集的主键作为关系表的主键。这个主键是一个最小超键，并被选作关系表的主键。</li>
+</ul>
+<p>e.g. 假设有一个“订单”和“客户”之间的多对一关系，表示一个客户可以下多个订单，但一个订单只能属于一个客户。那么，关系表的主键将是“订单ID”。</p>
+<hr />
+<p><strong>一对一（One-to-One）关系</strong></p>
+<ul>
+<li>定义：在一个实体集中，一个实体只能与另一个实体唯一关联，反之亦然。</li>
+<li>主键选择：在这种情况下，任意一个参与实体集的主键都可以作为关系表的主键。因为任何一个主键都是一个最小超键。</li>
+</ul>
+<p>e.g. 假设有一个“员工”和“工资记录”之间的一对一关系，表示一个员工只有一条工资记录，一条工资记录只对应一个员工。那么，可以选择“员工ID”或“工资记录ID”作为关系表的主键。</p>
+<h4 id="weak-entity-sets">Weak Entity Sets<a class="headerlink" href="#weak-entity-sets" title="Permanent link">&para;</a></h4>
+<p>An entity set that <strong>does not</strong> have a primary key is referred to as a <strong>weak entity set</strong>.</p>
+<p>The existence of a weak entity set depends on the existence of a <strong>identifying entity set</strong>（标识性实体集）</p>
+<ul>
+<li>
+<p>It must relate to the identifying entity set via a total, <strong>one-to-many</strong> relationship set from the identifying to the weak entity set</p>
+</li>
+<li>
+<p>Identifying relationship（标识性联系） depicted using a double diamond</p>
+</li>
+</ul>
+<p>The <strong>discriminator</strong> (分辨符，or <strong>partial key</strong>) of a weak entity set is the set of attributes that distinguishes among all the entities of a weak entity set  when the identifying entity they depend is known.</p>
+<p>The primary key of a weak entity set is formed by the primary key of the strong entity set on which the weak entity set is existence dependent, plus the weak entity set’s discriminator.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Primary key for section – (course_id, sec_id, semester, year) </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20145832.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20145832.png" /></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the primary key of the strong entity set is not explicitly stored with the weak entity set, since it is implicit in the identifying relationship. 强实体集的主键不会显式地存储在弱实体集中，因为这种关系是隐含在识别关系中的。</p>
+<p>If course_id were explicitly stored, section could be made a strong entity, but then the relationship between section and course would be <strong>duplicated</strong> by an implicit relationship defined by the attribute course_id common to course and section</p>
+<p>如果<code>course_id</code>被显式存储在<code>section</code>表中，那么<code>section</code>就可以成为一个强实体。但这样会导致<code>section</code>和<code>course</code>之间的关系变得冗余，因为它们之间已经通过共同属性<code>course_id</code>存在一种隐含关系。</p>
+</div>
+<h3 id="634-redundant-attributes">6.3.4 Redundant Attributes<a class="headerlink" href="#634-redundant-attributes" title="Permanent link">&para;</a></h3>
+<p>Suppose we have entity sets:</p>
+<ul>
+<li>student, with attributes: ID, name, tot_cred, <strong>dept_name</strong></li>
+<li>department, with attributes: <strong>dept_name</strong>, building, budget</li>
+</ul>
+<p>We model the fact that each student has an associated department using a relationship set <code>stud_dept</code></p>
+<p>The attribute dept_name in student below replicates information present in the relationship and is therefore  redundant</p>
+<p>这个dept_name 已经在 relationship 中已经阐述了</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20153028.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20153028.png" /></a></center></p>
+<h2 id="64-reduction-to-relational-schemas"><strong>6.4 Reduction to Relational Schemas</strong><a class="headerlink" href="#64-reduction-to-relational-schemas" title="Permanent link">&para;</a></h2>
+<p>Entity sets and relationship sets can be expressed uniformly as relation schemas that represent the contents of the database.</p>
+<p>A database which conforms to an E-R diagram can be represented by a collection of schemas.</p>
+<h3 id="641-representing-entity-sets-with-simple-attributes"><strong>6.4.1 Representing Entity Sets With Simple Attributes</strong><a class="headerlink" href="#641-representing-entity-sets-with-simple-attributes" title="Permanent link">&para;</a></h3>
+<p>A <strong>strong entity</strong> set reduces to a schema with the same attributes</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">course</span><span class="p">(</span><span class="n">course_id</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">credits</span><span class="p">)</span>
+</code></pre></div>
+<p>A <strong>weak entity</strong> set becomes a table that includes a column for the primary key of the identifying strong entity set </p>
+<p>Primary key of the table is the union of the discriminator of the weak entity set and  the primary key of the identifying strong entity set </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20112815.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20112815.png" /></a></p>
+<h3 id="642-representing-relationship-sets"><strong>6.4.2 Representing Relationship Sets</strong><a class="headerlink" href="#642-representing-relationship-sets" title="Permanent link">&para;</a></h3>
+<p>A many-to-many relationship set is represented as a schema with attributes for the <strong>primary keys of the two participating entity sets</strong>, and <strong>any descriptive attributes of the relationship set</strong>. </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20114408.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20114408.png" /></a></p>
+<h3 id="643-redundancy-of-schemas"><strong>6.4.3 Redundancy of Schemas</strong><a class="headerlink" href="#643-redundancy-of-schemas" title="Permanent link">&para;</a></h3>
+<p>Many-to-one and one-to-many relationship sets that are total on the many-side can be represented by adding an <strong>extra attribute</strong> to the “many” side, containing the primary key of the “one” side</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20120413.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20120413.png" /></a></p>
+<p>为了避免冗余，我们可以直接在<code>instructor</code>实体中添加一个新属性<code>dept_name</code>，该属性包含了<code>department</code>实体中的<code>dept_name</code>。这样，每个教师记录就直接关联到其所属的部门名称，而<strong>不需要单独的关系集</strong><code>inst_dept</code>。</p>
+<p>对于一对一的关系集，任何一方都可以被选择作为“多”的一方：这意味着可以在两个实体集中对应的任意一个表中添加额外的属性。 例如，如果存在一个教师和其办公室的一对一关系，你可以在教师表中添加办公室ID，或者在办公室表中添加教师ID。</p>
+<p>如果“多”的一侧是部分参与的，用“多”侧的一个额外属性替换一个模式可能会导致空值（null values）：例如，在学生和课程注册的关系中，如果某些学生没有注册任何课程，那么在学生表中添加课程ID可能会导致这些学生的课程ID为空。</p>
+<h3 id="644-composite-and-multivalued-attributes"><strong>6.4.4 Composite and Multivalued Attributes</strong><a class="headerlink" href="#644-composite-and-multivalued-attributes" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20132331.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="align" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20132331.png" /></a></p>
+<p><strong>Composite attributes</strong> are flattened out by creating a separate attribute for each component attribute 复合属性直接展开就行了</p>
+<p>Ignoring multivalued attributes, extended instructor schema is</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>instructor(ID, first_name, middle_initial,  last_name,      
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>         street_number, street_name,  apt_number, 
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>         city, state, zip_code,date_of_birth, age )
+</code></pre></div>
+<p>A <strong>multivalued attribute</strong> M of an entity E is represented by a separate schema EM 多值属性增加一个表</p>
+<p>Schema EM has attributes corresponding to the primary key of E and an attribute corresponding to multivalued attribute M 这个表格包含了 E 的主键与那个多值属性</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Multivalued attribute phone_number of instructor is represented by a schema:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>inst_phone= ( ID, phone_number) 
+</code></pre></div>
+<p>Each value of the multivalued attribute maps to a separate tuple of the relation on schema EM</p>
+<p>For example, an instructor entity with primary key  22222 and phone numbers 456-7890 and 123-4567 maps to two tuples:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>(22222, 456-7890) 
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>(22222, 123-4567) 
+</code></pre></div>
+</div>
+<p><strong>Special case</strong>: entity time_slot  has only one attribute other than the primary-key attribute, and that attribute is multivalued 除去多值属性，只有一个主键，如果我们按照之前讲的方法，我们转化为</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>time_slot(time_slot_id)
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>time_slot_detail(time_slot_id, day, start_time, end_time)
+</code></pre></div>
+<p>在设计数据库时，可以进行以下优化：</p>
+<ul>
+<li><strong>不创建与实体对应的表</strong>：由于<code>time_slot</code>实体只有一个非主键属性，并且这个属性是多值的，因此不需要为<code>time_slot</code>实体单独创建一个表。</li>
+<li><strong>直接创建与多值属性对应的表</strong>：将<code>time_slot_detail</code>表作为最终的存储结构，其字段包括<code>time_slot_id</code>、<code>day</code>、<code>start_time</code>和<code>end_time</code>。</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>外键问题</strong>：由于进行了上述优化，<code>section</code>实体中的<code>time_slot</code>属性（来自<code>sec_time_slot</code>关系）不能作为一个外键。这是因为优化后，<code>time_slot</code>实体不再存在，相应的外键关系也无法建立。因为这时候time_slot_id 并不能唯一确定一个time_slot</p>
+</div>
+<h2 id="65-design-issues">6.5 Design Issues<a class="headerlink" href="#65-design-issues" title="Permanent link">&para;</a></h2>
+<h3 id="651-common-mistakes-in-e-r-diagrams"><strong>6.5.1 Common Mistakes in E-R Diagrams</strong><a class="headerlink" href="#651-common-mistakes-in-e-r-diagrams" title="Permanent link">&para;</a></h3>
+<p>这一小节主要展示了设计时的一些错误与小技巧</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20153028.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20153028.png" /></a></center></p>
+<p>这个就是属性重复而导致的错误</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20163307.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20163307.png" /></a></center></p>
+<p>错误地使用关系属性，一门课不可能只有一份作业，可以这样改进</p>
+<ul>
+<li>增加一个新的实体 assignment, <code>marks_in</code>：表示学生在某个作业中的成绩。<code>sec_assign</code>：表示作业与课程章节之间的关联。</li>
+<li>或者直接将原本的属性改为多值属性</li>
+</ul>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20163423.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20163423.png" /></a></center></p>
+<h3 id="652-use-of-entity-sets-vs-attributes"><strong>6.5.2 Use of entity sets vs. attributes</strong><a class="headerlink" href="#652-use-of-entity-sets-vs-attributes" title="Permanent link">&para;</a></h3>
+<p>对于 instructor 的 phone_number 这一信息，我们可以直接将他存储为属性，也可以存储为一个新的实体，这样的好处在于我们能存储更多有关phone的信息了</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20163721.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20163721.png" /></a></p>
+<h3 id="653-use-of-entity-sets-vs-relationship-sets"><strong>6.5.3 Use of entity sets vs. relationship sets</strong><a class="headerlink" href="#653-use-of-entity-sets-vs-relationship-sets" title="Permanent link">&para;</a></h3>
+<p>我们之前联系 section 和 student 使用的是 takes, 我们也可以将其实体化，新增一个实体 registration</p>
+<p>Possible guideline is to designate a relationship set to describe an action that occurs between entities 描述实体间的动作时常常使用关系集，但是处理更复杂的关系时，还是将其实体化更方便</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20171234.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20171234.png" /></a></p>
+<h3 id="654-placement-of-relationship-attributes"><strong>6.5.4 Placement of relationship attributes</strong><a class="headerlink" href="#654-placement-of-relationship-attributes" title="Permanent link">&para;</a></h3>
+<p>e.g., attribute date as attribute of access or as attribute of account</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20164534.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20164534.png" /></a></center></p>
+<h3 id="655-binary-vs-non-binary-relationships"><strong>6.5.5 Binary Vs. Non-Binary Relationships</strong><a class="headerlink" href="#655-binary-vs-non-binary-relationships" title="Permanent link">&para;</a></h3>
+<p>Binary Relationship：</p>
+<ul>
+<li>涉及两个实体之间的关系。</li>
+<li>更简单，易于理解和实现。</li>
+</ul>
+<p>Non-Binary Relationships</p>
+<ul>
+<li>涉及三个或更多实体之间的关系。</li>
+<li>能更清晰地展示多个实体共同参与一个单一的关系。</li>
+</ul>
+<p>尽管任何非二元关系都可以通过多个二元关系来替代，但n元关系能更直观地表达多个实体间的复杂联系。</p>
+<div class="admonition note">
+<p class="admonition-title">非二元关系可能更适合用二元关系表示的情况</p>
+<p>有些表面上看起来是多实体参与的关系，实际上可以通过分解成多个二元关系来更好地表示。例如：</p>
+<p>父母关系（Parents）：</p>
+<ul>
+<li>原始情况：一个孩子与父亲和母亲之间的三元关系。</li>
+<li>改进方式：可以拆分为两个二元关系——孩子与父亲、孩子与母亲。</li>
+<li><strong>优点</strong>：允许部分信息存在，如只知道孩子的母亲而不知道父亲。</li>
+</ul>
+</div>
+<p>然而，并不是所有关系都能或应该被简化为二元关系。有些关系本质上就是多实体参与的，例如：项目指导（proj_guide）：可能涉及项目、指导教师、学生等多个实体，这些实体之间存在复杂的交互，无法简单地用二元关系来表示。</p>
+<p>In general, any non-binary relationship can be represented using binary relationships by creating an artificial entity set. 一般情况下非二元关系都可以转化为二元关系</p>
+<div class="admonition note">
+<p class="admonition-title">Converting Non-Binary Relationships to Binary Form</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20170344.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20170344.png" /></a></center></p>
+<p>Also need to translate constraints</p>
+<ul>
+<li>Translating all constraints may not be possible, There may be instances in the translated schema that cannot correspond to any instance of R</li>
+</ul>
+<p>Exercise:  add constraints to the relationships RA, RB and RC to ensure that a newly created entity corresponds to exactly one entity in each of entity sets A, B and C</p>
+<p>We can avoid creating an identifying attribute by making E a <strong>weak entity set</strong> (described shortly) identified by the three relationship sets E 的唯一性就由它与其他实体之间的关系来保证，而不需要额外的标识属性。</p>
+</div>
+<h2 id="66-extended-er-features"><strong>6.6 Extended ER Features</strong><a class="headerlink" href="#66-extended-er-features" title="Permanent link">&para;</a></h2>
+<h3 id="661-specializationgeneralization"><strong>6.6.1 Specialization/Generalization</strong><a class="headerlink" href="#661-specializationgeneralization" title="Permanent link">&para;</a></h3>
+<p><strong>特化（Specialization）</strong>: 特化是一种自上而下的设计过程，用于在实体集中创建具有独特特征的子分组。</p>
+<ul>
+<li>定义子分组：在较大的实体集中识别出具有特定属性或行为的子集。例如，在“员工”实体集中，可以进一步细分为“经理”和“普通员工”。</li>
+<li>属性继承：较低级别的实体集会继承其关联的较高级别实体集的所有属性和关系参与。这意味着“经理”不仅具有“员工”的所有属性（如姓名、ID等），还可能有额外的属性（如管理的部门）。</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20173515.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20173515.png" /></a></p>
+<p><strong>概化（Generalization）</strong>: 概化是一种自下而上的设计过程，将多个具有相同特征的实体集合并成一个更高级别的实体集。</p>
+<ul>
+<li>合并实体集：将具有共同属性的多个实体集组合成一个更通用的实体集。例如，可以将“全职员工”和“兼职员工”合并为一个更广泛的“员工”实体集。</li>
+<li>共享属性：合并后的实体集包含所有子实体集的公共属性。例如，“员工”实体集将包含“全职员工”和“兼职员工”的共同属性，如姓名、ID等。</li>
+</ul>
+<p>Specialization and generalization are simple inversions of each other; they are represented in an E-R diagram in the same way.</p>
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        此页面有帮助吗？
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9v12H1V9h4m4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21H9m0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03V19Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 15V3h4v12h-4M15 3a2 2 0 0 1 2 2v10c0 .55-.22 1.05-.59 1.41L9.83 23l-1.06-1.06c-.27-.27-.44-.64-.44-1.06l.03-.31.95-4.57H3a2 2 0 0 1-2-2v-2c0-.26.05-.5.14-.73l3.02-7.05C4.46 3.5 5.17 3 6 3h9m0 2H5.97L3 12v2h8.78l-1.13 5.32L15 14.97V5Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              谢谢你的反馈！
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+<div id="__comments">
+
+  <script>
+  var buttons = document.querySelectorAll("button[data-md-color-primary]")
+  buttons.forEach(function(button) {
+          button.addEventListener("click", function() {
+          var attr = this.getAttribute("data-md-color-primary")
+          document.body.setAttribute("data-md-color-primary", attr)
+          localStorage.setItem("data-md-color-primary",attr);
+          })
+  })
+  </script>
+  
+  <h2 ><!-- 评论 -->评论区</h2>
+  
+  对你有帮助的话请给我个赞和 star => <a href="https://github.com/RoderickShao/RoderickShao_notebook"><img alt="GitHub stars" src="https://img.shields.io/github/stars/RoderickShao/RoderickShao_notebook.svg?style=plastic&amp;label=Stars"></a>
+  
+  </br>
+  
+  欢迎跟我探讨！！！
+  
+  </div>
+  
+  <script src="https://giscus.app/client.js"
+      data-repo="RoderickShao/RoderickShao_notebook"
+      data-repo-id="R_kgDOMS_5AQ"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+          
+  
+  updateScheme();
+  
+  </script>
+  
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+  var giscus = document.querySelector("script[src*=giscus]")
+  
+  /* Set palette on initial load */
+  var palette = __md_get("__palette")
+  if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
+      giscus.setAttribute("data-theme", theme) 
+  }
+  
+  /* Register event handlers after documented loaded */
+  document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+      var palette = __md_get("__palette")
+      if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+          localStorage.setItem("data-md-color-scheme", palette.color.scheme === "slate" ? "slate" : "default");
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+          { giscus: { setConfig: { theme } } },
+          "https://giscus.app"
+          )
+      }
+      })
+  })
+  </script>
+  
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../Chapter%205%20Advanced%20SQL/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Chapter 5 Advanced SQL" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Chapter 5 Advanced SQL
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/OOP/" class="md-footer__link md-footer__link--next" aria-label="下一页: 面向对象程序设计" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                面向对象程序设计
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 - 2025 RoderickShao
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "navigation.footer", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "../../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.4e31edb1.min.js"></script>
+      
+        
+          <script src="../../../javascripts/mathjax.js"></script>
+        
+      
+        
+          <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
