@@ -1329,6 +1329,8 @@
       
         
       
+        
+      
     
     
       
@@ -1892,7 +1894,7 @@
 </ul>
 </div>
 <p>本章着眼于组合电路的相关内容，时序电路的相关内容将在下一章 介绍。</p>
-<h2 id="31">3.1 组合电路设计<a class="headerlink" href="#31" title="Permanent link">&para;</a></h2>
+<h2 id="31"><strong>3.1 组合电路设计</strong><a class="headerlink" href="#31" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">表示逻辑的方法</p>
 <ol>
@@ -1921,7 +1923,7 @@
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>B ==&gt;|&quot;变换&quot;| E[&quot;合适的表达式&quot;] ===&gt;|&quot;工艺映射&quot;| D
 </code></pre></div>
-<h3 id="311">3.1.1 分层设计<a class="headerlink" href="#311" title="Permanent link">&para;</a></h3>
+<h3 id="311"><strong>3.1.1 分层设计</strong><a class="headerlink" href="#311" title="Permanent link">&para;</a></h3>
 <p>分层设计即将复杂问题模块化分解为若干层次，然后逐个抽象解决。</p>
 <p>其设计方法分为 <strong>自顶向下(Top-Down)</strong> 和 <strong>自底向上(Bottom-Up)</strong>。</p>
 <p>前者从需求开始，自顶向下分解功能设计；后者根据现有的元件去组合成目标功能。</p>
@@ -1935,7 +1937,7 @@
 <li>VLSI(very large-scale integrated) 内含 成千上亿 个 gates；</li>
 </ul>
 <hr />
-<h3 id="312">3.1.2 技术参数<a class="headerlink" href="#312" title="Permanent link">&para;</a></h3>
+<h3 id="312"><strong>3.1.2 技术参数</strong><a class="headerlink" href="#312" title="Permanent link">&para;</a></h3>
 <p>门的实现主要通过这些参数特性来描述：</p>
 <table>
 <thead>
@@ -2028,7 +2030,7 @@
 <p><a class="glightbox" href="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20134030.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20134030.png" /></a></p>
 </div>
 <hr />
-<h3 id="313">3.1.3 延迟模型<a class="headerlink" href="#313" title="Permanent link">&para;</a></h3>
+<h3 id="313"><strong>3.1.3 延迟模型</strong><a class="headerlink" href="#313" title="Permanent link">&para;</a></h3>
 <p>为了研究为什么会存在门延迟，刻画门的 <strong>固有门延迟(inherent gate delay)</strong>，我们需要对其建模，常见的 <strong>延迟模型(delay model)</strong> 有以下两种：</p>
 <ul>
 <li>传输延迟(transport delay): 认为输入和输出之间的延迟是一个定值的；</li>
@@ -2068,13 +2070,13 @@
 <p>由此可见，表达式最简并不一定是最好的</p>
 </div>
 <hr />
-<h3 id="314">3.1.4 正逻辑和负逻辑<a class="headerlink" href="#314" title="Permanent link">&para;</a></h3>
+<h3 id="314"><strong>3.1.4 正逻辑和负逻辑</strong><a class="headerlink" href="#314" title="Permanent link">&para;</a></h3>
 <p><strong>正逻辑(positive logic)</strong> 就是 <code>1</code> 是有效信号，<strong>负逻辑(negative logic)</strong> 就是 <code>0</code> 是有效信号。而在正逻辑中 AND 门的作用就等效于负逻辑中 OR 门的作用，这也正是前几章的笔记中提到的对称。</p>
 <p>而正逻辑的电路的符号一般就是正常的逻辑门符号，而负逻辑的逻辑门符号则可能有小三角标，即 <strong>极性指示器(polarity indicator)</strong>：</p>
 <p><center><a class="glightbox" href="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20142724.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20142724.png" /></a></center></p>
 <p>如图，左侧是正逻辑电路的符号，右侧是负逻辑电路的符号。</p>
 <hr />
-<h3 id="315">3.1.5 工艺映射<a class="headerlink" href="#315" title="Permanent link">&para;</a></h3>
+<h3 id="315"><strong>3.1.5 工艺映射</strong><a class="headerlink" href="#315" title="Permanent link">&para;</a></h3>
 <p><strong>工艺映射(technology mapping)</strong> 是指将逻辑图或网表转化为可以用工艺实现的心的图或网表的过程。</p>
 <p>有时我们会使用与非门和非门替换与门和或门(<strong>电路层面，与门实际上就是通过与非门实现的</strong>)，然后会发现有一些连续对非门可以相互抵消，例如下面的情况：</p>
 <p><a class="glightbox" href="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20142810.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20142810.png" /></a></p>
@@ -2084,7 +2086,7 @@
 <p>当然，也可以通过或非门来实现，比如下面的情况：</p>
 <p><a class="glightbox" href="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20142853.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20142853.png" /></a></p>
 <hr />
-<h3 id="316">3.1.6 验证正确性<a class="headerlink" href="#316" title="Permanent link">&para;</a></h3>
+<h3 id="316"><strong>3.1.6 验证正确性</strong><a class="headerlink" href="#316" title="Permanent link">&para;</a></h3>
 <p>画真值表验证（即实验时的仿真）或者布尔代数式</p>
 <p>功能分析
 - 定义对任⼀信号的作⽤以及整个电路的作⽤
