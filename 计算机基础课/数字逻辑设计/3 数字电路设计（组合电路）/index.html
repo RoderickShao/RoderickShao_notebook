@@ -1331,6 +1331,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1928,7 +1932,7 @@
 <p>其设计方法分为 <strong>自顶向下(Top-Down)</strong> 和 <strong>自底向上(Bottom-Up)</strong>。</p>
 <p>前者从需求开始，自顶向下分解功能设计；后者根据现有的元件去组合成目标功能。</p>
 <hr />
-<h4 id="_1">集成电路<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<h4 id="_1"><strong>集成电路</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <p><strong>集成电路(integrated circuits)</strong> 又叫 <strong>芯片(chip)</strong>，分为如下若干等级：</p>
 <ul>
 <li>SSI(small-scale integrated) 内含不到 10 个 gates；</li>
@@ -1978,7 +1982,7 @@
 </tbody>
 </table>
 <hr />
-<h4 id="_2">扇入扇出<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<h4 id="_2"><strong>扇入扇出</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <p>扇入描述了一个门能够接受的最多输入量，如一个四输入与非门的扇入就是 4；而扇出描述的则是一个门的输出(栅极输出)在不降低工作性能的情况下能够负载多少门，例如一个非门的输出能够同时负载 4 个非门并且都能正常工作，则其扇出为 4，其也能通过标准负载来定义。</p>
 <div class="admonition note">
 <p class="admonition-title">标准负载</p>
@@ -1986,7 +1990,7 @@
 </div>
 <p>那么要如何评估负载呢？首先我们引入 <strong>过渡时间(transition time)</strong>：</p>
 <hr />
-<h4 id="transition-time">转换时间 （Transition Time）<a class="headerlink" href="#transition-time" title="Permanent link">&para;</a></h4>
+<h4 id="transition-time"><strong>转换时间 （Transition Time）</strong><a class="headerlink" href="#transition-time" title="Permanent link">&para;</a></h4>
 <p>转换时间分为 <span class="arithmatex">\(\mathrm{t_{LH}}\)</span>(rise time) 和 <span class="arithmatex">\(\mathrm{t_{HL}}\)</span>(fall time) 两个部分。</p>
 <ul>
 <li>rise time 等于栅极输出从 <span class="arithmatex">\(\mathrm{V_{CC}}\)</span> 的 10% 升高到 90% 所需要的时间；</li>
@@ -2002,7 +2006,7 @@
 </blockquote>
 <p>实际上，类似的，超出扇入后，门对输入的反应就太慢了。</p>
 <hr />
-<h4 id="propagation-delay">传播延迟 （Propagation Delay）<a class="headerlink" href="#propagation-delay" title="Permanent link">&para;</a></h4>
+<h4 id="propagation-delay"><strong>传播延迟 （Propagation Delay）</strong><a class="headerlink" href="#propagation-delay" title="Permanent link">&para;</a></h4>
 <p><strong>传播延迟(propagation delay)</strong> 衡量了门的输入变化导致输出变化所需要的时间。由于从低电平转化到高电平和高电平转化到低电平所需要的时间不一样，所以传播延迟同样有两个部分，分别使用 <span class="arithmatex">\(\mathrm{t_{PHL}}\)</span> 和 <span class="arithmatex">\(\mathrm{t_{PLH}} 来表示\)</span>。</p>
 <p>更具体的来说，传播延迟的计算方法是输入和输出的变化中点（即变化到 <span class="arithmatex">\(\frac{1}{2}V_{CC}\)</span> 时）的时间差，通过时序图表示就是这样：</p>
 <p><a class="glightbox" href="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20133303.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20133303.png" /></a></p>
@@ -2048,13 +2052,13 @@
 <p>所以研究延迟是非常必要的。</p>
 </details>
 <hr />
-<h4 id="_3">延迟计算<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<h4 id="_3"><strong>延迟计算</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <p>计算一个电路的延迟时，有两方面需要考虑，一方面是电路自身所导致的一个固定延迟，另外一方面则是由于不同的负载导致的额外延迟。</p>
 <p><a class="glightbox" href="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20134705.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%203/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-23%20134705.png" /></a></p>
 <p>在这个例子中，0.07 为固定延迟，0.021 为一个标准负载带来的延迟系数，SL(4.5 here) 则是标准化的负载量。</p>
 <p>而具体的表达式，会在 Cell Library 里写。</p>
 <hr />
-<h4 id="_4">延迟带来的问题<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<h4 id="_4"><strong>延迟带来的问题</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <p>由于存在延迟，许多在数学意义上没有问题的逻辑表达式在电路中就存在非常大的问题。</p>
 <p>例如，从数学角度看，<span class="arithmatex">\(\mathrm{Y=\overline{A}A}\)</span> 的值恒为 <code>0</code>，但是实际上由于延迟，其仿真波形中会出现这样一个 <strong>毛刺(glitch)</strong>，而这在工程意义上有很大的问题。</p>
 <p><a class="glightbox" href="../image/chapter%203/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240707141009.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image/chapter%203/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240707141009.jpg" /></a></p>
