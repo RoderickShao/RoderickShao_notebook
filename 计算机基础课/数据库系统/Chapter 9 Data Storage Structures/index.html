@@ -16,7 +16,7 @@
         <link rel="prev" href="../Chapter%208%20Physical%20Storage%20System/">
       
       
-        <link rel="next" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/OOP/">
+        <link rel="next" href="../Chapter%2010%20Indexing/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -857,6 +857,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1191,10 +1193,44 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#94-storage-access-buffer-manager" class="md-nav__link">
+    9.4 Storage Access &amp; Buffer Manager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#95-columnar-representation" class="md-nav__link">
+    9.5 Columnar Representation
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%2010%20Indexing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 10 Indexing
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1485,6 +1521,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#94-storage-access-buffer-manager" class="md-nav__link">
+    9.4 Storage Access &amp; Buffer Manager
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#95-columnar-representation" class="md-nav__link">
+    9.5 Columnar Representation
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1505,7 +1555,7 @@
 
 <h1 id="chapter-9-data-storage-structures">Chapter 9 Data Storage Structures<a class="headerlink" href="#chapter-9-data-storage-structures" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1192 个字 
+    文本统计：约 2264 个字 
 </div>
 
 <div class="admonition info">
@@ -1589,6 +1639,62 @@
 </ul>
 <p>Information about <strong>indices</strong> </p>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-18%20120553.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-18%20120553.png" /></a></center></p>
+<h2 id="94-storage-access-buffer-manager"><strong>9.4 Storage Access &amp; Buffer Manager</strong><a class="headerlink" href="#94-storage-access-buffer-manager" title="Permanent link">&para;</a></h2>
+<p>块是存储分配和数据传输的基本单位。在数据库系统中，数据通常被分割成固定大小的块进行处理。</p>
+<p>数据库系统的目标之一是尽量减少磁盘与内存之间的块传输次数。通过将尽可能多的块保留在主内存中，可以减少对磁盘的访问次数，从而提高数据访问效率。</p>
+<p><strong>缓冲区（Buffer）</strong>：缓冲区是主内存的一部分，用于存储磁盘块的副本。这样可以在需要时快速访问这些数据，而不需要再次从磁盘读取。</p>
+<p><strong>缓冲管理器（Buffer Manager）</strong>：缓冲管理器是一个子系统，负责在主内存中分配缓冲空间。它管理缓冲区中的数据，并决定何时将数据从磁盘加载到缓冲区或从缓冲区写回到磁盘。</p>
+<p>当需要用到磁盘中的一个块时，缓冲区管理器会做出以下操作：</p>
+<ul>
+<li>如果块已经在缓冲区中，缓冲区管理器会直接返回块在主存中的地址</li>
+<li>如果块不在缓冲区中，缓冲区管理器会先为块分配缓冲区空间，然后从磁盘读取块到缓冲区中</li>
+<li>如果需要，缓冲区管理器会替换掉其他块，为新块腾出空间</li>
+<li>如果被替换的块被修改过，那么需要先将其写回磁盘</li>
+</ul>
+<p><strong>固定块（Pinned block）</strong>：固定块是指不允许被写回磁盘的内存块。</p>
+<ul>
+<li>在从块中读取或写入数据之前，需要执行“Pin”操作。</li>
+<li>当读取或写入操作完成后，执行“Unpin”操作。</li>
+<li>可以同时进行多个并发的Pin/Unpin操作。</li>
+</ul>
+<p>每个缓冲块都有一个Pin计数，只有当Pin计数为0时，该缓冲块才能被驱逐出内存。</p>
+<p><strong>共享锁和独占锁（Shared and exclusive locks on buffer）</strong>：</p>
+<ul>
+<li>
+<p><strong>共享锁（Shared lock）</strong>：读者获取共享锁，允许多个进程同时读取同一块数据。</p>
+</li>
+<li>
+<p><strong>独占锁（Exclusive lock）</strong>：更新块数据需要独占锁，确保在同一时间只有一个进程可以修改数据。</p>
+</li>
+</ul>
+<p><strong>缓存替换策略</strong>有以下几种：</p>
+<ul>
+<li>最近最少使用 (Least Recently Used, LRU)：替换最近最少使用的块。对于某些重复扫描数据的访问模式，LRU 可能不是一个好的策略</li>
+<li>立即丢弃 (Toss Immediate)：当一个块的最后一个元组被处理完后，立即释放该块的空间</li>
+<li>最近最常使用 (Most Recently Used, MRU)：系统会锁定当前正在处理的块，当该块的最后一个元组被处理完后，解锁该块，使其成为最近最常使用的块</li>
+<li>时钟 (Clock)：维护一个环形链表，每个块有一个位 (reference_bit) 表示是否被访问过，1 表示被访问过，0 表示未被访问过。当需要替换块时，从当前位置开始，遇到被访问过的块就将其 reference_bit 设为 0，直到找到一个未被访问过的块为止。这是 LRU 策略的近似，实现上更加简单</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">时钟维护方式的介绍</p>
+<p><a href="https://blog.csdn.net/Gu_fCSDN/article/details/103979067">操作系统时钟(CLOCK)置换算法_时钟置换算法-CSDN博客</a></p>
+</div>
+<p>数据库系统可以利用用户查询中的信息来预测未来的数据访问模式，提供更准确的缓冲替换建议，从而优化缓冲区管理。</p>
+<h2 id="95-columnar-representation"><strong>9.5 Columnar Representation</strong><a class="headerlink" href="#95-columnar-representation" title="Permanent link">&para;</a></h2>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-21%20202218.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-21%20202218.png" /></a></center></p>
+<p>列存储 (Column-Oriented Storage) 是将关系的每个属性单独存储的方式。列存储的优点有：</p>
+<ul>
+<li>如果只有一部分属性被访问，可以减少 I/O 次数</li>
+<li>可以提高 CPU 缓存性能</li>
+<li>可以提高压缩效率</li>
+<li>可以在现代 CPU 架构上实现向量处理</li>
+</ul>
+<p>列存储的缺点有：</p>
+<ul>
+<li>从列存储中重建元组的代价较高</li>
+<li>元组的删除和更新代价较高</li>
+<li>解压缩代价较高</li>
+</ul>
+<p>列存储在决策支持系统中【需要对某个属性进行分析】比行存储更有效，而在事务处理中，传统的行存储更受欢迎。一些数据库支持同时使用两种存储方式，称为混合行列存储 (Hybrid Row/Column Stores)。</p>
 
 
   
@@ -1747,13 +1853,13 @@
         
         
           
-          <a href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/OOP/" class="md-footer__link md-footer__link--next" aria-label="下一页: 面向对象程序设计" rel="next">
+          <a href="../Chapter%2010%20Indexing/" class="md-footer__link md-footer__link--next" aria-label="下一页: Chapter 10 Indexing" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                面向对象程序设计
+                Chapter 10 Indexing
               </div>
             </div>
             <div class="md-footer__button md-icon">

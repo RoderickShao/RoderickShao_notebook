@@ -13,8 +13,10 @@
       
       
       
-        <link rel="prev" href="../SSAO/">
+        <link rel="prev" href="../10%20SSAO/">
       
+      
+        <link rel="next" href="../Summary/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -22,7 +24,7 @@
     
     
       
-        <title>PBR - RoderickShao's NoteBook</title>
+        <title>11 PBR - RoderickShao's NoteBook</title>
       
     
     
@@ -181,7 +183,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              PBR
+              11 PBR
             
           </span>
         </div>
@@ -912,6 +914,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1026,7 +1030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Model%20Loading/" class="md-nav__link">
+      <a href="../4%20Model%20Loading/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1046,11 +1050,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Stencil%20Testing/" class="md-nav__link">
+      <a href="../5%20Stencil%20Testing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Stencil Testing
+    5 Stencil Testing
   </span>
   
 
@@ -1066,11 +1070,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Framebuffers/" class="md-nav__link">
+      <a href="../6%20Framebuffers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Framebuffers
+    6 Framebuffers
   </span>
   
 
@@ -1086,11 +1090,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Gamma%20Correction/" class="md-nav__link">
+      <a href="../7%20Instancing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Gamma Correction
+    7 Instancing
   </span>
   
 
@@ -1106,11 +1110,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Instancing/" class="md-nav__link">
+      <a href="../8%20Gamma%20Correction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Instancing
+    8 Gamma Correction
   </span>
   
 
@@ -1126,11 +1130,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Shadow%20Mapping/" class="md-nav__link">
+      <a href="../9%20Shadow%20Mapping/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Shadow Mapping
+    9 Shadow Mapping
   </span>
   
 
@@ -1146,11 +1150,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../SSAO/" class="md-nav__link">
+      <a href="../10%20SSAO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SSAO
+    10 SSAO
   </span>
   
 
@@ -1177,7 +1181,7 @@
           
   
   <span class="md-ellipsis">
-    PBR
+    11 PBR
   </span>
   
 
@@ -1188,7 +1192,7 @@
         
   
   <span class="md-ellipsis">
-    PBR
+    11 PBR
   </span>
   
 
@@ -1266,6 +1270,26 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1383,8 +1407,11 @@
   
 
 
-  <h1>PBR</h1>
+  <h1>11 PBR</h1>
 
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 4335 个字  •  345 行代码 
+</div>
 <h2 id="_1">理论<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>PBR 即基于物理的渲染，判断一种PBR光照模型是否是基于物理的，必须满足以下三个条件：</p>
 <ol>
@@ -1441,10 +1468,10 @@ f_{cook-torrance}(\omega_i,\omega_o)= \frac{\text{d}L_o(\omega_o)}{\text{d}E_i(\
 <div class="arithmatex">\[
 \frac{\text{d}L_o(\omega_o)}{\text{d}\omega_i}=\frac{\text{d}}{\text{d}\omega_i}\frac{\text{d}^2\Phi_o}{\text{d}\omega_o\text{d}A\cos\theta_o}
 \]</div>
-<p>由法线分布函数的定义可知，单位面积下单位立体角<strong>所有法向为</strong>h<strong>的微平面的面积为：</strong>
-$$
+<p>由法线分布函数的定义可知，单位面积下单位立体角<strong>所有法向为</strong>h**的微平面的面积为：</p>
+<div class="arithmatex">\[
 \text{d}^2A(\omega_h) = D(\omega_h) \text{d}\omega_h\text{d}A
-$$</p>
+\]</div>
 <p>然后我们可以求得单位面积下有效的入射的辐射通量为</p>
 <div class="arithmatex">\[
 \text{d}^3\Phi_i = L(\omega_i)\text{d}\omega_i\text{d}^2A(\omega_h)\cos\theta_h = L(\omega_i)\text{d}\omega_i\cos\theta_hD(\omega_h) \text{d}\omega_h\text{d}A
@@ -1472,10 +1499,10 @@ f_{cook-torrance}(\omega_i,\omega_o)=\frac{1}{L_i(\omega_i)\cos\theta_i}\cdot \f
 f_{cook-torrance}(\omega_i,\omega_o) = \frac{D(\omega_h)}{4\cos\theta_o\cos\theta_h}
 \]</div>
 </div>
-<p>那么反射率方程为
-$$
+<p>那么反射率方程为</p>
+<div class="arithmatex">\[
 L_o(p,\omega_o)=\int_{\Omega}(k_d\frac{c}{\pi}+k_s\frac{DFG}{4(\omega_o\cdot n)(\omega_i\cdot n)})L_i(p,\omega_i)n \cdot \omega_i \text{d}\omega_i
-$$</p>
+\]</div>
 <h2 id="_2">光照<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>对光照部分单独进行采样，与之前使用 Blinn-Phong 模型的逻辑是类似的，只是需要利用上述的反射率方程</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span>
@@ -1898,13 +1925,13 @@ P(\theta) = \int_0^\theta \frac{\alpha^2}{\pi(\alpha^2\cos^2\theta'+\sin^2\theta
 F_0 \int_\Omega f_r(p, \omega_i, \omega_o) (1-(1-\omega_o \cdot h)^5) n \cdot \omega_i \text{d}\omega_i + \int_\Omega f_r(p, \omega_i, \omega_o) (1-\omega_o \cdot h)^5 n \cdot \omega_i \text{d}\omega_i
 \]</div>
 <p>我们以前者为例，来解释如何进行正确的重要性采样【回顾一下蒙特卡洛积分的方法】</p>
-<p>$$
+<div class="arithmatex">\[
 \begin{aligned}
-\int_\Omega f_r(p, \omega_i, \omega_o) (1-(1-\omega_o \cdot h)^5) n \cdot \omega_i \text{d}\omega_i=&amp;\frac{1}{N} \sum_{k}^{N} \frac{\frac{D(\omega_h^{(k)}) G(\omega_o, \omega_i^{(k)})}{4 (\omega_o \cdot n) (\omega_i^{(k)} \cdot n)} (1 - (1 - \omega_o \cdot \omega_h^{(k)})^5) (\omega_i^{(k)} \cdot n)}{p(\omega_i^{(k)})}\</p>
-<p>=&amp; \frac{1}{N} \sum_{k}^{N} \frac{\frac{D(\omega_h^{(k)}) G(\omega_o, \omega_i^{(k)})}{4 (\omega_o \cdot n) (\omega_i^{(k)} \cdot n)} (1 - (1 - \omega_o \cdot \omega_h^{(k)})^5) (\omega_i^{(k)} \cdot n)}{\frac{D(\omega_h^{(k)}) (\omega_i^{(k)} \cdot n)}{4 (\omega_o \cdot \omega_h^{(k)})}}\</p>
-<p>=&amp; \frac{1}{N} \sum_{k}^{N} \frac{G(\omega_o, \omega_i^{(k)}) (\omega_o \cdot \omega_h^{(k)}) (1 - (1 - \omega_o \cdot \omega_h^{(k)})^5)}{(\omega_o \cdot n) (\omega_i^{(k)} \cdot n)}
+\int_\Omega f_r(p, \omega_i, \omega_o) (1-(1-\omega_o \cdot h)^5) n \cdot \omega_i \text{d}\omega_i=&amp;\frac{1}{N} \sum_{k}^{N} \frac{\frac{D(\omega_h^{(k)}) G(\omega_o, \omega_i^{(k)})}{4 (\omega_o \cdot n) (\omega_i^{(k)} \cdot n)} (1 - (1 - \omega_o \cdot \omega_h^{(k)})^5) (\omega_i^{(k)} \cdot n)}{p(\omega_i^{(k)})}\\
+=&amp; \frac{1}{N} \sum_{k}^{N} \frac{\frac{D(\omega_h^{(k)}) G(\omega_o, \omega_i^{(k)})}{4 (\omega_o \cdot n) (\omega_i^{(k)} \cdot n)} (1 - (1 - \omega_o \cdot \omega_h^{(k)})^5) (\omega_i^{(k)} \cdot n)}{\frac{D(\omega_h^{(k)}) (\omega_i^{(k)} \cdot n)}{4 (\omega_o \cdot \omega_h^{(k)})}}\\
+=&amp; \frac{1}{N} \sum_{k}^{N} \frac{G(\omega_o, \omega_i^{(k)}) (\omega_o \cdot \omega_h^{(k)}) (1 - (1 - \omega_o \cdot \omega_h^{(k)})^5)}{(\omega_o \cdot n) (\omega_i^{(k)} \cdot n)}
 \end{aligned}
-$$</p>
+\]</div>
 <p>这样我们就可以正确写出相应的着色器以完成BRDF卷积部分 2D LUT 的生成了</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">vec2</span><span class="w"> </span><span class="n">IntegrateBRDF</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">NdotV</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">roughness</span><span class="p">)</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="p">{</span>
@@ -2120,7 +2147,7 @@ F = F_0 + (1-F_0)(1-\cos\theta)^5
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../SSAO/" class="md-footer__link md-footer__link--prev" aria-label="上一页: SSAO" rel="prev">
+          <a href="../10%20SSAO/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 10 SSAO" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -2130,11 +2157,27 @@ F = F_0 + (1-F_0)(1-\cos\theta)^5
                 上一页
               </span>
               <div class="md-ellipsis">
-                SSAO
+                10 SSAO
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="../Summary/" class="md-footer__link md-footer__link--next" aria-label="下一页: Summary" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Summary
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
         
       </nav>
     

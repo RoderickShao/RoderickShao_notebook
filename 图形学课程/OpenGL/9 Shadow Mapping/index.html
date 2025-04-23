@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../Instancing/">
+        <link rel="prev" href="../8%20Gamma%20Correction/">
       
       
-        <link rel="next" href="../SSAO/">
+        <link rel="next" href="../10%20SSAO/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Shadow Mapping - RoderickShao's NoteBook</title>
+        <title>9 Shadow Mapping - RoderickShao's NoteBook</title>
       
     
     
@@ -178,7 +178,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Shadow Mapping
+              9 Shadow Mapping
             
           </span>
         </div>
@@ -909,6 +909,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1023,7 +1025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Model%20Loading/" class="md-nav__link">
+      <a href="../4%20Model%20Loading/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1043,11 +1045,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Stencil%20Testing/" class="md-nav__link">
+      <a href="../5%20Stencil%20Testing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Stencil Testing
+    5 Stencil Testing
   </span>
   
 
@@ -1063,11 +1065,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Framebuffers/" class="md-nav__link">
+      <a href="../6%20Framebuffers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Framebuffers
+    6 Framebuffers
   </span>
   
 
@@ -1083,11 +1085,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Gamma%20Correction/" class="md-nav__link">
+      <a href="../7%20Instancing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Gamma Correction
+    7 Instancing
   </span>
   
 
@@ -1103,11 +1105,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Instancing/" class="md-nav__link">
+      <a href="../8%20Gamma%20Correction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Instancing
+    8 Gamma Correction
   </span>
   
 
@@ -1134,7 +1136,7 @@
         
   
   <span class="md-ellipsis">
-    Shadow Mapping
+    9 Shadow Mapping
   </span>
   
 
@@ -1151,11 +1153,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../SSAO/" class="md-nav__link">
+      <a href="../10%20SSAO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SSAO
+    10 SSAO
   </span>
   
 
@@ -1171,11 +1173,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../PBR/" class="md-nav__link">
+      <a href="../11%20PBR/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    PBR
+    11 PBR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
   </span>
   
 
@@ -1234,8 +1256,11 @@
   
 
 
-  <h1>Shadow Mapping</h1>
+  <h1>9 Shadow Mapping</h1>
 
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 550 个字  •  57 行代码 
+</div>
 <p>整个阴影贴图的思路就是先在光源角度将场景渲染到帧缓冲中，得到一张深度图，然后正常渲染，将片段的位置与深度图中的位置进行比较，检测该片段是否在阴影中。</p>
 <p>这里阐述一下得到深度图的过程</p>
 <p>光源空间的变换，这里采用的是正交投影矩阵，视图矩阵则是看向场景的中央。然后利用 <code>simpleDepthShader</code> 进行渲染，这样就得到了相应的深度缓冲。</p>
@@ -1449,7 +1474,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../Instancing/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Instancing" rel="prev">
+          <a href="../8%20Gamma%20Correction/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 8 Gamma Correction" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1459,20 +1484,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                Instancing
+                8 Gamma Correction
               </div>
             </div>
           </a>
         
         
           
-          <a href="../SSAO/" class="md-footer__link md-footer__link--next" aria-label="下一页: SSAO" rel="next">
+          <a href="../10%20SSAO/" class="md-footer__link md-footer__link--next" aria-label="下一页: 10 SSAO" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                SSAO
+                10 SSAO
               </div>
             </div>
             <div class="md-footer__button md-icon">

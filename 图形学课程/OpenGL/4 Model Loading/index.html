@@ -16,7 +16,7 @@
         <link rel="prev" href="../3%20Texture/">
       
       
-        <link rel="next" href="../Stencil%20Testing/">
+        <link rel="next" href="../5%20Stencil%20Testing/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -909,6 +909,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1051,11 +1053,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Stencil%20Testing/" class="md-nav__link">
+      <a href="../5%20Stencil%20Testing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Stencil Testing
+    5 Stencil Testing
   </span>
   
 
@@ -1071,11 +1073,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Framebuffers/" class="md-nav__link">
+      <a href="../6%20Framebuffers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Framebuffers
+    6 Framebuffers
   </span>
   
 
@@ -1091,11 +1093,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Gamma%20Correction/" class="md-nav__link">
+      <a href="../7%20Instancing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Gamma Correction
+    7 Instancing
   </span>
   
 
@@ -1111,11 +1113,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Instancing/" class="md-nav__link">
+      <a href="../8%20Gamma%20Correction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Instancing
+    8 Gamma Correction
   </span>
   
 
@@ -1131,11 +1133,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Shadow%20Mapping/" class="md-nav__link">
+      <a href="../9%20Shadow%20Mapping/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Shadow Mapping
+    9 Shadow Mapping
   </span>
   
 
@@ -1151,11 +1153,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../SSAO/" class="md-nav__link">
+      <a href="../10%20SSAO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SSAO
+    10 SSAO
   </span>
   
 
@@ -1171,11 +1173,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../PBR/" class="md-nav__link">
+      <a href="../11%20PBR/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    PBR
+    11 PBR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
   </span>
   
 
@@ -1236,9 +1258,12 @@
 
   <h1>4 Model Loading</h1>
 
-<p>​   模型加载库 assimp，将模型加载进一个场景对象，Assimp 会将场景载入为一系列的节点(Node)，每个节点包含了场景对象中所储存数据的索引</p>
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 511 个字  •  344 行代码 
+</div>
+<p>模型加载库 assimp，将模型加载进一个场景对象，Assimp 会将场景载入为一系列的节点(Node)，每个节点包含了场景对象中所储存数据的索引</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-10%20223147.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-10%20223147.png" /></a></p>
-<p>Scene下的 <code>mMeshes</code> 数组储存了真正的Mesh对象，节点中的 <code>mMeshes</code> 数组保存的只是场景中网格数组的索引。</p>
+<p>Scene下的 <code>mMeshes</code> 数组储存了真正的Mesh对象，<strong>节点中的 <code>mMeshes</code> 数组保存的只是场景中网格数组的索引。</strong></p>
 <p>我们需要做的第一件事是将一个物体加载到Scene对象中，遍历节点，获取对应的Mesh对象（我们需要递归搜索每个节点的子节点），并处理每个Mesh对象来获取顶点数据、索引以及它的材质属性。最终的结果是一系列的网格数据，我们会将它们包含在一个<code>Model</code>对象中。</p>
 <p>大概内容如上，话不多说，直接看代码</p>
 <p><code>mesh.h</code></p>
@@ -1766,13 +1791,13 @@
         
         
           
-          <a href="../Stencil%20Testing/" class="md-footer__link md-footer__link--next" aria-label="下一页: Stencil Testing" rel="next">
+          <a href="../5%20Stencil%20Testing/" class="md-footer__link md-footer__link--next" aria-label="下一页: 5 Stencil Testing" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Stencil Testing
+                5 Stencil Testing
               </div>
             </div>
             <div class="md-footer__button md-icon">

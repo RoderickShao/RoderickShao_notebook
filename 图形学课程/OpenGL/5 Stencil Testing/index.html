@@ -13,10 +13,10 @@
       
       
       
-        <link rel="prev" href="../Gamma%20Correction/">
+        <link rel="prev" href="../4%20Model%20Loading/">
       
       
-        <link rel="next" href="../Shadow%20Mapping/">
+        <link rel="next" href="../6%20Framebuffers/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Instancing - RoderickShao's NoteBook</title>
+        <title>5 Stencil Testing - RoderickShao's NoteBook</title>
       
     
     
@@ -178,7 +178,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Instancing
+              5 Stencil Testing
             
           </span>
         </div>
@@ -909,6 +909,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1023,71 +1025,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Model%20Loading/" class="md-nav__link">
+      <a href="../4%20Model%20Loading/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     4 Model Loading
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Stencil%20Testing/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Stencil Testing
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Framebuffers/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Framebuffers
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Gamma%20Correction/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Gamma Correction
   </span>
   
 
@@ -1114,7 +1056,7 @@
         
   
   <span class="md-ellipsis">
-    Instancing
+    5 Stencil Testing
   </span>
   
 
@@ -1131,11 +1073,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../Shadow%20Mapping/" class="md-nav__link">
+      <a href="../6%20Framebuffers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Shadow Mapping
+    6 Framebuffers
   </span>
   
 
@@ -1151,11 +1093,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../SSAO/" class="md-nav__link">
+      <a href="../7%20Instancing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SSAO
+    7 Instancing
   </span>
   
 
@@ -1171,11 +1113,91 @@
   
   
     <li class="md-nav__item">
-      <a href="../PBR/" class="md-nav__link">
+      <a href="../8%20Gamma%20Correction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    PBR
+    8 Gamma Correction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9%20Shadow%20Mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 Shadow Mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10%20SSAO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 SSAO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11%20PBR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11 PBR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
   </span>
   
 
@@ -1234,9 +1256,58 @@
   
 
 
-  <h1>Instancing</h1>
+  <h1>5 Stencil Testing</h1>
 
-
+<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
+    文本统计：约 250 个字  •  32 行代码 
+</div>
+<p><code>glStencilMask</code> 是模板测试的位掩码，它会与将要写入缓冲的模板值进行与(AND)运算。主要使用的位掩码有 <code>0x00</code> 与 <code>0xFF</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>glStencilMask(0xFF); // 每一位写入模板缓冲时都保持原样
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>glStencilMask(0x00); // 每一位在写入模板缓冲时都会变成0（禁用写入）
+</code></pre></div>
+<p>接下来要进行的就是模板测试，一共有两个函数可以用来配置模板测试 <code>glStencilFunc</code> 与 <code>glStencilOp</code></p>
+<p>前者是用于判断是否通过缓冲测试，后者用于更新模板值</p>
+<p><code>glStencilFunc</code> 的参数包含了</p>
+<ul>
+<li>模板测试函数，比如说 <code>GL_NEVER</code>、<code>GL_LESS</code>、<code>GL_LEQUAL</code>、<code>GL_GREATER</code>、<code>GL_GEQUAL</code>、<code>GL_EQUAL</code>、<code>GL_NOTEQUAL</code>和<code>GL_ALWAYS</code></li>
+<li>参考值，模板测试的参考值</li>
+<li>掩码，在测试之前，对参考值以及现有的模板值都做 AND 运算</li>
+</ul>
+<p><code>glStencilOp</code> 则描述了各个情况对模板缓冲的写入情况</p>
+<p>本次教程中完成的是绘制物体边框的工作，代码大致如下所示</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">//启动深度测试</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">glEnable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">);</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">//只有在深度测试与模板测试都通过的情况下才会改变模板缓冲</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">glStencilOp</span><span class="p">(</span><span class="n">GL_KEEP</span><span class="p">,</span><span class="w"> </span><span class="n">GL_KEEP</span><span class="p">,</span><span class="w"> </span><span class="n">GL_REPLACE</span><span class="p">);</span><span class="w">  </span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">//清除当前所有缓冲</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">GL_DEPTH_BUFFER_BIT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">GL_STENCIL_BUFFER_BIT</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">//设置掩码为零，就算通过了模板测试与深度测试，依然无法改变模板缓冲中的值</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">glStencilMask</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span><span class="w"> </span><span class="c1">// 记得保证我们在绘制地板的时候不会更新模板缓冲</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">normalShader</span><span class="p">.</span><span class="n">use</span><span class="p">();</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">DrawFloor</span><span class="p">()</span><span class="w">  </span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1">//现在模板缓冲中的值依然全部都是0</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1">//设置一直通过模板缓冲，并且由于参考是为1，行为是GL_REPLACE，于是通过深度测试的部分就会在模板缓冲中记录为1    </span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">glStencilFunc</span><span class="p">(</span><span class="n">GL_ALWAYS</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1">//会改变模板缓冲中的值</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">glStencilMask</span><span class="p">(</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">DrawTwoContainers</span><span class="p">();</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="c1">//设置通过模板缓冲的条件是模板缓冲中的值不为1</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="n">glStencilFunc</span><span class="p">(</span><span class="n">GL_NOTEQUAL</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">);</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1">//不改变模板缓冲中的值</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="n">glStencilMask</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="c1">//取消深度缓冲</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="n">glDisable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">);</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="n">shaderSingleColor</span><span class="p">.</span><span class="n">use</span><span class="p">();</span><span class="w"> </span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="c1">//绘制略微放大的正方体，并且染成绿色</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="n">DrawTwoScaledUpContainers</span><span class="p">();</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="c1">//恢复默认的</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="n">glStencilMask</span><span class="p">(</span><span class="mh">0xFF</span><span class="p">);</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="n">glEnable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">);</span><span class="w">  </span>
+</code></pre></div>
 
 
   
@@ -1378,7 +1449,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../Gamma%20Correction/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Gamma Correction" rel="prev">
+          <a href="../4%20Model%20Loading/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 4 Model Loading" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1388,20 +1459,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                Gamma Correction
+                4 Model Loading
               </div>
             </div>
           </a>
         
         
           
-          <a href="../Shadow%20Mapping/" class="md-footer__link md-footer__link--next" aria-label="下一页: Shadow Mapping" rel="next">
+          <a href="../6%20Framebuffers/" class="md-footer__link md-footer__link--next" aria-label="下一页: 6 Framebuffers" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Shadow Mapping
+                6 Framebuffers
               </div>
             </div>
             <div class="md-footer__button md-icon">
