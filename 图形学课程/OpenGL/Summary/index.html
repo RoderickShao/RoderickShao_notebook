@@ -703,6 +703,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -820,6 +824,26 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../GAMES202/Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAMES202
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
     
     
       
@@ -877,6 +901,26 @@
                 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../CS231n/Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CS231n
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -917,9 +961,9 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" checked>
         
-          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -930,8 +974,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_6_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_6">
             <span class="md-nav__icon md-icon"></span>
             OpenGL
           </label>
@@ -1256,7 +1300,38 @@
 
   <h1>Summary</h1>
 
-
+<p>大概前两章讲的都是一些基础的内容，包括了基础的绘制、纹理映射、光照投射，实现最基本的 Phong 模型</p>
+<p>第三章讲的是如何利用 assimp 库加载模型</p>
+<p>第四章高级OpenGL就讲了很多更高级的技巧</p>
+<ul>
+<li>深度测试与模板测试</li>
+<li>混合：解决透明物体渲染的问题</li>
+<li>面剔除：将观察者看不到的那一面不绘制</li>
+<li>帧缓冲【非常重要】：可以理解为新建一个辅助画布，再利用辅助画布上得到的信息绘制</li>
+<li>立方体贴图：用于绘制背景</li>
+<li>几何着色器：可以根据给定的顶点生成更多的顶点，以实现爆破等等效果</li>
+<li>实例化：用于绘制大量类似物体</li>
+<li>抗锯齿</li>
+</ul>
+<p>第五章高级光照则讲述了光照有关的内容</p>
+<ul>
+<li>实现 Blinn-Phong 模型</li>
+<li>gamma 校正：为了解决物理空间与视觉空间不匹配的问题</li>
+<li>阴影投射，关键是利用深度贴图</li>
+<li>法线贴图：利用一张贴图实现凹凸不平的细节</li>
+<li>
+<p>视差题图：是位移贴图中的一种</p>
+</li>
+<li>
+<p>HDR：用于解决亮度过高导致分辨不出来的问题</p>
+</li>
+<li>
+<p>泛光：实现光源周围一种特殊的效果</p>
+</li>
+<li>延迟着色法：对于多光源的渲染，需要每一个光源对每一个片段进行迭代，这样造成的开销是巨大的，于是我们可以选择将片段的一些信息存储到贴图中（GBuffer)</li>
+<li>SSAO：为了模拟环境光遮蔽的一项技术</li>
+</ul>
+<p>第六章则主要介绍了PBR渲染的技术</p>
 
 
   

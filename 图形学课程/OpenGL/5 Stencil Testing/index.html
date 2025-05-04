@@ -705,6 +705,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -822,6 +826,26 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../GAMES202/Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAMES202
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
     
     
       
@@ -879,6 +903,26 @@
                 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../CS231n/Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CS231n
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -919,9 +963,9 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" checked>
         
-          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -932,8 +976,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_6_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_6">
             <span class="md-nav__icon md-icon"></span>
             OpenGL
           </label>
@@ -1259,7 +1303,7 @@
   <h1>5 Stencil Testing</h1>
 
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 250 个字  •  32 行代码 
+    文本统计：约 334 个字  •  32 行代码 
 </div>
 <p><code>glStencilMask</code> 是模板测试的位掩码，它会与将要写入缓冲的模板值进行与(AND)运算。主要使用的位掩码有 <code>0x00</code> 与 <code>0xFF</code></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>glStencilMask(0xFF); // 每一位写入模板缓冲时都保持原样
@@ -1274,6 +1318,12 @@
 <li>掩码，在测试之前，对参考值以及现有的模板值都做 AND 运算</li>
 </ul>
 <p><code>glStencilOp</code> 则描述了各个情况对模板缓冲的写入情况</p>
+<p><code>glStencilOp(GLenum sfail, GLenum dpfail, GLenum dppass)</code> 一共包含三个选项，我们能够设定每个选项应该采取的行为：</p>
+<ul>
+<li><code>sfail</code>：模板测试失败时采取的行为。</li>
+<li><code>dpfail</code>：模板测试通过，但深度测试失败时采取的行为。</li>
+<li><code>dppass</code>：模板测试和深度测试都通过时采取的行为。</li>
+</ul>
 <p>本次教程中完成的是绘制物体边框的工作，代码大致如下所示</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">//启动深度测试</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">glEnable</span><span class="p">(</span><span class="n">GL_DEPTH_TEST</span><span class="p">);</span>
