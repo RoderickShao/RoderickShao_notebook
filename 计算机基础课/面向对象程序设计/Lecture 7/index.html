@@ -16,7 +16,7 @@
         <link rel="prev" href="../Lecture%206/">
       
       
-        <link rel="next" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/Introduction/">
+        <link rel="next" href="../Lecture%208/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -863,6 +863,8 @@
       
         
       
+        
+      
     
     
       
@@ -917,6 +919,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -944,6 +950,26 @@
             面向对象程序设计
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OOP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1090,6 +1116,26 @@
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%208/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8 Smart Pointer
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1299,9 +1345,9 @@
   
 
 
-<h1 id="7-exceptions">7 Exceptions<a class="headerlink" href="#7-exceptions" title="Permanent link">&para;</a></h1>
+<h1 id="7-exceptions"><strong>7 Exceptions</strong><a class="headerlink" href="#7-exceptions" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2066 个字  •  222 行代码 
+    文本统计：约 2044 个字  •  237 行代码 
 </div>
 
 <p>静态类型语言会在编译阶段对代码进行类型检查，确保变量、函数等使用正确。编译器会检查代码是否符合语法和语义规则，如果代码存在明显错误（如拼写错误、类型不匹配等），编译器会报错</p>
@@ -1640,21 +1686,21 @@
 <a id="__codelineno-24-36" name="__codelineno-24-36" href="#__codelineno-24-36"></a><span class="p">}</span>
 </code></pre></div>
 <p>由于这样的情况实在是太常见了，所有库中给我们提供了智能指针。<code>std::unique_ptr</code>, <code>std::shared_ptr</code>，将上述代码替换为</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>class A
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>{
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>private:
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    std::unique_ptr up;
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>public:
-<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>    A():up(new int[10]){
-<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>        std::cout&lt;&lt;&quot;A()&quot;&lt;&lt;std::endl;
-<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>        if (true){
-<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>            throw 2;
-<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>        }
-<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>    }
-<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>    ~A(){
-<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>        std::cout&lt;&lt;&quot;~A()&quot;&lt;&lt;std::endl;
-<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>    }
-<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">A</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="p">{</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">private</span><span class="o">:</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="w"> </span><span class="n">up</span><span class="p">;</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="k">public</span><span class="o">:</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">    </span><span class="n">A</span><span class="p">()</span><span class="o">:</span><span class="n">up</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">[</span><span class="mi">10</span><span class="p">]){</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;A()&quot;</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">){</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="w">    </span><span class="o">~</span><span class="n">A</span><span class="p">(){</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;~A()&quot;</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="p">}</span>
 </code></pre></div>
 <hr />
 <p>析构函数在两种情况下会被调用，一种是正常的生命周期结束的时候调用，另一种就是在异常抛出的时候，销毁栈上的变量的时候调用。如果析构函数进行过程中发生的异常，程序就会终止</p>
@@ -1816,13 +1862,13 @@
         
         
           
-          <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/Introduction/" class="md-footer__link md-footer__link--next" aria-label="下一页: 计算机体系结构" rel="next">
+          <a href="../Lecture%208/" class="md-footer__link md-footer__link--next" aria-label="下一页: 8 Smart Pointer" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                计算机体系结构
+                8 Smart Pointer
               </div>
             </div>
             <div class="md-footer__button md-icon">

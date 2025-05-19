@@ -16,7 +16,7 @@
         <link rel="prev" href="../Chapter%2012%20Query%20Optimization/">
       
       
-        <link rel="next" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture%201/">
+        <link rel="next" href="../Chapter%2014%20Concurrency%20Control/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -150,7 +150,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-17-transaction" class="md-skip">
+        <a href="#chapter-13-transaction" class="md-skip">
           跳转至
         </a>
       
@@ -865,6 +865,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1205,18 +1207,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#171-transaction-concept" class="md-nav__link">
-    17.1 Transaction Concept
+  <a href="#131-transaction-concept" class="md-nav__link">
+    13.1 Transaction Concept
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#172-a-simple-transaction-model" class="md-nav__link">
-    17.2 A Simple Transaction Model
+  <a href="#132-a-simple-transaction-model" class="md-nav__link">
+    13.2 A Simple Transaction Model
   </a>
   
-    <nav class="md-nav" aria-label="17.2 A Simple Transaction Model">
+    <nav class="md-nav" aria-label="13.2 A Simple Transaction Model">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1232,26 +1234,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#173-concurrent-executions" class="md-nav__link">
-    17.3 Concurrent Executions
+  <a href="#133-concurrent-executions" class="md-nav__link">
+    13.3 Concurrent Executions
   </a>
   
-    <nav class="md-nav" aria-label="17.3 Concurrent Executions">
+    <nav class="md-nav" aria-label="13.3 Concurrent Executions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1731-schedules" class="md-nav__link">
-    17.3.1 Schedules
+  <a href="#1331-schedules" class="md-nav__link">
+    13.3.1 Schedules
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1732-serializability" class="md-nav__link">
-    17.3.2 Serializability
+  <a href="#1332-serializability" class="md-nav__link">
+    13.3.2 Serializability
   </a>
   
-    <nav class="md-nav" aria-label="17.3.2 Serializability">
+    <nav class="md-nav" aria-label="13.3.2 Serializability">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1293,11 +1295,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#174-recoverable-schedules" class="md-nav__link">
-    17.4 Recoverable Schedules
+  <a href="#134-recoverable-schedules" class="md-nav__link">
+    13.4 Recoverable Schedules
   </a>
   
-    <nav class="md-nav" aria-label="17.4 Recoverable Schedules">
+    <nav class="md-nav" aria-label="13.4 Recoverable Schedules">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1313,15 +1315,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#175-transaction-isolation-levels" class="md-nav__link">
-    17.5 Transaction Isolation Levels
+  <a href="#135-transaction-isolation-levels" class="md-nav__link">
+    13.5 Transaction Isolation Levels
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#176-concurrency-control-protocols" class="md-nav__link">
-    17.6 Concurrency Control Protocols
+  <a href="#136-concurrency-control-protocols" class="md-nav__link">
+    13.6 Concurrency Control Protocols
   </a>
   
 </li>
@@ -1330,6 +1332,26 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%2014%20Concurrency%20Control/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14 Concurrency Control
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1365,6 +1387,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1375,7 +1401,7 @@
         
   
   
-    <a href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture%201/" class="md-nav__link">
+    <a href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/OOP/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1582,18 +1608,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#171-transaction-concept" class="md-nav__link">
-    17.1 Transaction Concept
+  <a href="#131-transaction-concept" class="md-nav__link">
+    13.1 Transaction Concept
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#172-a-simple-transaction-model" class="md-nav__link">
-    17.2 A Simple Transaction Model
+  <a href="#132-a-simple-transaction-model" class="md-nav__link">
+    13.2 A Simple Transaction Model
   </a>
   
-    <nav class="md-nav" aria-label="17.2 A Simple Transaction Model">
+    <nav class="md-nav" aria-label="13.2 A Simple Transaction Model">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1609,26 +1635,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#173-concurrent-executions" class="md-nav__link">
-    17.3 Concurrent Executions
+  <a href="#133-concurrent-executions" class="md-nav__link">
+    13.3 Concurrent Executions
   </a>
   
-    <nav class="md-nav" aria-label="17.3 Concurrent Executions">
+    <nav class="md-nav" aria-label="13.3 Concurrent Executions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1731-schedules" class="md-nav__link">
-    17.3.1 Schedules
+  <a href="#1331-schedules" class="md-nav__link">
+    13.3.1 Schedules
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1732-serializability" class="md-nav__link">
-    17.3.2 Serializability
+  <a href="#1332-serializability" class="md-nav__link">
+    13.3.2 Serializability
   </a>
   
-    <nav class="md-nav" aria-label="17.3.2 Serializability">
+    <nav class="md-nav" aria-label="13.3.2 Serializability">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1670,11 +1696,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#174-recoverable-schedules" class="md-nav__link">
-    17.4 Recoverable Schedules
+  <a href="#134-recoverable-schedules" class="md-nav__link">
+    13.4 Recoverable Schedules
   </a>
   
-    <nav class="md-nav" aria-label="17.4 Recoverable Schedules">
+    <nav class="md-nav" aria-label="13.4 Recoverable Schedules">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1690,15 +1716,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#175-transaction-isolation-levels" class="md-nav__link">
-    17.5 Transaction Isolation Levels
+  <a href="#135-transaction-isolation-levels" class="md-nav__link">
+    13.5 Transaction Isolation Levels
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#176-concurrency-control-protocols" class="md-nav__link">
-    17.6 Concurrency Control Protocols
+  <a href="#136-concurrency-control-protocols" class="md-nav__link">
+    13.6 Concurrency Control Protocols
   </a>
   
 </li>
@@ -1721,7 +1747,7 @@
   
 
 
-<h1 id="chapter-17-transaction"><strong>Chapter 17 Transaction</strong><a class="headerlink" href="#chapter-17-transaction" title="Permanent link">&para;</a></h1>
+<h1 id="chapter-13-transaction"><strong>Chapter 13 Transaction</strong><a class="headerlink" href="#chapter-13-transaction" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
     文本统计：约 2346 个字  •  3 行代码 
 </div>
@@ -1730,7 +1756,7 @@
 <p class="admonition-title">Info</p>
 <p><a href="https://note.hobbitqia.cc/DB/db13/">事务 - HobbitQia的笔记本</a></p>
 </div>
-<h2 id="171-transaction-concept"><strong>17.1 Transaction Concept</strong><a class="headerlink" href="#171-transaction-concept" title="Permanent link">&para;</a></h2>
+<h2 id="131-transaction-concept"><strong>13.1 Transaction Concept</strong><a class="headerlink" href="#131-transaction-concept" title="Permanent link">&para;</a></h2>
 <p>A <strong>transaction</strong> is a unit of program execution that accesses and possibly updates various data items.  一段原子性的操作</p>
 <div class="admonition example">
 <p class="admonition-title">transaction to transfer $50 from account A to account B</p>
@@ -1752,7 +1778,7 @@
 <li><strong>Durability（持久性）</strong>
   事务提交后被缓存，掉电不能失去 buffer 里的内容。</li>
 </ul>
-<h2 id="172-a-simple-transaction-model"><strong>17.2 A Simple Transaction Model</strong><a class="headerlink" href="#172-a-simple-transaction-model" title="Permanent link">&para;</a></h2>
+<h2 id="132-a-simple-transaction-model"><strong>13.2 A Simple Transaction Model</strong><a class="headerlink" href="#132-a-simple-transaction-model" title="Permanent link">&para;</a></h2>
 <p>这个模型中，把事务对数据库的修改简化为读写两种操作。
 Transactions access data using two operations:</p>
 <ul>
@@ -1790,7 +1816,7 @@ Isolation can be ensured trivially by running transactions serially（串行）<
 </ul>
 <p><strong>Committed</strong> – after successful completion.</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-12%20161617.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-12%20161617.png" /></a></p>
-<h2 id="173-concurrent-executions"><strong>17.3 Concurrent Executions</strong><a class="headerlink" href="#173-concurrent-executions" title="Permanent link">&para;</a></h2>
+<h2 id="133-concurrent-executions"><strong>13.3 Concurrent Executions</strong><a class="headerlink" href="#133-concurrent-executions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>increased processor and disk utilization</li>
 <li>reduced average response time</li>
@@ -1817,7 +1843,7 @@ Isolation can be ensured trivially by running transactions serially（串行）<
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-12%20162401.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-12%20162401.png" /></a></p>
 <p>unrepeatable 是针对已经存在的数据，但是数据的值不同. Phantom 是指数据数量会变多/减少。</p>
-<h3 id="1731-schedules"><strong>17.3.1 Schedules</strong><a class="headerlink" href="#1731-schedules" title="Permanent link">&para;</a></h3>
+<h3 id="1331-schedules"><strong>13.3.1 Schedules</strong><a class="headerlink" href="#1331-schedules" title="Permanent link">&para;</a></h3>
 <p><strong>Schedule</strong> – a sequences of instructions that specify the chronological order in which instructions of concurrent transactions are executed. </p>
 <ul>
 <li>a schedule for a set of transactions must consist of all instructions of those transactions</li>
@@ -1842,7 +1868,7 @@ Isolation can be ensured trivially by running transactions serially（串行）<
 <p>下面这样的调度就不等价，破坏了隔离性。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-12%20163931.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-12%20163931.png" /></a></p>
 </div>
-<h3 id="1732-serializability"><strong>17.3.2 Serializability</strong><a class="headerlink" href="#1732-serializability" title="Permanent link">&para;</a></h3>
+<h3 id="1332-serializability"><strong>13.3.2 Serializability</strong><a class="headerlink" href="#1332-serializability" title="Permanent link">&para;</a></h3>
 <p>A (possibly concurrent) schedule is <strong>serializable</strong> if it is equivalent to a serial schedule.</p>
 <ul>
 <li>conflict serializability (冲突可串行化)</li>
@@ -1908,7 +1934,7 @@ Isolation can be ensured trivially by running transactions serially（串行）<
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-12%20170508.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-12%20170508.png" /></a></p>
 <p>加减操作是可结合的，这里需要了解事务里具体是什么操作。但我们的简单模型对此不加以区分。这也很难在静态层面去判断是否可串行</p>
 </div>
-<h2 id="174-recoverable-schedules"><strong>17.4 Recoverable Schedules</strong><a class="headerlink" href="#174-recoverable-schedules" title="Permanent link">&para;</a></h2>
+<h2 id="134-recoverable-schedules"><strong>13.4 Recoverable Schedules</strong><a class="headerlink" href="#134-recoverable-schedules" title="Permanent link">&para;</a></h2>
 <p><strong>Recoverable schedule(可恢复调度)</strong> — if a transaction <span class="arithmatex">\(T_j\)</span> reads a data item previously written by a transaction <span class="arithmatex">\(T_i\)</span> , then the commit operation of <span class="arithmatex">\(T_i\)</span> appears before the commit operation of <span class="arithmatex">\(T_j\)</span>.</p>
 <p>如果 <span class="arithmatex">\(T_j\)</span> 读了 <span class="arithmatex">\(T_i\)</span> 写的结果，那么 <span class="arithmatex">\(T_i\)</span> 要比 <span class="arithmatex">\(T_j\)</span> 先提交</p>
 <div class="admonition example">
@@ -1927,7 +1953,7 @@ Isolation can be ensured trivially by running transactions serially（串行）<
 </div>
 <p>要有级联回滚的恢复。Can lead to the undoing of a significant amount of work.</p>
 <p>我们<strong>更希望用非级联的恢复</strong>，否则开销太大。</p>
-<h2 id="175-transaction-isolation-levels"><strong>17.5 Transaction Isolation Levels</strong><a class="headerlink" href="#175-transaction-isolation-levels" title="Permanent link">&para;</a></h2>
+<h2 id="135-transaction-isolation-levels"><strong>13.5 Transaction Isolation Levels</strong><a class="headerlink" href="#135-transaction-isolation-levels" title="Permanent link">&para;</a></h2>
 <p>A database must provide a mechanism that will ensure that all possible schedules are</p>
 <ul>
 <li>either <strong>conflict or view serializable</strong>, and
@@ -1947,7 +1973,7 @@ Isolation can be ensured trivially by running transactions serially（串行）<
   最低的隔离级别，有些数据库只是做统计任务。</li>
 </ul>
 <p>Lower degrees of consistency useful for gathering approximate information about the database</p>
-<h2 id="176-concurrency-control-protocols"><strong>17.6 Concurrency Control Protocols</strong><a class="headerlink" href="#176-concurrency-control-protocols" title="Permanent link">&para;</a></h2>
+<h2 id="136-concurrency-control-protocols"><strong>13.6 Concurrency Control Protocols</strong><a class="headerlink" href="#136-concurrency-control-protocols" title="Permanent link">&para;</a></h2>
 <p>Lock-Based Protocols</p>
 <ul>
 <li>Lock on whole database vs lock on items
@@ -2129,13 +2155,13 @@ Isolation can be ensured trivially by running transactions serially（串行）<
         
         
           
-          <a href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture%201/" class="md-footer__link md-footer__link--next" aria-label="下一页: 1 Memory Model" rel="next">
+          <a href="../Chapter%2014%20Concurrency%20Control/" class="md-footer__link md-footer__link--next" aria-label="下一页: 14 Concurrency Control" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                1 Memory Model
+                14 Concurrency Control
               </div>
             </div>
             <div class="md-footer__button md-icon">
