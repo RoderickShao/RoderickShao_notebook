@@ -865,6 +865,8 @@
       
         
       
+        
+      
     
     
       
@@ -966,6 +968,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    计算机体系结构
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -975,6 +988,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#4-ilp" class="md-nav__link">
+    4 ILP
+  </a>
+  
+    <nav class="md-nav" aria-label="4 ILP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scoreboardingtomasulo-and-rob" class="md-nav__link">
+    Scoreboarding、Tomasulo and ROB
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploiting-ilp-using-multiple-issue-and-static-scheduling" class="md-nav__link">
+    Exploiting ILP Using Multiple Issue and Static Scheduling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-dlp-and-tlp" class="md-nav__link">
+    5 DLP and TLP
+  </a>
+  
+    <nav class="md-nav" aria-label="5 DLP and TLP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-simd-vector-processor" class="md-nav__link">
+    5.1 SIMD: Vector Processor
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 SIMD: Vector Processor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cray-1" class="md-nav__link">
+    CRAY-1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#51-simd-array-processor" class="md-nav__link">
+    5.1 SIMD: Array Processor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1141,6 +1240,81 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#4-ilp" class="md-nav__link">
+    4 ILP
+  </a>
+  
+    <nav class="md-nav" aria-label="4 ILP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scoreboardingtomasulo-and-rob" class="md-nav__link">
+    Scoreboarding、Tomasulo and ROB
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploiting-ilp-using-multiple-issue-and-static-scheduling" class="md-nav__link">
+    Exploiting ILP Using Multiple Issue and Static Scheduling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-dlp-and-tlp" class="md-nav__link">
+    5 DLP and TLP
+  </a>
+  
+    <nav class="md-nav" aria-label="5 DLP and TLP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-simd-vector-processor" class="md-nav__link">
+    5.1 SIMD: Vector Processor
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 SIMD: Vector Processor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cray-1" class="md-nav__link">
+    CRAY-1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#51-simd-array-processor" class="md-nav__link">
+    5.1 SIMD: Array Processor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1160,6 +1334,72 @@
 <h1 id="_1">计算机体系结构<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>大二春夏专业课，这里直接参考学长的笔记了</p>
 <p><a href="https://note.hobbitqia.cc/CA/">计算机体系结构 - HobbitQia的笔记本</a></p>
+<h2 id="4-ilp">4 ILP<a class="headerlink" href="#4-ilp" title="Permanent link">&para;</a></h2>
+<h3 id="scoreboardingtomasulo-and-rob">Scoreboarding、Tomasulo and ROB<a class="headerlink" href="#scoreboardingtomasulo-and-rob" title="Permanent link">&para;</a></h3>
+<p>关于乱序流水线的引入与 scoreboard 算法的介绍：<a href="https://zhuanlan.zhihu.com/p/496078836">【计算机体系结构】记分牌ScoreBoard - 知乎</a></p>
+<p>Tomasulo 算法的介绍：<a href="https://zhuanlan.zhihu.com/p/499978902">【计算机体系结构】Tomasulo算法 - 知乎</a></p>
+<p>重排序结构的介绍：<a href="https://zhuanlan.zhihu.com/p/501631371">【计算机体系结构】重排序缓存ROB - 知乎</a></p>
+<h3 id="exploiting-ilp-using-multiple-issue-and-static-scheduling">Exploiting ILP Using Multiple Issue and Static Scheduling<a class="headerlink" href="#exploiting-ilp-using-multiple-issue-and-static-scheduling" title="Permanent link">&para;</a></h3>
+<p>Superpipelining</p>
+<p>超级流水线（Super-pipelined）处理器通过进一步细分每个流水线阶段，使得多个指令可以在一个时钟周期内进行时间共享处理。这种处理器被称为超级流水线处理器。</p>
+<p>对于能够在一个时钟周期内流出n条指令的超级流水线计算机：</p>
+<ul>
+<li>这n条指令并不是同时流出的。</li>
+<li>而是每1/n个时钟周期流出一条指令。</li>
+<li>实际上，超级流水线计算机的流水线周期为1/n个时钟周期。</li>
+</ul>
+<p>Super-scalar</p>
+<ul>
+<li>
+<p>每个时钟周期发出的指令数量不固定，在超标量（Superscalar）处理器中，每个时钟周期可以发出的指令数量不是固定的，而是根据代码的具体情况而变化。这个数量可以在1到8之间，但有一个上限。</p>
+</li>
+<li>
+<p>如果一个处理器在每个时钟周期最多可以发出n条指令，那么这个处理器就被称为n-issue处理器。</p>
+</li>
+<li>
+<p><strong>静态调度</strong>：可以通过编译器提前安排指令的执行顺序，这种方式称为静态调度。</p>
+</li>
+<li><strong>动态调度</strong>：也可以在运行时根据 Tomasulo 算法来动态地安排指令的执行顺序，这种方式称为动态调度。</li>
+</ul>
+<p>VLIW (Very Long Instruction Word)</p>
+<ul>
+<li>
+<p><strong>固定数量的指令</strong>：在每个时钟周期内，VLIW 处理器会发出固定数量的指令，这个数量通常在 4 到 16 条之间。这些指令共同构成一个长指令或称为指令包。</p>
+</li>
+<li>
+<p><strong>显式表达并行性</strong>：在指令包中，指令之间的并行性是通过指令本身明确表示出来的。这意味着编译器需要提前确定哪些指令可以并行执行，并将它们打包在一起。</p>
+</li>
+<li>
+<p><strong>静态调度</strong>：指令调度是由编译器在编译阶段完成的，而不是由处理器在运行时动态决定。这使得编译器能够优化指令的顺序和组合，以最大化并行执行的效果。</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-21%20114435.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-21%20114435.png" /></a></p>
+<h2 id="5-dlp-and-tlp">5 DLP and TLP<a class="headerlink" href="#5-dlp-and-tlp" title="Permanent link">&para;</a></h2>
+<h3 id="51-simd-vector-processor">5.1 SIMD: Vector Processor<a class="headerlink" href="#51-simd-vector-processor" title="Permanent link">&para;</a></h3>
+<p>(1) Horizontal processing method</p>
+<p>(2) Vertical processing method</p>
+<p>(3) Vertical and horizontal processing method (group processing method)</p>
+<h4 id="cray-1"><strong>CRAY-1</strong><a class="headerlink" href="#cray-1" title="Permanent link">&para;</a></h4>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-21%20203021.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-21%20203021.png" /></a></p>
+<p><strong>Improve the Performance of Vector Processor</strong></p>
+<ul>
+<li>Set up multiple functional components and make them work in parallel.</li>
+<li>Use vector chaining technology to speed up the execution of a string of vector instructions.</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>乘法需要7个节拍，加法、从寄存器中取到向量寄存器均需要6个节拍。另外每一组都需要额外的两拍 It takes 1 beat of transmission delay to start the memory fetch, send the element to the functional part and send the calculation result to Vi. </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-21%20203153.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-21%20203153.png" /></a></p>
+<p>(1) The execution time using serial method is: [(1+6+1)+N-1] + [(1+6+1)+N-1] + [(1+7+1)+N-1] = 3N + 22</p>
+<p>(2) The first two instructions are parallel, and the third is serial. The execution time is: max{[(1+6+1)+N-1], [(1+6+1)+N-1]} + [(1+7+1)+N-1] = 2N + 15</p>
+<p>(3) Use vector chaining technology. The execution time is:</p>
+<p>max{(1+6+1), (1+6+1)} + (1+7+1)+N-1 = N + 16</p>
+</div>
+<ul>
+<li>Adopt recycling mining technology to speed up recycling processing.</li>
+<li>Using a multi-processor system to further improve the performance.</li>
+</ul>
+<h3 id="51-simd-array-processor">5.1 SIMD: Array Processor<a class="headerlink" href="#51-simd-array-processor" title="Permanent link">&para;</a></h3>
 
 
   
