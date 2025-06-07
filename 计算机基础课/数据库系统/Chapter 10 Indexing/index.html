@@ -1691,7 +1691,7 @@
 
 <h1 id="chapter-10-indexing"><strong>Chapter 10 Indexing</strong><a class="headerlink" href="#chapter-10-indexing" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2855 个字 
+    文本统计：约 2947 个字 
 </div>
 
 <div class="admonition info">
@@ -1881,6 +1881,7 @@
 <div class="admonition note">
 <p class="admonition-title">对查找的优化</p>
 <p>Compute <strong>Bloom filter</strong> for each tree and store in-memory，Query a tree only if Bloom filter returns a positive result</p>
+<p>利用k个哈希函数，将相应的k个位置置1，后续查询该值是否存在的时候，计算出k个哈希位置，检查是否都为1。成立不代表一定可以查到，但是不成立就一定查不到</p>
 </div>
 <p>当需要删除条目时，LSM 的做法是插入一条说明它被删除的条目。这样以后，每次查询条目时，还必须要确保没有对应删除条目存在才能返回。在合并时，如果遇到删除条目和原条目同时存在，就将它们同时删去。</p>
 <p>LSM tree 最初作为 disk-based indices 被引入，但对减少 flash-based indices 的擦除也很有帮助。</p>
@@ -1889,7 +1890,8 @@
 <p>Buffer tree 可以减少查询的开销，但是相比 LSM tree，会有更多的随机 I/O。</p>
 <h3 id="1033-bitmap-indices"><strong>10.3.3 Bitmap Indices</strong><a class="headerlink" href="#1033-bitmap-indices" title="Permanent link">&para;</a></h3>
 <p>位图索引适用于记录数目固定，待查询属性的取值较少的情况。</p>
-<p>设一个位图索引的键是属性 <span class="arithmatex">\(A\)</span>，则它对该属性的取值 <span class="arithmatex">\(v\)</span> 的位图就是一串定长的二进制码，其中 1 代表在对应的记录中该属性的值等于 <span class="arithmatex">\(v\)</span>，0 代表不等于。</p>
+<p>设一个位图索引的键是属性 <span class="arithmatex">\(A\)</span>，则它对该属性的取值 <span class="arithmatex">\(v\)</span> 的位图就是一串定长的二进制码，其中 1 代表在对应的记录中该属性的值等于 <span class="arithmatex">\(v\)</span>，0 代表不等于。【也就是说位图是针对与取值的，长度与记录的数目相同】</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-06-07%20165151.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-06-07%20165151.png" /></a></p>
 <p>当使用 Bitmap indices 时，对于多属性查询，只需要对 bitmap 使用按位与、或即可很快地得到结果，bitmap 所占空间也极小。</p>
 
 

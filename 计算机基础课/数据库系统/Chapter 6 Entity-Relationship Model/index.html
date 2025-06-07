@@ -1996,7 +1996,7 @@
 
 <h2 id="61-database-design-process"><strong>6.1 Database Design Process</strong><a class="headerlink" href="#61-database-design-process" title="Permanent link">&para;</a></h2>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20101925.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20101925.png" /></a></p>
-<p>**Initial phase (Requirement Specification) ** -- characterize fully the data needs of the prospective database users. </p>
+<p><strong>Initial phase (Requirement Specification)</strong> -- characterize fully the data needs of the prospective database users. </p>
 <p><strong>Second phase (Conceptual Design)</strong>  -- choosing  a data model</p>
 <ul>
 <li>Applying the concepts of the chosen data model</li>
@@ -2067,11 +2067,11 @@
 </div>
 <h3 id="622-relationship"><strong>6.2.2 Relationship</strong><a class="headerlink" href="#622-relationship" title="Permanent link">&para;</a></h3>
 <p>A <strong>relationship</strong> is an association among several entities</p>
-<p>A relationship set is a mathematical relation among <span class="arithmatex">\(n \ge 2\)</span> entities, each taken from entity sets
-$$
-{(e_1, e_2, … e_n) | e_1 \in E_1, e_2 \in E_2, …, e_n \in E_n}
-$$
-where <span class="arithmatex">\((e_1, e_2, … e_n)\)</span> is a relationship</p>
+<p>A relationship set is a mathematical relation among <span class="arithmatex">\(n \ge 2\)</span> entities, each taken from entity sets</p>
+<div class="arithmatex">\[
+\{(e_1, e_2, … e_n) | e_1 \in E_1, e_2 \in E_2, …, e_n \in E_n\}
+\]</div>
+<p>where <span class="arithmatex">\((e_1, e_2, … e_n)\)</span> is a relationship</p>
 <div class="admonition note">
 <p class="admonition-title">Representing Relationship Sets in ER Diagrams </p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20105926.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20105926.png" /></a></p>
@@ -2177,7 +2177,7 @@ where <span class="arithmatex">\((e_1, e_2, … e_n)\)</span> is a relationship<
 <p>We allow at most one arrow out of a ternary (or greater degree) relationship to indicate a cardinality constraint</p>
 <p>To avoid confusion we outlaw(禁止) more than one arrow. 如果允许从关系指向实体集的多条箭头，可能会导致理解上的混乱。例如，如果同时有箭头指向 <code>instructor</code> 和 <code>student</code>，可能无法明确表示具体是哪个实体集的基数受到限制</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20134944.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20134944.png" /></a></p>
-<h3 id="633-primary-key">6.3.3 Primary Key<a class="headerlink" href="#633-primary-key" title="Permanent link">&para;</a></h3>
+<h3 id="633-primary-key"><strong>6.3.3 Primary Key</strong><a class="headerlink" href="#633-primary-key" title="Permanent link">&para;</a></h3>
 <p>Primary keys provide a way to specify how entities and  relations are distinguished.  We will consider:</p>
 <ul>
 <li>Entity sets</li>
@@ -2256,7 +2256,7 @@ where <span class="arithmatex">\((e_1, e_2, … e_n)\)</span> is a relationship<
 <p>If course_id were explicitly stored, section could be made a strong entity, but then the relationship between section and course would be <strong>duplicated</strong> by an implicit relationship defined by the attribute course_id common to course and section</p>
 <p>如果<code>course_id</code>被显式存储在<code>section</code>表中，那么<code>section</code>就可以成为一个强实体。但这样会导致<code>section</code>和<code>course</code>之间的关系变得冗余，因为它们之间已经通过共同属性<code>course_id</code>存在一种隐含关系。</p>
 </div>
-<h3 id="634-redundant-attributes">6.3.4 Redundant Attributes<a class="headerlink" href="#634-redundant-attributes" title="Permanent link">&para;</a></h3>
+<h3 id="634-redundant-attributes"><strong>6.3.4 Redundant Attributes</strong><a class="headerlink" href="#634-redundant-attributes" title="Permanent link">&para;</a></h3>
 <p>Suppose we have entity sets:</p>
 <ul>
 <li>student, with attributes: ID, name, tot_cred, <strong>dept_name</strong></li>
@@ -2319,7 +2319,7 @@ where <span class="arithmatex">\((e_1, e_2, … e_n)\)</span> is a relationship<
 <p class="admonition-title">Warning</p>
 <p><strong>外键问题</strong>：由于进行了上述优化，<code>section</code>实体中的<code>time_slot</code>属性（来自<code>sec_time_slot</code>关系）不能作为一个外键。这是因为优化后，<code>time_slot</code>实体不再存在，相应的外键关系也无法建立。因为这时候time_slot_id 并不能唯一确定一个time_slot</p>
 </div>
-<h2 id="65-design-issues">6.5 Design Issues<a class="headerlink" href="#65-design-issues" title="Permanent link">&para;</a></h2>
+<h2 id="65-design-issues"><strong>6.5 Design Issues</strong><a class="headerlink" href="#65-design-issues" title="Permanent link">&para;</a></h2>
 <h3 id="651-common-mistakes-in-e-r-diagrams"><strong>6.5.1 Common Mistakes in E-R Diagrams</strong><a class="headerlink" href="#651-common-mistakes-in-e-r-diagrams" title="Permanent link">&para;</a></h3>
 <p>这一小节主要展示了设计时的一些错误与小技巧</p>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20153028.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-03-24%20153028.png" /></a></center></p>

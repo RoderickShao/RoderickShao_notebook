@@ -1827,7 +1827,7 @@
 
 <h1 id="chapter-5-advanced-sql"><strong>Chapter 5 Advanced SQL</strong><a class="headerlink" href="#chapter-5-advanced-sql" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4948 个字  •  267 行代码 
+    文本统计：约 5044 个字  •  267 行代码 
 </div>
 
 <h2 id="51-accessing-sql-from-a-programming-language"><strong>5.1 Accessing SQL from a Programming Language</strong><a class="headerlink" href="#51-accessing-sql-from-a-programming-language" title="Permanent link">&para;</a></h2>
@@ -1890,12 +1890,13 @@
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="s">             group by dept_name&quot;</span><span class="p">);</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">rset</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rset</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;dept_name&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w">                  </span><span class="n">rset</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">rset</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;dept_name&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rset</span><span class="p">.</span><span class="na">getFloat</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
 </code></pre></div>
 <p>Getting result fields:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">rset</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="err">“</span><span class="n">dept_name</span><span class="err">”</span><span class="p">)</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">rset</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">equivalent</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="n">argument</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="n">result</span><span class="p">.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">rset</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="err">“</span><span class="n">dept_name</span><span class="err">”</span><span class="p">)</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">rset</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
+<p>(equivalent if dept_name is the first argument of select result.)</p>
 <p>Dealing with Null values</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rset</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="err">“</span><span class="n">a</span><span class="err">”</span><span class="p">);</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rset</span><span class="p">.</span><span class="na">wasNull</span><span class="p">())</span><span class="w"> </span><span class="n">Systems</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="err">“</span><span class="n">Got</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="n">value</span><span class="err">”</span><span class="p">);</span>
@@ -2009,7 +2010,11 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">blob</span><span class="p">.</span><span class="na">setBlob</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">parameterIndex</span><span class="p">,</span><span class="w"> </span><span class="n">InputStream</span><span class="w"> </span><span class="n">inputStream</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="512-sqlj"><strong>5.1.2 SQLJ</strong><a class="headerlink" href="#512-sqlj" title="Permanent link">&para;</a></h3>
-<p>JDBC is overly dynamic, errors cannot be caught by compiler 错误可以被编译器发现</p>
+<p>JDBC is overly dynamic, errors cannot be caught by compiler </p>
+<ul>
+<li><strong>JDBC</strong>（Java Database Connectivity）是一种用于执行SQL语句的Java API。它非常动态，这意味着在编译时无法捕获错误，只有在运行时才能发现错误。</li>
+<li><strong>SQLJ</strong> 是一种将SQL嵌入到Java代码中的技术，允许在编译时检查SQL语句的语法和类型正确性，从而提前发现潜在的错误。</li>
+</ul>
 <p>SQLJ: embedded SQL in Java</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="err">#</span><span class="n">sql</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="nf">deptInfoIter</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">avgSal</span><span class="p">);</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">deptInfoIter</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
@@ -2082,9 +2087,13 @@
 <li>
 <p>对于可变长度类型（如字符数组）：</p>
 </li>
-</ul>
+<li>
 <p><strong>最大长度</strong>：指定变量的最大长度。</p>
+</li>
+<li>
 <p><strong>实际长度存储位置</strong>：提供一个指针，用于存储实际获取的数据长度。如果返回负值，则表示该字段为NULL值。</p>
+</li>
+</ul>
 <h4 id="odbc-prepared-statements"><strong>ODBC Prepared Statements</strong><a class="headerlink" href="#odbc-prepared-statements" title="Permanent link">&para;</a></h4>
 <p><strong>SQL语句预编译</strong>：在数据库中预先编译好的SQL语句。</p>
 <p><strong>可以包含占位符</strong>：例如，在插入数据时，可以使用<code>insert into account values(?, ?, ?)</code>这样的形式，其中的问号（?）就是占位符，用于后续绑定实际值。</p>

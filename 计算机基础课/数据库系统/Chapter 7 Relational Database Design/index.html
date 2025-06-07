@@ -1156,6 +1156,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#73-multivalued-dependencies" class="md-nav__link">
+    7.3 Multivalued Dependencies
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1643,6 +1650,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#73-multivalued-dependencies" class="md-nav__link">
+    7.3 Multivalued Dependencies
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1663,7 +1677,7 @@
 
 <h1 id="chapter-7-relational-database-design"><strong>Chapter 7 Relational Database Design</strong><a class="headerlink" href="#chapter-7-relational-database-design" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1900 个字  •  6 行代码 
+    文本统计：约 1936 个字  •  6 行代码 
 </div>
 
 <div class="admonition info">
@@ -1705,7 +1719,7 @@
 <p><span class="arithmatex">\(R_1∩R_2→R_2\)</span></p>
 </li>
 </ul>
-<p>即公共属性是其中一个关系的 Key.</p>
+<p>即公共属性是其中一个关系的 Primary Key.</p>
 <div class="admonition example">
 <p class="admonition-title">Lossless-Join Decomposition</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-07%20220217.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-07%20220217.png" /></a></p>
@@ -1736,25 +1750,25 @@ If the first two characters are extracted to find the department, the domain of 
 </div>
 <h2 id="72-functional-dependencies"><strong>7.2 Functional Dependencies</strong><a class="headerlink" href="#72-functional-dependencies" title="Permanent link">&para;</a></h2>
 <p>Functional Dependencies are constraints on the set of legal relations.</p>
-<p>Require that the value for a certain set of attributes <strong>determines uniquely</strong> the value for another set of attributes. <strong>e.g.</strong> <span class="arithmatex">\(\text{dept\_name}\rightarrow \text{building}\)</span></p>
+<p>Require that the value for a certain set of attributes <strong>determines uniquely</strong> the value for another set of attributes. <strong>e.g.</strong> <span class="arithmatex">\(\text{dept}\_\text{name}\rightarrow \text{building}\)</span></p>
 <p>A functional dependency is a generalization of the notion of a key.</p>
 <p>Let <span class="arithmatex">\(R\)</span> be a relation schema <span class="arithmatex">\(α⊆R\)</span> and <span class="arithmatex">\(β⊆R\)</span> (<span class="arithmatex">\(α,β\)</span> 是属性的集合) </p>
 <p>The <strong>functional dependency</strong> </p>
 <div class="arithmatex">\[
 α→β
 \]</div>
-<p>holds on <span class="arithmatex">\(R\)</span> if and only if for any legal relations <span class="arithmatex">\(r(R)\)</span>, whenever any two tuples <span class="arithmatex">\(t_1\)</span> and <span class="arithmatex">\(t_2\)</span> of <span class="arithmatex">\(r\)</span> agree on the attributes <span class="arithmatex">\(α\)</span>, they also agree on the attributes <span class="arithmatex">\(β\)</span>. That is,
-$$
+<p>holds on <span class="arithmatex">\(R\)</span> if and only if for any legal relations <span class="arithmatex">\(r(R)\)</span>, whenever any two tuples <span class="arithmatex">\(t_1\)</span> and <span class="arithmatex">\(t_2\)</span> of <span class="arithmatex">\(r\)</span> agree on the attributes <span class="arithmatex">\(α\)</span>, they also agree on the attributes <span class="arithmatex">\(β\)</span>. That is,</p>
+<div class="arithmatex">\[
 t_1[α]=t_2[α]⇒t_1[β]=t_2[β]
-$$
-通过数据库实例可以证伪函数依赖，但不能证实。（依赖是来自应用层面的规定，先有函数依赖，再有数据库中的数据）</p>
+\]</div>
+<p>通过数据库实例可以证伪函数依赖，但不能证实。（依赖是来自应用层面的规定，先有函数依赖，再有数据库中的数据）</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-08%20170232.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-08%20170232.png" /></a></p>
 <p><span class="arithmatex">\(A→B\)</span> 可以证伪，但也不能因此就说 <span class="arithmatex">\(B→A\)</span></p>
 </div>
 <p>这样 super-key 和 candidate key 的定义可以如下定义</p>
-<p>(1) K is a <strong>super-key</strong> for relation schema R<em>R</em> if and only if <span class="arithmatex">\(K→R\)</span></p>
+<p>(1) K is a <strong>super-key</strong> for relation schema <span class="arithmatex">\(R\)</span> if and only if <span class="arithmatex">\(K→R\)</span></p>
 <p>(2) K is a candidate key for <span class="arithmatex">\(R\)</span> if and only if</p>
 <ul>
 <li><span class="arithmatex">\(K→R\)</span>, and</li>
@@ -1827,7 +1841,7 @@ $$
 <p>Consider a set <span class="arithmatex">\(F\)</span> of functional dependencies and the functional dependency <span class="arithmatex">\(\alpha\rightarrow \beta\)</span> in <span class="arithmatex">\(F\)</span>.</p>
 <ul>
 <li>Attribute A is extraneous in <span class="arithmatex">\(\alpha\)</span> if <span class="arithmatex">\(A\in \alpha\)</span> and <span class="arithmatex">\(F\)</span> logically implies <span class="arithmatex">\((F – \{\alpha \rightarrow \beta\}) \cup \{(\alpha  – A) \rightarrow \beta\}\)</span>.</li>
-<li>Attribute A is extraneous in <span class="arithmatex">\(\alpha\)</span> if <span class="arithmatex">\(A\in \beta\)</span>  and the set of functional dependencies <span class="arithmatex">\((F  – \{\alpha \rightarrow \beta\}) \cup \{\alpha \rightarrow(\beta – A)\}\)</span> logically implies <span class="arithmatex">\(F\)</span>.</li>
+<li>Attribute A is extraneous in <span class="arithmatex">\(\beta\)</span> if <span class="arithmatex">\(A\in \beta\)</span>  and the set of functional dependencies <span class="arithmatex">\((F  – \{\alpha \rightarrow \beta\}) \cup \{\alpha \rightarrow(\beta – A)\}\)</span> logically implies <span class="arithmatex">\(F\)</span>.</li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-08%20221339.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-08%20221339.png" /></a></p>
 </div>
@@ -1839,10 +1853,18 @@ $$
 <li>Each left side of functional dependency in <span class="arithmatex">\(F_c\)</span> is unique.</li>
 </ul>
 <p>To compute a canonical cover for <span class="arithmatex">\(F\)</span></p>
-<p><strong>重复以下步骤</strong>
-   - 使用合并规则替换$ F $中的任何依赖关系：将 <span class="arithmatex">\(\alpha_1 \rightarrow \beta_1\)</span> 和 <span class="arithmatex">\(\alpha_1 \rightarrow \beta_2\)</span> 替换为 <span class="arithmatex">\(\alpha_1 \rightarrow \beta_1\beta_2\)</span>。
-   - 在 <span class="arithmatex">\(\alpha \rightarrow \beta\)</span> 中寻找一个具有冗余属性的功能依赖，该冗余属性可能在 <span class="arithmatex">\(\alpha\)</span> 或 <span class="arithmatex">\(\beta\)</span> 中。
-   - 如果找到冗余属性，则从 <span class="arithmatex">\(\alpha \rightarrow \beta\)</span> 中删除它。</p>
+<p><strong>重复以下步骤</strong></p>
+<ul>
+<li>
+<p>使用合并规则替换 <span class="arithmatex">\(F\)</span> 中的任何依赖关系：将 <span class="arithmatex">\(\alpha_1 \rightarrow \beta_1\)</span> 和 <span class="arithmatex">\(\alpha_1 \rightarrow \beta_2\)</span> 替换为 <span class="arithmatex">\(\alpha_1 \rightarrow \beta_1\beta_2\)</span>。</p>
+</li>
+<li>
+<p>在 <span class="arithmatex">\(\alpha \rightarrow \beta\)</span> 中寻找一个具有冗余属性的功能依赖，该冗余属性可能在 <span class="arithmatex">\(\alpha\)</span> 或 <span class="arithmatex">\(\beta\)</span> 中。</p>
+</li>
+<li>
+<p>如果找到冗余属性，则从 <span class="arithmatex">\(\alpha \rightarrow \beta\)</span> 中删除它。</p>
+</li>
+</ul>
 <p><strong>直到</strong> <span class="arithmatex">\(F\)</span> 不再改变。</p>
 <p>Note: Union rule may become applicable after some extraneous attributes have been deleted, so it has to be re-applied</p>
 <div class="admonition example">
@@ -1855,8 +1877,10 @@ $$
 <li><span class="arithmatex">\(α→β\)</span> is trivial</li>
 <li><span class="arithmatex">\(α\)</span> is a super-key for <span class="arithmatex">\(R\)</span>.</li>
 </ul>
-<p>Decomposing a Schema into BCNF</p>
-<p>Suppose we have a schema <span class="arithmatex">\(R\)</span> and a non-trivial dependency <span class="arithmatex">\(α→β\)</span> causes a violation of BCNF. We decompose <span class="arithmatex">\(R\)</span> into: <span class="arithmatex">\((α∪β)\)</span> and <span class="arithmatex">\((R−(β−α))\)</span></p>
+<p><strong>How to decompose a Schema into BCNF ?</strong></p>
+<ul>
+<li>Suppose we have a schema <span class="arithmatex">\(R\)</span> and a non-trivial dependency <span class="arithmatex">\(α→β\)</span> causes a violation of BCNF. We decompose <span class="arithmatex">\(R\)</span> into: <span class="arithmatex">\((α∪β)\)</span> and <span class="arithmatex">\((R−(β−α))\)</span> </li>
+</ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-09%20105417.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-09%20105417.png" /></a></p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -1903,6 +1927,8 @@ $$
 <li>the decomposition is lossless</li>
 <li>it may not be possible to preserve dependencies.</li>
 </ul>
+<h2 id="73-multivalued-dependencies">7.3 Multivalued Dependencies<a class="headerlink" href="#73-multivalued-dependencies" title="Permanent link">&para;</a></h2>
+<p>关于多值依赖和 4NF 范式，参考下面文章：<a href="https://blog.csdn.net/qq_42060170/article/details/142856492">【数据库范式之多值依赖】-CSDN博客</a></p>
 
 
   

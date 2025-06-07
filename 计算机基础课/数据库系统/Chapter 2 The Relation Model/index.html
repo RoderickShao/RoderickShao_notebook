@@ -1871,7 +1871,7 @@
 
 <h1 id="chapter-2-the-relation-model"><strong>Chapter 2 The Relation Model</strong><a class="headerlink" href="#chapter-2-the-relation-model" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1902 个字 
+    文本统计：约 1998 个字 
 </div>
 
 <h2 id="21-structure-of-relational-databases"><strong>2.1 Structure of Relational Databases</strong><a class="headerlink" href="#21-structure-of-relational-databases" title="Permanent link">&para;</a></h2>
@@ -1993,13 +1993,13 @@ r = \{
 <div class="admonition example">
 <p class="admonition-title">Example of Selection</p>
 <div class="arithmatex">\[
-\sigma_{\text{dept}\_\text{name}}=_{\text{"Physics"}}(\text{instructor})
+\sigma_{{\text{dept}\_\text{name}={\text{"Physics"}}(\text{instructor})
 \]</div>
 <div class="arithmatex">\[
 \sigma_{\text{salary} &gt; 90000}(\text{instructor})
 \]</div>
 <div class="arithmatex">\[
-\sigma_{\text{dept}\_\text{name}}=_{\text{"Physics"} \land \text{salary} &gt; 90000}(\text{instructor})
+\sigma_{{\text{dept}\_\text{name}={\text{"Physics"} \land \text{salary} &gt; 90000}(\text{instructor})
 \]</div>
 </div>
 <h3 id="242-project-operation"><strong>2.4.2 Project Operation</strong><a class="headerlink" href="#242-project-operation" title="Permanent link">&para;</a></h3>
@@ -2021,9 +2021,15 @@ r = \{
 <div class="arithmatex">\[
 r \cup s = \{ t \mid t \in r \text{ or } t \in s \} 
 \]</div>
-<p>For <span class="arithmatex">\(r \cup s\)</span> to be valid:
-1. <span class="arithmatex">\(r\)</span>, <span class="arithmatex">\(s\)</span> must have the same <strong>arity</strong> (元数) (same number of attributes).属性个数要相同
-2. The attribute domains must be <strong>compatible</strong> (example: 2nd column of <span class="arithmatex">\(r\)</span> deals with the same type of values as does the 2nd column of <span class="arithmatex">\(s\)</span>).</p>
+<p>For <span class="arithmatex">\(r \cup s\)</span> to be valid:</p>
+<ol>
+<li>
+<p><span class="arithmatex">\(r\)</span>, <span class="arithmatex">\(s\)</span> must have the same <strong>arity</strong> (元数) (same number of attributes).属性个数要相同</p>
+</li>
+<li>
+<p>The attribute domains must be <strong>compatible</strong> (example: 2nd column of <span class="arithmatex">\(r\)</span> deals with the same type of values as does the 2nd column of <span class="arithmatex">\(s\)</span>). </p>
+</li>
+</ol>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20132454.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20132454.png" /></a></center></p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -2080,7 +2086,7 @@ r - s = \{ t \mid t \in r \text{ and } t \notin s \}
 <div class="arithmatex">\[
 \rho_{X(A_1, A_2, \ldots, A_n)}(E) 
 \]</div>
-<p>returns the result of expression <span class="arithmatex">\(E\)</span> under the name <span class="arithmatex">\(X\)</span>, and with the attributes renamed to <span class="arithmatex">\(A_1, A_2, \ldots, A_n\)</span>.</p>
+<p>returns the result of expression <span class="arithmatex">\(E\)</span> under the name <span class="arithmatex">\(X\)</span>, and with the attributes renamed to <span class="arithmatex">\(A_1, A_2, \ldots, A_n\)</span>. 对属性进行重命名</p>
 <div class="admonition example">
 <p class="admonition-title">Basic Operation</p>
 <p><strong>Example 1</strong>: Find the names of all instructors in the Physics department, along with the <code>course_id</code> of all courses they have taught</p>
@@ -2250,7 +2256,7 @@ r \ltimes_{\theta} s = \Pi_R (\sigma_{\theta}(r \bowtie s))
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>Let <span class="arithmatex">\(r(\text{ID}, \text{course}\_id) = \Pi_{\text{ID}, \text{course}\_\text{id}}(\text{takes})\)</span> and <span class="arithmatex">\(s(\text{course}\_\text{id}) = \Pi_{\text{course}\_\text{id}}(\sigma_{\text{dept}\_\text{name}=\text{Biology}}(\text{course}))\)</span></p>
-<p>then <span class="arithmatex">\(r \div s\)</span> gives us students who have taken all courses in the Biology department.</p>
+<p>then <span class="arithmatex">\(r \div s\)</span> gives us students who have taken all courses in the Biology department. 返回的结果是参加生物部门开设的所有课程的学生</p>
 </div>
 <p>Can write <span class="arithmatex">\(r \div s\)</span> as:</p>
 <div class="arithmatex">\[
@@ -2271,7 +2277,7 @@ r \ltimes_{\theta} s = \Pi_R (\sigma_{\theta}(r \bowtie s))
 </ul>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20165332.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20165332.png" /></a></center></p>
 <h3 id="248-generalized-projection"><strong>2.4.8 Generalized Projection</strong><a class="headerlink" href="#248-generalized-projection" title="Permanent link">&para;</a></h3>
-<p>Extends the projection operation by allowing arithmetic functions to be used in the projection list.</p>
+<p>Extends the projection operation by allowing arithmetic functions to be used in the projection list. 广义的投影可以添加算数运算</p>
 <div class="arithmatex">\[
 \Pi_{F_1, F_2, \ldots, F_n}(E)
 \]</div>
@@ -2283,7 +2289,7 @@ r \ltimes_{\theta} s = \Pi_R (\sigma_{\theta}(r \bowtie s))
 <p class="admonition-title">Example</p>
 <p>Given relation <code>instructor(ID, name, dept_name, salary)</code> where salary is annual salary, get the same information but with monthly salary.</p>
 <div class="arithmatex">\[
-\Pi_{ID, name, \text{dept}\_\text{name}, salary/12}(instructor)
+\Pi_{\text{ID}, \text{name}, \text{dept}\_\text{name}, \text{salary}/12}(instructor)
 \]</div>
 </div>
 <h3 id="249-aggregate-functions-and-operations"><strong>2.4.9 Aggregate Functions and Operations</strong><a class="headerlink" href="#249-aggregate-functions-and-operations" title="Permanent link">&para;</a></h3>
@@ -2300,20 +2306,21 @@ r \ltimes_{\theta} s = \Pi_R (\sigma_{\theta}(r \bowtie s))
 _{G_1, G_2, \ldots, G_n} \; \mathcal{G} \; _{F_1(A_1), F_2(A_2), \ldots, F_n(A_n)} \; (E)
 \]</div>
 <p><span class="arithmatex">\(E\)</span> is any relational-algebra expression.</p>
-<p><span class="arithmatex">\(G_1, G_2, \ldots, G_n\)</span> is a list of attributes on which to group (can be empty).</p>
-<p>Each <span class="arithmatex">\(F_i\)</span> is an aggregate function.</p>
-<p>Each <span class="arithmatex">\(A_i\)</span> is an attribute name.</p>
+<p><span class="arithmatex">\(G_1, G_2, \ldots, G_n\)</span> is a list of attributes on which to group (can be empty).  指定哪些元素合在一起作为一个组</p>
+<p>Each <span class="arithmatex">\(F_i\)</span> is an aggregate function. 聚合方程</p>
+<p>Each <span class="arithmatex">\(A_i\)</span> is an attribute name. 元素的名字</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Some books/articles use <span class="arithmatex">\(\gamma\)</span> instead of <span class="arithmatex">\(\mathcal{G}\)</span> (Calligraphic G).</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
+<p>将 dept_name 一样的作为一组进行合并，合并计算的元素为 salary</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20173002.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20173002.png" /></a></p>
 </div>
 <p>Result of aggregation does not have a name, Can use rename operation to give it a name. For convenience, we permit renaming as part of aggregate operation</p>
 <div class="arithmatex">\[
-_{\text{dept\_name}}\mathcal G_{avg(\text{salary}) \text{ as } \text{avg\_sal} }(\text{instructor})
+_{\text{dept}\_\text{name}}\mathcal G_{avg(\text{salary}) \text{ as } \text{avg}\_\text{sal} }(\text{instructor})
 \]</div>
 <h3 id="2410-multi-set-relational-algebra"><strong>2.4.10 Multi-set Relational Algebra</strong><a class="headerlink" href="#2410-multi-set-relational-algebra" title="Permanent link">&para;</a></h3>
 <p>Pure relational algebra removes <strong>all duplicates</strong> e.g. after projection</p>

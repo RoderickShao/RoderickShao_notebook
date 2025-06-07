@@ -1826,11 +1826,21 @@
 <h3 id="constructor"><strong>Constructor 构造函数</strong><a class="headerlink" href="#constructor" title="Permanent link">&para;</a></h3>
 <p>构造函数的函数名和类的名字相同，可以传入一些参数用来初始化一个对象，在类的对象被定义的时候会<strong>自动调用构造函数</strong></p>
 <p>default constructor 默认构造函数，不需要参数也可以使用的构造函数，或者说没有写相应的构造函数，编译器会帮我们自动生成一份默认构造函数</p>
-<p>初始化列表：在函数签名后面，大括号之前直接对类中定义的变量进行赋值
-- const类型的成员变量初始化<strong>只能用初始化列表</strong> 
-- 构造函数的执行分为两个阶段：<strong>初始化阶段</strong>和<strong>函数执行阶段</strong>，会先执行初始化列表里的赋值，在进入函数主体进行对应的操作
-- <strong>初始化顺序取决于成员变量的声明顺序</strong>：无论你在初始化列表中如何排列成员变量的初始化顺序，实际的初始化顺序总是按照成员变量在类中声明的顺序来进行。
-- <strong>析构顺序是初始化顺序的逆序</strong>：当对象被销毁时，成员变量的析构顺序与它们的初始化顺序相反。也就是说，如果<code>x</code>先于<code>y</code>被初始化，那么在对象销毁时，<code>y</code>会先于<code>x</code>被析构。</p>
+<p>初始化列表：在函数签名后面，大括号之前直接对类中定义的变量进行赋值</p>
+<ul>
+<li>
+<p>const类型的成员变量初始化<strong>只能用初始化列表</strong> </p>
+</li>
+<li>
+<p>构造函数的执行分为两个阶段：<strong>初始化阶段</strong>和<strong>函数执行阶段</strong>，会先执行初始化列表里的赋值，在进入函数主体进行对应的操作</p>
+</li>
+<li>
+<p><strong>初始化顺序取决于成员变量的声明顺序</strong>：无论你在初始化列表中如何排列成员变量的初始化顺序，实际的初始化顺序总是按照成员变量在类中声明的顺序来进行。</p>
+</li>
+<li>
+<p><strong>析构顺序是初始化顺序的逆序</strong>：当对象被销毁时，成员变量的析构顺序与它们的初始化顺序相反。也就是说，如果<code>x</code>先于<code>y</code>被初始化，那么在对象销毁时，<code>y</code>会先于<code>x</code>被析构。</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">private</span><span class="o">:</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>

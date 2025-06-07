@@ -2046,10 +2046,6 @@
 
 
 <h1 id="chapter-3-introduction-to-sql"><strong>Chapter 3 Introduction to SQL</strong><a class="headerlink" href="#chapter-3-introduction-to-sql" title="Permanent link">&para;</a></h1>
-<div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 3080 个字  •  211 行代码 
-</div>
-
 <p>The <strong>SQL data-definition language (DDL)</strong> allows the specification of information about relations, including:</p>
 <ul>
 <li>The schema for each relation.</li>
@@ -2095,12 +2091,13 @@
 <h2 id="33-table-constructs"><strong>3.3 Table Constructs</strong><a class="headerlink" href="#33-table-constructs" title="Permanent link">&para;</a></h2>
 <h3 id="331-create-table-construct"><strong>3.3.1 Create Table Construct</strong><a class="headerlink" href="#331-create-table-construct" title="Permanent link">&para;</a></h3>
 <p>An SQL relation is defined using the create table command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="p">(</span><span class="n">A1</span><span class="w"> </span><span class="n">D1</span><span class="p">,</span><span class="w"> </span><span class="n">A2</span><span class="w"> </span><span class="n">D2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">An</span><span class="w"> </span><span class="n">Dn</span><span class="p">,</span><span class="w">                       </span><span class="p">(</span><span class="n">integrity</span><span class="o">-</span><span class="n">constraint1</span><span class="p">),</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">            </span><span class="p">...,</span><span class="w">    </span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">            </span><span class="p">(</span><span class="n">integrity</span><span class="o">-</span><span class="n">constraintk</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="p">(</span><span class="n">A1</span><span class="w"> </span><span class="n">D1</span><span class="p">,</span><span class="w"> </span><span class="n">A2</span><span class="w"> </span><span class="n">D2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">An</span><span class="w"> </span><span class="n">Dn</span><span class="p">,</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">                </span><span class="p">(</span><span class="n">integrity</span><span class="o">-</span><span class="n">constraint1</span><span class="p">),</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">                </span><span class="p">...,</span><span class="w">    </span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">                </span><span class="p">(</span><span class="n">integrity</span><span class="o">-</span><span class="n">constraintk</span><span class="p">))</span>
 </code></pre></div>
 <ul>
-<li><span class="arithmatex">\(r\)</span> is the name of the relation</li>
+<li><span class="arithmatex">\(r\)</span> is the name of the relation </li>
 <li>each <span class="arithmatex">\(A_i\)</span> is an attribute name in the schema of relation <span class="arithmatex">\(r\)</span></li>
 <li><span class="arithmatex">\(D_i\)</span> is the data type of values in the domain of attribute <span class="arithmatex">\(A_i\)</span></li>
 </ul>
@@ -2165,7 +2162,7 @@
 <a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span>
 <a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">);</span>
 </code></pre></div>
-<p>在这个例子中：</p>
+<p>在这个例子中：department为父表，employee为子表</p>
 <ul>
 <li><strong>ON DELETE CASCADE</strong>: 如果某个部门被删除，那么所有属于该部门的员工记录也会被自动删除。</li>
 <li><strong>ON UPDATE CASCADE</strong>: 如果某个部门的名字被更改，那么所有属于该部门的员工记录中的 <code>dept_name</code> 字段也会被自动更新为新的部门名字。</li>
@@ -2266,7 +2263,7 @@ Corresponds to the <strong>selection predicate</strong> of the relational algebr
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">from</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">natural</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">teaches</span><span class="p">;</span>
 </code></pre></div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p class="admonition-title">错误的自然连接</p>
 <p>Beware of unrelated attributes with same name which get equated incorrectly</p>
 <p>e.g. List the names of instructors along with the  titles of courses that they teach </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>course(course_id,title, dept_name,credits）
@@ -2318,8 +2315,7 @@ Corresponds to the <strong>selection predicate</strong> of the relational algebr
 <ul>
 <li>‘Intro%’ matches any string beginning with “Intro”.</li>
 <li>‘%Comp%’ matches any string containing “Comp” as a substring.</li>
-<li>‘<em> _ </em>’ matches any string of exactly three characters.
-  _</li>
+<li>‘_ _ _’ matches any string of exactly three characters.</li>
 <li>‘_ _ _ %’ matches any string of at least three characters.</li>
 </ul>
 <p>SQL supports a variety of string operations such as</p>
@@ -2362,7 +2358,7 @@ Corresponds to the <strong>selection predicate</strong> of the relational algebr
 <p>The <code>limit</code> clause can be used to constrain the number of rows returned by the select statement. </p>
 <p>limit clause takes one or two numeric arguments, which must both be nonnegative integer constants: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a> limit offset, row_count
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a> limit row_count     ==  limit 0, row_count
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a> limit row_count == limit 0, row_count
 </code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -2559,8 +2555,8 @@ Corresponds to the <strong>selection predicate</strong> of the relational algebr
 <p>Runtime error if sub-query returns more than one result tuple</p>
 <h3 id="394-test-for-empty-relations"><strong>3.9.4 Test for Empty Relations</strong><a class="headerlink" href="#394-test-for-empty-relations" title="Permanent link">&para;</a></h3>
 <p>The exists construct returns the value true if the argument sub-query is nonempty.</p>
-<p><span class="arithmatex">\(\text{exists } r \Leftrightarrow r\ne\empty\)</span></p>
-<p><span class="arithmatex">\(\text{not exists } r \Leftrightarrow r = \empty\)</span></p>
+<p><span class="arithmatex">\(\text{exists } r \Leftrightarrow r\ne\emptyset\)</span></p>
+<p><span class="arithmatex">\(\text{not exists } r \Leftrightarrow r = \emptyset\)</span></p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>还是之前那个例子，使用 exist 关键字来写</p>
