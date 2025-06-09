@@ -925,6 +925,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1068,6 +1070,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    5 Template
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1077,6 +1090,46 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#function-templates" class="md-nav__link">
+    Function templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-templates" class="md-nav__link">
+    Class templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crtp-the-curiously-recurring-template-pattern" class="md-nav__link">
+    CRTP (The Curiously Recurring Template Pattern)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1134,6 +1187,26 @@
   
   <span class="md-ellipsis">
     8 Smart Pointer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%209/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 Miscellaneous Topics
   </span>
   
 
@@ -1331,6 +1404,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#function-templates" class="md-nav__link">
+    Function templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-templates" class="md-nav__link">
+    Class templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crtp-the-curiously-recurring-template-pattern" class="md-nav__link">
+    CRTP (The Curiously Recurring Template Pattern)
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1349,7 +1451,7 @@
 
 <h1 id="5-templates"><strong>5 Templates</strong><a class="headerlink" href="#5-templates" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 771 个字  •  201 行代码 
+    文本统计：约 772 个字  •  201 行代码 
 </div>
 
 <p>Same function name with different argument-lists.</p>
@@ -1367,7 +1469,7 @@
 <p>为了使 <code>print</code> 函数可以处理不同的参数，我们需要为每一个类型写一个函数，这造成了代码的重复，也不方便后期维护。为此我们引入模板的概念。</p>
 <p>我们可以定义函数模板或者类模板，接下来将详细阐述</p>
 <hr />
-<p><strong>Function templates</strong></p>
+<h2 id="function-templates"><strong>Function templates</strong><a class="headerlink" href="#function-templates" title="Permanent link">&para;</a></h2>
 <p>Similar operations on different types of data.</p>
 <p>以 <code>swap</code> 函数为例</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="w"> </span><span class="o">&gt;</span>
@@ -1438,7 +1540,7 @@
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span><span class="c1">//这里调用的是第一个函数，做了隐式转换</span>
 </code></pre></div>
 <hr />
-<p><strong>Class templates</strong> </p>
+<h2 id="class-templates"><strong>Class templates</strong><a class="headerlink" href="#class-templates" title="Permanent link">&para;</a></h2>
 <p>类模板使用类型参数来定义类，可以为同一个类结构指定不同的数据类型，最经典的用处为容器的类模板，比如说 <code>stack</code>，<code>list</code>，<code>queue</code> 等等，下面是 <code>Vector</code> 容器的实现</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Vector</span><span class="w"> </span><span class="p">{</span>
@@ -1537,7 +1639,7 @@
 </code></pre></div>
 <hr />
 <p><strong>Member templates</strong></p>
-<p>Template declarations can appear inside a memberspecification of any class</p>
+<p>Template declarations can appear inside a member specification of any class</p>
 <p>比如说下面复数类中的构造函数</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">complex</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="p">{</span>
@@ -1565,7 +1667,7 @@
 <a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">*&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <hr />
-<p>CRTP (The Curiously Recurring Template Pattern)</p>
+<h2 id="crtp-the-curiously-recurring-template-pattern">CRTP (The Curiously Recurring Template Pattern)<a class="headerlink" href="#crtp-the-curiously-recurring-template-pattern" title="Permanent link">&para;</a></h2>
 <p>一种特殊的模板使用方式，也是一种实现多态的方式。与传统的通过虚函数实现的动态多态不同，CRTP可以在编译期解决派生类的具体类型，从而提高运行时效率。</p>
 <p>基本的框架如下，基类为模板类，派生类将自身作为模板参数给到基类</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>

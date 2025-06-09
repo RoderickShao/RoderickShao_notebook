@@ -925,6 +925,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1194,40 +1196,6 @@
     2.11 强制类型转换
   </a>
   
-    <nav class="md-nav" aria-label="2.11 强制类型转换">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#static_cast" class="md-nav__link">
-    static_cast
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#const_cast" class="md-nav__link">
-    const_cast
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reinterpret_cast" class="md-nav__link">
-    reinterpret_cast
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dynamic_cast" class="md-nav__link">
-    dynamic_cast
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1350,6 +1318,26 @@
   
   <span class="md-ellipsis">
     8 Smart Pointer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%209/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 Miscellaneous Topics
   </span>
   
 
@@ -1703,40 +1691,6 @@
     2.11 强制类型转换
   </a>
   
-    <nav class="md-nav" aria-label="2.11 强制类型转换">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#static_cast" class="md-nav__link">
-    static_cast
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#const_cast" class="md-nav__link">
-    const_cast
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reinterpret_cast" class="md-nav__link">
-    reinterpret_cast
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dynamic_cast" class="md-nav__link">
-    dynamic_cast
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1759,7 +1713,7 @@
 
 <h1 id="2-class"><strong>2 Class</strong><a class="headerlink" href="#2-class" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 6683 个字  •  516 行代码 
+    文本统计：约 6037 个字  •  477 行代码 
 </div>
 
 <h2 id="21-basic-concepts"><strong>2.1 Basic Concepts</strong><a class="headerlink" href="#21-basic-concepts" title="Permanent link">&para;</a></h2>
@@ -2689,99 +2643,10 @@
 </div>
 <p>如果我们希望禁用拷贝构造函数，在 C++ 11 以前，将拷贝构造函数声明为<code>private</code>且不提供实现；在C++ 11以后，声明函数 <code>Person(const Person &amp;rhs) = delete;</code>即可</p>
 <h2 id="211"><strong>2.11 强制类型转换</strong><a class="headerlink" href="#211" title="Permanent link">&para;</a></h2>
-<h3 id="static_cast"><strong>static_cast</strong><a class="headerlink" href="#static_cast" title="Permanent link">&para;</a></h3>
-<p><code>static_cast</code> 用于数据类型的强制转换，有这样几种用法</p>
-<ul>
-<li>基本数据类型的转换，比如char转换成int</li>
-<li>在类的体系中把基类和派生类的指针和引用进行转换</li>
-<li>向上转换是安全的</li>
-<li>向下转换是不安全的</li>
-<li>只能在有相互联系的类型中进行相互转换，不一定包含虚函数</li>
-<li>把空指针转换成目标类型的空指针</li>
-<li>
-<p>把任何类型转换成void类型</p>
-</li>
-<li>
-<p>static_cast不能转换掉有const的变量</p>
-</li>
-</ul>
-<h3 id="const_cast"><strong>const_cast</strong><a class="headerlink" href="#const_cast" title="Permanent link">&para;</a></h3>
-<p><code>const_cast</code> 可以强制去掉const的常数特性，<strong>只能用在指针和引用</strong>上面</p>
-<ul>
-<li>常量指针被转化成非常量的指针，仍然指向原来的对象</li>
-<li>常量引用被转换成为非常量的引用，仍指向原来的对象</li>
-</ul>
-<p>来看一段代码
-- 打印出来的结果是a=10，而p和q所指向的值是20，a的地址和pq指向的地址是一样的
-- 事实上第五行的赋值是一种未定义行为，最好别用</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="p">;</span>
-<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="o">*</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
-<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-</code></pre></div>
-<h3 id="reinterpret_cast"><strong>reinterpret_cast</strong><a class="headerlink" href="#reinterpret_cast" title="Permanent link">&para;</a></h3>
-<p><code>reinterpret_cast</code> 主要有三种用途</p>
-<ul>
-<li>改变指针或者引用的类型</li>
-<li>将指针或者引用转换成为足够长的整形</li>
-<li>将整型编程指针或者引用类型</li>
-</ul>
-<h3 id="dynamic_cast"><strong>dynamic_cast</strong><a class="headerlink" href="#dynamic_cast" title="Permanent link">&para;</a></h3>
-<p>跟其他几个不同，其他几个都是编译时完成的，<code>dynamic_cast</code> 是在运行时进行类型检查的</p>
-<p>不能用于内置的基本数据类型的强制转换</p>
-<p>如果成功的，将返回指向类的指针或者引用，转换失败的话会返回NULL</p>
-<p>转换时基类一定要有虚函数，否则无法通过编译</p>
 <ul>
 <li>
-<p>原因是虚函数表名这个类希望可以用基类指针指向派生类，这样转换才有意义</p>
-</li>
-<li>
-<p>在类的向上转换的时候，和<code>static_cast</code> 效果一样，但是向下转换的时候比<code>static_cast</code> 更安全，因此要求也更高</p>
-</li>
-</ul>
-<p>来看一段代码</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="p">{</span>
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
-<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="w">    </span><span class="n">B</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
-<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="n">ap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
-<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">B</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ap</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;OK1&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Fail&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">B</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ap</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;OK2&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Fail&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-<a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a><span class="w">    </span><span class="n">ap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
-<a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">B</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ap</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-40-20" name="__codelineno-40-20" href="#__codelineno-40-20"></a><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;OK3&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-<a id="__codelineno-40-21" name="__codelineno-40-21" href="#__codelineno-40-21"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-40-22" name="__codelineno-40-22" href="#__codelineno-40-22"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-40-23" name="__codelineno-40-23" href="#__codelineno-40-23"></a><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Fail&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-<a id="__codelineno-40-24" name="__codelineno-40-24" href="#__codelineno-40-24"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-40-25" name="__codelineno-40-25" href="#__codelineno-40-25"></a><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">B</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ap</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-40-26" name="__codelineno-40-26" href="#__codelineno-40-26"></a><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;OK4&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-<a id="__codelineno-40-27" name="__codelineno-40-27" href="#__codelineno-40-27"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-40-28" name="__codelineno-40-28" href="#__codelineno-40-28"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-40-29" name="__codelineno-40-29" href="#__codelineno-40-29"></a><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Fail&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-<a id="__codelineno-40-30" name="__codelineno-40-30" href="#__codelineno-40-30"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-40-31" name="__codelineno-40-31" href="#__codelineno-40-31"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<a id="__codelineno-40-32" name="__codelineno-40-32" href="#__codelineno-40-32"></a><span class="p">}</span>
-</code></pre></div>
 <ul>
-<li>运行的结果是第一个失败，其他的都成功</li>
-<li>推测导致这个结果的原因：<ul>
-<li>当ap指向派生类的时候，进行强制类型转换变成派生类是可以成功的</li>
-<li>当ap指向基类的时候，<code>dynamic_cast</code> 转换是否成功取决于指针指向的类型和即将转换的类型是不是一样，不一样就会失败，返回一个NULL，而static是可以成功的</li>
-<li>其实是更安全的机制导致dynamic的检查更多，要求更高</li>
+<li></li>
 </ul>
 </li>
 </ul>

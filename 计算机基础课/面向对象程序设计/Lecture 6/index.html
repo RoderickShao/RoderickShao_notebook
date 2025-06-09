@@ -925,6 +925,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1088,6 +1090,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    6 Iterators
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1097,6 +1110,46 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-iterators" class="md-nav__link">
+    Basic Iterators
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iterator_traits" class="md-nav__link">
+    Iterator_traits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-of-iterators" class="md-nav__link">
+    Type of Iterators
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1134,6 +1187,26 @@
   
   <span class="md-ellipsis">
     8 Smart Pointer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%209/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 Miscellaneous Topics
   </span>
   
 
@@ -1331,6 +1404,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-iterators" class="md-nav__link">
+    Basic Iterators
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iterator_traits" class="md-nav__link">
+    Iterator_traits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#type-of-iterators" class="md-nav__link">
+    Type of Iterators
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1349,9 +1451,10 @@
 
 <h1 id="6-iterators"><strong>6 Iterators</strong><a class="headerlink" href="#6-iterators" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 789 个字  •  180 行代码 
+    文本统计：约 796 个字  •  180 行代码 
 </div>
 
+<h2 id="basic-iterators">Basic Iterators<a class="headerlink" href="#basic-iterators" title="Permanent link">&para;</a></h2>
 <p>为什么我们需要迭代器？它能够在不知道容器内部结构的情况下，提供我们一种访问方式。可以被认为是指针的扩展。如果没有迭代器，有 N 种算法和 M 种相应的数据结构，那么我就要实现 N*M 次，这并不是我们所需要的。迭代器的一大作用就是将算法和数据结构解耦。</p>
 <p>比如说下面这个利用迭代器的查找算法</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">InputIterator</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
@@ -1366,9 +1469,9 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vecTemp</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">list</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">listTemp</span><span class="p">;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="n">vecTemp</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">vecTemp</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">vecTemp</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;3 not found in vecTemp&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;3 not found in vecTemp&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">find</span><span class="p">(</span><span class="n">listTemp</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">listTemp</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">listTemp</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;4 not found in listTemp&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;4 not found in listTemp&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 </code></pre></div>
 <hr />
 <p>下面以 <code>List</code> 容器为例，写一下它的实现方式</p>
@@ -1428,6 +1531,7 @@
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;not found&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
 </code></pre></div>
 <hr />
+<h2 id="iterator_traits">Iterator_traits<a class="headerlink" href="#iterator_traits" title="Permanent link">&para;</a></h2>
 <p>但这个仍有一些问题，因为我们抽象给算法的是迭代器，而有些时候算法本身需要迭代器内部的一些信息，比如说迭代器类型，数据类型等等。有一个解决方法是传入相应的类型参数</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// we do NOT know the data type of iter,</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1">// so we need another variable v to infer T</span>
@@ -1519,6 +1623,7 @@
 </code></pre></div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-04%20130733.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-04%20130733.png" /></a></p>
 <hr />
+<h2 id="type-of-iterators">Type of Iterators<a class="headerlink" href="#type-of-iterators" title="Permanent link">&para;</a></h2>
 <p>关于<strong>迭代器的类型</strong>，分为以下五种</p>
 <ul>
 <li>

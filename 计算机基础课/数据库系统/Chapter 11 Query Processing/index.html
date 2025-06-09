@@ -1394,6 +1394,8 @@
       
         
       
+        
+      
     
     
       
@@ -1733,7 +1735,7 @@
 
 <h1 id="chapter-11-query-processing"><strong>Chapter 11 Query Processing</strong><a class="headerlink" href="#chapter-11-query-processing" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 1103 个字  •  3 行代码 
+    文本统计：约 2205 个字  •  3 行代码 
 </div>
 
 <div class="admonition info">
@@ -1773,7 +1775,7 @@
 <p><strong>A1 (linear search)</strong></p>
 <ul>
 <li>
-<p>假定所有的块都放在一起，因此只需要 seek 一次，最坏代价为 <span class="arithmatex">\(b_r×tT+t_S\)</span>，平均代价为 <span class="arithmatex">\((b_r/2)×t_T+t_S\)</span>，其中 <span class="arithmatex">\(b_r\)</span> 为存储关系 <span class="arithmatex">\(r\)</span> 的所有记录的块的数目</p>
+<p>假定所有的块都放在一起，因此只需要 seek 一次，最坏代价为 <span class="arithmatex">\(b_r×t_T+t_S\)</span>，平均代价为 <span class="arithmatex">\((b_r/2)×t_T+t_S\)</span>，其中 <span class="arithmatex">\(b_r\)</span> 为存储关系 <span class="arithmatex">\(r\)</span> 的所有记录的块的数目</p>
 </li>
 <li>
 <p>线性搜索可以应用于任何情况，无论选择条件、文件中记录的顺序或索引的存在与否。</p>
@@ -1811,8 +1813,9 @@
 <h3 id="selections-involving-comparisons"><strong>Selections Involving Comparisons</strong><a class="headerlink" href="#selections-involving-comparisons" title="Permanent link">&para;</a></h3>
 <p><strong>A4’ (secondary B+-tree index, equality on nonkey)</strong></p>
 <ul>
-<li>会检索 <span class="arithmatex">\(n\)</span> 条记录，不一定在同一个块上面，设共分布在 <span class="arithmatex">\(m\)</span> 个块上</li>
-<li>cost=<span class="arithmatex">\((h_i+m+n)×(t_T+t_S)\)</span> 叶子节点存储的是 <span class="arithmatex">\(m\)</span> 条记录的位置，每个记录都需要一次搜索和传输</li>
+<li>Each of n matching records may be on a different block，n 个 records 可能在不同的块上</li>
+<li>n pointers may be stored in m blocks  </li>
+<li>cost=<span class="arithmatex">\((h_i+m+n)×(t_T+t_S)\)</span> </li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-04%20190512.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-04%20190512.png" /></a></p>
 <p><strong>A5 (primary B+-tree index, comparison)</strong></p>
@@ -1853,7 +1856,7 @@
 <p>block transfer 的代价</p>
 <ul>
 <li>创建归并段所需的 block transfer 为 <span class="arithmatex">\(2b_r\)</span>，每次 pass 的 block transfer 也为 <span class="arithmatex">\(2b_r\)</span></li>
-<li>我们可以不考虑最终的 pass 的输出代价，因为它会输出到父操作而不是磁盘中，因此最终的 pass 的代价为 <span class="arithmatex">\(b_r\)</span></li>
+<li>我们可以不考虑最终的 pass 的输出代价，因为它会输出到父操作而不是磁盘中，因此最终的 pass 的代价为 <span class="arithmatex">\(b_r\)</span> 【因为最终的pass实际上得到的就是全部排完序的结果】</li>
 <li>因此，简单版的外部排序所需的 block transfer 次数为 <span class="arithmatex">\(2b_r⌈\log_{⁡M−1}⌈b_r/M⌉⌉+b_r=b_r(2⌈\log_{⁡M−1}⌈b_r/M⌉⌉+1)\)</span></li>
 </ul>
 <p>seek 的代价</p>
@@ -1893,16 +1896,279 @@
 <p>(3) Indexed Nested-Loop Join: 当连接条件是相等时，或者连接是自然连接时，我们可以使用索引扫描来加速连接操作。此时连接操作的代价为 <span class="arithmatex">\(b_r(t_T+t_S)+n_r×c\)</span>，其中 <span class="arithmatex">\(c\)</span> 是查询索引并返回匹配元组的代价，一般是树的高度加一。</p>
 <h3 id="merge-join"><strong>Merge Join</strong><a class="headerlink" href="#merge-join" title="Permanent link">&para;</a></h3>
 <p>Merge-Join: 适用于等值连接和自然连接，具体做法就是先让两个关系在<strong>连接属性</strong>上排序，然后逐一比较合并。这样的话，block transfer 的代价为 <span class="arithmatex">\(b_r+b_s\)</span>，seek 的代价为 <span class="arithmatex">\(⌈b_r/b_b⌉+⌈b_s/b_b⌉\)</span> 或 <span class="arithmatex">\(⌈b_r/x_r⌉+⌈b_s/x_s⌉\)</span>，其中 <span class="arithmatex">\(b_b\)</span>、<span class="arithmatex">\(x_r\)</span>、<span class="arithmatex">\(x_s\)</span> 都是内存能够一次性读入的块数目，<span class="arithmatex">\(x_r+x_s=M\)</span>。</p>
-<p>Hybrid Merge-Join: 当一个关系有序，另一个关系在连接属性上拥有 secondary index (B+树索引) 时，可以先把排序关系和未排序关系 B+ 树的叶子做 merge，再按照未排序关系指针指向的地址排序（这样之后就可以顺序扫描），最后再将指针替换为记录，拼接成结果。</p>
+<p>Hybrid Merge-Join: 当一个关系有序，另一个关系在连接属性上拥有 secondary index (B+树索引) 时，可以先把排序关系和未排序关系 B+ 树的叶子做 merge，再按照未排序关系指针指向的地址排序（这样之后就可以顺序扫描），最后再将指针替换为记录，拼接成结果。【回忆一下 Secondary index 的特点】</p>
+<details class="example">
+<summary>Hybrid Merge-Join</summary>
+<p>假设我们有两个关系（表）：</p>
+<p>表 A：<code>Employee (eid, name, did)</code></p>
+<ul>
+<li><code>eid</code> 是主键</li>
+<li>已按 <code>did</code> 排好序（即 Department ID）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>eid</th>
+<th>name</th>
+<th>did</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>Alice</td>
+<td>10</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>10</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Carol</td>
+<td>20</td>
+</tr>
+<tr>
+<td>104</td>
+<td>Dave</td>
+<td>30</td>
+</tr>
+<tr>
+<td>105</td>
+<td>Eve</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+<p>表 B：<code>Department (did, dname)</code></p>
+<ul>
+<li><code>did</code> 是主键</li>
+<li>在 <code>did</code> 上有一个 <strong>B+ 树索引</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>did</th>
+<th>dname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>HR</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Engineering</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Sales</td>
+</tr>
+</tbody>
+</table>
+<p>我们要做的是：</p>
+<blockquote>
+<p><strong>将 Employee 和 Department 按照 <code>did</code> 字段进行自然连接（Natural Join）</strong></p>
+</blockquote>
+<hr />
+<p>🔁 Hybrid Merge-Join 的步骤详解</p>
+<p>步骤 1️⃣：合并已排序的 <code>Employee</code> 和 B+ 树的叶子节点</p>
+<p>由于：</p>
+<ul>
+<li><code>Employee</code> 已按 <code>did</code> 排序。</li>
+<li><code>Department</code> 在 <code>did</code> 上有 B+ 树索引。</li>
+</ul>
+<p>我们可以：</p>
+<ul>
+<li>同时遍历 <code>Employee</code> 和 B+ 树的叶子节点（这些叶子节点中包含指向 <code>Department</code> 元组的地址）。</li>
+<li>找出所有 <code>Employee.did == Department.did</code> 的匹配项。</li>
+</ul>
+<p>此时我们得到的结果是：</p>
+<table>
+<thead>
+<tr>
+<th>eid</th>
+<th>name</th>
+<th>did</th>
+<th>ptr_to_Department_tuple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>Alice</td>
+<td>10</td>
+<td>ptr1</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>10</td>
+<td>ptr1</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Carol</td>
+<td>20</td>
+<td>ptr2</td>
+</tr>
+<tr>
+<td>104</td>
+<td>Dave</td>
+<td>30</td>
+<td>ptr3</td>
+</tr>
+<tr>
+<td>105</td>
+<td>Eve</td>
+<td>30</td>
+<td>ptr3</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>这里的 <code>ptr1</code>, <code>ptr2</code>, <code>ptr3</code> 是指向 <code>Department</code> 表中对应元组的物理地址指针。</p>
+</blockquote>
+<hr />
+<p>步骤 2️⃣：对结果中的地址排序</p>
+<p>我们现在有一组 <code>(eid, name, did, ptr)</code> 的记录。接下来我们只关注这些记录中的指针，并对其进行排序：</p>
+<table>
+<thead>
+<tr>
+<th>ptr_to_Department_tuple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ptr1</td>
+</tr>
+<tr>
+<td>ptr1</td>
+</tr>
+<tr>
+<td>ptr2</td>
+</tr>
+<tr>
+<td>ptr3</td>
+</tr>
+<tr>
+<td>ptr3</td>
+</tr>
+</tbody>
+</table>
+<p>排序后变成：</p>
+<table>
+<thead>
+<tr>
+<th>ptr_to_Department_tuple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ptr1</td>
+</tr>
+<tr>
+<td>ptr1</td>
+</tr>
+<tr>
+<td>ptr2</td>
+</tr>
+<tr>
+<td>ptr3</td>
+</tr>
+<tr>
+<td>ptr3</td>
+</tr>
+</tbody>
+</table>
+<p>这样做的目的是为了后续可以<strong>顺序扫描磁盘上的 <code>Department</code> 表</strong>，而不是随机查找每个元组。</p>
+<hr />
+<p>步骤 3️⃣：按物理地址顺序扫描 <code>Department</code> 表</p>
+<p>现在我们按照排序后的地址，<strong>顺序地访问 <code>Department</code> 表中的元组</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>did</th>
+<th>dname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>HR</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Engineering</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Sales</td>
+</tr>
+</tbody>
+</table>
+<p>我们把地址替换为实际的元组信息，最终得到完整的连接结果：</p>
+<table>
+<thead>
+<tr>
+<th>eid</th>
+<th>name</th>
+<th>did</th>
+<th>dname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>Alice</td>
+<td>10</td>
+<td>HR</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Bob</td>
+<td>10</td>
+<td>HR</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Carol</td>
+<td>20</td>
+<td>Engineering</td>
+</tr>
+<tr>
+<td>104</td>
+<td>Dave</td>
+<td>30</td>
+<td>Sales</td>
+</tr>
+<tr>
+<td>105</td>
+<td>Eve</td>
+<td>30</td>
+<td>Sales</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>✅ 为什么这么做更高效？</p>
+<ul>
+<li><strong>避免了随机 I/O</strong>：如果我们不先对地址排序，而是直接根据 <code>ptr</code> 查找每个 <code>Department</code> 元组，就会造成大量的随机磁盘访问，效率很低。</li>
+<li><strong>利用了顺序扫描的优势</strong>：通过对地址排序后顺序扫描，大大减少了磁盘寻道时间，提高了性能。</li>
+<li><strong>结合了排序和索引的优点</strong>：既利用了 <code>Employee</code> 的有序性，又利用了 <code>Department</code> 的 B+ 树索引。</li>
+</ul>
+</details>
 <h3 id="hash-join"><strong>Hash Join</strong><a class="headerlink" href="#hash-join" title="Permanent link">&para;</a></h3>
 <p>在 Hash-Join 中，我们可以把要 join 的属性按近似程度分类，这样只用比较同一类的属性就可以了，大大减少了比较的次数。</p>
 <p>哈希函数 <span class="arithmatex">\(h\)</span> 会对两个关系中具有共同连接属性 (JoinAttrs) 的元组进行分区 (partition)，将连接属性的值映射到 <span class="arithmatex">\(\{0, 1,⋯,n\}\)</span>，<span class="arithmatex">\(r_i\)</span> 中的元组只需要和 <span class="arithmatex">\(s_i\)</span> 中的元组比较即可。</p>
 <p>具体的过程如下</p>
-<p>（1）Partition s using hashing function h.  When partitioning a relation, <strong>one block of memory is reserved as the output buffer for each partition</strong>.</p>
+<p>（1）Partition s using hashing function h.  When partitioning a relation, <strong>one block of memory is reserved as the output buffer for each partition</strong>. 在内存中为每个分区要开一个 block, 因为要存放哈希之后的结果</p>
 <p>（2）Partition r similarly.</p>
 <p>（3）For each i:</p>
 <ul>
-<li>Load <span class="arithmatex">\(s_i\)</span> into memory and build an in-memory hash index on it using the join attribute.  This hash index uses a different hash function than the earlier one <span class="arithmatex">\(h\)</span>.</li>
+<li>Load <span class="arithmatex">\(s_i\)</span> into memory and build an in-memory hash index on it using the join attribute.  This hash index uses a different hash function than the earlier one /$.</li>
 <li>Read the tuples in <span class="arithmatex">\(r_i\)</span> from the disk one by one.  For each tuple tr locate each matching tuple <span class="arithmatex">\(t_s\)</span> in <span class="arithmatex">\(s_i\)</span> using the in-memory hash index.  Output the concatenation of their attributes.</li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-05%20113521.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-05%20113521.png" /></a></p>
@@ -1911,28 +2177,33 @@
 <p class="admonition-title">Note</p>
 <p>the value <span class="arithmatex">\(n\)</span> and the hash function <span class="arithmatex">\(h\)</span> is chosen such that each <span class="arithmatex">\(s_i\)</span> should fit in memory. <span class="arithmatex">\(n\ge\lceil b_s/M\rceil\)</span></p>
 </div>
-<p>这样进行分区之后，在 <span class="arithmatex">\(r_i\)</span> 中的元组只需要和 <span class="arithmatex">\(s_i\)</span> 中的 block 的元组来比较即可，要求 <span class="arithmatex">\(s_i\)</span> 必须可以直接放到内存中，减少搜索次数 。</p>
-<p>一般最后一级的哈希函数是 <span class="arithmatex">\(n_h=⌈b_s/M⌉∗f\)</span>，<span class="arithmatex">\(f\)</span> 为修正因子（通常为 1.2）。</p>
+<p>这样进行分区之后，在 <span class="arithmatex">\(r_i\)</span> 中的元组只需要和 <span class="arithmatex">\(s_i\)</span> 中的 block 的元组来比较即可，<strong>要求 <span class="arithmatex">\(s_i\)</span> 必须可以直接放到内存中</strong>，减少搜索次数 。</p>
+<p>一般最后一级的哈希函数是 <span class="arithmatex">\(n_h=⌈b_s/M⌉∗f\)</span>，<span class="arithmatex">\(f\)</span> 为修正因子（通常为 1.2）【因为分不匀，需要适当放大】。</p>
 <div class="admonition note">
 <p class="admonition-title">Recursive partitioning</p>
-<p>Recursive partitioning required if number of partitions n is greater than number of pages <span class="arithmatex">\(M\)</span> of memory.</p>
+<p>Recursive partitioning required if number of partitions <span class="arithmatex">\(n\)</span> is greater than number of pages <span class="arithmatex">\(M\)</span> of memory.</p>
 <p>Instead of partitioning n ways, use  <span class="arithmatex">\(M – 1\)</span> partitions for <span class="arithmatex">\(s\)</span></p>
 <p>Further partition the <span class="arithmatex">\(M – 1\)</span> partitions <strong>using a different hash function</strong></p>
 <p>Use same partitioning method on <span class="arithmatex">\(r\)</span></p>
-<p>A relation does not need recursive partitioning if <span class="arithmatex">\(M &gt; n_h + 1\)</span>, or equivalently <span class="arithmatex">\(M &gt; (b_s/M) + 1\)</span>, which simplifies (approximately) to <span class="arithmatex">\(M &gt; \sqrt{b_s}\)</span>. </p>
+<p>A relation does not need recursive partitioning if <span class="arithmatex">\(M &gt; n_h + 1\)</span>, or equivalently <span class="arithmatex">\(M &gt; (b_s/M) + 1\)</span>, which simplifies (approximately) to <span class="arithmatex">\(M &gt; \sqrt{b_s}\)</span>.</p>
+<p>【分区太多导致递归哈希，分区太少导致一个分区放不进内存】</p>
 </div>
 <p>如果不需要递归分区，哈希连接的代价是：</p>
 <ul>
 <li>block transfers: <span class="arithmatex">\(3(b_r+b_s)+4n_h\)</span></li>
 </ul>
 <p>对 <span class="arithmatex">\(r\)</span> 和 <span class="arithmatex">\(s\)</span> 的分区要求完全读取这两个关系，并随后将它们写回，此操作需要 <span class="arithmatex">\(2(b_r+b_s)\)</span> 次块传输。构建和探测阶段各自读取每个分区一次，需要进一步进行 <span class="arithmatex">\(b_r+b_s\)</span> 次块传输。由于部分填充的块，分区占用的块数可能会稍多于 <span class="arithmatex">\(b_r+b_s\)</span>。访问这样的部分填充的块可能会为每个关系增加最多 <span class="arithmatex">\(2n_h\)</span> 的开销，因为每个 <span class="arithmatex">\(n_h\)</span> 分区都可能有一个必须写入和读回的部分填充的块</p>
+<div class="admonition note">
+<p class="admonition-title">为什么会有多出来的 2 <span class="arithmatex">\(n_h\)</span></p>
+<p><span class="arithmatex">\(n_h\)</span> 的含义是划分区块的数量，由于哈希之后，tuple 的数量没变，对于每个分区来说，可能会有一个 block 中不是满的，其他 block 则都塞满了 tuple。所以对每个分区来说都可能会比之前未哈希多一个 block，所以哈希之后，至多变成 <span class="arithmatex">\(b_r+b_s+n_h\)</span> 个块，所以每个关系会多两个 <span class="arithmatex">\(n_h\)</span></p>
+</div>
 <ul>
 <li>seek: <span class="arithmatex">\(2(⌈b_r/b_b⌉+⌈b_s/b_b⌉)+2n_h\)</span></li>
 </ul>
 <p>假设为每个输入缓冲区和每个输出缓冲区分配 <span class="arithmatex">\(b_b\)</span> 个块，分区阶段总共需要 <span class="arithmatex">\(2(⌈b_r/b_b⌉+⌈b_s/b_b⌉)\)</span> 次查找。构建和探测阶段只需要对每个关系的 <span class="arithmatex">\(n_h\)</span> 个分区进行一次查找，因为每个分区都可以按顺序读取</p>
 <p>如果需要递归分区，哈希连接的代价是：</p>
 <ul>
-<li>对构建关系 <span class="arithmatex">\(s\)</span> 进行分区，以便每个分区少于 <span class="arithmatex">\(M\)</span> 个块所需的传递次数是 <span class="arithmatex">\(⌈\log⁡_{⌊M/b_b⌋−1}⌈b_s/M⌉⌉\)</span>，因此最好选择较小的关系作为构建关系</li>
+<li>对构建关系 <span class="arithmatex">\(s\)</span> 进行分区，以便每个分区少于 <span class="arithmatex">\(M\)</span> 个块所需的传递次数是 <span class="arithmatex">\(⌈\log⁡_{⌊M/b_b⌋−1}⌈b_s/M⌉⌉\)</span>，因此最好选择较小的关系作为构建关系【因为每次 I/O 传输 <span class="arithmatex">\(b_b\)</span> 个块，内存总共可容纳 <span class="arithmatex">\(M\)</span> 块，所以最多有 <span class="arithmatex">\(M/b_b\)</span> 个输入缓冲区可用】</li>
 <li>block transfer: <span class="arithmatex">\(2(b_r+b_s)\lceil\log_{⁡⌊M/b_b⌋−1}⌈b_s/M⌉⌉+b_r+b_s\)</span></li>
 <li>seek: <span class="arithmatex">\(2(⌈b_r/b_b⌉+⌈b_s/b_b⌉)\lceil\log⁡_{⌊M/b_b⌋−1}⌈b_s/M⌉⌉\)</span></li>
 </ul>
