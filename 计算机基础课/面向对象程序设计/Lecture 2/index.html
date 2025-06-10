@@ -1191,13 +1191,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#211" class="md-nav__link">
-    2.11 强制类型转换
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1686,13 +1679,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#211" class="md-nav__link">
-    2.11 强制类型转换
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1713,7 +1699,7 @@
 
 <h1 id="2-class"><strong>2 Class</strong><a class="headerlink" href="#2-class" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 6037 个字  •  477 行代码 
+    文本统计：约 6030 个字  •  477 行代码 
 </div>
 
 <h2 id="21-basic-concepts"><strong>2.1 Basic Concepts</strong><a class="headerlink" href="#21-basic-concepts" title="Permanent link">&para;</a></h2>
@@ -2110,12 +2096,10 @@
 </li>
 <li>
 <p>当继承和组合两种情况同时出现时，先构造基类，再构造派生类中组合的其他类，再构造派生类，析构的时候类似 </p>
-</li>
-<li>
-<p>Base class is always constructed first</p>
-</li>
-<li>
-<p>就算组合的类在<strong>初始化列表或者构造函数中没有调用</strong>构造函数，C++编译器也会自动调用这个类默认的构造函数</p>
+<ul>
+<li>Base class is always constructed first</li>
+<li>就算组合的类在<strong>初始化列表或者构造函数中没有调用</strong>构造函数，C++编译器也会自动调用这个类默认的构造函数</li>
+</ul>
 </li>
 <li>
 <p>派生类中可以对基类函数进行重载，此时如果派生类对象调用对应的函数按照派生类中的同名函数执行</p>
@@ -2642,14 +2626,6 @@
 <p>那么当出现 <code>p2=p2</code> 的时候，即自己给自己赋值的时候，一开始就把 <code>name</code> 给删掉了，那么后面 <code>strcpy</code> 的时候就无法正确赋值了</p>
 </div>
 <p>如果我们希望禁用拷贝构造函数，在 C++ 11 以前，将拷贝构造函数声明为<code>private</code>且不提供实现；在C++ 11以后，声明函数 <code>Person(const Person &amp;rhs) = delete;</code>即可</p>
-<h2 id="211"><strong>2.11 强制类型转换</strong><a class="headerlink" href="#211" title="Permanent link">&para;</a></h2>
-<ul>
-<li>
-<ul>
-<li></li>
-</ul>
-</li>
-</ul>
 
 
   

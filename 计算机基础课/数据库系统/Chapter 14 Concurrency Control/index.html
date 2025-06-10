@@ -1839,7 +1839,7 @@
 
 <h1 id="14-concurrency-control"><strong>14 Concurrency Control</strong><a class="headerlink" href="#14-concurrency-control" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4098 个字  •  23 行代码 
+    文本统计：约 4113 个字  •  23 行代码 
 </div>
 
 <div class="admonition info">
@@ -1893,12 +1893,16 @@
 <p>通常是先读后修改。但我们不能先得 S 锁再释放后得 X 锁（违背了两阶段协议），也不能直接用 X 锁（降低并发度）。</p>
 <p>Two-phase locking with lock conversions:</p>
 <ul>
-<li>First Phase:</li>
+<li>First Phase:<ul>
 <li>can acquire a lock-S or lock-X on a data item</li>
 <li>can convert a lock-S to a lock-X (<em>lock-upgrade</em>)</li>
-<li>Second Phase:</li>
+</ul>
+</li>
+<li>Second Phase:<ul>
 <li>can release a lock-S or lock-X</li>
 <li>can convert a lock-X to a lock-S (<em>lock-downgrade</em>)</li>
+</ul>
+</li>
 </ul>
 <p><strong>This protocol assures serializability.</strong></p>
 <p>A transaction <span class="arithmatex">\(T_i\)</span> issues the standard read/write instruction, without explicit locking calls.</p>
@@ -1922,9 +1926,9 @@
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>            if Ti has a lock-S on D
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>                 then
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>                    upgrade lock on D to lock-X
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>                else
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>                    grant Ti a lock-X on D
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>                write(D)
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>            else
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>                 grant Ti a lock-X on D
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>                 write(D)
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>         end;
 </code></pre></div>
 <p>All locks are released after commit or abort</p>
@@ -1961,7 +1965,7 @@ unlock 类似，先找到对应的数据，拿掉对应的项。同时看后续�
 <p>较老的事务可以等待较新的事务释放数据项，而较新的事务如果需要等待较老的事务，则会被回滚。</p>
 <ul>
 <li>如果一个较老的事务 <span class="arithmatex">\(T_{old}\)</span> 需要访问一个被较新的事务 <span class="arithmatex">\(T_{young}\)</span> 持有的数据项，<span class="arithmatex">\(T_{old}\)</span> 可以选择等待 <span class="arithmatex">\(T_{young}\)</span> 完成并释放该数据项。</li>
-<li>相反，如果一个较新的事务 <span class="arithmatex">\(T_{young}\)</span> 需要访问一个被较老的事务 <span class="arithmatex">\(T_{old}\)</span> 持有的数据项，那么 <span class="arithmatex">\(T_{young}\)</span> 将被立即回滚（“die”），而不是等待  释<span class="arithmatex">\(T_{old}\)</span>放资源。</li>
+<li>相反，如果一个较新的事务 <span class="arithmatex">\(T_{young}\)</span> 需要访问一个被较老的事务 <span class="arithmatex">\(T_{old}\)</span> 持有的数据项，那么 <span class="arithmatex">\(T_{young}\)</span> 将被立即回滚（“die”），而不是等待  <span class="arithmatex">\(T_{old}\)</span> 释放资源。</li>
 </ul>
 <p>潜在问题：在这种机制下，一个事务可能需要多次尝试才能成功获取所需的数据项，因为它可能会被反复回滚。</p>
 <p>(5) Wound-Wait 方案（抢占式）</p>
@@ -1977,6 +1981,10 @@ unlock 类似，先找到对应的数据，拿掉对应的项。同时看后续�
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-19%20195700.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-19%20195700.png" /></a></p>
 <p>这里的箭头表示在等待锁。如 T17-&gt;T18 表示 T17 在等待 T18 的锁。如果形成了环，就说明出现了死锁。</p>
 <p>通过刚刚的 Lock Table, 我们可以得到等待关系。（后面的 waited 等待前面的 granted）</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>注意其与 conflict serializable 检测前驱图的区别</p>
+</div>
 <p>When deadlock is detected :</p>
 <p>(1) Some transaction will have to rolled back (made a <strong>victim</strong>) to break deadlock. Select that transaction as victim that will incur minimum cost.</p>
 <p>(2) Rollback -- determine how far to roll back transaction</p>
@@ -1997,9 +2005,9 @@ unlock 类似，先找到对应的数据，拿掉对应的项。同时看后续�
 </ul>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-</div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-19%20201118.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-19%20201118.png" /></a></p>
 <p>比如这里我们先锁 D, 随后锁 G, 放掉, 锁 H, 这时 D 已经没用了可以放掉。随后我们锁 J, H 也就没用了也可以放掉。最后放掉 J.</p>
+</div>
 <p><strong>The tree protocol ensures conflict serializability as well as freedom from deadlock.</strong></p>
 <p>Advantages</p>
 <ul>
@@ -2067,8 +2075,8 @@ IS 和 IX 是不冲突的。在表上是不冲突的，可能在记录上冲突�
   插入之前是没有这个数据的，无法先加锁。当一个事务向数据库中插入新元组时，它会获得对该元组的X模式锁（X-mode lock）。</li>
 </ul>
 <p>Insertions and deletions can lead to the <em>phantom phenomenon</em>. 因此只是加锁不能保证串行化。</p>
-<h3 id="index-locking-protocol">Index Locking Protocol<a class="headerlink" href="#index-locking-protocol" title="Permanent link">&para;</a></h3>
-<p>每个关系必须至少有一个索引，并且事务只能通过索引访问元组。在执行查询（查找）操作时，事务需要对所有访问到的索引叶节点加S模式锁（共享锁），即使这些叶节点不包含满足查询条件的元组。对于插入、更新或删除操作，事务必须更新所有相关的索引，并对受影响的索引叶节点加X模式锁（排他锁）。在整个事务过程中，还需要严格遵守两阶段锁定协议，以确保并发控制的正确性。通过这种方式，索引锁定协议可以有效避免幻影现象的发生</p>
+<h3 id="index-locking-protocol"><strong>Index Locking Protocol</strong><a class="headerlink" href="#index-locking-protocol" title="Permanent link">&para;</a></h3>
+<p>每个关系必须至少有一个索引，并且事务只能通过索引访问元组。在执行查询（查找）操作时，事务需要对所有访问到的<strong>索引叶节点</strong>加S模式锁（共享锁），即使这些叶节点不包含满足查询条件的元组。对于插入、更新或删除操作，事务必须更新所有相关的索引，并对受影响的索引叶节点加X模式锁（排他锁）。在整个事务过程中，还需要严格遵守两阶段锁定协议，以确保并发控制的正确性。通过这种方式，索引锁定协议可以有效避免幻影现象的发生</p>
 <h2 id="145-multi-version-schemes"><strong>14.5 Multi-version Schemes</strong><a class="headerlink" href="#145-multi-version-schemes" title="Permanent link">&para;</a></h2>
 <p>多版本并发控制方案通过<strong>保留数据项的旧版本</strong>来提高并发性。每当写操作成功时，就会创建该数据项的新版本，并使用时间戳标记这些版本。当发出读取（Q）操作时，会根据事务的时间戳选择合适的Q版本，并返回所选版本的值。只读事务无需等待，因为每次读操作都会立即返回一个合适的版本。</p>
 <p>例如，对于数据项Q，它可能有多个版本：<Q1, 1>、<Q2, 2>和<Q3, 3>，其中数字代表时间戳。如果一个事务在时间戳为2时进行读取操作，那么它将读取到版本<Q2, 2>的数据。这样可以确保不同事务之间不会相互干扰，从而提高系统的并发处理能力。</p>

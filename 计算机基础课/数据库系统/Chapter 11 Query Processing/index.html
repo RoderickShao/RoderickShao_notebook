@@ -2168,7 +2168,7 @@
 <p>（2）Partition r similarly.</p>
 <p>（3）For each i:</p>
 <ul>
-<li>Load <span class="arithmatex">\(s_i\)</span> into memory and build an in-memory hash index on it using the join attribute.  This hash index uses a different hash function than the earlier one /$.</li>
+<li>Load <span class="arithmatex">\(s_i\)</span> into memory and build an in-memory hash index on it using the join attribute.  This hash index uses a different hash function than the earlier one.</li>
 <li>Read the tuples in <span class="arithmatex">\(r_i\)</span> from the disk one by one.  For each tuple tr locate each matching tuple <span class="arithmatex">\(t_s\)</span> in <span class="arithmatex">\(s_i\)</span> using the in-memory hash index.  Output the concatenation of their attributes.</li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-05%20113521.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-05%20113521.png" /></a></p>

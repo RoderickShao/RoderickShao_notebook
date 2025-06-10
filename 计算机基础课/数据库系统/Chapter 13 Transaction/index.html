@@ -1914,8 +1914,10 @@ Isolation can be ensured trivially by running transactions serially（串行）<
 <p><span class="arithmatex">\(l_i = \text{write}(Q)\)</span>, <span class="arithmatex">\(l_j = \text{write}(Q)\)</span>. They conflict.</p>
 </li>
 </ol>
-<p>Intuitively, a conflict between <span class="arithmatex">\(l_i\)</span> and <span class="arithmatex">\(l_j\)</span> forces a (logical) temporal order between them.
-    - If <span class="arithmatex">\(l_i\)</span> and <span class="arithmatex">\(l_j\)</span> are consecutive in a schedule and they do not conflict, their results would remain the same even if they had been interchanged in the schedule.</p>
+<p>Intuitively, a conflict between <span class="arithmatex">\(l_i\)</span> and <span class="arithmatex">\(l_j\)</span> forces a (logical) temporal order between them.</p>
+<ul>
+<li>If <span class="arithmatex">\(l_i\)</span> and <span class="arithmatex">\(l_j\)</span> are consecutive in a schedule and they do not conflict, their results would remain the same even if they had been interchanged in the schedule.</li>
+</ul>
 <p>If a schedule S can be transformed into a schedule S´ by a series of swaps of non-conflicting instructions, we say that S and S´ are <strong>conflict equivalent</strong>. 交换不冲突的指令，得到的是冲突等价的调度。</p>
 <p>We say that a schedule S is <strong>conflict serializable</strong> if it is conflict equivalent to a serial schedule. 冲突等价于一个串行调度，那么这个调度是可串行的。</p>
 <h4 id="testing-for-serializability"><strong>Testing for Serializability</strong><a class="headerlink" href="#testing-for-serializability" title="Permanent link">&para;</a></h4>

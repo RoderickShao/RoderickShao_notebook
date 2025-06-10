@@ -1693,7 +1693,7 @@
 
 <h1 id="chapter-10-indexing"><strong>Chapter 10 Indexing</strong><a class="headerlink" href="#chapter-10-indexing" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2947 个字 
+    文本统计：约 2976 个字 
 </div>
 
 <div class="admonition info">
@@ -1718,7 +1718,7 @@
 <p><strong>索引的指标</strong>有访问时间 (Access Time)、插入时间 (Insertion Time)、删除时间 (Deletion Time) 和空间开销 (Space Overhead) 等。</p>
 <p><strong>有序索引可以分为两种类型</strong>：</p>
 <ul>
-<li>主索引 (Primary index)：搜索键在索引中的顺序与文件中相同，也称为聚集索引 (Clustering index)。主索引的搜索键通常是主键【非必要】，带有主索引的有序顺序文件也被称为<strong>索引顺序文件</strong> (Index-sequential file)</li>
+<li>主索引 (Primary index)：搜索键在索引中的顺序与文件中相同，也称为<strong>聚集索引 (Clustering index)</strong>。主索引的搜索键通常是主键【非必要】，带有主索引的有序顺序文件也被称为<strong>索引顺序文件</strong> (Index-sequential file)</li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-21%20205109.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-21%20205109.png" /></a></p>
 <ul>
@@ -1734,6 +1734,10 @@
 <li>稀疏索引 (Sparse index)：索引记录仅包含部分搜索键值，适用于文件记录按搜索键顺序排列的情况，可以通过先找<strong>到最接近的索引项</strong>再顺序查找的方法来检索，相比于稠密索引，它所占空间更少，然后维护成本更低，但是要比稠密索引来的慢。稀疏索引可以选择链接每个block中最小的 search-key</li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-21%20211134.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-21%20211134.png" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sparse indexes（稀疏索引）通常只能用于 clustered indexes（聚集索引），不能用于 secondary indexes（二级索引）。</p>
+</div>
 <p>多级索引 (Multilevel Index)：当主索引过大而放不进内存时，可以在主索引上再建立一层稀疏索引，称为 outer index，而将主索引作为顺序文件存入磁盘中，称为 inner index。如果此时 outer index 还是过大，还可以继续建立分级。</p>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-21%20214317.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-04-21%20214317.png" /></a></center></p>
 <h2 id="102-b-tree"><strong>10.2 B+ -Tree</strong><a class="headerlink" href="#102-b-tree" title="Permanent link">&para;</a></h2>

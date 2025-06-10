@@ -1315,6 +1315,33 @@
     15.4 ARIES Recovery Algorithm
   </a>
   
+    <nav class="md-nav" aria-label="15.4 ARIES Recovery Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analysis" class="md-nav__link">
+    Analysis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redo" class="md-nav__link">
+    Redo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#undo" class="md-nav__link">
+    Undo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1645,6 +1672,33 @@
     15.4 ARIES Recovery Algorithm
   </a>
   
+    <nav class="md-nav" aria-label="15.4 ARIES Recovery Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analysis" class="md-nav__link">
+    Analysis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redo" class="md-nav__link">
+    Redo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#undo" class="md-nav__link">
+    Undo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1667,7 +1721,7 @@
 
 <h1 id="15-recovery-system"><strong>15 Recovery System</strong><a class="headerlink" href="#15-recovery-system" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2143 个字 
+    文本统计：约 3089 个字 
 </div>
 
 <div class="admonition info">
@@ -1742,7 +1796,7 @@
 <li>contains the records <code>&lt;Ti start&gt;</code></li>
 <li>and contains the record <code>&lt;Ti commit&gt;</code> or <code>&lt;Ti abort&gt;</code></li>
 </ul>
-<h3 id="checkpoint">Checkpoint<a class="headerlink" href="#checkpoint" title="Permanent link">&para;</a></h3>
+<h3 id="checkpoint"><strong>Checkpoint</strong><a class="headerlink" href="#checkpoint" title="Permanent link">&para;</a></h3>
 <p>Redoing/undoing all transactions recorded in the log can be very slow. Streamline recovery procedure by periodically performing check- pointing.</p>
 <p>重演历史可能很长。checkpoint 是确认之前的操作都已经反映到数据库里去了，这样重演的时候就可以直接从 checkpoint 开始。</p>
 <p>可以定期执行检查点操作。具体步骤如下：</p>
@@ -1867,10 +1921,16 @@
 <p>Note list M of modified buffer blocks</p>
 </li>
 <li>Now permit transactions to proceed with their actions 重新启动</li>
-<li>Output to disk all modified buffer blocks in list M</li>
-<li>blocks should not be updated while being output</li>
+<li>
+<p>Output to disk all modified buffer blocks in list M</p>
+<ul>
+<li>
+<p>blocks should not be updated while being output</p>
+</li>
 <li>
 <p>Follow WAL: all log records pertaining to a block must be output before the block is output</p>
+</li>
+</ul>
 </li>
 <li>
 <p>Store a pointer to the <strong>checkpoint</strong> record in a fixed position <strong>last_checkpoint</strong> on disk</p>
@@ -1895,7 +1955,71 @@
 </div>
 <h2 id="154-aries-recovery-algorithm"><strong>15.4 ARIES Recovery Algorithm</strong><a class="headerlink" href="#154-aries-recovery-algorithm" title="Permanent link">&para;</a></h2>
 <p>可以参考这篇文章：<a href="https://blog.csdn.net/yanglingwell/article/details/131484407">万字长文解析最常见的数据库恢复算法: ARIES_数据库具体的恢复算法-CSDN博客</a></p>
-<p>原理与之前的内容是类似的，多记录了一些信息，使得在 redo 和 undo 的过程中可以跳过一些步骤。</p>
+<p>关于 ARIES 算法，主要介绍一下三个步骤</p>
+<h3 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h3>
+<p>Starts from last complete checkpoint log record</p>
+<ul>
+<li>Reads DirtyPageTable from log record 从 log record 把 DPT 读出来</li>
+<li>Sets <strong>RedoLSN</strong> = min of RecLSNs of all pages in DirtyPageTable
+  (In case no pages are dirty, RedoLSN = checkpoint record’s LSN) 设置 RedoLSN 为 DPT 中最小的 LSN（因为在这个LSN之前的数据全部都已经写到磁盘里面去了）</li>
+<li>Sets <strong>undo-list</strong> = list of transactions in checkpoint log record</li>
+<li>Reads LSN of last log record for each transaction in undo-list from checkpoint log record 找到 undo-list 中各个事务最近的那条 log 记录</li>
+</ul>
+<p>Scans forward from checkpoint</p>
+<ul>
+<li>If any log record found for transaction not in undo-list, adds transaction to <strong>undo-list</strong>, 在 checkpoint 之后启动的事务，加入到 undo-list</li>
+<li>If transaction end log record found, delete transaction from <strong>undo-list</strong> 在checkpoint 之后结束的事务，从 undo-list 删掉</li>
+<li>
+<p>Keeps track of last log record for each transaction in undo-list  同样的，也要跟踪 undo-list 中每个事务最后的那个记录</p>
+</li>
+<li>
+<p>Whenever an update log record is found, If page is not in <strong>DirtyPageTable</strong>, it is added with RecLSN set to LSN of the update log record 在 checkpoint 之后更新的记录，如果相应的页面不在 DPT 中，那么加入相应的页面，设置 RecLSN 为该LSN</p>
+</li>
+</ul>
+<h3 id="redo">Redo<a class="headerlink" href="#redo" title="Permanent link">&para;</a></h3>
+<p>Repeats history by replaying every action not already reflected in the page on disk, as follows:</p>
+<p>Scans forward from RedoLSN.  Whenever an update log record is found:</p>
+<ul>
+<li>If the page is not in DirtyPageTable or the LSN of the log record is less than the RecLSN of the page in DirtyPageTable, then skip the log record </li>
+<li>Otherwise fetch the page from disk.  If the PageLSN of the page fetched from disk is less than the LSN of the log record, redo the log record</li>
+</ul>
+<p>首先先检查这个页面在不在 DPT中，如果不在，那么说明这个页面不是脏页面，已经写到盘里面去了，不用再做一遍。如果这个页面在DPT中，但是相应的 RecLSN 比当前操作的 LSN 要大，那么说明当前操作执行的结果已经被刷到盘里面去了，所以也不用做。都不满足的话，就要从磁盘中调用相应的页面【执行前两步就是为了不调磁盘】如果相应的页面的 PageLSN（即最近刷到盘里的LSN）比当前操作的LSN要大，那么当前操作也不用做。</p>
+<p>所以只有在该页面在 DPT 中，在 DPT 中记录的 RecLSN 比当前LSN 小，并且从磁盘中读出的 PageLSN 也比当前的 LSN 要小时，那么需要执行该更新操作。</p>
+<div class="admonition question">
+<p class="admonition-title">为什么需要检查磁盘页面的 PageLSN</p>
+<p>因为在 checkpoint 之后，可能将记录的 DPT 的一些页面刷入磁盘中去了，实际上已经不是脏的了，但是 DPT 并没有更新，所以需要将磁盘中的页面再调出来。注意我们采用的是 steal 的策略，所以在事务 commit 之前，也可能会进行刷盘。</p>
+</div>
+<h3 id="undo">Undo<a class="headerlink" href="#undo" title="Permanent link">&para;</a></h3>
+<p>Performs backward scan on log undoing all transaction in undo-list. Backward scan optimized by <strong>skipping unneeded log records</strong> as follows:</p>
+<ul>
+<li>
+<p>Next LSN to be undone for each transaction set to LSN of last log record for transaction found by analysis pass. 将每个事务（undo-list) 的 NextLSN 设置为在 analysis 中设置的最后一条记录</p>
+</li>
+<li>
+<p>At each step pick largest of these LSNs to undo, skip back to it and undo it  对于每一步选择所有事务中 NextLSN 最大的 LSN 来做</p>
+</li>
+<li>
+<p>After undoing a log record</p>
+<ul>
+<li>For ordinary log records, set next LSN to be undone for transaction to PrevLSN noted in the log record</li>
+<li>For compensation log records (CLRs) set next LSN to be undo to UndoNextLSN noted in the log record</li>
+</ul>
+<p>undo 完相应的 log 之后如何设置下一条需要 undo 的指令，如果是正常日志，那么设置为 PrevLSN; 如果是 CLR 日志，那么就设置为 UndoNextLSN</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-06-10%20151538.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-06-10%20151538.png" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">partial rollback</p>
+<p><strong>Partial Rollback（部分回滚）</strong> 是数据库系统中的一种事务撤销操作，它指的是 <strong>只撤销事务执行过程中的部分操作，而不是整个事务的所有操作。</strong></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">CLR 日志</p>
+<p>When an undo is performed for an update log record</p>
+<ul>
+<li>Generate a CLR containing the undo action performed (actions performed during undo are logged physicaly or physiologically). CLR for record <span class="arithmatex">\(n\)</span> noted as <span class="arithmatex">\(n’\)</span> in figure below</li>
+<li>Set <strong>UndoNextLSN</strong> of the CLR to the PrevLSN value of the update log record</li>
+</ul>
+</div>
 
 
   
