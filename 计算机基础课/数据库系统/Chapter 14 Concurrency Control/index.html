@@ -1839,7 +1839,7 @@
 
 <h1 id="14-concurrency-control"><strong>14 Concurrency Control</strong><a class="headerlink" href="#14-concurrency-control" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4113 个字  •  23 行代码 
+    文本统计：约 4112 个字  •  23 行代码 
 </div>
 
 <div class="admonition info">
@@ -2089,7 +2089,7 @@ IS 和 IX 是不冲突的。在表上是不冲突的，可能在记录上冲突�
 <p><strong>更新事务（Update Transactions）</strong></p>
 <ol>
 <li>获取读写锁：更新事务需要获取数据项的读锁和写锁。</li>
-<li>保持锁直到事务结束：所有获取的锁会一直持有到事务结束，遵循严格的两阶段锁定协议。这意味着在事务执行过程中，不会释放任何已获得的锁。</li>
+<li>保持锁直到事务结束：所有获取的锁会一直持有到事务结束，遵循强的两阶段锁定协议。这意味着在事务执行过程中，不会释放任何已获得的锁。</li>
 <li>每次成功写操作创建新版本：每当一个数据项被成功写入时，就会生成该数据项的一个新版本。</li>
 <li>时间戳管理：每个数据项版本都有一个唯一的时间戳，该时间戳值来自一个在提交处理期间递增的计数器（ts-counter）。</li>
 </ol>
@@ -2120,13 +2120,13 @@ IS 和 IX 是不冲突的。在表上是不冲突的，可能在记录上冲突�
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-19%20205430.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-19%20205430.png" /></a></p>
 <ul>
-<li>Q: <Q1, 1>, <Q2, 2>, <Q3, 3>, <Q4, 4></li>
-<li>D: <D1, 1>, <D3, 3></li>
+<li>Q: \<Q1, 1>, <Q2, 2>, <Q3, 3>, &lt;Q4, 4&gt;</li>
+<li>D: \<D1, 1>, &lt;D3, 3&gt;</li>
 </ul>
 <p>如果系统中最老的只读事务的时间戳是3，那么根据上述规则：</p>
 <ul>
-<li>最年轻的版本Qk为<Q3, 3>，因为它的时间戳3小于或等于最老只读事务的时间戳3。</li>
-<li>其他旧版本如<Q1, 1>和<Q2, 2>可以被标记为垃圾并进行回收。</li>
+<li>最年轻的版本Qk为\&lt;Q3, 3&gt;，因为它的时间戳3小于或等于最老只读事务的时间戳3。</li>
+<li>其他旧版本如\<Q1, 1>和<Q2, 2>可以被标记为垃圾并进行回收。</li>
 </ul>
 </div>
 

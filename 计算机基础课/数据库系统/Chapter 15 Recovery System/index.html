@@ -1721,7 +1721,7 @@
 
 <h1 id="15-recovery-system"><strong>15 Recovery System</strong><a class="headerlink" href="#15-recovery-system" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 3089 个字 
+    文本统计：约 3081 个字 
 </div>
 
 <div class="admonition info">
@@ -1905,7 +1905,7 @@
 </div>
 <h3 id="database-buffering"><strong>Database Buffering</strong><a class="headerlink" href="#database-buffering" title="Permanent link">&para;</a></h3>
 <p>The recovery algorithm supports the <strong>no-force policy(非强制)</strong>: <strong>i.e.</strong>, updated blocks need not be written to disk when transaction commits.</p>
-<p>好的恢复算法：我事务 commit 了但不强制日志刷写出去。</p>
+<p>事务 commit 了但不强制 blocks 刷写出去。</p>
 <p>The recovery algorithm supports the <strong>steal policy(窃取策略)</strong>:<strong>i.e.</strong>, blocks containing updates of uncommitted transactions can be written to disk, even before the transaction commits. </p>
 <p>事务提交之前脏数据能不能被写到磁盘里去？（同样地需要先把日志写出去）</p>
 <h3 id="fuzzy-check-pointing"><strong>Fuzzy Check-pointing</strong><a class="headerlink" href="#fuzzy-check-pointing" title="Permanent link">&para;</a></h3>
@@ -1956,7 +1956,7 @@
 <h2 id="154-aries-recovery-algorithm"><strong>15.4 ARIES Recovery Algorithm</strong><a class="headerlink" href="#154-aries-recovery-algorithm" title="Permanent link">&para;</a></h2>
 <p>可以参考这篇文章：<a href="https://blog.csdn.net/yanglingwell/article/details/131484407">万字长文解析最常见的数据库恢复算法: ARIES_数据库具体的恢复算法-CSDN博客</a></p>
 <p>关于 ARIES 算法，主要介绍一下三个步骤</p>
-<h3 id="analysis">Analysis<a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h3>
+<h3 id="analysis"><strong>Analysis</strong><a class="headerlink" href="#analysis" title="Permanent link">&para;</a></h3>
 <p>Starts from last complete checkpoint log record</p>
 <ul>
 <li>Reads DirtyPageTable from log record 从 log record 把 DPT 读出来</li>
@@ -1976,7 +1976,7 @@
 <p>Whenever an update log record is found, If page is not in <strong>DirtyPageTable</strong>, it is added with RecLSN set to LSN of the update log record 在 checkpoint 之后更新的记录，如果相应的页面不在 DPT 中，那么加入相应的页面，设置 RecLSN 为该LSN</p>
 </li>
 </ul>
-<h3 id="redo">Redo<a class="headerlink" href="#redo" title="Permanent link">&para;</a></h3>
+<h3 id="redo"><strong>Redo</strong><a class="headerlink" href="#redo" title="Permanent link">&para;</a></h3>
 <p>Repeats history by replaying every action not already reflected in the page on disk, as follows:</p>
 <p>Scans forward from RedoLSN.  Whenever an update log record is found:</p>
 <ul>
@@ -1989,7 +1989,7 @@
 <p class="admonition-title">为什么需要检查磁盘页面的 PageLSN</p>
 <p>因为在 checkpoint 之后，可能将记录的 DPT 的一些页面刷入磁盘中去了，实际上已经不是脏的了，但是 DPT 并没有更新，所以需要将磁盘中的页面再调出来。注意我们采用的是 steal 的策略，所以在事务 commit 之前，也可能会进行刷盘。</p>
 </div>
-<h3 id="undo">Undo<a class="headerlink" href="#undo" title="Permanent link">&para;</a></h3>
+<h3 id="undo"><strong>Undo</strong><a class="headerlink" href="#undo" title="Permanent link">&para;</a></h3>
 <p>Performs backward scan on log undoing all transaction in undo-list. Backward scan optimized by <strong>skipping unneeded log records</strong> as follows:</p>
 <ul>
 <li>
