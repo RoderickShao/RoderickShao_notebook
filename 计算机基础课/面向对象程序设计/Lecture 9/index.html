@@ -1517,12 +1517,12 @@
   
 
 
-<h1 id="9-miscellaneous-topics">9 Miscellaneous Topics<a class="headerlink" href="#9-miscellaneous-topics" title="Permanent link">&para;</a></h1>
+<h1 id="9-miscellaneous-topics"><strong>9 Miscellaneous Topics</strong><a class="headerlink" href="#9-miscellaneous-topics" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
     文本统计：约 1616 个字  •  242 行代码 
 </div>
 
-<h2 id="91-name-casts">9.1 Name casts<a class="headerlink" href="#91-name-casts" title="Permanent link">&para;</a></h2>
+<h2 id="91-name-casts"><strong>9.1 Name casts</strong><a class="headerlink" href="#91-name-casts" title="Permanent link">&para;</a></h2>
 <p>The C-style cast is:</p>
 <ul>
 <li>
@@ -1711,7 +1711,7 @@
 <li>当ap指向基类的时候，<code>dynamic_cast</code> 转换是否成功取决于指针指向的类型和即将转换的类型是不是一样，不一样就会失败，返回一个NULL，而static是可以成功的</li>
 <li>其实是更安全的机制导致dynamic的检查更多，要求更高</li>
 </ul>
-<h2 id="92-multiple-inheritance">9.2 Multiple inheritance<a class="headerlink" href="#92-multiple-inheritance" title="Permanent link">&para;</a></h2>
+<h2 id="92-multiple-inheritance"><strong>9.2 Multiple inheritance</strong><a class="headerlink" href="#92-multiple-inheritance" title="Permanent link">&para;</a></h2>
 <p>给一个多继承的例子</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Employee</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">protected</span><span class="o">:</span><span class="w"> </span>
@@ -1750,7 +1750,7 @@
 <a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="p">}</span>
 </code></pre></div>
 <p>由于菱形继承会有很多麻烦，一般只用于接口类.</p>
-<h2 id="93-namespace">9.3 namespace<a class="headerlink" href="#93-namespace" title="Permanent link">&para;</a></h2>
+<h2 id="93-namespace"><strong>9.3 namespace</strong><a class="headerlink" href="#93-namespace" title="Permanent link">&para;</a></h2>
 <p>如果多个头文件（如 <code>old1.h</code> 和 <code>old2.h</code>）都定义了相同名称的函数（例如 <code>f()</code> 和 <code>g()</code>），并且这些函数被包含到同一个源文件中，就会发生<strong>命名冲突</strong>。这种冲突会导致编译器无法确定应该使用哪个版本的函数，从而引发错误。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">// old1.h </span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">();</span>

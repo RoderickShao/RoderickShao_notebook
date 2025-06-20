@@ -1839,7 +1839,7 @@
 
 <h1 id="14-concurrency-control"><strong>14 Concurrency Control</strong><a class="headerlink" href="#14-concurrency-control" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4112 个字  •  23 行代码 
+    文本统计：约 4111 个字  •  23 行代码 
 </div>
 
 <div class="admonition info">
@@ -1866,7 +1866,7 @@
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-19%20185351.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-19%20185351.png" /></a></center></p>
 <p><strong>Two-Phase Locking Protocol  assures serializability.</strong> </p>
 <p>It can be proved that the transactions can be serialized in the order of their lock points  (i.e. the point where a transaction acquired its final lock). </p>
-<p>面基本的两阶段封锁协议无法保证事务的可恢复性。</p>
+<p>基本的两阶段封锁协议无法保证事务的可恢复性。</p>
 <p>Extensions to basic two-phase locking（基本两阶段封锁） needed to ensure recoverability of freedom from cascading roll-back</p>
 <ul>
 <li><strong>Strict two-phase locking（严格两阶段封锁）</strong>: a transaction must hold all its exclusive locks till it commits/aborts.
@@ -2120,13 +2120,13 @@ IS 和 IX 是不冲突的。在表上是不冲突的，可能在记录上冲突�
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-19%20205430.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-19%20205430.png" /></a></p>
 <ul>
-<li>Q: \<Q1, 1>, <Q2, 2>, <Q3, 3>, &lt;Q4, 4&gt;</li>
-<li>D: \<D1, 1>, &lt;D3, 3&gt;</li>
+<li>Q: \&lt;Q1, 1&gt;, \&lt;Q2, 2&gt;, \&lt;Q3, 3&gt;, \&lt;Q4, 4&gt;</li>
+<li>D: \&lt;D1, 1&gt;, \&lt;D3, 3&gt;</li>
 </ul>
 <p>如果系统中最老的只读事务的时间戳是3，那么根据上述规则：</p>
 <ul>
 <li>最年轻的版本Qk为\&lt;Q3, 3&gt;，因为它的时间戳3小于或等于最老只读事务的时间戳3。</li>
-<li>其他旧版本如\<Q1, 1>和<Q2, 2>可以被标记为垃圾并进行回收。</li>
+<li>其他旧版本如\&lt;Q1, 1&gt;和\&lt;Q2, 2&gt;可以被标记为垃圾并进行回收。</li>
 </ul>
 </div>
 

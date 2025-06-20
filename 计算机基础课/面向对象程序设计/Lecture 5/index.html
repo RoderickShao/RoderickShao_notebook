@@ -1498,7 +1498,7 @@
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">swap</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span><span class="w"> </span><span class="c1">// instantiate std::string swap</span>
 </code></pre></div>
 <p>模板也可以特化，函数模板只能完全特化</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">emplate</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kt">void</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">param</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="c1">// 通用实现</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}</span>
@@ -1667,7 +1667,7 @@
 <a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">*&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <hr />
-<h2 id="crtp-the-curiously-recurring-template-pattern">CRTP (The Curiously Recurring Template Pattern)<a class="headerlink" href="#crtp-the-curiously-recurring-template-pattern" title="Permanent link">&para;</a></h2>
+<h2 id="crtp-the-curiously-recurring-template-pattern"><strong>CRTP (The Curiously Recurring Template Pattern)</strong><a class="headerlink" href="#crtp-the-curiously-recurring-template-pattern" title="Permanent link">&para;</a></h2>
 <p>一种特殊的模板使用方式，也是一种实现多态的方式。与传统的通过虚函数实现的动态多态不同，CRTP可以在编译期解决派生类的具体类型，从而提高运行时效率。</p>
 <p>基本的框架如下，基类为模板类，派生类将自身作为模板参数给到基类</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>

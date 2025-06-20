@@ -1721,7 +1721,7 @@
 
 <h1 id="15-recovery-system"><strong>15 Recovery System</strong><a class="headerlink" href="#15-recovery-system" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 3081 个字 
+    文本统计：约 3102 个字 
 </div>
 
 <div class="admonition info">
@@ -1941,11 +1941,12 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-27%20201755.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-27%20201755.png" /></a></p>
 <h2 id="153-recovery-with-early-lock-release-and-logical-undo-operations"><strong>15.3 Recovery with Early Lock Release and Logical Undo Operations</strong><a class="headerlink" href="#153-recovery-with-early-lock-release-and-logical-undo-operations" title="Permanent link">&para;</a></h2>
 <p>在执行 B+ 树的插入和删除操作时，系统会尽早释放锁。于是我们<strong>无法通过恢复旧值来撤销操作</strong>（物理撤销），因为一旦锁被释放，其他事务可能已经更新了 B+ 树，因此不能简单地通过恢复旧值来撤销这些操作。这时候我们应该执行的就是逻辑撤销。</p>
+<p>【感觉目的就在于处理那些被认为无法恢复的情况】</p>
 <div class="admonition example">
 <p class="admonition-title"><strong>Transaction Rollback with Logical Undo</strong></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-27%20202613.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-27%20202613.png" /></a></p>
 <p>需要把每个操作的日志项记录下来（开始和结束）. 这里在 end 时会记录 logical undo 的操作(减法撤销对应加法) 注意我们是在 end 的时候记录逻辑撤销的方法，如果这个操作还没有结束，那么我们只能物理撤销。</p>
-<p>这里我们早放锁了，没有遵循严格两阶段放锁协议。在 <span class="arithmatex">\(T_0\)</span> 还没有提交的时候 <span class="arithmatex">\(T_1\)</span> 就对数据进行了修改.</p>
+<p><strong>这里我们早放锁了，没有遵循严格两阶段放锁协议。</strong>在 <span class="arithmatex">\(T_0\)</span> 还没有提交的时候 <span class="arithmatex">\(T_1\)</span> 就对数据进行了修改.</p>
 <p>恢复中做的是物理撤销(old+new), begin/end 这些日志就不需要记录了。</p>
 </div>
 <div class="admonition example">

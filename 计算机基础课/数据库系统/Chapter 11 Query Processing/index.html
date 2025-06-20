@@ -1735,7 +1735,7 @@
 
 <h1 id="chapter-11-query-processing"><strong>Chapter 11 Query Processing</strong><a class="headerlink" href="#chapter-11-query-processing" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 2205 个字  •  3 行代码 
+    文本统计：约 2199 个字  •  3 行代码 
 </div>
 
 <div class="admonition info">
@@ -1867,7 +1867,7 @@
 </ul>
 <p>这个版本的算法的问题是，每个归并段同时只处理一个块，导致在合并时每个块都需要一次 seek。我们考虑每个归并段同时读入 <span class="arithmatex">\(b_b\)</span> 个块，这样的话，每次 pass 的 seek 次数就会下降到 <span class="arithmatex">\(2⌈b_r/b_b⌉\)</span>，但同时，每次合并参与的段数量也会下降到 <span class="arithmatex">\(⌊M/b_b⌋−1\)</span>，导致合并次数上升，最终代价变为：</p>
 <ul>
-<li>block transfer: <span class="arithmatex">\(b_r(2⌈\log⁡⌊M/b_b⌋−1⌈b_r/M⌉⌉+1)\)</span></li>
+<li>block transfer: <span class="arithmatex">\(b_r(2⌈\log⁡_{⌊M/b_b⌋−1}⌈b_r/M⌉⌉+1)\)</span></li>
 <li>seek: <span class="arithmatex">\(2⌈b_r/M⌉+⌈b_r/b_b⌉(2⌈\log⁡_{⌊M/b_b⌋−1}⌈b_r/M⌉⌉−1)\)</span></li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-04%20223112.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-05-04%20223112.png" /></a></p>
@@ -2195,7 +2195,7 @@
 <p>对 <span class="arithmatex">\(r\)</span> 和 <span class="arithmatex">\(s\)</span> 的分区要求完全读取这两个关系，并随后将它们写回，此操作需要 <span class="arithmatex">\(2(b_r+b_s)\)</span> 次块传输。构建和探测阶段各自读取每个分区一次，需要进一步进行 <span class="arithmatex">\(b_r+b_s\)</span> 次块传输。由于部分填充的块，分区占用的块数可能会稍多于 <span class="arithmatex">\(b_r+b_s\)</span>。访问这样的部分填充的块可能会为每个关系增加最多 <span class="arithmatex">\(2n_h\)</span> 的开销，因为每个 <span class="arithmatex">\(n_h\)</span> 分区都可能有一个必须写入和读回的部分填充的块</p>
 <div class="admonition note">
 <p class="admonition-title">为什么会有多出来的 2 <span class="arithmatex">\(n_h\)</span></p>
-<p><span class="arithmatex">\(n_h\)</span> 的含义是划分区块的数量，由于哈希之后，tuple 的数量没变，对于每个分区来说，可能会有一个 block 中不是满的，其他 block 则都塞满了 tuple。所以对每个分区来说都可能会比之前未哈希多一个 block，所以哈希之后，至多变成 <span class="arithmatex">\(b_r+b_s+n_h\)</span> 个块，所以每个关系会多两个 <span class="arithmatex">\(n_h\)</span></p>
+<p><span class="arithmatex">\(n_h\)</span> 的含义是划分区块的数量，由于哈希之后，tuple 的数量没变，对于每个分区来说，可能会有一个 block 中不是满的，其他 block 则都塞满了 tuple。所以对每个分区来说每个关系都可能会比之前未哈希多一个 block，所以哈希之后，总共至多变成 <span class="arithmatex">\(b_r+b_s+2n_h\)</span> 个块。</p>
 </div>
 <ul>
 <li>seek: <span class="arithmatex">\(2(⌈b_r/b_b⌉+⌈b_s/b_b⌉)+2n_h\)</span></li>
