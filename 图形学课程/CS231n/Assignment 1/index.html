@@ -1275,21 +1275,21 @@
 <li><strong>权重矩阵</strong> <span class="arithmatex">\(W \in \mathbb{R}^{D \times C}\)</span>：其中第 <span class="arithmatex">\(j\)</span> 列 <span class="arithmatex">\(\mathbf{W}_j\)</span> 是第 <span class="arithmatex">\(j\)</span> 个类的权重向量。</li>
 <li><strong>得分（logits）</strong>：</li>
 </ul>
-<p>$$
-  s_j = \mathbf{x}_i^T \mathbf{W}_j \quad \text{或} \quad \mathbf{s} = W^T \mathbf{x}_i \in \mathbb{R}^C
-  $$</p>
+<div class="arithmatex">\[
+s_j = \mathbf{x}_i^T \mathbf{W}_j \quad \text{或} \quad \mathbf{s} = W^T \mathbf{x}_i \in \mathbb{R}^C
+\]</div>
 <ul>
 <li><strong>Softmax 概率</strong>（预测分布）：</li>
 </ul>
-<p>$$
-  p_j = \frac{e^{s_j}}{\sum_{k=1}^C e^{s_k}} = \frac{e^{\mathbf{x}<em k="1">i^T \mathbf{W}_j}}{\sum</em>
-  $$}^C e^{\mathbf{x}_i^T \mathbf{W}_k}</p>
+<div class="arithmatex">\[
+p_j = \frac{e^{s_j}}{\sum_{k=1}^C e^{s_k}} = \frac{e^{\mathbf{x}_i^T \mathbf{W}_j}}{\sum_{k=1}^C e^{\mathbf{x}_i^T \mathbf{W}_k}}
+\]</div>
 <ul>
 <li><strong>交叉熵损失</strong>（单样本）：</li>
 </ul>
-<p>$$
-  L_i = -\log p_{y_i} = -\log \left( \frac{e^{s_{y_i}}}{\sum_{k=1}^C e^{s_k}} \right) = -s_{y_i} + \log \left( \sum_{k=1}^C e^{s_k} \right)
-  $$</p>
+<div class="arithmatex">\[
+L_i = -\log p_{y_i} = -\log \left( \frac{e^{s_{y_i}}}{\sum_{k=1}^C e^{s_k}} \right) = -s_{y_i} + \log \left( \sum_{k=1}^C e^{s_k} \right)
+\]</div>
 <p><strong>目标</strong>：计算损失 <span class="arithmatex">\(L_i\)</span> 对权重矩阵 <span class="arithmatex">\(W\)</span> 的梯度 <span class="arithmatex">\(\frac{\partial L_i}{\partial W}\)</span>。</p>
 <hr />
 <p>由于 <span class="arithmatex">\(L_i\)</span> 通过得分 <span class="arithmatex">\(s_j\)</span> 依赖于 <span class="arithmatex">\(W_j\)</span>，我们使用链式法则：</p>
@@ -1418,11 +1418,11 @@ L = \frac{1}{N} \sum_{i=1}^N L_i + \lambda \|W\|^2
 <a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
 <a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    <span class="k">return</span> <span class="n">loss</span><span class="p">,</span> <span class="n">dW</span>
 </code></pre></div>
-<p>我们可以对其进行向量化处理
-$$
+<p>我们可以对其进行向量化处理</p>
+<div class="arithmatex">\[
 \nabla_W L = \frac{1}{N}  \mathbf{X} (\mathbf{P} - \mathbf{T})^T + 2\lambda W
-$$
-其中 <span class="arithmatex">\(\mathbf{P}\)</span> 和 <span class="arithmatex">\(\mathbf{T}\)</span> 都是一个 <span class="arithmatex">\(N\times C\)</span> 的矩阵，分别是求出来的概率矩阵和独热矩阵（姑且叫这个名字），然后 <span class="arithmatex">\(\mathbf{X}\)</span> 是一个 <span class="arithmatex">\(D\times N\)</span> 的矩阵</p>
+\]</div>
+<p>其中 <span class="arithmatex">\(\mathbf{P}\)</span> 和 <span class="arithmatex">\(\mathbf{T}\)</span> 都是一个 <span class="arithmatex">\(N\times C\)</span> 的矩阵，分别是求出来的概率矩阵和独热矩阵（姑且叫这个名字），然后 <span class="arithmatex">\(\mathbf{X}\)</span> 是一个 <span class="arithmatex">\(D\times N\)</span> 的矩阵</p>
 <p>相应的代码</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">softmax_loss_vectorized</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>

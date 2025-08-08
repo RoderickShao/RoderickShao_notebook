@@ -1360,12 +1360,12 @@ R(W) = \sum_k \sum_l |W_{k,l}|
 <p class="admonition-title">Example</p>
 <p>给定：</p>
 <ul>
-<li>输入向量 $ x = [1, 1, 1, 1] $</li>
+<li>输入向量 $ x = [1, 1, 1, 1]$</li>
 <li>权重向量：</li>
-<li>$ w_1 = [1, 0, 0, 0] $</li>
-<li>$ w_2 = [0.25, 0.25, 0.25, 0.25] $</li>
+<li><span class="arithmatex">\(w_1 = [1, 0, 0, 0]\)</span></li>
+<li><span class="arithmatex">\(w_2 = [0.25, 0.25, 0.25, 0.25]\)</span></li>
 </ul>
-<p>这两个权重向量与 $ x $ 的点积相同：</p>
+<p>这两个权重向量与 <span class="arithmatex">\(x\)</span> 的点积相同：</p>
 <div class="arithmatex">\[
 w_1^T x = w_2^T x = 1
 \]</div>
@@ -1378,10 +1378,14 @@ R(W) = \sum_k \sum_l W_{k,l}^2
 <p>L2 正则化倾向于“分散”的权重，即更喜欢权重分布均匀而不是集中在少数位置。</p>
 <p>分别计算两个权重的 L2 正则化值：</p>
 <ul>
-<li>$ R(w_1) = 1^2 + 0 + 0 + 0 = 1 $</li>
-<li>$ R(w_2) = 4 \times (0.25)^2 = 4 \times 0.0625 = 0.25 $</li>
+<li>
+<p><span class="arithmatex">\(R(w_1) = 1^2 + 0 + 0 + 0 = 1\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(R(w_2) = 4 \times (0.25)^2 = 4 \times 0.0625 = 0.25\)</span></p>
+</li>
 </ul>
-<p>结论：L2 更偏好 $ w_2 $，因为它的正则化值更小。</p>
+<p>结论：L2 更偏好 <span class="arithmatex">\(w_2\)</span>，因为它的正则化值更小。</p>
 <p>使用L1 正则化，L1 正则化公式为：</p>
 <div class="arithmatex">\[
 R(W) = \sum_k \sum_l |W_{k,l}|
@@ -1391,14 +1395,18 @@ R(W) = \sum_k \sum_l |W_{k,l}|
 <p>L1 正则化倾向于稀疏的权重，即更喜欢很多权重为 0 的情况。</p>
 <p>分别计算两个权重的 L1 正则化值：</p>
 <ul>
-<li>$ R(w_1) = |1| + 0 + 0 + 0 = 1 $</li>
-<li>$ R(w_2) = 4 \times |0.25| = 1 $</li>
+<li>
+<p><span class="arithmatex">\(R(w_1) = |1| + 0 + 0 + 0 = 1\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(R(w_2) = 4 \times |0.25| = 1\)</span></p>
+</li>
 </ul>
-<p>虽然两者值相同，但 L1 更偏好 $ w_1 $，因为它的非零元素更少，更稀疏。</p>
+<p>虽然两者值相同，但 L1 更偏好 <span class="arithmatex">\(w_1\)</span>，因为它的非零元素更少，更稀疏。</p>
 <p>总结</p>
 <ul>
-<li><strong>L2 正则化</strong> 偏好 $ w_2 $：权重分布更均匀。</li>
-<li><strong>L1 正则化</strong> 偏好 $ w_1 $：权重更稀疏（更多 0）。</li>
+<li><strong>L2 正则化</strong> 偏好 <span class="arithmatex">\(w_2\)</span>：权重分布更均匀。</li>
+<li><strong>L1 正则化</strong> 偏好 <span class="arithmatex">\(w_1\)</span>：权重更稀疏（更多 0）。</li>
 </ul>
 </div>
 <h2 id="22-optimization"><strong>2.2 Optimization</strong><a class="headerlink" href="#22-optimization" title="Permanent link">&para;</a></h2>
