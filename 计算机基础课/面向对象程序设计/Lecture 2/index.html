@@ -1699,7 +1699,7 @@
 
 <h1 id="2-class"><strong>2 Class</strong><a class="headerlink" href="#2-class" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 6030 个字  •  487 行代码 
+    文本统计：约 6162 个字  •  487 行代码 
 </div>
 
 <h2 id="21-basic-concepts"><strong>2.1 Basic Concepts</strong><a class="headerlink" href="#21-basic-concepts" title="Permanent link">&para;</a></h2>
@@ -2560,6 +2560,10 @@
 <a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="w"> </span><span class="c1">// ... other data members... </span>
 <a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a><span class="p">};</span>
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">为什么拷贝构造函数中的参数为引用</p>
+<p>如果不是引用的话，如 <code>MyClass(const MyClass other);</code> 会出现错误，因为当你试图创建一个对象的副本时（比如传值给函数、构造新对象等），编译器就需要<strong>复制这个对象</strong>。但此时复制对象又需要调用拷贝构造函数 —— 而调用拷贝构造函数又需要复制参数……于是就进入了<strong>无限递归调用拷贝构造函数</strong>的死循环。</p>
+</div>
 <p>什么时候会调用拷贝构造函数？</p>
 <ul>
 <li>Initialization</li>
