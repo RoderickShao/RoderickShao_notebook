@@ -1514,11 +1514,11 @@
 </ul>
 <h2 id="92-pixelrnncnn"><strong>9.2 PixelRNN/CNN</strong><a class="headerlink" href="#92-pixelrnncnn" title="Permanent link">&para;</a></h2>
 <p>这个生成模型采用的方法是显式密度估计</p>
-<p>对于一个图像 <span class="arithmatex">\(x\)</span>，其像素值可以看作是一个随机变量序列 <span class="arithmatex">\((x_1,x_2,...,x_n)\)</span>，其中 <span class="arithmatex">\(n\)</span> 是像素总数。通过链式法则，我们可以将图像的联合概率分布 <span class="arithmatex">\(p(x)\)</span> 分解为各个像素值的条件概率的乘积。
-$$
+<p>对于一个图像 <span class="arithmatex">\(x\)</span>，其像素值可以看作是一个随机变量序列 <span class="arithmatex">\((x_1,x_2,...,x_n)\)</span>，其中 <span class="arithmatex">\(n\)</span> 是像素总数。通过链式法则，我们可以将图像的联合概率分布 <span class="arithmatex">\(p(x)\)</span> 分解为各个像素值的条件概率的乘积。</p>
+<div class="arithmatex">\[
 p(x) = \prod_{i=1}^{n} p(x_i | x_1, ..., x_{i-1})
-$$
-通过最大化训练数据的似然性来训练模型，即找到一组参数，使得训练数据出现的概率最大。</p>
+\]</div>
+<p>通过最大化训练数据的似然性来训练模型，即找到一组参数，使得训练数据出现的概率最大。</p>
 <h3 id="pixelrnn"><strong>PixelRNN</strong><a class="headerlink" href="#pixelrnn" title="Permanent link">&para;</a></h3>
 <p>从角落开始生成图片，每一个像素的生成依赖于前面的像素，通过 RNN (LSTM) 进行生成。</p>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-21%20122322.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-21%20122322.png" /></a></center></p>
@@ -1531,11 +1531,11 @@ $$
 </div>
 <p>这个方法的训练速度比 PixelRNN 快，因为我们可以并行地训练每一个像素，但是在生成的时候依然很慢，需要顺序地生成</p>
 <h2 id="93-variational-autoencoders-vae"><strong>9.3 Variational Autoencoders (VAE)</strong><a class="headerlink" href="#93-variational-autoencoders-vae" title="Permanent link">&para;</a></h2>
-<p>VAE 引入了一个隐藏层来估计密度方程
-$$
+<p>VAE 引入了一个隐藏层来估计密度方程</p>
+<div class="arithmatex">\[
 p_\theta(x) = \int p_\theta(z)p_\theta(x|z)dz
-$$
-但是上面这个估计方式我们并不能直接优化，而是用过优化下界的方式来进行的【这在后面会介绍】</p>
+\]</div>
+<p>但是上面这个估计方式我们并不能直接优化，而是用过优化下界的方式来进行的【这在后面会介绍】</p>
 <h3 id="autoencoders"><strong>Autoencoders</strong><a class="headerlink" href="#autoencoders" title="Permanent link">&para;</a></h3>
 <p>我们通过一些神经网络从一张图片中提取到了一些特征，那么我们是否可以根据这些特征来重构原始图像呢？</p>
 <p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-21%20130605.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-21%20130605.png" /></a></center></p>
@@ -1559,78 +1559,84 @@ $$
 p_θ(x)=∫p_θ(z)p_θ(x∣z)dz
 \]</div>
 <p>实现，即让真实样本 <span class="arithmatex">\(x\)</span> 在模型下的概率尽可能高。</p>
-<p>但由于该积分难以直接计算，VAE采用变分推断，引入证据下界（ELBO）作为优化目标
-$$
-\begin{align<em>}
-\log p_{\theta}(x^{(i)}) &amp;= \mathbb{E}<em _phi="\phi">{z \sim q</em>) \right] &amp; (\text{}(z|x^{(i)})} \left[ \log p_{\theta}(x^{(i)<span class="arithmatex">\(p_{\theta}(x^{(i)})\)</span> Does not depend on <span class="arithmatex">\(z\)</span>}) \
-&amp;= \mathbb{E}<em _theta="\theta">{z} \left[ \log \frac{p</em>) \
-&amp;= \mathbb{E}}(x^{(i)}|z)p_{\theta}(z)}{p_{\theta}(z|x^{(i)})} \right] &amp; (\text{Bayes' Rule<em _theta="\theta">{z} \left[ \log \frac{p</em>) \
-&amp;= \mathbb{E}}(x^{(i)}|z)p_{\theta}(z)q_{\phi}(z|x^{(i)})}{p_{\theta}(z|x^{(i)})q_{\phi}(z|x^{(i)})} \right] &amp; (\text{Multiply by constant<em _theta="\theta">{z} \left[ \log p</em>}(x^{(i)}|z) \right] - \mathbb{E<em _phi="\phi">{z} \left[ \log \frac{q</em>}(z|x^{(i)})}{p_{\theta}(z)} \right] + \mathbb{E<em _phi="\phi">{z} \left[ \log \frac{q</em>) \
-&amp;= \underbrace{\mathbb{E}}(z|x^{(i)})}{p_{\theta}(z|x^{(i)})} \right] &amp; (\text{Logarithms<em _theta="\theta">{z} \left[ \log p</em>}(x^{(i)}|z) \right] - D_{KL}(q_{\phi}(z|x^{(i)})||p_{\theta}(z))<em KL="KL">{\mathcal{L}(x^{(i)}, \theta, \phi)} + \overbrace{D</em> \
-\end{align}(q_{\phi}(z|x^{(i)})||p_{\theta}(z|x^{(i)}))}^{\geq 0</em>}
-$$</p>
+<p>但由于该积分难以直接计算，VAE采用变分推断，引入证据下界（ELBO）作为优化目标</p>
+<div class="arithmatex">\[
+\begin{align*}
+\log p_{\theta}(x^{(i)}) &amp;= \mathbb{E}_{z \sim q_{\phi}(z|x^{(i)})} \left[ \log p_{\theta}(x^{(i)}) \right] &amp; (\text{$p_{\theta}(x^{(i)})$ Does not depend on $z$}) \\
+&amp;= \mathbb{E}_{z} \left[ \log \frac{p_{\theta}(x^{(i)}|z)p_{\theta}(z)}{p_{\theta}(z|x^{(i)})} \right] &amp; (\text{Bayes' Rule}) \\
+&amp;= \mathbb{E}_{z} \left[ \log \frac{p_{\theta}(x^{(i)}|z)p_{\theta}(z)q_{\phi}(z|x^{(i)})}{p_{\theta}(z|x^{(i)})q_{\phi}(z|x^{(i)})} \right] &amp; (\text{Multiply by constant}) \\
+&amp;= \mathbb{E}_{z} \left[ \log p_{\theta}(x^{(i)}|z) \right] - \mathbb{E}_{z} \left[ \log \frac{q_{\phi}(z|x^{(i)})}{p_{\theta}(z)} \right] + \mathbb{E}_{z} \left[ \log \frac{q_{\phi}(z|x^{(i)})}{p_{\theta}(z|x^{(i)})} \right] &amp; (\text{Logarithms}) \\
+&amp;= \underbrace{\mathbb{E}_{z} \left[ \log p_{\theta}(x^{(i)}|z) \right] - D_{KL}(q_{\phi}(z|x^{(i)})||p_{\theta}(z))}_{\mathcal{L}(x^{(i)}, \theta, \phi)} + \overbrace{D_{KL}(q_{\phi}(z|x^{(i)})||p_{\theta}(z|x^{(i)}))}^{\geq 0} \\
+\end{align*}
+\]</div>
 <details class="note">
 <summary>KL term</summary>
+<p><strong>KL 散度</strong>（Kullback-Leibler Divergence），也叫<strong>相对熵</strong>（Relative Entropy），是用来衡量：</p>
+<blockquote>
+<p>一个概率分布 <span class="arithmatex">\(q(x)\)</span> 与另一个概率分布 <span class="arithmatex">\(p(x)\)</span> 之间的差异程度。</p>
+</blockquote>
+<p>它回答的问题是：</p>
+<blockquote>
+<p>“如果我用分布 $ q $ 来近似真实分布 <span class="arithmatex">\(p\)</span>，我会损失多少信息？”</p>
+</blockquote>
+<hr />
+<p>数学定义（连续情况）</p>
+<p>对于两个连续概率分布 <span class="arithmatex">\(p(x)\)</span> 和 <span class="arithmatex">\(q(x)\)</span>，KL 散度定义为：</p>
+<div class="arithmatex">\[
+D_{\text{KL}}(q \parallel p) = \int_{-\infty}^{\infty} q(x) \log \frac{q(x)}{p(x)}  dx
+\]</div>
+<hr />
+<p>离散情况（更直观）</p>
+<p>如果 <span class="arithmatex">\(x\)</span> 是离散的，KL 散度为：</p>
+<div class="arithmatex">\[
+D_{\text{KL}}(q \parallel p) = \sum_{x} q(x) \log \frac{q(x)}{p(x)}
+\]</div>
+<hr />
+<p>关键性质</p>
+<table>
+<thead>
+<tr>
+<th>性质</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ 非负性</td>
+<td><span class="arithmatex">\(D_{\text{KL}}(q \parallel p) \geq 0\)</span>，当且仅当 <span class="arithmatex">\(q = p\)</span> 时等于 0</td>
+</tr>
+<tr>
+<td>❌ 不对称性</td>
+<td><span class="arithmatex">\(D_{\text{KL}}(q \parallel p) \neq D_{\text{KL}}(p \parallel q)\)</span>，所以<strong>不是距离</strong></td>
+</tr>
+<tr>
+<td>📌 方向性</td>
+<td><span class="arithmatex">\(D_{\text{KL}}(q \parallel p)\)</span> 表示：用 <span class="arithmatex">\(p\)</span> 近似 <span class="arithmatex">\(q\)</span> 的代价</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>直观理解</p>
+<ul>
+<li>
+<p>如果 <span class="arithmatex">\(q(x)\)</span> 在某个地方有高概率，而 <span class="arithmatex">\(p(x)\)</span> 很低 → <span class="arithmatex">\(\log \frac{q(x)}{p(x)}\)</span> 很大 → KL 值大</p>
+</li>
+<li>
+<p>如果 <span class="arithmatex">\(q(x) \approx p(x)\)</span> 处处成立 → <span class="arithmatex">\(\log \frac{q(x)}{p(x)} \approx 0\)</span> → KL 值接近 0</p>
+</li>
+</ul>
+<p>所以 KL 散度越小，说明两个分布越相似。</p>
+<hr />
+<p>一句话总结</p>
+<blockquote>
+<p>KL 散度 <span class="arithmatex">\(D_{\text{KL}}(q \parallel p) = \int q(x) \log \frac{q(x)}{p(x)}  dx\)</span> 衡量的是：用分布 <span class="arithmatex">\(p\)</span> 来近似分布 <span class="arithmatex">\(q\)</span> 时的信息损失，值越小表示两个分布越接近。</p>
+</blockquote>
 </details>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>**KL 散度**（Kullback-Leibler Divergence），也叫**相对熵**（Relative Entropy），是用来衡量：
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>&gt; 一个概率分布 $q(x)$ 与另一个概率分布 $p(x)$ 之间的差异程度。
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>它回答的问题是：
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>&gt; “如果我用分布 $ q $ 来近似真实分布 $p$，我会损失多少信息？”
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>---
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>数学定义（连续情况）
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>对于两个连续概率分布 $p(x)$ 和 $q(x)$，KL 散度定义为：
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>$$
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>D_{\text{KL}}(q \parallel p) = \int_{-\infty}^{\infty} q(x) \log \frac{q(x)}{p(x)}  dx
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>$$
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>---
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>离散情况（更直观）
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>如果 $x$ 是离散的，KL 散度为：
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>$$
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>D_{\text{KL}}(q \parallel p) = \sum_{x} q(x) \log \frac{q(x)}{p(x)}
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>$$
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>---
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>关键性质
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>| 性质 | 说明 |
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>|------|------|
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>| ✅ 非负性 | $D_{\text{KL}}(q \parallel p) \geq 0$，当且仅当 $q = p$ 时等于 0 |
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>| ❌ 不对称性 | $D_{\text{KL}}(q \parallel p) \neq D_{\text{KL}}(p \parallel q)$，所以**不是距离** |
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>| 📌 方向性 | $D_{\text{KL}}(q \parallel p)$ 表示：用 $p$ 近似 $q$ 的代价 |
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>---
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>直观理解
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>- 如果 $q(x)$ 在某个地方有高概率，而 $p(x)$ 很低 → $\log \frac{q(x)}{p(x)}$ 很大 → KL 值大
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>- 如果 $q(x) \approx p(x)$ 处处成立 → $\log \frac{q(x)}{p(x)} \approx 0$ → KL 值接近 0
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>所以 KL 散度越小，说明两个分布越相似。
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>---
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>一句话总结
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>&gt; KL 散度 $D_{\text{KL}}(q \parallel p) = \int q(x) \log \frac{q(x)}{p(x)}  dx$ 衡量的是：用分布 $p$ 来近似分布 $q$ 时的信息损失，值越小表示两个分布越接近。
-</code></pre></div>
-<p>于是需要训练的目标是 ELBO，得到相应的参数 <span class="arithmatex">\(\theta^*, \phi^*\)</span>
-$$
-\theta^<em>, \phi^</em> = \arg \max_{\theta, \phi} \sum_{i=1}^{N} \mathcal{L}(x^{(i)}, \theta, \phi)
-$$
-一个基本训练路线如下所示</p>
+<p>于是需要训练的目标是 ELBO，得到相应的参数 <span class="arithmatex">\(\theta^*, \phi^*\)</span></p>
+<div class="arithmatex">\[
+\theta^*, \phi^* = \arg \max_{\theta, \phi} \sum_{i=1}^{N} \mathcal{L}(x^{(i)}, \theta, \phi)
+\]</div>
+<p>一个基本训练路线如下所示</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-21%20161517.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-21%20161517.png" /></a></p>
 <p>详细可以<a href="https://lxblog.com/qianwen/share?shareId=55509434-9e6e-4d71-aab1-1430ebcb5f3d">参考</a></p>
 <p>那么我们的生成方式就是利用解码器对高斯分布随机选取的 z 进行解码得到新的图像</p>
@@ -1654,10 +1660,10 @@ $$
 </ul>
 <p>最终目标是达到一个平衡点，在这个点上生成器生成的样本足以“欺骗”判别器，使得判别器无法区分生成的样本和真实的数据样本。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-21%20190202.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-21%20190202.png" /></a></p>
-<p>我们需要完成的损失函数优化如下：
-$$
-\min_{\theta_g} \max_{\theta_d} \left[ \underbrace{\mathbb{E}<em data="data">{x \sim p</em>}(x)} \log D_{\theta_d}(x)<em _sim="\sim" p_z_="p(z)" z="z">{\text{Discriminator output for real data } x} + \underbrace{\mathbb{E}</em> \right]
-$$} \log (1 - D_{\theta_d}(G_{\theta_g}(z)))}_{\text{Discriminator output for generated fake data } G(z)</p>
+<p>我们需要完成的损失函数优化如下：</p>
+<div class="arithmatex">\[
+\min_{\theta_g} \max_{\theta_d} \left[ \underbrace{\mathbb{E}_{x \sim p_{data}(x)} \log D_{\theta_d}(x)}_{\text{Discriminator output for real data } x} + \underbrace{\mathbb{E}_{z \sim p(z)} \log (1 - D_{\theta_d}(G_{\theta_g}(z)))}_{\text{Discriminator output for generated fake data } G(z)} \right]
+\]</div>
 <ul>
 <li>
 <p>Discriminator (<span class="arithmatex">\(θ_d\)</span> ) wants to <strong>maximize objective</strong> such that <span class="arithmatex">\(D(x)\)</span> is close to 1 (real) and <span class="arithmatex">\(D(G(z))\)</span> is close to 0 (fake)</p>
