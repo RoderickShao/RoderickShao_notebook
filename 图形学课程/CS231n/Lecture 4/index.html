@@ -932,6 +932,10 @@
       
         
       
+        
+      
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1055,6 +1059,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    4 Convolutional Neural Networks
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1064,6 +1079,39 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-introduction" class="md-nav__link">
+    4.1 Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-several-architectures" class="md-nav__link">
+    4.2 Several Architectures
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1121,6 +1169,46 @@
   
   <span class="md-ellipsis">
     7 Detection and Segmentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%208/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8 Visualizing and Understanding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture%209/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 Generative Models
   </span>
   
 
@@ -1249,6 +1337,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-introduction" class="md-nav__link">
+    4.1 Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-several-architectures" class="md-nav__link">
+    4.2 Several Architectures
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1267,9 +1377,10 @@
 
 <h1 id="4-convolutional-neural-networks"><strong>4 Convolutional Neural Networks</strong><a class="headerlink" href="#4-convolutional-neural-networks" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 496 个字 
+    文本统计：约 501 个字 
 </div>
 
+<h2 id="41-introduction">4.1 Introduction<a class="headerlink" href="#41-introduction" title="Permanent link">&para;</a></h2>
 <p>上一讲我们谈了谈全连接层，下一层的每个数据由上一层的所有数据得到</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20132244.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20132244.png" /></a></p>
 <p>而卷积层则保留了原始数据的空间属性，通过一个 filter 对原始的图像进行卷积处理。这样一个卷积核的深度与图像的深度相同，每次将图像与卷积核进行相乘得到一个<strong>数</strong>，<a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20132625.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="align" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20132625.png" /></a>于是一个卷积核会得到一个 <span class="arithmatex">\(28\times 28\times 1\)</span> 的结果，当然我们可以对一个原始图像应用多个卷积核，进而得到下一层的结果就是 <span class="arithmatex">\(28\times 28\times n\)</span></p>
@@ -1296,6 +1407,7 @@
 \]</div>
 <p>where <span class="arithmatex">\(N\)</span> is usually up to ~5, <span class="arithmatex">\(M\)</span> is large, 0 &lt;= K &lt;= 2.</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20140245.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20140245.png" /></a></p>
+<h2 id="42-several-architectures">4.2 Several Architectures<a class="headerlink" href="#42-several-architectures" title="Permanent link">&para;</a></h2>
 
 
   
