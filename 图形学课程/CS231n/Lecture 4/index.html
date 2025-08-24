@@ -936,6 +936,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1224,6 +1226,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../Lecture%2010/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 Reinforcement Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Assignment%201/" class="md-nav__link">
         
   
@@ -1377,13 +1399,15 @@
 
 <h1 id="4-convolutional-neural-networks"><strong>4 Convolutional Neural Networks</strong><a class="headerlink" href="#4-convolutional-neural-networks" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 501 个字 
+    文本统计：约 498 个字 
 </div>
 
-<h2 id="41-introduction">4.1 Introduction<a class="headerlink" href="#41-introduction" title="Permanent link">&para;</a></h2>
+<h2 id="41-introduction"><strong>4.1 Introduction</strong><a class="headerlink" href="#41-introduction" title="Permanent link">&para;</a></h2>
 <p>上一讲我们谈了谈全连接层，下一层的每个数据由上一层的所有数据得到</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20132244.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20132244.png" /></a></p>
-<p>而卷积层则保留了原始数据的空间属性，通过一个 filter 对原始的图像进行卷积处理。这样一个卷积核的深度与图像的深度相同，每次将图像与卷积核进行相乘得到一个<strong>数</strong>，<a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20132625.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="align" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20132625.png" /></a>于是一个卷积核会得到一个 <span class="arithmatex">\(28\times 28\times 1\)</span> 的结果，当然我们可以对一个原始图像应用多个卷积核，进而得到下一层的结果就是 <span class="arithmatex">\(28\times 28\times n\)</span></p>
+<p>而卷积层则保留了原始数据的空间属性，通过一个 filter 对原始的图像进行卷积处理。这样一个卷积核的深度与图像的深度相同，每次将图像与卷积核进行相乘得到一个<strong>数</strong>，</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20132625.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20132625.png" /></a></center></p>
+<p>于是一个卷积核会得到一个 <span class="arithmatex">\(28\times 28\times 1\)</span> 的结果，当然我们可以对一个原始图像应用多个卷积核，进而得到下一层的结果就是 <span class="arithmatex">\(28\times 28\times n\)</span></p>
 <p>整个卷积神经网络的结构大致如下</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20133321.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20133321.png" /></a></p>
 <p>当然我们每次移动卷积核的格数 (Stride) 不一定是 1，但是要匹配</p>
@@ -1397,7 +1421,7 @@
 <p>每一个卷积核共享参数，同时只关注图像中一小部分的内容，用来提取相应的局部特征。</p>
 <hr />
 <p>随着网络深度的增加，特征图的尺寸和模型中的参数数量急剧增加，于是我们引入池化层以缩小特征图的空间尺寸，从而降低计算复杂度并加速训练过程。</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20135621.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="right" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20135621.png" /></a></p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20135621.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20135621.png" /></a></center></p>
 <p>池化层也有多种池化方式，可以取范围平均或者取范围最大值。但是一般来说我们采取 Max Pooling，用于提取范围内的显著特征</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20140121.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-08-06%20140121.png" /></a></p>
 <p>然后卷积神经网络的最后一层往往是一层全连接层，用于综合提取的特征进而得到相应的结果。</p>

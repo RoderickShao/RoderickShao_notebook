@@ -936,6 +936,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1245,6 +1247,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../Lecture%2010/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 Reinforcement Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Assignment%201/" class="md-nav__link">
         
   
@@ -1511,29 +1533,29 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">if</span> <span class="n">grad_norm</span> <span class="o">&gt;</span> <span class="n">threhold</span><span class="p">:</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">grad</span> <span class="o">*=</span> <span class="p">(</span><span class="n">threhold</span> <span class="o">/</span> <span class="n">grad_norm</span><span class="p">)</span>
 </code></pre></div>
-<p>然而对于梯度消失的问题，我们只能改变 RNN 结构，于是我们引入了 LSTM 这种结构
-$$
+<p>然而对于梯度消失的问题，我们只能改变 RNN 结构，于是我们引入了 LSTM 这种结构</p>
+<div class="arithmatex">\[
 \begin{pmatrix}
-i \
-f \
-o \
+i \\
+f \\
+o \\
 g
 \end{pmatrix}
 =
 \begin{pmatrix}
-\sigma \
-\sigma \
-\sigma \
+\sigma \\
+\sigma \\
+\sigma \\
 \tanh
 \end{pmatrix}
 \left(
 W
 \begin{pmatrix}
-h_{t-1} \
+h_{t-1} \\
 x_t
 \end{pmatrix}
 \right)
-$$</p>
+\]</div>
 <div class="arithmatex">\[
 c_t = f \odot c_{t-1} + i \odot g
 \]</div>
