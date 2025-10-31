@@ -1218,8 +1218,29 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#345" class="md-nav__link">
+    3.4.5 在物理层扩展以太网
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#346" class="md-nav__link">
+    3.4.6 在数据链路层扩展以太网
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    3.5 交换式以太网
+  </a>
   
 </li>
       
@@ -1490,8 +1511,29 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#345" class="md-nav__link">
+    3.4.5 在物理层扩展以太网
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#346" class="md-nav__link">
+    3.4.6 在数据链路层扩展以太网
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    3.5 交换式以太网
+  </a>
   
 </li>
       
@@ -1766,6 +1808,90 @@ S_{max} = \frac{T_0}{T_0+\tau} = \frac{1}{1+\frac{\tau}{T_0}} = \frac{1}{1+\alph
 <li>帧的长度应尽量大 （让 <span class="arithmatex">\(T_0\)</span> 增加）</li>
 </ul>
 <h3 id="344">3.4.4 使用集线器的共享式以太网<a class="headerlink" href="#344" title="Permanent link">&para;</a></h3>
+<p>事实上无源电缆线和大量机械接口的总线型以太网并不像人们想象的那么可靠，若总线上的某个机械连接点接触不良或断开，则整个网络通信就不稳定或彻底断网。</p>
+<p>在使用细同轴电缆的共享总线以太网之后，以太网发展出来了一种使用大规模集成电路来替代总线、并且可靠性非常高的设备，叫作<strong>集线器（Hub）</strong>。</p>
+<ul>
+<li>使用集线器的以太网虽然物理拓扑是星型的，但在逻辑上仍然是一个<strong>总线网</strong>。总线上的各站点共享总线资源，使用的还是 CSMA/CD 协议。 【工作逻辑是相同的】</li>
+<li>集线器只工作在物理层，它的每个接口<strong>仅简单地转发比特</strong>，并不进行碰撞检测。碰撞检测的任务由各站点中的网卡负责。</li>
+<li>集线器一般都有少量的容错能力和网络管理功能。例如，若网络中某个站点的网卡出现了故障而不停地发送帧，集线器可以检测到这个问题，在内部断开与出故障网卡的连线，使整个以太网能正常工作</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>IEEE于1990年制定了<strong>10BASE-T</strong>星型以太网的标准802.3i，这种以太网是局域网发展史上的一座非常重要的里程碑，它为以太网在局域网中的统治地位奠定了牢固的基础。【10 代表传输速率为 10Mb/s, BASE 代表采用基带信号进行传输，T 代表采用双绞线作为传输媒体，如果是 F 的话代表光纤】</p>
+</div>
+<h3 id="345">3.4.5 在物理层扩展以太网<a class="headerlink" href="#345" title="Permanent link">&para;</a></h3>
+<p>一方面是<strong>扩展站点与集线器之间的距离</strong></p>
+<p>共享总线以太网中两站点之间的距离不能太远，否则它们之间所传输的信号就会衰减到使CSMA/CD协议无法正常工作。</p>
+<p>在<strong>早期</strong>广泛使用粗同轴电缆或细同轴电缆共享总线以太网时，为了提高网络的地理覆盖范围，常用的是工作在物理层的<strong>转发器</strong>。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20181419.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20181419.png" /></a></p>
+<p>随着使用双绞线和集线器的 10BASE-T 星型以太网成为以太网的主流类型，扩展网络覆盖范围就很少使用转发器了。限常使用光纤和一对光纤调制解调器来扩展站点与集线器之间的距离</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20181520.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20181520.png" /></a></p>
+<hr />
+<p>另一方面是<strong>扩展共享式以太网的覆盖范围和站点数量</strong></p>
+<p>以太网集线器一般具有8~32个接口，如果要连接的站点数量超过了单个集线器能够提供的接口数量，就需要使用多个集线器，这样就可以连接成覆盖更大范围、连接更多站点的多级星型以太网。采用多个集线器连接而成的多级星型以太网，在扩展了网络覆盖范围和站点数量的同时，也带来了一些负面因素。【相当于形成树一样的结构】</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20182250.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20182250.png" /></a></p>
+<p>在物理层扩展的共享式以太网仍然是一个碰撞域，<strong>不能连接太多的站点</strong>，否则可能会出现大量的碰撞，导致平均吞吐量太低。</p>
+<h3 id="346">3.4.6 在数据链路层扩展以太网<a class="headerlink" href="#346" title="Permanent link">&para;</a></h3>
+<p>使用网桥在数据链路层扩展以太网，网桥工作在数据链路层，比集线器懂的更多</p>
+<ul>
+<li>网桥可以识别帧的结构</li>
+<li>网桥可以根据帧首部中的目的MAC地址和网桥自身的帧转发表来转发或丢弃所收到的帧。</li>
+</ul>
+<p>网桥中很重要的一个部分就是转发表，用于连接两边的站点。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20183108.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20183108.png" /></a></p>
+<p>那么转发表又是如何建立的呢？</p>
+<p>透明网桥（Transparent Bridge）通过<strong>自学习算法</strong>建立转发表。透明网桥中的“透明”，是指以太网中的各站点并不知道自己所发送的帧将会经过哪些网桥的转发，最终到达目的站点。也就是说，以太网中的各网桥对于各站点而言是看不见的。</p>
+<p>整个自学习的过程如下</p>
+<ul>
+<li>网桥收到帧后进行登记（即自学习），登记的内容为帧的源MAC地址和进入网桥的接口号。</li>
+<li>
+<p>网桥根据帧的目的MAC地址和网桥的转发表对帧进行转发，包含以下三种情况：</p>
+</li>
+<li>
+<p>明确转发：网桥知道应当从哪个接口转发帧。</p>
+</li>
+<li>
+<p>盲目转发：网桥不知道应当从哪个接口转发帧，只能将其通过除进入网桥的接口外的其他所有接口转发。</p>
+</li>
+<li>
+<p>丢弃：网桥知道不应该转发该帧，将其丢弃。</p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul>
+<li>如果网桥收到有误码的帧则直接丢弃。</li>
+<li>如果网桥收到一个无误码的<strong>广播帧</strong>，则不用进行查表，而是直接从除接收该广播帧的接口的其他接口转发该广播帧。</li>
+<li>转发表中的每条记录都有其<strong>有效时间</strong>，到期自动删除！这是因为各站点的MAC地址与网桥接口的对应关系并不是永久性的，例如某个站点更换了网卡，其MAC地址就会改变。</li>
+</ul>
+</div>
+<hr />
+<p>为了提高以太网的可靠性，有时需要在两个以太网之间使用多个透明网桥来提供<strong>冗余链路</strong>。但是增加冗余链路却给网络引入了环路，网络中广播帧将在环路中永久兜圈，造成广播帧充斥整个网络，网络资源被白白浪费，而网络中的主机之间无法正常通信！</p>
+<p>为了避免广播帧在环路中永久兜圈，透明网桥使用<strong>生成树协议（Spanning Tree Protocol，STP）</strong>，可以在增加冗余链路提高网络可靠性的同时，又避免环路带来的问题。</p>
+<p>不管网桥之间连接成了怎样复杂的带环拓扑，网桥之间通过<strong>交互网桥协议单元（Bridge Protocol Data Unit，BPDU）</strong>，找出原网络拓扑的一个连通子集（即生成树），在这个子集里整个连通的网络中不存在环路。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20185242.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20185242.png" /></a></p>
+<h2 id="35">3.5 交换式以太网<a class="headerlink" href="#35" title="Permanent link">&para;</a></h2>
+<p>网桥的接口数量很少，通常只有2~4个，一般只用来连接不同的网段。</p>
+<p><strong>交换式集线器（Switching Hub）</strong>，实质上是具有多个接口的网桥，常称为以太网交换机（Switch）或二层交换机。</p>
+<p>仅使用交换机（而不使用集线器）的以太网就是交换式以太网。</p>
+<p>交换机的每个接口可以连接计算机，也可以连接集线器或另一个交换机。</p>
+<ul>
+<li>当交换机的接口与<strong>计算机或交换机</strong>连接时，可以工作在<strong>全双工方式</strong>，并能在自身内部同时连通多对接口，使每一对相互通信的计算机都能像独占传输媒体那样，无碰撞地传输数据，这样就不需要使用CSMA/CD协议了。</li>
+<li>当交换机的接口连接的是集线器时，该接口就只能使用CSMA/CD协议并只能工作在半双工方式。</li>
+<li>现在的交换机和计算机中的网卡都能自动识别上述两种情况，并自动切换到相应的工作方式。</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20194525.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20194525.png" /></a></p>
+<p>交换机的转发表的生成与网桥是类似的，也是通过自学习的方式生成的</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20195103.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-30%20195103.png" /></a></p>
+</div>
+<p>一般的交换机都采用 “<strong>存储转发</strong>” 方式，为了减小交换机的转发时延，某些交换机采用了<strong>直通</strong>（Cut-Through）交换方式。</p>
+<p>采用直通交换方式的交换机，在接收帧的同时就立即按帧的目的MAC地址决定该帧的转发接口，然后通过其内部基于硬件的交叉矩阵进行转发，而不必把整个帧先缓存后再进行处理。</p>
+<ul>
+<li>直通交换的时延非常小。</li>
+<li>直通交换不检查差错就直接将帧转发出去，有可能会将一些无效帧转发给其他主机。</li>
+</ul>
 
 
   
