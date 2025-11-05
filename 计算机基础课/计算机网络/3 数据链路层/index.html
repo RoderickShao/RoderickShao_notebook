@@ -585,6 +585,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -991,6 +993,50 @@
       
         
       
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/Chapter%201/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算理论
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
     
     
       
@@ -1043,9 +1089,9 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" checked>
         
-          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1056,8 +1102,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_11">
             <span class="md-nav__icon md-icon"></span>
             计算机网络
           </label>
@@ -1771,6 +1817,10 @@
 <p>载波监听检测到总线空闲，但<strong>总线并不一定空闲</strong>。存在传播延迟</p>
 <p>使用 CSMA/CD 协议的共享总线以太网上的各站点，只是尽量避免碰撞并在出现碰撞时做出退避后重发的处理，但不能完全避免碰撞。</p>
 <p>在使用 CSMA/CD 协议时，由于正在发送帧的站点必须“边发送帧边检测碰撞”，因此站点不可能同时进行发送和接收，也就是不可能进行全双工通信，而只能进行半双工通信（双向交替通信）。【注意这里只有在发送的时候才进行碰撞检测】</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>发送帧的站点一旦检测到碰撞，除了立即停止发送帧外，还要再继续发送32比特或48比特的人为干扰信号（Jamming Signal），以便有足够多的碰撞信号使所有站点都能检测出碰撞。</p>
+</div>
 <hr />
 <p>某个站点从发送帧开始，最长要经过多长时间，才能检测出自己发送的帧与其他站点发送的帧产生了碰撞？</p>
 <p>只需要考虑最极端的情况，当一个信号从一端传到另一端，就当要传到的时候发生了碰撞，这时返回来才知道发生了碰撞。设以太网单程端到端传播时延 <span class="arithmatex">\(\tau\)</span> ，那么最多经过时长 <span class="arithmatex">\(2τ\)</span> 就可检测出所发送的帧是否遭遇了碰撞。因此，共享总线以太网的端到端往返时间 <span class="arithmatex">\(2τ\)</span> 被称为<strong>争用期（Contention Period）或碰撞窗口（Collision Window）</strong></p>
@@ -1892,6 +1942,41 @@ S_{max} = \frac{T_0}{T_0+\tau} = \frac{1}{1+\frac{\tau}{T_0}} = \frac{1}{1+\alph
 <li>直通交换的时延非常小。</li>
 <li>直通交换不检查差错就直接将帧转发出去，有可能会将一些无效帧转发给其他主机。</li>
 </ul>
+<p>直通方式只需要读完 MAC 地址就可以进行发送。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20225838.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20225838.png" /></a></p>
+</div>
+<hr />
+<p>下面总结一下共享式以太网与交换式以太网的对比（即集线器与交换机的对比）</p>
+<ul>
+<li>发送过程</li>
+</ul>
+<details class="note">
+<summary>Note</summary>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230223.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230223.png" /></a></p>
+</details>
+<ul>
+<li>广播情况</li>
+</ul>
+<details class="note">
+<summary>Note</summary>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230233.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230233.png" /></a></p>
+</details>
+<ul>
+<li>碰撞情况</li>
+</ul>
+<details class="note">
+<summary>Note</summary>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230244.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230244.png" /></a></p>
+</details>
+<ul>
+<li>对于广播域和碰撞域，集线器会扩大广播域以及碰撞域；交换机则扩大了广播域，但是隔离了碰撞域。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20232237.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20232237.png" /></a></p>
+</div>
 
 
   
