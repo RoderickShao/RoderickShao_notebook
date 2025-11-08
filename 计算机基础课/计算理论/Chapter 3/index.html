@@ -1137,6 +1137,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#34-languages-that-are-and-are-not-cf" class="md-nav__link">
+    3.4 Languages that are and are not CF
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1425,6 +1432,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#34-languages-that-are-and-are-not-cf" class="md-nav__link">
+    3.4 Languages that are and are not CF
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1512,8 +1526,8 @@ G = (V, \Sigma, R, S)
 <ul>
 <li><span class="arithmatex">\(A \Rightarrow^* w\)</span></li>
 <li><span class="arithmatex">\(\exists\)</span> a parse tree with root <span class="arithmatex">\(A\)</span> and yield <span class="arithmatex">\(w\)</span></li>
-<li><span class="arithmatex">\(\exists\)</span> a leftmost derivation <span class="arithmatex">\(A \xRightarrow{L^*} w\)</span></li>
-<li><span class="arithmatex">\(\exists\)</span> a rightmost derivation <span class="arithmatex">\(A \xRightarrow{R^*} w\)</span></li>
+<li><span class="arithmatex">\(\exists\)</span> a leftmost derivation <span class="arithmatex">\(A \overset{L^*}{\Longrightarrow} w\)</span></li>
+<li><span class="arithmatex">\(\exists\)</span> a rightmost derivation <span class="arithmatex">\(A \overset{R^*}{\Longrightarrow}w\)</span></li>
 </ul>
 <p>也即是说只有存在一条路径可以推导出来，那么就存在最右推导和最左推导。</p>
 <div class="admonition note">
@@ -1545,6 +1559,7 @@ P = (K, \Sigma, \Gamma, \Delta, s, F)
 \]</div>
 <p>每一个 FA 都可以平凡地被看做为一个不对栈进行任何操作的 PDA。</p>
 <p>在 PDA 中，<strong>同一个状态、输入符号和栈顶符号组合</strong>，可能对应多个不同的转移规则。这意味着在某一步，机器可以选择执行其中任意一个规则。因此，这种 PDA 是<strong>非确定性的</strong>（Nondeterministic PDA, NPDA）。</p>
+<hr />
 <p><span class="arithmatex">\((p, x, \alpha) \vdash_M (q, y, \zeta)\)</span> (yield in one step) <strong>iff</strong> there is some transition <span class="arithmatex">\(((p, a, \beta), (q, \gamma)) \in \Delta\)</span> such that </p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20204619.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="align" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20204619.png" /></a></p>
 <ul>
@@ -1561,11 +1576,104 @@ L(M) = \{w \mid (s, w, e) \vdash_M^* (p, e, e) \text{ for some state } p \in F\}
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20205325.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20205325.png" /></a></p>
 </div>
+<hr />
 <p>实际上由 PDA 所接受的语言就是 CFL，证明思路还是正反两面</p>
 <ul>
 <li>Each context-free language is accepted by some PDA.</li>
 <li>If a language is accepted by a PDA, it is a context-free language.</li>
 </ul>
+<p>如何对于任意一个 CFL，构造出相应的 PDA ?</p>
+<p><strong>Construct a PDA</strong> <span class="arithmatex">\(M = (K, \Sigma, \Gamma, \Delta, s, F)\)</span> for the CFG <span class="arithmatex">\(G = (V, \Sigma, R, S)\)</span> such that  <span class="arithmatex">\(L(M) = L(G)\)</span></p>
+<ul>
+<li>PDA <span class="arithmatex">\(M\)</span> has just 2 states: <span class="arithmatex">\(p\)</span> ~ start state, <span class="arithmatex">\(q\)</span> ~ final state</li>
+<li>Stack alphabet <span class="arithmatex">\(\Gamma = V\)</span></li>
+<li>Let <span class="arithmatex">\(\Delta\)</span> contain the following transitions:</li>
+<li><span class="arithmatex">\(((p, \varepsilon, \varepsilon), (q, S))\)</span></li>
+<li><span class="arithmatex">\(((q, \varepsilon, A), (q, x))\)</span> for each rule <span class="arithmatex">\(A \to x \in R\)</span></li>
+<li><span class="arithmatex">\(((q, a, a), (q, \varepsilon))\)</span>, <span class="arithmatex">\(\forall a \in \Sigma\)</span></li>
+</ul>
+<p>整体思路就是先把初始符号 <span class="arithmatex">\(S\)</span> 放到栈里，然后依次从栈顶读字符，如果是非终结符，则进行替换，将替换后的字符再次塞回栈顶；如果是终结符，那么就读出。这样的 PDA 实际上模仿的就是 CFG 的最左推导。</p>
+<p>我们要证明 PDA 的操作过程就是 CFG 的最左推导，其实要说明以下式子
+$$
+S \overset{L^<em>}{\Longrightarrow} w\alpha \iff (q, w, S) \vdash_M^</em> (q, \varepsilon, \alpha)
+$$
+其中  <span class="arithmatex">\(w \in \Sigma^*\)</span> 然后 <span class="arithmatex">\(\alpha \in (V - \Sigma)V^* \cup \{\varepsilon\}\)</span>. 用人话讲就是 <span class="arithmatex">\(w\)</span> 是已经处理好的终结符号，<span class="arithmatex">\(\alpha\)</span> 是以未终结符开头的字符串。然后 <span class="arithmatex">\(\xRightarrow{L^*}\)</span> 的意思是最左推导。如果有上述式子成立，我们就可以说明每个 CFL 都可以被一个 PDA 所接受【取 <span class="arithmatex">\(\alpha\)</span> 为 <span class="arithmatex">\(\varepsilon\)</span> 即可】</p>
+<p>这个式子的证明还是使用数学归纳法，以最左推导的次数为归纳条件。</p>
+<div class="admonition note">
+<p class="admonition-title">归纳步骤</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20134523.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20134523.png" /></a></p>
+</div>
+<p>如何说明一个被 PDA 接受的语言是 CFL?</p>
+<p>首先我们定义 simple PDA</p>
+<div class="admonition note">
+<p class="admonition-title">Simple PDA</p>
+<p>当某个转移 <span class="arithmatex">\(((q,a,β),(p,γ))\)</span> 是该 PDA 的一条转移规则，且状态 <span class="arithmatex">\(q\)</span> 不是起始状态时，必须满足：</p>
+<ul>
+<li><span class="arithmatex">\(β\)</span> 是栈中的一个符号（即 <span class="arithmatex">\(β∈Γ\)</span>），</li>
+<li>并且新压入栈的字符串 <span class="arithmatex">\(γ\)</span> 的长度不超过 2（即 ∣<em>γ</em>∣≤2）。</li>
+</ul>
+<p>也就是说每次只读栈顶的一个符号，然后最多压入两个符号</p>
+</div>
+<p>那么对于一个正常的 PDA 来说，实际上我们可以转化为 simple PDA</p>
+<ul>
+<li>读多个栈符号 <span class="arithmatex">\((β≥2)\)</span></li>
+<li>压入多个栈符号 (<span class="arithmatex">\(\gamma &gt;2\)</span>)</li>
+<li>直接转化</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">具体替换步骤</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20141005.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20141005.png" /></a></p>
+</div>
+<p>接下来我们完成一个从 simple PDA 到 CFG 的转化过程</p>
+<p>首先我们定义非终结符 <span class="arithmatex">\(⟨q,A,p⟩\)</span>，表示： “PDA 从状态 <em>q</em> 开始，栈顶是符号 <em>A</em>，在读取一段输入后，把 <em>A</em> 弹出，并进入状态 <em>p</em>” 的过程中，<strong>可能读到的输入字符串</strong>。然后我们对原先 PDA 的一些转移关系进行转化，添加相应的规则</p>
+<p>(1) 规则 <span class="arithmatex">\(S \to \langle s,Z,f' \rangle\)</span>：--- 其中 <span class="arithmatex">\(s\)</span> 是原始 PDA 的起始状态，<span class="arithmatex">\(f'\)</span> 是新的最终状态。</p>
+<p>(2) 对于每个转移 <span class="arithmatex">\(((q,a,B),(r,C))\)</span>，其中 <span class="arithmatex">\(q,r \in K'\)</span>, <span class="arithmatex">\(a \in \Sigma \cup \{\varepsilon\}\)</span>, <span class="arithmatex">\(B,C \in \Gamma \cup \{\varepsilon\}\)</span>，并且对于每个 <span class="arithmatex">\(p \in K'\)</span>，我们添加规则 <span class="arithmatex">\(\langle q,B,p \rangle \to a\langle r,C,p \rangle\)</span>。</p>
+<p>(3) 对于每个转移 <span class="arithmatex">\(((q,a,B),(r,C_1C_2))\)</span>，其中 <span class="arithmatex">\(q,r \in K\)</span>, <span class="arithmatex">\(a \in \Sigma \cup \{\varepsilon\}\)</span>, <span class="arithmatex">\(B \in \Gamma \cup \{\varepsilon\}\)</span>，且 <span class="arithmatex">\(C_1,C_2 \in \Gamma\)</span>，并且对于每个 <span class="arithmatex">\(p,p' \in K\)</span>，我们添加规则 <span class="arithmatex">\(\langle q,B,p \rangle \to a\langle r,C_1,p' \rangle\langle p',C_2,p \rangle\)</span>。</p>
+<p>(4) 对于每个 <span class="arithmatex">\(q \in K\)</span>，规则 <span class="arithmatex">\(\langle q,\varepsilon,q \rangle \to \varepsilon\)</span>。</p>
+<details class="example">
+<summary>Example</summary>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20142828.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20142828.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20142832.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20142832.png" /></a></p>
+</details>
+<p>要证明构造出来的 CFG 与原先的 PDA 等价，只需要证明以下引理</p>
+<p>引理：对于任意状态 <span class="arithmatex">\(q, p \in K\)</span>，栈符号 <span class="arithmatex">\(A \in \Gamma \cup \{\varepsilon\}\)</span>，以及输入串 <span class="arithmatex">\(x \in \Sigma^*\)</span>，有：</p>
+<div class="arithmatex">\[
+\langle q, A, p \rangle \Rightarrow_G^* x \iff (q, x, A) \vdash_M^* (p, \varepsilon, \varepsilon)
+\]</div>
+<h2 id="34-languages-that-are-and-are-not-cf"><strong>3.4 Languages that are and are not CF</strong><a class="headerlink" href="#34-languages-that-are-and-are-not-cf" title="Permanent link">&para;</a></h2>
+<p>CFL 在并操作、连接操作和 Kleene Star 操作下是封闭的，这个的证明可以通过构造 PDA </p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20144346.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20144346.png" /></a></p>
+<p>但是 CFL 在交操作和补操作下并不封闭。回忆一下之前正则语言的情况，我们可以发现，我们可以使用一个 DFA 来模拟两个 DFA 的行为，但是回到 CFL 的情况，我们却不能用一个 PDA 表示两个 PDA，因为引入了栈。</p>
+<div class="admonition exmaple">
+<p class="admonition-title">Exmaple</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20150049.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20150049.png" /></a></p>
+</div>
+<p>但是 CFL 和 正则语言的交是 CFL</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20150206.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20150206.png" /></a></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20150315.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20150315.png" /></a></p>
+</div>
+<p>与正则语言的泵定理类似，CFL 也有类似的泵定理</p>
+<p>设 <span class="arithmatex">\(G = (V, \Sigma, R, S)\)</span> 是一个上下文无关文法（CFG）。则对于任意字符串 <span class="arithmatex">\(w \in L(G)\)</span>，如果其长度大于 <span class="arithmatex">\(\phi(G)^{|V - \Sigma|}\)</span>，那么 <span class="arithmatex">\(w\)</span> 可以被分解为 <span class="arithmatex">\(w = uvxyz\)</span>，满足以下条件：</p>
+<ul>
+<li><span class="arithmatex">\(|vy| \geq 1\)</span></li>
+<li>对所有 <span class="arithmatex">\(n \geq 0\)</span>，都有 <span class="arithmatex">\(uv^nxy^nz \in L(G)\)</span></li>
+</ul>
+<p>其中：
+- <span class="arithmatex">\(\phi(G)\)</span> 是语法中产生式右边最长符号串的长度（即最大生成长度）
+- <span class="arithmatex">\(|V - \Sigma|\)</span> 是非终结符的数量</p>
+<p>该定理的核心思想是：<strong>当字符串足够长时，其推导树必然存在“重复的非终结符路径”</strong>。在 CFG 的最左推导中，若字符串长度超过某个阈值（由非终结符数量和规则长度决定），则推导树中必有一条从根到叶的路径上出现了某个非终结符 <span class="arithmatex">\(A\)</span> 两次。我们可以将这个“循环”部分对应的部分字符串 <span class="arithmatex">\(vy\)</span> 提取出来，通过反复“泵”它（即重复 <span class="arithmatex">\(v\)</span> 和 <span class="arithmatex">\(y\)</span>），得到无限多个新字符串 <span class="arithmatex">\(uv^nxy^nz\)</span>，它们仍能被相同结构的推导生成。 </p>
+<p>这说明：<strong>所有足够长的 CFL 字符串都包含可“泵”的子串</strong>，从而可以用来判断一个语言是否为 CFL。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20151111.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20151111.png" /></a></p>
+<p>这个定理是用来证明一个语言不是 CFL 的有效利器，整个证明过程就是首先先找一个长度大于 <span class="arithmatex">\(\phi(G)^{|V - \Sigma|}\)</span> 的，然后分析情况，拆分为 <span class="arithmatex">\(uvxyz\)</span> ，然后找到一个 <span class="arithmatex">\(i\)</span>，使得 <span class="arithmatex">\(uv^ixy^iz\)</span> 并属于这个语言</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20152231.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20152231.png" /></a></p>
+</div>
 
 
   

@@ -1618,16 +1618,16 @@
 <p>利用该进程 <strong>之前几次 CPU burst 的实际长度</strong>，通过一种叫做 <strong>指数加权平均（Exponential Averaging）</strong> 的方法，来预测下一次的 burst 时间。</p>
 <ol>
 <li>
-<p>$ t_n $ = actual length of $ n^\text{th} $ CPU burst   </p>
+<p><span class="arithmatex">\(t_n\)</span> = actual length of <span class="arithmatex">\(n^\text{th}\)</span> CPU burst   </p>
 </li>
 <li>
-<p>$ \tau_{n+1} $ = predicted value for the next CPU burst   </p>
+<p><span class="arithmatex">\(\tau_{n+1}\)</span> = predicted value for the next CPU burst   </p>
 </li>
 <li>
-<p>$ \alpha $, where $ 0 \leq \alpha \leq 1 $   </p>
+<p><span class="arithmatex">\(\alpha\)</span>, where <span class="arithmatex">\(0 \leq \alpha \leq 1\)</span>   </p>
 </li>
 <li>
-<p>Define:     $$   \tau_{n+1} = \alpha t_n + (1 - \alpha)\tau_n   $$</p>
+<p>Define:     <span class="arithmatex">\(\tau_{n+1} = \alpha t_n + (1 - \alpha)\tau_n\)</span></p>
 </li>
 </ol>
 <div class="admonition note">

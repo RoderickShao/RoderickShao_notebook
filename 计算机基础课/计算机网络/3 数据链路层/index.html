@@ -1710,7 +1710,7 @@
 <p>当发送方发送多个帧后因超时未收到确认，就从第一个未被确认的帧开始，将其及之后的所有帧全部重传。</p>
 <p>回退N帧协议的接收方采用累积确认方式：确认分组ACKn表明序号为n及之前的所有数据分组都已正确接收。</p>
 <details class="question">
-<summary>若W_T超过取值范围，例如 <span class="arithmatex">\(W_T\)</span>= 8，会出现什么情况？</summary>
+<summary>若<span class="arithmatex">\(W_T\)</span>超过取值范围，例如 <span class="arithmatex">\(W_T\)</span>= 8，会出现什么情况？</summary>
 <p>当数据块0超时了（ACK7还没到）打算重传，然后发现 <span class="arithmatex">\(W_R\)</span> 已经在0了，那么就会继续接受，就无法分辨新旧数据分组了</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20143648.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20143648.png" /></a></p>
 </details>

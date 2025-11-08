@@ -1496,20 +1496,26 @@
 </ul>
 <p>在 DFA 中 <span class="arithmatex">\(\delta\)</span> 是一个函数，但是在 NFA中 <span class="arithmatex">\(\Delta\)</span> 是一个关系，其他类似 <span class="arithmatex">\(\vdash_M\)</span> 和 <span class="arithmatex">\(\vdash_M^*\)</span> 以及 <span class="arithmatex">\(L(M)\)</span> 的定义都是类似的</p>
 <hr />
-<p>NFA 虽然看起来比 DFA 强大，但其二者实际上是等价的<br />
-- <span class="arithmatex">\(\forall\)</span> NFA <span class="arithmatex">\(M\)</span>, <span class="arithmatex">\(\exists\)</span> DFA <span class="arithmatex">\(M'\)</span>, s.t. <span class="arithmatex">\(L(M) = L(M')\)</span><br />
-- <span class="arithmatex">\(\forall\)</span> DFA <span class="arithmatex">\(M\)</span>, <span class="arithmatex">\(\exists\)</span> NFA <span class="arithmatex">\(M'\)</span>, s.t. <span class="arithmatex">\(L(M) = L(M')\)</span></p>
-<p>NFA 转 DFA 主要思路<br />
-- NFA 接收一个字符，会有多个转移方案，所有可达的下一状态合在一起的集合构成 DFA 的一个状态<br />
-- 即 DFA 的状态是 NFA 的状态的幂集，结束状态是包含 NFA 的结束状态的 DFA 状态<br />
-- <span class="arithmatex">\(\varepsilon\)</span>-transition 也要考虑，且不算在字符里</p>
-<p>NFA <span class="arithmatex">\(M = (K, \Sigma, \Delta, s, F)\)</span> 转为 DFA <span class="arithmatex">\(M' = (K', \Sigma, \delta, s', F')\)</span><br />
-- <span class="arithmatex">\(K' = 2^K = \{Q : Q \subseteq K\}\)</span><br />
-- <span class="arithmatex">\(F' = \{Q \in K' : Q \cap F \neq \emptyset\}\)</span><br />
-- <span class="arithmatex">\(s' = E(s)\)</span><br />
-  - 定义 <span class="arithmatex">\(\forall q \in K\)</span>, <span class="arithmatex">\(E(q) = \{p \in K : (q, \varepsilon) \vdash_M^* (p, \varepsilon)\}\)</span><br />
-  - 即 <span class="arithmatex">\(E(q)\)</span> 是 <span class="arithmatex">\(q\)</span> 可以通过 <span class="arithmatex">\(\varepsilon\)</span>-transition 到达的状态集合<br />
-- <span class="arithmatex">\(\delta\)</span>: <span class="arithmatex">\(\forall Q \in K', \forall a \in \Sigma\)</span>  </p>
+<p>NFA 虽然看起来比 DFA 强大，但其二者实际上是等价的  </p>
+<ul>
+<li><span class="arithmatex">\(\forall\)</span> NFA <span class="arithmatex">\(M\)</span>, <span class="arithmatex">\(\exists\)</span> DFA <span class="arithmatex">\(M'\)</span>, s.t. <span class="arithmatex">\(L(M) = L(M')\)</span>  </li>
+<li><span class="arithmatex">\(\forall\)</span> DFA <span class="arithmatex">\(M\)</span>, <span class="arithmatex">\(\exists\)</span> NFA <span class="arithmatex">\(M'\)</span>, s.t. <span class="arithmatex">\(L(M) = L(M')\)</span></li>
+</ul>
+<p>NFA 转 DFA 主要思路  </p>
+<ul>
+<li>NFA 接收一个字符，会有多个转移方案，所有可达的下一状态合在一起的集合构成 DFA 的一个状态  </li>
+<li>即 DFA 的状态是 NFA 的状态的幂集，结束状态是包含 NFA 的结束状态的 DFA 状态  </li>
+<li><span class="arithmatex">\(\varepsilon\)</span>-transition 也要考虑，且不算在字符里</li>
+</ul>
+<p>NFA <span class="arithmatex">\(M = (K, \Sigma, \Delta, s, F)\)</span> 转为 DFA <span class="arithmatex">\(M' = (K', \Sigma, \delta, s', F')\)</span>  </p>
+<ul>
+<li><span class="arithmatex">\(K' = 2^K = \{Q : Q \subseteq K\}\)</span>  </li>
+<li><span class="arithmatex">\(F' = \{Q \in K' : Q \cap F \neq \emptyset\}\)</span>  </li>
+<li><span class="arithmatex">\(s' = E(s)\)</span>  </li>
+<li>定义 <span class="arithmatex">\(\forall q \in K\)</span>, <span class="arithmatex">\(E(q) = \{p \in K : (q, \varepsilon) \vdash_M^* (p, \varepsilon)\}\)</span>  </li>
+<li>即 <span class="arithmatex">\(E(q)\)</span> 是 <span class="arithmatex">\(q\)</span> 可以通过 <span class="arithmatex">\(\varepsilon\)</span>-transition 到达的状态集合  </li>
+<li><span class="arithmatex">\(\delta\)</span>: <span class="arithmatex">\(\forall Q \in K', \forall a \in \Sigma\)</span>  </li>
+</ul>
 <div class="arithmatex">\[
 \delta(Q, a) = \bigcup_{q \in Q} \bigcup_{p: (q,a,p) \in \Delta} E(p)
 \]</div>
@@ -1593,7 +1599,7 @@
 </ul>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p>Let <span class="arithmatex">\(\Sigma = \{0,1,\dots,9\}\)</span>.  Let $L = { w \in \Sigma^* \mid w $ is the decimal representation of a nonnegative integer (without redundant leading 0's) divisible by both 2 and 3} <span class="arithmatex">\(\}\)</span>.Show that <span class="arithmatex">\(L\)</span> is regular.</p>
+<p>Let <span class="arithmatex">\(\Sigma = \{0,1,\dots,9\}\)</span>.  Let <span class="arithmatex">\(L = \{ w \in \Sigma^* \mid w\)</span> is the decimal representation of a nonnegative integer (without redundant leading 0's) divisible by both 2 and 3} <span class="arithmatex">\(\}\)</span>.Show that <span class="arithmatex">\(L\)</span> is regular.</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-03%20203200.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-03%20203200.png" /></a></p>
 <p>三个正则表达式的交</p>
 </div>
