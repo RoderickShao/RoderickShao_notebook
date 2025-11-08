@@ -1593,11 +1593,11 @@ L(M) = \{w \mid (s, w, e) \vdash_M^* (p, e, e) \text{ for some state } p \in F\}
 <li><span class="arithmatex">\(((q, a, a), (q, \varepsilon))\)</span>, <span class="arithmatex">\(\forall a \in \Sigma\)</span></li>
 </ul>
 <p>整体思路就是先把初始符号 <span class="arithmatex">\(S\)</span> 放到栈里，然后依次从栈顶读字符，如果是非终结符，则进行替换，将替换后的字符再次塞回栈顶；如果是终结符，那么就读出。这样的 PDA 实际上模仿的就是 CFG 的最左推导。</p>
-<p>我们要证明 PDA 的操作过程就是 CFG 的最左推导，其实要说明以下式子
-$$
-S \overset{L^<em>}{\Longrightarrow} w\alpha \iff (q, w, S) \vdash_M^</em> (q, \varepsilon, \alpha)
-$$
-其中  <span class="arithmatex">\(w \in \Sigma^*\)</span> 然后 <span class="arithmatex">\(\alpha \in (V - \Sigma)V^* \cup \{\varepsilon\}\)</span>. 用人话讲就是 <span class="arithmatex">\(w\)</span> 是已经处理好的终结符号，<span class="arithmatex">\(\alpha\)</span> 是以未终结符开头的字符串。然后 <span class="arithmatex">\(\xRightarrow{L^*}\)</span> 的意思是最左推导。如果有上述式子成立，我们就可以说明每个 CFL 都可以被一个 PDA 所接受【取 <span class="arithmatex">\(\alpha\)</span> 为 <span class="arithmatex">\(\varepsilon\)</span> 即可】</p>
+<p>我们要证明 PDA 的操作过程就是 CFG 的最左推导，其实要说明以下式子</p>
+<div class="arithmatex">\[
+S \overset{L^*}{\Longrightarrow} w\alpha \iff (q, w, S) \vdash_M^* (q, \varepsilon, \alpha)
+\]</div>
+<p>其中  <span class="arithmatex">\(w \in \Sigma^*\)</span> 然后 <span class="arithmatex">\(\alpha \in (V - \Sigma)V^* \cup \{\varepsilon\}\)</span>. 用人话讲就是 <span class="arithmatex">\(w\)</span> 是已经处理好的终结符号，<span class="arithmatex">\(\alpha\)</span> 是以未终结符开头的字符串。然后 $\overset{L^*}{\Longrightarrow} $ 的意思是最左推导。如果有上述式子成立，我们就可以说明每个 CFL 都可以被一个 PDA 所接受【取 <span class="arithmatex">\(\alpha\)</span> 为 <span class="arithmatex">\(\varepsilon\)</span> 即可】</p>
 <p>这个式子的证明还是使用数学归纳法，以最左推导的次数为归纳条件。</p>
 <div class="admonition note">
 <p class="admonition-title">归纳步骤</p>
