@@ -1173,6 +1173,8 @@
       
         
       
+        
+      
     
     
       
@@ -1210,6 +1212,8 @@
   
     
     
+      
+        
       
         
       
@@ -1663,13 +1667,19 @@ S \overset{L^*}{\Longrightarrow} w\alpha \iff (q, w, S) \vdash_M^* (q, \varepsil
 <li><span class="arithmatex">\(|vy| \geq 1\)</span></li>
 <li>对所有 <span class="arithmatex">\(n \geq 0\)</span>，都有 <span class="arithmatex">\(uv^nxy^nz \in L(G)\)</span></li>
 </ul>
-<p>其中：
-- <span class="arithmatex">\(\phi(G)\)</span> 是语法中产生式右边最长符号串的长度（即最大生成长度）
-- <span class="arithmatex">\(|V - \Sigma|\)</span> 是非终结符的数量</p>
+<p>其中：</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\phi(G)\)</span> 是语法中产生式右边最长符号串的长度（即最大生成长度）</p>
+</li>
+<li>
+<p><span class="arithmatex">\(|V - \Sigma|\)</span> 是非终结符的数量</p>
+</li>
+</ul>
 <p>该定理的核心思想是：<strong>当字符串足够长时，其推导树必然存在“重复的非终结符路径”</strong>。在 CFG 的最左推导中，若字符串长度超过某个阈值（由非终结符数量和规则长度决定），则推导树中必有一条从根到叶的路径上出现了某个非终结符 <span class="arithmatex">\(A\)</span> 两次。我们可以将这个“循环”部分对应的部分字符串 <span class="arithmatex">\(vy\)</span> 提取出来，通过反复“泵”它（即重复 <span class="arithmatex">\(v\)</span> 和 <span class="arithmatex">\(y\)</span>），得到无限多个新字符串 <span class="arithmatex">\(uv^nxy^nz\)</span>，它们仍能被相同结构的推导生成。 </p>
 <p>这说明：<strong>所有足够长的 CFL 字符串都包含可“泵”的子串</strong>，从而可以用来判断一个语言是否为 CFL。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20151111.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20151111.png" /></a></p>
-<p>这个定理是用来证明一个语言不是 CFL 的有效利器，整个证明过程就是首先先找一个长度大于 <span class="arithmatex">\(\phi(G)^{|V - \Sigma|}\)</span> 的，然后分析情况，拆分为 <span class="arithmatex">\(uvxyz\)</span> ，然后找到一个 <span class="arithmatex">\(i\)</span>，使得 <span class="arithmatex">\(uv^ixy^iz\)</span> 并属于这个语言</p>
+<p>这个定理是用来证明一个语言不是 CFL 的有效利器，整个证明过程就是首先先找一个长度大于 <span class="arithmatex">\(\phi(G)^{|V - \Sigma|}\)</span> 的，然后分析所有情况，拆分为 <span class="arithmatex">\(uvxyz\)</span> ，然后找到一个 <span class="arithmatex">\(i\)</span>，使得 <span class="arithmatex">\(uv^ixy^iz\)</span> 并属于这个语言。【因为我们的拆分是存在性】</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20152231.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20152231.png" /></a></p>
