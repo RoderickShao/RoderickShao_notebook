@@ -16,7 +16,7 @@
         <link rel="prev" href="../Chapter%203/">
       
       
-        <link rel="next" href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction/">
+        <link rel="next" href="../Chapter%205/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -990,6 +990,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1163,10 +1165,44 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#43-extension-of-turing-machine" class="md-nav__link">
+    4.3 Extension of Turing Machine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44-nondeterministic-turing-machines" class="md-nav__link">
+    4.4 Nondeterministic Turing Machines
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chapter%205/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 Undecidability
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1187,6 +1223,8 @@
   
     
     
+      
+        
       
         
       
@@ -1244,6 +1282,8 @@
       
         
       
+        
+      
     
     
       
@@ -1288,6 +1328,8 @@
   
     
     
+      
+        
       
         
       
@@ -1418,6 +1460,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#43-extension-of-turing-machine" class="md-nav__link">
+    4.3 Extension of Turing Machine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44-nondeterministic-turing-machines" class="md-nav__link">
+    4.4 Nondeterministic Turing Machines
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1457,10 +1513,10 @@
 <p>注意图灵机是确定性的</p>
 </div>
 <p><strong>Definition</strong>: A configuration of a TM <span class="arithmatex">\(M=(K,Σ,δ,s,H)\)</span> is a member of</p>
-<p>$$
-K × ▹Σ^∗×(Σ^∗(Σ−{⊔})∪{e})
-$$
-<a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-16%20122941.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-16%20122941.png" /></a></p>
+<div class="arithmatex">\[
+K × ▹Σ^∗×(Σ^∗(Σ−\{⊔\})∪{e})
+\]</div>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-16%20122941.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-16%20122941.png" /></a></p>
 <ul>
 <li><span class="arithmatex">\(x\)</span>：从左端标记 <span class="arithmatex">\(▹\)</span> 到读写头当前位置之间的符号串（含读写头所在位置）</li>
 <li><span class="arithmatex">\(y\)</span>：从读写头右侧第一个非空白符号开始到最右非空白符号之间的内容</li>
@@ -1549,6 +1605,92 @@ w\in L \Leftrightarrow M 在输入为 w时可以停机
 <p>若存在一台图灵机 <span class="arithmatex">\(M\)</span> 能计算函数 <span class="arithmatex">\(f\)</span>，则称函数 <span class="arithmatex">\(f\)</span> 是<strong>递归的</strong>（recursive）。</p>
 </li>
 </ul>
+<blockquote>
+<p>用人话讲一下就是原先磁带上的是输入，然后经过一番操作之后指针回到原点，然后磁带上的就是输出，这就是一个函数</p>
+</blockquote>
+<h2 id="43-extension-of-turing-machine"><strong>4.3 Extension of Turing Machine</strong><a class="headerlink" href="#43-extension-of-turing-machine" title="Permanent link">&para;</a></h2>
+<p>图灵机可以做一些扩展，但是我们发现这些看似扩展，实则并没有提升图灵机的能力</p>
+<ul>
+<li>多条磁带</li>
+<li>双向无限的磁带</li>
+<li>多个读写头</li>
+<li>多维磁带</li>
+<li>不确定性图灵机</li>
+</ul>
+<p>这些扩展可以更好地帮我们构建图灵机，下面我们将阐述一下为什么这些扩展并没有提升图灵机的能力</p>
+<hr />
+<p>下面阐述多条磁带的图灵机</p>
+<p>定义：设 <span class="arithmatex">\(k \geq 1\)</span> 为一个整数。一个 <span class="arithmatex">\(k\)</span> 带图灵机 <span class="arithmatex">\((K,\Sigma,\delta,s,H)\)</span>，其中 <span class="arithmatex">\(K,\Sigma,s\)</span> 和 <span class="arithmatex">\(H\)</span> 与普通图灵机定义中的相同，而 <span class="arithmatex">\(\delta\)</span> 是转移函数：  </p>
+<div class="arithmatex">\[
+\delta:(K-H)\times\Sigma^k\to K\times(\Sigma\cup\{\leftarrow,\rightarrow\})^k
+\]</div>
+<p>定义：设 <span class="arithmatex">\(M=(K,\Sigma,\delta,s,H)\)</span> 是一个 <span class="arithmatex">\(k\)</span> 带图灵机。<span class="arithmatex">\(M\)</span> 的一个configuration如下：</p>
+<div class="arithmatex">\[
+K\times\left(\triangleright \Sigma^*\times\left(\Sigma^*(\Sigma-\sqcup)\right)\cup\{e\}\right)^k
+\]</div>
+<p>同时我们规定：</p>
+<ul>
+<li>输入字符串放在第一条带上</li>
+<li>其他磁带初始为空白，读写头位于最左侧空白格</li>
+<li>计算结束时，输出在第一条带上，其他磁带忽略</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-29%20214949.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-29%20214949.png" /></a></p>
+</div>
+<p>定理：设 <span class="arithmatex">\(M=(K,\Sigma,\delta,s,H)\)</span> 是一个 <span class="arithmatex">\(k\)</span>-带图灵机（<span class="arithmatex">\(k \geq 1\)</span>）。则存在一个标准图灵机 <span class="arithmatex">\(M'=(K',\Sigma',\delta',s',H)\)</span>，其中 <span class="arithmatex">\(\Sigma \subseteq \Sigma'\)</span>，使得以下结论成立：</p>
+<ul>
+<li>对任意输入字符串 <span class="arithmatex">\(x \in \Sigma^*\)</span>，<span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上停机，并在第一条带上输出 <span class="arithmatex">\(y\)</span>，当且仅当 <span class="arithmatex">\(M'\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上停机于相同的停机状态，且在其磁带上输出相同的 <span class="arithmatex">\(y\)</span>。</li>
+<li>如果 <span class="arithmatex">\(M\)</span> 在输入为 <span class="arithmatex">\(x\)</span> 后 <span class="arithmatex">\(t\)</span> 步停机了，那么 <span class="arithmatex">\(M'\)</span> 会在 <span class="arithmatex">\(O(t(|x|+t))\)</span> 步后会停机</li>
+</ul>
+<p>证明思路是：构造一个标准图灵机 <span class="arithmatex">\(M′\)</span>，模拟 <span class="arithmatex">\(k\)</span>-带图灵机 <span class="arithmatex">\(M\)</span> 的行为。</p>
+<p>Phase 1 将 k 带图灵机的初始配置编码到单带图灵机的一条磁带上：每个磁带格子存储一个 2<em>k</em> 元组，前 <em>k</em> 项表示各带在该位置的符号，后 <em>k</em> 项用 0/1 标记各读写头是否位于此处。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-30%20195249.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-30%20195249.png" /></a></p>
+<p>Phase 2 就是模拟 <em>M</em> 的计算过程。首先从左到右（或从当前头位置）扫描，收集所有 <em>k</em> 个虚拟头当前读取的符号，形成 <em>k</em>-元组；然后根据 <em>M</em> 的转移函数确定新状态、要写入的符号和各头的移动方向，并更新 <em>M</em>′ 的内部状态；接着再次扫描磁带，将新符号写入对应位置，并通过在头标志位（0/1）上修改来反映各虚拟头的新位置。虽然 <em>M</em>′ 只有一个物理读写头，但通过多次遍历和标记，能准确模拟多个头的“同时”移动与操作。</p>
+<p>最后停机的时候</p>
+<ul>
+<li>解码：将磁带上每个复合元组（如 (<em>a</em>,⊔,0,0)）替换为其第一条带的符号（如 <em>a</em>），还原输出内容；</li>
+<li>定位：根据头标志位找到第一个头的位置，将自身读写头移至对应列；</li>
+<li>同步：进入与 <em>M</em> 相同的接受或拒绝状态，确保行为等价。</li>
+</ul>
+<p>对于时间复杂度 <span class="arithmatex">\(O(t(|x| + t))\)</span> 来说，由两个阶段决定：</p>
+<ul>
+<li>Phase 1: <span class="arithmatex">\(O(|x|)\)</span></li>
+<li>Phase 2: 对于 M 的每一步，M' 需要 <span class="arithmatex">\(O(|x|+2+t)\)</span></li>
+</ul>
+<hr />
+<p>对于由两边无限延长的磁带的图灵机来说，很容易将其转换为双磁带的图灵机</p>
+<p>对于单磁带多头的图灵机，可以用多带图灵机对其进行模拟，除去原先的单磁带，其他几条磁带用于模拟每个头的状态。</p>
+<p>对于多维图灵机也可以用多带图灵机对其模拟，记录坐标即可。</p>
+<h2 id="44-nondeterministic-turing-machines"><strong>4.4 Nondeterministic Turing Machines</strong><a class="headerlink" href="#44-nondeterministic-turing-machines" title="Permanent link">&para;</a></h2>
+<p>定义：一台非确定型图灵机（NTM）是一个五元组 <span class="arithmatex">\(M = (K,\Sigma,\Delta,s,H)\)</span>，其中 <span class="arithmatex">\(K\)</span>、<span class="arithmatex">\(\Sigma\)</span> 和 <span class="arithmatex">\(H\)</span> 与标准图灵机相同，而 <span class="arithmatex">\(\Delta\)</span> 是以下集合的一个子集：</p>
+<div class="arithmatex">\[
+((K - H) \times \Sigma) \times (K \times (\Sigma \cup \{ \leftarrow, \rightarrow \}))
+\]</div>
+<p>与图灵机类似，但 <span class="arithmatex">\(\Delta\)</span> 现在是一个<strong>关系</strong>而非函数。</p>
+<p>Configuration以及关系 <span class="arithmatex">\(\vdash_M\)</span> 和 <span class="arithmatex">\(\vdash_M^*\)</span> 的定义与标准图灵机类似。
+- <span class="arithmatex">\(\vdash_M\)</span> 不必是单值的：一个 Configuration 在一步中可能产生多个其他格局</p>
+<p>半判定：
+  - 给定 NTM <span class="arithmatex">\(M\)</span> 其输入符号集为<span class="arithmatex">\(\Sigma_0\)</span>
+  - <span class="arithmatex">\(M\)</span> semidecides <span class="arithmatex">\(L\subseteq\Sigma_0^*\)</span> if for any <span class="arithmatex">\(w\in\Sigma_0^*\)</span> ,<span class="arithmatex">\(w\in L\)</span> iff <span class="arithmatex">\((s,\triangleright\sqcup w)\vdash_M^*(h,\cdots)\)</span>forsome <span class="arithmatex">\(h\in H\)</span>
+  - 如果 <span class="arithmatex">\(w\in L\)</span> 则NTM有分支可以停机，否则没有分支可以停机</p>
+<p>判定：令<span class="arithmatex">\(M=(K,\Sigma,\Delta,s,\{y,n\})\)</span>，输入符号集 <span class="arithmatex">\(\Sigma_0\)</span>，<span class="arithmatex">\(M\)</span> decides a language <span class="arithmatex">\(L\subseteq\Sigma_0^*\)</span> if</p>
+<ul>
+<li>for any <span class="arithmatex">\(w\in\Sigma_0^*\)</span> ,exists an a tural number <span class="arithmatex">\(N\)</span>,s.t.no configuration <span class="arithmatex">\(c\)</span> satisfying <span class="arithmatex">\((s,\triangleright\sqcup w)\vdash_M^N c\)</span> 说明在<span class="arithmatex">\(N\)</span>步内都可以停机，非确定产生的树高度小于<span class="arithmatex">\(N\)</span></li>
+<li><span class="arithmatex">\(w\in L\)</span> iff <span class="arithmatex">\((s,\triangleright\sqcup w)\vdash_M^*(y,\cdots)\)</span> 非确定执行的树上有一条分支可以停机到 <span class="arithmatex">\(y\)</span> 状态</li>
+</ul>
+<blockquote>
+<p>半判定就是有一个可停机，判定就是所有可能情况都可停机（注意停机状态只有 Y/N）但是有情况停机状态是 Y</p>
+</blockquote>
+<div class="admonition example">
+<p class="admonition-title">构造 NTM 判定所有合数（非质数）的二进制编码构成的语言</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>利用NTM可以“猜测”的特性，目标是猜测有没有两个数相乘等于输入。
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>假设输入字符串为 $w$，则先猜测两个数，得到 $\triangleright\sqcup p\sqcup q$，然后将$p$和$q$相乘，如果等于 $w$ 则停机到 $y$，否则停机到 $n$，满足第二个条件。
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>因为 $p,q$ 都小于 $w$，所以猜测是有限的，而且都可以有限步停机，满足第一个条件。
+</code></pre></div>
 
 
   
@@ -1707,13 +1849,13 @@ w\in L \Leftrightarrow M 在输入为 w时可以停机
         
         
           
-          <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction/" class="md-footer__link md-footer__link--next" aria-label="下一页: Introduction" rel="next">
+          <a href="../Chapter%205/" class="md-footer__link md-footer__link--next" aria-label="下一页: 5 Undecidability" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Introduction
+                5 Undecidability
               </div>
             </div>
             <div class="md-footer__button md-icon">

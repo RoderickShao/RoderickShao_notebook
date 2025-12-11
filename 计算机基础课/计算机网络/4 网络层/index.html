@@ -16,7 +16,7 @@
         <link rel="prev" href="../3%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">
       
       
-        <link rel="next" href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/">
+        <link rel="next" href="../5%20%E8%BF%90%E8%BE%93%E5%B1%82/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -988,6 +988,8 @@
       
         
       
+        
+      
     
     
       
@@ -1025,6 +1027,8 @@
   
     
     
+      
+        
       
         
       
@@ -1075,6 +1079,8 @@
   
     
     
+      
+        
       
         
       
@@ -1380,6 +1386,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#47-ip" class="md-nav__link">
+    4.7 IP 多播
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1389,6 +1402,26 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5%20%E8%BF%90%E8%BE%93%E5%B1%82/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 运输层
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1411,6 +1444,8 @@
   
     
     
+      
+        
       
         
       
@@ -1681,6 +1716,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#47-ip" class="md-nav__link">
+    4.7 IP 多播
+  </a>
   
 </li>
       
@@ -2235,11 +2277,22 @@
 <p>有时，一个机构的虚拟专用网VPN需要某些外部机构（通常是合作伙伴）参加进来，这样的VPN就称为<strong>外联网VPN</strong>。</p>
 <h3 id="462">4.6.2  网络地址转换<a class="headerlink" href="#462" title="Permanent link">&para;</a></h3>
 <p>尽管因特网采用了无分类编址方法来减缓 IPv4 地址空间耗尽的速度，但由于因特网用户数量的急剧增长，特别是大量小型办公室和家庭网络接入因特网的需求不断增加，<strong>IPv4 地址空间即将耗尽的危险然仍没有解除</strong>（实际上，因特网号码分配管理局 IANN 于2011年2月3日宣布，IPv4 地址已经分配完毕）。</p>
-<p><strong>网络地址转换</strong>（Network Address Translation，NAT）技术于1994年被提出，用来缓解IPv4地址空间即将耗尽的问题。</p>
-<ul>
-<li>NAT 能使大量使用内部专用地址的专用网络用户共享少量外部全球地址来访问因特网上的主机和资源。</li>
-<li>这种方法需要在专用网络连接到因特网的路由器上安装NAT软件。装有NAT软件的路由器称为 <strong>NAT路由器</strong>，它至少要有一个有效的外部全球地址 <span class="arithmatex">\(\text{IP}_G\)</span>。这样，所有使用内部专用地址的主机在和外部因特网通信时，都要在NAT路由器上将其内部专用地址转换成 <span class="arithmatex">\(\text{IP}_G\)</span>。</li>
-</ul>
+<p><strong>网络地址转换</strong>（Network Address Translation，NAT）技术于1994年被提出，用来缓解IPv4地址空间即将耗尽的问题。由于目前绝大多数基于TCP/IP协议栈的网络应用，都使用运输层的传输控制协议TCP或用户数据报协议UDP，为了更加有效地利用NAT路由器中的全球IP地址，现在常将<strong>NAT转换和运输层端口号</strong>结合使用。</p>
+<blockquote>
+<p>这样就可以使内部专用网中使用专用地址的大量主机，共用NAT路由器上的1个全球 IP 地址，因而可以同时与因特网中的不同主机进行通信。</p>
+</blockquote>
+<p>将NAT和运输层端口号结合使用，称为网络地址与端口号转换（Network Address and Port Translation，NAPT)</p>
+<p>内网主机 A 和 B 如何通过 NAPT 路由器共享一个公网 IP 访问外网，NAPT 将各自的源端口映射为不同的公网端口并记录在转换表中</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-29%20205213.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-29%20205213.png" /></a></p>
+<p>外网主机 C 的响应如何通过 NAPT 路由器查表还原目标地址，将数据包正确转发回对应的内网主机。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-29%20205241.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-29%20205241.png" /></a></p>
+<p>尽管NAT（和NAPT）的出现在很大程度上缓解了IPv4地址资源紧张的局面，但NAT（和NAPT）对网络应用并不完全透明，会对某些网络应用产生影响。</p>
+<p>NAT（和NAPT）的一个重要特点就是通信必须由专用网内部发起，因此拥有内部专用地址的主机不能直接充当因特网中的服务器。外网主机不能首先发起通信。</p>
+<h2 id="47-ip">4.7 IP 多播<a class="headerlink" href="#47-ip" title="Permanent link">&para;</a></h2>
+<p>多播（Multicast，也称为组播）是一种实现“一对多”通信的技术，与传统单播“一对一”通信相比，多播可以极大地节省网络资源。</p>
+<p>在因特网上进行的多播，称为<strong>IP多播</strong>。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-29%20210729.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-29%20210729.png" /></a></p>
+<p>当多播组的成员数量很大时，采用多播方式可以显著地减少网络中各种资源的消耗。</p>
 
 
   
@@ -2398,13 +2451,13 @@
         
         
           
-          <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-footer__link md-footer__link--next" aria-label="下一页: Introduction" rel="next">
+          <a href="../5%20%E8%BF%90%E8%BE%93%E5%B1%82/" class="md-footer__link md-footer__link--next" aria-label="下一页: 5 运输层" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Introduction
+                5 运输层
               </div>
             </div>
             <div class="md-footer__button md-icon">

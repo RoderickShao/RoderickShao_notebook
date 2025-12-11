@@ -16,7 +16,7 @@
         <link rel="prev" href="../5%20Process%20Synchronization/">
       
       
-        <link rel="next" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Introduction/">
+        <link rel="next" href="../7%20Main%20Memory/">
       
       
       <link rel="icon" href="../../../assets/logo.png">
@@ -988,6 +988,8 @@
       
         
       
+        
+      
     
     
       
@@ -1027,6 +1029,8 @@
   
     
     
+      
+        
       
         
       
@@ -1280,6 +1284,47 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#652-several-instances-of-a-resource-type" class="md-nav__link">
+    6.5.2 Several Instances of a Resource Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#653-detection-algorithm-usage" class="md-nav__link">
+    6.5.3 Detection-Algorithm Usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66-recovery-from-deadlock" class="md-nav__link">
+    6.6 Recovery from Deadlock
+  </a>
+  
+    <nav class="md-nav" aria-label="6.6 Recovery from Deadlock">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#661-process-termination" class="md-nav__link">
+    6.6.1 Process Termination
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#662-resource-preemption" class="md-nav__link">
+    6.6.2 Resource Preemption
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1289,6 +1334,26 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7%20Main%20Memory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 Main Memory
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1309,6 +1374,8 @@
   
     
     
+      
+        
       
         
       
@@ -1362,6 +1429,8 @@
   
     
     
+      
+        
       
         
       
@@ -1561,6 +1630,47 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#652-several-instances-of-a-resource-type" class="md-nav__link">
+    6.5.2 Several Instances of a Resource Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#653-detection-algorithm-usage" class="md-nav__link">
+    6.5.3 Detection-Algorithm Usage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66-recovery-from-deadlock" class="md-nav__link">
+    6.6 Recovery from Deadlock
+  </a>
+  
+    <nav class="md-nav" aria-label="6.6 Recovery from Deadlock">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#661-process-termination" class="md-nav__link">
+    6.6.1 Process Termination
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#662-resource-preemption" class="md-nav__link">
+    6.6.2 Resource Preemption
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1743,6 +1853,73 @@
 <h2 id="65-deadlock-detection"><strong>6.5 Deadlock Detection</strong><a class="headerlink" href="#65-deadlock-detection" title="Permanent link">&para;</a></h2>
 <h3 id="651-single-instance-of-each-resource-type"><strong>6.5.1 Single Instance of Each Resource Type</strong><a class="headerlink" href="#651-single-instance-of-each-resource-type" title="Permanent link">&para;</a></h3>
 <p>化简资源分配图为等待图，节点就是进程，箭头 <span class="arithmatex">\(P_i\rightarrow P_j\)</span> 代表 <span class="arithmatex">\(P_i\)</span> 在等待 <span class="arithmatex">\(P_j\)</span>。检测死锁的过程就是检查当前等待图是否有环。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-27%20205816.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-27%20205816.png" /></a></p>
+<h3 id="652-several-instances-of-a-resource-type"><strong>6.5.2 Several Instances of a Resource Type</strong><a class="headerlink" href="#652-several-instances-of-a-resource-type" title="Permanent link">&para;</a></h3>
+<p><strong>Available（可用资源向量）</strong>：一个长度为 <em>m</em> 的向量，表示每种资源类型的可用实例数量。</p>
+<p><strong>Allocation（分配矩阵）</strong>：一个 <em>n</em>×<em>m</em> 的矩阵，表示每个进程当前已分配的各类资源数量。</p>
+<p><strong>Request（请求矩阵）</strong>：一个 <em>n</em>×<em>m</em> 的矩阵，表示每个进程当前对各类资源的请求量。</p>
+<p>整个检测流程如下</p>
+<ol>
+<li>设 Work 和 Finish 分别为长度为 m 和 n 的向量。初始化：  </li>
+</ol>
+<p>(a) Work = Available 
+   (b) 对于 i = 1,2,...,n，若 Allocation_i ≠ 0，则 Finish[i] = false；否则，Finish[i] = true。</p>
+<ol start="2">
+<li>寻找一个下标 i，使得同时满足： 
+   (a) Finish[i] == false 
+   (b) Request_i ≤ Work  </li>
+</ol>
+<p>如果不存在这样的 i，则转到步骤 4。</p>
+<ol start="3">
+<li>
+<p>将当前进程 <span class="arithmatex">\(P_i\)</span> 的分配资源加到工作向量 <span class="arithmatex">\(\text{Work}=\text{Work}+\text{Allocation}_i\)</span> 标记该进程已完成：Finish[i]=true，返回步骤 2 继续查找下一个可完成的进程。</p>
+</li>
+<li>
+<p>如果存在某个进程<span class="arithmatex">\(P_i\)</span>（<span class="arithmatex">\(1\leq i\leq n\)</span>），其 Finish[i]=false ，则系统处于<strong>死锁状态</strong>。 
+   此时，所有满足 Finish[i]=false 的进程<span class="arithmatex">\(P_i\)</span>均为<strong>死锁进程</strong>。</p>
+</li>
+</ol>
+<blockquote>
+<p>该算法的时间复杂度为 <span class="arithmatex">\(O(m\times n^2)\)</span>，用于检测系统是否处于死锁状态。</p>
+</blockquote>
+<h3 id="653-detection-algorithm-usage">6.5.3 <strong>Detection-Algorithm Usage</strong><a class="headerlink" href="#653-detection-algorithm-usage" title="Permanent link">&para;</a></h3>
+<p>我们应该何时调用、以及多久调用一次？决于以下两个因素：</p>
+<p><strong>死锁发生的频率</strong></p>
+<ul>
+<li>如果系统中死锁频繁发生，则应更频繁地运行检测算法（如定期执行），以尽早发现并处理。</li>
+<li>如果死锁很少发生，可以减少检测频率，以节省系统开销。</li>
+</ul>
+<p><strong>需要回滚多少个进程</strong></p>
+<ul>
+<li>检测到死锁后，通常需要<strong>终止或回滚部分进程</strong>来释放资源。</li>
+<li>若涉及的进程较多，恢复代价高，因此应谨慎选择检测时机，避免频繁触发大规模回滚。</li>
+</ul>
+<h2 id="66-recovery-from-deadlock">6.6 Recovery from Deadlock<a class="headerlink" href="#66-recovery-from-deadlock" title="Permanent link">&para;</a></h2>
+<p>打破死锁两种方法：</p>
+<ul>
+<li>进程终止</li>
+<li>抢占资源</li>
+</ul>
+<h3 id="661-process-termination"><strong>6.6.1 Process Termination</strong><a class="headerlink" href="#661-process-termination" title="Permanent link">&para;</a></h3>
+<p>对于进程终止的方法，可以选择</p>
+<ul>
+<li>终止所有死锁进程，简单直接可以一次性结束所有处于死锁状态的进程。优点是快速解决死锁。缺点就是代价高，可能浪费大量已执行的工作，影响用户体验。</li>
+<li>逐个终止进程，直到死锁环被打破，每次只终止一个进程，然后重新检查是否仍存在死锁。优点是尽量减少终止的进程数量，降低损失。缺点就是恢复过程较慢，可能需要多次尝试。</li>
+</ul>
+<p>选择终止哪个进程时，需考虑多个因素：</p>
+<ul>
+<li>进程的优先级（Priority of the process）→ 优先终止低优先级进程，保留重要任务。</li>
+<li>进程已计算的时间和剩余完成时间（How long process has computed, and how much longer to completion） → 优先终止<strong>已完成较少、剩余时间较长</strong>的进程，避免浪费更多资源。</li>
+<li>进程已使用的资源量（Resources the process has used） → 优先终止<strong>占用资源少</strong>的进程，释放资源更高效。</li>
+<li>进程完成所需资源（Resources process needs to complete）→ 优先终止<strong>需求资源多</strong>的进程，因为其释放的资源可能更多。</li>
+<li>需要终止多少个进程（How many processes will need to be terminated）→ 选择能<strong>最小化总终止数</strong>的方案。</li>
+<li>进程是交互式还是批处理（Whether the process is interactive or batch）→ 优先终止<strong>批处理进程</strong>，因为它们通常不与用户交互，中断影响较小；保留交互式进程以保证用户体验。</li>
+</ul>
+<h3 id="662-resource-preemption">6.6.2 <strong>Resource Preemption</strong><a class="headerlink" href="#662-resource-preemption" title="Permanent link">&para;</a></h3>
+<p>从某个进程手中<strong>强行收回资源</strong>，并将其分配给其他进程，以打破死锁循环。</p>
+<p>系统需要选择一个或多个“受害者”进程，从中抢占资源。目标是<strong>最小化恢复成本</strong></p>
+<p>抢占资源后，被选中的“受害者”进程需要<strong>回退到之前的一个安全状态</strong>，然后重新启动该进程，从那个安全点开始执行。</p>
+<p>如果不加控制，<strong>同一个进程可能反复被选为“受害者”</strong>，导致它永远无法完成。所以在选择受害者时，可以将“回退次数”纳入代价函数</p>
 
 
   
@@ -1901,13 +2078,13 @@
         
         
           
-          <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Introduction/" class="md-footer__link md-footer__link--next" aria-label="下一页: Introduction" rel="next">
+          <a href="../7%20Main%20Memory/" class="md-footer__link md-footer__link--next" aria-label="下一页: 7 Main Memory" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Introduction
+                7 Main Memory
               </div>
             </div>
             <div class="md-footer__button md-icon">
