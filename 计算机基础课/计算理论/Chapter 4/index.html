@@ -1179,6 +1179,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#45-grammars" class="md-nav__link">
+    4.5 Grammars
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#46-numerical-functions" class="md-nav__link">
+    4.6 Numerical Functions
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1474,6 +1488,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#45-grammars" class="md-nav__link">
+    4.5 Grammars
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#46-numerical-functions" class="md-nav__link">
+    4.6 Numerical Functions
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1670,10 +1698,12 @@ K\times\left(\triangleright \Sigma^*\times\left(\Sigma^*(\Sigma-\sqcup)\right)\c
 <p>与图灵机类似，但 <span class="arithmatex">\(\Delta\)</span> 现在是一个<strong>关系</strong>而非函数。</p>
 <p>Configuration以及关系 <span class="arithmatex">\(\vdash_M\)</span> 和 <span class="arithmatex">\(\vdash_M^*\)</span> 的定义与标准图灵机类似。
 - <span class="arithmatex">\(\vdash_M\)</span> 不必是单值的：一个 Configuration 在一步中可能产生多个其他格局</p>
-<p>半判定：
-  - 给定 NTM <span class="arithmatex">\(M\)</span> 其输入符号集为<span class="arithmatex">\(\Sigma_0\)</span>
-  - <span class="arithmatex">\(M\)</span> semidecides <span class="arithmatex">\(L\subseteq\Sigma_0^*\)</span> if for any <span class="arithmatex">\(w\in\Sigma_0^*\)</span> ,<span class="arithmatex">\(w\in L\)</span> iff <span class="arithmatex">\((s,\triangleright\sqcup w)\vdash_M^*(h,\cdots)\)</span>forsome <span class="arithmatex">\(h\in H\)</span>
-  - 如果 <span class="arithmatex">\(w\in L\)</span> 则NTM有分支可以停机，否则没有分支可以停机</p>
+<p>半判定：</p>
+<ul>
+<li>给定 NTM <span class="arithmatex">\(M\)</span> 其输入符号集为<span class="arithmatex">\(\Sigma_0\)</span></li>
+<li><span class="arithmatex">\(M\)</span> semidecides <span class="arithmatex">\(L\subseteq\Sigma_0^*\)</span> if for any <span class="arithmatex">\(w\in\Sigma_0^*\)</span> ,<span class="arithmatex">\(w\in L\)</span> iff <span class="arithmatex">\((s,\triangleright\sqcup w)\vdash_M^*(h,\cdots)\)</span>forsome <span class="arithmatex">\(h\in H\)</span></li>
+<li>如果 <span class="arithmatex">\(w\in L\)</span> 则NTM有分支可以停机，否则没有分支可以停机</li>
+</ul>
 <p>判定：令<span class="arithmatex">\(M=(K,\Sigma,\Delta,s,\{y,n\})\)</span>，输入符号集 <span class="arithmatex">\(\Sigma_0\)</span>，<span class="arithmatex">\(M\)</span> decides a language <span class="arithmatex">\(L\subseteq\Sigma_0^*\)</span> if</p>
 <ul>
 <li>for any <span class="arithmatex">\(w\in\Sigma_0^*\)</span> ,exists an a tural number <span class="arithmatex">\(N\)</span>,s.t.no configuration <span class="arithmatex">\(c\)</span> satisfying <span class="arithmatex">\((s,\triangleright\sqcup w)\vdash_M^N c\)</span> 说明在<span class="arithmatex">\(N\)</span>步内都可以停机，非确定产生的树高度小于<span class="arithmatex">\(N\)</span></li>
@@ -1684,13 +1714,162 @@ K\times\left(\triangleright \Sigma^*\times\left(\Sigma^*(\Sigma-\sqcup)\right)\c
 </blockquote>
 <div class="admonition example">
 <p class="admonition-title">构造 NTM 判定所有合数（非质数）的二进制编码构成的语言</p>
+<p>利用NTM可以“猜测”的特性，目标是猜测有没有两个数相乘等于输入。</p>
+<p>假设输入字符串为 <span class="arithmatex">\(w\)</span>，则先猜测两个数，得到 <span class="arithmatex">\(\triangleright\sqcup p\sqcup q\)</span>，然后将<span class="arithmatex">\(p\)</span>和<span class="arithmatex">\(q\)</span>相乘，如果等于 <span class="arithmatex">\(w\)</span> 则停机到 <span class="arithmatex">\(y\)</span>，否则停机到 <span class="arithmatex">\(n\)</span>，满足第二个条件。</p>
+<p>因为 <span class="arithmatex">\(p,q\)</span> 都小于 <span class="arithmatex">\(w\)</span>，所以猜测是有限的，而且都可以有限步停机，满足第一个条件。</p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>利用NTM可以“猜测”的特性，目标是猜测有没有两个数相乘等于输入。
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>假设输入字符串为 $w$，则先猜测两个数，得到 $\triangleright\sqcup p\sqcup q$，然后将$p$和$q$相乘，如果等于 $w$ 则停机到 $y$，否则停机到 $n$，满足第二个条件。
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>因为 $p,q$ 都小于 $w$，所以猜测是有限的，而且都可以有限步停机，满足第一个条件。
+<p>如果一个非确定性图灵机（NTM）<span class="arithmatex">\(M\)</span> 能够半判定、判定某种语言或计算某个函数，那么一定存在一个标准的确定性图灵机（Standard TM）<span class="arithmatex">\(M’\)</span>，它也能半判定、判定相同的语言或计算相同的函数。这表明非确定性图灵机与标准图灵机在计算能力上是等价的。</p>
+<p><a class="glightbox" href="../img/NTM.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/NTM.png" /></a></p>
+<p>若NTM <span class="arithmatex">\(M\)</span> 半判定某个语言 <span class="arithmatex">\(L\)</span>，则可构造一个标准TM <span class="arithmatex">\(M'\)</span>来模拟 <span class="arithmatex">\(M\)</span> 的所有可能计算路径，从而系统性地探索 <span class="arithmatex">\(M\)</span> 的非确定性分支。<span class="arithmatex">\(M’\)</span> 采用三带结构：</p>
+<ul>
+<li>第一带存储原始输入</li>
+<li>第二带模拟 <span class="arithmatex">\(M\)</span> 的工作带</li>
+<li>第三带记录指导 <span class="arithmatex">\(M’\)</span> 执行特定计算路径的指令序列</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-13%20213304.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-13%20213304.png" /></a></p>
+<p>在这里 <span class="arithmatex">\(C^{1→2}\)</span> 负责将第一带的内容复制到第二带并清空第二带；<span class="arithmatex">\(B^3\)</span> 生成第三带上字典序的下一个指令序列；<span class="arithmatex">\(M_d^{2,3}\)</span> 是 <span class="arithmatex">\(M\)</span> 的确定性版本，在第二和第三带上运行。</p>
+<blockquote>
+<p>可以穷举所有可能性</p>
+</blockquote>
+<p>由于每个状态-符号组合最多有 <span class="arithmatex">\(r\)</span> 个转移，<span class="arithmatex">\(k\)</span> 步计算可由长度为 <span class="arithmatex">\(k\)</span>、每个元素小于 <span class="arithmatex">\(r\)</span> 的数字序列唯一确定，因此所有可能的计算路径构成一个有限的配置空间。<span class="arithmatex">\(M'\)</span> 通过系统地尝试所有一阶、二阶、三阶……计算路径，确保不会遗漏任何可能导致接受的路径。最终，<span class="arithmatex">\(M'\)</span> 要么发现 <span class="arithmatex">\(M\)</span> 的某条停机接受路径而停止，要么无限搜索而不停机，其行为与 <span class="arithmatex">\(M\)</span> 的半判定能力一致。由于每一步的下一配置数量有限（不超过 <span class="arithmatex">\(|K|·(|Σ|+2))\)</span>，对于任意 <span class="arithmatex">\(k\)</span>，<span class="arithmatex">\(k\)</span> 步计算的数量是有限的，因此 <span class="arithmatex">\(M'\)</span> 的构造是可行的，从而完成了从 NTM 到标准 TM 的等价转换。</p>
+<h2 id="45-grammars">4.5 Grammars<a class="headerlink" href="#45-grammars" title="Permanent link">&para;</a></h2>
+<p>一个文法 <span class="arithmatex">\(G\)</span> 定义为四元组 <span class="arithmatex">\(G = (V, Σ, R, S)\)</span></p>
+<ul>
+<li><span class="arithmatex">\(V\)</span> 是字母表</li>
+<li><span class="arithmatex">\(Σ ⊆ V\)</span> 是终结符集合</li>
+<li><span class="arithmatex">\(V − Σ\)</span> 是非终结符集合</li>
+<li><span class="arithmatex">\(S ∈ V − Σ\)</span> 是起始符号</li>
+<li><span class="arithmatex">\(R\)</span> 是规则集合，即从包含至少一个非终结符的字符串到任意字符串的有限映射。</li>
+</ul>
+<p><span class="arithmatex">\(G\)</span> 生成的语言定义为：  </p>
+<div class="arithmatex">\[
+L(G)=\{w\in\Sigma^*:S\Rightarrow_G^*w\}
+\]</div>
+<p>从 <span class="arithmatex">\(w_0\)</span> 到 <span class="arithmatex">\(w_n\)</span> 在 <span class="arithmatex">\(G\)</span> 中的一个推导形式为：  </p>
+<div class="arithmatex">\[
+w_0\Rightarrow_Gw_1\Rightarrow_G\cdots\Rightarrow_Gw_n
+\]</div>
+<ul>
+<li>其中 $ n $ 为推导的长度（即推导步数）。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><span class="arithmatex">\(G\)</span> 用于生成语言 <span class="arithmatex">\(\{a^n b^n c^n : n \geq 1\}\)</span> ，起始规则 <span class="arithmatex">\(S \to ABCS\)</span> 和 <span class="arithmatex">\(S \to T_c\)</span> 允许生成任意多个 <span class="arithmatex">\(ABC\)</span> 块，即 <span class="arithmatex">\(S \Rightarrow (ABC)^n T_c\)</span> （对任意 <span class="arithmatex">\(n \geq 0\)</span> ）。通过规则 <span class="arithmatex">\(BA \to AB\)</span> 、 <span class="arithmatex">\(CA \to AC\)</span> 、 <span class="arithmatex">\(CB \to BC\)</span> 可以修复非终结符的顺序，确保 <span class="arithmatex">\(A\)</span> 、 <span class="arithmatex">\(B\)</span> 、 <span class="arithmatex">\(C\)</span> 按照正确顺序排列。接着，规则 <span class="arithmatex">\(C T_c \to T_c c\)</span> 和 <span class="arithmatex">\(C T_c \to T_b c\)</span> 允许 <span class="arithmatex">\(c\)</span>-变换器向左移动并生成 <span class="arithmatex">\(c\)</span> ，同时可转化为 <span class="arithmatex">\(b\)</span>-变换器。进一步， <span class="arithmatex">\(B T_b \to T_b b\)</span> 、 <span class="arithmatex">\(B T_b \to T_a b\)</span> 、 <span class="arithmatex">\(A T_a \to T_a a\)</span> 和 <span class="arithmatex">\(T_a \to \varepsilon\)</span> 实现了从右到左依次生成 <span class="arithmatex">\(b\)</span> 和 <span class="arithmatex">\(a\)</span> ，最终完成字符串 <span class="arithmatex">\(a^n b^n c^n\)</span> 的构造。该过程体现了通过非终结符的移动与转换来实现复杂语言结构生成的思想。</p>
+</div>
+<p>现在我们要说明的是 Grammar 和图灵机的等价性</p>
+<p><strong>定理</strong>：一个语言能被文法生成，当且仅当它是递归可枚举的。即： <span class="arithmatex">\(L\)</span> 是文法生成的语言 <span class="arithmatex">\(\iff\)</span> <span class="arithmatex">\(L\)</span> 是递归可枚举的。</p>
+<hr />
+<p><span class="arithmatex">\((\Rightarrow)\)</span> 文法 <span class="arithmatex">\(\Rightarrow\)</span> 递归可枚举的证明：</p>
+<p>设 <span class="arithmatex">\(L=L(G)\)</span>，思路是构造一台非确定性图灵机 <span class="arithmatex">\(M\)</span>，使得 <span class="arithmatex">\(L(M)=L(G)\)</span>。</p>
+<p><span class="arithmatex">\(M\)</span> 有两带：
+  - 第一带永久保存输入 <span class="arithmatex">\(w\)</span>；
+  - 第二带用于尝试重构从起始符号 <span class="arithmatex">\(S\)</span> 到 <span class="arithmatex">\(w\)</span> 的推导过程。</p>
+<p><span class="arithmatex">\(M\)</span> 非确定性地模拟文法 <span class="arithmatex">\(G\)</span> 的推导：
+  - 从第二带上的 <span class="arithmatex">\(S\)</span> 开始，每一步非确定性地选择一条规则进行替换；
+  - 每次替换后检查当前字符串是否等于 <span class="arithmatex">\(w\)</span>；
+  - 若相等则接受，否则继续尝试；
+  - 若无法推导出 <span class="arithmatex">\(w\)</span>，则可能无限循环。</p>
+<p>共有 <span class="arithmatex">\(|R|+1\)</span> 种状态选择：
+  - 前 <span class="arithmatex">\(|R|\)</span> 个状态对应应用某条规则；
+  - 第 <span class="arithmatex">\(|R|+1\)</span> 个状态用于比较当前串是否等于 <span class="arithmatex">\(w\)</span>，若相等则接受，否则继续。</p>
+<p>因此，<span class="arithmatex">\(M\)</span> 能半判定 <span class="arithmatex">\(L(G)\)</span>，故 <span class="arithmatex">\(L\)</span> 是递归可枚举的。</p>
+<hr />
+<p><span class="arithmatex">\((\Leftarrow)\)</span> 递归可枚举 <span class="arithmatex">\(\Rightarrow\)</span> 文法</p>
+<p>设 <span class="arithmatex">\(M\)</span> 是半判定 <span class="arithmatex">\(L\)</span> 的图灵机，构造文法 <span class="arithmatex">\(G\)</span> 使得 <span class="arithmatex">\(L(G)=L(M)\)</span>。</p>
+<p>右推左，给定图灵机 <span class="arithmatex">\(M\)</span> 要找文法 <span class="arithmatex">\(G\)</span> 生成 <span class="arithmatex">\(L(M)\)</span>。图灵机半判定的过程中，纸带上的变化：</p>
+<div class="arithmatex">\[
+\triangleright\sqcup sw\vdash\triangleright\sqcup u_1a_1q_1v_1\vdash\cdots\vdash\triangleright\sqcup h
+\]</div>
+<p>所以我们期望文法 <span class="arithmatex">\(G\)</span> 的表现是可以给出如下的替换链：</p>
+<div class="arithmatex">\[
+S\Rightarrow\triangleright\sqcup h\triangleleft\Rightarrow\cdots\Rightarrow\triangleright\sqcup u_1a_1q_1v_1\triangleleft\Rightarrow\triangleright\sqcup sw\triangleleft\Rightarrow w
+\]</div>
+<p>即从停机状态往前推，一直找到初始状态得到字符串 <span class="arithmatex">\(w\)</span>，并且在中间给每个状态加上一个三角标记结尾。</p>
+<p><strong>约定</strong>：</p>
+<ul>
+<li><span class="arithmatex">\(M\)</span> 从配置 <span class="arithmatex">\((s,\triangleright\underline{w})\)</span> 开始；</li>
+<li>状态集 <span class="arithmatex">\(K\)</span> 与字母表 <span class="arithmatex">\(\Sigma\)</span> 不相交，且均不含新边界符 <span class="arithmatex">\(\triangleleft\)</span>；</li>
+<li><span class="arithmatex">\(M\)</span> 停机时处于 <span class="arithmatex">\((h,\triangleright\underline{})\)</span>。</li>
+</ul>
+<p><strong>核心思想</strong>：<span class="arithmatex">\(G\)</span> 通过逆向模拟 <span class="arithmatex">\(M\)</span> 的计算过程来生成语言。</p>
+<ul>
+<li>中间字符串编码为配置形式：<ul>
+<li>配置 <span class="arithmatex">\((q,\triangleright u\underline{a}w)\)</span> 对应字符串 <span class="arithmatex">\(\triangleright uaqw\triangleleft\)</span></li>
+</ul>
+</li>
+<li>构造文法规则，使推导路径对应于 <span class="arithmatex">\(M\)</span> 的<strong>反向</strong>计算步骤。</li>
+</ul>
+<p><strong>文法构造</strong>：设 <span class="arithmatex">\(G=(V,\Sigma-\{\sqcup,\triangleright\},R,S)\)</span>，其中：</p>
+<p><span class="arithmatex">\(V=\Sigma\cup K\cup\{S,\triangleleft\}\)</span></p>
+<p>规则 <span class="arithmatex">\(R\)</span> 包含以下类型：
+  - 若 <span class="arithmatex">\((q,a)\to(p,b)\)</span>，则添加规则 <span class="arithmatex">\(bp\to aq\)</span>
+  - 若 <span class="arithmatex">\((q,a)\to(p,\rightarrow)\)</span>，则对每个 <span class="arithmatex">\(b\in\Sigma\)</span>，添加 <span class="arithmatex">\(abp\to aqb\)</span>
+  - 若 <span class="arithmatex">\((q,a)\to(p,\leftarrow)\)</span>，且 <span class="arithmatex">\(a\ne\sqcup\)</span>，则添加 <span class="arithmatex">\(pab\to aqb\)</span>；若 <span class="arithmatex">\(a=\sqcup\)</span>，则添加 <span class="arithmatex">\(p\sqcup b\to\sqcup qb\)</span> 和 <span class="arithmatex">\(p\triangleleft\leftarrow\sqcup q\triangleleft\)</span>
+  - 若 <span class="arithmatex">\((h,\sqcup)\)</span> 是终止配置，则添加 <span class="arithmatex">\(S\to\triangleright\sqcup h\triangleleft\)</span>
+  - 若 <span class="arithmatex">\(s\)</span> 是起始状态，则添加 <span class="arithmatex">\(\triangleright\sqcup s\to e\)</span>，<span class="arithmatex">\(\triangleleft\to e\)</span></p>
+<hr />
+<p><strong>定义</strong>：函数 <span class="arithmatex">\(f:\Sigma^*\to\Sigma^*\)</span> 是<strong>文法可计算的</strong> (<strong>grammatically computable</strong>)，若存在文法 <span class="arithmatex">\(G\)</span> 使得 <span class="arithmatex">\(SwS\Rightarrow_G^*v\)</span> 当且仅当 <span class="arithmatex">\(v=f(w)\)</span>。</p>
+<h2 id="46-numerical-functions"><strong>4.6 Numerical Functions</strong><a class="headerlink" href="#46-numerical-functions" title="Permanent link">&para;</a></h2>
+<p><strong>原始递归函数（Primitive Recursive Functions）</strong>这是一种从简单函数出发，通过特定操作构建更复杂函数的方法。</p>
+<p>所有原始递归函数都从以下三种基本函数开始：</p>
+<ul>
+<li><strong>零函数（Zero Function）</strong>: <span class="arithmatex">\(\text{zero}_k(n_1, ..., n_k) = 0\)</span></li>
+<li><strong>后继函数（Successor Function）</strong>: <span class="arithmatex">\(\text{succ}(n) = n + 1\)</span></li>
+<li><strong>投影函数（Projection Function）</strong>: <span class="arithmatex">\(id_{k,j}(n_1, ..., n_k) = n_j\)</span> （返回第 j 个参数）</li>
+</ul>
+<p>通过以下两种操作，可以从已有的原始递归函数构造出新的函数：</p>
+<ul>
+<li><strong>复合（Composition）</strong>: 若 <span class="arithmatex">\(g\)</span> 是 <span class="arithmatex">\(k\)</span> 元函数，<span class="arithmatex">\(h_1, ..., h_k\)</span> 是 <span class="arithmatex">\(l\)</span> 元函数，则新函数 <span class="arithmatex">\(f\)</span> 定义为：
+   <span class="arithmatex">\(f(n_1, ..., n_l) = g(h_1(n_1, ..., n_l), ..., h_k(n_1, ..., n_l))\)</span></li>
+<li><strong>原始递归（Primitive Recursion）</strong>:
+   给定一个 <span class="arithmatex">\(k\)</span> 元函数 <span class="arithmatex">\(g\)</span> 和一个 <span class="arithmatex">\((k+2)\)</span> 元函数 <span class="arithmatex">\(h\)</span>，可以定义一个新的 (<span class="arithmatex">\(k+1\)</span>) 元函数 <span class="arithmatex">\(f\)</span>：</li>
+<li><span class="arithmatex">\(f(n_1, ..., n_k, 0) = g(n_1, ..., n_k)\)</span></li>
+<li><span class="arithmatex">\(f(n_1, ..., n_k, m+1) = h(n_1, ..., n_k, m, f(n_1, ..., n_k, m))\)</span></li>
+</ul>
+<p>利用上述规则，可以证明许多常见函数是原始递归的：</p>
+<ul>
+<li><strong>算术运算</strong>: 加法 (<code>plus</code>)、乘法 (<code>mult</code>)、幂 (<code>exp</code>)</li>
+<li><strong>其他函数</strong>: 常数函数、符号函数 (<code>sgn</code>)、截断减法 (<code>m ~ n = max{m-n, 0}</code>)</li>
+<li><strong>谓词（取值 0 或 1 的函数）</strong>: 如 <code>iszero(n)</code>（判断是否为零）、<code>greater_than_or_equal(m, n)</code>（判断大小关系）、<code>prime(x)</code>（判断素数）等。</li>
+<li><strong>有界量词</strong>: 如果 <code>p</code> 是原始递归谓词，那么 <span class="arithmatex">\(∃t_{≤ m} p(n_1, ..., n_k, t)\)</span> 和 <span class="arithmatex">\(∀t_{≤ m} p(n_1, ..., n_k, t)\)</span> 也是原始递归的。</li>
+</ul>
+<p>原始递归函数是由局限性的</p>
+<ul>
+<li><strong>原始递归函数集是可枚举的</strong>：因为每个函数都可以用有限的符号串（由基本函数和操作符组成）来表示。</li>
+<li><strong>存在可计算但非原始递归的函数</strong>：通过对角线法可以构造一个函数 <span class="arithmatex">\(g(n) = f_n(n) + 1\)</span>（其中 <span class="arithmatex">\(f_n\)</span> 是第 n 个原始递归函数），这个 <span class="arithmatex">\(g\)</span> 显然是可计算的，但不在原始递归函数列表中。这说明<strong>原始递归函数是递归函数的真子集</strong>。</li>
+</ul>
+<hr />
+<p>为了克服原始递归函数的局限性，引入了<strong>极小化（Minimalization）</strong> 操作。进而引出 <span class="arithmatex">\(μ\)</span>-递归函数（<span class="arithmatex">\(μ\)</span>-Recursive Functions）</p>
+<p>给定一个 (k+1) 元函数 <span class="arithmatex">\(g\)</span>，其极小化是一个 k 元函数 <span class="arithmatex">\(f\)</span>，定义为：<span class="arithmatex">\(f(n_1, ..., n_k)\)</span>  = <strong>最小的 m</strong> 使得 <span class="arithmatex">\(g(n_1, ..., n_k, m) = 1\)</span>（如果存在这样的 <span class="arithmatex">\(m\)</span>；否则未定义或设为 0）。</p>
+<ul>
+<li>符号表示为：<span class="arithmatex">\(f = μm [g(n_1, ..., n_k, m) = 1]\)</span></li>
+</ul>
+<p><strong>μ-递归函数</strong>是指可以通过<strong>基本函数</strong>，经由<strong>复合、原始递归和（在可极小化函数上的）极小化</strong>操作得到的所有函数。</p>
+<p>!!! note 可极小化函数（Minimizable Function）</p>
+<div class="highlight"><pre><span></span><code>指对于任意输入 $(n_1, ..., n_k)$，总存在某个 $m$ 使得 $g(n_1, ..., n_k, m) = 0$。在这种情况下，极小化操作是良定义且总会终止的。
 </code></pre></div>
+<p>为什么我们要引出 <span class="arithmatex">\(\mu\)</span>- 递归函数的概念呢？下面这个定理揭示了其与图灵机的关系</p>
+<p><strong>定理</strong>：一个函数 <span class="arithmatex">\(f: ℕ^k → ℕ\)</span> 是 <strong>μ-递归的</strong>，当且仅当它是 <strong>递归的（recursive）</strong>，即可以被某台图灵机计算。</p>
+<p>(<span class="arithmatex">\(⇒\)</span>) <span class="arithmatex">\(μ\)</span>-递归 ⇒ 图灵机可计算：因为基本函数（零、后继、投影）很容易用图灵机实现，而复合、原始递归、极小化这三种操作也都可以被图灵机模拟。因此，任何 μ-递归函数都可以被图灵机计算。</p>
+<p>(<span class="arithmatex">\(⇐\)</span>) 图灵机可计算 ⇒ <span class="arithmatex">\(μ\)</span>-递归：</p>
+<ul>
+<li>首先对状态集 <span class="arithmatex">\(K\)</span> 和字母表 <span class="arithmatex">\(\Sigma\)</span> 进行编码：设 <span class="arithmatex">\(K\cap\Sigma=\emptyset\)</span>，令 <span class="arithmatex">\(b=|\Sigma|+|K|\)</span>，并定义一个映射 <span class="arithmatex">\(E:\Sigma\cup K\to\{0,1,\ldots,b-1\}\)</span>，</li>
+<li>这样，任意配置<span class="arithmatex">\((q,a_1a_2\dots a_kq\dots a_n)\)</span>可以表示为一个以<span class="arithmatex">\(b\)</span>为基数的整数，其形式为<span class="arithmatex">\(a_1a_2\dots a_kq\dots a_n\)</span>，对应的数值为</li>
+</ul>
+<div class="arithmatex">\[
+E(a_1)b^n+\cdots+E(a_k)b^{n-k+1}+E(q)b^{n-k}+E(a_{k+1})b^{n-k-1}+\cdots+E(a_n)
+\]</div>
+<p>假设图灵机<span class="arithmatex">\(M=(K,\Sigma,\delta,s,\{h\})\)</span>计算函数<span class="arithmatex">\(f:\mathbb{N}\to\mathbb{N}\)</span>。我们旨在证明<span class="arithmatex">\(f\)</span>是μ-递归的。为此，我们将<span class="arithmatex">\(f(n)\)</span>定义为一个由多个辅助函数组合而成的 <span class="arithmatex">\(μ\)</span>-递归函数：</p>
+<div class="arithmatex">\[
+f(n)=\text{num}(\text{output}(\text{last}(\text{comp}(n))))
+\]</div>
+<p>其中：
+- <span class="arithmatex">\(\text{comp}(n)\)</span> 表示一个整数，其在 <span class="arithmatex">\(b\)</span> 进制下的表示是机器从初始配置 <span class="arithmatex">\(\triangleright\sqcup sw\)</span>（<span class="arithmatex">\(w\)</span> 为 <span class="arithmatex">\(n\)</span> 的二进制编码）开始，经过一系列合法状态转移后，最终停机于<span class="arithmatex">\(\triangleright\sqcup hw'\)</span>（<span class="arithmatex">\(w'\)</span> 为 <span class="arithmatex">\(f(n)\)</span> 的二进制编码）的完整计算历史（即所有中间配置的拼接）；
+- <span class="arithmatex">\(\text{last}\)</span> 从该整数中提取出最后一个配置；
+- <span class="arithmatex">\(\text{output}\)</span> 去掉该配置中的前三个符号 <span class="arithmatex">\(\triangleright\sqcup h\)</span>，保留其余部分（即输出字符串）；
+- <span class="arithmatex">\(\text{num}\)</span> 将这个由0和1组成的二进制串转换为对应的自然数。</p>
+<p>然后只需要说明上述的函数是 <span class="arithmatex">\(\mu\)</span> 递归的即可</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-14%20172234.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-14%20172234.png" /></a></p>
 
 
   
