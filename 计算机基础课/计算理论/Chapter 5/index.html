@@ -1573,6 +1573,11 @@ x\in L_1\quad\text{当且仅当}\quad\tau(x)\in L_2
 <ul>
 <li>停机问题：给定一台图灵机 <span class="arithmatex">\(M\)</span> 和一个输入串 <span class="arithmatex">\(w\)</span>，问：<span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上是否会停止？</li>
 <li>空带停机问题：给定一台图灵机 <span class="arithmatex">\(M\)</span>，问：<span class="arithmatex">\(M\)</span> 在空输入带上是否会停止？</li>
+</ul>
+<blockquote>
+<p>假设存在一个能判定该问题的算法，那么我们可以利用它来判定已知不可判定的通用停机问题——对于任意图灵机 <span class="arithmatex">\(M\)</span> 和输入 <span class="arithmatex">\(w\)</span>，构造一台新机器 <span class="arithmatex">\(M_w\)</span>，它先在空带上写下 <span class="arithmatex">\(w\)</span>，再模拟 <span class="arithmatex">\(M\)</span> 运行；这样 <span class="arithmatex">\(M_w\)</span> 在空带上停机当且仅当 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上停机。由于这种构造是可计算的，若原问题可判定，则停机问题也可判定，矛盾</p>
+</blockquote>
+<ul>
 <li>存在性停机问题：给定一台图灵机 <span class="arithmatex">\(M\)</span>，问：是否存在某个字符串 <span class="arithmatex">\(w\)</span>，使得 <span class="arithmatex">\(M\)</span> 在 <span class="arithmatex">\(w\)</span> 上会停止？</li>
 <li>全局停机问题：给定一台图灵机 <span class="arithmatex">\(M\)</span>，问：<span class="arithmatex">\(M\)</span> 是否在<strong>所有</strong>输入串上都会停止？</li>
 <li>两台机器等价停机问题：给定两台图灵机 <span class="arithmatex">\(M_1\)</span> 和 <span class="arithmatex">\(M_2\)</span>，问：它们是否在<strong>相同的输入串上都停止</strong>？</li>

@@ -1845,9 +1845,10 @@ S\Rightarrow\triangleright\sqcup h\triangleleft\Rightarrow\cdots\Rightarrow\tria
 <li>符号表示为：<span class="arithmatex">\(f = μm [g(n_1, ..., n_k, m) = 1]\)</span></li>
 </ul>
 <p><strong>μ-递归函数</strong>是指可以通过<strong>基本函数</strong>，经由<strong>复合、原始递归和（在可极小化函数上的）极小化</strong>操作得到的所有函数。</p>
-<p>!!! note 可极小化函数（Minimizable Function）</p>
-<div class="highlight"><pre><span></span><code>指对于任意输入 $(n_1, ..., n_k)$，总存在某个 $m$ 使得 $g(n_1, ..., n_k, m) = 0$。在这种情况下，极小化操作是良定义且总会终止的。
-</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">可极小化函数（Minimizable Function）</p>
+<p>指对于任意输入 <span class="arithmatex">\((n_1, ..., n_k)\)</span>，总存在某个 <span class="arithmatex">\(m\)</span> 使得 <span class="arithmatex">\(g(n_1, ..., n_k, m) = 0\)</span>。在这种情况下，极小化操作是良定义且总会终止的。</p>
+</div>
 <p>为什么我们要引出 <span class="arithmatex">\(\mu\)</span>- 递归函数的概念呢？下面这个定理揭示了其与图灵机的关系</p>
 <p><strong>定理</strong>：一个函数 <span class="arithmatex">\(f: ℕ^k → ℕ\)</span> 是 <strong>μ-递归的</strong>，当且仅当它是 <strong>递归的（recursive）</strong>，即可以被某台图灵机计算。</p>
 <p>(<span class="arithmatex">\(⇒\)</span>) <span class="arithmatex">\(μ\)</span>-递归 ⇒ 图灵机可计算：因为基本函数（零、后继、投影）很容易用图灵机实现，而复合、原始递归、极小化这三种操作也都可以被图灵机模拟。因此，任何 μ-递归函数都可以被图灵机计算。</p>
@@ -1863,11 +1864,13 @@ E(a_1)b^n+\cdots+E(a_k)b^{n-k+1}+E(q)b^{n-k}+E(a_{k+1})b^{n-k-1}+\cdots+E(a_n)
 <div class="arithmatex">\[
 f(n)=\text{num}(\text{output}(\text{last}(\text{comp}(n))))
 \]</div>
-<p>其中：
-- <span class="arithmatex">\(\text{comp}(n)\)</span> 表示一个整数，其在 <span class="arithmatex">\(b\)</span> 进制下的表示是机器从初始配置 <span class="arithmatex">\(\triangleright\sqcup sw\)</span>（<span class="arithmatex">\(w\)</span> 为 <span class="arithmatex">\(n\)</span> 的二进制编码）开始，经过一系列合法状态转移后，最终停机于<span class="arithmatex">\(\triangleright\sqcup hw'\)</span>（<span class="arithmatex">\(w'\)</span> 为 <span class="arithmatex">\(f(n)\)</span> 的二进制编码）的完整计算历史（即所有中间配置的拼接）；
-- <span class="arithmatex">\(\text{last}\)</span> 从该整数中提取出最后一个配置；
-- <span class="arithmatex">\(\text{output}\)</span> 去掉该配置中的前三个符号 <span class="arithmatex">\(\triangleright\sqcup h\)</span>，保留其余部分（即输出字符串）；
-- <span class="arithmatex">\(\text{num}\)</span> 将这个由0和1组成的二进制串转换为对应的自然数。</p>
+<p>其中：</p>
+<ul>
+<li><span class="arithmatex">\(\text{comp}(n)\)</span> 表示一个整数，其在 <span class="arithmatex">\(b\)</span> 进制下的表示是机器从初始配置 <span class="arithmatex">\(\triangleright\sqcup sw\)</span>（<span class="arithmatex">\(w\)</span> 为 <span class="arithmatex">\(n\)</span> 的二进制编码）开始，经过一系列合法状态转移后，最终停机于<span class="arithmatex">\(\triangleright\sqcup hw'\)</span>（<span class="arithmatex">\(w'\)</span> 为 <span class="arithmatex">\(f(n)\)</span> 的二进制编码）的完整计算历史（即所有中间配置的拼接）；</li>
+<li><span class="arithmatex">\(\text{last}\)</span> 从该整数中提取出最后一个配置；</li>
+<li><span class="arithmatex">\(\text{output}\)</span> 去掉该配置中的前三个符号 <span class="arithmatex">\(\triangleright\sqcup h\)</span>，保留其余部分（即输出字符串）；</li>
+<li><span class="arithmatex">\(\text{num}\)</span> 将这个由0和1组成的二进制串转换为对应的自然数。</li>
+</ul>
 <p>然后只需要说明上述的函数是 <span class="arithmatex">\(\mu\)</span> 递归的即可</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-14%20172234.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-14%20172234.png" /></a></p>
 

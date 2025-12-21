@@ -1304,6 +1304,40 @@
     5.3.4 TCP的拥塞控制
   </a>
   
+    <nav class="md-nav" aria-label="5.3.4 TCP的拥塞控制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    四种拥塞控制方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#535-tcp" class="md-nav__link">
+    5.3.5 TCP 可靠传输的实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#536-tcp" class="md-nav__link">
+    5.3.6 TCP超时重传时间的选择
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#538-tcp" class="md-nav__link">
+    5.3.8 TCP的选择确认
+  </a>
+  
 </li>
         
       </ul>
@@ -1515,6 +1549,40 @@
     5.3.4 TCP的拥塞控制
   </a>
   
+    <nav class="md-nav" aria-label="5.3.4 TCP的拥塞控制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    四种拥塞控制方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#535-tcp" class="md-nav__link">
+    5.3.5 TCP 可靠传输的实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#536-tcp" class="md-nav__link">
+    5.3.6 TCP超时重传时间的选择
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#538-tcp" class="md-nav__link">
+    5.3.8 TCP的选择确认
+  </a>
+  
 </li>
         
       </ul>
@@ -1671,6 +1739,110 @@
 <p>注意这里发送了2个段，受到了第1个的确认段，窗口变成两个段，所以还能再发一个段</p>
 </div>
 <h3 id="534-tcp">5.3.4 TCP的拥塞控制<a class="headerlink" href="#534-tcp" title="Permanent link">&para;</a></h3>
+<p>在某段时间，若对网络中某一资源的需求超过了该资源所能提供的可用部分，网络性能就要变坏，这种情况就叫作<strong>拥塞（congestion）</strong>。</p>
+<blockquote>
+<p>计算机网络中的链路容量（带宽）、交换节点中的缓存和处理机等都是网络的资源。</p>
+</blockquote>
+<p>若出现拥塞而不进行控制，整个网络的吞吐量将随输入负荷的增大而下降。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20101822.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20101822.png" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">拥塞控制和流量控制</p>
+<p><strong>流量控制</strong>是指接收方根据其接收缓存的可用空间大小，通过TCP连接中的窗口机制来控制发送方的发送速率，确保接收方不会因处理不过来而丢失数据；</p>
+<p><strong>拥塞控制</strong>则是为了防止过多的数据注入到网络中，使网络能够承受现有的网络负荷，避免网络出现拥塞甚至崩溃，主要关注的是整个网络的负载情况。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20102210.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20102210.png" /></a></p>
+</div>
+<p>拥塞控制的基本方法可分为<strong>开环控制</strong>和<strong>闭环控制</strong>两种。</p>
+<ul>
+<li>
+<p>开环控制试图通过良好的设计在系统启动时就防止拥塞的发生，一旦运行便无需中途修正，适用于网络流量特征能够被准确描述且性能要求可事先获得的场景。</p>
+</li>
+<li>
+<p>闭环控制是一种基于反馈的控制方法，主要包括三个步骤：监测网络拥塞发生的时间和地点、将相关信息传递到可采取行动的节点、调整网络运行以缓解拥塞。当网络流量特征难以准确预测或网络不提供资源预留时，适合采用闭环控制。</p>
+</li>
+</ul>
+<p>因特网采用闭环控制方法来应对动态变化的网络环境。</p>
+<div class="admonition note">
+<p class="admonition-title">衡量网络拥塞的指标</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20102828.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20102828.png" /></a></p>
+</div>
+<p>根据拥塞信息的反馈形式，闭环拥塞控制算法可分为<strong>显式反馈算法</strong>和<strong>隐式反馈算法</strong>。</p>
+<ul>
+<li>显式反馈算法由拥塞节点（如路由器）主动向源点发送关于网络拥塞状态的明确信息，例如当路由器因拥塞而丢弃数据报时，会向源主机发送ICMP源抑制报告报文，通知其降低发送速率；这种方式需要网络层参与，因此显式反馈机制必须涉及网络层。</li>
+<li>隐式反馈算法则由源端通过观察自身在网络中的行为来推断是否发生拥塞，例如通过检测超时重传或往返时间（RTT）的变化来判断网络状况，TCP协议采用的就是这种隐式反馈方式。</li>
+</ul>
+<p>因特网主要利用隐式反馈在运输层实现拥塞控制。</p>
+<h4 id="_1">四种拥塞控制方法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>为了集中精力讨论拥塞控制算法的基本原理，假定如下条件:</p>
+<ol>
+<li>数据是单方向传送的，而另一个方向只传送确认。</li>
+<li>接收方总是有足够大的接收缓存空间，因而发送方的发送窗口的大小仅由网络的拥塞程度来决定，也就是不考虑接收方对发送方的流量控制。</li>
+<li>以TCP最大报文段MSS（即TCP报文段的数据载荷部分）的个数作为讨论问题的单位，而不是以字节为单位（尽管TCP是面向字节流的）。</li>
+</ol>
+</blockquote>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20104320.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20104320.png" /></a></p>
+<blockquote>
+<p>不考虑拥塞控制的话，swnd = rwnd; 不考虑流量控制的话，swnd = cwnd</p>
+<p>由于我们不考虑接收方对发送方的流量控制，所以 swnd = cwnd</p>
+</blockquote>
+<p><strong>慢开始</strong>是TCP连接初始阶段或发生超时重传后采用的一种拥塞控制策略。其核心思想是从较小的拥塞窗口（cwnd）开始，每经过一个往返时间（RTT），窗口大小按指数方式翻倍增长（即每收到一个确认，cwnd增加1个MSS）</p>
+<p>当拥塞窗口增长到慢开始阈值（ssthresh）后，TCP切换到<strong>拥塞避免</strong>阶段。此时窗口不再指数增长，而是线性增长——每个RTT仅增加1个MSS，以更谨慎的方式试探网络容量。若在此阶段检测到丢包（通常由超时触发），则认为网络已发生拥塞，需大幅降低发送速率。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20105523.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20105523.png" /></a></p>
+<p>如果只采用慢开始和拥塞避免的方法，当出现IP数据报首部误码被路由器丢弃，重传计时器超时从而误认为网络出现拥塞，将cwnd的值陡然降低为1并错误地启动慢开始算法，因而降低了传输效率。</p>
+<p>采用快重传算法可以让发送方尽早知道发生了个别TCP报文段的丢失。</p>
+<p><strong>快重传</strong>是一种加速丢包恢复的机制，旨在避免因等待超时而造成不必要的传输延迟。当发送方连续收到三个重复的ACK（即接收方多次确认同一个序列号），即可推断某个中间数据段已丢失，无需等待重传计时器超时，立即重传该丢失报文</p>
+<p>与快重传算法配合使用的是<strong>快恢复</strong>算法，发送方一旦收到3个重复确认，就知道现在只是丢失了个别的报文段，于是不启动慢开始算法，而是执行快恢复算法。</p>
+<p>发送方将慢开始门限ssthresh的值和拥塞窗口cwnd的值都调整为当前cwnd值的一半，并开始执行拥塞避免算法。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20110707.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20110707.png" /></a></p>
+<p>总结来说，拥塞控制的流程图如下</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20110911.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20110911.png" /></a></p>
+<h3 id="535-tcp">5.3.5 TCP 可靠传输的实现<a class="headerlink" href="#535-tcp" title="Permanent link">&para;</a></h3>
+<p>这个部分的内容实验做过了，内容虽简单但是整理起来比较复杂。基本的内容如下：</p>
+<p>TCP 使用<strong>以字节为单位的滑动窗口机制</strong>来实现可靠传输。</p>
+<p>发送方维护一个<strong>发送窗口（swnd）</strong>，接收方维护一个<strong>接收窗口（rwnd）</strong>。</p>
+<p>接收方通过确认报文段中的字段告知发送方：</p>
+<ul>
+<li><strong>ack = n</strong>：表示序号 <strong>n 之前的所有字节（0 ~ n−1）已正确接收</strong>，期望收到序号为 <strong>n</strong> 的下一个字节。</li>
+<li><strong>rwnd = x</strong>：表示当前接收窗口大小为 x 字节，即最多还能接收 x 字节的数据。</li>
+</ul>
+<p>放几道题目作为例子</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20120430.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20120430.png" /></a></p>
+<h3 id="536-tcp">5.3.6 TCP超时重传时间的选择<a class="headerlink" href="#536-tcp" title="Permanent link">&para;</a></h3>
+<p>TCP在选择超时重传时间（RTO）时，不能直接使用某次测量得到的往返时间（RTT）样本值，因为单个样本可能受网络波动影响而不稳定。为此，TCP采用加权平均的方法计算平滑的往返时间（RTTs），公式为：</p>
+<div class="arithmatex">\[
+\text{新的RTT}_S = (1 - α) × \text{旧的RTT}_S + α × \text{新的RTT样本}，
+\]</div>
+<p>其中 <span class="arithmatex">\(0 ≤ α &lt; 1\)</span>。当 <span class="arithmatex">\(α\)</span> 接近0时，新样本对RTTs影响小；当α接近1时，影响较大。RFC 6298推荐α取值为1/8（即0.125），以平衡响应速度与稳定性。最终的超时重传时间RTO应略大于该加权平均值RTTs，以避免频繁超时重传，从而提高传输效率和可靠性。</p>
+<p>[RFC 6298]建议使用下式来计算超时重传时间RTO：
+$$
+\text{RTO} = \text{RTT}_S + 4\times \text{RTT}_D
+$$</p>
+<p><span class="arithmatex">\(\text{RTT}_D\)</span>为RTT偏差的加权平均值，初始值为<span class="arithmatex">\(\text{RTT}_1 / 2\)</span>，更新公式为：</p>
+<div class="arithmatex">\[
+新的\text{RTT}_D= (1 - β) × 旧的\text{RTT}_D + β × |\text{RTT}_S - 新的\text{RTT}样本|
+\]</div>
+<p>推荐β值为1/4（即0.25）。</p>
+<hr />
+<p>测量往返实践 RTT 是比较复杂的</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20121815.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20121815.png" /></a></p>
+<p>通过上述两个例子可以看出：当发送方<strong>出现超时重传</strong>后，收到确认报文段时是无法判断出该确认到底是对原数据报文段的确认还是对重传数据报文段的确认，也就是无法准确测量出RTT，进而无法正确计算RTO。</p>
+<p>Karn 算法指出，只要报文段重传了，就不采用其RTT样本。但是这样也会引入新的问题</p>
+<blockquote>
+<p>设想出现这样的情况：报文段的时延突然增大很多，并且之后很长一段时间都会保持这种时延（这可能是因为网络拓扑发生了变化）。因此在原来得出的RTO内，不会收到确认报文段，于是就重传报文段。但根据Karn算法，不考虑重传的报文段的RTT样本，因此RTO就无法更新，这会导致报文段反复被重传</p>
+</blockquote>
+<p>于是我们修正 Karn 算法： 报文段每重传一次，就把RTO增大一些。典型的做法是将新RTO的值取为旧RTO的2倍。 </p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20135355.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20135355.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20135401.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20135401.png" /></a></p>
+</div>
+<h3 id="538-tcp">5.3.8 TCP的选择确认<a class="headerlink" href="#538-tcp" title="Permanent link">&para;</a></h3>
+<p>在之前介绍TCP的快重传和可靠传输时，TCP接收方只能对按序收到的数据中的最高序号给出确认。当发送方超时重传时，接收方之前已收到的未按序到达的数据也会被重传。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20134634.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-17%20134634.png" /></a></p>
+<p>在 TCP 首部中可以在扩展首部中添加相应的信息，用于指明字节块的信息</p>
+<blockquote>
+<p>SACK相关文档并没有指明发送方应当怎样响应SACK。因此大多数的TCP实现还是重传所有未被确认的数据块。</p>
+</blockquote>
 
 
   

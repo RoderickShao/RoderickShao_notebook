@@ -20,7 +20,7 @@
     
     
       
-        <title>Hardware Acceleration - RoderickShao's NoteBook</title>
+        <title>8 Virtual Memory - RoderickShao's NoteBook</title>
       
     
     
@@ -145,6 +145,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#8-virtual-memory" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -174,7 +179,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hardware Acceleration
+              8 Virtual Memory
             
           </span>
         </div>
@@ -337,7 +342,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+        <a href="../../Introduction/" class="md-tabs__link">
           
   
     
@@ -357,7 +362,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../Introduction/" class="md-tabs__link">
+        <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-tabs__link">
           
   
     
@@ -573,7 +578,7 @@
         
   
   
-    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+    <a href="../../Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -624,7 +629,7 @@
         
   
   
-    <a href="../../Introduction/" class="md-nav__link">
+    <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -708,6 +713,37 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#81-background" class="md-nav__link">
+    8.1 Background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-demand-paging" class="md-nav__link">
+    8.2 Demand Paging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#93-process-creation" class="md-nav__link">
+    9.3 Process Creation
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -725,114 +761,50 @@
   
 
 
-  <h1>Hardware Acceleration</h1>
-
-<p><strong>现代 GPU 的硬件支持：Matrix-Multiply-Accumulate (MMA)</strong></p>
+<h1 id="8-virtual-memory">8 Virtual Memory<a class="headerlink" href="#8-virtual-memory" title="Permanent link">&para;</a></h1>
+<h2 id="81-background">8.1 Background<a class="headerlink" href="#81-background" title="Permanent link">&para;</a></h2>
+<p>虚拟内存（Virtual Memory）是一种内存管理技术，它允许运行程序的只有部分被加载到内存中即可执行，从而提高了内存使用效率。</p>
+<p>虚拟内存将用户的逻辑地址空间与物理内存分离，使得逻辑地址空间可以大于实际的物理地址空间，并支持多个进程共享物理地址空间，同时加快了进程的创建速度。</p>
+<p>虚拟内存可以通过两种主要方式实现：</p>
 <ul>
-<li>现代 GPU（如 NVIDIA RTX 系列）内置了专门用于 <strong>矩阵乘加（MMA）</strong> 的硬件单元（例如 <strong>Tensor Cores</strong>）。</li>
-<li>这些单元能高效执行低精度（FP16、FP8、INT8，甚至 FP4）的大规模矩阵运算。</li>
-<li>在传统 SIMT（Single Instruction, Multiple Thread）模型之上，引入了 <strong>协作式执行（Cooperative Execution）</strong> 模式，以充分利用 MMA 单元。</li>
+<li>按需调页（Demand Paging），即请求页式管理，仅在需要时将页面调入内存；</li>
+<li>请求段式管理（Demand Segmentation），根据程序的逻辑分段进行内存分配和管理。</li>
 </ul>
-<p><a class="glightbox" href="img/屏幕截图 2025-12-14 213451.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="img/屏幕截图 2025-12-14 213451.png" /></a></p>
-<p><strong>MMA 的编程接口（Intrinsics）</strong></p>
-<p>不同图形 API 提供了对 MMA 硬件的底层访问：</p>
-<table>
-<thead>
-<tr>
-<th>平台 / API</th>
-<th>对应扩展 / 特性</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Vulkan</strong></td>
-<td><code>VK_KHR_cooperative_matrix</code>、<code>VK_NV_cooperative_matrix</code></td>
-</tr>
-<tr>
-<td><strong>DirectX 12</strong></td>
-<td>Linear Algebra Matrix Conversion APIs（如 <code>ConvertLinearAlgebraMatrix</code>）</td>
-</tr>
-<tr>
-<td><strong>Metal</strong></td>
-<td>SIMD Group Matrix（Metal 4 + Shader Model 6.9）</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p>以神经网络中的一层作为例子，直观地理解我们是如何使用 MMA 的</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">NetworkParameters</span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">InputSize</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">OutputSize</span><span class="o">&gt;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">weights</span><span class="p">[</span><span class="n">InputSize</span><span class="p">][</span><span class="n">OutputSize</span><span class="p">];</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">biases</span><span class="p">[</span><span class="n">OutputSize</span><span class="p">];</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span><span class="w"> </span><span class="n">OutputSize</span><span class="o">&gt;</span><span class="w"> </span><span class="n">eval</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="n">InputSize</span><span class="p">])</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">output</span><span class="p">[</span><span class="n">OutputSize</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">biases</span><span class="p">;</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="n">output</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">MatMulVec</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">);</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">OutputSize</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.01f</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"> </span><span class="c1">// ReLU</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">output</span><span class="p">;</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">}</span>
-</code></pre></div>
-<p>使用 cooperative vectors 之后</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">NetworkParameters</span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">InputSize</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">OutputSize</span><span class="o">&gt;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">half</span><span class="o">*</span><span class="w"> </span><span class="n">weights</span><span class="p">;</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">half</span><span class="o">*</span><span class="w"> </span><span class="n">biases</span><span class="p">;</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">CoopVec</span><span class="o">&lt;</span><span class="n">half</span><span class="p">,</span><span class="w"> </span><span class="n">OutputSize</span><span class="o">&gt;</span><span class="w"> </span><span class="n">eval</span><span class="p">(</span><span class="n">CoopVec</span><span class="o">&lt;</span><span class="n">half</span><span class="p">,</span><span class="w"> </span><span class="n">InputSize</span><span class="o">&gt;</span><span class="w"> </span><span class="n">input</span><span class="p">)</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="n">let</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coopVecMatMulAdd</span><span class="o">&lt;</span><span class="n">half</span><span class="p">,</span><span class="w"> </span><span class="n">OutputSize</span><span class="o">&gt;</span><span class="p">(</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">            </span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">CoopVecComponentType</span><span class="o">::</span><span class="n">Float16</span><span class="p">,</span><span class="w">   </span><span class="c1">// 输入数据格式</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">            </span><span class="n">weights</span><span class="p">,</span><span class="w"> </span><span class="n">CoopVecComponentType</span><span class="o">::</span><span class="n">Float16</span><span class="p">,</span><span class="w"> </span><span class="c1">// 权重数据格式</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">            </span><span class="n">biases</span><span class="p">,</span><span class="w"> </span><span class="n">CoopVecComponentType</span><span class="o">::</span><span class="n">Float16</span><span class="p">,</span><span class="w">  </span><span class="c1">// 偏置数据格式</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">            </span><span class="n">CoopVecMatrixLayout</span><span class="o">::</span><span class="n">RowMajor</span><span class="p">,</span><span class="w">          </span><span class="c1">// 矩阵布局：行优先</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">            </span><span class="nb">false</span><span class="p">,</span><span class="w">                                  </span><span class="c1">// 是否转置矩阵再乘？</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">            </span><span class="k">sizeof</span><span class="p">(</span><span class="n">half</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">InputSize</span><span class="p">);</span><span class="w">              </span><span class="c1">// 矩阵大小（字节）</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">output</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.01</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span><span class="w"> </span><span class="c1">// Leaky ReLU 激活</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="p">};</span>
-</code></pre></div>
-<blockquote>
-<p>Using 16-bit floats because 32-bit float is not supported by HW.</p>
-</blockquote>
-<p>现在我们面临两个问题：</p>
+<div class="admonition note">
+<p class="admonition-title">局部性原理</p>
+<p><strong>局部性原理</strong>(principle of locality)：指程序在执行过程中的一个较短时期，所执行的指令地址和指令的操作数地址，分别局限于一定区域。表现为：</p>
 <ul>
-<li>权重梯度应存放在哪里？</li>
-<li>如何使其可微？</li>
+<li><strong>时间局部性</strong>：一条指令的一次执行和下次执行，一个数据的一次访问和下次访问都集中在一个较短时期内；</li>
+<li><strong>空间局部性</strong>：当前指令和邻近的几条指令，当前访问的数据和邻近的数据都集中在一个较小区域内。</li>
 </ul>
-<p>因此尚不能直接用于训练过程中的反向传播。</p>
-<p>对于第一个问题可以在结构体中直接存储相应变量的梯度</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">half</span><span class="o">*</span><span class="w"> </span><span class="n">weights</span><span class="p">;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">half</span><span class="o">*</span><span class="w"> </span><span class="n">biases</span><span class="p">;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">half</span><span class="o">*</span><span class="w"> </span><span class="n">weightsGrad</span><span class="p">;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">half</span><span class="o">*</span><span class="w"> </span><span class="n">biasesGrad</span><span class="p">;</span>
-</code></pre></div>
-<p>对于第二个问题，首先我们说明为什么不可微？</p>
-<p><code>CoopVec</code> 类型不可微，不支持自动求导。</p>
-<p><code>coopVecMatMulAdd</code> 是不可微的内在函数（intrinsic）</p>
-<blockquote>
-<p>这是一个高度优化的、低级的硬件指令或库函数，用于快速执行矩阵乘加。它被设计为<strong>高性能但不透明</strong>的操作，没有内置梯度计算逻辑。</p>
-</blockquote>
-<p>为了将其可微化，我们将不可微的 <code>CoopVec</code> 类型封装在一个可微的类型 <code>MLVec&lt;N&gt;</code> 中，使其能够支持自动微分。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">MLVec</span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">IDifferentiable</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">CoopVec</span><span class="o">&lt;</span><span class="n">half</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">typealias</span><span class="w"> </span><span class="n">Differential</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">This</span><span class="p">;</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">Differential</span><span class="w"> </span><span class="nf">dadd</span><span class="p">(</span><span class="n">Differential</span><span class="w"> </span><span class="n">d0</span><span class="p">,</span><span class="w"> </span><span class="n">Differential</span><span class="w"> </span><span class="n">d1</span><span class="p">)</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="n">d0</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d1</span><span class="p">.</span><span class="n">data</span><span class="p">};</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">Differential</span><span class="w"> </span><span class="n">dmul</span><span class="o">&lt;</span><span class="n">U</span><span class="o">:</span><span class="n">__BuiltinRealType</span><span class="o">&gt;</span><span class="p">(</span><span class="n">U</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">Differential</span><span class="w"> </span><span class="n">d</span><span class="p">)</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="n">d</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">__realCast</span><span class="o">&lt;</span><span class="n">half</span><span class="o">&gt;</span><span class="p">(</span><span class="n">s</span><span class="p">)};</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">Differential</span><span class="w"> </span><span class="n">dzero</span><span class="p">()</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="p">}</span>
-</code></pre></div>
+</div>
+<p><strong>虚拟存储器</strong>是具有请求调入功能和置换功能，仅把进程的一部分装入内存便可运行进程的存储管理系统，它能从逻辑上对内存容量进行扩充的一种虚拟的存储管理系统</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-16%20150010.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-16%20150010.png" /></a></p>
+<h2 id="82-demand-paging">8.2 Demand Paging<a class="headerlink" href="#82-demand-paging" title="Permanent link">&para;</a></h2>
+<p>按需调页是一种虚拟内存管理技术，它只在某一页被实际访问时才将其从外存调入内存，而不是在进程开始执行前就将所有页面加载进来。这种方式具有多个优点：减少了 I/O 操作、降低了内存占用、加快了系统响应速度，并支持更多用户并发运行。</p>
+<p>在按需调页机制中，页表的每个表项包含一个有效-无效位（valid–invalid bit）：</p>
+<ul>
+<li><strong>v（valid）</strong> 表示该页当前在内存中；</li>
+<li><strong>i（invalid）</strong> 表示该页尚未调入内存。</li>
+</ul>
+<p>当 CPU 访问某个虚拟地址时，若对应页表项的有效位为 i，则触发<strong>缺页中断（page fault）</strong>。操作系统随后执行以下缺页处理步骤：</p>
+<ol>
+<li>检查该地址引用是否合法（即是否属于进程的合法地址空间）；</li>
+<li>若非法，终止进程；若合法但页未在内存中，则准备调入该页；</li>
+<li>从空闲帧链表中分配一个物理帧；</li>
+<li>启动磁盘 I/O 操作，将所需页面从外存读入该帧；</li>
+<li>更新进程的页表及相关数据结构，标记该页已在内存中；</li>
+<li>重新执行因缺页而中断的指令。</li>
+</ol>
+<p><a class="glightbox" href="../img/Page%20Fault.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Page%20Fault.png" /></a></p>
+<p>若内存中没有空闲帧，则需进行<strong>页面置换（page replacement）</strong>：选择一个不再使用或近期较少使用的页面换出到磁盘，腾出空间给新页。</p>
+<p>按需调页的性能由<strong>有效内存访问时间（EAT）</strong>衡量，其公式为：</p>
+<div class="arithmatex">\[
+\text{EAT}=(1−p)×\text{内存访问时间}+p×\text{缺页服务时间}
+\]</div>
+<p>其中 <span class="arithmatex">\(p\)</span> 为缺页率。由于缺页服务涉及磁盘 I/O，耗时远高于内存访问（例如内存访问为 200 纳秒，而缺页服务可能达 8 毫秒），即使缺页率很低（如 0.001），也会显著降低系统性能（如 EAT 增至 8200 纳秒，慢约 40 倍）。</p>
+<h2 id="93-process-creation">9.3 Process Creation<a class="headerlink" href="#93-process-creation" title="Permanent link">&para;</a></h2>
+<p>写时拷贝（COW）是一种优化进程创建（尤其是通过 <code>fork()</code> 系统调用）的虚拟内存技术。在传统方式中，<code>fork()</code> 会为子进程复制父进程的整个地址空间，开销较大。而 COW 允许<strong>父进程和子进程在创建初期共享相同的物理内存页</strong>，从而显著提高效率。</p>
 
 
   

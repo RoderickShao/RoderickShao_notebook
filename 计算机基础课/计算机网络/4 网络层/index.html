@@ -1391,6 +1391,88 @@
     4.7 IP 多播
   </a>
   
+    <nav class="md-nav" aria-label="4.7 IP 多播">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#471" class="md-nav__link">
+    4.7.1 局域网上的硬件多播
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#472-ip" class="md-nav__link">
+    4.7.2 在因特网上进行IP多播的两种协议
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#473-igmp" class="md-nav__link">
+    4.7.3 网际组管理协议 IGMP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#474" class="md-nav__link">
+    4.7.4 多播路由选择协议
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#48-ip" class="md-nav__link">
+    4.8 移动 IP 技术
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#49-ipv6" class="md-nav__link">
+    4.9 IPv6
+  </a>
+  
+    <nav class="md-nav" aria-label="4.9 IPv6">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#491-ipv6" class="md-nav__link">
+    4.9.1 IPv6 数据报的首部
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#492-ipv6" class="md-nav__link">
+    4.9.2 IPv6 地址
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#493-ipv4ipv6" class="md-nav__link">
+    4.9.3 从IPv4向IPv6过渡
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#410-sdn" class="md-nav__link">
+    4.10 SDN 体系结构
+  </a>
+  
 </li>
       
     </ul>
@@ -1722,6 +1804,88 @@
         <li class="md-nav__item">
   <a href="#47-ip" class="md-nav__link">
     4.7 IP 多播
+  </a>
+  
+    <nav class="md-nav" aria-label="4.7 IP 多播">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#471" class="md-nav__link">
+    4.7.1 局域网上的硬件多播
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#472-ip" class="md-nav__link">
+    4.7.2 在因特网上进行IP多播的两种协议
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#473-igmp" class="md-nav__link">
+    4.7.3 网际组管理协议 IGMP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#474" class="md-nav__link">
+    4.7.4 多播路由选择协议
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#48-ip" class="md-nav__link">
+    4.8 移动 IP 技术
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#49-ipv6" class="md-nav__link">
+    4.9 IPv6
+  </a>
+  
+    <nav class="md-nav" aria-label="4.9 IPv6">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#491-ipv6" class="md-nav__link">
+    4.9.1 IPv6 数据报的首部
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#492-ipv6" class="md-nav__link">
+    4.9.2 IPv6 地址
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#493-ipv4ipv6" class="md-nav__link">
+    4.9.3 从IPv4向IPv6过渡
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#410-sdn" class="md-nav__link">
+    4.10 SDN 体系结构
   </a>
   
 </li>
@@ -2292,7 +2456,244 @@
 <p>多播（Multicast，也称为组播）是一种实现“一对多”通信的技术，与传统单播“一对一”通信相比，多播可以极大地节省网络资源。</p>
 <p>在因特网上进行的多播，称为<strong>IP多播</strong>。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-29%20210729.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-29%20210729.png" /></a></p>
+<blockquote>
 <p>当多播组的成员数量很大时，采用多播方式可以显著地减少网络中各种资源的消耗。</p>
+</blockquote>
+<p>那么要在因特网上实现IP多播，则因特网中的路由器需要解决哪些主要问题？</p>
+<ul>
+<li>IP多播数据报的寻址</li>
+<li>多播路由选择协议</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">IP 多播地址与多播组</p>
+<p>在IPv4中，D类地址被作为<strong>多播地址</strong>。多播地址只能用作目的地址，而不能用作源地址。</p>
+<p>用每一个D类地址来标识一个多播组，使用同一个IP多播地址接收IP多播数据报的所有主机就构成了一个<strong>多播组</strong>。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20153731.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20153731.png" /></a></p>
+<p>每个多播组的成员是可以随时变动的，一台主机可以随时加入或离开多播组。</p>
+<p>多播组成员的数量和所在的地理位置也不受限制，一台主机可以属于几个多播组。</p>
+<p>与IP数据报相同，IP多播数据报也是“尽最大努力交付”，不保证一定能够交付给多播组内的所有成员。</p>
+</div>
+<details class="note">
+<summary>IPv4 多播地址的分类</summary>
+<p>IPv4多播地址又可分为预留的多播地址（永久多播地址）、全球范围可用的多播地址以及本地管理的多播地址[RFC 3330]。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20153913.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20153913.png" /></a></p>
+</details>
+<p>IP多播可以分为以下两种：</p>
+<ul>
+<li>只在本局域网上进行的硬件多播。</li>
+<li>在因特网上进行的多播。</li>
+</ul>
+<blockquote>
+<p>目前大部分主机都是通过局域网接入因特网的。因此，在因特网上进行多播的最后阶段，还是要把IP多播数据报在局域网上用硬件多播交付给多播组的所有成员。</p>
+</blockquote>
+<h3 id="471">4.7.1 局域网上的硬件多播<a class="headerlink" href="#471" title="Permanent link">&para;</a></h3>
+<p>由于MAC地址有<strong>多播MAC地址</strong>这种类型，因此只要把IPv4多播地址映射成多播MAC地址，即可将IP多播数据报封装在局域网的MAC帧中，而MAC帧首部中的目的MAC地址字段的值，就设置为由IPv4多播地址映射成的多播MAC地址。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20154403.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20154403.png" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">多播 MAC 地址</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20155054.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20155054.png" /></a></p>
+</div>
+<p>而对于 32 位 D 类 IP 地址来说，除去开头四位用来标识多播，剩余 28 位可以任意变化。也就是说 IP 多播地址映射为多播 MAC 的时候，映射关系并不是唯一的</p>
+<blockquote>
+<p>因此收到IP多播数据报的主机还要在网际层利用软件进行过滤，把不是主机要接收的IP多播数据报丢弃。</p>
+</blockquote>
+<div class="admonition example">
+<p class="admonition-title">在数据链路层和网际层对多播数据报进行过滤</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20160007.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20160007.png" /></a></p>
+</div>
+<h3 id="472-ip">4.7.2 在因特网上进行IP多播的两种协议<a class="headerlink" href="#472-ip" title="Permanent link">&para;</a></h3>
+<p>要在因特网上进行IP多播，就必须要考虑IP多播数据报经过多个多播路由器进行转发的问题。</p>
+<p>多播路由器必须根据IP多播数据报首部中的IP多播地址，将其转发到有该多播组成员的局域网。</p>
+<p>现在就很自然地引出了一个问题就是路由器是如何知道自己各接口所在局域网中是否有某个多播组的成员？于是我们引出协议 <strong>IGMP</strong>，其为 TCP/IP体系结构网际层中的协议，其作用是让连接在本地局域网上的多播路由器知道本局域网上是否有主机（实际上是主机中的某个进程）加入或退出了某个多播组。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20160912.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20160912.png" /></a></p>
+<p>但是IGMP仅在本网络有效，使用IGMP并不能知道多播组所包含的成员数量，也不能知道多播组的成员都分布在哪些网络中。</p>
+<blockquote>
+<p>仅使用IGMP并不能在因特网上进行IP多播。连接在局域网上的多播路由器还必须和因特网上的其他多播路由器协同工作，以便把IP多播数据报用最小的代价传送给所有的多播组成员，这就需要使用<strong>多播路由选择协议</strong>。</p>
+</blockquote>
+<p><strong>多播路由选择协议</strong>的主要任务是：在多播路由器之间为每个多播组建立一个多播转发树。</p>
+<ul>
+<li>多播转发树连接<strong>多播源</strong>和所有拥有该多播组成员的<strong>路由器</strong>。</li>
+<li>IP多播数据报只要沿着多播转发树进行洪泛，就能被传送到所有拥有该多播组成员的多播路由器。</li>
+<li>之后，在多播路由器所直连的局域网内，多播路由器通过硬件多播，将IP多播数据报发送给该多播组的所有成员。</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20161403.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20161403.png" /></a></p>
+<p>针对不同的多播组需要维护不同的多播转发树，而且必须动态地适应多播组成员的变化</p>
+<p>即使某个主机不是任何多播组的成员，它也可以向任何多播组发送多播数据报。</p>
+<p>为了覆盖多播组的所有成员，多播转发树可能要经过一些没有多播组成员的路由器（例如上图中的R2）</p>
+<h3 id="473-igmp">4.7.3 网际组管理协议 IGMP<a class="headerlink" href="#473-igmp" title="Permanent link">&para;</a></h3>
+<p>IGMP有三种报文类型</p>
+<ul>
+<li>成员报告报文</li>
+<li>成员查询报文</li>
+<li>离开组报文</li>
+</ul>
+<p>IGMP报文被封装在IP数据报中传送</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20162224.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20162224.png" /></a></p>
+<p>当一台主机（如主机 A）希望加入某个 IP 多播组（例如 226.0.9.26）时，它会执行以下步骤：</p>
+<ul>
+<li>
+<p><strong>主机配置多播地址</strong>：主机 A 首先在本地配置或请求加入该多播组的 IP 地址（如 226.0.9.26）。系统根据映射规则自动生成对应的局域网多播 MAC 地址（如 01-00-5E-00-09-1A），并通知网卡监听该 MAC 地址。</p>
+</li>
+<li>
+<p>主机 A 向本地网络中的多播路由器发送一个 <strong>IGMP 成员报告报文（IGMP Membership Report）</strong>。该报文内容包含它希望加入的多播组地址（226.0.9.26），并封装在 IP 多播数据报中，目的 IP 地址为该多播组地址；再进一步封装在以太网帧中，目的 MAC 地址为对应的多播 MAC 地址。</p>
+</li>
+<li>
+<p><strong>路由器接收与处理</strong>：多播路由器（如 R1）接收到该 IGMP 报文后，解析出主机 A 希望加入的多播组地址（226.0.9.26），并将其添加到自身的“多播组列表”中。这意味着路由器知道该子网中有主机对该多播组感兴趣，后续会转发发往该组的数据。</p>
+</li>
+</ul>
+<p>多播路由器通过 <strong>IGMP 成员查询报文</strong> 来监视本地网络中多播组成员的变化。默认情况下，路由器每隔 125 秒向其直连网络发送一个 IGMP 成员查询报文，该报文封装在 IP 多播数据报中（目的 IP 地址为 224.0.0.1），再封装到以太网帧中，目的 MAC 地址为 01-00-5E-00-00-01。</p>
+<p>当主机收到这个查询报文后，会检查自己是否属于被查询的多播组。如果主机是某个组的成员（如 A 和 B 属于 226.0.9.26 组），它会在一定时间内（通常 10 秒内）响应一个 <strong>IGMP 成员报告</strong>，表明自己仍然在线并属于该组</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20170654.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20170654.png" /></a></p>
+<p>路由器根据是否有主机响应来判断各多播组是否仍有成员。若某组长时间无响应，路由器将认为该组已无人加入，从而停止转发相关多播数据</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>同一网络中的多播路由器可能不止一个，但 没有必要每个多播路由器都周期性地发送IGMP成员查询报文。只要在这些多播路由器中选择一个作为<strong>查询路由器</strong>，由查询路由器发送IGMP成员查询报文，而其他的多播路由器仅被动接收响应并更新自己的多播组列表即可。</p>
+<p>一般选择 IP 地址最小的多播路由器作为查询路由器</p>
+</div>
+<p>IGMPv2 在 IGMPv1的基础上增加了一个可选项：当主机要退出某个多播组时，可主动发送一个<strong>离开组报文</strong>而不必等待多播路由器的查询。这样可使多播路由器能够更快地发现某个组有成员离开。</p>
+<p>IGMP 离开组报文中的 IP 多播数据报的目的地址是固定为 <code>224.0.0.2</code></p>
+<blockquote>
+<p>224.0.0.2 为特殊的IP多播地址，在本网络中的所有多播路由器的网际层都会接受该多播数据报。</p>
+</blockquote>
+<p>当有成员离开该多播组，暂时不删除该多播组，立即发送针对该多播组的特殊的IGMP成员查询报文，探测该多播组是否还有其他成员。</p>
+<h3 id="474">4.7.4 多播路由选择协议<a class="headerlink" href="#474" title="Permanent link">&para;</a></h3>
+<p>多播路由选择协议的主要任务是：在多播路由器之间为每个多播组建立一个多播转发树</p>
+<p>目前有以下两种方法来构建多播转发树：</p>
+<ul>
+<li>基于源树（Source-Base Tree）多播路由选择</li>
+<li>组共享树（Group-Shared Tree）多播路由选择</li>
+</ul>
+<hr />
+<p>下面介绍基于源树多播路由选择。</p>
+<p>基于源树的多播路由选择的最典型算法是<strong>反向路径多播（Reverse Path Multicasting，RPM）</strong>算法。</p>
+<p>RPM算法包含以下两个步骤：</p>
+<ul>
+<li>利用反向路径广播（Reverse Path Broadcasting，RPB）算法建立一个广播转发树。</li>
+<li>利用剪枝（Pruning）算法，剪除广播转发树中的下游非成员路由器，获得一个多播转发树。</li>
+</ul>
+<blockquote>
+<p>利用洪泛法建立广播转发树，只能处理无环路网络</p>
+</blockquote>
+<p>利用反向路径广播RPB算法生成的广播转发树，不会存在环路，因此可以避免广播分组在环路中兜圈。</p>
+<p>RPB算法的要点是：每一台路由器在收到一个广播分组时，先检查该广播分组是否是从源点经最短路径传送来的。</p>
+<ul>
+<li>若是，本路由器就从自己除刚才接收该广播分组的接口的所有其他接口转发该广播分组。</li>
+<li>否则，丢弃该广播分组。</li>
+</ul>
+<blockquote>
+<p>如果本路由器有好几个邻居路由器都处在到源点的最短路径上，也就是存在好几条同样长度的最短路径，那么只能选取一条最短路径。选取的规则是这几条最短路径中的邻居路由器的IP地址最小的那条最短路径。</p>
+</blockquote>
+<p>然后对那些没有多播组成员的叶子路由器从广播转发树中剪除，从而得到多播转发树。</p>
+<hr />
+<p>下面介绍组共享树多播路由选择</p>
+<p>该方法在每个多播组中指定一个<strong>核心（core）路由器</strong>，以该路由器为根，构建一棵连接所有成员路由器的生成树，作为多播转发树。除了核心路由器外，其他成员路由器都会向自己所属多播组的核心路由器发送加入报文。这些加入报文通过单播方式逐跳转发，直到到达已属于该多播生成树的某个节点或直接抵达核心路由器。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20191115.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20191115.png" /></a></p>
+<blockquote>
+<p>数据先以单播方式发往核心，再由核心在共享树上洪泛转发，实现高效、可扩展的多播通信。</p>
+</blockquote>
+<hr />
+<p>目前还没有在整个因特网范围使用的多播路由选择协议，在此不多赘述。</p>
+<h2 id="48-ip">4.8 移动 IP 技术<a class="headerlink" href="#48-ip" title="Permanent link">&para;</a></h2>
+<p>移动IP（Mobile IP）使得移动主机在各网络之间漫游时，仍然能够保持其原来的IP地址不变。</p>
+<p>下面有一些概念需要阐述一下</p>
+<ul>
+<li>每个移动主机都有一个默认连接的网络或初始申请接入的网络，称为<strong>归属网络（Home Network）</strong></li>
+<li>移动主机在归属网络中的IP地址在其整个移动通信过程中是始终不变的，因此称为永久地址（Permanent Address）或<strong>归属地址（Home Address）</strong>。</li>
+<li>在归属网络中，代表移动主机执行移动管理功能的实体称为<strong>归属代理（Home Agent）</strong>。归属代理通常就是连接在归属网络上的路由器，然而它作为代理的特定功能则是在网络层完成的。</li>
+</ul>
+<hr />
+<ul>
+<li>移动主机当前漫游所在的网络称为<strong>外地网络（Foreign Network）</strong>或被访网络（Visited Network）。</li>
+<li>在外地网络中，帮助移动主机执行移动管理功能的实体称为<strong>外地代理（Foreign Agent）</strong>。</li>
+<li>外地代理通常就是连接在外地网络上的路由器。外地代理会为移动主机提供一个临时使用的属于外地网络的<strong>转交地址（Care-of Address）</strong>。</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20193446.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20193446.png" /></a></p>
+<p>当移动主机到外地网络的时候，通过自己的代理发现协议，与外地代理建立联系，并从外地代理获得一个属于该外地网络的转交地址（例如175.1.1.1/16），同时向外地代理注册自己的永久地址和归属代理地址。</p>
+<p>外地代理将移动主机A的永久地址记录在自己的注册表中，并向移动主机的归属代理注册该移动主机的转交地址。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20193905.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20193905.png" /></a></p>
+<p>归属代理会将移动主机A的转交地址记录下来，此后归属代理会代替移动主机接收所有发送给该移动主机的IP数据报，并利用IP隧道技术将这些数据报转发给外地网络中的移动主机。</p>
+<p>那么在数据链路层，发送给移动主机的 IP 数据报怎么到相应的 MAC 地址呢？（因为此时移动主机已经不在这个网络中了）</p>
+<ul>
+<li>当移动主机不在归属网络时，归属代理会以自己的MAC地址应答所有对该移动主机的ARP请求，即归属代理采用<strong>ARP代理技术</strong>。         </li>
+<li>为了使归属网络中其他各主机和路由器能够尽快更新各自的ARP高速缓存，归属代理还会主动发送ARP广播，并声称自己是该移动主机。这样，所有发送给该移动主机的IP数据报都会发送给归属代理。</li>
+</ul>
+<hr />
+<p>此时如果固定主机 B 想要给移动主机发送 IP 数据报</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20194845.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20194845.png" /></a></p>
+<p>注意当外地代理和移动主机不是同一台设备时，转交地址实际上是外地代理的地址而不是移动主机的地址，转交地址既不会作为移动主机发送IP数据报的源地址，也不会作为移动主机所接收的IP数据报的目的地址。转交地址仅仅是归属代理到外地代理的<strong>IP隧道的出口地址</strong>。</p>
+<blockquote>
+<p>所有使用同一外地代理的移动主机都可以共享同一个转交地址。</p>
+</blockquote>
+<p>当外地代理从IP隧道中收到并解封出原IP数据报时，会在自己的代理注册表中查找移动主机的永久地址所对应的MAC地址，并将该数据报封装到目的地址为该MAC地址的帧中发送给移动主机。</p>
+<hr />
+<p>移动主机想要向固定主机发送 IP 数据报的时候，就不需要经过归属网络转发了，直接通过外地网路的路由器进行转发。</p>
+<blockquote>
+<p>移动主机可以将外地代理作为自己的默认路由器，也可以通过代理发现协议从外地代理获取外地网络中其他路由器的地址，并将其设置为自己的默认路由器</p>
+</blockquote>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20200554.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20200554.png" /></a></p>
+<hr />
+<p>当移动主机接入外地网络时，若其自身获取一个临时IP地址并直接用作转交地址（Care-of Address），而不依赖外部的外地代理来接收数据包，则该地址称为<strong>同址转交地址（Co-located Care-of Address）</strong>。</p>
+<div class="admonition note">
+<p class="admonition-title">三角形路由问题</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20202845.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20202845.png" /></a></p>
+<p>即使固定主机与移动主机之间存在更优的直接路径，数据仍需先经归属代理中转，造成路由低效。为解决该问题，可为固定主机配置一个通信代理，使其直接从归属代理获取移动主机的转交地址，并通过该地址直接建立IP隧道发送数据，避免绕行归属代理，提升效率。但此方法需固定主机配合配置，破坏了透明性，增加了复杂性。</p>
+</div>
+<h2 id="49-ipv6">4.9 IPv6<a class="headerlink" href="#49-ipv6" title="Permanent link">&para;</a></h2>
+<h3 id="491-ipv6">4.9.1 IPv6 数据报的首部<a class="headerlink" href="#491-ipv6" title="Permanent link">&para;</a></h3>
+<p>由于IPv6地址的长度扩展到了128比特，因此使得IPv6数据报基本首部的长度反而增大到了40字节，比IPv4数据报首部固定部分的长度（20字节）增大了20字节。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20203452.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20203452.png" /></a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>所有的扩展首部并不属于IPv6数据报的首部，它们与其后面的数据部分合起来构成有效载荷（payload，也称为净负荷）。</p>
+</div>
+<h3 id="492-ipv6">4.9.2 IPv6 地址<a class="headerlink" href="#492-ipv6" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20211253.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20211253.png" /></a></p>
+<p>在IPv6地址的冒号十六进制记法的基础上，再使用“左侧零”省略和“连续零”压缩，可使IPv6地址的表示更加简洁。</p>
+<ul>
+<li>“左侧零”省略是指两个冒号间的十六进制数中最前面的一串0可以省略不写。</li>
+<li>“连续零”压缩是指一连串连续的0可以用一对冒号取代。在一个IPv6地址中只能使用一次“连续零”压缩，否则会导致歧义。</li>
+</ul>
+<hr />
+<p>IPv6数据报的目的地址有三种基本类型：</p>
+<ul>
+<li>单播（unicast）：传统的点对点通信</li>
+<li>多播（multicast）：一点对多点的通信。数据报发送到一组计算机中的每一个。IPv6没有采用广播的术语，而将广播看作多播的一个特例。</li>
+<li>任播（anycast）：这是IPv6新增的一种类型。任播的终点是一组计算机，但数据报只交付其中的一个，通常是按照路由算法得出的距离最近的一个。</li>
+</ul>
+<p>[RFC 4291]对IPv6地址进行了分类：</p>
+<ul>
+<li>未指明地址：128个比特为“全0”的地址，可缩写为两个冒号“::”。该地址不能用作目的地址，只能用于还没有配置到一个标准IPv6地址的主机用作源地址。</li>
+<li>最低比特为1，其余127个比特为“全0”，即0:0:0:0:0:0:0:1，可缩写为::1。该地址的作用与IPv4的环回地址相同。</li>
+<li>最高8比特为“全1”的地址，可记为FF00::/8。IPv6多播地址的功能与IPv4多播地址相同。</li>
+<li>最高10比特为1111111010的地址，可记为FE80::/10。</li>
+<li>全球单播地址：IPv6全球单播地址采用三级结构，这是为了使路由器可以更快地查找路由。</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20212218.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20212218.png" /></a></p>
+<h3 id="493-ipv4ipv6">4.9.3 从IPv4向IPv6过渡<a class="headerlink" href="#493-ipv4ipv6" title="Permanent link">&para;</a></h3>
+<p>两种由IPv4向IPv6过渡的策略：</p>
+<ul>
+<li>使用双协议栈</li>
+<li>使用隧道技术</li>
+</ul>
+<hr />
+<p>双协议栈（Dual Stack）是指在完全过渡到IPv6之前，使一部分主机或路由器装有IPv4和IPv6两套协议栈。</p>
+<p>双协议栈主机或路由器既可以和IPv6系统通信，又可以和IPv4系统通信。</p>
+<p>双协议栈主机或路由器记为IPv6/IPv4，表明它具有一个IPv6地址和一个IPv4地址。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20212357.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20212357.png" /></a></p>
+<hr />
+<p>隧道技术（Tunneling）的核心思想是：当IPv6数据报要进入IPv4网络时，将IPv6数据报重新封装成IPv4数据报，即<strong>整个IPv6数据报成为IPv4数据报的数据载荷。</strong></p>
+<p>封装有IPv6数据报的IPv4数据报在IPv4网络中传输。当IPv4数据报要离开IPv4网络时，再将其数据载荷（即原来的IPv6数据报）取出并转发到IPv6网络。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20212449.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20212449.png" /></a></p>
+<blockquote>
+<p>要使双协议栈路由器R4知道IPv4数据报的数据载荷是IPv6数据报，则IPv4数据报首部中协议字段的值必须设置为41。</p>
+</blockquote>
+<h2 id="410-sdn">4.10 SDN 体系结构<a class="headerlink" href="#410-sdn" title="Permanent link">&para;</a></h2>
+<p>在SDN体系结构中，路由器中的路由软件都不存在了。因此，路由器之间不再交换路由信息。</p>
+<p>在控制层面中，有一个在逻辑上集中的远程控制器。逻辑上集中的远程控制器在物理上可由不同地点的多个服务器组成。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20212955.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-20%20212955.png" /></a></p>
+<p>远程控制器掌握各主机和整个网络的状态，远程控制器能够为每一个分组计算出最佳的路由。远程控制器为每一个路由器生成其正确的转发表。</p>
+<p>SDN这种新型网络体系结构的核心思想：把<strong>网络的控制层面和数据层面分离</strong>，而让控制层面利用软件来控制数据层面中的许多设备。</p>
+<p>这种方法可以用于一些大型数据中心之间的广域网，就可以提高网络的运行效率，还可以获得更好的经济效益</p>
 
 
   
