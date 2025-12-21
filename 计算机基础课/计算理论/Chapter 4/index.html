@@ -1558,7 +1558,7 @@ K × ▹Σ^∗×(Σ^∗(Σ−\{⊔\})∪{e})
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-16%20123857.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-16%20123857.png" /></a></p>
 </div>
-<p>还是和之前一样用  <span class="arithmatex">\(\vdash_M\)</span> 代表一次推导，$ \vdash_M^*$ 和 $ \vdash_M^n$ 的含义也是类似的</p>
+<p>还是和之前一样用  <span class="arithmatex">\(\vdash_M\)</span> 代表一次推导，<span class="arithmatex">\(\vdash_M^*\)</span> 和 <span class="arithmatex">\(\vdash_M^n\)</span> 的含义也是类似的</p>
 <hr />
 <p>为之后叙述图灵机简单一些，引入<strong>基本图灵机</strong>的概念</p>
 <div class="arithmatex">\[
@@ -1589,10 +1589,18 @@ H = H_2 \cup H_3
 <li>若 <span class="arithmatex">\(q \in K_1 - H_1\)</span>，则 <span class="arithmatex">\(\delta(q, \sigma) = \delta_1(q, \sigma)\)</span>。</li>
 <li>若 <span class="arithmatex">\(q \in K_2 - H_2\)</span>，则 <span class="arithmatex">\(\delta(q, \sigma) = \delta_2(q, \sigma)\)</span>。</li>
 <li>若 <span class="arithmatex">\(q \in K_3 - H_3\)</span>，则 <span class="arithmatex">\(\delta(q, \sigma) = \delta_3(q, \sigma)\)</span>。</li>
-<li>若 <span class="arithmatex">\(q \in H_1\)</span>，则：</li>
-<li>当 <span class="arithmatex">\(\sigma = a\)</span> 时，<span class="arithmatex">\(\delta(q, \sigma) = s_2\)</span></li>
-<li>当 <span class="arithmatex">\(\sigma = b\)</span> 时，<span class="arithmatex">\(\delta(q, \sigma) = s_3\)</span></li>
-<li>否则，<span class="arithmatex">\(\delta(q, \sigma) \in H\)</span></li>
+<li>
+<p>若 <span class="arithmatex">\(q \in H_1\)</span>，则：</p>
+</li>
+<li>
+<p>当 <span class="arithmatex">\(\sigma = a\)</span> 时，<span class="arithmatex">\(\delta(q, \sigma) = s_2\)</span></p>
+</li>
+<li>
+<p>当 <span class="arithmatex">\(\sigma = b\)</span> 时，<span class="arithmatex">\(\delta(q, \sigma) = s_3\)</span></p>
+</li>
+<li>
+<p>否则，<span class="arithmatex">\(\delta(q, \sigma) \in H\)</span></p>
+</li>
 </ul>
 </div>
 <h2 id="42-computing-with-turing-machine"><strong>4.2 Computing with Turing Machine</strong><a class="headerlink" href="#42-computing-with-turing-machine" title="Permanent link">&para;</a></h2>
@@ -1671,13 +1679,16 @@ K\times\left(\triangleright \Sigma^*\times\left(\Sigma^*(\Sigma-\sqcup)\right)\c
 <li>对任意输入字符串 <span class="arithmatex">\(x \in \Sigma^*\)</span>，<span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上停机，并在第一条带上输出 <span class="arithmatex">\(y\)</span>，当且仅当 <span class="arithmatex">\(M'\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上停机于相同的停机状态，且在其磁带上输出相同的 <span class="arithmatex">\(y\)</span>。</li>
 <li>如果 <span class="arithmatex">\(M\)</span> 在输入为 <span class="arithmatex">\(x\)</span> 后 <span class="arithmatex">\(t\)</span> 步停机了，那么 <span class="arithmatex">\(M'\)</span> 会在 <span class="arithmatex">\(O(t(|x|+t))\)</span> 步后会停机</li>
 </ul>
-<p>证明思路是：构造一个标准图灵机 <span class="arithmatex">\(M′\)</span>，模拟 <span class="arithmatex">\(k\)</span>-带图灵机 <span class="arithmatex">\(M\)</span> 的行为。</p>
-<p>Phase 1 将 k 带图灵机的初始配置编码到单带图灵机的一条磁带上：每个磁带格子存储一个 2<em>k</em> 元组，前 <em>k</em> 项表示各带在该位置的符号，后 <em>k</em> 项用 0/1 标记各读写头是否位于此处。</p>
+<p>证明思路是：构造一个标准图灵机 <span class="arithmatex">\(M’\)</span>，模拟 <span class="arithmatex">\(k\)</span>-带图灵机 <span class="arithmatex">\(M\)</span> 的行为。</p>
+<p>Phase 1 将 <span class="arithmatex">\(k\)</span> 带图灵机的初始配置编码到单带图灵机的一条磁带上：每个磁带格子存储一个 <span class="arithmatex">\(2k\)</span> 元组，前 <span class="arithmatex">\(k\)</span> 项表示各带在该位置的符号，后 <span class="arithmatex">\(k\)</span> 项用 0/1 标记各读写头是否位于此处。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-30%20195249.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-30%20195249.png" /></a></p>
-<p>Phase 2 就是模拟 <em>M</em> 的计算过程。首先从左到右（或从当前头位置）扫描，收集所有 <em>k</em> 个虚拟头当前读取的符号，形成 <em>k</em>-元组；然后根据 <em>M</em> 的转移函数确定新状态、要写入的符号和各头的移动方向，并更新 <em>M</em>′ 的内部状态；接着再次扫描磁带，将新符号写入对应位置，并通过在头标志位（0/1）上修改来反映各虚拟头的新位置。虽然 <em>M</em>′ 只有一个物理读写头，但通过多次遍历和标记，能准确模拟多个头的“同时”移动与操作。</p>
+<blockquote>
+<p>这里的理解是前 2k 个位置代表原来每条磁带的第一个位置</p>
+</blockquote>
+<p>Phase 2 就是模拟 <span class="arithmatex">\(M\)</span> 的计算过程。首先从左到右（或从当前头位置）扫描，收集所有 <span class="arithmatex">\(k\)</span> 个虚拟头当前读取的符号，形成 <span class="arithmatex">\(k\)</span>-元组；然后根据 <span class="arithmatex">\(M\)</span> 的转移函数确定新状态、要写入的符号和各头的移动方向，并更新 <span class="arithmatex">\(M’\)</span> 的内部状态；接着再次扫描磁带，将新符号写入对应位置，并通过在头标志位（0/1）上修改来反映各虚拟头的新位置。虽然 <span class="arithmatex">\(M'\)</span> 只有一个物理读写头，但通过多次遍历和标记，能准确模拟多个头的“同时”移动与操作。</p>
 <p>最后停机的时候</p>
 <ul>
-<li>解码：将磁带上每个复合元组（如 (<em>a</em>,⊔,0,0)）替换为其第一条带的符号（如 <em>a</em>），还原输出内容；</li>
+<li>解码：将磁带上每个复合元组（如 <span class="arithmatex">\((a,⊔,0,0)\)</span>）替换为其第一条带的符号（如 <span class="arithmatex">\(a\)</span>），还原输出内容；</li>
 <li>定位：根据头标志位找到第一个头的位置，将自身读写头移至对应列；</li>
 <li>同步：进入与 <em>M</em> 相同的接受或拒绝状态，确保行为等价。</li>
 </ul>
@@ -1696,12 +1707,14 @@ K\times\left(\triangleright \Sigma^*\times\left(\Sigma^*(\Sigma-\sqcup)\right)\c
 ((K - H) \times \Sigma) \times (K \times (\Sigma \cup \{ \leftarrow, \rightarrow \}))
 \]</div>
 <p>与图灵机类似，但 <span class="arithmatex">\(\Delta\)</span> 现在是一个<strong>关系</strong>而非函数。</p>
-<p>Configuration以及关系 <span class="arithmatex">\(\vdash_M\)</span> 和 <span class="arithmatex">\(\vdash_M^*\)</span> 的定义与标准图灵机类似。
-- <span class="arithmatex">\(\vdash_M\)</span> 不必是单值的：一个 Configuration 在一步中可能产生多个其他格局</p>
+<p>Configuration以及关系 <span class="arithmatex">\(\vdash_M\)</span> 和 <span class="arithmatex">\(\vdash_M^*\)</span> 的定义与标准图灵机类似。</p>
+<ul>
+<li><span class="arithmatex">\(\vdash_M\)</span> 不必是单值的：一个 Configuration 在一步中可能产生多个其他格局</li>
+</ul>
 <p>半判定：</p>
 <ul>
 <li>给定 NTM <span class="arithmatex">\(M\)</span> 其输入符号集为<span class="arithmatex">\(\Sigma_0\)</span></li>
-<li><span class="arithmatex">\(M\)</span> semidecides <span class="arithmatex">\(L\subseteq\Sigma_0^*\)</span> if for any <span class="arithmatex">\(w\in\Sigma_0^*\)</span> ,<span class="arithmatex">\(w\in L\)</span> iff <span class="arithmatex">\((s,\triangleright\sqcup w)\vdash_M^*(h,\cdots)\)</span>forsome <span class="arithmatex">\(h\in H\)</span></li>
+<li><span class="arithmatex">\(M\)</span> semidecides <span class="arithmatex">\(L\subseteq\Sigma_0^*\)</span> if for any <span class="arithmatex">\(w\in\Sigma_0^*\)</span> ,<span class="arithmatex">\(w\in L\)</span> iff <span class="arithmatex">\((s,\triangleright\sqcup w)\vdash_M^*(h,\cdots)\)</span>for some <span class="arithmatex">\(h\in H\)</span></li>
 <li>如果 <span class="arithmatex">\(w\in L\)</span> 则NTM有分支可以停机，否则没有分支可以停机</li>
 </ul>
 <p>判定：令<span class="arithmatex">\(M=(K,\Sigma,\Delta,s,\{y,n\})\)</span>，输入符号集 <span class="arithmatex">\(\Sigma_0\)</span>，<span class="arithmatex">\(M\)</span> decides a language <span class="arithmatex">\(L\subseteq\Sigma_0^*\)</span> if</p>
@@ -1750,7 +1763,7 @@ L(G)=\{w\in\Sigma^*:S\Rightarrow_G^*w\}
 w_0\Rightarrow_Gw_1\Rightarrow_G\cdots\Rightarrow_Gw_n
 \]</div>
 <ul>
-<li>其中 $ n $ 为推导的长度（即推导步数）。</li>
+<li>其中 <span class="arithmatex">\(n\)</span> 为推导的长度（即推导步数）。</li>
 </ul>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -1761,17 +1774,39 @@ w_0\Rightarrow_Gw_1\Rightarrow_G\cdots\Rightarrow_Gw_n
 <hr />
 <p><span class="arithmatex">\((\Rightarrow)\)</span> 文法 <span class="arithmatex">\(\Rightarrow\)</span> 递归可枚举的证明：</p>
 <p>设 <span class="arithmatex">\(L=L(G)\)</span>，思路是构造一台非确定性图灵机 <span class="arithmatex">\(M\)</span>，使得 <span class="arithmatex">\(L(M)=L(G)\)</span>。</p>
-<p><span class="arithmatex">\(M\)</span> 有两带：
-  - 第一带永久保存输入 <span class="arithmatex">\(w\)</span>；
-  - 第二带用于尝试重构从起始符号 <span class="arithmatex">\(S\)</span> 到 <span class="arithmatex">\(w\)</span> 的推导过程。</p>
-<p><span class="arithmatex">\(M\)</span> 非确定性地模拟文法 <span class="arithmatex">\(G\)</span> 的推导：
-  - 从第二带上的 <span class="arithmatex">\(S\)</span> 开始，每一步非确定性地选择一条规则进行替换；
-  - 每次替换后检查当前字符串是否等于 <span class="arithmatex">\(w\)</span>；
-  - 若相等则接受，否则继续尝试；
-  - 若无法推导出 <span class="arithmatex">\(w\)</span>，则可能无限循环。</p>
-<p>共有 <span class="arithmatex">\(|R|+1\)</span> 种状态选择：
-  - 前 <span class="arithmatex">\(|R|\)</span> 个状态对应应用某条规则；
-  - 第 <span class="arithmatex">\(|R|+1\)</span> 个状态用于比较当前串是否等于 <span class="arithmatex">\(w\)</span>，若相等则接受，否则继续。</p>
+<p><span class="arithmatex">\(M\)</span> 有两带：</p>
+<ul>
+<li>
+<p>第一带永久保存输入 <span class="arithmatex">\(w\)</span>；</p>
+</li>
+<li>
+<p>第二带用于尝试重构从起始符号 <span class="arithmatex">\(S\)</span> 到 <span class="arithmatex">\(w\)</span> 的推导过程。</p>
+</li>
+</ul>
+<p><span class="arithmatex">\(M\)</span> 非确定性地模拟文法 <span class="arithmatex">\(G\)</span> 的推导：</p>
+<ul>
+<li>
+<p>从第二带上的 <span class="arithmatex">\(S\)</span> 开始，每一步非确定性地选择一条规则进行替换；</p>
+</li>
+<li>
+<p>每次替换后检查当前字符串是否等于 <span class="arithmatex">\(w\)</span>；</p>
+</li>
+<li>
+<p>若相等则接受，否则继续尝试；</p>
+</li>
+<li>
+<p>若无法推导出 <span class="arithmatex">\(w\)</span>，则可能无限循环。</p>
+</li>
+</ul>
+<p>共有 <span class="arithmatex">\(|R|+1\)</span> 种状态选择：</p>
+<ul>
+<li>
+<p>前 <span class="arithmatex">\(|R|\)</span> 个状态对应应用某条规则；</p>
+</li>
+<li>
+<p>第 <span class="arithmatex">\(|R|+1\)</span> 个状态用于比较当前串是否等于 <span class="arithmatex">\(w\)</span>，若相等则接受，否则继续。</p>
+</li>
+</ul>
 <p>因此，<span class="arithmatex">\(M\)</span> 能半判定 <span class="arithmatex">\(L(G)\)</span>，故 <span class="arithmatex">\(L\)</span> 是递归可枚举的。</p>
 <hr />
 <p><span class="arithmatex">\((\Leftarrow)\)</span> 递归可枚举 <span class="arithmatex">\(\Rightarrow\)</span> 文法</p>
@@ -1801,12 +1836,24 @@ S\Rightarrow\triangleright\sqcup h\triangleleft\Rightarrow\cdots\Rightarrow\tria
 </ul>
 <p><strong>文法构造</strong>：设 <span class="arithmatex">\(G=(V,\Sigma-\{\sqcup,\triangleright\},R,S)\)</span>，其中：</p>
 <p><span class="arithmatex">\(V=\Sigma\cup K\cup\{S,\triangleleft\}\)</span></p>
-<p>规则 <span class="arithmatex">\(R\)</span> 包含以下类型：
-  - 若 <span class="arithmatex">\((q,a)\to(p,b)\)</span>，则添加规则 <span class="arithmatex">\(bp\to aq\)</span>
-  - 若 <span class="arithmatex">\((q,a)\to(p,\rightarrow)\)</span>，则对每个 <span class="arithmatex">\(b\in\Sigma\)</span>，添加 <span class="arithmatex">\(abp\to aqb\)</span>
-  - 若 <span class="arithmatex">\((q,a)\to(p,\leftarrow)\)</span>，且 <span class="arithmatex">\(a\ne\sqcup\)</span>，则添加 <span class="arithmatex">\(pab\to aqb\)</span>；若 <span class="arithmatex">\(a=\sqcup\)</span>，则添加 <span class="arithmatex">\(p\sqcup b\to\sqcup qb\)</span> 和 <span class="arithmatex">\(p\triangleleft\leftarrow\sqcup q\triangleleft\)</span>
-  - 若 <span class="arithmatex">\((h,\sqcup)\)</span> 是终止配置，则添加 <span class="arithmatex">\(S\to\triangleright\sqcup h\triangleleft\)</span>
-  - 若 <span class="arithmatex">\(s\)</span> 是起始状态，则添加 <span class="arithmatex">\(\triangleright\sqcup s\to e\)</span>，<span class="arithmatex">\(\triangleleft\to e\)</span></p>
+<p>规则 <span class="arithmatex">\(R\)</span> 包含以下类型：</p>
+<ul>
+<li>
+<p>若 <span class="arithmatex">\((q,a)\to(p,b)\)</span>，则添加规则 <span class="arithmatex">\(bp\to aq\)</span></p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\((q,a)\to(p,\rightarrow)\)</span>，则对每个 <span class="arithmatex">\(b\in\Sigma\)</span>，添加 <span class="arithmatex">\(abp\to aqb\)</span></p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\((q,a)\to(p,\leftarrow)\)</span>，且 <span class="arithmatex">\(a\ne\sqcup\)</span>，则添加 <span class="arithmatex">\(pab\to aqb\)</span>；若 <span class="arithmatex">\(a=\sqcup\)</span>，则添加 <span class="arithmatex">\(p\sqcup b\to\sqcup qb\)</span> 和 <span class="arithmatex">\(p\triangleleft\leftarrow\sqcup q\triangleleft\)</span></p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\((h,\sqcup)\)</span> 是终止配置，则添加 <span class="arithmatex">\(S\to\triangleright\sqcup h\triangleleft\)</span></p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(s\)</span> 是起始状态，则添加 <span class="arithmatex">\(\triangleright\sqcup s\to e\)</span>，<span class="arithmatex">\(\triangleleft\to e\)</span></p>
+</li>
+</ul>
 <hr />
 <p><strong>定义</strong>：函数 <span class="arithmatex">\(f:\Sigma^*\to\Sigma^*\)</span> 是<strong>文法可计算的</strong> (<strong>grammatically computable</strong>)，若存在文法 <span class="arithmatex">\(G\)</span> 使得 <span class="arithmatex">\(SwS\Rightarrow_G^*v\)</span> 当且仅当 <span class="arithmatex">\(v=f(w)\)</span>。</p>
 <h2 id="46-numerical-functions"><strong>4.6 Numerical Functions</strong><a class="headerlink" href="#46-numerical-functions" title="Permanent link">&para;</a></h2>
@@ -1854,7 +1901,7 @@ S\Rightarrow\triangleright\sqcup h\triangleleft\Rightarrow\cdots\Rightarrow\tria
 <p>(<span class="arithmatex">\(⇒\)</span>) <span class="arithmatex">\(μ\)</span>-递归 ⇒ 图灵机可计算：因为基本函数（零、后继、投影）很容易用图灵机实现，而复合、原始递归、极小化这三种操作也都可以被图灵机模拟。因此，任何 μ-递归函数都可以被图灵机计算。</p>
 <p>(<span class="arithmatex">\(⇐\)</span>) 图灵机可计算 ⇒ <span class="arithmatex">\(μ\)</span>-递归：</p>
 <ul>
-<li>首先对状态集 <span class="arithmatex">\(K\)</span> 和字母表 <span class="arithmatex">\(\Sigma\)</span> 进行编码：设 <span class="arithmatex">\(K\cap\Sigma=\emptyset\)</span>，令 <span class="arithmatex">\(b=|\Sigma|+|K|\)</span>，并定义一个映射 <span class="arithmatex">\(E:\Sigma\cup K\to\{0,1,\ldots,b-1\}\)</span>，</li>
+<li>首先对状态集 <span class="arithmatex">\(K\)</span> 和字母表 <span class="arithmatex">\(\Sigma\)</span> 进行编码：设 <span class="arithmatex">\(K\cap\Sigma=\emptyset\)</span>，令 <span class="arithmatex">\(b=|\Sigma|+|K|\)</span>，并定义一个映射 <span class="arithmatex">\(E:\Sigma\cup K\to\{0,1,\ldots,b-1\}\)</span></li>
 <li>这样，任意配置<span class="arithmatex">\((q,a_1a_2\dots a_kq\dots a_n)\)</span>可以表示为一个以<span class="arithmatex">\(b\)</span>为基数的整数，其形式为<span class="arithmatex">\(a_1a_2\dots a_kq\dots a_n\)</span>，对应的数值为</li>
 </ul>
 <div class="arithmatex">\[
