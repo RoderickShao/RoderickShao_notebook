@@ -1199,6 +1199,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#55-properties-of-re-languages" class="md-nav__link">
+    5.5 Properties of Re. Languages
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1223,6 +1230,10 @@
   
     
     
+      
+        
+      
+        
       
         
       
@@ -1273,6 +1284,8 @@
   
     
     
+      
+        
       
         
       
@@ -1474,6 +1487,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#55-properties-of-re-languages" class="md-nav__link">
+    5.5 Properties of Re. Languages
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1503,6 +1523,7 @@
 <p>这个论断可以证伪</p>
 </blockquote>
 <p>那么存在哪些问题是不可被计算的呢？这有利于我们探究计算的边界。比如说一个很经典的不可计算问题是 halting problem，这就意味着没有一个算法可以解决这个问题。</p>
+<p><a class="glightbox" href="../img/summary.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/summary.png" /></a></p>
 <h2 id="52-universal-turing-machines">5.2 Universal Turing Machines<a class="headerlink" href="#52-universal-turing-machines" title="Permanent link">&para;</a></h2>
 <p><strong>图灵机能否被“编程”？</strong> 也就是是否可以设计一个图灵机来模拟其他任意图灵机的行为。</p>
 <p>我们可以设计一台图灵机 U，输入为另一个图灵机 <span class="arithmatex">\(M\)</span> 和输入串 <span class="arithmatex">\(w\)</span>，使得 <span class="arithmatex">\(U\)</span> 的输出与直接运行 <span class="arithmatex">\(M\)</span> 在 <span class="arithmatex">\(w\)</span> 上的结果相同，即：<span class="arithmatex">\(U(M,w)=M(w)\)</span></p>
@@ -1573,17 +1594,66 @@ x\in L_1\quad\text{当且仅当}\quad\tau(x)\in L_2
 <ul>
 <li>停机问题：给定一台图灵机 <span class="arithmatex">\(M\)</span> 和一个输入串 <span class="arithmatex">\(w\)</span>，问：<span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上是否会停止？</li>
 <li>空带停机问题：给定一台图灵机 <span class="arithmatex">\(M\)</span>，问：<span class="arithmatex">\(M\)</span> 在空输入带上是否会停止？</li>
-</ul>
-<blockquote>
-<p>假设存在一个能判定该问题的算法，那么我们可以利用它来判定已知不可判定的通用停机问题——对于任意图灵机 <span class="arithmatex">\(M\)</span> 和输入 <span class="arithmatex">\(w\)</span>，构造一台新机器 <span class="arithmatex">\(M_w\)</span>，它先在空带上写下 <span class="arithmatex">\(w\)</span>，再模拟 <span class="arithmatex">\(M\)</span> 运行；这样 <span class="arithmatex">\(M_w\)</span> 在空带上停机当且仅当 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上停机。由于这种构造是可计算的，若原问题可判定，则停机问题也可判定，矛盾</p>
-</blockquote>
-<ul>
-<li>存在性停机问题：给定一台图灵机 <span class="arithmatex">\(M\)</span>，问：是否存在某个字符串 <span class="arithmatex">\(w\)</span>，使得 <span class="arithmatex">\(M\)</span> 在 <span class="arithmatex">\(w\)</span> 上会停止？</li>
-<li>全局停机问题：给定一台图灵机 <span class="arithmatex">\(M\)</span>，问：<span class="arithmatex">\(M\)</span> 是否在<strong>所有</strong>输入串上都会停止？</li>
+<li>
+<p>存在性停机问题：给定一台图灵机 <span class="arithmatex">\(M\)</span>，问：是否存在某个字符串 <span class="arithmatex">\(w\)</span>，使得 <span class="arithmatex">\(M\)</span> 在 <span class="arithmatex">\(w\)</span> 上会停止？</p>
+</li>
+<li>
+<p>全局停机问题：给定一台图灵机 <span class="arithmatex">\(M\)</span>，问：<span class="arithmatex">\(M\)</span> 是否在<strong>所有</strong>输入串上都会停止？</p>
+</li>
 <li>两台机器等价停机问题：给定两台图灵机 <span class="arithmatex">\(M_1\)</span> 和 <span class="arithmatex">\(M_2\)</span>，问：它们是否在<strong>相同的输入串上都停止</strong>？</li>
 <li>语言性质判断问题：给定一台图灵机 <em>M</em>，其半判定的语言为 <span class="arithmatex">\(L(M)\)</span>，问：<span class="arithmatex">\(L(M)\)</span> 是否是<strong>正则语言</strong>？<span class="arithmatex">\(L(M)\)</span> 是否是<strong>上下文无关语言</strong>？<span class="arithmatex">\(L(M)\)</span> 是否是<strong>递归语言</strong>（可判定语言）？</li>
 <li>在某些特定的图灵机 M，使得仅判断它在不同输入 w 上是否停机，就已经是一个不可判定的问题。</li>
 </ul>
+<p>上述这些问题应该怎么来证明呢？以空带停机问题为例</p>
+<ul>
+<li><span class="arithmatex">\(H = \{'Mw' \mid M \text{ halts on } w\}\)</span> </li>
+<li><span class="arithmatex">\(L = \{'M' \mid M \text{ halts on } e\}\)</span></li>
+<li><span class="arithmatex">\(f('Mw') = \text{the encoding of } M_w = \begin{cases}1.\ \text{If input } x \neq e,\ \text{reject}; \\ 2.\ \text{run } M \text{ on } w; \\ 3.\ \text{if } M \text{ halts, accept}.\end{cases}\)</span></li>
+<li><span class="arithmatex">\('Mw' \in H \Rightarrow L(M_w) = \{e\} \Rightarrow f('Mw') \in L\)</span></li>
+<li><span class="arithmatex">\('Mw' \notin H \Rightarrow L(M_w) = \varnothing \Rightarrow f('Mw') \notin L\)</span></li>
+<li><span class="arithmatex">\(H \leq L\)</span></li>
+</ul>
+<p>基本的思路首先列出需要规约的两个问题，表示为通用图灵机下的输入；然后构造一个函数，完成二者的转换。</p>
+<h2 id="55-properties-of-re-languages">5.5 <strong>Properties of Re. Languages</strong><a class="headerlink" href="#55-properties-of-re-languages" title="Permanent link">&para;</a></h2>
+<p>定理：语言 <span class="arithmatex">\(L\)</span> 是递归的当且仅当 <span class="arithmatex">\(L\)</span> 和其补集 <span class="arithmatex">\(L\)</span> 都是递归可枚举的（r.e.）。</p>
+<p>证明如下：</p>
+<p>若 <span class="arithmatex">\(L\)</span> 是递归的，则它一定是递归可枚举的（因为所有递归语言都是 r.e.）；同时，由于递归语言的补集仍是递归的，因此 <span class="arithmatex">\(L\)</span> 也是递归的，从而也是 r.e.。</p>
+<p>反之，若 <span class="arithmatex">\(L\)</span> 和 <span class="arithmatex">\(L\)</span> 都是 r.e.，则可以构造一个判定 <span class="arithmatex">\(L\)</span> 的算法：对任意输入 <span class="arithmatex">\(w\)</span>，同时运行 <span class="arithmatex">\(L\)</span> 和 <span class="arithmatex">\(L\)</span> 的半判定过程，由于 <span class="arithmatex">\(w\)</span> 要么属于 <span class="arithmatex">\(L\)</span>，要么属于 <span class="arithmatex">\(L\)</span>，所以其中一个过程最终一定会停机；一旦停机，即可根据是哪个过程停机来决定接受或拒绝 <span class="arithmatex">\(w\)</span>，从而实现对 <span class="arithmatex">\(L\)</span> 的完全判定。因此，<span class="arithmatex">\(L\)</span> 是递归的。</p>
+<hr />
+<p>定义： 我们说图灵机 <span class="arithmatex">\(M\)</span> 枚举语言 <span class="arithmatex">\(L\)</span>，当且仅当存在 <span class="arithmatex">\(M\)</span> 的某个固定状态 <span class="arithmatex">\(q\)</span>，使得  </p>
+<div class="arithmatex">\[
+L = \left\{ w \mid (s, \triangleright \underline{\ }) \vdash_M^* (q, \triangleright \underline{\ } w) \right\}
+\]</div>
+<p>即：从初始状态 <span class="arithmatex">\(s\)</span> 和空白输入开始，经过若干步推导后，机器进入状态 <span class="arithmatex">\(q\)</span> 且输出为 <span class="arithmatex">\(w\)</span>。  一个语言是 <strong>图灵可枚举的（Turing-enumerable）</strong>，当且仅当存在一台图灵机能够枚举它。</p>
+<hr />
+<p><strong>定理：</strong> 一个语言是递归可枚举的（recursively enumerable），当且仅当它是图灵可枚举的。</p>
+<details class="note">
+<summary>证明过程</summary>
+<p>⇒ 方向：递归可枚举 ⇒ 图灵可枚举 
+假设图灵机 <span class="arithmatex">\(M\)</span> 半判定语言 <span class="arithmatex">\(L\)</span> ，即对任意输入 <span class="arithmatex">\(w\)</span> ，若 <span class="arithmatex">\(w \in L\)</span> ，则 <span class="arithmatex">\(M\)</span> 会停机接受；否则可能永不停机。我们构造一台新的图灵机 <span class="arithmatex">\(M'\)</span> 来枚举 <span class="arithmatex">\(L\)</span> 。其基本思想是系统地生成语言 <span class="arithmatex">\(L\)</span> 的字母表上的所有字符串，并对每个字符串模拟 <span class="arithmatex">\(M\)</span> 的运行。为了避免某个无限长的计算阻塞整个过程，采用“对角线并行”（dovetailing）策略：依次执行 <span class="arithmatex">\(M\)</span> 在不同字符串上的前 1 步、前 2 步、前 3 步……这样可以确保只要 <span class="arithmatex">\(M\)</span> 在某个字符串上最终停机，<span class="arithmatex">\(M'\)</span> 就能在有限步内发现它，并将该字符串输出到输出带上。因此，<span class="arithmatex">\(M'\)</span> 能够枚举出 <span class="arithmatex">\(L\)</span> 中的所有字符串。</p>
+<p>⇐ 方向：图灵可枚举 ⇒ 递归可枚举
+反过来，假设图灵机 <span class="arithmatex">\(M\)</span> 枚举语言 <span class="arithmatex">\(L\)</span> ，即存在一个固定状态 <span class="arithmatex">\(q\)</span> ，使得每当 <span class="arithmatex">\(M\)</span> 运行到状态 <span class="arithmatex">\(q\)</span> 时，输出带上就出现一个属于 <span class="arithmatex">\(L\)</span> 的字符串。我们构造一台新图灵机 <span class="arithmatex">\(M'\)</span> 来半判定 <span class="arithmatex">\(L\)</span> ：给定输入 <span class="arithmatex">\(w\)</span> ，<span class="arithmatex">\(M'\)</span> 启动 <span class="arithmatex">\(M\)</span> 并在空白带上运行。每当 <span class="arithmatex">\(M\)</span> 经过状态 <span class="arithmatex">\(q\)</span> 时，<span class="arithmatex">\(M'\)</span> 暂停检查输出带上当前的字符串是否等于 <span class="arithmatex">\(w\)</span> 。如果相等，则 <span class="arithmatex">\(M'\)</span> 停机接受；否则继续模拟。由于 <span class="arithmatex">\(M\)</span> 最终会输出 <span class="arithmatex">\(L\)</span> 中的所有字符串，一旦 <span class="arithmatex">\(w \in L\)</span> ，它一定会出现在输出带上，从而被 <span class="arithmatex">\(M'\)</span> 发现并接受。因此，<span class="arithmatex">\(M'\)</span> 半判定 <span class="arithmatex">\(L\)</span> ，说明 <span class="arithmatex">\(L\)</span> 是递归可枚举的。</p>
+</details>
+<p><strong>定义：</strong> 设图灵机 <span class="arithmatex">\(M\)</span> 枚举语言 <span class="arithmatex">\(L\)</span>。我们称 <span class="arithmatex">\(M\)</span> <strong>按字典序枚举</strong> <span class="arithmatex">\(L\)</span>，如果以下条件成立（其中 <span class="arithmatex">\(q\)</span> 是一个特殊的“输出”状态）每当 <span class="arithmatex">\((q, \triangleright \underline{\ } w) \vdash_M^+ (q, \triangleright \underline{\ } w')\)</span> 时，字符串 <span class="arithmatex">\(w'\)</span> 在字典序上严格位于 <span class="arithmatex">\(w\)</span> 之后。  </p>
+<p>一个语言是 <strong>按字典序图灵可枚举的</strong>，当且仅当存在一台图灵机能够按字典序枚举它。</p>
+<hr />
+<p><strong>定理：</strong> 一个语言是递归的，当且仅当它是按字典序图灵可枚举的。</p>
+<details class="not">
+<summary>证明过程</summary>
+</details>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>⇒ 方向：递归 ⇒ 按字典序图灵可枚举  
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>假设图灵机 $M$ 决定语言 $L$，即对任意输入 $w$，$M$ 总能在有限步内停机并接受或拒绝。我们构造一台新的图灵机 $M&#39;$ 来按字典序枚举 $L$。其基本思想是：$M&#39;$ 按字典序依次生成语言 $L$ 字母表上的所有字符串，并将每个字符串作为输入交给 $M$ 运行。如果 $M$ 接受该字符串，则 $M&#39;$ 将其写入输出带上（通过进入“显示状态” $q$）；如果 $M$ 拒绝，则 $M&#39;$ 不进入显示状态，直接跳到下一个字符串。由于 $M$ 是决定器，它对每个输入都会停机，因此我们可以保证枚举过程是可控的。这样，$M&#39;$ 会以字典序输出 $L$ 中的所有字符串，从而实现按字典序枚举。
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>⇐ 方向：按字典序图灵可枚举 ⇒ 递归  
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>反过来，假设语言 $L$ 被一台图灵机 $M$ 按字典序枚举。若 $L$ 是有限语言，则显然它是递归的（因为有限语言总是可判定的）。若 $L$ 是无限语言，我们构造一台图灵机 $M&#39;$ 来决定 $L$：给定输入 $w$，启动 $M$ 并等待其输出。$M&#39;$ 监控 $M$ 的输出过程，直到出现以下两种情况之一：一是 $w$ 被输出（即出现在显示状态），此时 $M&#39;$ 接受 $w$；二是某个字典序大于 $w$ 的字符串被输出，此时 $M&#39;$ 拒绝 $w$。由于 $L$ 是无限的，而比 $w$ 小的字符串数量有限（最多为 $|\Sigma|+1^{|w|}$），因此必有一个事件会发生。于是 $M&#39;$ 总能在有限步内停机并做出正确判断，说明 $L$ 是递归的。
+</code></pre></div>
+<p>下面我们介绍 Rice Theorem:</p>
+<p>对于任意一个关于图灵机所识别语言的<strong>非平凡语义性质</strong>（即该性质不适用于所有递归可枚举语言，也不全都不适用），判定一台图灵机的语言是否具有该性质是<strong>不可判定的</strong>。换句话说，任何只依赖于图灵机语言内容（而非其具体结构或运行方式）且既非恒真也非恒假的性质，都无法通过算法自动判断。</p>
+<p>比如说之前的空带停机问题，由于存在一些图灵机在空带上停机，也有不在空带上的停机的，所以这是非平凡的，所以这个问题是不可判定的。</p>
+<p>但要注意的是 RIce 定理只适用于关于语义性质的问题，不能解决语法性质的问题。语法性质指的是这类性质依赖于图灵机的<strong>具体结构、状态数、转移规则或运行行为</strong>，而非其语言 <span class="arithmatex">\(L(M)\)</span> 本身。</p>
+<blockquote>
+<p>Rice 定理是判定一个语言是否可判断的利器</p>
+</blockquote>
 
 
   

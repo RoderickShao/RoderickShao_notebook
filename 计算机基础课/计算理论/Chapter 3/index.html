@@ -1236,6 +1236,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1273,6 +1277,8 @@
   
     
     
+      
+        
       
         
       
@@ -1503,9 +1509,12 @@ G = (V, \Sigma, R, S)
 <li><span class="arithmatex">\(V\)</span> is an <strong>alphabet</strong> (a finite set of symbols), called the <strong>vocabulary</strong> or <strong>set of variables</strong>. 字母表</li>
 <li><span class="arithmatex">\(\Sigma \subseteq V\)</span> is the set of <strong>terminal symbols</strong> (the actual characters in the language). 终止符号</li>
 <li><span class="arithmatex">\(S \in V - \Sigma\)</span> is the <strong>start symbol</strong> (a special non-terminal from which derivation begins). 起始符号</li>
-<li><span class="arithmatex">\(R\)</span> is the set of <strong>production rules</strong>, a <strong>finite subset</strong> of $(V - \Sigma) \times V^* $.  </li>
+<li><span class="arithmatex">\(R\)</span> is the set of <strong>production rules</strong>, a <strong>finite subset</strong> of <span class="arithmatex">\((V - \Sigma) \times V^*\)</span>.  </li>
 </ul>
 <p>比如说 <span class="arithmatex">\(L = \{a^nb^n|n\ge 0\}, S\rightarrow aSb,S\rightarrow e\)</span> </p>
+<blockquote>
+<p>注意这里左边只能是单个非终结符，与下一章的 Grammar 做区分</p>
+</blockquote>
 <hr />
 <p>接下来我们证明所有的正则语言都是 CFL，这里就选择直接构造。对于一个正则语言，其被一个 DFA <span class="arithmatex">\(M = (K,\Sigma,\delta,s,F)\)</span>接受。那么我们可以构造如下一个 CFG <span class="arithmatex">\(G = (V,\Sigma,R,S)\)</span>，</p>
 <ul>
@@ -1526,11 +1535,11 @@ G = (V, \Sigma, R, S)
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20123435.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="align" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20123435.png" /></a></p>
 <p>我们也可以发现由同一个 CFG 生成出来的相同的字符串，它们的 parse tree 也可能不一样</p>
+<hr />
 <p><strong>Definition</strong>: Similarity of derivations</p>
 <p>Let <span class="arithmatex">\(G = (V, \Sigma, R, S)\)</span> be a CFG.</p>
 <p>Let  <span class="arithmatex">\(D = x_1 \Rightarrow x_2 \Rightarrow x_3 \Rightarrow \cdots \Rightarrow x_n\)</span>,  where <span class="arithmatex">\(x_i \in V^*\)</span>, <span class="arithmatex">\(x_1 \in V - \Sigma\)</span>, <span class="arithmatex">\(x_n \in \Sigma^*\)</span></p>
 <p>Let  <span class="arithmatex">\(D' = x'_1 \Rightarrow x'_2 \Rightarrow x'_3 \Rightarrow \cdots \Rightarrow x'_n\)</span>,  where <span class="arithmatex">\(x'_i \in V^*\)</span>, <span class="arithmatex">\(x'_1 \in V - \Sigma\)</span>, <span class="arithmatex">\(x'_n \in \Sigma^*\)</span></p>
-<hr />
 <p><span class="arithmatex">\(D\)</span> precedes <span class="arithmatex">\(D'\)</span> (<span class="arithmatex">\(D &lt; D'\)</span>) <span class="arithmatex">\(\Leftrightarrow \exists 1 \leq k \leq n \text{ such that}\)</span></p>
 <ul>
 <li>For all <span class="arithmatex">\(i \neq k\)</span>, we have <span class="arithmatex">\(x_i = x'_i\)</span></li>
@@ -1539,8 +1548,10 @@ G = (V, \Sigma, R, S)
 <li><span class="arithmatex">\(x'_k = uAvzw\)</span>, where <span class="arithmatex">\(B \to z \in R\)</span></li>
 <li><span class="arithmatex">\(x_{k+1} = x'_{k+1} = uyvzw\)</span></li>
 </ul>
-<hr />
 <p><span class="arithmatex">\(D\)</span> and <span class="arithmatex">\(D'\)</span> are <strong>similar</strong> <span class="arithmatex">\(\Leftrightarrow(D, D') \text{ belong to the reflexive, symmetric, transitive closure of } &lt;\)</span></p>
+<blockquote>
+<p>用 parse tree 的视角去理解这个相似性的定义，precede 就是交换子树，相似性就是两棵树可以通过交换子树的操作变得一样</p>
+</blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>相似性是一种等价关系</strong>  （Similarity is an equivalence relation）</p>
@@ -1596,13 +1607,14 @@ P = (K, \Sigma, \Gamma, \Delta, s, F)
 <p>在 PDA 中，<strong>同一个状态、输入符号和栈顶符号组合</strong>，可能对应多个不同的转移规则。这意味着在某一步，机器可以选择执行其中任意一个规则。因此，这种 PDA 是<strong>非确定性的</strong>（Nondeterministic PDA, NPDA）。</p>
 <hr />
 <p><span class="arithmatex">\((p, x, \alpha) \vdash_M (q, y, \zeta)\)</span> (yield in one step) <strong>iff</strong> there is some transition <span class="arithmatex">\(((p, a, \beta), (q, \gamma)) \in \Delta\)</span> such that </p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20204619.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="align" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20204619.png" /></a></p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20204619.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20204619.png" /></a></center></p>
 <ul>
 <li><span class="arithmatex">\(x = ay\)</span>, <span class="arithmatex">\(a \in \Sigma \cup \{e\}\)</span> </li>
 <li><span class="arithmatex">\(\alpha = \beta\eta\)</span> </li>
 <li><span class="arithmatex">\(\zeta = \gamma\eta\)</span> for some <span class="arithmatex">\(\eta \in \Gamma^*\)</span> </li>
 </ul>
 <p>Let <span class="arithmatex">\(\vdash_M^*\)</span> be the reflexive, transitive closure of <span class="arithmatex">\(\vdash_M\)</span>.</p>
+<hr />
 <p>那么也就是说 PDA <span class="arithmatex">\(M\)</span> 所接受的语言就是</p>
 <div class="arithmatex">\[
 L(M) = \{w \mid (s, w, e) \vdash_M^* (p, e, e) \text{ for some state } p \in F\}.
@@ -1617,8 +1629,8 @@ L(M) = \{w \mid (s, w, e) \vdash_M^* (p, e, e) \text{ for some state } p \in F\}
 <li>Each context-free language is accepted by some PDA.</li>
 <li>If a language is accepted by a PDA, it is a context-free language.</li>
 </ul>
-<p>如何对于任意一个 CFL，构造出相应的 PDA ?</p>
-<p><strong>Construct a PDA</strong> <span class="arithmatex">\(M = (K, \Sigma, \Gamma, \Delta, s, F)\)</span> for the CFG <span class="arithmatex">\(G = (V, \Sigma, R, S)\)</span> such that  <span class="arithmatex">\(L(M) = L(G)\)</span></p>
+<p><strong>如何对于任意一个 CFL，构造出相应的 PDA ?</strong></p>
+<p>Construct a PDA <span class="arithmatex">\(M = (K, \Sigma, \Gamma, \Delta, s, F)\)</span> for the CFG <span class="arithmatex">\(G = (V, \Sigma, R, S)\)</span> such that  <span class="arithmatex">\(L(M) = L(G)\)</span></p>
 <ul>
 <li>PDA <span class="arithmatex">\(M\)</span> has just 2 states: <span class="arithmatex">\(p\)</span> ~ start state, <span class="arithmatex">\(q\)</span> ~ final state</li>
 <li>Stack alphabet <span class="arithmatex">\(\Gamma = V\)</span></li>
@@ -1627,18 +1639,18 @@ L(M) = \{w \mid (s, w, e) \vdash_M^* (p, e, e) \text{ for some state } p \in F\}
 <li><span class="arithmatex">\(((q, \varepsilon, A), (q, x))\)</span> for each rule <span class="arithmatex">\(A \to x \in R\)</span></li>
 <li><span class="arithmatex">\(((q, a, a), (q, \varepsilon))\)</span>, <span class="arithmatex">\(\forall a \in \Sigma\)</span></li>
 </ul>
-<p>整体思路就是先把初始符号 <span class="arithmatex">\(S\)</span> 放到栈里，然后依次从栈顶读字符，如果是非终结符，则进行替换，将替换后的字符再次塞回栈顶；如果是终结符，那么就读出。这样的 PDA 实际上模仿的就是 CFG 的最左推导。</p>
+<p>整体思路就是先把初始符号 <span class="arithmatex">\(S\)</span> 放到栈里，磁带上放相应的字符串。然后依次从栈顶读字符，如果是非终结符，则进行替换，将替换后的字符再次塞回栈顶；如果是终结符，那么就读出。这样的 PDA 实际上模仿的就是 CFG 的最左推导。</p>
 <p>我们要证明 PDA 的操作过程就是 CFG 的最左推导，其实要说明以下式子</p>
 <div class="arithmatex">\[
 S \overset{L^*}{\Longrightarrow} w\alpha \iff (q, w, S) \vdash_M^* (q, \varepsilon, \alpha)
 \]</div>
-<p>其中  <span class="arithmatex">\(w \in \Sigma^*\)</span> 然后 <span class="arithmatex">\(\alpha \in (V - \Sigma)V^* \cup \{\varepsilon\}\)</span>. 用人话讲就是 <span class="arithmatex">\(w\)</span> 是已经处理好的终结符号，<span class="arithmatex">\(\alpha\)</span> 是以未终结符开头的字符串。然后 $\overset{L^*}{\Longrightarrow} $ 的意思是最左推导。如果有上述式子成立，我们就可以说明每个 CFL 都可以被一个 PDA 所接受【取 <span class="arithmatex">\(\alpha\)</span> 为 <span class="arithmatex">\(\varepsilon\)</span> 即可】</p>
+<p>其中  <span class="arithmatex">\(w \in \Sigma^*\)</span> 然后 <span class="arithmatex">\(\alpha \in (V - \Sigma)V^* \cup \{\varepsilon\}\)</span>. 用人话讲就是 <span class="arithmatex">\(w\)</span> 是已经处理好的终结符号，<span class="arithmatex">\(\alpha\)</span> 是以未终结符开头的字符串。然后 <span class="arithmatex">\(\overset{L^*}{\Longrightarrow}\)</span> 的意思是最左推导。如果有上述式子成立，我们就可以说明每个 CFL 都可以被一个 PDA 所接受【取 <span class="arithmatex">\(\alpha\)</span> 为 <span class="arithmatex">\(\varepsilon\)</span> 即可】</p>
 <p>这个式子的证明还是使用数学归纳法，以最左推导的次数为归纳条件。</p>
 <div class="admonition note">
 <p class="admonition-title">归纳步骤</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20134523.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20134523.png" /></a></p>
 </div>
-<p>如何说明一个被 PDA 接受的语言是 CFL?</p>
+<p><strong>如何说明一个被 PDA 接受的语言是 CFL?</strong></p>
 <p>首先我们定义 simple PDA</p>
 <div class="admonition note">
 <p class="admonition-title">Simple PDA</p>
