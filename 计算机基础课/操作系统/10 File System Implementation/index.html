@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../8%20Virtual%20Memory/">
+        <link rel="prev" href="../9%20File%20System%20Interface/">
       
       
         <link rel="next" href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Introduction/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>9 File System - RoderickShao's NoteBook</title>
+        <title>10 File System Implementation - RoderickShao's NoteBook</title>
       
     
     
@@ -150,7 +150,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#9-file-system" class="md-skip">
+        <a href="#10-file-system-implementation" class="md-skip">
           跳转至
         </a>
       
@@ -183,7 +183,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              9 File System
+              10 File System Implementation
             
           </span>
         </div>
@@ -1046,6 +1046,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1218,6 +1220,26 @@
                 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../9%20File%20System%20Interface/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 File System Interface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1233,7 +1255,7 @@
           
   
   <span class="md-ellipsis">
-    9 File System
+    10 File System Implementation
   </span>
   
 
@@ -1244,7 +1266,7 @@
         
   
   <span class="md-ellipsis">
-    9 File System
+    10 File System Implementation
   </span>
   
 
@@ -1266,22 +1288,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#91-file-concept" class="md-nav__link">
-    9.1 File Concept
+  <a href="#101-file-system-structure" class="md-nav__link">
+    10.1 File-System Structure
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#92-access-methods" class="md-nav__link">
-    9.2 Access Methods
+  <a href="#102-file-system-implementation" class="md-nav__link">
+    10.2 File-System Implementation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#93-directory-structure" class="md-nav__link">
-    9.3 Directory Structure
+  <a href="#103-directory-implementation" class="md-nav__link">
+    10.3 Directory Implementation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#104-allocation-methods" class="md-nav__link">
+    10.4 Allocation Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="10.4 Allocation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contiguous-allocation" class="md-nav__link">
+    Contiguous Allocation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linked-allocation" class="md-nav__link">
+    Linked allocation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indexed-allocation" class="md-nav__link">
+    Indexed allocation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#105-free-space-management" class="md-nav__link">
+    10.5 Free-Space Management
   </a>
   
 </li>
@@ -1486,22 +1549,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#91-file-concept" class="md-nav__link">
-    9.1 File Concept
+  <a href="#101-file-system-structure" class="md-nav__link">
+    10.1 File-System Structure
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#92-access-methods" class="md-nav__link">
-    9.2 Access Methods
+  <a href="#102-file-system-implementation" class="md-nav__link">
+    10.2 File-System Implementation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#93-directory-structure" class="md-nav__link">
-    9.3 Directory Structure
+  <a href="#103-directory-implementation" class="md-nav__link">
+    10.3 Directory Implementation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#104-allocation-methods" class="md-nav__link">
+    10.4 Allocation Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="10.4 Allocation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contiguous-allocation" class="md-nav__link">
+    Contiguous Allocation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linked-allocation" class="md-nav__link">
+    Linked allocation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indexed-allocation" class="md-nav__link">
+    Indexed allocation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#105-free-space-management" class="md-nav__link">
+    10.5 Free-Space Management
   </a>
   
 </li>
@@ -1524,54 +1628,144 @@
   
 
 
-<h1 id="9-file-system">9 File System<a class="headerlink" href="#9-file-system" title="Permanent link">&para;</a></h1>
-<h2 id="91-file-concept">9.1 File Concept<a class="headerlink" href="#91-file-concept" title="Permanent link">&para;</a></h2>
-<p><strong>文件</strong>是存储某种介质上的（如磁盘、光盘、SSD等）并具有文件名的一组相关信息的集合</p>
-<p>文件的属性是操作系统用于管理文件的重要信息，通常存储在磁盘上的目录结构中。这些信息被称为<strong>文件元数据</strong>（file metadata）</p>
+<h1 id="10-file-system-implementation">10 File System Implementation<a class="headerlink" href="#10-file-system-implementation" title="Permanent link">&para;</a></h1>
+<h2 id="101-file-system-structure">10.1 File-System Structure<a class="headerlink" href="#101-file-system-structure" title="Permanent link">&para;</a></h2>
+<p>文件系统是操作系统中用于以文件形式管理计算机软件资源的软件，它由被管理的文件以及目录、索引表等数据结构组成，是对存储设备上数据和元数据进行组织与管理的机制。</p>
+<p>磁盘提供大量的外存空间来维持文件系统，磁盘的两个特点，使其成为存储多个文件的方便媒介</p>
 <ul>
-<li>名称（Name）：唯一的人类可读标识，用户用来识别文件。这是唯一以人类可读形式保存的信息。</li>
-<li>标识符（Identifier）  文件系统内部使用的唯一标签（如数字ID），用于在系统中唯一标识该文件。</li>
-<li>类型（Type）  用于支持多种文件类型的系统，例如区分文本、图像、可执行程序等。</li>
-<li>位置（Location）  指向文件在存储设备上实际存放位置的指针（如块号或簇地址）。</li>
-<li>大小（Size）  当前文件所占用的字节数或存储空间大小。</li>
-<li>保护（Protection）  控制哪些用户或进程可以对文件进行读取、写入和执行操作，实现访问控制。</li>
-<li>时间、日期和用户标识（Time, date, and user identification）  包括创建时间、修改时间、访问时间以及拥有者信息，用于安全保护、权限管理和使用监控。</li>
+<li>可以原地重写；可以从磁盘上读一块，修改该块，并将它写回到原来的位置</li>
+<li>可以直接访问磁盘上的任意一块信息。（随机或顺序方式）</li>
 </ul>
-<p>操作系统通过一组基本操作来管理文件。常见的文件操作包括：创建（Create）、写入（Write）、读取（Read）、在文件内重新定位（Reposition within file）、删除（Delete）和截断（Truncate）。</p>
-<p>其中，打开文件（Open(<span class="arithmatex">\(F_i\)</span>)）是指在磁盘的目录结构中查找对应的文件条目 <span class="arithmatex">\(F_i\)</span>，并将该文件的元数据或内容加载到内存中，以便后续访问；关闭文件（Close(<span class="arithmatex">\(F_i\)</span>)）则是将内存中该文件条目的内容同步回磁盘的目录结构，确保数据一致性并释放相关资源。</p>
-<p>为了有效管理已打开的文件，操作系统需要维护若干关键数据信息：</p>
+<div class="admonition note">
+<p class="admonition-title">分层设计的文件系统</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20192245.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20192245.png" /></a></p>
+</div>
+<p>下面列举一些常见的文件系统</p>
 <ul>
-<li>首先是<strong>文件指针（File pointer）</strong>，它指向每个进程当前读写操作的位置，确保不同进程对同一文件的访问不会相互干扰；</li>
-<li>其次是<strong>文件打开计数（File-open count）</strong>，用于记录该文件被打开的次数，只有当所有进程都关闭该文件时，系统才会将其从打开文件表中移除，防止资源泄漏；</li>
-<li>第三是<strong>文件在磁盘上的位置（Disk location of the file）</strong>，即文件实际存储位置的缓存信息，便于快速访问；</li>
-<li>最后是<strong>访问权限（Access rights）</strong>，记录每个进程对该文件的访问模式（如读、写、执行等），以实现安全控制。</li>
+<li>FAT32（VFAT）</li>
+<li>ext2、ext3、ext4（linux文件系统、Android）</li>
+<li>HFS+ (Mac OS ，iOS文件系统)</li>
+<li>...</li>
 </ul>
+<h2 id="102-file-system-implementation"><strong>10.2 File-System Implementation</strong><a class="headerlink" href="#102-file-system-implementation" title="Permanent link">&para;</a></h2>
+<p>文件系统的实现涉及在磁盘（外存）和内存中维护两套相互关联但用途不同的数据结构。</p>
+<p>在磁盘上，文件系统需要存储一系列关键的静态信息，以确保其自身能够被正确识别、启动和使用。这些信息包括：</p>
+<ul>
+<li>用于启动操作系统的引导控制块（Boot control block）</li>
+<li>描述整个卷（Volume）属性的卷控制块（Volume control block）</li>
+<li>组织所有文件的目录结构</li>
+<li>为每个文件单独维护的文件控制块（FCB），其中包含了该文件的详细元数据（如权限、大小、位置等）</li>
+</ul>
+<p>在内存中缓存并维护一套动态的数据结构。这套内存结构主要包括：</p>
+<ul>
+<li>一个分区表，用于记录所有已挂载卷的信息；</li>
+<li>一个目录结构缓存，用于加速对最近访问过的目录项的查找；</li>
+<li>一个系统级的打开文件表，它包含了所有当前被打开文件的FCB副本以及全局的访问状态（如文件指针、打开计数等）；</li>
+<li>每个进程独有的打开文件表，用于管理该进程对各个打开文件的私有信息（如各自的读写位置和访问权限）。</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20195115.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20195115.png" /></a></p>
+<blockquote>
+<p>图（a）描述了<code>open(file_name)</code>操作：当用户程序调用打开文件时，操作系统在内核内存中查找目录结构以定位文件，并在二级存储（如磁盘）中找到对应的文件控制块（file-control block），建立文件的元数据映射。</p>
+<p>图（b）描述了<code>read(index)</code>操作：在文件已打开后，用户程序通过索引读取数据，此时系统利用进程私有的打开文件表（per-process open-file table）和全局打开文件表（system-wide open-file table）来定位文件控制块，并最终访问二级存储中的数据块。</p>
+</blockquote>
+<p>现代操作系统普遍采用虚拟文件系统（VFS）作为核心抽象层。VFS提供了一种面向对象的方法，它定义了一套统一的接口（API），使得上层应用程序和系统调用无需关心底层具体是哪种物理文件系统（如ext4、NTFS、FAT32等）。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20195324.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20195324.png" /></a></p>
+<h2 id="103-directory-implementation">10.3 <strong>Directory Implementation</strong><a class="headerlink" href="#103-directory-implementation" title="Permanent link">&para;</a></h2>
+<p><strong>Linear list（线性检索法）</strong>：最为简单的目录实现方法是使用存储文件名和数据块指针的线性列表（数组、链表等），容易实现，但运行费时。许多操作系统采用软件缓存来存储最近访问过的目录信息，如：Linux的目录项对象</p>
+<p><strong>哈希表（Hash Table）</strong>是一种常用方法，它将目录组织为带有哈希数据结构的线性列表，通过计算文件名的哈希值来快速定位文件，显著减少了搜索时间；其主要挑战在于哈希冲突（即不同文件名映射到同一位置）以及哈希表大小固定和对哈希函数的依赖性。</p>
+<p><strong>索引</strong>也是一种常见的方法。ext系列文件系统（如ext2、ext3、ext4）会使用索引机制来管理大量目录项。XFS是一种高性能的日志式文件系统，常用于Linux系统中的高性能计算和大型数据库等场景，它利用B+树索引来组织目录结构，以支持高效的随机访问和大容量数据管理。</p>
+<h2 id="104-allocation-methods"><strong>10.4 Allocation Methods</strong><a class="headerlink" href="#104-allocation-methods" title="Permanent link">&para;</a></h2>
+<p>文件的物理结构由其磁盘块分配方法决定，主要分为三种：</p>
+<ul>
+<li>连续分配（Contiguous allocation）将一个文件的所有磁盘块连续存放，便于顺序访问但易产生外部碎片；</li>
+<li>链接分配（Linked allocation）通过指针将分散的磁盘块连接起来，解决了碎片问题但不支持高效随机访问；</li>
+<li>索引分配（Indexed allocation）使用一个索引块来存储所有数据块的地址，既支持随机访问又避免了外部碎片。</li>
+</ul>
+<p>Unix和Linux系统采用直接、间接和多重间接混合的分配方式，结合了多种方法的优点，以实现高效灵活的文件存储管理。</p>
+<h3 id="contiguous-allocation"><strong>Contiguous Allocation</strong><a class="headerlink" href="#contiguous-allocation" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20201932.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20201932.png" /></a></p>
+<p>每个文件占据磁盘上的一组连续的物理块，在目录中只需要记录文件的起始位置（块号）及长度。此时访问文件很容易，所需的寻道时间也最少。</p>
+<p>但是这个方法的问题在于为新文件找空间比较困难（类似于内存分配中的连续内存分配方式），文件也很难增长。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20203030.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20203030.png" /></a></p>
+</div>
+<p>针对上述缺点，进行一定的改进，提出一种 Extent-Based Systems （基于长度系统）的文件系统。该方法开始分配一块连续空间，当空间不够时，另一块被称为扩展的连续空间会添加到原来的分配中。</p>
+<p>那么此时记录文件快的位置就为开始地址、块数、加上一个指向下一扩展的指针。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20203230.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20203230.png" /></a></p>
+</div>
+<h3 id="linked-allocation"><strong>Linked allocation</strong><a class="headerlink" href="#linked-allocation" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20203407.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20203407.png" /></a></p>
+<p>每个文件是磁盘块的链表；磁盘块分布在磁盘的任何地方。实现起来也比较容易，同时记录时只需要起始位置与最终位置，文件创建起来和增长起来比较容易。</p>
+<p>缺点就是不能随机访问，必须要遍历，同时块与块之间的链接指针需要占用空间。</p>
+<blockquote>
+<p>分配簇(Cluster，若干个扇区)比分配块(block，一般是指一个扇区)更节省指针占用的空间，减少访问时间。如：Windows</p>
+</blockquote>
+<p>一个典型的应用是 FAT 文件系统家族。</p>
 <hr />
-<p>关于文件类型，从操作系统角度来看，系统支持多种文件类型。Unix（如Linux、Mac OS）和Windows都支持普通文件和目录文件；此外，Unix系统还支持字符设备文件、块设备文件和符号链接文件等特殊文件类型。其中，普通文件又可分为可执行文件、文本文件等多种形式，用于存储用户数据或程序代码。</p>
-<p>从用户角度，文件类型通常通过文件扩展名来识别。在Windows系统中，文件扩展名具有特殊含义，操作系统会根据扩展名自动关联程序并决定如何处理文件；而在Unix类系统（如Linux、Mac OS）中，文件扩展名仅是一种约定，不被系统强制使用，文件类型主要由内容或权限等属性决定。</p>
-<hr />
-<p>文件的内部结构（逻辑结构）可分为三类：</p>
+<p>FAT（文件分配表）文件系统是一种被MS-DOS和OS/2所使用的磁盘空间管理机制，其核心是通过一个名为FAT的表格来追踪磁盘上每个簇（Cluster）的使用状态和链接关系。</p>
+<p>在MS-DOS中，一个卷的结构通常包含引导记录、两个FAT表（用于冗余备份）、根目录区和数据区（存放文件和子目录）</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20210123.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20210123.png" /></a></p>
+<p>FAT32引导区记录被扩展为包括重要数据结构的备份，根目录也被改为了一个普通的簇链（不同于上图），其目录项可以放在文件区任何地方。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20210426.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-01%20210426.png" /></a></p>
+<p>主引导区记录MBR 是主引导区的第一个扇区，它由两部分组成</p>
 <ul>
-<li>第一类是<strong>无结构的字节流</strong>（None），将文件视为连续的字节或字符序列，如流文件结构；</li>
-<li>第二类是<strong>简单记录结构</strong>，包括按行组织、固定长度记录和可变长度记录，适用于结构化数据存储；</li>
-<li>第三类是<strong>复杂结构</strong>，如格式化文档或可重定位的加载文件，还可以是树型等层次结构</li>
+<li>第一部分主引导代码，占据扇区的前446个字节，磁盘标识符（FD 4E F2 14）位于这段代码的未尾。</li>
+<li>第二部分是分区表，分区表中每个条目有16字节长，分区表最多有4个条目，第一个分区条目从扇区的偏移量位置是0x01BE。</li>
 </ul>
-<h2 id="92-access-methods">9.2 Access Methods<a class="headerlink" href="#92-access-methods" title="Permanent link">&para;</a></h2>
-<p>文件的存取方法主要有三种：</p>
+<div class="admonition note">
+<p class="admonition-title">PC 启动过程</p>
+<p>计算机系统启动时，首先执行的是BIOS引导程序，完成自检，并加载主引导代码和分区表，然后执行主引导程序，由它加载激活分区（安装操作系统的分区）引导记录，再执行分区引导记录程序，加载操作系统，最后执行操作系统，配置系统。</p>
+</div>
+<h3 id="indexed-allocation">Indexed allocation<a class="headerlink" href="#indexed-allocation" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-02%20123850.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-02%20123850.png" /></a></p>
+<p>将所有的数据块指针集中到<strong>索引块</strong>中</p>
 <ul>
-<li><strong>顺序存取</strong>（Sequential Access），按先后顺序读写数据，支持“读下一个”、“写下一个”、“重置”等操作，且在最后一次写入后不能回读；</li>
+<li>索引块中的第 <span class="arithmatex">\(i\)</span> 个条目指向文件的第 <span class="arithmatex">\(i\)</span> 块。</li>
+<li>目录条目包括索引块的地址</li>
 </ul>
-<p><a class="glightbox" href="../img/seq-access.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/seq-access.png" /></a></p>
+<p>索引分配支持直接访问，且没有外部碎片问题</p>
+<p>索引块本身可能会浪费空间</p>
 <ul>
-<li>
-<p><strong>直接存取</strong>（Direct Access），通过指定相对块号 <span class="arithmatex">\(n\)</span> 实现对任意位置的读写，支持“读第 <span class="arithmatex">\(n\)</span> 块”、“写第 <span class="arithmatex">\(n\)</span> 块”、“定位到第 <span class="arithmatex">\(n\)</span> 块”等操作，灵活性高；</p>
-</li>
-<li>
-<p>此外还有<strong>索引顺序存取</strong>（Indexed Sequential Access），结合了顺序与直接存取的优点，通过索引结构实现高效访问。</p>
-</li>
+<li>链接方案：一个索引块通常为一个磁盘块。对于大文件，可以将多个索引块链接起来。</li>
+<li>多层索引：类似于内存的间接寻址方式（一级、二级间接…）</li>
+<li>组合方案：如Unix的inode</li>
 </ul>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-23%20153245.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-23%20153245.png" /></a></p>
-<h2 id="93-directory-structure">9.3 Directory Structure<a class="headerlink" href="#93-directory-structure" title="Permanent link">&para;</a></h2>
+<p>对于链接方案下的索引怎么从虚拟地址找到物理块在哪里</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-02%20134556.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-02%20134556.png" /></a></p>
+<blockquote>
+<p>每一个物理块 512 个字节，每一个索引块有 511 个索引（最后一个指向下一个索引块）</p>
+</blockquote>
+<p>对于二级索引来说，怎么从虚拟地址找到相应的物理块呢？</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-02%20135251.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-02%20135251.png" /></a></p>
+<blockquote>
+<p>注意这里与前者的区分</p>
+</blockquote>
+<p>在 UNIX、Linux 采用直接间接混合分配方法</p>
+<p>在 Linux 的 ext2/ext3/ext4 文件系统中，每个文件都有一个对应的 <strong>inode（索引结点）</strong>，它是一个数据结构，用来存储该文件的<strong>元信息</strong>和<strong>数据块的位置信息</strong>。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-02%20140022.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-02%20140022.png" /></a></p>
+<p>由于80％以上文件是小文件，为了解决能高速存取小文件和管理大文件的矛盾，UNIX将直接寻址、一级索引、二级索引和三级索引结合起来，形成混合寻址方式，如上图所示。</p>
+<p>在Linux ext2的索引结点中设有15个地址项，它们把所存的地址项分成两类，其中最后三个地址项分别是一级索引、二级索引和三级索引的指针，而前面12个为直接寻址的地址项，即存放文件逻辑块第0－11块的盘块号。</p>
+<p>如每个盘块大小为4KB时，当文件不大于48KB时，便可直接从索引结点中读出该文件全部盘块号，这样读小文件时速度快；如文件大于 48KB时，系统再逐步增加一级索引、二级索引和三级索引，这样最大管理的文件为48KB＋4MB＋4GB＋4TB，达到管理大文件的目标。</p>
+<h2 id="105-free-space-management">10.5 Free-Space Management<a class="headerlink" href="#105-free-space-management" title="Permanent link">&para;</a></h2>
+<p>为了记录空闲磁盘空间，系统需要维护一个空闲空间链表，它记录了所有空闲磁盘空间，即未分配给文件或目录的空间。（不一定以链表的方式实现）</p>
+<p>常用的方法有以下几种</p>
+<ul>
+<li>位示图法（Bitmap）</li>
+<li>空闲链表法</li>
+<li>空闲表法，计数</li>
+<li>分组</li>
+</ul>
+<p>位图：bit[i] = 0 说明 block[i]空闲；bit[i] = 1 说明 block[i]被占用。位图的使用需要额外的空间（用于记录每一块是否空闲）这个方法被 Windows、Liunx、Mac OS 所使用。</p>
+<p>链表(空闲链表)：将所有空闲磁盘块用链表连接起来，并将指向第一空闲块的指针保存在磁盘的特殊位置，同时也缓存在内存中。</p>
+<ul>
+<li>不易得到连续空间</li>
+<li>没有空间浪费</li>
+</ul>
+<p>分组：将n个空闲块的地址存在第一个空闲块中，而最后一块包含另外n个空闲块的地址，如此继续。（意思就是第一个空闲块存储（n-1）个空闲块的地址，然后最后一个存储下一个这样存储其他空闲块的空闲块）</p>
+<p>计数（空闲表法）：通常，有多个连续块需要同时分配或释放。因此，可以记录第一块的地址和紧跟第一块的连续的空闲块的数量n。</p>
 
 
   
@@ -1713,7 +1907,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../8%20Virtual%20Memory/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 8 Virtual Memory" rel="prev">
+          <a href="../9%20File%20System%20Interface/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 9 File System Interface" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1723,7 +1917,7 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                8 Virtual Memory
+                9 File System Interface
               </div>
             </div>
           </a>

@@ -1247,6 +1247,8 @@
       
         
       
+        
+      
     
     
       
@@ -1640,20 +1642,28 @@ L = \left\{ w \mid (s, \triangleright \underline{\ }) \vdash_M^* (q, \triangleri
 <p><strong>定理：</strong> 一个语言是递归的，当且仅当它是按字典序图灵可枚举的。</p>
 <details class="not">
 <summary>证明过程</summary>
+<p>⇒ 方向：递归 ⇒ 按字典序图灵可枚举<br />
+假设图灵机 <span class="arithmatex">\(M\)</span> 决定语言 <span class="arithmatex">\(L\)</span>，即对任意输入 <span class="arithmatex">\(w\)</span>，<span class="arithmatex">\(M\)</span> 总能在有限步内停机并接受或拒绝。我们构造一台新的图灵机 <span class="arithmatex">\(M'\)</span> 来按字典序枚举 <span class="arithmatex">\(L\)</span>。其基本思想是：<span class="arithmatex">\(M'\)</span> 按字典序依次生成语言 <span class="arithmatex">\(L\)</span> 字母表上的所有字符串，并将每个字符串作为输入交给 <span class="arithmatex">\(M\)</span> 运行。如果 <span class="arithmatex">\(M\)</span> 接受该字符串，则 <span class="arithmatex">\(M'\)</span> 将其写入输出带上（通过进入“显示状态” <span class="arithmatex">\(q\)</span>）；如果 <span class="arithmatex">\(M\)</span> 拒绝，则 <span class="arithmatex">\(M'\)</span> 不进入显示状态，直接跳到下一个字符串。由于 <span class="arithmatex">\(M\)</span> 是决定器，它对每个输入都会停机，因此我们可以保证枚举过程是可控的。这样，<span class="arithmatex">\(M'\)</span> 会以字典序输出 <span class="arithmatex">\(L\)</span> 中的所有字符串，从而实现按字典序枚举。</p>
+<p>⇐ 方向：按字典序图灵可枚举 ⇒ 递归<br />
+反过来，假设语言 <span class="arithmatex">\(L\)</span> 被一台图灵机 <span class="arithmatex">\(M\)</span> 按字典序枚举。若 <span class="arithmatex">\(L\)</span> 是有限语言，则显然它是递归的（因为有限语言总是可判定的）。若 <span class="arithmatex">\(L\)</span> 是无限语言，我们构造一台图灵机 <span class="arithmatex">\(M'\)</span> 来决定 <span class="arithmatex">\(L\)</span>：给定输入 <span class="arithmatex">\(w\)</span>，启动 <span class="arithmatex">\(M\)</span> 并等待其输出。<span class="arithmatex">\(M'\)</span> 监控 <span class="arithmatex">\(M\)</span> 的输出过程，直到出现以下两种情况之一：一是 <span class="arithmatex">\(w\)</span> 被输出（即出现在显示状态），此时 <span class="arithmatex">\(M'\)</span> 接受 <span class="arithmatex">\(w\)</span>；二是某个字典序大于 <span class="arithmatex">\(w\)</span> 的字符串被输出，此时 <span class="arithmatex">\(M'\)</span> 拒绝 <span class="arithmatex">\(w\)</span>。由于 <span class="arithmatex">\(L\)</span> 是无限的，而比 <span class="arithmatex">\(w\)</span> 小的字符串数量有限（最多为 <span class="arithmatex">\(|\Sigma|+1^{|w|}\)</span>），因此必有一个事件会发生。于是 <span class="arithmatex">\(M'\)</span> 总能在有限步内停机并做出正确判断，说明 <span class="arithmatex">\(L\)</span> 是递归的。</p>
 </details>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>⇒ 方向：递归 ⇒ 按字典序图灵可枚举  
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>假设图灵机 $M$ 决定语言 $L$，即对任意输入 $w$，$M$ 总能在有限步内停机并接受或拒绝。我们构造一台新的图灵机 $M&#39;$ 来按字典序枚举 $L$。其基本思想是：$M&#39;$ 按字典序依次生成语言 $L$ 字母表上的所有字符串，并将每个字符串作为输入交给 $M$ 运行。如果 $M$ 接受该字符串，则 $M&#39;$ 将其写入输出带上（通过进入“显示状态” $q$）；如果 $M$ 拒绝，则 $M&#39;$ 不进入显示状态，直接跳到下一个字符串。由于 $M$ 是决定器，它对每个输入都会停机，因此我们可以保证枚举过程是可控的。这样，$M&#39;$ 会以字典序输出 $L$ 中的所有字符串，从而实现按字典序枚举。
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>⇐ 方向：按字典序图灵可枚举 ⇒ 递归  
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>反过来，假设语言 $L$ 被一台图灵机 $M$ 按字典序枚举。若 $L$ 是有限语言，则显然它是递归的（因为有限语言总是可判定的）。若 $L$ 是无限语言，我们构造一台图灵机 $M&#39;$ 来决定 $L$：给定输入 $w$，启动 $M$ 并等待其输出。$M&#39;$ 监控 $M$ 的输出过程，直到出现以下两种情况之一：一是 $w$ 被输出（即出现在显示状态），此时 $M&#39;$ 接受 $w$；二是某个字典序大于 $w$ 的字符串被输出，此时 $M&#39;$ 拒绝 $w$。由于 $L$ 是无限的，而比 $w$ 小的字符串数量有限（最多为 $|\Sigma|+1^{|w|}$），因此必有一个事件会发生。于是 $M&#39;$ 总能在有限步内停机并做出正确判断，说明 $L$ 是递归的。
-</code></pre></div>
 <p>下面我们介绍 Rice Theorem:</p>
-<p>对于任意一个关于图灵机所识别语言的<strong>非平凡语义性质</strong>（即该性质不适用于所有递归可枚举语言，也不全都不适用），判定一台图灵机的语言是否具有该性质是<strong>不可判定的</strong>。换句话说，任何只依赖于图灵机语言内容（而非其具体结构或运行方式）且既非恒真也非恒假的性质，都无法通过算法自动判断。</p>
+<p>对于任意一个关于图灵机所识别语言的<strong>非平凡语义性质</strong>（即该性质不适用于所有递归可枚举语言，也不全都不适用），<strong>判定一台图灵机的语言是否具有该性质是不可判定的</strong>。换句话说，任何只依赖于图灵机语言内容（而非其具体结构或运行方式）且既非恒真也非恒假的性质，都无法通过算法自动判断。</p>
 <p>比如说之前的空带停机问题，由于存在一些图灵机在空带上停机，也有不在空带上的停机的，所以这是非平凡的，所以这个问题是不可判定的。</p>
 <p>但要注意的是 RIce 定理只适用于关于语义性质的问题，不能解决语法性质的问题。语法性质指的是这类性质依赖于图灵机的<strong>具体结构、状态数、转移规则或运行行为</strong>，而非其语言 <span class="arithmatex">\(L(M)\)</span> 本身。</p>
 <blockquote>
 <p>Rice 定理是判定一个语言是否可判断的利器</p>
 </blockquote>
+<details class="note">
+<summary>证明过程</summary>
+<p>假设存在一个图灵机 <span class="arithmatex">\(H\)</span> 能判定某非平凡性质 S，即对任意图灵机 <span class="arithmatex">\(M_i\)</span>，<span class="arithmatex">\(H\)</span> 能判断 <span class="arithmatex">\(L(M_i)∈S\)</span> 是否成立。我们选取两个语言：<span class="arithmatex">\(A∈S\)</span> 和 <span class="arithmatex">\(B\notin S\)</span>（由非平凡性保证其存在）。</p>
+<p>给定任意图灵机 <span class="arithmatex">\(M\)</span> 与输入 <span class="arithmatex">\(w\)</span>，构造一个新的图灵机 <span class="arithmatex">\(M’\)</span>，其行为如下：在输入 <span class="arithmatex">\(x\)</span> 上，<span class="arithmatex">\(M'\)</span> 并行模拟 <span class="arithmatex">\(M(w)\)</span> 和 <span class="arithmatex">\(M_B(x)\)</span>；若 <span class="arithmatex">\(M(w)\)</span> 停机，则转而模拟 <span class="arithmatex">\(M_A(x)\)</span>。于是：</p>
+<ul>
+<li>若 <span class="arithmatex">\(M(w)\)</span> 停机，则 <span class="arithmatex">\(L(M')=A∈S\)</span>；</li>
+<li>若 <span class="arithmatex">\(M(w)\)</span> 不停机，则 <span class="arithmatex">\(L(M')=B\notin S\)</span>。</li>
+</ul>
+<p>因此，判断 <span class="arithmatex">\(L(M')∈S\)</span> 等价于判断 <span class="arithmatex">\(M\)</span> 在 <span class="arithmatex">\(w\)</span> 上是否停机。若 <span class="arithmatex">\(H\)</span> 存在，就能解决停机问题——矛盾。故原假设错误，<span class="arithmatex">\(S\)</span> 不可判定。</p>
+</details>
 
 
   
