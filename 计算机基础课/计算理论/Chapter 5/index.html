@@ -1206,6 +1206,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1496,6 +1503,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1663,6 +1677,85 @@ L = \left\{ w \mid (s, \triangleright \underline{\ }) \vdash_M^* (q, \triangleri
 <li>若 <span class="arithmatex">\(M(w)\)</span> 不停机，则 <span class="arithmatex">\(L(M')=B\notin S\)</span>。</li>
 </ul>
 <p>因此，判断 <span class="arithmatex">\(L(M')∈S\)</span> 等价于判断 <span class="arithmatex">\(M\)</span> 在 <span class="arithmatex">\(w\)</span> 上是否停机。若 <span class="arithmatex">\(H\)</span> 存在，就能解决停机问题——矛盾。故原假设错误，<span class="arithmatex">\(S\)</span> 不可判定。</p>
+</details>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Classify whether each of the following languages are recursive, recursively enumerable but not recursive, or non-recursively enumerable. Prove your answers, but you may not simply appeal to Rice’s theorem.</li>
+</ol>
+<p>(a) <span class="arithmatex">\(L_1 = \{\)</span>“<span class="arithmatex">\(M\)</span>”|<span class="arithmatex">\(M\)</span> is a TM, and <span class="arithmatex">\(L(M)\)</span> is uncountable<span class="arithmatex">\(\}\)</span></p>
+<p>(b) <span class="arithmatex">\(L_2 = \{\)</span>“<span class="arithmatex">\(M\)</span>”| TM <span class="arithmatex">\(M\)</span> accepts at least two strings of different lengths<span class="arithmatex">\(\}\)</span></p>
+<details class="note">
+<summary>Answer</summary>
+<p>(a) 所有语言都是可数的，<span class="arithmatex">\(L_1\)</span> 是空集</p>
+<p>(b) 可以构造一个图灵机 <span class="arithmatex">\(M'\)</span> 来半判定该语言：<span class="arithmatex">\(M'\)</span> 以交错模式运行 <span class="arithmatex">\(M\)</span> 在所有可能的输入上，一旦发现 <span class="arithmatex">\(M\)</span> 接受了两个长度不同的字符串，就停机并接受。因此 <span class="arithmatex">\(L_2\)</span> 是递归可枚举的。</p>
+<p>这个由莱斯定理很容易知道这个语言不是可判定的。考试的话我们需要定义一个归约函数 <span class="arithmatex">\(τ(⟨M⟩,x)=⟨M'⟩\)</span>，其中 <span class="arithmatex">\(M'\)</span> 的行为如下：对任意输入 <span class="arithmatex">\(w\)</span>，若 <span class="arithmatex">\(∣w∣≤2\)</span> 且原图灵机 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上停机，则 <span class="arithmatex">\(M'\)</span> 接受 <span class="arithmatex">\(w\)</span>；否则 <span class="arithmatex">\(M'\)</span> 不停机。这样，<span class="arithmatex">\(M\)</span> 在 <span class="arithmatex">\(x\)</span> 上停机当且仅当 <span class="arithmatex">\(⟨M'⟩∈L_2\)</span>。由于停机问题是不可判定的，故 <span class="arithmatex">\(L_2\)</span> 也不可判定，即不是递归语言。</p>
+</details>
+<ol start="2">
+<li>The following problem is decidable: To determine, given a Turing machine <span class="arithmatex">\(M\)</span> and a state <span class="arithmatex">\(q\)</span>, whether there is any configuration at all that yields a configuration with state <span class="arithmatex">\(q\)</span>.</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>这个问题是可判定的，题意是是否存在某一个配置可以进入 q 状态，实际上我们只需要检查转移关系，看是否有进入 q 的，如果有，那么相应的配置就是前一个即可。</p>
+</details>
+<ol start="3">
+<li>The following problem is decidable: To determine, given a Turing machine <span class="arithmatex">\(M\)</span>, whether <span class="arithmatex">\(M\)</span> ever writes a nonblank symbol when started on the empty tape.</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>这个图灵机有 <span class="arithmatex">\(s\)</span> 个状态，模拟 <span class="arithmatex">\(M\)</span> 在空带上的运行</p>
+<ul>
+<li>在前 <span class="arithmatex">\(s\)</span> 步内，<span class="arithmatex">\(M\)</span> 写了一个非空白符号。则答案为 <strong>“是”</strong>。</li>
+<li>在前 <span class="arithmatex">\(s\)</span> 步内，<span class="arithmatex">\(M\)</span> 从未写非空白符号。由于初始磁带全为空白，且 <span class="arithmatex">\(M\)</span> 未写入任何非空白符号，因此磁带始终全为空白。由于只有 <span class="arithmatex">\(s\)</span> 个状态，在 <span class="arithmatex">\(s+1\)</span> 次移动中必有某个状态重复出现。但我们在前 <span class="arithmatex">\(s\)</span> 步内未写非空白符，说明至第 <span class="arithmatex">\(s\)</span> 步为止已访问了 <span class="arithmatex">\(s+1\)</span> 个配置（包括初始），故至少有两个配置具有相同状态。因磁带内容处处相同（全空白），一旦状态重复，机器将进入无限循环，且<strong>永远不会写非空白符号</strong>。则答案是 ”否“。</li>
+</ul>
+</details>
+<ol start="4">
+<li>The following problem is decidable: To determine, given a Turing machine <span class="arithmatex">\(M\)</span>, whether there is some string <span class="arithmatex">\(w\)</span> such that <span class="arithmatex">\(M\)</span> enters each of its non-halting states during its computation on input <span class="arithmatex">\(w\)</span>.</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>根据 Rice 定理，很容易知道上述问题是不可判定的，因为总有一些图灵机接受某些字符串，但是这个字符串并没有遍历所有非停机状态的。</p>
+<p>构造一个归约函数 <span class="arithmatex">\(τ\)</span>：对任意图灵机 <span class="arithmatex">\(M\)</span>，构造新图灵机 <span class="arithmatex">\(M'\)</span>，其添加一个新符号 <span class="arithmatex">\(σ\)</span> 和一个新状态 <span class="arithmatex">\(q\)</span>。<span class="arithmatex">\(M'\)</span> 首先模拟 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上的运行；若 <span class="arithmatex">\(M\)</span> 进入停机状态，则 <span class="arithmatex">\(M'\)</span> 转移到状态 <span class="arithmatex">\(q\)</span>，写入 <span class="arithmatex">\(σ\)</span>，然后从字典序最小的非停机状态开始，依次遍历所有非停机状态（跳过停机状态），每次写入 <span class="arithmatex">\(σ\)</span>，最后进入状态 <span class="arithmatex">\(q\)</span> 并停机。</p>
+<p>这样就将上述问题规约到停机问题上了</p>
+</details>
+<ol start="5">
+<li>$ A≤_m B$ and <span class="arithmatex">\(B\)</span> is a regular language, then <span class="arithmatex">\(A\)</span> is also a regular language.</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>1) 取 <span class="arithmatex">\(A = \{a^n b^n : n \geq 0\}\)</span>, <span class="arithmatex">\(B = a^*\)</span><br />
+2) 从 <span class="arithmatex">\(A\)</span> 到 <span class="arithmatex">\(B\)</span> 的归约：给定输入 <span class="arithmatex">\(x\)</span>，如果 <span class="arithmatex">\(x = a^n b^n\)</span>，则提取所有 <span class="arithmatex">\(a\)</span>；否则返回 <span class="arithmatex">\(b\)</span></p>
+<p>注意规约只用于 Recursive 和 R.E. 的判断，因为中间的转换函数限制在图灵机上可完成的，并不是在 FA 和 PDA 上的</p>
+</details>
+<ol start="6">
+<li>Decide whether the language <span class="arithmatex">\(L= \{\)</span>“<span class="arithmatex">\(M\)</span>”: <span class="arithmatex">\(M\)</span> is a Turing Machine and <span class="arithmatex">\(|L(M)| ≤ 3\}\)</span> is Recursive or R.e. but not recursive or Not r.e.</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>Not r.e. 对于非递归可枚举语言的证明，只需要将停机问题的补集归约到这个语言上即可，因为停机问题的补集是非递归可枚举的</p>
+<p>这个规约的过程常常是这样的</p>
+<p><span class="arithmatex">\(\overline{H} = \{'Mx':M \text{ not halts on } x\}\)</span>，然后我们构造规约函数 <span class="arithmatex">\(f('Mw') =\)</span> "<span class="arithmatex">\(M'\)</span>"，其中 <span class="arithmatex">\(M'\)</span> 经常就是舍弃当前输入，然后直接模拟 <span class="arithmatex">\(x\)</span> 在 <span class="arithmatex">\(M\)</span> 上的结果，然后再根据题目做出相应的调整。在这个题目中就直接模拟即可，不需要做调整。【调整的目的是为了满足下面这两个要求】</p>
+<p>然后说明当 <span class="arithmatex">\('Mx'\in \overline{H}\)</span> 的时候，<span class="arithmatex">\(M'\)</span> 不会对任何输入停机，也就是说 <span class="arithmatex">\(L(M') = 0\)</span>，那么显然 "<span class="arithmatex">\(M'\)</span>" 属于 <span class="arithmatex">\(L\)</span></p>
+<p>而当 <span class="arithmatex">\('Mx'\notin \overline{H}\)</span> 的时候，<span class="arithmatex">\(M'\)</span> 对任何输入停机，那么 <span class="arithmatex">\(L(M') &gt; 3\)</span>，那么显然 "<span class="arithmatex">\(M'\)</span>" 不属于 <span class="arithmatex">\(L\)</span></p>
+<p>如果将这个问题的 <span class="arithmatex">\(\le 3\)</span> 改为 <span class="arithmatex">\(&gt;3\)</span> 就是 <span class="arithmatex">\(r.e.\)</span> 了</p>
+</details>
+<ol start="7">
+<li>Decide whether the language <span class="arithmatex">\(L = \{'Mx'\)</span> is a Turing Machine <span class="arithmatex">\(x\)</span> is a string, and there exists a TM，<span class="arithmatex">\(M'\)</span>, such that <span class="arithmatex">\(x\notin L(M) \cap L(M')\}\)</span> is Recursive or R.e. but not recursive or Not r.e.</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>Recusive 这个问题的关键在于读懂题目，这个语言包含所有形如 ⟨M⟩⟨x⟩ 的输入对，满足以下条件：</p>
+<ul>
+<li><span class="arithmatex">\(M\)</span> 是一台图灵机，<span class="arithmatex">\(x\)</span> 是某个字符串；</li>
+<li>存在至少一台其他图灵机 <span class="arithmatex">\(M'\)</span>，使得 <span class="arithmatex">\(x\)</span> 不在 <span class="arithmatex">\(M\)</span> 和 <span class="arithmatex">\(M'\)</span> 都接受的字符串集合中。</li>
+</ul>
+<p>那么这个其他图灵机就直接取一个什么都拒绝的图灵机即可，那么这时，<span class="arithmatex">\(x\)</span> 可以随便取，这个 <span class="arithmatex">\(L\)</span> 集合就是所有图灵机的集合</p>
+</details>
+<ol start="8">
+<li>Decide whether the language <span class="arithmatex">\(L\)</span> = {“<span class="arithmatex">\(M\)</span>”: <span class="arithmatex">\(M\)</span> is a Turing Machine and <span class="arithmatex">\(|M|\)</span> ≤ 1000} is Recursive or R.e. but not recursive or Not r.e.</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>图灵机的编码是在某个<strong>固定的有限字母表</strong>上进行的，每个图灵机被编码为一个字符串，其长度最多为 1000。因此，所有可能的字符串长度 ≤ 1000 的数量是有限的。<span class="arithmatex">\(L\)</span> 是一个<strong>有限语言</strong>（finite language）。所以 <span class="arithmatex">\(L\)</span> 是可判定的</p>
 </details>
 
 

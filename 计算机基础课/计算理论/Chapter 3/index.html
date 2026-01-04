@@ -1159,6 +1159,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1482,6 +1489,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1729,6 +1743,34 @@ S \overset{L^*}{\Longrightarrow} w\alpha \iff (q, w, S) \vdash_M^* (q, \varepsil
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20152231.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20152231.png" /></a></p>
 </div>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<ol>
+<li>𝐿 = {𝑤 ∈ 𝑎, 𝑏 ∗ : 𝑤 has twice as many 𝑏’s as 𝑎’s} is context-free. 【如何构造 CFG】</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>True</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-03%20141704.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-03%20141704.png" /></a></p>
+</details>
+<ol start="2">
+<li><span class="arithmatex">\(𝐿 = \{𝑎^𝑚𝑏^𝑛 𝑐^{𝑚+𝑛}, 𝑚, 𝑛 ≥ 0\}\)</span> is context-free.【如何构造 CFG】</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>True</p>
+<p><span class="arithmatex">\(𝑉 = \{𝑆, 𝑇, 𝑎, 𝑏, 𝑐\}\)</span></p>
+<p><span class="arithmatex">\(\Sigma = \{𝑎, 𝑏, 𝑐\}\)</span></p>
+<p><span class="arithmatex">\(𝑅 = \{𝑆 → 𝑎𝑆𝑐|𝑇, 𝑇 → 𝑏𝑇𝑐|𝑒\}\)</span></p>
+<p>注意 CFG 的变化规则并不是确定性的</p>
+</details>
+<ol start="3">
+<li>说明 <span class="arithmatex">\(L = \{ab^mc^na^{m+2n}c|m,n,\in N\}\)</span> 是 CFL</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>构造 <span class="arithmatex">\(CFG\)</span> , <span class="arithmatex">\(R = \{ S \to aS_1c,\ S_1 \to bS_1a,\ S_1 \to S_2,\ S_2 \to cS_2a^2,\ S_2 \to \varepsilon \}\)</span></p>
+<p>这里的构造思路，我觉得从 parse tree 的角度去构造会比较好想。</p>
+</details>
 
 
   

@@ -1139,6 +1139,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1482,6 +1489,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1545,6 +1559,9 @@
 <li><span class="arithmatex">\(\forall\)</span> NFA <span class="arithmatex">\(M\)</span>, <span class="arithmatex">\(\exists\)</span> DFA <span class="arithmatex">\(M'\)</span>, s.t. <span class="arithmatex">\(L(M) = L(M')\)</span>  </li>
 <li><span class="arithmatex">\(\forall\)</span> DFA <span class="arithmatex">\(M\)</span>, <span class="arithmatex">\(\exists\)</span> NFA <span class="arithmatex">\(M'\)</span>, s.t. <span class="arithmatex">\(L(M) = L(M')\)</span></li>
 </ul>
+<blockquote>
+<p>两者等价性的一个直观理解：虽然 NFA 看似不确定，实则是在状态的幂集中（有限）挑选一个确定的组合</p>
+</blockquote>
 <p>NFA 转 DFA 主要思路  </p>
 <ul>
 <li>NFA 接收一个字符，会有多个转移方案，所有可达的下一状态合在一起的集合构成 DFA 的一个状态  </li>
@@ -1661,6 +1678,31 @@
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-03%20210104.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-03%20210104.png" /></a> </p>
 </div>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Say whether each of the following languages is regular or not regular? Prove your answers, where <span class="arithmatex">\(\{a,b\}^+= \{a,b\}^*◦ \{a,b \}\)</span>.</li>
+</ol>
+<p>(a) <span class="arithmatex">\(L_1 = \{wtw|w,t \in \{a,b\}^+\}\)</span></p>
+<p>(b) <span class="arithmatex">\(L_2 = \{wtw|w,t \in \{a,b\}^*\}\)</span></p>
+<details class="note">
+<summary>Answer</summary>
+<p>(a) 【正则语言判断，泵定理的应用】假设 <span class="arithmatex">\(L_1\)</span> 是正则的，令 n 是一个足够大的数，使得泵引理（pumping lemma）保证存在。取字符串 <span class="arithmatex">\(w  =a^nbaa^nb\)</span>，此时泵定理成立。让 <span class="arithmatex">\(w = xyz\)</span>，其中 <span class="arithmatex">\(|xy|&lt;n\)</span> 并且 <span class="arithmatex">\(y \ne e\)</span>，那么 <span class="arithmatex">\(y = a^i,i&gt;0\)</span> 这样 <span class="arithmatex">\(xy^2z = a^{n+i}baa^nb\notin L_1\)</span> ，矛盾，从而 <span class="arithmatex">\(L_1\)</span> 不是正则的</p>
+<p>(b) 注意这里 <span class="arithmatex">\(w\)</span> 可以为 <span class="arithmatex">\(e\)</span>，所以 <span class="arithmatex">\(L_2 = \{a,b\}^*\)</span></p>
+</details>
+<ol start="2">
+<li>If <span class="arithmatex">\(𝐿_1 ∘ 𝐿_2\)</span> is regular, then either <span class="arithmatex">\(𝐿_1\)</span> or <span class="arithmatex">\(𝐿_2\)</span> is regular.</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>False，回忆一下连接的概念。这个题的反例如下构造，找一个非正则语言 <span class="arithmatex">\(A\)</span>，然后 <span class="arithmatex">\(L_1\)</span> 为 <span class="arithmatex">\(A\cup\{e\}\)</span>，<span class="arithmatex">\(L_2\)</span> 为 <span class="arithmatex">\(\overline{A}\cup\{e\}\)</span>，这样 <span class="arithmatex">\(𝐿_1 ∘ 𝐿_2\)</span> 为 <span class="arithmatex">\(\Sigma^*\)</span></p>
+</details>
+<ol start="3">
+<li>Every regular language has a regular proper subset.</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>False, 考虑空集   </p>
+</details>
 
 
   

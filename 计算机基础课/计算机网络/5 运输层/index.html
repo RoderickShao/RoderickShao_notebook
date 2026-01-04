@@ -1701,7 +1701,7 @@
 <li><strong>同步标志位SYN</strong> 用于TCP“三报文握手”建立连接。当SYN=1且ACK=0时，表明这是一个TCP连接请求报文段。对方若同意建立连接，则应在响应的TCP报文段的首部中使SYN=1且ACK=1。</li>
 <li><strong>终止标志位FIN</strong> 用于TCP“四报文挥手”释放连接。当FIN=1时，表明此TCP报文段的发送方已经将全部数据发送完毕，现在要求释放TCP连接。</li>
 <li>
-<p>**复位标志位RST ** 用于复位TCP连接。当RST=1时，表明TCP连接中出现严重差错，必须释放连接，然后再重新建立连接。RST置1还用来拒绝一个非法的TCP报文段或拒绝打开一个TCP连接。</p>
+<p><strong>复位标志位RST</strong> 用于复位TCP连接。当RST=1时，表明TCP连接中出现严重差错，必须释放连接，然后再重新建立连接。RST置1还用来拒绝一个非法的TCP报文段或拒绝打开一个TCP连接。</p>
 </li>
 <li>
 <p><strong>推送标志位PSH</strong> 用于控制数据的立即交付。在正常情况下，发送方可能为了提高效率而延迟发送数据，等待积累更多数据后再发送，接收方也可能会将接收到的数据暂存缓冲区以批量处理；但在交互式通信中（如远程登录），应用进程希望输入的命令能立即被对方处理并返回响应。此时，发送方可通过将PSH置为1，通知接收方“请立即把当前收到的数据交给应用层”，无需等待缓冲区填满。接收方收到PSH=1的报文后，会立即将数据提交给应用进程，从而实现快速响应，提升交互体验。</p>
@@ -1750,7 +1750,8 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-10%20175332.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-10%20175332.png" /></a></p>
 <p>主机A向主机B发送数据，初始时B的接收窗口（rwnd）为400，表示可接收最多400字节的数据。A连续发送多个报文段，当B接收到前两个报文段后，其接收缓存逐渐填满，可用空间减少，于是向A发送ACK=201、rwnd=300的确认报文，通知A后续只能发送300字节的数据。A收到该信息后，调整发送窗口大小为300，避免继续发送过多数据导致接收方缓存溢出。此后A仅在允许范围内发送数据，确保发送速率与接收方处理能力匹配。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-10%20184927.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-10%20184927.png" /></a></p>
-<p>当接收方B的接收缓存<strong>已满</strong>时，会向发送方A发送一个rwnd=0的报文段，表示暂时无法接收数据；此时A停止发送。但如果这个零窗口通知在传输过程中丢失，B仍处于等待A发送数据的状态，而A因未收到非零窗口通知也一直等待，<strong>双方陷入互相等待的死锁局面</strong>。</p>
+<p>当接收方B的接收缓存<strong>已满</strong>时，会向发送方A发送一个rwnd=0的报文段，表示暂时无法接收数据；此时A停止发送。</p>
+<p>后面 B 向 A 发送一个非零窗口通知，告诉A 可以继续发了。但是如果这个非零窗口通知在传输过程中丢失，B仍处于等待A发送数据的状态，而A因未收到非零窗口通知也一直等待，<strong>双方陷入互相等待的死锁局面</strong>。</p>
 <p>为打破这一僵局，TCP为每个连接设置了<strong>持续计时器（Persistent Timer）</strong>：只要一方收到对方的零窗口通知，就启动该计时器；当计时器超时后，发送方会主动发送一个仅携带1字节数据的“探测报文段”，询问对方当前窗口大小；若对方回复的窗口仍为0，则重新启动计时器；若窗口变为非零，则恢复正常通信。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-10%20185157.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-10%20185157.png" /></a></p>
 <details class="question">
@@ -1841,10 +1842,10 @@
 \text{新的RTT}_S = (1 - α) × \text{旧的RTT}_S + α × \text{新的RTT样本}，
 \]</div>
 <p>其中 <span class="arithmatex">\(0 ≤ α &lt; 1\)</span>。当 <span class="arithmatex">\(α\)</span> 接近0时，新样本对RTTs影响小；当α接近1时，影响较大。RFC 6298推荐α取值为1/8（即0.125），以平衡响应速度与稳定性。最终的超时重传时间RTO应略大于该加权平均值RTTs，以避免频繁超时重传，从而提高传输效率和可靠性。</p>
-<p>[RFC 6298]建议使用下式来计算超时重传时间RTO：
-$$
+<p>[RFC 6298]建议使用下式来计算超时重传时间RTO：</p>
+<div class="arithmatex">\[
 \text{RTO} = \text{RTT}_S + 4\times \text{RTT}_D
-$$</p>
+\]</div>
 <p><span class="arithmatex">\(\text{RTT}_D\)</span>为RTT偏差的加权平均值，初始值为<span class="arithmatex">\(\text{RTT}_1 / 2\)</span>，更新公式为：</p>
 <div class="arithmatex">\[
 新的\text{RTT}_D= (1 - β) × 旧的\text{RTT}_D + β × |\text{RTT}_S - 新的\text{RTT}样本|
