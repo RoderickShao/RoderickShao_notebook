@@ -1251,6 +1251,33 @@
     3.2.3 可靠传输
   </a>
   
+    <nav class="md-nav" aria-label="3.2.3 可靠传输">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    停止-等待协议
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    回退 N 帧协议
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    选择重传协议
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1323,6 +1350,61 @@
         <li class="md-nav__item">
   <a href="#35" class="md-nav__link">
     3.5 交换式以太网
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-mac" class="md-nav__link">
+    3.6 以太网的 MAC 帧
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    3.7 虚拟局域网
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-80211" class="md-nav__link">
+    3.8 802.11无线局域网
+  </a>
+  
+    <nav class="md-nav" aria-label="3.8 802.11无线局域网">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#381-80211" class="md-nav__link">
+    3.8.1 802.11无线局域网的组成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#382-csmaca" class="md-nav__link">
+    3.8.2 CSMA/CA 协议
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#383-80211mac" class="md-nav__link">
+    3.8.3 802.11无线局域网的MAC帧
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
   </a>
   
 </li>
@@ -1570,6 +1652,33 @@
     3.2.3 可靠传输
   </a>
   
+    <nav class="md-nav" aria-label="3.2.3 可靠传输">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    停止-等待协议
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    回退 N 帧协议
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    选择重传协议
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1642,6 +1751,61 @@
         <li class="md-nav__item">
   <a href="#35" class="md-nav__link">
     3.5 交换式以太网
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-mac" class="md-nav__link">
+    3.6 以太网的 MAC 帧
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    3.7 虚拟局域网
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-80211" class="md-nav__link">
+    3.8 802.11无线局域网
+  </a>
+  
+    <nav class="md-nav" aria-label="3.8 802.11无线局域网">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#381-80211" class="md-nav__link">
+    3.8.1 802.11无线局域网的组成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#382-csmaca" class="md-nav__link">
+    3.8.2 CSMA/CA 协议
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#383-80211mac" class="md-nav__link">
+    3.8.3 802.11无线局域网的MAC帧
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
   </a>
   
 </li>
@@ -1735,6 +1899,7 @@
 <li>选择重传协议</li>
 </ul>
 <hr />
+<h4 id="-"><strong>停止-等待协议</strong><a class="headerlink" href="#-" title="Permanent link">&para;</a></h4>
 <p><strong>停止-等待协议</strong>的基本过程是发送方发送一个数据分组，然后接受方接受到数据之后进行差错检测，无误码则接受，向发送方发送确认分组，否则发送否认分组。</p>
 <p>当然上述过程建立在数据不丢失的情况，当发生数据丢失时，情况会变得复杂。</p>
 <p>如果发送方的数据出现了丢失，那么接收方收不到数据分组，就不会发送相应的 ACK 或 NAK。如果不采取措施，发送方就会一直处于等待接收方 ACK 或 NAK 的状态。为解决上述问题，发送方可在每发送完一个数据分组时就启动一个<strong>超时计时器</strong>（Timeout Timer）若到了超时计时器所设置的<strong>超时重传时间</strong>（Retransmission Time-Out，RTO），但发送方仍未收到接收方的 ACK 或 NAK，就重传之前已发送过的数据分组。</p>
@@ -1744,11 +1909,13 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20120937.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20120937.png" /></a></p>
 <p>关于停止-等待协议的信道利用率，可以看到当 RTT 相对较大的情况下，信道利用率非常低，可以选择回退N帧（GBN）协议或选择重传（SR）协议。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20121243.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20121243.png" /></a></p>
+<p>吞吐量的计算就是信道利用率乘上数据传输速率</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20121442.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20121442.png" /></a></p>
 </div>
 <hr />
+<h4 id="n"><strong>回退 N 帧协议</strong><a class="headerlink" href="#n" title="Permanent link">&para;</a></h4>
 <p>为解决 <span class="arithmatex">\(RTT&gt;&gt;T_D\)</span> 导致信道利用率极低的情况，提出<strong>回退 N 帧协议</strong>。思想就是不传一个等一个，而是同时传很多个，传错了回退即可</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20121803.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20121803.png" /></a></p>
 <p>在使用流水线传输方式时，发送方不能无限制地连续发送数据分组，否则可能会导致网络中的路由器或接收方来不及处理这些数据分组，进而导致数据分组的丢失，这实际上是对网络资源的浪费。</p>
@@ -1788,6 +1955,7 @@
 </div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20173211.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20173211.png" /></a></p>
 <hr />
+<h4 id="_1"><strong>选择重传协议</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <p>回退 n 帧协议一个最大的问题就是一个数据块的错误需要同组后面所有数据块来买单。</p>
 <p>选择重传协议允许接收方缓存失序到达的正确帧，发送<strong>方仅重传出错或丢失的帧</strong>，避免了GBN中“全部重传”的浪费，从而大幅提升信道利用率。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20173302.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20173302.png" /></a></p>
@@ -2016,24 +2184,15 @@ S_{max} = \frac{T_0}{T_0+\tau} = \frac{1}{1+\frac{\tau}{T_0}} = \frac{1}{1+\alph
 <ul>
 <li>发送过程</li>
 </ul>
-<details class="note">
-<summary>Note</summary>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230223.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230223.png" /></a></p>
-</details>
 <ul>
 <li>广播情况</li>
 </ul>
-<details class="note">
-<summary>Note</summary>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230233.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230233.png" /></a></p>
-</details>
 <ul>
 <li>碰撞情况</li>
 </ul>
-<details class="note">
-<summary>Note</summary>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230244.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20230244.png" /></a></p>
-</details>
 <ul>
 <li>对于广播域和碰撞域，集线器会扩大广播域以及碰撞域；交换机则扩大了广播域，但是隔离了碰撞域。</li>
 </ul>
@@ -2041,6 +2200,239 @@ S_{max} = \frac{T_0}{T_0+\tau} = \frac{1}{1+\frac{\tau}{T_0}} = \frac{1}{1+\alph
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20232237.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20232237.png" /></a></p>
 </div>
+<h2 id="36-mac">3.6 以太网的 MAC 帧<a class="headerlink" href="#36-mac" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20142152.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20142152.png" /></a></p>
+<p>类型：其值用来指明数据载荷中的内容是由上一层的哪个协议封装的，以便将收到的MAC帧的数据载荷上交给上一层的这个协议。</p>
+<p>FCS：使用CRC生成的帧检验序列FCS，接收方的网卡通过FCS的内容就可检测出帧在传输过程中是否产生了误码。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20142356.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20142356.png" /></a></p>
+<p>接收方可能收到的无效MAC帧包括以下几种：</p>
+<ul>
+<li>MAC帧的长度不是整数个字节</li>
+<li>通过MAC帧的FCS字段的值检测出帧有误码</li>
+<li>MAC帧的长度不在64~1518字节之间</li>
+</ul>
+<p>接收方收到无效的MAC帧时，就简单将其丢弃，以太网的数据链路层没有重传机制。</p>
+<h2 id="37">3.7 虚拟局域网<a class="headerlink" href="#37" title="Permanent link">&para;</a></h2>
+<p>将多个站点通过一个或多个以太网交换机连接起来就构建出了交换式以太网。交换式以太网中的所有站点都属于同一个广播域（交换机隔离碰撞域，不隔离广播域），随着交换式以太网规模的扩大，广播域也相应扩大。</p>
+<p>巨大的广播域会带来一系列问题。比如说广播风暴，会浪费网络资源和各主机的CPU资源。如果网络中只是偶尔出现广播，那也可以接受，但是网络上实际上经常出现广播信息，比如说地址解析协议 ARP，动态主机配置协议 DHCP 等等。</p>
+<p>要想分离广播域，一个方法是使用路由器，这个方法成本较高，还有一种方法就是使用<strong>虚拟局域网</strong>技术。</p>
+<hr />
+<p>虚拟局域网（Virtual Local Area Network，VLAN）是一种将局域网内的站点划分成与物理位置无关的逻辑组的技术，一个逻辑组就是一个VLAN，VLAN中的各站点具有某些共同的应用需求。</p>
+<blockquote>
+<p>就是对局域网中的站点进行分组，从而隔离广播域</p>
+</blockquote>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20143354.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20143354.png" /></a></p>
+<p>属于同一VLAN的站点之间可以直接进行通信，而不同VLAN中的站点之间不能直接通信。</p>
+<p>网络管理员可对局域网中的<strong>各交换机</strong>进行配置来建立多个逻辑上独立的VLAN。连接在同一交换机上的多个站点可以属于不同的VLAN，而属于同一VLAN的多个站点可以连接在不同的交换机上。</p>
+<blockquote>
+<p>通过操作交换机达到建立虚拟局域网的目的，实现方式也与交换机有关</p>
+</blockquote>
+<p>虚拟局域网VLAN有多种实现技术，最常见的就是基于以太网交换机的接口来实现VLAN。这就需要以太网交换机能够实现以下两个功能：</p>
+<ul>
+<li>能够处理带有VLAN标记的帧，也就是<strong>IEEE 802.1Q帧</strong>。</li>
+<li>交换机的各接口可以支持不同的接口类型，不同接口类型的接口对帧的处理方式有所不同。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">IEEE 802.1Q 帧</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20144011.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20144011.png" /></a></p>
+<p>其中 VID是802.1Q帧所属VLAN的编号，设备利用VID来识别帧所属的VLAN。广播帧只在同一VLAN内转发，这样就将广播域限制在了一个VLAN内。</p>
+</div>
+<p>802.1Q帧一般不由用户主机处理，而是由以太网交换机来处理：</p>
+<ul>
+<li>当交换机收到普通的以太网MAC帧时，会给其插入4字节的VLAN标签使之成为802.1Q帧，该处理简称为“<strong>打标签</strong>”。</li>
+<li>当交换机转发802.1Q帧时，可能会删除其4字节的VLAN标签使之成为普通的以太网MAC帧，该处理简称为“<strong>去标签</strong>”。交换机转发802.1Q帧时也有可能不进行“去标签”处理，是否进行“去标签”处理取决于交换机的<strong>接口类型</strong>。</li>
+</ul>
+<p>根据接口在接收帧和发送帧时对帧的处理方式的不同，以及接口连接对象的不同，以太网交换机的接口类型一般分为Access和Trunk两种。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20144815.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20144815.png" /></a></p>
+<p>以太网交换机上电启动后，若之前未对其各接口进行过VLAN的相关设置，则各接口的接口类型默认为Access，并且各接口的缺省VLAN ID为1，即各接口默认属于VLAN1。</p>
+<div class="admonition example">
+<p class="admonition-title">不进行 VLAN 划分的情况</p>
+<p>在一个交换机上不进行人为的VLAN划分，交换机各接口默认属于VLAN1且类型为Access的情况。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20144347.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20144347.png" /></a></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">对交换机进行配置的情况</p>
+<p>对交换机进行配置（通过界面或配置命令）</p>
+<ul>
+<li>创建VLAN2和VLAN3</li>
+<li>将接口1和2划归到VLAN2，接口3和4划归到VLAN3</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20144602.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20144602.png" /></a></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">交换机不同接口类型</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20145202.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20145202.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20145229.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20145229.png" /></a></p>
+<p>注意 Trunck 接口的转发规则</p>
+</div>
+<h2 id="38-80211">3.8 802.11无线局域网<a class="headerlink" href="#38-80211" title="Permanent link">&para;</a></h2>
+<p>随着移动通信技术的发展，无线局域网（Wireless Local Area Network，WLAN）自20世纪80年代末以来逐步进入市场。</p>
+<p>IEEE于1997年制定出了无线局域网的协议标准802.11，802.11无线局域网是目前应用最广泛的无线局域网之一，人们更多地将其简称为<strong>Wi-Fi</strong></p>
+<p>802.11无线局域网可分为以下两类：</p>
+<ul>
+<li>有固定基础设施的【使用最多的】</li>
+<li>无固定基础设施的</li>
+</ul>
+<h3 id="381-80211">3.8.1 802.11无线局域网的组成<a class="headerlink" href="#381-80211" title="Permanent link">&para;</a></h3>
+<p>对于<strong>有固定基础设施</strong>的802.11无线局域网来说，组成如下</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20150043.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="align" alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20150043.png" /></a></p>
+<p>本BSS内各站点之间的通信以及与本BSS外的站点之间的通信，都必须经过本BSS内的<strong>AP</strong>进行转发。</p>
+<p>网络管理员需要为AP分配一个最大32字节的服务集标识符（Service Set Identifier，SSID）和一个无线通信信道，SSID实际上就是使用该AP的802.11无线局域网的名字。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20150748.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20150748.png" /></a></p>
+<p>由多个基本服务集（BSS）通过分配系统（DS，如以太网）连接组成扩展的服务集（ESS）。每个BSS由一个接入点（AP）和与其关联的移动站（如笔记本电脑、手机）构成，AP负责管理无线通信并连接到有线网络。多个BSS通过分配系统互联形成ESS，实现更大范围的覆盖。当用户设备（如图中设备A）从一个BSS（如BSS1）移动到另一个BSS（如BSS2）时，可通过漫游机制无缝切换接入点，保持网络连接。整个ESS通过路由器与因特网相连，为用户提供连续的无线接入服务。</p>
+<p>802.11标准并没有定义实现漫游的具体方法，仅定义了以下一些基本服务。</p>
+<ul>
+<li><strong>关联（Association）服务</strong>：移动站与接入点AP建立关联的方法有被动扫描和主动扫描两种。被动扫描就是移动站被动等待接受信标帧；主动扫描就是向 AP 发送探测请求帧，然后 AP 相应的回复探测请求帧。</li>
+<li><strong>重建关联（Reassociation）服务和分离（Dissociation）服务</strong>：如果一个移动站要把与某个接入点AP的关联转移到另一个AP，就可以使用重建关联服务；若要终止关联服务，就应使用分离服务。</li>
+</ul>
+<hr />
+<p><strong>无固定基础设施</strong>的802.11无线局域网采用自组织网络（ad hoc Network）的方式</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20151445.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20151445.png" /></a></p>
+<p>在这种网络中，所有站点（如A、B、C、D、E、F）均为对等节点，无需依赖接入点（AP），通过多跳转发的方式直接相互通信。数据从源站（如A）发送到目的站（如E）时，可能需要经过中间站点（如B、C、D）进行转发，网络采用特定的路由选择协议来动态建立通信路径。这种网络结构灵活、部署方便，具有良好的生存性和抗毁性，因此在军用和民用领域都具有广泛的应用前景。当需要连接外部网络时，可通过网关（gateway）实现协议转换，接入因特网。</p>
+<h3 id="382-csmaca">3.8.2 CSMA/CA 协议<a class="headerlink" href="#382-csmaca" title="Permanent link">&para;</a></h3>
+<p>为了解决各站点争用总线的问题，共享总线以太网使用了一种专用协议CSMA/CD。那么同样使用广播信道的无线局域网能不能也使用CSMA/CD协议呢？</p>
+<p>实际上是不能的，无线的介质无法采用 ”碰撞检测CD“</p>
+<ul>
+<li>由于无线信道的传输环境复杂且信号强度的动态范围非常大，在802.11无线网卡上接收到的信号强度一般都远远小于发送信号的强度，信号强度甚至相差百万倍。因此，如果要在802.11无线网卡上实现碰撞检测，对硬件的要求非常高。</li>
+<li>即使能够在硬件上实现碰撞检测功能，但由于无线电波传播的特殊性（存在<strong>隐蔽站</strong>问题），还会出现无法检测到碰撞的情况，因此实现碰撞检测并没有意义。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">隐蔽站问题</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20152305.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20152305.png" /></a></p>
+<p>当两个站点A和B同时向同一个接入点（AP）发送数据时，由于它们之间的信号覆盖范围不重叠，彼此无法检测到对方的传输信号，因此在各自看来信道是空闲的。然而，它们发送的数据会同时到达AP，造成信号碰撞，导致通信失败。在这种情况下，A和B互为“隐蔽站”——即彼此不可见但可能引起冲突。</p>
+</div>
+<p>接下来介绍 CSMA/CA 协议的基本工作原理</p>
+<p>当一个站点需要发送数据时，<strong>首先侦听信道是否空闲</strong>。如果信道忙（即检测到有其他信号正在传输），则启动<strong>退避计时器</strong>，等待信道空闲；如果信道空闲，则进一步等待一个<strong>短帧间间隔（DIFS, Distributed Inter-Frame Space）</strong>，以确保高优先级帧（如 ACK）优先发送。</p>
+<p>在 DIFS 结束后，站点并不立即发送，而是<strong>随机选择一个退避时间（以时隙为单位）</strong>并启动退避计时器。在此期间，若信道持续空闲，计时器递减；若信道再次变忙，计时器暂停，待下次信道空闲且经过 DIFS 后继续递减。这一机制使多个同时准备发送的站点错开发送时间，<strong>降低冲突概率</strong>。</p>
+<blockquote>
+<p>如果没有这个操作的话，很可能有多个站都在监听信道并等待发送帧，一旦信道空闲，这些站几乎同时发送帧而产生碰撞。</p>
+</blockquote>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20153911.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20153911.png" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">DIFS 和 SIFS</p>
+<p>DCF帧间间隔DIFS的长度为128μs，在DCF方式中，DIFS用来发送数据帧和管理帧。</p>
+<p>短帧间间隔（Short Interframe Space，SIFS）的长度为28μs，它是最短的帧间间隔，用来分隔开属于一次对话的各帧。一个站点应当能够在这段时间内从发送方式切换到接收方式。使用SIFS的帧类型有ACK帧、CTS帧等。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20160532.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20160532.png" /></a></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>当某个站要发送数据帧时，仅在这种情况下才不使用退避算法：检测到信道空闲，并且该数据帧不是成功发送完上一个数据帧之后立即连续发送的数据帧。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">退避算法</p>
+<p>在执行退避算法时，站点为退避计时器设置一个随机的退避时间：</p>
+<ul>
+<li>当退避计时器的时间减小到零时，就开始发送数据；</li>
+<li>当退避计时器的时间还未减小到零时而信道又转变为忙状态，这时就冻结退避计时器的数值，重新等待信道变为空闲，再经过帧间间隔DIFS后，继续启动退避计时器。</li>
+</ul>
+<p>在进行第i次退避时，退避时间在时隙编号<span class="arithmatex">\(\{0，1，… ，2^{2+i}−1\}\)</span>中随机选择一个，然后乘以基本退避时间（也就是一个时隙的长度）就可以得到随机的退避时间。当时隙编号达到255时（对应于第6次退避）就不再增加了</p>
+</div>
+<p>一个完整的过程大致如下所示</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20154710.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20154710.png" /></a></p>
+<p>为了进一步降低发生碰撞的概率，802.11无线局域网允许源站对信道进行预约。</p>
+<p>为更有效地避免冲突（尤其在存在隐蔽站问题时），CSMA/CA 还可启用 <strong>RTS/CTS 握手机制</strong>：</p>
+<ul>
+<li>
+<p>发送方先发送一个短的 RTS（Request to Send）帧，它包括源地址、目的地址和本次通信（包括目的站发回确认帧所需的时间）所需的持续时间。若RTS帧发生碰撞，源站就不可能收到CTS帧，源站会执行退避算法重传RTS帧。</p>
+</li>
+<li>
+<p>接收方收到后回复 CTS（Clear to Send）帧。它也包括本次通信所需的持续时间（从RTS帧中将此持续时间复制到CTS帧中）。</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20155317.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20155317.png" /></a></p>
+<p>这两个控制帧会通知附近所有能听到它们的站点暂时不要发送，从而为后续的数据传输预留信道。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>尽管如此，802.11无线局域网仍为用户提供了以下三种选择：</p>
+<ul>
+<li>使用RTS帧和CTS帧。</li>
+<li>只有当数据帧的长度超过某个数值时才使用 RTS帧和CTS帧。</li>
+<li>不使用RTS帧和CTS帧。</li>
+</ul>
+</div>
+<p>成功发送数据后，接收方会返回一个 <strong>ACK 帧</strong>；若发送方未收到 ACK，则认为发生冲突或传输失败，并在下一次重传时采用<strong>二进制指数退避</strong>策略（即退避窗口随重传次数指数增长），进一步减少再次冲突的可能性。</p>
+<h3 id="383-80211mac">3.8.3 802.11无线局域网的MAC帧<a class="headerlink" href="#383-80211mac" title="Permanent link">&para;</a></h3>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20161945.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20161945.png" /></a></p>
+<p>持续期：用于实现CSMA/CA的虚拟载波监听和信道预约机制。在数据帧、RTS帧和CTS帧中用该字段指出将要持续占用信道的时长。</p>
+<p>序号控制：用来实现802.11的可靠传输，对数据帧进行编号。</p>
+<p>地址1234的含义取决于帧控制字段中的“去往DS”（到分配系统）和“来自DS”（分配系统）这两个字段的值。</p>
+<table>
+<thead>
+<tr>
+<th>去往 DS</th>
+<th>来自 DS</th>
+<th>地址1</th>
+<th>地址2</th>
+<th>地址3</th>
+<th>地址4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>目的地地址</td>
+<td>源地址</td>
+<td>BSSID</td>
+<td>未被使用</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>目的地地址</td>
+<td>发送AP地址</td>
+<td>源地址</td>
+<td>未被使用</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>接收AP地址</td>
+<td>源地址</td>
+<td>目的地址</td>
+<td>未被使用</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>接收AP地址</td>
+<td>发送AP地址</td>
+<td>目的地址</td>
+<td>源地址</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>规律就是地址1，2是服务集内的目的地址和发送地址，地址3在有 DS 参与进来的时候就是外面的地址，没参与进来就是服务集的ID</p>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">在基本服务集内发送数据帧</label><label for="__tabbed_1_2">往因特网外发送数据帧</label><label for="__tabbed_1_3">外面向服务集中发送数据帧</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20162348.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20162348.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20162441.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20162441.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20162521.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20162521.png" /></a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20163412.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20163412.png" /></a></p>
+</div>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<ol>
+<li>What is the remainder obtained by dividing x^7 + x^5 + 1 by the generator polynomial x^3 + 1? (give your answer as bit string)</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>这里考察循环冗余校验的算法，在被除数后面添加上除数最高次数个0（这里是3个）然后做异或除法即可，最后把余数（位数为3）添加到需要发送的数据之后即可。答案是 111</p>
+</details>
 
 
   

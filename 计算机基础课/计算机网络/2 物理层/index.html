@@ -1225,6 +1225,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1482,6 +1489,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1646,6 +1660,21 @@ C = W \log_2\left(1 + \frac{S}{N}\right)
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-26%20214307.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-26%20214307.png" /></a></p>
 </div>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<ol>
+<li>If a binary signal is sent over a 3-kHz channel whose signal-to-noise radio is 20dB, what is the maximum achievable data rate?</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>这里说了是 Binary signal，所以一个码元传输一个 bit。然后分别考虑奈氏准则和香农公式取小的那个即可，答案是 6k</p>
+</details>
+<ol start="2">
+<li>What is the minimum bandwidth needed to achieve a data rate of B bits/sec if the signal is transmitted using NRZ and Manchester encoding? Explain your answer.</li>
+</ol>
+<details class="note">
+<summary>Answer</summary>
+<p>NRZ 的意思是双极性不归零编码（no-return-zero）这个每一个比特之多需要一次跳变，曼彻斯特编码每一个比特则需要两次跳变。所以这里 NRZ 1码元一个比特，曼彻斯特编码一码元0.5个比特。</p>
+</details>
 
 
   
