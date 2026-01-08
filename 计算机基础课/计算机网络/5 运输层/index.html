@@ -1353,6 +1353,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1618,6 +1625,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1679,7 +1693,7 @@
 <p>TCP报文段的首部由固定部分（20字节）和可变选项部分组成</p>
 <ul>
 <li><strong>序号（Sequence Number）</strong> 占32比特，标识本报文段数据载荷的第一个字节在字节流中的序号，用于确保数据按序传输；</li>
-<li><strong>确认号（Acknowledgment Number）</strong> 也占32比特，表示期望收到对方下一个报文段的第一个字节的序号，同时也是对之前已接收数据的确认</li>
+<li><strong>确认号（Acknowledgment Number）</strong> 也占32比特，<strong>表示期望收到对方下一个报文段的第一个字节的序号</strong>（注意与之前回退N帧之类协议中ACK含义的区分），同时也是对之前已接收数据的确认</li>
 <li><strong>确认标志位ACK</strong> 表示确认号是否有效，只有当ACK=1时确认号才有效，且在TCP连接建立后所有报文段都必须将ACK置为1。</li>
 </ul>
 <div class="admonition example">
@@ -1872,6 +1886,38 @@
 <blockquote>
 <p>SACK相关文档并没有指明发送方应当怎样响应SACK。因此大多数的TCP实现还是重传所有未被确认的数据块。</p>
 </blockquote>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20142113.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20142113.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>C，B 回忆一下 TCP 报文段首部中窗口字段的含义，代表的是接受窗口的尺寸，单位是字节</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20144600.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20144600.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>B 挥手时发送的第四次报文段的 seq = 985，说明挥手时的第一个报文段的 seq = 984，那么接受到的最后一个字节序号就是 983。第一个 SYN 段虽然部携带数据，但是消耗一个序号211，所以发送的字节是 212-983，共 772 个字节</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20144701.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20144701.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>建立连接的第一个报文段不携带数据，但是消耗一个序号，第三次握手可以携带数据也可以不携带数据（这样就不消耗序号），根据题意，选 C</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20151354.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20151354.png" /></a></p>
+<details class="answer">
+<summary>Answer</summary>
+<p>让发送窗口达到 8kb(8MSS) 需要 3 RTT，即 9ms，前面一共发了 7kb，剩余可用空间为 9kb</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20153111.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20153111.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>A, 当前发送窗口大小为 2000B，由于第二个段还没有被确认，所以，还能向主机乙发送一个数据段 1000B</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20154950.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20154950.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>D，这里的易错点就在于误认为 3000B 可以一次性发出，没有真正理解拥塞窗口。这里第一次只能发送 1000B，因为拥塞窗口为1000B，只有它得到确认之后，才能继续往下发，然后我们发现拥塞窗口扩大了，剩下的报文才能被一次性发掉。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20155527.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20155527.png" /></a></p>
+</details>
 
 
   

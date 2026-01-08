@@ -1952,6 +1952,7 @@
 <div class="admonition example">
 <p class="admonition-title">例题2</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20144003.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20144003.png" /></a></p>
+<p>关于信道利用率的计算，无论采样哪种滑动窗口协议，分母都是一个数据帧的发送时延 + RTT + 一个确认帧的发送时延。分子是一个确认帧的发送时延乘上滑动窗口个数。最高就是100%，也就是说后两种方法可以达到 100 % </p>
 </div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20173211.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-29%20173211.png" /></a></p>
 <hr />
@@ -2128,7 +2129,7 @@ S_{max} = \frac{T_0}{T_0+\tau} = \frac{1}{1+\frac{\tau}{T_0}} = \frac{1}{1+\alph
 <li>网桥收到帧后进行登记（即自学习），登记的内容为帧的源MAC地址和进入网桥的接口号。</li>
 <li>
 <p>网桥根据帧的目的MAC地址和网桥的转发表对帧进行转发，包含以下三种情况：</p>
-</li>
+<ul>
 <li>
 <p>明确转发：网桥知道应当从哪个接口转发帧。</p>
 </li>
@@ -2137,6 +2138,8 @@ S_{max} = \frac{T_0}{T_0+\tau} = \frac{1}{1+\frac{\tau}{T_0}} = \frac{1}{1+\alph
 </li>
 <li>
 <p>丢弃：网桥知道不应该转发该帧，将其丢弃。</p>
+</li>
+</ul>
 </li>
 </ul>
 <div class="admonition warning">
@@ -2263,7 +2266,7 @@ S_{max} = \frac{T_0}{T_0+\tau} = \frac{1}{1+\frac{\tau}{T_0}} = \frac{1}{1+\alph
 <p class="admonition-title">交换机不同接口类型</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20145202.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20145202.png" /></a></p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20145229.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20145229.png" /></a></p>
-<p>注意 Trunck 接口的转发规则</p>
+<p>注意 Trunk 接口的转发规则</p>
 </div>
 <h2 id="38-80211">3.8 802.11无线局域网<a class="headerlink" href="#38-80211" title="Permanent link">&para;</a></h2>
 <p>随着移动通信技术的发展，无线局域网（Wireless Local Area Network，WLAN）自20世纪80年代末以来逐步进入市场。</p>
@@ -2308,6 +2311,7 @@ S_{max} = \frac{T_0}{T_0+\tau} = \frac{1}{1+\frac{\tau}{T_0}} = \frac{1}{1+\alph
 <p>如果没有这个操作的话，很可能有多个站都在监听信道并等待发送帧，一旦信道空闲，这些站几乎同时发送帧而产生碰撞。</p>
 </blockquote>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20153911.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20153911.png" /></a></p>
+<p>在数据帧的首部中 “持续时间” 字段的值指出了源站要占用信道的时间（包括目的站发回确认帧所需的时间），当某个站检测到正在信道中传送的帧首部中的“持续时间”字段时，就调整自己的<strong>网络分配向量（Network Allocation Vector，NAV）</strong>。NAV指出了完成这次帧的传送且信道转入空闲状态所需的时间。</p>
 <div class="admonition note">
 <p class="admonition-title">DIFS 和 SIFS</p>
 <p>DCF帧间间隔DIFS的长度为128μs，在DCF方式中，DIFS用来发送数据帧和管理帧。</p>
@@ -2341,6 +2345,11 @@ S_{max} = \frac{T_0}{T_0+\tau} = \frac{1}{1+\frac{\tau}{T_0}} = \frac{1}{1+\alph
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20155317.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-05%20155317.png" /></a></p>
 <p>这两个控制帧会通知附近所有能听到它们的站点暂时不要发送，从而为后续的数据传输预留信道。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-06%20204212.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-06%20204212.png" /></a></p>
+<p>选B, 28 + 1998*8/54 + 28 + 2 = 354</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>尽管如此，802.11无线局域网仍为用户提供了以下三种选择：</p>

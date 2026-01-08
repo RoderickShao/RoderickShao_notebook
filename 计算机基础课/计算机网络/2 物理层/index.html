@@ -1517,7 +1517,13 @@
 <h1 id="2">2 物理层<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <h2 id="21">2.1 物理层概述<a class="headerlink" href="#21" title="Permanent link">&para;</a></h2>
 <p><strong>物理层负责在物理媒体上传输原始的比特流（bit stream）</strong>，即把数据以电信号或光信号的形式在物理媒介上传送。</p>
-<p>物理层的接口特性有：机械特性、电气特性、功能特性、过程特性</p>
+<p>物理层的接口特性有：</p>
+<ul>
+<li>机械特性：指明接口所用接线器的形状和尺寸、引脚数量和排列、固定和锁定装置等。</li>
+<li>电气特性：指明在接口电缆的各条线上的电压范围、传输速率和距离限制等。</li>
+<li>功能特性：指明某条线上出现的某一电平的电压的意义，以及每条线的功能。</li>
+<li>过程特性：也称规程特性。指明不同功能的各种可能事件的出现顺序。</li>
+</ul>
 <p>物理层下的<strong>传播媒体</strong>大致可以分为两类</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-26%20165012.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-10-26%20165012.png" /></a></p>
 <p>传输方式可分为<strong>串行传输和并行传输</strong>或者是<strong>同步传输和异步传输</strong>，通信方式也可分为单向通信双向交替通信以及双向同时通信。</p>
@@ -1569,6 +1575,7 @@
 <p>在传输大量连续1或连续0的情况下，差分曼彻斯特编码信号比曼彻斯特编码信号的变化少。</p>
 <p>在噪声干扰环境下，检测有无跳变比检测跳变方向更不容易出错，因此差分曼彻斯特编码信号比曼彻斯特编码信号更易于检测。</p>
 <p>在传输介质接线错误导致高低电平翻转的情况下，差分曼彻斯特编码仍然有效。</p>
+<p>p.s.做差分曼彻斯特编码的波形代表的比特流的题目的时候，第一个比特常常无法得到，可以通过后面的比特选出来</p>
 </div>
 <hr />
 <p>下面介绍调制方法，分别介绍基本的带通调制方法和混合调制方法</p>
@@ -1588,12 +1595,8 @@
 <li>传输媒体质量</li>
 </ul>
 <p>信道上传输的数字信号，可以看做是多个频率的模拟信号进行多次叠加后形成的方波。如果数字信号中的高频分量在传输时受到衰减甚至不能通过信道，则接收端接收到的波形前沿和后沿就变得不那么陡峭，每一个码元所占的时间界限也不再明确。这样，在接收端接收到的信号波形就失去了码元之间的清晰界限，这种现象称为<strong>码间串扰</strong>。</p>
-<p>如果信道的频带越宽，则能够通过的信号的高频分量就越多，那么码元的传输速率就可以更高，而不会导致码间串扰。</p>
-<p>于是引入<strong>奈氏准则</strong>，阐述了码元传输速率和信道的频率带宽的关系</p>
-<div class="arithmatex">\[
-理想低通信道的最高码元传输速率 = 2W Baud = 2W 码元/秒
-\]</div>
-<p>其中 <span class="arithmatex">\(W\)</span> 是信道的频率带宽（单位为Hz）。只要码元传输速率不超过根据奈氏准则计算出的上限，就可以避免码间串扰。奈氏准则给出的是理想低通信道的最高码元传输速率，它和实际信道有较大的差别。因此，一个实际的信道所能传输的最高码元传输速率，要<strong>明显低于</strong>奈氏准则给出的上限值。</p>
+<p>根据奈奎斯特采样定理，要无失真地重建一个带宽为 <span class="arithmatex">\(B\)</span> 的信号，采样率必须至少为 <span class="arithmatex">\(2B\)</span>。采样率的意思我的理解就是电平上下波动的频率，然后知道几个电平代表一个码元，一个码元代表多少比特，就可以知道最大的数据传输速率了。</p>
+<p>奈奎斯特准则（Nyquist Criterion）指出，在一个带宽为 <span class="arithmatex">\(B\)</span> 赫兹的理想无噪声低通信道中，能够实现无码间干扰（ISI）的最大符号传输速率（即波特率）为 <span class="arithmatex">\(2B\)</span> 波特；若采用 <span class="arithmatex">\(M\)</span> 进制信号（每个符号携带 <span class="arithmatex">\(\log_2M\)</span> 比特信息），则理论最大数据速率为 <span class="arithmatex">\(2B\log_2M\)</span> 比特/秒。</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p>尽管奈氏准则限制了最高码元传输速率，但是只要采用技术更为复杂的信号调制方法，让码元可以携带更多的比特，岂不是可以无限制地提高信息的传输速率吗？</p>
@@ -1608,17 +1611,20 @@ C = W \log_2\left(1 + \frac{S}{N}\right)
 <li><strong>W</strong>：信道的频率带宽（单位为 Hz）</li>
 <li><strong>S</strong>：信道内所传信号的平均功率</li>
 <li><strong>N</strong>：信道内的高斯噪声功率</li>
-<li><strong>S/N</strong>：信噪比，使用分贝（dB）作为度量单位</li>
+<li><strong>S/N</strong>：信噪比</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">信噪比</p>
-<p>一般做题的时候称 <span class="arithmatex">\(10\log_{10}(S/N)（dB）\)</span>  为信噪比</p>
+<p>当采用无单位记法时，信噪比=S/N;当采用分贝记法时，信噪比= <span class="arithmatex">\(10log_10(S/N)\)</span>(单位为dB)</p>
 </div>
 <p>在信道的频率带宽 <span class="arithmatex">\(W\)</span> 一定的情况下，根据奈氏准则和香农公式，要想提高信息的传输速率，就必须采用多元制（更复杂的调制技术），并努力提高信道中的信噪比。</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20214538.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-04%20214538.png" /></a></p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20214410.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20214410.png" /></a></p>
 </div>
+<blockquote>
+<p>计算最大传输速率的时候要结合奈氏准则和香农公式综合来看取最小，如果题目中未提及每个码元的离散电平数量，则不考虑奈氏准则</p>
+</blockquote>
 <h2 id="24">2.4 信道复用技术<a class="headerlink" href="#24" title="Permanent link">&para;</a></h2>
 <p><strong>复用（Multiplexing）</strong>就是在一条传输媒体上同时传输多路用户的信号。</p>
 <p>当一条传输媒体的传输容量大于多条信道传输的总容量时，就可以通过复用技术，在这条传输媒体上建立多条通信信道，以便充分利用传输媒体的带宽。</p>

@@ -1483,6 +1483,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1918,6 +1925,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2130,8 +2144,8 @@
 <div class="admonition note">
 <p class="admonition-title">IPv4数据报分片的概念</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-25%20211734.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-25%20211734.png" /></a></p>
-</div>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-25%20212034.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-25%20212034.png" /></a></p>
+</div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-25%20212836.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-25%20212836.png" /></a></p>
@@ -2391,7 +2405,7 @@
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-27%20001226.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-27%20001226.png" /></a></p>
 <ul>
-<li>参数问题：当路由器或目的主机收到IP数据报后，根据其首部中的检验和字段的值发现首部在传送过程中出现了误码，就丢弃该数据报，并向发送该数据报的源点发送参数问题报文。</li>
+<li>参数问题：当路由器或目的主机收到IP数据报后，根据其首部中的检验和字段的值发现首部在传送过程中有的字段（不是任意字段）出现了误码，就丢弃该数据报，并向发送该数据报的源点发送参数问题报文。</li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-27%20001853.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-27%20001853.png" /></a></p>
 <ul>
@@ -2724,6 +2738,28 @@
 <p>远程控制器掌握各主机和整个网络的状态，远程控制器能够为每一个分组计算出最佳的路由。远程控制器为每一个路由器生成其正确的转发表。</p>
 <p>SDN这种新型网络体系结构的核心思想：把<strong>网络的控制层面和数据层面分离</strong>，而让控制层面利用软件来控制数据层面中的许多设备。</p>
 <p>这种方法可以用于一些大型数据中心之间的广域网，就可以提高网络的运行效率，还可以获得更好的经济效益</p>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-07%20193022.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-07%20193022.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>D，192.168.2.0/25 和 192.168.2.128 构成超网 192.168.2.0/24 下一条是 192.168.1.2</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-07%20193303.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-07%20193303.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>D 可以将默认网关理解为到当前主机最近的路由器的端口地址。定义是主机用于将数据包发送到本地子网以外目的网络时所使用的下一跳路由器的 IP 地址</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-07%20193433.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-07%20193433.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>B 注意 MTU 的定义，这个是包括首部的最大载荷。</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-07%20213702.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-07%20213702.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>B，这道题就很好地展示了 RIP 坏消息传得慢的缺点</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-07%20214538.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-07%20214538.png" /></a></p>
+</details>
 
 
   

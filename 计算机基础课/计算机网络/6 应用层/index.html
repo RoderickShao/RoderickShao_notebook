@@ -1407,6 +1407,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1686,6 +1693,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1893,6 +1907,39 @@ Accept-Language: cn</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-29%20211316.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-29%20211316.png" /></a></p>
 <p>如果过期了，就要再去因特网中访问该资源了</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-29%20211349.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-12-29%20211349.png" /></a></p>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20174347.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20174347.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>D, 一个主机可以通过两块网卡连接到两个网络，其就有两个 IP 地址了，显然这两个 IP 可以映射到同一个域名上。此外，多台主机也可以映射到同一个域名上（负载均衡）一台主机可以映射到多个域名上</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20175226.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20175226.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>A</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20180542.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20180542.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>这个题目比较综合，首先需要进行域名解析，有可能 <a href="http://www.abc.com">www.abc.com</a> 就在本地有相应的缓存，那么不需要到 Internet 上访问各种域名服务器，最坏的情况就是首先主机向本地域名服务器发出 DNS 请求，然后本地域名服务器向 Internet 依次迭代查询根域名服务器，com 顶级域名服务器，abc.com 域名服务器，需要 30ms</p>
+<p>现在我们得到了 <a href="http://www.abc.com">www.abc.com</a> 的 IP 地址，于是建立 TCP 连接，需要 1.5 RTT，然后第三次携带这 index.html 请求过去，发回来相应的数据需要 0.5 RTT。所以答案选 D</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20210111.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20210111.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>C，这个问题结合域名系统以及 http/1.1相关的内容，找到对应的 IP 需要 4RTT，建立连接1个 RTT, 请求 http 页面需要 1 RTT，请求图片一个 RTT</p>
+<p>注意 http/1.0 与 http/1.1 中持续与非持续连接的区分，以及 http/1.1 中流水线和非流水线请求之间的区分</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20212847.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20212847.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>这个题目非常考验逻辑，源端口是 80，说明是 Web 服务器发出的 http 响应分组。若该 http 请求是从外网来的，那么 NAT 表中肯定有这个表项。那么说明这个请求是从内网来的，那么这个分组应该要发给内网的，所以路由器不转发，直接丢弃</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20213638.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20213638.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>D, 这里是不支持并行连接，非持久的情况。TCP 建立连接需要一个 RTT，然后请求 Web 页需要一个 RTT。然后注意每一张图片都需要独自建立 TCP 连接，然后再请求图片，需要两个 RTT。2+ 7*2 = 16 个 RTT</p>
+</details>
 
 
   
