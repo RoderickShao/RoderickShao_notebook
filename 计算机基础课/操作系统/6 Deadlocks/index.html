@@ -1252,15 +1252,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    安全算法
+  <a href="#1" class="md-nav__link">
+    1 安全算法
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    资源请求算法
+  <a href="#2" class="md-nav__link">
+    2 资源请求算法
   </a>
   
 </li>
@@ -1333,6 +1333,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
   
 </li>
       
@@ -1660,15 +1667,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    安全算法
+  <a href="#1" class="md-nav__link">
+    1 安全算法
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    资源请求算法
+  <a href="#2" class="md-nav__link">
+    2 资源请求算法
   </a>
   
 </li>
@@ -1741,6 +1748,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
   
 </li>
       
@@ -1870,7 +1884,7 @@
 </ul>
 </div>
 <p>银行家算法分为两个部分，分别是<strong>安全算法(safety algorithm)</strong>和<strong>资源请求算法(resource request algorithm)</strong>。前者检测当前状态是否处于不安全状态，后者以前者为基础，判断是否允许当前资源请求发生。</p>
-<h4 id="_1">安全算法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<h4 id="1">1 安全算法<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
 <p>首先初始化两个向量：</p>
 <ul>
 <li><code>Work</code>：长度为 m（资源种类数），初始值为当前可用资源 <code>Available</code>。</li>
@@ -1888,19 +1902,19 @@
 <li>返回第 2 步继续查找下一个可完成的进程。</li>
 </ul>
 <p>判断系统是否安全： 若所有进程的 <code>Finish[i]</code> 都为 <code>true</code>，说明存在一个安全序列，系统处于安全状态；否则为不安全状态。</p>
-<h4 id="_2">资源请求算法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<h4 id="2">2 资源请求算法<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
 <p><code>Request_i[j] = k</code> 的意思是进程 <span class="arithmatex">\(P_i\)</span> 希望得到 <span class="arithmatex">\(k\)</span> 个 <span class="arithmatex">\(R_j\)</span> 资源</p>
-<p><strong>检查请求是否合法</strong>：</p>
+<p>检查请求是否合法：</p>
 <ul>
 <li>若 <code>Request_i ≤ Need_i</code>，表示进程的请求未超过其最大需求，继续下一步；</li>
 <li>否则，触发错误，因为进程请求的资源超过了它之前声明的最大值，这是不允许的。</li>
 </ul>
-<p><strong>检查资源是否可用</strong>：</p>
+<p>检查资源是否可用：</p>
 <ul>
 <li>若 <code>Request_i ≤ Available</code>，说明当前系统有足够的可用资源满足请求，进入第 3 步；</li>
 <li>否则，进程必须等待，直到资源可用。</li>
 </ul>
-<p><strong>模拟分配并检查安全性</strong>：</p>
+<p>模拟分配并检查安全性：</p>
 <ul>
 <li>假设将资源分配给进程 P_i，临时修改系统状态：</li>
 <li><code>Available = Available - Request_i</code>（减少可用资源）</li>
@@ -1940,7 +1954,7 @@
 <p>如果不存在这样的 i，则转到步骤 4。</p>
 <ol start="3">
 <li>
-<p>将当前进程 <span class="arithmatex">\(P_i\)</span> 的分配资源加到工作向量 <span class="arithmatex">\(\text{Work}=\text{Work}+\text{Allocation}_i\)</span> 标记该进程已完成：Finish[i]=true，返回步骤 2 继续查找下一个可完成的进程。</p>
+<p>将当前进程 <span class="arithmatex">\(P_i\)</span> 的分配资源加到工作向量 Work=Work+Allocation_i 标记该进程已完成：Finish[i]=true，返回步骤 2 继续查找下一个可完成的进程。</p>
 </li>
 <li>
 <p>如果存在某个进程<span class="arithmatex">\(P_i\)</span>（<span class="arithmatex">\(1\leq i\leq n\)</span>），其 Finish[i]=false ，则系统处于<strong>死锁状态</strong>。 
@@ -1988,6 +2002,12 @@
 <p>系统需要选择一个或多个“受害者”进程，从中抢占资源。目标是<strong>最小化恢复成本</strong></p>
 <p>抢占资源后，被选中的“受害者”进程需要<strong>回退到之前的一个安全状态</strong>，然后重新启动该进程，从那个安全点开始执行。</p>
 <p>如果不加控制，<strong>同一个进程可能反复被选为“受害者”</strong>，导致它永远无法完成。所以在选择受害者时，可以将“回退次数”纳入代价函数</p>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-10%20125116.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-10%20125116.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>C，注意理解死锁的四个条件的含义</p>
+</details>
 
 
   

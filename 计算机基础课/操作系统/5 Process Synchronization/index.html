@@ -1263,6 +1263,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1634,6 +1641,13 @@
         <li class="md-nav__item">
   <a href="#57-monitors" class="md-nav__link">
     5.7* Monitors
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    Review
   </a>
   
 </li>
@@ -2359,6 +2373,18 @@
 <a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 </div>
+<h2 id="review">Review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-10%20120115.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-10%20120115.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>选B，TSL 是不满足让权等待原则的，所以没有阻塞态进程。ABC 就很明显知道 B 是正确的，对于 D 来说，如果在关中断的情况下进行的话，那么在TSL(&amp;lock) 一直为 true 的情况下，不再开中断，系统可能崩溃。</p>
+<p>具体这个是怎么实现不可被打断的，是执行 TSL 指令的 CPU 锁住内存总线，以禁止其他 CPU 在本指令结束之前访问内存。</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-10%20120812.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-10%20120812.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>D，条件变量是用来协调不同进程的</p>
+</details>
 
 
   

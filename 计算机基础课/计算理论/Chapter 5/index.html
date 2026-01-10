@@ -1578,7 +1578,7 @@
 H=\{⟨M,w⟩∣图灵机 M 在输入 w 上停止\}
 \]</div>
 <p>显然 <span class="arithmatex">\(H\)</span> 应该是递归可枚举的，因为我们可以设计一个通用图灵机来半判定这个语言（模拟 <span class="arithmatex">\(M\)</span> 的行为，输入 <span class="arithmatex">\(w\)</span> 停机了就说明接受这个语言，不停机就不接受）</p>
-<p>我们现在要说明的是 <span class="arithmatex">\(H\)</span> 并不是递归语言，我们利用反证法来说明。假设 <span class="arithmatex">\(H\)</span> 是可递归的，那么对于 <span class="arithmatex">\(H_1 = \{⟨M⟩:M 在输入 ⟨M⟩ 上停机\}\)</span> 也是可递归的（毕竟这个语言是 <span class="arithmatex">\(H\)</span> 的一个子集）那么由于递归对于补是封闭的，那么 <span class="arithmatex">\(\overline{H_1}\)</span> 也是递归语言的，但是 <span class="arithmatex">\(\overline{H_1}\)</span> 甚至都不是递归可枚举的。</p>
+<p>我们现在要说明的是 <span class="arithmatex">\(H\)</span> 并不是递归语言，我们利用反证法来说明。假设 <span class="arithmatex">\(H\)</span> 是可递归的，那么对于 <span class="arithmatex">\(H_1 = \{⟨M⟩:M 在输入 ⟨M⟩ 上停机\}\)</span> 也是可递归的（从图灵机的角度考虑即可），那么由于递归对于补是封闭的，那么 <span class="arithmatex">\(\overline{H_1}\)</span> 也是递归语言的，但是 <span class="arithmatex">\(\overline{H_1}\)</span> 甚至都不是递归可枚举的。</p>
 <blockquote>
 <p>证明过程：如果存在 <span class="arithmatex">\(M^*\)</span> 半判定 <span class="arithmatex">\(\overline{H_1}\)</span>，那么 <span class="arithmatex">\(⟨M^*⟩\)</span> 到底属不属于 <span class="arithmatex">\(\overline{H_1}\)</span>呢？如果属于，那么就说明 <span class="arithmatex">\(M^*\)</span> 在输入为 <span class="arithmatex">\(⟨M^*⟩\)</span> 时并不会停机，但是由于其属于 <span class="arithmatex">\(\overline{H_1}\)</span>，而 <span class="arithmatex">\(M^*\)</span> 半判定 <span class="arithmatex">\(\overline{H_1}\)</span>，说明实际上是会停机的，这就发生矛盾了。相应的不属于的逻辑也是类似的，那么就说明根本就不存在这样的 <span class="arithmatex">\(M^*\)</span></p>
 </blockquote>
