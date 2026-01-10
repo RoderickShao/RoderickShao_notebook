@@ -1713,12 +1713,12 @@ L = \left\{ w \mid (s, \triangleright \underline{\ }) \vdash_M^* (q, \triangleri
 </ol>
 <details class="note">
 <summary>Answer</summary>
-<p>根据 Rice 定理，很容易知道上述问题是不可判定的，因为总有一些图灵机接受某些字符串，但是这个字符串并没有遍历所有非停机状态的。</p>
+<p>根据 Rice 定理，很容易知道上述问题是不可判定的，因为总有一些图灵机满足有字符串遍历所有，也有一些图灵机无论什么字符来都不遍历。</p>
 <p>构造一个归约函数 <span class="arithmatex">\(τ\)</span>：对任意图灵机 <span class="arithmatex">\(M\)</span>，构造新图灵机 <span class="arithmatex">\(M'\)</span>，其添加一个新符号 <span class="arithmatex">\(σ\)</span> 和一个新状态 <span class="arithmatex">\(q\)</span>。<span class="arithmatex">\(M'\)</span> 首先模拟 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上的运行；若 <span class="arithmatex">\(M\)</span> 进入停机状态，则 <span class="arithmatex">\(M'\)</span> 转移到状态 <span class="arithmatex">\(q\)</span>，写入 <span class="arithmatex">\(σ\)</span>，然后从字典序最小的非停机状态开始，依次遍历所有非停机状态（跳过停机状态），每次写入 <span class="arithmatex">\(σ\)</span>，最后进入状态 <span class="arithmatex">\(q\)</span> 并停机。</p>
 <p>这样就将上述问题规约到停机问题上了</p>
 </details>
 <ol start="5">
-<li>$ A≤_m B$ and <span class="arithmatex">\(B\)</span> is a regular language, then <span class="arithmatex">\(A\)</span> is also a regular language.</li>
+<li><span class="arithmatex">\(A≤_m B\)</span> and <span class="arithmatex">\(B\)</span> is a regular language, then <span class="arithmatex">\(A\)</span> is also a regular language.</li>
 </ol>
 <details class="note">
 <summary>Answer</summary>
