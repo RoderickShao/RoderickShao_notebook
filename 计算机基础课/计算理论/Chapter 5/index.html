@@ -1635,8 +1635,8 @@ x\in L_1\quad\text{当且仅当}\quad\tau(x)\in L_2
 <li><span class="arithmatex">\(H = \{'Mw' \mid M \text{ halts on } w\}\)</span> </li>
 <li><span class="arithmatex">\(L = \{'M' \mid M \text{ halts on } e\}\)</span></li>
 <li><span class="arithmatex">\(f('Mw') = \text{the encoding of } M_w = \begin{cases}1.\ \text{If input } x \neq e,\ \text{reject}; \\ 2.\ \text{run } M \text{ on } w; \\ 3.\ \text{if } M \text{ halts, accept}.\end{cases}\)</span></li>
-<li><span class="arithmatex">\('Mw' \in H \Rightarrow L(M_w) = \{e\} \Rightarrow f('Mw') \in L\)</span></li>
-<li><span class="arithmatex">\('Mw' \notin H \Rightarrow L(M_w) = \varnothing \Rightarrow f('Mw') \notin L\)</span></li>
+<li><span class="arithmatex">\('Mw' \in H \Rightarrow L(M_w) = \{e\} \Rightarrow f('M_w') \in L\)</span></li>
+<li><span class="arithmatex">\('Mw' \notin H \Rightarrow L(M_w) = \varnothing \Rightarrow f('M_w') \notin L\)</span></li>
 <li><span class="arithmatex">\(H \leq L\)</span></li>
 </ul>
 <p>基本的思路首先列出需要规约的两个问题，表示为通用图灵机下的输入；然后构造一个函数，完成二者的转换。</p>
