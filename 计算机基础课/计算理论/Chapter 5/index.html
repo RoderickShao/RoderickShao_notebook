@@ -1563,10 +1563,20 @@
 <ul>
 <li>输入为 “<span class="arithmatex">\(M\)</span>" 和 “<span class="arithmatex">\(w\)</span>”，其中 <span class="arithmatex">\(M\)</span> 是某台图灵机的编码，<span class="arithmatex">\(w\)</span> 是它的输入。</li>
 <li>首先将 <span class="arithmatex">\(M\)</span> 复制到第二条磁带上，把 <span class="arithmatex">\(w\)</span> 写在第一条磁带的开头，第三条磁带写上起始状态 <span class="arithmatex">\(s\)</span>。</li>
-<li>然后逐步模拟 <span class="arithmatex">\(M\)</span> 的运行：</li>
-<li>在第二条磁带上查找当前状态和读取符号所对应的转移规则（四元组）。</li>
-<li>根据该规则更新第一条磁带（修改内容、移动读写头）和第三条磁带（更新状态）。</li>
-<li>重复上述过程，直到第三条磁带上出现终止状态（如 <span class="arithmatex">\(h\)</span>），表示计算结束；也可能永远不结束。</li>
+<li>
+<p>然后逐步模拟 <span class="arithmatex">\(M\)</span> 的运行：</p>
+<ul>
+<li>
+<p>在第二条磁带上查找当前状态和读取符号所对应的转移规则（四元组）。</p>
+</li>
+<li>
+<p>根据该规则更新第一条磁带（修改内容、移动读写头）和第三条磁带（更新状态）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>重复上述过程，直到第三条磁带上出现终止状态（如 <span class="arithmatex">\(h\)</span>），表示计算结束；也可能永远不结束。</p>
+</li>
 </ul>
 <h2 id="53-the-halting-problem"><strong>5.3 The Halting Problem</strong><a class="headerlink" href="#53-the-halting-problem" title="Permanent link">&para;</a></h2>
 <p>接下来我们要寻找的是不可递归的语言，我们是知道这样的语言的是存在的，因为图灵机是可数无限的，而语言是不可数，所以这样不可递归的语言肯定是有的。</p>
@@ -1705,8 +1715,9 @@ L = \left\{ w \mid (s, \triangleright \underline{\ }) \vdash_M^* (q, \triangleri
 <p>这个图灵机有 <span class="arithmatex">\(s\)</span> 个状态，模拟 <span class="arithmatex">\(M\)</span> 在空带上的运行</p>
 <ul>
 <li>在前 <span class="arithmatex">\(s\)</span> 步内，<span class="arithmatex">\(M\)</span> 写了一个非空白符号。则答案为 <strong>“是”</strong>。</li>
-<li>在前 <span class="arithmatex">\(s\)</span> 步内，<span class="arithmatex">\(M\)</span> 从未写非空白符号。由于初始磁带全为空白，且 <span class="arithmatex">\(M\)</span> 未写入任何非空白符号，因此磁带始终全为空白。由于只有 <span class="arithmatex">\(s\)</span> 个状态，在 <span class="arithmatex">\(s+1\)</span> 次移动中必有某个状态重复出现。但我们在前 <span class="arithmatex">\(s\)</span> 步内未写非空白符，说明至第 <span class="arithmatex">\(s\)</span> 步为止已访问了 <span class="arithmatex">\(s+1\)</span> 个配置（包括初始），故至少有两个配置具有相同状态。因磁带内容处处相同（全空白），一旦状态重复，机器将进入无限循环，且<strong>永远不会写非空白符号</strong>。则答案是 ”否“。</li>
+<li>在前 <span class="arithmatex">\(s\)</span> 步内，<span class="arithmatex">\(M\)</span> 从未写非空白符号。由于初始磁带全为空白，且 <span class="arithmatex">\(M\)</span> 未写入任何非空白符号，因此磁带始终全为空白。由于只有 <span class="arithmatex">\(s\)</span> 个状态，在 <span class="arithmatex">\(s+1\)</span> 次移动中必有某个状态重复出现。但我们在前 <span class="arithmatex">\(s\)</span> 步内未写非空白符，说明至第 <span class="arithmatex">\(s\)</span> 步为止已访问了 <span class="arithmatex">\(s+1\)</span> 个配置（包括初始），故至少有两个配置（这时配置只看状态，因为磁带上都是空）具有相同状态。因磁带内容处处相同（全空白），一旦状态重复，机器将进入无限循环，且<strong>永远不会写非空白符号</strong>。则答案是 ”否“。</li>
 </ul>
+<p>那么对于这个问题你是否有疑问？为什么这个问题不能通过 Rice 定理来回答，如果通过 Rice 定理来看，有些图灵机会写非空白符，有些并不会，那么应该不能判断才对。但实际上这是不对的，因为这个性质并不是语言的语义性质，什么意思呢？也就是说这个图灵机是否接受这个语言不仅仅取决于这个语言，还取决于图灵机，这时我们不能通过 Rice 定理去判断</p>
 </details>
 <ol start="4">
 <li>The following problem is decidable: To determine, given a Turing machine <span class="arithmatex">\(M\)</span>, whether there is some string <span class="arithmatex">\(w\)</span> such that <span class="arithmatex">\(M\)</span> enters each of its non-halting states during its computation on input <span class="arithmatex">\(w\)</span>.</li>

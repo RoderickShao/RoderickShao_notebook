@@ -1650,10 +1650,20 @@ L(M) = \{w \mid (s, w, e) \vdash_M^* (p, e, e) \text{ for some state } p \in F\}
 <ul>
 <li>PDA <span class="arithmatex">\(M\)</span> has just 2 states: <span class="arithmatex">\(p\)</span> ~ start state, <span class="arithmatex">\(q\)</span> ~ final state</li>
 <li>Stack alphabet <span class="arithmatex">\(\Gamma = V\)</span></li>
-<li>Let <span class="arithmatex">\(\Delta\)</span> contain the following transitions:</li>
-<li><span class="arithmatex">\(((p, \varepsilon, \varepsilon), (q, S))\)</span></li>
-<li><span class="arithmatex">\(((q, \varepsilon, A), (q, x))\)</span> for each rule <span class="arithmatex">\(A \to x \in R\)</span></li>
-<li><span class="arithmatex">\(((q, a, a), (q, \varepsilon))\)</span>, <span class="arithmatex">\(\forall a \in \Sigma\)</span></li>
+<li>
+<p>Let <span class="arithmatex">\(\Delta\)</span> contain the following transitions:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(((p, \varepsilon, \varepsilon), (q, S))\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(((q, \varepsilon, A), (q, x))\)</span> for each rule <span class="arithmatex">\(A \to x \in R\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(((q, a, a), (q, \varepsilon))\)</span>, <span class="arithmatex">\(\forall a \in \Sigma\)</span></p>
+</li>
+</ul>
+</li>
 </ul>
 <p>整体思路就是先把初始符号 <span class="arithmatex">\(S\)</span> 放到栈里，磁带上放相应的字符串。然后依次从栈顶读字符，如果是非终结符，则进行替换，将替换后的字符再次塞回栈顶；如果是终结符，那么就读出。这样的 PDA 实际上模仿的就是 CFG 的最左推导。</p>
 <p>我们要证明 PDA 的操作过程就是 CFG 的最左推导，其实要说明以下式子</p>
@@ -1703,6 +1713,11 @@ S \overset{L^*}{\Longrightarrow} w\alpha \iff (q, w, S) \vdash_M^* (q, \varepsil
 <div class="arithmatex">\[
 \langle q, A, p \rangle \Rightarrow_G^* x \iff (q, x, A) \vdash_M^* (p, \varepsilon, \varepsilon)
 \]</div>
+<div class="admonition link">
+<p class="admonition-title">另一个类似的证明</p>
+<p><a href="https://note.tonycrane.cc/cs/tcs/toc/topic2/">上下文无关语言 - 鹤翔万里的笔记本</a></p>
+<p>在这个证明中的 simple PDA 更加简单，每次都要么弹出一个栈，要么写入一个栈。之后的证明相比这个部分更加简洁 </p>
+</div>
 <h2 id="34-languages-that-are-and-are-not-cf"><strong>3.4 Languages that are and are not CF</strong><a class="headerlink" href="#34-languages-that-are-and-are-not-cf" title="Permanent link">&para;</a></h2>
 <p>CFL 在并操作、连接操作和 Kleene Star 操作下是封闭的，这个的证明可以通过构造 PDA </p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20144346.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-11-08%20144346.png" /></a></p>
