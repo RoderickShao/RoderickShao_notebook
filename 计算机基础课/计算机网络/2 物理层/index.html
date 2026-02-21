@@ -1615,7 +1615,7 @@ C = W \log_2\left(1 + \frac{S}{N}\right)
 </ul>
 <div class="admonition note">
 <p class="admonition-title">信噪比</p>
-<p>当采用无单位记法时，信噪比=S/N;当采用分贝记法时，信噪比= <span class="arithmatex">\(10log_10(S/N)\)</span>(单位为dB)</p>
+<p>当采用无单位记法时，信噪比=S/N;当采用分贝记法时，信噪比= <span class="arithmatex">\(10\log_{10}(S/N)\)</span>(单位为dB)</p>
 </div>
 <p>在信道的频率带宽 <span class="arithmatex">\(W\)</span> 一定的情况下，根据奈氏准则和香农公式，要想提高信息的传输速率，就必须采用多元制（更复杂的调制技术），并努力提高信道中的信噪比。</p>
 <div class="admonition example">
@@ -1680,6 +1680,11 @@ C = W \log_2\left(1 + \frac{S}{N}\right)
 <details class="note">
 <summary>Answer</summary>
 <p>NRZ 的意思是双极性不归零编码（no-return-zero）这个每一个比特之多需要一次跳变，曼彻斯特编码每一个比特则需要两次跳变。所以这里 NRZ 1码元一个比特，曼彻斯特编码一码元0.5个比特。</p>
+</details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20160238.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-14%20160238.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>B 码元中间的跳变作为时钟信号，不同的跳变方式作为数据信号。曼彻斯特编码适合传输二进制数据，不适合传输模拟数据</p>
 </details>
 
 

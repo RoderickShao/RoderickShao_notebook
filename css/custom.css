@@ -3,5 +3,5 @@
   src: url('../fonts/LXGWWenKai-Regular.ttf') format('truetype');
 }
 body {
-  font-family: 'LXGW WenKai', sans-serif;
+  --md-text-font-family: 'LXGW WenKai', sans-serif;
 }

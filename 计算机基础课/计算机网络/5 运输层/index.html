@@ -1918,6 +1918,11 @@
 <p>D，这里的易错点就在于误认为 3000B 可以一次性发出，没有真正理解拥塞窗口。这里第一次只能发送 1000B，因为拥塞窗口为1000B，只有它得到确认之后，才能继续往下发，然后我们发现拥塞窗口扩大了，剩下的报文才能被一次性发掉。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20155527.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-08%20155527.png" /></a></p>
 </details>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-15%20154342.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-01-15%20154342.png" /></a></p>
+<details class="note">
+<summary>Answer</summary>
+<p>C 回忆一下数据链路层，以太网 MAC 帧的帧头（6+6+2）和帧尾（4）共 18 字节。IP 数据报首部 20-60字节，UDP 首部 8 字节, TCP 的首部则是 20-60 字节</p>
+</details>
 
 
   
