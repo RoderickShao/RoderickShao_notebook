@@ -1,0 +1,1909 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="RoderickShao's NoteBook">
+      
+      
+        <meta name="author" content="RoderickShao">
+      
+      
+      
+        <link rel="prev" href="../2%20Real-time%20Environment%20Mapping/">
+      
+      
+        <link rel="next" href="../4%20Real-Time%20Physically-Based%20Materials/">
+      
+      
+      <link rel="icon" href="../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.2.0-b3">
+    
+    
+      
+        <title>3 Real-Time Global Illumination - RoderickShao's NoteBook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.83068744.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13.274 9.537v-.001l-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75Z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.484 4.484 0 0 1-.563-1.191 3.835 3.835 0 0 1-.05-2.063 4.647 4.647 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .748.748 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.425 2.425 0 0 1-.507-.441 3.075 3.075 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.884.884 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.737 3.737 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75Z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343h-.001a8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746Zm1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275ZM6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L6.94 8 4.97 6.03a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.488 3.488 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.036 5.036 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.677 1.677 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06Zm.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.172.172 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173Z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z"/></svg>');--md-admonition-icon--link:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+      <link rel="stylesheet" href="../../../css/card.css">
+    
+      <link rel="stylesheet" href="../../../css/flink.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config",""),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-real-time-global-illumination" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RoderickShao's NoteBook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3 Real-Time Global Illumination
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="关闭自动模式"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="关闭自动模式" for="__palette_3" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="default" data-md-color-accent="blue"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_3">
+            
+              <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/RoderickShao/RoderickShao_notebook" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RoderickShao_notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+    
+  
+  主页
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  通识基础课
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  计算机基础课
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  图形学课程
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AI/CS231n/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  AI
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%85%B6%E4%BB%96/Python%E5%AD%A6%E4%B9%A0/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    RoderickShao's NoteBook
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/RoderickShao/RoderickShao_notebook" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RoderickShao_notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../.." class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    通识基础课
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机基础课
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    图形学课程
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            图形学课程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../GAMES101/0%20Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    GAMES101
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GAMES202
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            GAMES202
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%20Real-time%20Shadows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 Real-time Shadows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20Real-time%20Environment%20Mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 Real-time Environment Mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    3 Real-Time Global Illumination
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    3 Real-Time Global Illumination
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-reflective-shadow-mapping" class="md-nav__link">
+    3.1 Reflective Shadow Mapping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-light-propagation-volumes" class="md-nav__link">
+    3.2 Light Propagation Volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-voxel-global-illumination-vxgi" class="md-nav__link">
+    3.3 Voxel Global Illumination (VXGI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-screen-space-ambient-occlusion-ssao" class="md-nav__link">
+    3.4 Screen Space Ambient Occlusion (SSAO)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-screen-space-directional-occlusion-ssdo" class="md-nav__link">
+    3.5 Screen Space Directional Occlusion (SSDO)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-screen-space-reflection-ssr" class="md-nav__link">
+    3.6 Screen Space Reflection (SSR)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4%20Real-Time%20Physically-Based%20Materials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4 Real-Time Physically-Based Materials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5%20Real-Time%20Ray%20Tracing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 Real-Time Ray Tracing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6%20Practical%20Industrial%20Solutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 Practical Industrial Solutions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../6.837/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    6.837
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../OpenGL/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    OpenGL
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../Differentiable%20Shading/Mipmap/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Differentiable Shading
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../AI/CS231n/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E5%85%B6%E4%BB%96/Python%E5%AD%A6%E4%B9%A0/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    其他
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-reflective-shadow-mapping" class="md-nav__link">
+    3.1 Reflective Shadow Mapping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-light-propagation-volumes" class="md-nav__link">
+    3.2 Light Propagation Volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-voxel-global-illumination-vxgi" class="md-nav__link">
+    3.3 Voxel Global Illumination (VXGI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-screen-space-ambient-occlusion-ssao" class="md-nav__link">
+    3.4 Screen Space Ambient Occlusion (SSAO)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-screen-space-directional-occlusion-ssdo" class="md-nav__link">
+    3.5 Screen Space Directional Occlusion (SSDO)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-screen-space-reflection-ssr" class="md-nav__link">
+    3.6 Screen Space Reflection (SSR)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="3-real-time-global-illumination">3 Real-Time Global Illumination<a class="headerlink" href="#3-real-time-global-illumination" title="Permanent link">&para;</a></h1>
+<h2 id="31-reflective-shadow-mapping">3.1 Reflective Shadow Mapping<a class="headerlink" href="#31-reflective-shadow-mapping" title="Permanent link">&para;</a></h2>
+<p>要做全局光照，那么我们不仅需要考虑直接光照，也要考虑间接光照。</p>
+<p><strong>Reflective Shadow Mapping (RSM)</strong> 是一种用于实时渲染中模拟<strong>一次间接光照（全局光照）</strong>的技术。我们利用阴影贴图，记录那些第一次反光点，然后再去照亮所要渲染的点，从而模拟一次间接光照。</p>
+<p><a class="glightbox" href="../img/RSM.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/RSM.png" /></a></p>
+<p>那么此时点 p 被点 q 照亮并反射到相机的光为</p>
+<div class="arithmatex">\[
+L_o(\mathbf{p}, \omega_o) = \int_{\Omega_{\text{patch}}} L_i(\mathbf{p}, \mathbf{q} \to \mathbf{p}) \, V(\mathbf{p}, \mathbf{q} \to \mathbf{p}) \, f_r(\mathbf{p}, \mathbf{q} \to \mathbf{p}, \omega_o) \, \cos\theta_i \, d\omega_i
+\]</div>
+<p>然后由上图的公式，将其积分域换到光源的面积上，得到</p>
+<div class="arithmatex">\[
+L_o(\mathbf{p}, \omega_o) = \int_{A_{\text{patch}}} L_i(\mathbf{q} \to \mathbf{p}) \, V(\mathbf{p}, \mathbf{q} \to \mathbf{p}) \, f_r(\mathbf{p}, \mathbf{q} \to \mathbf{p}, \omega_o) \, \frac{\cos\theta_p \, \cos\theta_q}{\|\mathbf{q} - \mathbf{p}\|^2} \, dA
+\]</div>
+<p>然后我们计算的时候做以下假设</p>
+<ul>
+<li>计算第一次反射的情况，材质都为 diffuse 的，那么 <span class="arithmatex">\(f_r = \frac{\rho}{\pi}\)</span></li>
+<li>我们认为所有的点到 <span class="arithmatex">\(\mathbf{p}\)</span> 都是可见的，也就是说 $V(\mathbf{p}, \mathbf{q} \to \mathbf{p}) $ 均为 1</li>
+</ul>
+<p>由<a href="https://roderickshao.github.io/RoderickShao_notebook/图形学课程/GAMES101/6 Ray tracing/#64-basic-radiometry">辐射度量学</a>中的相关概念，我们可以得到</p>
+<p>$$
+L_i = f_r \cdot \frac{\Phi}{dA}
+$$
+其中 <span class="arithmatex">\(\Phi\)</span> 是照到 <span class="arithmatex">\(\mathbf{q}\)</span> 上的光照通量 incident flux</p>
+<hr />
+<p>对于上述可见性的假设，其实可以做一定的优化。我们有一个观察，就是一般在这个要渲染的点附近的间接光源不会被挡住，也就是说找在世界坐标下离 <span class="arithmatex">\(\mathbf{p}\)</span> 较近的点，但是直接去找世界坐标近的点，需要的计算量比较大，所以我们直接假设在 shadow map 中离 <span class="arithmatex">\(\mathbf{p}\)</span> 相应位置较近的点就是在世界坐标下离 <span class="arithmatex">\(\mathbf{p}\)</span> 较近的点</p>
+<p><a class="glightbox" href="../img/RSM2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/RSM2.png" /></a></p>
+<p>还有就是如果 shadow map 比较大，那么每计算一个点，都要计算 shadow map 中全部的像素对该点的影响。那么我们可以对这些像素进行采样，选择一些点来照亮该点。</p>
+<hr />
+<p>总结一下，RSM 需要在 shadow map 中存储</p>
+<ul>
+<li>深度</li>
+<li>世界坐标</li>
+<li>法线方向</li>
+<li>光通量 flux</li>
+</ul>
+<p><a class="glightbox" href="../img/RSM3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/RSM3.png" /></a></p>
+<h2 id="32-light-propagation-volumes">3.2 Light Propagation Volumes<a class="headerlink" href="#32-light-propagation-volumes" title="Permanent link">&para;</a></h2>
+<p>我们要渲染一个点，需要希望可以从任意方向查询辐射度（radiance），这样我们就可以直接去渲染该点。</p>
+<p>我们的思路是将场景视为一个一个的体素，然后每个体素都去存储一组 “方向性辐射度”，这样在渲染时，根据像素所在的位置，从对应的网格单元中插值就可以获取该点的间接光照。</p>
+<hr />
+<p>LPV 流程的起始阶段，目标是识别并采样场景中所有被光源直接照亮的表面区域</p>
+<ul>
+<li>使用 RSM 得到哪些表面被照亮，还有相应的颜色和朝向</li>
+<li>为了效率，我们不会对每一个像素都进行处理，而是对 RSM 中的结果进行下采样或聚类，提取出代表性的“表面块”（patches）</li>
+<li>每个这样的 patch 被视为一个<strong>虚拟点光源（virtual light source）</strong>，它会向周围空间发射光线（在后续步骤中注入到 3D 网格）</li>
+</ul>
+<p><a class="glightbox" href="../img/LPV.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/LPV.png" /></a></p>
+<hr />
+<p>上一步我们生成了许多“虚拟光源点”（即直接受光的表面 patch）。现在要判断哪些虚拟光源落在当前网格单元内部（或其影响范围内）</p>
+<p>每个虚拟光源不仅有一个强度值，还有一个<strong>方向分布</strong>（即它在各个方向上发射多少光）。在一个网格单元内，如果有多个虚拟光源，我们需要把它们的辐射度按方向叠加起来。</p>
+<p>为了高效存储和运算，LPV 不使用原始的方向采样（如 6 面或更多方向），而是用<strong>球谐函数</strong>对方向性辐射度进行压缩表示。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-26%20162027.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-26%20162027.png" /></a></p>
+<blockquote>
+<p>黄色灯泡照到蓝色物体上，粉色的部分是虚拟光源，然后再将每个格子的虚拟光源合并起来，然后再用球谐函数压缩表示</p>
+</blockquote>
+<hr />
+<p>这一步通过迭代方式，在每个网格单元之间传递辐射度信息，从而近似模拟光线在场景中多次反射、散射后形成的全局光照效果。</p>
+<p>对每个网格单元，收集它从六个面（前/后/左/右/上/下）接收到的辐射度</p>
+<ul>
+<li>每个网格单元有六个相邻的邻居（在 3D 空间中），分别对应 ±X, ±Y, ±Z 方向。</li>
+<li>在每一步传播中，当前单元会从这六个方向“接收”来自邻居单元的辐射度。</li>
+<li>注意：这里的“接收”不是物理意义上的入射角或遮挡判断，而是简单地将邻居单元的辐射度“流入”当前单元</li>
+</ul>
+<blockquote>
+<p>假设光可以无阻碍地在网格间流动（除非被几何体阻挡，但基础 LPV 不处理遮挡）。</p>
+</blockquote>
+<p>然后将接收到的辐射度求和，并再次用球谐函数（SH）表示。重复此传播过程若干次，直到体积内的辐射度分布趋于稳定。</p>
+<ul>
+<li>初始时，只有直接受光的单元有能量；经过几次传播后，能量逐步扩散到远处单元。</li>
+<li>当连续两次迭代之间的变化小于某个阈值（或达到预设最大次数），就认为系统“稳定”，停止传播。</li>
+<li>实际应用中通常迭代 5~10 次即可获得视觉上可接受的效果</li>
+</ul>
+<p><a class="glightbox" href="../img/LPV2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/LPV2.png" /></a></p>
+<hr />
+<p>在渲染时，对于屏幕上的每一个像素，我们需要知道它在 3D 空间中的位置。然后根据这个位置，映射到预定义的 3D 网格中对应的体素单元。</p>
+<p>每个网格单元在上一步传播完成后，已经存储了一个方向性辐射度分布，然后利用提取出的方向性辐射度，结合当前着色点的法线、材质属性（如漫反射系数），通过积分或近似公式计算出最终的间接光照贡献。</p>
+<p>但是这个方法存在问题，这在传播的时候并没有考虑遮蔽的问题，比如说下面这个点 <code>p</code>，其位于障碍物内部或紧贴其表面。红色箭头表示从点 <code>p</code> 向左右两侧发出的光线方向。但是点 <code>p</code> 实际上被障碍物挡住了，不应该接收到来自另一侧的光！</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-26%20164643.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-26%20164643.png" /></a></p>
+<p>这就会导致 "漏光问题"，这是 LPV 最严重的视觉缺陷之一。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-26%20164850.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-26%20164850.png" /></a></p>
+<h2 id="33-voxel-global-illumination-vxgi">3.3 Voxel Global Illumination (VXGI)<a class="headerlink" href="#33-voxel-global-illumination-vxgi" title="Permanent link">&para;</a></h2>
+<p>这个方法目的是在动态场景中实现高质量、实时的间接光照效果，支持漫反射 + 镜面反射（部分版本），并解决 LPV 的“漏光”等问题。</p>
+<p>VXGI 继承了传统 GI 方法（如 RSM、LPV）的基本结构：</p>
+<ul>
+<li>第一遍（Pass 1）：从光源视角或相机视角生成场景的几何与光照信息（如深度、法线、辐射度）。</li>
+<li>第二遍（Pass 2）：利用这些信息进行间接光照计算（如光线追踪、 cone tracing 等）。</li>
+</ul>
+<hr />
+<p>VXGI 的第一遍（Pass 1）从光源视角出发，首先渲染场景并将入射辐射度与光照方向信息“烘焙”进层次化体素结构（如八叉树）中，同时记录每个体素内的法线分布</p>
+<p>随后在体素层级上进行滤波处理，对辐照度值和光方向进行平滑与聚合，以构建稳定、多分辨率的全局光照场。</p>
+<blockquote>
+<p><strong>多级滤波</strong>：为了让数据更好用，系统会对这些原始数据进行“平滑处理”。它会把小格子的信息向上合并成大格子的平均值</p>
+</blockquote>
+<p>VXGI 的第二遍（Pass 2）——从相机视角出发，对每个着色点进行<strong>锥体追踪（Cone Tracing）</strong>以获取间接光照。</p>
+<p>对于有光泽的表面，系统不再发射单条光线，而是沿反射方向发射一个<strong>锥形光束（Cone）</strong>，随着锥体向前传播，它的覆盖范围（Footprint）会越来越大。系统会根据锥体当前的粗细，自动在第一步建立的“多级数据库”中查找最匹配的层级。</p>
+<ul>
+<li>锥体细（近处/细节）→ 查高分辨率的小体素；</li>
+<li>锥体粗（远处/模糊）→ 查低分辨率的大体素。</li>
+</ul>
+<p>最后，系统通过数学插值（四线性插值）将沿途采样的多个数据点柔和地融合在一起。这样既算出了清晰的镜面高光，又得到了柔和的环境反光，且速度极快，无需逐像素暴力计算。</p>
+<blockquote>
+<p>对于 diffuse 的情况，可以计算多个锥体，然后综合得到结果。（下图的蓝色部分是 diffuse 的情况，红色部分是 specular 的情况</p>
+</blockquote>
+<p><a class="glightbox" href="../img/VXGI.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/VXGI.png" /></a></p>
+<p>与 RSM 的区别：</p>
+<ul>
+<li>RSM 直接依赖光源视角的 2D 像素采样，容易受分辨率限制和视角遮挡影响导致精度不足；而 VXGI 将直接受光表面转化为<strong>层次化体素（如八叉树）</strong>，在 3D 空间中存储几何与辐射度信息。</li>
+<li>RSM 采用在 2D 纹理上进行半球随机采样的方式，本质是投影查找，极易产生噪点和误差；VXGI 则改为在 3D 体素空间中执行<strong>反射锥体追踪（Cone Tracing）</strong>，即从着色点发射锥形光束穿过体素网格并累加沿途辐射度。</li>
+</ul>
+<h2 id="34-screen-space-ambient-occlusion-ssao">3.4 Screen Space Ambient Occlusion (SSAO)<a class="headerlink" href="#34-screen-space-ambient-occlusion-ssao" title="Permanent link">&para;</a></h2>
+<p>之前我们考虑的都是 3D 空间下的结果，这里介绍的 SSAO 则是基于屏幕空间下的环境光遮蔽。</p>
+<p>对于任意一点，我们想要得到间接光照，假设对于任意一点任意方向的间接光照都是定值，但是我们要考虑 visibility 项。一些容易被遮蔽的地方，打到里面的光就比较少，就会显得比较暗。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-27%20150934.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-27%20150934.png" /></a></p>
+<p>回到之前的渲染方程</p>
+<div class="arithmatex">\[
+L_o(\mathbf{p}, \omega_o) = \int_{\Omega^+} 
+L_i(\mathbf{p}, \omega_i) \cdot 
+f_r(\mathbf{p}, \omega_i, \omega_o) \cos \theta_i\cdot 
+V(\mathbf{p}, \omega_i) \, d\omega_i
+\]</div>
+<p>可以将上述渲染方程拆分为</p>
+<p>$$
+L_o^{\text{indir}}(\mathbf{p}, \omega_o) \approx </p>
+<p>\frac{
+\int_{\Omega^+} V(\mathbf{p}, \omega_i) \cos\theta_i \, d\omega_i
+}{
+\int_{\Omega^+} \cos\theta_i \, d\omega_i
+}</p>
+<p>\cdot</p>
+<p>\int_{\Omega^+} L_i^{\text{indir}}(\mathbf{p}, \omega_i) f_r(\mathbf{p}, \omega_i, \omega_o) \cos\theta_i \, d\omega_i
+$$</p>
+<p>其中，前面这一项记为 <span class="arithmatex">\(k_A\)</span>，值为</p>
+<div class="arithmatex">\[
+k_A =\frac{
+\int_{\Omega^+} V(\mathbf{p}, \omega_i) \cos\theta_i \, d\omega_i
+}{
+\pi
+}
+\]</div>
+<p>这个代表的是按每个方向对表面的实际光照贡献大小进行加权平均。</p>
+<blockquote>
+<p>因为对于漫反射表面（Lambertian），<strong>光线越垂直于表面，贡献越大；越倾斜，贡献越小</strong>。这是由 BRDF 和几何投影决定的物理事实。</p>
+</blockquote>
+<p>后面这一项则是</p>
+<div class="arithmatex">\[
+L_i^{\text{indir}}(p)\cdot \frac{\rho}{\pi}\cdot \pi = L_i^{\text{indir}}(p)\cdot \rho
+\]</div>
+<p>这是一个常值，代表的是 AO。</p>
+<p>然后我们说明一下为什么上面这个式子是对的，实际上，上述式子是从投影立体角的视角去看待的</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-27%20152631.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-27%20152631.png" /></a></p>
+<p>进行换元即可得到相应的式子，至于为什么拆分是正确的，因为后面一项 AO 是常数，这实际上可以认为是一个等式。</p>
+<hr />
+<p>实际上，这里可以将渲染方程看得更加简单，上面的推导拆分只是为了能够更深地理解，因为 brdf 和 L 是常数, 所以可以直接提取出来。</p>
+<div class="arithmatex">\[
+\begin{align*}
+L_o(\mathbf{p}, \omega_o) 
+&amp;= \int_{\Omega^+} L_i(\mathbf{p}, \omega_i) \, f_r(\mathbf{p}, \omega_i, \omega_o) \, V(\mathbf{p}, \omega_i) \, \cos\theta_i \, d\omega_i \\
+&amp;= \frac{\rho}{\pi} \cdot L_i(\mathbf{p}) \cdot \int_{\Omega^+} V(\mathbf{p}, \omega_i) \, \cos\theta_i \, d\omega_i
+\end{align*}
+\]</div>
+<p>我们实际上需要计算的只是 <span class="arithmatex">\(k_A(p)\)</span> 项</p>
+<ul>
+<li>物体空间法通过向场景几何体发射光线（Raycasting）来精确判断可见性，但速度慢、依赖复杂的空间数据结构或简化模型，且性能随场景复杂度上升而下降；</li>
+<li>屏幕空间法在渲染完成后作为后处理步骤执行，无需预处理、不依赖场景几何复杂度、实现简单高效，但其结果基于深度缓冲近似，缺乏物理准确性，易受视角和分辨率影响</li>
+</ul>
+<p>SSAO 采用的是屏幕空间下的 <span class="arithmatex">\(k_A(p)\)</span> 的估计，利用深度图，采样着色点周围的一个球体内，有多少是比记录的深度是要深的，从而近似地估计该着色点的遮蔽情况</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-27%20153330.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-27%20153330.png" /></a></p>
+<p>其中红色的点的深度是比深度图记录的深度要深的，由上图可以明显感受到，绿色的点越多，该着色点越不会被遮蔽。但由于如果是一个平面的话，初始就有一半的点是红色的，所以这个估计只在红色的点多于一半的时候开始考虑环境光遮蔽。</p>
+<p>该技术由于仅依赖深度图（z-buffer）来近似场景几何，缺乏真实的三维结构信息，因此会产生错误的遮挡判断（False Occlusions），例如图中红线所示，位于当前表面“后方”但在投影空间重叠的采样点会被误判为遮挡物。此外，为了追求实时性能，SSAO 通常<strong>忽略物理上必要的余弦权重（ cos⁡θcos*θ* ）</strong>，即不对不同入射角度的采样点进行加权，导致计算结果在物理上并不准确。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-27%20214744.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-27%20214744.png" /></a></p>
+<blockquote>
+<p>可以看到上面这个图中，橙色圈中就出现了不正确的遮挡，</p>
+</blockquote>
+<p>在采样的过程中，采样梳理需要在精度与性能间权衡：虽然更多采样点能提升结果准确性，但为保证实时性通常仅使用约 16 个样本。但这会引入噪点，因此需通过<strong>保边模糊</strong>（如双边滤波）进行后处理，在平滑噪声的同时保留清晰的物体边缘，从而获得干净自然的最终画面。</p>
+<hr />
+<p>HBAO（Horizon-Based Ambient Occlusion）是一种在屏幕空间内实现的环境光遮蔽技术，它通过近似地对深度缓冲区进行“射线追踪”来计算遮挡：与基础 SSAO 不同，HBAO 利用已知的表面法线信息，仅在以该法线为轴的<strong>半球空间</strong>内采样，并沿多个方向寻找水平角，从而更精确地估算可见性；</p>
+<p>这种方法比随机采样更符合物理原理，能产生更清晰、更少噪点的 AO 效果，但计算成本略高，且依赖于法线缓冲区的可用性。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-27%20222320.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-27%20222320.png" /></a></p>
+<blockquote>
+<p>左图是使用 SSAO 得到的结果，右边是 HBAO 得到的结果，很明显看到 HBAO 在 SSAO 未正确处理的遮挡关系中处理的很好</p>
+</blockquote>
+<h2 id="35-screen-space-directional-occlusion-ssdo">3.5 Screen Space Directional Occlusion  (SSDO)<a class="headerlink" href="#35-screen-space-directional-occlusion-ssdo" title="Permanent link">&para;</a></h2>
+<p>在 SSAO 中我们假设入射的间接光是均匀的，我们实际上可以利用屏幕上部分的间接光的信息，引入遮挡计算，使得 AO 效果能够一定程度反映真实光照。</p>
+<p>整个基本原理与路径追踪很像，在每个着色点 p<em>p</em> 发射一条随机射线，若该射线未击中任何障碍物，则说明该方向可直接接收光源 → 贡献<strong>直接光照</strong>；若击中了其他表面，则从命中点获取其颜色或亮度作为<strong>间接光照</strong>来源。</p>
+<div class="admonition note">
+<p class="admonition-title">比较 SSAO 和 SSDO</p>
+<p>SSAO 中红色部分来计算间接光照，SSDO 则是橙色部分来计算间接光照</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20174947.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20174947.png" /></a></p>
+</div>
+<div class="arithmatex">\[
+\begin{align*}
+L_o^{\text{dir}}(\mathbf{p}, \omega_o) &amp;= \int_{\Omega^+, V = 1} L_i^{\text{dir}}(\mathbf{p}, \omega_i) \, f_r(\mathbf{p}, \omega_i, \omega_o) \, \cos\theta_i \, d\omega_i \\
+L_o^{\text{indir}}(\mathbf{p}, \omega_o) &amp;= \int_{\Omega^+, V = 0} L_i^{\text{indir}}(\mathbf{p}, \omega_i) \, f_r(\mathbf{p}, \omega_i, \omega_o) \, \cos\theta_i \, d\omega_i
+\end{align*}
+\]</div>
+<hr />
+<p>在每个着色点 P 的<strong>局部半球空间</strong>内对多个采样点（如 A、B、C、D）进行深度测试，判断其是否被遮挡；但是这个方法只是一个近似的方式，就像下图中第三幅图中，A 点对 P 点应该无间接光照，但是用该方法计算的时候，却认为 A 点能为 P 点提供间接光照； B 点则相反，都出现了错误。</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20175844.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20175844.png" /></a></p>
+<p>虽然其渲染质量已接近离线渲染效果，能呈现更真实的间接光照和色彩渗透，但仍存在几个问题</p>
+<ul>
+<li>首先，它仅能模拟<strong>短范围</strong>的全局光照（GI），无法处理远距离光线反弹；</li>
+</ul>
+<p><a class="glightbox" href="../img/SSDO2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/SSDO2.png" /></a></p>
+<blockquote>
+<p>比如说上图种正方体右侧面的绿色是右边墙映过来的，这么远的间接光在 SSDO 中无法得到</p>
+</blockquote>
+<ul>
+<li>其次，可见性判断仍受限于屏幕空间数据；最关键的是，作为屏幕空间技术，它<strong>完全依赖当前帧可见的像素信息</strong>，对于摄像机视角下“不可见”的表面（如物体背面或被遮挡区域），无法获取其几何或光照数据，导致这些区域的光照计算缺失或错误</li>
+</ul>
+<p><a class="glightbox" href="../img/SSDO.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/SSDO.png" /></a></p>
+<h2 id="36-screen-space-reflection-ssr">3.6 Screen Space Reflection (SSR)<a class="headerlink" href="#36-screen-space-reflection-ssr" title="Permanent link">&para;</a></h2>
+<p>屏幕空间反射（SSR）是一种在实时渲染中引入全局光照效果的技术，它通过在屏幕空间内执行“光线追踪”来模拟镜面反射——无需依赖原始 3D 几何体（如三角形），而是直接利用已渲染的深度、法线和颜色缓冲区。</p>
+<p>基本过程如下：</p>
+<ul>
+<li>求交，即从着色点沿反射方向发射射线，在屏幕空间中与场景深度图进行步进式相交检测，找到命中像素；</li>
+<li>着色，将命中像素的颜色/亮度作为反射贡献返回给原着色点</li>
+</ul>
+<p>最终的实现目标就是生成高质量的“镜面反射”</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20220554.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20220554.png" /></a></p>
+<blockquote>
+<p>这些反射的内容很多都在屏幕中都展现出来了</p>
+</blockquote>
+<p>第一步求交的方式使用的是 Ray Marching 的方式，可以选择一个像素一个像素地走。但是这肯定不是我们想要的，因为这样肯定非常慢。可是我们又没有像 SDF 那样的工具来告诉我们可以安全地走多少步。</p>
+<p>这里我们可以利用 Depth map 中的信息来试探性地得到安全步数。利用 Depth map，生成相应的 mip-map，但是这里生成的 mipmap 并不是取平均值，而是取这片深度的最小值。这样我们在 marching 的时候，可以试探性地走大步，如果走大步的时候没有碰到物体，那么和原来的图也不会有交。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">mip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">level</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">step</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">cell</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">above</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="n">plane</span><span class="p">)</span><span class="w"> </span><span class="o">++</span><span class="n">level</span><span class="p">;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">below</span><span class="w"> </span><span class="n">Z</span><span class="w"> </span><span class="n">plane</span><span class="p">)</span><span class="w"> </span><span class="o">--</span><span class="n">level</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p>这里的试探与 TCP 中的拥塞控制很像</p>
+</blockquote>
+<div class="admonition example">
+<p class="admonition-title">Hierarchical tracing</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">初始</label><label for="__tabbed_1_2">Step 1</label><label for="__tabbed_1_3">Step 2</label><label for="__tabbed_1_4">Step 3</label><label for="__tabbed_1_5">Step 4</label><label for="__tabbed_1_6">Step 5</label><label for="__tabbed_1_7">Finally</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>这是我们要 marching 的光线</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20221951.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20221951.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>第一步先走一步，发现没有碰到，那么下一步选择走的步数更大</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20221955.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20221955.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>这一步也没有碰到，下一步选择更高层的 mipmap</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222000.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222000.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>这一步碰到了，由于是在后半部碰到，所以前半部分也可以安全 marching，然后到第一层的 mipmap 中去查</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222005.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222005.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>接着往后查，最终得到交点</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222011.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222011.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222016.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222016.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222022.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222022.png" /></a></p>
+</div>
+</div>
+</div>
+</div>
+<hr />
+<p>这个方法的问题与所有的屏幕空间方法是一致的，就是忽略了屏幕空间中没有的信息</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222833.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20222833.png" /></a></p>
+<blockquote>
+<p>比如说上面这张图中的反射图像，手的后半部分由于屏幕空间并没有看到，所以手的后半部分没有显示在倒影上</p>
+</blockquote>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20223018.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20223018.png" /></a></p>
+<blockquote>
+<p>这张图则是窗帘上半部分没有拍到，但是应该在倒影中有所显示，就会出现上面的问题。可以选择模糊远一些的edge，这样看上去更加自然</p>
+</blockquote>
+<hr />
+<p>这个方法可以实现</p>
+<ul>
+<li>Sharp and blurry reflections（清晰与模糊反射）：这个根据不同的 brdf 采样即可实现</li>
+<li>Contact hardening（接触处硬化）：这个就是 PCSS 中实现的效果。使用这个方法也自然而然的实现了，因为反射一个锥体的时候，越远锥体采样的面积就越大，也就越糊；越近的话，采样的面积就笑，那么就比较清晰。</li>
+<li>Specular elongation（高光拉伸 / 反射畸变）</li>
+<li>Per-pixel roughness and normal（逐像素粗糙度与法线）</li>
+</ul>
+<p>在实现的时候，还有一些小技巧，比如说利用周围邻居的 tracing 结果的信息</p>
+<p><center><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20224923.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-02-28%20224923.png" /></a></center></p>
+<p>或者说和之前 IBL 中 split sum 一样，引入 prefilter 等操作，预处理一些项，运行的时候只需要查询就行，但是实现起来会比较复杂。</p>
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        此页面有帮助吗？
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9v12H1V9h4m4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21H9m0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03V19Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 15V3h4v12h-4M15 3a2 2 0 0 1 2 2v10c0 .55-.22 1.05-.59 1.41L9.83 23l-1.06-1.06c-.27-.27-.44-.64-.44-1.06l.03-.31.95-4.57H3a2 2 0 0 1-2-2v-2c0-.26.05-.5.14-.73l3.02-7.05C4.46 3.5 5.17 3 6 3h9m0 2H5.97L3 12v2h8.78l-1.13 5.32L15 14.97V5Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              谢谢你的反馈！
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+<div id="__comments">
+
+  <script>
+  var buttons = document.querySelectorAll("button[data-md-color-primary]")
+  buttons.forEach(function(button) {
+          button.addEventListener("click", function() {
+          var attr = this.getAttribute("data-md-color-primary")
+          document.body.setAttribute("data-md-color-primary", attr)
+          localStorage.setItem("data-md-color-primary",attr);
+          })
+  })
+  </script>
+  
+  <h2 ><!-- 评论 -->评论区</h2>
+  
+  对你有帮助的话请给我个赞和 star => <a href="https://github.com/RoderickShao/RoderickShao_notebook"><img alt="GitHub stars" src="https://img.shields.io/github/stars/RoderickShao/RoderickShao_notebook.svg?style=plastic&amp;label=Stars"></a>
+  
+  </br>
+  
+  欢迎跟我探讨！！！
+  
+  </div>
+  
+  <script src="https://giscus.app/client.js"
+      data-repo="RoderickShao/RoderickShao_notebook"
+      data-repo-id="R_kgDOMS_5AQ"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+          
+  
+  updateScheme();
+  
+  </script>
+  
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+  var giscus = document.querySelector("script[src*=giscus]")
+  
+  /* Set palette on initial load */
+  var palette = __md_get("__palette")
+  if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
+      giscus.setAttribute("data-theme", theme) 
+  }
+  
+  /* Register event handlers after documented loaded */
+  document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+      var palette = __md_get("__palette")
+      if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+          localStorage.setItem("data-md-color-scheme", palette.color.scheme === "slate" ? "slate" : "default");
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+          { giscus: { setConfig: { theme } } },
+          "https://giscus.app"
+          )
+      }
+      })
+  })
+  </script>
+  
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../2%20Real-time%20Environment%20Mapping/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 2 Real-time Environment Mapping" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                2 Real-time Environment Mapping
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../4%20Real-Time%20Physically-Based%20Materials/" class="md-footer__link md-footer__link--next" aria-label="下一页: 4 Real-Time Physically-Based Materials" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                4 Real-Time Physically-Based Materials
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 - 2025 RoderickShao
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "navigation.footer", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "../../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.4e31edb1.min.js"></script>
+      
+        
+          <script src="../../../javascripts/mathjax.js"></script>
+        
+      
+        
+          <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

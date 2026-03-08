@@ -394,6 +394,35 @@
     
     
       <li class="md-tabs__item">
+        <a href="../../../AI/CS231n/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  AI
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
         <a href="../../../%E5%85%B6%E4%BB%96/Python%E5%AD%A6%E4%B9%A0/Introduction/" class="md-tabs__link">
           
   
@@ -612,8 +641,6 @@
   
     
     
-      
-        
       
         
       
@@ -1309,16 +1336,48 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../GAMES202/Introduction/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../GAMES202/Introduction/" class="md-nav__link">
+      
   
   <span class="md-ellipsis">
     GAMES202
   </span>
   
 
-      </a>
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
     </li>
   
 
@@ -1367,68 +1426,6 @@
   
   <span class="md-ellipsis">
     6.837
-  </span>
-  
-
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
-  
-
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-      
-        
-  
-  
-    <a href="../../CS231n/Introduction/" class="md-nav__link">
-      
-  
-  <span class="md-ellipsis">
-    CS231n
   </span>
   
 
@@ -1556,6 +1553,50 @@
             
           </ul>
         </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../AI/CS231n/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
       
     </li>
   
@@ -1912,7 +1953,7 @@
 
 <h1 id="6-ray-tracing"><strong>6 Ray tracing</strong><a class="headerlink" href="#6-ray-tracing" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -15px; font-size: 0.75em; opacity: 0.7;">
-    文本统计：约 4648 个字  •  98 行代码 
+    文本统计：约 4786 个字  •  98 行代码 
 </div>
 
 <h2 id="60-introduction"><strong>6.0 Introduction</strong><a class="headerlink" href="#60-introduction" title="Permanent link">&para;</a></h2>
@@ -2401,6 +2442,44 @@ E(\pmb x)\equiv \frac{\text{d}\Phi(\pmb x)}{\text{d}A}
 <h4 id="exiting-radiance"><strong>Exiting Radiance（出射）</strong><a class="headerlink" href="#exiting-radiance" title="Permanent link">&para;</a></h4>
 <p>Exiting surface radiance is the <strong>intensity per unit projected area</strong> leaving the surface. </p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-28%20132939.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-28%20132939.png" /></a></p>
+<table>
+<thead>
+<tr>
+<th>物理量</th>
+<th>符号</th>
+<th>定义</th>
+<th>单位</th>
+<th>关键维度</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Radiant Intensity</td>
+<td><span class="arithmatex">\(I\)</span></td>
+<td>光源在单位立体角内发出的辐射功率</td>
+<td>W/sr (瓦/球面度)</td>
+<td>方向性（无面积）</td>
+<td>手电筒光束的“集中程度”</td>
+</tr>
+<tr>
+<td>Irradiance</td>
+<td><span class="arithmatex">\(E\)</span></td>
+<td>表面单位面积接收到的辐射功率</td>
+<td>W/m²</td>
+<td>面积（无方向）</td>
+<td>地面被阳光晒得有多热</td>
+</tr>
+<tr>
+<td>Radiance</td>
+<td><span class="arithmatex">\(L\)</span></td>
+<td>从某点沿某方向，单位投影面积·单位立体角发出的辐射功率</td>
+<td>W/(sr·m²)</td>
+<td>面积 + 方向（最完整描述）</td>
+<td>你眼睛看到某个像素有多亮</td>
+</tr>
+</tbody>
+</table>
 <h3 id="645-rendering-equation"><strong>6.4.5 Rendering equation</strong><a class="headerlink" href="#645-rendering-equation" title="Permanent link">&para;</a></h3>
 <p>Differential irradiance incoming: <span class="arithmatex">\(\text{d}E(\omega_i)=L(\omega_i)cos\theta_i\ \text{d}\omega_i\)</span></p>
 <p>Differential radiance exiting (due to <span class="arithmatex">\(\text{d}E(\omega_i)\)</span>): <span class="arithmatex">\(\text{d}L_r(\omega_r)\)</span></p>
