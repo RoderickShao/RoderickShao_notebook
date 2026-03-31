@@ -1233,6 +1233,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1420,10 +1424,10 @@ L_o(\mathbf{p}, \omega_o) = \int_{A_{\text{patch}}} L_i(\mathbf{q} \to \mathbf{p
 <li>我们认为所有的点到 <span class="arithmatex">\(\mathbf{p}\)</span> 都是可见的，也就是说 $V(\mathbf{p}, \mathbf{q} \to \mathbf{p}) $ 均为 1</li>
 </ul>
 <p>由<a href="https://roderickshao.github.io/RoderickShao_notebook/图形学课程/GAMES101/6 Ray tracing/#64-basic-radiometry">辐射度量学</a>中的相关概念，我们可以得到</p>
-<p>$$
+<div class="arithmatex">\[
 L_i = f_r \cdot \frac{\Phi}{dA}
-$$
-其中 <span class="arithmatex">\(\Phi\)</span> 是照到 <span class="arithmatex">\(\mathbf{q}\)</span> 上的光照通量 incident flux</p>
+\]</div>
+<p>其中 <span class="arithmatex">\(\Phi\)</span> 是照到 <span class="arithmatex">\(\mathbf{q}\)</span> 上的光照通量 incident flux</p>
 <hr />
 <p>对于上述可见性的假设，其实可以做一定的优化。我们有一个观察，就是一般在这个要渲染的点附近的间接光源不会被挡住，也就是说找在世界坐标下离 <span class="arithmatex">\(\mathbf{p}\)</span> 较近的点，但是直接去找世界坐标近的点，需要的计算量比较大，所以我们直接假设在 shadow map 中离 <span class="arithmatex">\(\mathbf{p}\)</span> 相应位置较近的点就是在世界坐标下离 <span class="arithmatex">\(\mathbf{p}\)</span> 较近的点</p>
 <p><a class="glightbox" href="../img/RSM2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/RSM2.png" /></a></p>
@@ -1522,16 +1526,16 @@ f_r(\mathbf{p}, \omega_i, \omega_o) \cos \theta_i\cdot
 V(\mathbf{p}, \omega_i) \, d\omega_i
 \]</div>
 <p>可以将上述渲染方程拆分为</p>
-<p>$$
-L_o^{\text{indir}}(\mathbf{p}, \omega_o) \approx </p>
-<p>\frac{
+<div class="arithmatex">\[
+L_o^{\text{indir}}(\mathbf{p}, \omega_o) \approx 
+\frac{
 \int_{\Omega^+} V(\mathbf{p}, \omega_i) \cos\theta_i \, d\omega_i
 }{
 \int_{\Omega^+} \cos\theta_i \, d\omega_i
-}</p>
-<p>\cdot</p>
-<p>\int_{\Omega^+} L_i^{\text{indir}}(\mathbf{p}, \omega_i) f_r(\mathbf{p}, \omega_i, \omega_o) \cos\theta_i \, d\omega_i
-$$</p>
+}
+\cdot
+\int_{\Omega^+} L_i^{\text{indir}}(\mathbf{p}, \omega_i) f_r(\mathbf{p}, \omega_i, \omega_o) \cos\theta_i \, d\omega_i
+\]</div>
 <p>其中，前面这一项记为 <span class="arithmatex">\(k_A\)</span>，值为</p>
 <div class="arithmatex">\[
 k_A =\frac{

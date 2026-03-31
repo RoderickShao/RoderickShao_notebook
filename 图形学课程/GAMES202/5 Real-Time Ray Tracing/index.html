@@ -1253,6 +1253,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1463,9 +1467,6 @@
 </blockquote>
 </div>
 <p>反投影（Back Projection）用于确定当前帧像素 <span class="arithmatex">\(x\)</span> 在上一帧 <span class="arithmatex">\(i−1\)</span> 中的对应位置：若 G-Buffer 中已有世界坐标 <span class="arithmatex">\(s\)</span> ，则直接使用；否则通过变换矩阵逆运算 <span class="arithmatex">\(s=M^{−1}V^{−1}P^{−1}E^{−1}x\)</span>（仍需深度值 <span class="arithmatex">\(z\)</span> ）推导；已知运动关系 <span class="arithmatex">\(s' \xrightarrow{T} s\)</span> ，可得 <span class="arithmatex">\(s'=T^{−1}s\)</span> ；最后将上一帧的世界坐标 <span class="arithmatex">\(s'\)</span> 投影回屏幕空间，得到对应像素位置 <span class="arithmatex">\(x'=E'P'V'M's'\)</span></p>
-<blockquote>
-<p>虽然在 PPT 中是这样写的，但是我认为这个 <span class="arithmatex">\(M\)</span> 是不需要乘的，因为求的是世界坐标。反正思路是这样的，实现中的细节在这里就不深究了</p>
-</blockquote>
 <p>得到上一帧该点所在的像素之后，就得到相应的降噪结果作为该帧降噪的参考。</p>
 <div class="arithmatex">\[
 \begin{aligned}
