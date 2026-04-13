@@ -387,16 +387,8 @@
   
     
     
-      
-  
-  
-    
-  
-  
-    
-    
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../CS231n/Introduction/" class="md-tabs__link">
+        <a href="../../Introduction/" class="md-tabs__link">
           
   
     
@@ -405,9 +397,6 @@
 
         </a>
       </li>
-    
-  
-
     
   
 
@@ -699,6 +688,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -726,6 +717,26 @@
             AI
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -827,9 +838,9 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked>
         
-          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -840,8 +851,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_3">
             <span class="md-nav__icon md-icon"></span>
             Introduction to GenAI
           </label>
@@ -1351,11 +1362,11 @@ r_2 = r_1 - q_2 = z - (q_1 + q_2).
 <li>起点：在时间 <span class="arithmatex">\(t=0\)</span> ，所有样本服从一个简单分布（如标准高斯分布 <span class="arithmatex">\(p_0(x)=\mathcal{N}(0,I)\)</span>）。</li>
 <li>终点：在时间 <span class="arithmatex">\(t=1\)</span> ，样本应服从真实数据分布 <span class="arithmatex">\(p_1(x)\)</span> （如自然图像）。</li>
 </ul>
-<p>Flow Matching 将这一演化过程建模为一个<strong>常微分方程</strong>（ODE）:
-$$
+<p>Flow Matching 将这一演化过程建模为一个<strong>常微分方程</strong>（ODE）:</p>
+<div class="arithmatex">\[
 \frac{d}{dt}x(t) = v_{\theta}(x(t),t)
-$$
-其中：</p>
+\]</div>
+<p>其中：</p>
 <ul>
 <li><span class="arithmatex">\(x(t)\)</span> 是粒子在时间 <span class="arithmatex">\(t\)</span> 的位置；</li>
 <li><span class="arithmatex">\(v_θ(x,t)\)</span> 是一个由神经网络参数化的<strong>速度场</strong>（或称向量场），它决定了粒子在每一点的运动方向和速度。</li>

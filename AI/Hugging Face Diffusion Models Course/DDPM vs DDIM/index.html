@@ -387,16 +387,8 @@
   
     
     
-      
-  
-  
-    
-  
-  
-    
-    
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../CS231n/Introduction/" class="md-tabs__link">
+        <a href="../../Introduction/" class="md-tabs__link">
           
   
     
@@ -405,9 +397,6 @@
 
         </a>
       </li>
-    
-  
-
     
   
 
@@ -699,6 +688,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -726,6 +717,26 @@
             AI
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -871,9 +882,9 @@
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" checked>
         
-          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -884,8 +895,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4">
             <span class="md-nav__icon md-icon"></span>
             Hugging Face Diffusion Models Course
           </label>
@@ -1174,11 +1185,11 @@
 <div class="arithmatex">\[
 P(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{\alpha_t} x_{t-1}, \beta_t I)
 \]</div>
-<p>其中 <span class="arithmatex">\(\alpha_t = 1 - \beta_t\)</span>。我们可以通过重参数化技巧来采样 <span class="arithmatex">\(x_t\)</span>：
-$$
+<p>其中 <span class="arithmatex">\(\alpha_t = 1 - \beta_t\)</span>。我们可以通过重参数化技巧来采样 <span class="arithmatex">\(x_t\)</span>：</p>
+<div class="arithmatex">\[
 x_t = \sqrt{\alpha_t} x_{t-1} + \sqrt{\beta_t} \varepsilon_t, \quad \varepsilon_t \sim \mathcal{N}(0, I)
-$$
-那么对于任意时刻，我们可以直接从初始图像 <span class="arithmatex">\(x_0\)</span> 计算任意时刻 <span class="arithmatex">\(t\)</span> 的 <span class="arithmatex">\(x_t\)</span>。</p>
+\]</div>
+<p>那么对于任意时刻，我们可以直接从初始图像 <span class="arithmatex">\(x_0\)</span> 计算任意时刻 <span class="arithmatex">\(t\)</span> 的 <span class="arithmatex">\(x_t\)</span>。</p>
 <div class="arithmatex">\[
 \begin{aligned} x_t &amp;= \sqrt{\alpha_t} x_{t-1} + \sqrt{\beta_t} \varepsilon_t \\ &amp;= \sqrt{\alpha_t} (\sqrt{\alpha_{t-1}} x_{t-2} + \sqrt{\beta_{t-1}} \varepsilon_{t-1}) + \sqrt{\beta_t} \varepsilon_t \\ &amp;= \sqrt{\alpha_t \alpha_{t-1}} x_{t-2} + \sqrt{\alpha_t \beta_{t-1}} \varepsilon_{t-1} + \sqrt{\beta_t} \varepsilon_t \\ &amp;= \dots \\ &amp;= \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \varepsilon \end{aligned}
 \]</div>
@@ -1201,14 +1212,14 @@ P(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t)I
 \]</div>
 <h3 id="posterior-derivation">贝叶斯后验推导 (Posterior Derivation)<a class="headerlink" href="#posterior-derivation" title="Permanent link">&para;</a></h3>
 <p>为了进行反向生成，我们需要求 <span class="arithmatex">\(P(x_{t-1} | x_t)\)</span>，但在训练时，我们通常利用 <span class="arithmatex">\(x_0\)</span> 作为条件。根据贝叶斯公式：</p>
-<p>$$
+<div class="arithmatex">\[
 P(x_{t-1} | x_t, x_0) = \frac{P(x_t | x_{t-1}, x_0) P(x_{t-1} | x_0)}{P(x_t | x_0)}
-$$
-由于马尔可夫性质，<span class="arithmatex">\(P(x_t | x_{t-1}, x_0) = P(x_t | x_{t-1})\)</span>，因此： </p>
-<p>$$
+\]</div>
+<p>由于马尔可夫性质，<span class="arithmatex">\(P(x_t | x_{t-1}, x_0) = P(x_t | x_{t-1})\)</span>，因此： </p>
+<div class="arithmatex">\[
 P(x_{t-1} | x_t, x_0) = \frac{P(x_t | x_{t-1}) P(x_{t-1} | x_0)}{P(x_t | x_0)}
-$$
-这三项我们都已知（均为高斯分布）： </p>
+\]</div>
+<p>这三项我们都已知（均为高斯分布）： </p>
 <ol>
 <li>
 <p><span class="arithmatex">\(P(x_t | x_{t-1})\)</span>: 前向过程定义。 </p>
@@ -1226,69 +1237,69 @@ $$
 \sigma^2 = \frac{\beta_t (1 - \bar{\alpha}_{t-1})}{\alpha_t(1 - \bar{\alpha}_{t-1})+\beta_t}
 \]</div>
 <p>均值部分：</p>
-<p>$$
-\tilde{\mu}<em t-1="t-1">t(x_t, x_0) = \frac{\sqrt{\bar{\alpha}</em>}} \beta_t}{1 - \bar{\alpha<em t-1="t-1">t} x_0 + \frac{\sqrt{\alpha_t} (1 - \bar{\alpha}</em> x_t
-$$
-此时我们并不知道真实的 })}{1 - \bar{\alpha}_t<span class="arithmatex">\(x_0\)</span>，而在前向过程我们已经有了 </p>
+<div class="arithmatex">\[
+\tilde{\mu}_t(x_t, x_0) = \frac{\sqrt{\bar{\alpha}_{t-1}} \beta_t}{1 - \bar{\alpha}_t} x_0 + \frac{\sqrt{\alpha_t} (1 - \bar{\alpha}_{t-1})}{1 - \bar{\alpha}_t} x_t
+\]</div>
+<p>此时我们并不知道真实的 <span class="arithmatex">\(x_0\)</span>，而在前向过程我们已经有了 </p>
 <div class="arithmatex">\[
 x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t - \sqrt{1-\bar{\alpha}_t}\varepsilon_t)
 \]</div>
-<p>代入上式，然后现在的未知量就是 <span class="arithmatex">\(\varepsilon_t\)</span>, 也就是加的噪声，这就是我们需要用神经网络去拟合的。
-$$
+<p>代入上式，然后现在的未知量就是 <span class="arithmatex">\(\varepsilon_t\)</span>, 也就是加的噪声，这就是我们需要用神经网络去拟合的。</p>
+<div class="arithmatex">\[
 \varepsilon_\theta(x_t,t)
-$$
-这个噪声的预测需要两个参数，一个是加噪后的结果 <span class="arithmatex">\(x_t\)</span> 还有时间步的信息 <span class="arithmatex">\(t\)</span>。这样我们就可以得到 <span class="arithmatex">\(P(x_{t-1} | x_t)\)</span>，然后我们就可以完成从 <span class="arithmatex">\(x_t\)</span> 到 <span class="arithmatex">\(x_{t-1}\)</span> 的去噪过程了。
-$$
+\]</div>
+<p>这个噪声的预测需要两个参数，一个是加噪后的结果 <span class="arithmatex">\(x_t\)</span> 还有时间步的信息 <span class="arithmatex">\(t\)</span>。这样我们就可以得到 <span class="arithmatex">\(P(x_{t-1} | x_t)\)</span>，然后我们就可以完成从 <span class="arithmatex">\(x_t\)</span> 到 <span class="arithmatex">\(x_{t-1}\)</span> 的去噪过程了。</p>
+<div class="arithmatex">\[
 x_{t-1} = \frac{1}{\sqrt{\alpha_t}}(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha_t}}}\varepsilon_{\theta(x_t,t)})+\sigma_t \varepsilon
-$$</p>
+\]</div>
 <h2 id="ddim">DDIM<a class="headerlink" href="#ddim" title="Permanent link">&para;</a></h2>
 <p>DDIM 的核心思想是反向过程不再局限于马尔可夫链假设。</p>
-<p>在标准的 DDPM 中，反向过程是： 
-$$
+<p>在标准的 DDPM 中，反向过程是： </p>
+<div class="arithmatex">\[
 P(x_{t-1} | x_t, x_0) = \frac{P(x_t | x_{t-1}, x_0) P(x_{t-1} | x_0)}{P(x_t | x_0)}
-$$
-我们能不能假设 <span class="arithmatex">\(P(x_{t-1} | x_t, x_0)\)</span> 为任意分布，但是需要满足上面这个等式，假设 <span class="arithmatex">\(P(x_{t-1} | x_t, x_0)\)</span> 为正态分布，设为
-$$
+\]</div>
+<p>我们能不能假设 <span class="arithmatex">\(P(x_{t-1} | x_t, x_0)\)</span> 为任意分布，但是需要满足上面这个等式，假设 <span class="arithmatex">\(P(x_{t-1} | x_t, x_0)\)</span> 为正态分布，设为</p>
+<div class="arithmatex">\[
 P(x_{t-1} | x_t, x_0) \sim \mathcal{N}(mx_t+kx_0,\sigma^2 I)
-$$
-即：
-$$
+\]</div>
+<p>即：</p>
+<div class="arithmatex">\[
 x_{t-1} = kx_0 + mx_t + \sigma\varepsilon
-$$
-然后将 <span class="arithmatex">\(x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \varepsilon_t\)</span> 带入上式，得到
-$$
-x_{t-1} = kx_0 + m(\sqrt{\bar{\alpha}<em t-1="t-1">t} x_0 + \sqrt{1 - \bar{\alpha}_t} \varepsilon_t) + \sigma \varepsilon
-$$
-合并同类项，并合并离散型随机变量，得到
-$$
-x</em>)+\sigma^2)
-$$
-根据前向过程，我们有 
-$$
-x_{t-1} = \sqrt{\bar{\alpha}} = (k+m\sqrt{\bar{\alpha_t}})x_0 + \varepsilon', \varepsilon' \sim \mathcal{N}(0，m^2(1-\bar{\alpha_t<em t-1="t-1">{t-1}} x_0 + \sqrt{1 - \bar{\alpha}</em>(0, I)
-$$
-比较系数可以得到
-$$
-m = \frac{\sqrt{1 - \bar{\alpha}}} \varepsilon, \quad \varepsilon \sim \mathcal{N<em t-1="t-1">{t-1} - \sigma^2}}{\sqrt{1 - \bar{\alpha}_t}}, \qquad
-k = \sqrt{\bar{\alpha}</em>}} - \sqrt{1 - \bar{\alpha<em t-1="t-1">{t-1} - \sigma^2}\cdot \frac{\sqrt{\bar{\alpha}_t}}{\sqrt{1 - \bar{\alpha}_t}}
-$$
-从而带入到之前的分布中去，可以得到
-$$
-P(x</em>}|x_t) \sim \mathcal{N}(\sqrt{\bar{\alpha<em t-1="t-1">{t-1}}x_0 + \sqrt{1 - \bar{\alpha}</em>} - \sigma^2}\frac{x_t - \sqrt{\bar{\alpha<em t-1="t-1">t}x_0}{\sqrt{1-\bar{\alpha}_t}},\sigma^2I)
-$$
-这里的 <span class="arithmatex">\(x_0\)</span> 和之前一样，用 
-$$
+\]</div>
+<p>然后将 <span class="arithmatex">\(x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \varepsilon_t\)</span> 带入上式，得到</p>
+<div class="arithmatex">\[
+x_{t-1} = kx_0 + m(\sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \varepsilon_t) + \sigma \varepsilon
+\]</div>
+<p>合并同类项，并合并离散型随机变量，得到</p>
+<div class="arithmatex">\[
+x_{t-1} = (k+m\sqrt{\bar{\alpha_t}})x_0 + \varepsilon', \varepsilon' \sim \mathcal{N}(0，m^2(1-\bar{\alpha_t})+\sigma^2)
+\]</div>
+<p>根据前向过程，我们有 </p>
+<div class="arithmatex">\[
+x_{t-1} = \sqrt{\bar{\alpha}_{t-1}} x_0 + \sqrt{1 - \bar{\alpha}_{t-1}} \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, I)
+\]</div>
+<p>比较系数可以得到</p>
+<div class="arithmatex">\[
+m = \frac{\sqrt{1 - \bar{\alpha}_{t-1} - \sigma^2}}{\sqrt{1 - \bar{\alpha}_t}}, \qquad
+k = \sqrt{\bar{\alpha}_{t-1}} - \sqrt{1 - \bar{\alpha}_{t-1} - \sigma^2}\cdot \frac{\sqrt{\bar{\alpha}_t}}{\sqrt{1 - \bar{\alpha}_t}}
+\]</div>
+<p>从而带入到之前的分布中去，可以得到</p>
+<div class="arithmatex">\[
+P(x_{t-1}|x_t) \sim \mathcal{N}(\sqrt{\bar{\alpha}_{t-1}}x_0 + \sqrt{1 - \bar{\alpha}_{t-1} - \sigma^2}\frac{x_t - \sqrt{\bar{\alpha}_t}x_0}{\sqrt{1-\bar{\alpha}_t}},\sigma^2I)
+\]</div>
+<p>这里的 <span class="arithmatex">\(x_0\)</span> 和之前一样，用 </p>
+<div class="arithmatex">\[
 x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t - \sqrt{1-\bar{\alpha}_t}\varepsilon_t)
-$$
-进行替换，然后对于这个 <span class="arithmatex">\(\varepsilon_t\)</span> 还是用神经网络拟合得到，从而我们可以得到采样公式
-$$
-x</em>}  =\sqrt{\bar{\alpha<em _theta="\theta">{t-1}}(\frac{x_t - \sqrt{1-\bar{\alpha}_t} \varepsilon</em>}}{\bar{\alpha<em t-1="t-1">{t}}) +  \sqrt{1 - \bar{\alpha}</em> + \sigma^2 \varepsilon)
-$$
-我们可以发现，这里 } - \sigma^2} \varepsilon_{\theta<span class="arithmatex">\(\sigma\)</span> 的取值和等式是否成立是无关的，通常取 0， 然后这里 <span class="arithmatex">\(\varepsilon_{\theta}\)</span> 代表的是第 <span class="arithmatex">\(t\)</span> 个时间步预测给图像加的噪，由于我们未做马尔可夫假设，不需要严格遵守 <span class="arithmatex">\(x_t \rightarrow x_{t-1}\)</span>，可以跨任意步。 </p>
-<p>从而得到去噪的公式，对于 <span class="arithmatex">\(s &lt; z,z\le T\)</span>，有
-$$
-x_{s}  =\sqrt{\bar{\alpha}<em _theta="\theta">{s}}(\frac{x_z - \sqrt{1-\bar{\alpha}_z} \varepsilon</em>}(x_t,t)}{\bar{\alpha<em s="s">{z}}) +  \sqrt{1 - \bar{\alpha}</em> )
-$$}} \varepsilon_{\theta</p>
+\]</div>
+<p>进行替换，然后对于这个 <span class="arithmatex">\(\varepsilon_t\)</span> 还是用神经网络拟合得到，从而我们可以得到采样公式</p>
+<div class="arithmatex">\[
+x_{t-1}  =\sqrt{\bar{\alpha}_{t-1}}(\frac{x_t - \sqrt{1-\bar{\alpha}_t} \varepsilon_{\theta}}{\bar{\alpha}_{t}}) +  \sqrt{1 - \bar{\alpha}_{t-1} - \sigma^2} \varepsilon_{\theta} + \sigma^2 \varepsilon)
+\]</div>
+<p>我们可以发现，这里 <span class="arithmatex">\(\sigma\)</span> 的取值和等式是否成立是无关的，通常取 0， 然后这里 <span class="arithmatex">\(\varepsilon_{\theta}\)</span> 代表的是第 <span class="arithmatex">\(t\)</span> 个时间步预测给图像加的噪，由于我们未做马尔可夫假设，不需要严格遵守 <span class="arithmatex">\(x_t \rightarrow x_{t-1}\)</span>，可以跨任意步。 </p>
+<p>从而得到去噪的公式，对于 <span class="arithmatex">\(s &lt; z,z\le T\)</span>，有</p>
+<div class="arithmatex">\[
+x_{s}  =\sqrt{\bar{\alpha}_{s}}(\frac{x_z - \sqrt{1-\bar{\alpha}_z} \varepsilon_{\theta}(x_t,t)}{\bar{\alpha}_{z}}) +  \sqrt{1 - \bar{\alpha}_{s}} \varepsilon_{\theta} )
+\]</div>
 
 
   
