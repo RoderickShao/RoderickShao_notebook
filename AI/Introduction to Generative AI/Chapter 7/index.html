@@ -817,6 +817,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1072,6 +1074,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../Chapter%209/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 Video & Audio Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Pytorch%20Tutorial/" class="md-nav__link">
         
   
@@ -1106,6 +1128,8 @@
       
         
       
+        
+      
     
     
       
@@ -1116,7 +1140,7 @@
         
   
   
-    <a href="../../Hugging%20Face%20Diffusion%20Models%20Course/Unit%201.1%20Introduction%20to%20Diffusers/" class="md-nav__link">
+    <a href="../../Hugging%20Face%20Diffusion%20Models%20Course/Unit%201%20Introduction%20to%20Diffusers/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1315,8 +1339,12 @@
 <p class="admonition-title">RLHF 与 SFT 对比</p>
 <p>损失函数不同：</p>
 <ul>
-<li>SFT：计算预测 Token 与标准答案 Token 之间的距离（Cross Entropy），每个 Token 都有明确的目标。</li>
-<li>RLHF：基于整个回答获得的奖励（Reward）来更新模型。奖励是稀疏的（只在回答结束时给分），且无法直接计算梯度。</li>
+<li>
+<p>SFT：计算预测 Token 与标准答案 Token 之间的距离（Cross Entropy），每个 Token 都有明确的目标。</p>
+</li>
+<li>
+<p>RLHF：基于整个回答获得的奖励（Reward）来更新模型。奖励是稀疏的（只在回答结束时给分），且无法直接计算梯度。</p>
+</li>
 </ul>
 <p>评估粒度：</p>
 <ul>
@@ -1325,8 +1353,12 @@
 </ul>
 <p>资料来源：</p>
 <ul>
-<li>SFT：老师（人类）给的固定教材。</li>
-<li>RLHF：模型自己生成的回答，由人类（或奖励模型）评分。这是一种“因材施教”，针对模型容易犯错的地方进行修正。</li>
+<li>
+<p>SFT：老师（人类）给的固定教材。</p>
+</li>
+<li>
+<p>RLHF：模型自己生成的回答，由人类（或奖励模型）评分。这是一种“因材施教”，针对模型容易犯错的地方进行修正。</p>
+</li>
 </ul>
 </div>
 <p>常用 Policy Gradient，PPO (Proximal Policy Optimization)、DPO (Direct Preference Optimization) 等算法，目的是最大化预期奖励。基本的思想如下：</p>

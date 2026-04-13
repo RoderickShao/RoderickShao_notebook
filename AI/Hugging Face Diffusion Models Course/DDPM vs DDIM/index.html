@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../Unit%201.1%20Introduction%20to%20Diffusers/">
+        <link rel="prev" href="../Unit%202%20Fine-Tuning%2C%20Guidance%20and%20Conditioning/">
       
       
         <link rel="next" href="../../../%E5%85%B6%E4%BB%96/Python%E5%AD%A6%E4%B9%A0/Introduction/">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Unit 1.2 Diffusion Models from Scratch - RoderickShao's NoteBook</title>
+        <title>DDPM vs DDIM - RoderickShao's NoteBook</title>
       
     
     
@@ -150,7 +150,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unit-12-diffusion-models-from-scratch" class="md-skip">
+        <a href="#ddpm-vs-ddim" class="md-skip">
           跳转至
         </a>
       
@@ -183,7 +183,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Unit 1.2 Diffusion Models from Scratch
+              DDPM vs DDIM
             
           </span>
         </div>
@@ -815,6 +815,8 @@
       
         
       
+        
+      
     
     
       
@@ -859,6 +861,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -893,11 +897,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../Unit%201.1%20Introduction%20to%20Diffusers/" class="md-nav__link">
+      <a href="../Unit%201%20Introduction%20to%20Diffusers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Unit 1.1 Introduction to Diffusers
+    Unit 1 Introduction to Diffusers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Unit%202%20Fine-Tuning%2C%20Guidance%20and%20Conditioning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unit 2 Fine-Tuning, Guidance and Conditioning
   </span>
   
 
@@ -922,15 +946,79 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    DDPM vs DDIM
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Unit 1.2 Diffusion Models from Scratch
+    DDPM vs DDIM
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ddpm" class="md-nav__link">
+    DDPM
+  </a>
+  
+    <nav class="md-nav" aria-label="DDPM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forward-process" class="md-nav__link">
+    前向过程 (Forward Process)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posterior-derivation" class="md-nav__link">
+    贝叶斯后验推导 (Posterior Derivation)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ddim" class="md-nav__link">
+    DDIM
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1020,6 +1108,48 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ddpm" class="md-nav__link">
+    DDPM
+  </a>
+  
+    <nav class="md-nav" aria-label="DDPM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forward-process" class="md-nav__link">
+    前向过程 (Forward Process)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posterior-derivation" class="md-nav__link">
+    贝叶斯后验推导 (Posterior Derivation)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ddim" class="md-nav__link">
+    DDIM
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1036,7 +1166,129 @@
   
 
 
-<h1 id="unit-12-diffusion-models-from-scratch">Unit 1.2 Diffusion Models from Scratch<a class="headerlink" href="#unit-12-diffusion-models-from-scratch" title="Permanent link">&para;</a></h1>
+<h1 id="ddpm-vs-ddim">DDPM vs DDIM<a class="headerlink" href="#ddpm-vs-ddim" title="Permanent link">&para;</a></h1>
+<p>整个扩散模型的思路就是对一张原始的图片进行加噪然后去噪的过程，DDPM 和 DDIM 涉及的问题就是怎么加噪和去噪的</p>
+<h2 id="ddpm">DDPM<a class="headerlink" href="#ddpm" title="Permanent link">&para;</a></h2>
+<h3 id="forward-process">前向过程 (Forward Process)<a class="headerlink" href="#forward-process" title="Permanent link">&para;</a></h3>
+<p>前向过程是一个马尔可夫链，逐步向数据 <span class="arithmatex">\(x_{t-1}\)</span> 中加入高斯噪声得到 <span class="arithmatex">\(x_t\)</span>：</p>
+<div class="arithmatex">\[
+P(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{\alpha_t} x_{t-1}, \beta_t I)
+\]</div>
+<p>其中 <span class="arithmatex">\(\alpha_t = 1 - \beta_t\)</span>。我们可以通过重参数化技巧来采样 <span class="arithmatex">\(x_t\)</span>：
+$$
+x_t = \sqrt{\alpha_t} x_{t-1} + \sqrt{\beta_t} \varepsilon_t, \quad \varepsilon_t \sim \mathcal{N}(0, I)
+$$
+那么对于任意时刻，我们可以直接从初始图像 <span class="arithmatex">\(x_0\)</span> 计算任意时刻 <span class="arithmatex">\(t\)</span> 的 <span class="arithmatex">\(x_t\)</span>。</p>
+<div class="arithmatex">\[
+\begin{aligned} x_t &amp;= \sqrt{\alpha_t} x_{t-1} + \sqrt{\beta_t} \varepsilon_t \\ &amp;= \sqrt{\alpha_t} (\sqrt{\alpha_{t-1}} x_{t-2} + \sqrt{\beta_{t-1}} \varepsilon_{t-1}) + \sqrt{\beta_t} \varepsilon_t \\ &amp;= \sqrt{\alpha_t \alpha_{t-1}} x_{t-2} + \sqrt{\alpha_t \beta_{t-1}} \varepsilon_{t-1} + \sqrt{\beta_t} \varepsilon_t \\ &amp;= \dots \\ &amp;= \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \varepsilon \end{aligned}
+\]</div>
+<p>其中： </p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\bar{\alpha}_t = \prod_{i=1}^t \alpha_i\)</span></p>
+</li>
+<li>
+<p>噪声项合并利用了高斯分布的可加性：<span class="arithmatex">\(\sqrt{1 - \bar{\alpha}_t} \varepsilon\)</span> 等价于原式中一系列噪声项的叠加。</p>
+</li>
+</ul>
+<p>最终 <span class="arithmatex">\(x_t\)</span> 的分布为：</p>
+<div class="arithmatex">\[
+x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \varepsilon_t, \quad \varepsilon_t \sim \mathcal{N}(0, I)
+\]</div>
+<p>对应的概率分布写作：</p>
+<div class="arithmatex">\[
+P(x_t | x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t} x_0, (1 - \bar{\alpha}_t)I)
+\]</div>
+<h3 id="posterior-derivation">贝叶斯后验推导 (Posterior Derivation)<a class="headerlink" href="#posterior-derivation" title="Permanent link">&para;</a></h3>
+<p>为了进行反向生成，我们需要求 <span class="arithmatex">\(P(x_{t-1} | x_t)\)</span>，但在训练时，我们通常利用 <span class="arithmatex">\(x_0\)</span> 作为条件。根据贝叶斯公式：</p>
+<p>$$
+P(x_{t-1} | x_t, x_0) = \frac{P(x_t | x_{t-1}, x_0) P(x_{t-1} | x_0)}{P(x_t | x_0)}
+$$
+由于马尔可夫性质，<span class="arithmatex">\(P(x_t | x_{t-1}, x_0) = P(x_t | x_{t-1})\)</span>，因此： </p>
+<p>$$
+P(x_{t-1} | x_t, x_0) = \frac{P(x_t | x_{t-1}) P(x_{t-1} | x_0)}{P(x_t | x_0)}
+$$
+这三项我们都已知（均为高斯分布）： </p>
+<ol>
+<li>
+<p><span class="arithmatex">\(P(x_t | x_{t-1})\)</span>: 前向过程定义。 </p>
+</li>
+<li>
+<p><span class="arithmatex">\(P(x_{t-1} | x_0)\)</span>: 类似 <span class="arithmatex">\(P(x_t|x_0)\)</span> 的推导。 </p>
+</li>
+<li>
+<p><span class="arithmatex">\(P(x_t | x_0)\)</span>: 前向过程一步到位的公式。</p>
+</li>
+</ol>
+<p>我们将上述三项代入，分别计算方差 <span class="arithmatex">\(\sigma^2\)</span> 和均值 <span class="arithmatex">\(\tilde{\mu}_t\)</span>。</p>
+<p>方差部分： </p>
+<div class="arithmatex">\[
+\sigma^2 = \frac{\beta_t (1 - \bar{\alpha}_{t-1})}{\alpha_t(1 - \bar{\alpha}_{t-1})+\beta_t}
+\]</div>
+<p>均值部分：</p>
+<p>$$
+\tilde{\mu}<em t-1="t-1">t(x_t, x_0) = \frac{\sqrt{\bar{\alpha}</em>}} \beta_t}{1 - \bar{\alpha<em t-1="t-1">t} x_0 + \frac{\sqrt{\alpha_t} (1 - \bar{\alpha}</em> x_t
+$$
+此时我们并不知道真实的 })}{1 - \bar{\alpha}_t<span class="arithmatex">\(x_0\)</span>，而在前向过程我们已经有了 </p>
+<div class="arithmatex">\[
+x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t - \sqrt{1-\bar{\alpha}_t}\varepsilon_t)
+\]</div>
+<p>代入上式，然后现在的未知量就是 <span class="arithmatex">\(\varepsilon_t\)</span>, 也就是加的噪声，这就是我们需要用神经网络去拟合的。
+$$
+\varepsilon_\theta(x_t,t)
+$$
+这个噪声的预测需要两个参数，一个是加噪后的结果 <span class="arithmatex">\(x_t\)</span> 还有时间步的信息 <span class="arithmatex">\(t\)</span>。这样我们就可以得到 <span class="arithmatex">\(P(x_{t-1} | x_t)\)</span>，然后我们就可以完成从 <span class="arithmatex">\(x_t\)</span> 到 <span class="arithmatex">\(x_{t-1}\)</span> 的去噪过程了。
+$$
+x_{t-1} = \frac{1}{\sqrt{\alpha_t}}(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha_t}}}\varepsilon_{\theta(x_t,t)})+\sigma_t \varepsilon
+$$</p>
+<h2 id="ddim">DDIM<a class="headerlink" href="#ddim" title="Permanent link">&para;</a></h2>
+<p>DDIM 的核心思想是反向过程不再局限于马尔可夫链假设。</p>
+<p>在标准的 DDPM 中，反向过程是： 
+$$
+P(x_{t-1} | x_t, x_0) = \frac{P(x_t | x_{t-1}, x_0) P(x_{t-1} | x_0)}{P(x_t | x_0)}
+$$
+我们能不能假设 <span class="arithmatex">\(P(x_{t-1} | x_t, x_0)\)</span> 为任意分布，但是需要满足上面这个等式，假设 <span class="arithmatex">\(P(x_{t-1} | x_t, x_0)\)</span> 为正态分布，设为
+$$
+P(x_{t-1} | x_t, x_0) \sim \mathcal{N}(mx_t+kx_0,\sigma^2 I)
+$$
+即：
+$$
+x_{t-1} = kx_0 + mx_t + \sigma\varepsilon
+$$
+然后将 <span class="arithmatex">\(x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \varepsilon_t\)</span> 带入上式，得到
+$$
+x_{t-1} = kx_0 + m(\sqrt{\bar{\alpha}<em t-1="t-1">t} x_0 + \sqrt{1 - \bar{\alpha}_t} \varepsilon_t) + \sigma \varepsilon
+$$
+合并同类项，并合并离散型随机变量，得到
+$$
+x</em>)+\sigma^2)
+$$
+根据前向过程，我们有 
+$$
+x_{t-1} = \sqrt{\bar{\alpha}} = (k+m\sqrt{\bar{\alpha_t}})x_0 + \varepsilon', \varepsilon' \sim \mathcal{N}(0，m^2(1-\bar{\alpha_t<em t-1="t-1">{t-1}} x_0 + \sqrt{1 - \bar{\alpha}</em>(0, I)
+$$
+比较系数可以得到
+$$
+m = \frac{\sqrt{1 - \bar{\alpha}}} \varepsilon, \quad \varepsilon \sim \mathcal{N<em t-1="t-1">{t-1} - \sigma^2}}{\sqrt{1 - \bar{\alpha}_t}}, \qquad
+k = \sqrt{\bar{\alpha}</em>}} - \sqrt{1 - \bar{\alpha<em t-1="t-1">{t-1} - \sigma^2}\cdot \frac{\sqrt{\bar{\alpha}_t}}{\sqrt{1 - \bar{\alpha}_t}}
+$$
+从而带入到之前的分布中去，可以得到
+$$
+P(x</em>}|x_t) \sim \mathcal{N}(\sqrt{\bar{\alpha<em t-1="t-1">{t-1}}x_0 + \sqrt{1 - \bar{\alpha}</em>} - \sigma^2}\frac{x_t - \sqrt{\bar{\alpha<em t-1="t-1">t}x_0}{\sqrt{1-\bar{\alpha}_t}},\sigma^2I)
+$$
+这里的 <span class="arithmatex">\(x_0\)</span> 和之前一样，用 
+$$
+x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t - \sqrt{1-\bar{\alpha}_t}\varepsilon_t)
+$$
+进行替换，然后对于这个 <span class="arithmatex">\(\varepsilon_t\)</span> 还是用神经网络拟合得到，从而我们可以得到采样公式
+$$
+x</em>}  =\sqrt{\bar{\alpha<em _theta="\theta">{t-1}}(\frac{x_t - \sqrt{1-\bar{\alpha}_t} \varepsilon</em>}}{\bar{\alpha<em t-1="t-1">{t}}) +  \sqrt{1 - \bar{\alpha}</em> + \sigma^2 \varepsilon)
+$$
+我们可以发现，这里 } - \sigma^2} \varepsilon_{\theta<span class="arithmatex">\(\sigma\)</span> 的取值和等式是否成立是无关的，通常取 0， 然后这里 <span class="arithmatex">\(\varepsilon_{\theta}\)</span> 代表的是第 <span class="arithmatex">\(t\)</span> 个时间步预测给图像加的噪，由于我们未做马尔可夫假设，不需要严格遵守 <span class="arithmatex">\(x_t \rightarrow x_{t-1}\)</span>，可以跨任意步。 </p>
+<p>从而得到去噪的公式，对于 <span class="arithmatex">\(s &lt; z,z\le T\)</span>，有
+$$
+x_{s}  =\sqrt{\bar{\alpha}<em _theta="\theta">{s}}(\frac{x_z - \sqrt{1-\bar{\alpha}_z} \varepsilon</em>}(x_t,t)}{\bar{\alpha<em s="s">{z}}) +  \sqrt{1 - \bar{\alpha}</em> )
+$$}} \varepsilon_{\theta</p>
 
 
   
@@ -1178,7 +1430,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../Unit%201.1%20Introduction%20to%20Diffusers/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Unit 1.1 Introduction to Diffusers" rel="prev">
+          <a href="../Unit%202%20Fine-Tuning%2C%20Guidance%20and%20Conditioning/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Unit 2 Fine-Tuning, Guidance and Conditioning" rel="prev">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1188,7 +1440,7 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                Unit 1.1 Introduction to Diffusers
+                Unit 2 Fine-Tuning, Guidance and Conditioning
               </div>
             </div>
           </a>

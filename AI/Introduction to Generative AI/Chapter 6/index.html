@@ -817,6 +817,8 @@
       
         
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -1021,6 +1023,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../Chapter%209/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 Video & Audio Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Pytorch%20Tutorial/" class="md-nav__link">
         
   
@@ -1055,6 +1077,8 @@
       
         
       
+        
+      
     
     
       
@@ -1065,7 +1089,7 @@
         
   
   
-    <a href="../../Hugging%20Face%20Diffusion%20Models%20Course/Unit%201.1%20Introduction%20to%20Diffusers/" class="md-nav__link">
+    <a href="../../Hugging%20Face%20Diffusion%20Models%20Course/Unit%201%20Introduction%20to%20Diffusers/" class="md-nav__link">
       
   
   <span class="md-ellipsis">
@@ -1377,10 +1401,18 @@ $$}} l'(f(x))}_{\text{未标记数据损失}</p>
 </li>
 </ul>
 <blockquote>
-<p>直观理解：
-  - 如果模型对某个未标记图片的输出概率分布很均匀（如 [0.5, 0.5]），熵很大，惩罚就大。
-  - 如果输出很尖锐（如 [0.99, 0.01]），熵很小，惩罚就小。
-  - 目的：强迫模型在未标记数据上也做出“自信”的预测，从而推挤决策边界远离数据密集区。</p>
+<p>直观理解：</p>
+<ul>
+<li>
+<p>如果模型对某个未标记图片的输出概率分布很均匀（如 [0.5, 0.5]），熵很大，惩罚就大。</p>
+</li>
+<li>
+<p>如果输出很尖锐（如 [0.99, 0.01]），熵很小，惩罚就小。</p>
+</li>
+<li>
+<p>目的：强迫模型在未标记数据上也做出“自信”的预测，从而推挤决策边界远离数据密集区。</p>
+</li>
+</ul>
 </blockquote>
 <p>“物以类聚”的世界 (Smoothness Assumption / Graph-based)</p>
 <ul>
