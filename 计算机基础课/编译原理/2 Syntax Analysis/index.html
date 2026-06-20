@@ -1,0 +1,3441 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="RoderickShao's NoteBook">
+      
+      
+        <meta name="author" content="RoderickShao">
+      
+      
+      
+        <link rel="prev" href="../1%20Lexical%20Analysis/">
+      
+      
+        <link rel="next" href="../3%20Abstract%20Syntax%20Tree/">
+      
+      
+      <link rel="icon" href="../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.2.0-b3">
+    
+    
+      
+        <title>2 Syntax Analysis - RoderickShao's NoteBook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.83068744.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.85d0ee34.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13.274 9.537v-.001l-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75Z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.484 4.484 0 0 1-.563-1.191 3.835 3.835 0 0 1-.05-2.063 4.647 4.647 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .748.748 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.425 2.425 0 0 1-.507-.441 3.075 3.075 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.884.884 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.737 3.737 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75Z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.756 2.756 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6.24 6.24 0 0 0-.26.16.952.952 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661.103-.067.207-.132.313-.195l.007-.004c.1-.061.182-.11.258-.161a.969.969 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.612.612 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1.01 1.01 0 0 0-.34.398ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343h-.001a8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746Zm1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275ZM6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L6.94 8 4.97 6.03a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018Z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.488 3.488 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.036 5.036 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.677 1.677 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06Zm.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.172.172 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173Z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.746.746 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z"/></svg>');--md-admonition-icon--link:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/custom.css">
+    
+      <link rel="stylesheet" href="../../../css/card.css">
+    
+      <link rel="stylesheet" href="../../../css/flink.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config",""),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-syntax-analysis" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-header__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RoderickShao's NoteBook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2 Syntax Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="关闭自动模式"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="关闭自动模式" for="__palette_3" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="default" data-md-color-accent="blue"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_3">
+            
+              <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/RoderickShao/RoderickShao_notebook" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RoderickShao_notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+    
+  
+  主页
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  通识基础课
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  计算机基础课
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  图形学课程
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AI/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  AI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%85%B6%E4%BB%96/Python%E5%AD%A6%E4%B9%A0/Introduction/" class="md-tabs__link">
+          
+  
+    
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="RoderickShao&#39;s NoteBook" class="md-nav__button md-logo" aria-label="RoderickShao's NoteBook" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    RoderickShao's NoteBook
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/RoderickShao/RoderickShao_notebook" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RoderickShao_notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../.." class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E9%80%9A%E8%AF%86%E5%9F%BA%E7%A1%80%E8%AF%BE/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    通识基础课
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    计算机基础课
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            计算机基础课
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    离散数学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E8%AE%BE%E8%AE%A1/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数字逻辑设计
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机组成
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    数据库系统
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    面向对象程序设计
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计算机体系结构
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算理论
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    操作系统
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机网络
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" checked>
+        
+          <label class="md-nav__link" for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    编译原理
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            编译原理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%20Lexical%20Analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 Lexical Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    2 Syntax Analysis
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    2 Syntax Analysis
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-context-free-grammars" class="md-nav__link">
+    2.1 Context-Free Grammars
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-top-down-parsing" class="md-nav__link">
+    2.2 Top-Down Parsing
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Top-Down Parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-ll1-parsing" class="md-nav__link">
+    2.2.1 LL(1) Parsing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-bottom-up-parsing-shift-reduce" class="md-nav__link">
+    2.3 Bottom-Up Parsing (Shift-Reduce)
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Bottom-Up Parsing (Shift-Reduce)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lr0" class="md-nav__link">
+    LR(0)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slr1" class="md-nav__link">
+    SLR(1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lr1" class="md-nav__link">
+    LR(1)
+  </a>
+  
+    <nav class="md-nav" aria-label="LR(1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#closure" class="md-nav__link">
+    Closure 扩展规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goto" class="md-nav__link">
+    Goto 中的展望符传播
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i0" class="md-nav__link">
+    详细构造 I₀
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    各状态详细构造
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    关键对比：展望符从哪里来
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lalr1" class="md-nav__link">
+    LALR(1)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-comparison" class="md-nav__link">
+    2.4 Comparison
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20Abstract%20Syntax%20Tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3 Abstract Syntax Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4%20Semantic%20Analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4 Semantic Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5%20Activation%20Records/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 Activation Records
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6%20IR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 IR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7%20Blocks%20%26%20Traces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 Blocks & Traces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8%20Instruction%20Select/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8 Instruction Select
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9%20Liveness%20Analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 Liveness Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10%20Register%20Allocation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 Register Allocation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11%20Garbage%20Collection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11 Garbage Collection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12%20Object-Oriented%20Languages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 Object-Oriented Languages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13%20Loop%20Optimizations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13 Loop Optimizations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../%E5%9B%BE%E5%BD%A2%E5%AD%A6%E8%AF%BE%E7%A8%8B/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    图形学课程
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../AI/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    AI
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../../../%E5%85%B6%E4%BB%96/Python%E5%AD%A6%E4%B9%A0/Introduction/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    其他
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-context-free-grammars" class="md-nav__link">
+    2.1 Context-Free Grammars
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-top-down-parsing" class="md-nav__link">
+    2.2 Top-Down Parsing
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Top-Down Parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-ll1-parsing" class="md-nav__link">
+    2.2.1 LL(1) Parsing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-bottom-up-parsing-shift-reduce" class="md-nav__link">
+    2.3 Bottom-Up Parsing (Shift-Reduce)
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Bottom-Up Parsing (Shift-Reduce)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lr0" class="md-nav__link">
+    LR(0)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slr1" class="md-nav__link">
+    SLR(1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lr1" class="md-nav__link">
+    LR(1)
+  </a>
+  
+    <nav class="md-nav" aria-label="LR(1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#closure" class="md-nav__link">
+    Closure 扩展规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goto" class="md-nav__link">
+    Goto 中的展望符传播
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i0" class="md-nav__link">
+    详细构造 I₀
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    各状态详细构造
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    关键对比：展望符从哪里来
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lalr1" class="md-nav__link">
+    LALR(1)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-comparison" class="md-nav__link">
+    2.4 Comparison
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="2-syntax-analysis">2 Syntax Analysis<a class="headerlink" href="#2-syntax-analysis" title="Permanent link">&para;</a></h1>
+<p><strong>语法分析</strong>是编译器的第二阶段，将词法分析输出的 Token 流转化为<strong>抽象语法树 (AST)</strong>。核心问题是：给定 CFG 文法 <span class="arithmatex">\(G\)</span> 和输入串 <span class="arithmatex">\(w\)</span>，判断 <span class="arithmatex">\(w \in L(G)\)</span> 并构造推导过程。</p>
+<h2 id="21-context-free-grammars">2.1 Context-Free Grammars<a class="headerlink" href="#21-context-free-grammars" title="Permanent link">&para;</a></h2>
+<p><strong>定义</strong>：<span class="arithmatex">\(G = (T, N, P, S)\)</span> — 终结符、非终结符、产生式集合、开始符号。</p>
+<p><strong>推导 (Derivation)</strong>：从开始符号出发，反复用产生式右部替换非终结符，最终得到终结符串。</p>
+<ul>
+<li><strong>最左推导</strong>：总是替换最左非终结符（对应自顶向下分析）。</li>
+<li><strong>最右推导</strong>：总是替换最右非终结符（对应自底向上分析，其逆过程为归约）。</li>
+</ul>
+<p><strong>二义性 (Ambiguity)</strong>：一个句子对应多棵不同的语法树。通常通过引入分层非终结符（优先级）和规定左/右递归（结合性）来消除。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>二义性文法:                  消除二义性后:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>E → E + E | E * E | id      E → E + T | T
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                             T → T * F | F
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                             F → (E) | id
+</code></pre></div>
+<h2 id="22-top-down-parsing">2.2 Top-Down Parsing<a class="headerlink" href="#22-top-down-parsing" title="Permanent link">&para;</a></h2>
+<p>从根节点（开始符号）出发，尝试构造语法树使其叶子节点匹配输入。</p>
+<p><strong>Recursive Descent</strong>：每个非终结符对应一个函数，按产生式依次尝试匹配。缺点是可能需要回溯，效率低。</p>
+<h3 id="221-ll1-parsing">2.2.1 LL(1) Parsing<a class="headerlink" href="#221-ll1-parsing" title="Permanent link">&para;</a></h3>
+<p>LL(1) 是确定性自顶向下方法：从左到右扫描 (L)、最左推导 (L)、向前看 1 个 Token。核心是<strong>预测分析表</strong>——查表决定用哪条产生式展开当前非终结符。</p>
+<p>前提条件：文法是 <strong>LL(1) 文法</strong>——无左递归、已提取左公因子、FIRST/FOLLOW 集不相交。</p>
+<p><strong>FIRST 集</strong>：从某符号出发能推导出的所有串的<strong>首终结符</strong>集合。若可推导出 <span class="arithmatex">\(\varepsilon\)</span>，则 <span class="arithmatex">\(\varepsilon \in\)</span> FIRST。</p>
+<p><strong>FOLLOW 集</strong>：在推导过程中，某非终结符<strong>之后可能出现的终结符</strong>集合（<span class="arithmatex">\(\$\)</span> 表示输入结束）。</p>
+<p><strong>构造 LL(1) 表</strong>：对每个产生式 <span class="arithmatex">\(A \to \alpha\)</span>，</p>
+<ul>
+<li>对每个终结符 <span class="arithmatex">\(a \in\)</span> FIRST<span class="arithmatex">\((\alpha)\)</span>（<span class="arithmatex">\(\varepsilon\)</span> 除外），<span class="arithmatex">\(M[A, a] = A \to \alpha\)</span>。</li>
+<li>若 <span class="arithmatex">\(\varepsilon \in\)</span> FIRST<span class="arithmatex">\((\alpha)\)</span>，则对每个 <span class="arithmatex">\(b \in\)</span> FOLLOW<span class="arithmatex">\((A)\)</span>，<span class="arithmatex">\(M[A, b] = A \to \alpha\)</span>。</li>
+</ul>
+<hr />
+<p><strong>Example</strong> — 左递归消除后的表达式文法：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>(1) E  → T E&#39;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>(2) E&#39; → + T E&#39;
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>(3) E&#39; → ε
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>(4) T  → F T&#39;
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>(5) T&#39; → * F T&#39;
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>(6) T&#39; → ε
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>(7) F  → (E)
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>(8) F  → id
+</code></pre></div>
+<p><strong>FIRST 逐步计算</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>轮次</th>
+<th>操作</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始化</td>
+<td>终结符：FIRST(+)={+}, FIRST(<em>)={</em>}, FIRST(()={(}, FIRST(id)={id}, FIRST())={)}</td>
+<td></td>
+</tr>
+<tr>
+<td>R1</td>
+<td _="(">(7) F→(E)：FIRST(F) +=</td>
+<td>FIRST(F)={(}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td id="id">(8) F→id：FIRST(F) +=</td>
+<td>FIRST(F)={(, id}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>(4) T→FT'：FIRST(T) += FIRST(F)（F 的 FIRST 无 ε，停）</td>
+<td>FIRST(T)={(, id}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>(1) E→TE'：FIRST(E) += FIRST(T)（T 的 FIRST 无 ε，停）</td>
+<td>FIRST(E)={(, id}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td _="+">(2) E'→+TE'：FIRST(E') +=</td>
+<td>FIRST(E')={+}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>(5) T'→<em>FT'：FIRST(T') += {</em>}</td>
+<td>FIRST(T')={*}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>(3) E'→ε：ε ∈ FIRST(E')</td>
+<td>FIRST(E')={+, ε}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>(6) T'→ε：ε ∈ FIRST(T')</td>
+<td>FIRST(T')={*, ε}</td>
+</tr>
+</tbody>
+</table>
+<p>此时推导不出新终结符，不动点到达。</p>
+<p><strong>FOLLOW 逐步计算</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>轮次</th>
+<th>操作</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始化</td>
+<td>FOLLOW(E) += {$}（开始符号）</td>
+<td>FOLLOW(E)={$}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>(7) F→(E)：在 E 后有 )，将 ) 加入 FOLLOW(E)</td>
+<td>FOLLOW(E)={$, )}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>(1) E→TE'：E' 是产生式末尾，FOLLOW(E') += FOLLOW(E)={$, )}</td>
+<td>FOLLOW(E')={$, )}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>(1) E→TE'：T 后是 E'，加入 FIRST(E'){ε}={+}，且 ε∈FIRST(E')，加 FOLLOW(E)</td>
+<td>FOLLOW(T)={+, $, )}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>(4) T→FT'：T' 是末尾，FOLLOW(T') += FOLLOW(T)={+, $, )}</td>
+<td>FOLLOW(T')={+, $, )}</td>
+</tr>
+<tr>
+<td>R1</td>
+<td>(4) T→FT'：F 后是 T'，加入 FIRST(T'){ε}={*}，且 ε∈FIRST(T')，加 FOLLOW(T)</td>
+<td>FOLLOW(F)={*, +, $, )}</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>(2) E'→+TE'：E' 是末尾，FOLLOW(E') += FOLLOW(E')（已有，无变化）</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>(2) E'→+TE'：T 后是 E'，加入 FIRST(E'){ε}={+}，且 ε∈FIRST(E')，加 FOLLOW(E')={$, )}</td>
+<td>FOLLOW(T) += {$, )}（已有）</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>(5) T'→<em>FT'：同理，F 后是 T'，加 FIRST(T'){ε}={</em>}，加 FOLLOW(T')</td>
+<td>FOLLOW(F) += {}（已有）</td>
+</tr>
+</tbody>
+</table>
+<p>不动点到达。汇总：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>FIRST</th>
+<th>FOLLOW</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E</td>
+<td>{(, id}</td>
+<td>{), $}</td>
+</tr>
+<tr>
+<td>E'</td>
+<td>{+, ε}</td>
+<td>{), $}</td>
+</tr>
+<tr>
+<td>T</td>
+<td>{(, id}</td>
+<td>{+, ), $}</td>
+</tr>
+<tr>
+<td>T'</td>
+<td>{*, ε}</td>
+<td>{+, ), $}</td>
+</tr>
+<tr>
+<td>F</td>
+<td>{(, id}</td>
+<td>{*, +, ), $}</td>
+</tr>
+</tbody>
+</table>
+<p>LL(1) 预测分析表：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>id</th>
+<th>+</th>
+<th>*</th>
+<th>(</th>
+<th>)</th>
+<th>$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E</td>
+<td>E→TE'</td>
+<td></td>
+<td></td>
+<td>E→TE'</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>E'</td>
+<td></td>
+<td>E'→+TE'</td>
+<td></td>
+<td></td>
+<td>E'→ε</td>
+<td>E'→ε</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T→FT'</td>
+<td></td>
+<td></td>
+<td>T→FT'</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>T'</td>
+<td></td>
+<td>T'→ε</td>
+<td>T'→*FT'</td>
+<td></td>
+<td>T'→ε</td>
+<td>T'→ε</td>
+</tr>
+<tr>
+<td>F</td>
+<td>F→id</td>
+<td></td>
+<td></td>
+<td>F→(E)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trace</strong> — 输入 <code>id + id * id</code>：</p>
+<table>
+<thead>
+<tr>
+<th>栈</th>
+<th>输入</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$E</td>
+<td>id+id*id$</td>
+<td>E→TE'</td>
+</tr>
+<tr>
+<td>$E'T</td>
+<td>id+id*id$</td>
+<td>T→FT'</td>
+</tr>
+<tr>
+<td>$E'T'F</td>
+<td>id+id*id$</td>
+<td>F→id</td>
+</tr>
+<tr>
+<td>$E'T'</td>
+<td>+id*id$</td>
+<td>match id</td>
+</tr>
+<tr>
+<td>$E'</td>
+<td>+id*id$</td>
+<td>T'→ε</td>
+</tr>
+<tr>
+<td>$E'T+</td>
+<td>id*id$</td>
+<td>E'→+TE'</td>
+</tr>
+<tr>
+<td>$E'T</td>
+<td>id*id$</td>
+<td>match +</td>
+</tr>
+<tr>
+<td>$E'T'F</td>
+<td>id*id$</td>
+<td>T→FT'</td>
+</tr>
+<tr>
+<td>$E'T'</td>
+<td>*id$</td>
+<td>F→id, match id</td>
+</tr>
+<tr>
+<td>$E'T'F*</td>
+<td>id$</td>
+<td>T'→*FT'</td>
+</tr>
+<tr>
+<td>$E'T'F</td>
+<td>$</td>
+<td>match *, F→id, match id</td>
+</tr>
+<tr>
+<td>$E'T'</td>
+<td>$</td>
+<td>T'→ε</td>
+</tr>
+<tr>
+<td>$E'</td>
+<td>$</td>
+<td>E'→ε</td>
+</tr>
+<tr>
+<td>$</td>
+<td>$</td>
+<td><strong>accept</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="23-bottom-up-parsing-shift-reduce">2.3 Bottom-Up Parsing (Shift-Reduce)<a class="headerlink" href="#23-bottom-up-parsing-shift-reduce" title="Permanent link">&para;</a></h2>
+<p>从输入串（叶子）出发，不断将栈顶符号串<strong>归约</strong>为产生式左部非终结符，直到归约为开始符号。</p>
+<p>核心操作：
+- <strong>Shift</strong>：将下一个输入符号压入栈。
+- <strong>Reduce</strong>：栈顶出现产生式右部 <span class="arithmatex">\(\beta\)</span>，弹出 <span class="arithmatex">\(|\beta|\)</span> 个符号，压入左部 <span class="arithmatex">\(A\)</span>。</p>
+<p><strong>LR 分析栈的结构</strong>：栈中<strong>状态与文法符号交替存放</strong>（s₀X₁s₁X₂s₂...），状态驱动移进/归约决策，文法符号用于构造推导。</p>
+<p><strong>归约的三步规则</strong> — 对产生式 <span class="arithmatex">\(A \to \beta\)</span>（设 <span class="arithmatex">\(n = |\beta|\)</span>）：</p>
+<ol>
+<li><strong>弹出</strong> <span class="arithmatex">\(2n\)</span> 个元素（<span class="arithmatex">\(n\)</span> 个文法符号 + <span class="arithmatex">\(n\)</span> 个状态），暴露栈顶状态 <span class="arithmatex">\(s\)</span>。</li>
+<li><strong>压入</strong>左部非终结符 <span class="arithmatex">\(A\)</span>。</li>
+<li><strong>查 GOTO 表</strong>：压入 <code>GOTO[s, A]</code>（即 <span class="arithmatex">\(s\)</span> 读到 <span class="arithmatex">\(A\)</span> 后到达的新状态）。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>示例: 栈 = 0 id 5, 执行 r4 (L→id), GOTO(0, L) = 2
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  弹出 2 个元素(id, 5) → 暴露状态 0
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  压入 L → 栈 = 0 L
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  压入 GOTO(0, L) = 2 → 栈 = 0 L 2
+</code></pre></div>
+<p>当栈顶状态<strong>只有归约项</strong>（如状态 5 仅含 <code>[L → id·]</code>），该状态的所有合法动作都是归约——此时无需关心"从该状态能去哪个下一状态"，因为归约会先弹出该状态、暴露前一状态，再由 GOTO 表决定去向。</p>
+<p><strong>句柄 (Handle)</strong>：栈顶可被归约的产生式右部。何时 shift、何时 reduce、按哪条产生式 reduce，由 LR 分析表决定。</p>
+<p>LR 系列方法按"冲突解决能力"递增：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>核心</th>
+<th>冲突处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LR(0)</td>
+<td>仅看栈顶状态，不管输入</td>
+<td>极易冲突</td>
+</tr>
+<tr>
+<td>SLR(1)</td>
+<td>FOLLOW 集过滤归约条件</td>
+<td>部分解决</td>
+</tr>
+<tr>
+<td>LR(1)</td>
+<td>每项自带精确展望符</td>
+<td>几乎无冲突，状态爆炸</td>
+</tr>
+<tr>
+<td>LALR(1)</td>
+<td>合并 LR(1) 同心状态</td>
+<td>工程首选（Yacc/Bison）</td>
+</tr>
+</tbody>
+</table>
+<p>以下用一个贯穿的经典文法展示四种 LR 方法。该文法在 LR(0) 和 SLR(1) 中均有冲突，在 LR(1) 和 LALR(1) 中解决。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>增广文法:
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>(0) S&#39; → S
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>(1) S  → L = R
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>(2) S  → R
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>(3) L  → * R
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>(4) L  → id
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>(5) R  → L
+</code></pre></div>
+<p><strong>FIRST/FOLLOW</strong>：</p>
+<ul>
+<li>
+<p>FOLLOW<span class="arithmatex">\((S) = \{\$\}\)</span>，FOLLOW<span class="arithmatex">\((L) =\)</span> FOLLOW<span class="arithmatex">\((R) = \{=, \$\}\)</span>。</p>
+</li>
+<li>
+<p>FIRST 集较简单：FIRST<span class="arithmatex">\((S) =\)</span> FIRST<span class="arithmatex">\((L) =\)</span> FIRST<span class="arithmatex">\((R) = \{*, id\}\)</span>。</p>
+</li>
+</ul>
+<h3 id="lr0">LR(0)<a class="headerlink" href="#lr0" title="Permanent link">&para;</a></h3>
+<p><strong>LR(0) 项</strong>：在产生式右部某处加点 <code>·</code>，表示"当前已识别到此处"。如 <span class="arithmatex">\(A \to \alpha \cdot \beta\)</span> 表示已识别 <span class="arithmatex">\(\alpha\)</span>，期望接下来识别 <span class="arithmatex">\(\beta\)</span>。</p>
+<p><strong>项集闭包 Closure(<span class="arithmatex">\(I\)</span>)</strong>：若 <span class="arithmatex">\([A \to \alpha \cdot B \beta] \in I\)</span>，对每个 <span class="arithmatex">\(B \to \gamma\)</span>，将 <span class="arithmatex">\([B \to \cdot \gamma]\)</span> 加入，重复至不动点。</p>
+<p><strong>Goto(<span class="arithmatex">\(I, X\)</span>)</strong>：从状态 <span class="arithmatex">\(I\)</span> "读入"文法符号 <span class="arithmatex">\(X\)</span> 后到达的新状态。两步操作：</p>
+<ol>
+<li><strong>移动点</strong>：找出 <span class="arithmatex">\(I\)</span> 中所有点在 <span class="arithmatex">\(X\)</span> 之前的项 <span class="arithmatex">\([A \to \alpha \cdot X \beta]\)</span>，将点右移得到 <span class="arithmatex">\([A \to \alpha X \cdot \beta]\)</span>。</li>
+<li><strong>求闭包</strong>：对这些移点后的项做 Closure（展开点后的非终结符）。</li>
+</ol>
+<p>例如在 <span class="arithmatex">\(I_0\)</span> 中，Goto<span class="arithmatex">\((I_0, *)\)</span>：先找到 <span class="arithmatex">\([L \to \cdot * R]\)</span>，移点得 <span class="arithmatex">\([L \to * \cdot R]\)</span>；再展开 <span class="arithmatex">\(R\)</span> 的所有产生式（点在最前），得到 <span class="arithmatex">\(I_4\)</span>。</p>
+<p><strong>LR(0) 自动机构造</strong>：从 <span class="arithmatex">\(I_0 =\)</span> Closure(<span class="arithmatex">\(\{[S' \to \cdot S]\}\)</span>) 出发，对每个已有状态 <span class="arithmatex">\(I\)</span> 和每个文法符号 <span class="arithmatex">\(X\)</span>，若 Goto<span class="arithmatex">\((I, X)\)</span> 非空且为新状态，则创建该状态并添加从 <span class="arithmatex">\(I\)</span> 到它的转移。</p>
+<p><strong>LR(0) 分析表</strong>：对每个状态 <span class="arithmatex">\(I_i\)</span>，
+- 若 <span class="arithmatex">\([A \to \alpha \cdot a \beta] \in I_i\)</span> 且 Goto<span class="arithmatex">\((I_i, a) = I_j\)</span>：ACTION<span class="arithmatex">\([i, a]\)</span> = <strong>s<span class="arithmatex">\(j\)</span></strong>（shift）
+- 若 <span class="arithmatex">\([A \to \alpha \cdot] \in I_i\)</span>：对<strong>所有</strong>终结符 <span class="arithmatex">\(a\)</span>，ACTION<span class="arithmatex">\([i, a]\)</span> = <strong>r<span class="arithmatex">\(k\)</span></strong>（reduce by production <span class="arithmatex">\(k\)</span>）
+- 若 <span class="arithmatex">\([S' \to S \cdot] \in I_i\)</span>：ACTION<span class="arithmatex">\([i, \$]\)</span> = <strong>acc</strong></p>
+<div class="admonition note">
+<p class="admonition-title">LR(0) 的问题</p>
+<p>Reduce 项对<strong>所有</strong>输入符号都填 r，完全不看下一个 Token 是什么，极易产生 shift-reduce 冲突。</p>
+</div>
+<hr />
+<p><strong>LR(0) Example</strong> — 对示例文法构造自动机：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>I₀ = closure({[S&#39; → ·S]})        I₅ = {[L → id·]}
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  [S&#39; → ·S]                       → 仅包含归约项
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  [S → ·L = R]                    
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  [S → ·R]                       I₆ = goto(I₂, =)
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  [L → ·* R]                       [S → L = ·R]
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  [L → ·id]                        [R → ·L]
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  [R → ·L]                         [L → ·* R]
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>                                    [L → ·id]
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>I₁ = goto(I₀, S): [S&#39; → S·]
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>                                  I₇ = goto(I₄, R): [L → * R·]
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>I₂ = goto(I₀, L)                  I₈ = goto(I₄, L): [R → L·]
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>  [S → L· = R]
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>  [R → L·]   ← 冲突！             I₉ = goto(I₆, R): [S → L = R·]
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>I₃ = goto(I₀, R): [S → R·]
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>I₄ = goto(I₀, *)  = goto(I₄, *) = goto(I₆, *)
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>  [L → *·R]
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>  [R → ·L]
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>  [L → ·* R]
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>  [L → ·id]
+</code></pre></div>
+<p><strong>转移关系</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>I₀ ──S──→ I₁    I₀ ──L──→ I₂    I₀ ──R──→ I₃
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>I₀ ──*──→ I₄    I₀ ─id──→ I₅
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>I₂ ──=──→ I₆
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>I₄ ──R──→ I₇    I₄ ──L──→ I₈    I₄ ──*──→ I₄    I₄ ─id──→ I₅
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>I₆ ──R──→ I₉    I₆ ──L──→ I₈    I₆ ──*──→ I₄    I₆ ─id──→ I₅
+</code></pre></div>
+<p><strong>冲突分析</strong>：</p>
+<ul>
+<li><span class="arithmatex">\(I_2\)</span>：<code>[S → L· = R]</code> 要求 shift <code>=</code>，<code>[R → L·]</code> 要求 reduce → <strong>shift-reduce conflict on <code>=</code></strong></li>
+<li>LR(0) 无法处理此文法。</li>
+</ul>
+<h3 id="slr1">SLR(1)<a class="headerlink" href="#slr1" title="Permanent link">&para;</a></h3>
+<p><strong>改进</strong>：Reduce 不再是"对所有输入都归约"，而是<strong>仅当输入符号属于 FOLLOW(左部非终结符) 时才归约</strong>。</p>
+<p><strong>构造规则</strong>（其余同 LR(0)）：
+- 若 <span class="arithmatex">\([A \to \alpha \cdot] \in I_i\)</span>：对每个 <span class="arithmatex">\(a \in\)</span> FOLLOW<span class="arithmatex">\((A)\)</span>，ACTION<span class="arithmatex">\([i, a]\)</span> = <strong>r<span class="arithmatex">\(k\)</span></strong>。</p>
+<hr />
+<p><strong>SLR(1) Example</strong> — 沿用上面的 LR(0) 自动机（状态相同）。</p>
+<p>已知 FOLLOW<span class="arithmatex">\((R) = \{=, \$\}\)</span>, FOLLOW<span class="arithmatex">\((L) = \{=, \$\}\)</span>, FOLLOW<span class="arithmatex">\((S) = \{\$\}\)</span>。</p>
+<p>SLR(1) 分析表：</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>id</th>
+<th>*</th>
+<th>=</th>
+<th>$</th>
+<th>S</th>
+<th>L</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>s5</td>
+<td>s4</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>acc</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td>s6 / <strong>r5</strong></td>
+<td>r5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td>r2</td>
+<td>r2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>s5</td>
+<td>s4</td>
+<td></td>
+<td></td>
+<td></td>
+<td>8</td>
+<td>7</td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td>r4</td>
+<td>r4</td>
+<td>r4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>s5</td>
+<td>s4</td>
+<td></td>
+<td></td>
+<td></td>
+<td>8</td>
+<td>9</td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td>r3</td>
+<td>r3</td>
+<td>r3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td></td>
+<td>r5</td>
+<td>r5</td>
+<td>r5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td></td>
+<td></td>
+<td>r1</td>
+<td>r1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="arithmatex">\(I_2\)</span>：shift <code>=</code> 和 reduce <code>r5</code> 同在 <code>=</code> 列 → <strong>SLR(1) 仍然冲突</strong>。因为 FOLLOW<span class="arithmatex">\((R)\)</span> 包含 <code>=</code>，无法区分"该移进 <code>=</code>"还是"该归约 <span class="arithmatex">\(R \to L\)</span>"。</p>
+</div>
+<p><strong>Trace</strong> — 输入 <code>id = id</code> 的 SLR(1) 分析过程（假设强制选择 shift 来演示）：</p>
+<table>
+<thead>
+<tr>
+<th>栈</th>
+<th>输入</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>id=id$</td>
+<td>s5</td>
+</tr>
+<tr>
+<td>0id5</td>
+<td>=id$</td>
+<td>r4 (L→id), GOTO(0,L)=2</td>
+</tr>
+<tr>
+<td>0L2</td>
+<td>=id$</td>
+<td>s6</td>
+</tr>
+<tr>
+<td>0L2=6</td>
+<td>id$</td>
+<td>s5</td>
+</tr>
+<tr>
+<td>0L2=6id5</td>
+<td>$</td>
+<td>r4 (L→id), GOTO(6,L)=8</td>
+</tr>
+<tr>
+<td>0L2=6L8</td>
+<td>$</td>
+<td>r5 (R→L), GOTO(6,R)=9</td>
+</tr>
+<tr>
+<td>0L2=6R9</td>
+<td>$</td>
+<td>r1 (S→L=R), GOTO(0,S)=1</td>
+</tr>
+<tr>
+<td>0S1</td>
+<td>$</td>
+<td><strong>acc</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>归约时如何确定新状态？</strong> 以第一步 <code>r4</code> 为例：</p>
+<p>栈当前为 <code>0 id 5</code>（状态 0 → 符号 id → 状态 5）。状态 5 中的项 <code>[L → id·]</code> 要求归约。
+1. <strong>弹出</strong> <span class="arithmatex">\(2 \times 1 = 2\)</span> 个元素：符号 <code>id</code> + 状态 <code>5</code>，暴露状态 <strong>0</strong>。
+2. <strong>压入</strong>左部符号 <code>L</code> → 栈 = <code>0 L</code>。
+3. <strong>查 GOTO 表</strong>：<code>GOTO[0, L] = 2</code>（见分析表第 0 行 L 列），压入状态 2 → 栈 = <code>0 L 2</code>。</p>
+<p>同理，第二步 <code>r4</code>：栈顶暴露状态 6，<code>GOTO[6, L] = 8</code>；第三步 <code>r5</code>：暴露状态 6，<code>GOTO[6, R] = 9</code>；第四步 <code>r1</code>：暴露状态 0，<code>GOTO[0, S] = 1</code>。</p>
+<p>状态 5 本身只包含归约项 <code>[L → id·]</code>——它不参与"去哪个状态"的决策，因为归约的第一步就是把它弹出去。</p>
+</blockquote>
+<p>SLR(1) 在 <span class="arithmatex">\(I_2\)</span> 存在冲突——此处恰好"猜对"了 shift 才能成功，若选择 reduce 则失败。</p>
+<h3 id="lr1">LR(1)<a class="headerlink" href="#lr1" title="Permanent link">&para;</a></h3>
+<p>SLR(1) 的缺陷在于：它用 FOLLOW 集决定是否归约，但 FOLLOW 集是"全局"的——只要某个 Token 在整个文法中可能跟在 <span class="arithmatex">\(A\)</span> 后面，SLR(1) 就在所有状态下都允许对 <span class="arithmatex">\(A\)</span> 做归约。这过于粗糙。</p>
+<p><strong>改进</strong>：每个项附加一个<strong>展望符 (Lookahead)</strong>，格式：<span class="arithmatex">\([A \to \alpha \cdot \beta, a]\)</span>，其中 <span class="arithmatex">\(a\)</span> 是终结符或 <span class="arithmatex">\(\$\)</span>。归约项 <span class="arithmatex">\([A \to \alpha \cdot, a]\)</span> 的含义是：<strong>只有当下一个输入 Token 恰好是 <span class="arithmatex">\(a\)</span> 时才执行归约</strong>。这个 <span class="arithmatex">\(a\)</span> 不是从全局 FOLLOW 集来的，而是从该项所在的<strong>具体上下文</strong>推导出来的。</p>
+<h4 id="closure">Closure 扩展规则<a class="headerlink" href="#closure" title="Permanent link">&para;</a></h4>
+<p>这是 LR(1) 最核心的机制。规则如下：</p>
+<blockquote>
+<p>若项集 <span class="arithmatex">\(I\)</span> 中有 <span class="arithmatex">\([A \to \alpha \cdot B \beta,\; a]\)</span>，则对文法中每个 <span class="arithmatex">\(B \to \gamma\)</span>，将 <span class="arithmatex">\([B \to \cdot \gamma,\; b]\)</span> 加入 <span class="arithmatex">\(I\)</span>，其中 <span class="arithmatex">\(b \in \text{FIRST}(\beta a)\)</span>。</p>
+</blockquote>
+<p><strong>为什么要算 <span class="arithmatex">\(\text{FIRST}(\beta a)\)</span>？</strong></p>
+<p>把产生式连起来看：<span class="arithmatex">\(A \to \alpha B \beta\)</span>，项中点已过 <span class="arithmatex">\(\alpha\)</span>、刚到 <span class="arithmatex">\(B\)</span> 前。<span class="arithmatex">\(B\)</span> 之后是 <span class="arithmatex">\(\beta\)</span>，而整条产生式的展望符是 <span class="arithmatex">\(a\)</span>。</p>
+<ul>
+<li>如果 <span class="arithmatex">\(\beta\)</span> 非空：<span class="arithmatex">\(B\)</span> 归约完成后，下一个要分析的符号由 <span class="arithmatex">\(\beta\)</span> 的第一个终结符决定 → 用 <span class="arithmatex">\(\text{FIRST}(\beta)\)</span>。</li>
+<li>如果 <span class="arithmatex">\(\beta\)</span> 可为空：<span class="arithmatex">\(B\)</span> 归约完成后轮到 <span class="arithmatex">\(\beta\)</span>，但 <span class="arithmatex">\(\beta \Rightarrow^* \varepsilon\)</span>，所以最终跟在 <span class="arithmatex">\(B\)</span> 后面的是原来的展望符 <span class="arithmatex">\(a\)</span> → 用 <span class="arithmatex">\(\text{FIRST}(a) = \{a\}\)</span>。</li>
+</ul>
+<p>统一公式 <span class="arithmatex">\(\text{FIRST}(\beta a)\)</span> 同时覆盖了这两种情况：
+- <span class="arithmatex">\(\beta\)</span> 非空且不可空 → <span class="arithmatex">\(\text{FIRST}(\beta a) = \text{FIRST}(\beta)\)</span>
+- <span class="arithmatex">\(\beta\)</span> 可空 → <span class="arithmatex">\(\text{FIRST}(\beta a) = \text{FIRST}(\beta) \cup \{a\}\)</span></p>
+<h4 id="goto">Goto 中的展望符传播<a class="headerlink" href="#goto" title="Permanent link">&para;</a></h4>
+<p>Goto 操作<strong>不改变展望符</strong>——展望符跟着产生式走：</p>
+<div class="arithmatex">\[\text{Goto}(I, X) = \text{Closure}\left(\{[A \to \alpha X \cdot \beta,\; a] \mid [A \to \alpha \cdot X \beta,\; a] \in I\}\right)\]</div>
+<p>点右移一位，展望符原封不动带上。新闭包展开时再按上述规则重新计算展望符。</p>
+<hr />
+<p><strong>LR(1) Example</strong> — 对同一文法构造完整的 LR(1) 自动机。</p>
+<h4 id="i0">详细构造 I₀<a class="headerlink" href="#i0" title="Permanent link">&para;</a></h4>
+<p>以 <span class="arithmatex">\(I_0 = \text{Closure}(\{[S' \to \cdot S,\; \$]\})\)</span> 为例，逐步展开：</p>
+<blockquote>
+<p><strong>第 0 步</strong> — 种子项</p>
+<div class="arithmatex">\[[S' \to \cdot S,\; \$]\]</div>
+<p><strong>第 1 步</strong> — 点后是 <span class="arithmatex">\(S\)</span>，展开 <span class="arithmatex">\(S\)</span> 的所有产生式</p>
+<p>对 <span class="arithmatex">\([S' \to \cdot S,\; \$]\)</span>，<span class="arithmatex">\(\alpha = \varepsilon\)</span>、<span class="arithmatex">\(B = S\)</span>、<span class="arithmatex">\(\beta = \varepsilon\)</span>、$a = $ $。</p>
+<p><span class="arithmatex">\(\text{FIRST}(\beta a) = \text{FIRST}(\varepsilon \$) = \{\$\}\)</span>。</p>
+<ul>
+<li><span class="arithmatex">\(S \to L = R\)</span>：加入 <span class="arithmatex">\([S \to \cdot L = R,\; \$]\)</span></li>
+<li><span class="arithmatex">\(S \to R\)</span>：加入 <span class="arithmatex">\([S \to \cdot R,\; \$]\)</span></li>
+</ul>
+<p><strong>第 2 步</strong> — 检查新加项，点后是 <span class="arithmatex">\(L\)</span>，展开 <span class="arithmatex">\(L\)</span></p>
+<p>对 <span class="arithmatex">\([S \to \cdot L = R,\; \$]\)</span>，<span class="arithmatex">\(\alpha = \varepsilon\)</span>、<span class="arithmatex">\(B = L\)</span>、<span class="arithmatex">\(\beta = \; = R\)</span>、$a = $ $。</p>
+<p><span class="arithmatex">\(\text{FIRST}(\beta a) = \text{FIRST}(=R\$) = \{=\}\)</span>（因为 <span class="arithmatex">\(\beta\)</span> 以终结符 <span class="arithmatex">\(=\)</span> 开头）。</p>
+<ul>
+<li><span class="arithmatex">\(L \to *R\)</span>：加入 <span class="arithmatex">\([L \to \cdot *R,\; =]\)</span></li>
+<li><span class="arithmatex">\(L \to \text{id}\)</span>：加入 <span class="arithmatex">\([L \to \cdot \text{id},\; =]\)</span></li>
+</ul>
+<hr />
+<p>对 <span class="arithmatex">\([S \to \cdot R,\; \$]\)</span>，<span class="arithmatex">\(\alpha = \varepsilon\)</span>、<span class="arithmatex">\(B = R\)</span>、<span class="arithmatex">\(\beta = \varepsilon\)</span>、$a = $ $。</p>
+<p><span class="arithmatex">\(\text{FIRST}(\beta a) = \text{FIRST}(\$) = \{\$\}\)</span>。</p>
+<ul>
+<li><span class="arithmatex">\(R \to L\)</span>：加入 <span class="arithmatex">\([R \to \cdot L,\; \$]\)</span></li>
+</ul>
+<p><strong>第 3 步</strong> — 检查 <span class="arithmatex">\([R \to \cdot L,\; \$]\)</span>，点后是 <span class="arithmatex">\(L\)</span>，再次展开 <span class="arithmatex">\(L\)</span></p>
+<p>对 <span class="arithmatex">\([R \to \cdot L,\; \$]\)</span>，<span class="arithmatex">\(\alpha = \varepsilon\)</span>、<span class="arithmatex">\(B = L\)</span>、<span class="arithmatex">\(\beta = \varepsilon\)</span>、$a = $ $。</p>
+<p><span class="arithmatex">\(\text{FIRST}(\beta a) = \text{FIRST}(\$) = \{\$\}\)</span>。</p>
+<ul>
+<li><span class="arithmatex">\(L \to *R\)</span>：加入 <span class="arithmatex">\([L \to \cdot *R,\; \$]\)</span></li>
+<li><span class="arithmatex">\(L \to \text{id}\)</span>：加入 <span class="arithmatex">\([L \to \cdot \text{id},\; \$]\)</span></li>
+</ul>
+</blockquote>
+<p><strong>第 4 步</strong> — 检查 <span class="arithmatex">\([L \to \cdot *R,\; =]\)</span>：点后是终结符 <span class="arithmatex">\(*\)</span>，不展开。同理 <span class="arithmatex">\([L \to \cdot \text{id},\; =]\)</span> 不展开。无新非终结符，闭包完成。</p>
+<p>汇总 <span class="arithmatex">\(I_0\)</span>（注意：<strong>LR(1) 中，核心相同但展望符不同的项保留为两个独立项</strong>，这正是 LR(1) 比 LR(0) 状态更多的原因）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>I₀:
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  [S&#39; → ·S,   $]
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  [S  → ·L=R, $]
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  [S  → ·R,   $]
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  [L  → ·*R,  =]    ← 来自 S→·L=R ($)
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  [L  → ·*R,  $]    ← 来自 R→·L ($)
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  [L  → ·id,  =]    ← 来自 S→·L=R ($)
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  [L  → ·id,  $]    ← 来自 R→·L ($)
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  [R  → ·L,   $]
+</code></pre></div>
+<p><strong>关键观察</strong>：<span class="arithmatex">\([L \to \cdot *R, =]\)</span> 和 <span class="arithmatex">\([L \to \cdot *R, \$]\)</span> 是<strong>两个不同的项</strong>（核心相同但展望符不同）。在 LR(0) 中它们合并为一个。现在它们分开，后续会走向不同的状态，这就是 LR(1) 精确性的来源。</p>
+<h4 id="_1">各状态详细构造<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p>每个 Goto 都执行"移点 + 闭包"两步。</p>
+<p><strong><span class="arithmatex">\(I_1 = \text{Goto}(I_0, S)\)</span></strong>：从 <span class="arithmatex">\([S' \to \cdot S, \$]\)</span> 移点得 <span class="arithmatex">\([S' \to S \cdot, \$]\)</span>。点后无符号，闭包无新项。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>I₁:  [S&#39; → S·, $]
+</code></pre></div></p>
+<p><strong><span class="arithmatex">\(I_2 = \text{Goto}(I_0, L)\)</span></strong>：从 <span class="arithmatex">\(I_0\)</span> 中 <span class="arithmatex">\(L\)</span> 前的项移点：
+- <span class="arithmatex">\([S \to \cdot L = R, \$] \to [S \to L \cdot = R, \$]\)</span>
+- <span class="arithmatex">\([R \to \cdot L, \$] \to [R \to L \cdot, \$]\)</span></p>
+<p>点后无非终结符，闭包无新项。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>I₂:  [S → L· = R, $]
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>     [R → L·,     $]    ← 仅在 $ 上归约！
+</code></pre></div></p>
+<p>与 LR(0) 的区别：<span class="arithmatex">\([R \to L \cdot]\)</span> 在 LR(0) 中对<strong>所有</strong>终结符归约，SLR(1) 中对 <span class="arithmatex">\(\{=, \$\}\)</span> 归约，而这里<strong>仅对 <span class="arithmatex">\(\{\$\}\)</span> 归约</strong>。因为该展望符来自 <span class="arithmatex">\(I_0\)</span> 中 <span class="arithmatex">\(S' \to \cdot S\)</span> 下展开 <span class="arithmatex">\(R\)</span> 时的 <span class="arithmatex">\(\text{FIRST}(\$)\)</span>，不包含 <span class="arithmatex">\(=\)</span>。</p>
+<p><strong><span class="arithmatex">\(I_3 = \text{Goto}(I_0, R)\)</span></strong>：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>I₃:  [S → R·, $]
+</code></pre></div></p>
+<p><strong><span class="arithmatex">\(I_4 = \text{Goto}(I_0, *)\)</span></strong>：从 <span class="arithmatex">\(I_0\)</span> 中 <span class="arithmatex">\(*\)</span> 前的项移点：</p>
+<ul>
+<li><span class="arithmatex">\([L \to \cdot *R, =] \to [L \to * \cdot R, =]\)</span></li>
+<li><span class="arithmatex">\([L \to \cdot *R, \$] \to [L \to * \cdot R, \$]\)</span></li>
+</ul>
+<p>然后闭包展开点后的 <span class="arithmatex">\(R\)</span>。对两项分别：</p>
+<ul>
+<li>
+<p><span class="arithmatex">\([L \to * \cdot R, =]\)</span>：<span class="arithmatex">\(\text{FIRST}(\varepsilon \cdot =) = \{=\}\)</span>。
+  展开 <span class="arithmatex">\(R \to L\)</span> → <span class="arithmatex">\([R \to \cdot L, =]\)</span>。
+  再展开 <span class="arithmatex">\(L\)</span>：<span class="arithmatex">\(\text{FIRST}(\varepsilon \cdot =) = \{=\}\)</span> → <span class="arithmatex">\([L \to \cdot *R, =],\; [L \to \cdot \text{id}, =]\)</span>。</p>
+</li>
+<li>
+<p><span class="arithmatex">\([L \to * \cdot R, \$]\)</span>：<span class="arithmatex">\(\text{FIRST}(\varepsilon \cdot \$) = \{\$\}\)</span>。
+  展开 <span class="arithmatex">\(R \to L\)</span> → <span class="arithmatex">\([R \to \cdot L, \$]\)</span>。
+  再展开 <span class="arithmatex">\(L\)</span>：<span class="arithmatex">\(\text{FIRST}(\varepsilon \cdot \$) = \{\$\}\)</span> → <span class="arithmatex">\([L \to \cdot *R, \$],\; [L \to \cdot \text{id}, \$]\)</span>。</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>I₄:  [L → *·R, =]  [L → *·R, $]
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>     [R → ·L,  =]  [R → ·L,  $]
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>     [L → ·*R, =]  [L → ·*R, $]
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>     [L → ·id, =]  [L → ·id, $]
+</code></pre></div>
+<p><strong>注意</strong>：<span class="arithmatex">\(I_4\)</span> 中的项成对出现（<span class="arithmatex">\(\{=\}\)</span> 和 <span class="arithmatex">\(\{\$\}\)</span> 两组展望符），因为入边来源于 <span class="arithmatex">\(I_0\)</span> 中两个不同展望符的 <span class="arithmatex">\([L \to \cdot *R]\)</span> 项。这与 LR(0) 的 <span class="arithmatex">\(I_4\)</span> 不同——LR(0) 中这些项合为一份。</p>
+<p><strong><span class="arithmatex">\(I_5 = \text{Goto}(I_0, \text{id})\)</span></strong>：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>I₅:  [L → id·, =]  [L → id·, $]
+</code></pre></div></p>
+<p><strong><span class="arithmatex">\(I_6 = \text{Goto}(I_2, =)\)</span></strong>：从 <span class="arithmatex">\([S \to L \cdot = R, \$]\)</span> 移点得 <span class="arithmatex">\([S \to L = \cdot R, \$]\)</span>。然后闭包展开 <span class="arithmatex">\(R\)</span>：</p>
+<ul>
+<li><span class="arithmatex">\([S \to L = \cdot R, \$]\)</span>：<span class="arithmatex">\(\text{FIRST}(\varepsilon \cdot \$) = \{\$\}\)</span>。
+  展开 <span class="arithmatex">\(R \to L\)</span> → <span class="arithmatex">\([R \to \cdot L, \$]\)</span>。
+  再展开 <span class="arithmatex">\(L\)</span>：<span class="arithmatex">\(\text{FIRST}(\varepsilon \cdot \$) = \{\$\}\)</span> → <span class="arithmatex">\([L \to \cdot *R, \$],\; [L \to \cdot \text{id}, \$]\)</span>。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>I₆:  [S → L = ·R, $]
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>     [R → ·L,     $]
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>     [L → ·*R,    $]
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>     [L → ·id,    $]
+</code></pre></div>
+<p><strong>关键</strong>：<span class="arithmatex">\(I_6\)</span> 中所有项的展望符都是 <span class="arithmatex">\(\{\$\}\)</span>——因为进入 <span class="arithmatex">\(I_6\)</span> 的唯一路径来自 <span class="arithmatex">\(I_2\)</span> 的 shift <code>=</code>，而 <span class="arithmatex">\(I_2\)</span> 中 <span class="arithmatex">\([S \to L \cdot = R]\)</span> 的展望符是 <span class="arithmatex">\(\$\)</span>。这导致后续从 <span class="arithmatex">\(I_6\)</span> 展开的 <span class="arithmatex">\([R \to \cdot L]\)</span> 也只有 <span class="arithmatex">\(\$\)</span> 展望符，最终 <span class="arithmatex">\(R \to L\)</span> 的归约<strong>仅对 <span class="arithmatex">\(\$\)</span> 触发</strong>。</p>
+<p><strong><span class="arithmatex">\(I_7 = \text{Goto}(I_4, R)\)</span></strong>：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>I₇:  [L → *R·, =]  [L → *R·, $]
+</code></pre></div></p>
+<p><strong><span class="arithmatex">\(I_8 = \text{Goto}(I_4, L)\)</span></strong>：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>I₈:  [R → L·, =]  [R → L·, $]
+</code></pre></div></p>
+<p><strong><span class="arithmatex">\(I_9 = \text{Goto}(I_6, R)\)</span></strong>：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>I₉:  [S → L = R·, $]
+</code></pre></div></p>
+<p><strong><span class="arithmatex">\(I_{10} = \text{Goto}(I_6, L)\)</span></strong>：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>I₁₀: [R → L·, $]         ← 仅含 {$} 展望符！
+</code></pre></div></p>
+<p><strong><span class="arithmatex">\(I_{11} = \text{Goto}(I_6, *)\)</span></strong>：从 <span class="arithmatex">\([L \to \cdot *R, \$]\)</span> 移点 → 闭包展开 <span class="arithmatex">\(R\)</span> 和 <span class="arithmatex">\(L\)</span>（展望符均为 <span class="arithmatex">\(\$\)</span>）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>I₁₁: [L → *·R, $]
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>     [R → ·L,  $]
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>     [L → ·*R, $]
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>     [L → ·id, $]
+</code></pre></div>
+<p><strong><span class="arithmatex">\(I_{12} = \text{Goto}(I_6, \text{id})\)</span></strong>：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>I₁₂: [L → id·, $]
+</code></pre></div></p>
+<p><strong><span class="arithmatex">\(I_{13} = \text{Goto}(I_{11}, R)\)</span></strong>：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>I₁₃: [L → *R·, $]
+</code></pre></div></p>
+<p><strong>转移关系汇总</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>I₀ ──S──→ I₁    I₀ ──L──→ I₂    I₀ ──R──→ I₃
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>I₀ ──*──→ I₄    I₀ ─id──→ I₅
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>I₂ ──=──→ I₆
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>I₄ ──R──→ I₇    I₄ ──L──→ I₈    I₄ ──*──→ I₄    I₄ ─id──→ I₅
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>I₆ ──R──→ I₉    I₆ ──L──→ I₁₀   I₆ ──*──→ I₁₁   I₆ ─id──→ I₁₂
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>I₁₁──R──→ I₁₃   I₁₁──L──→ I₁₀   I₁₁──*──→ I₁₁   I₁₁─id──→ I₁₂
+</code></pre></div>
+<h4 id="_2">关键对比：展望符从哪里来<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>项</th>
+<th>展望符来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(I_2\)</span></td>
+<td><span class="arithmatex">\([R \to L \cdot, \$]\)</span></td>
+<td>从 <span class="arithmatex">\(I_0\)</span> 中 <span class="arithmatex">\(S' \to \cdot S\)</span> 展开 <span class="arithmatex">\(R\)</span> 时，<span class="arithmatex">\(\text{FIRST}(\$) = \{\$\}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(I_8\)</span></td>
+<td><span class="arithmatex">\([R \to L \cdot, =]\)</span></td>
+<td>从 <span class="arithmatex">\(I_4\)</span> 中 <span class="arithmatex">\([L \to * \cdot R, =]\)</span> 展开 <span class="arithmatex">\(R\)</span> 时，<span class="arithmatex">\(\text{FIRST}(=) = \{=\}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(I_8\)</span></td>
+<td><span class="arithmatex">\([R \to L \cdot, \$]\)</span></td>
+<td>从 <span class="arithmatex">\(I_4\)</span> 中 <span class="arithmatex">\([L \to * \cdot R, \$]\)</span> 展开 <span class="arithmatex">\(R\)</span> 时，<span class="arithmatex">\(\text{FIRST}(\$) = \{\$\}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(I_{10}\)</span></td>
+<td><span class="arithmatex">\([R \to L \cdot, \$]\)</span></td>
+<td>从 <span class="arithmatex">\(I_6\)</span> 中 <span class="arithmatex">\([S \to L = \cdot R, \$]\)</span> 展开 <span class="arithmatex">\(R\)</span> 时，<span class="arithmatex">\(\text{FIRST}(\$) = \{\$\}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>LR(1) 化解冲突</strong>：<span class="arithmatex">\(I_2\)</span> 中 <span class="arithmatex">\([S \to L \cdot = R, \$]\)</span> 要 shift <code>=</code>，<span class="arithmatex">\([R \to L \cdot, \$]\)</span> 仅在 <code>$</code> 上归约——shift 和 reduce 的触发 Token <strong>不再重叠</strong>，冲突消除。</p>
+<p>LR(1) 分析表：</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>id</th>
+<th>*</th>
+<th>=</th>
+<th>$</th>
+<th>S</th>
+<th>L</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>s5</td>
+<td>s4</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>acc</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td>s6</td>
+<td>r5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td>r2</td>
+<td>r2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>s5</td>
+<td>s4</td>
+<td></td>
+<td></td>
+<td></td>
+<td>8</td>
+<td>7</td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td>r4</td>
+<td>r4</td>
+<td>r4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>s12</td>
+<td>s11</td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>9</td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td>r3</td>
+<td>r3</td>
+<td>r3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td></td>
+<td>r5</td>
+<td>r5</td>
+<td>r5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td></td>
+<td></td>
+<td>r1</td>
+<td>r1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+<td>r5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>s12</td>
+<td>s11</td>
+<td></td>
+<td></td>
+<td></td>
+<td>10</td>
+<td>13</td>
+</tr>
+<tr>
+<td>12</td>
+<td></td>
+<td></td>
+<td></td>
+<td>r4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td></td>
+<td></td>
+<td></td>
+<td>r3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trace</strong> — 输入 <code>id = id</code>：</p>
+<table>
+<thead>
+<tr>
+<th>栈</th>
+<th>输入</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>id=id$</td>
+<td>s5</td>
+</tr>
+<tr>
+<td>0id5</td>
+<td>=id$</td>
+<td>r4 (L→id), GOTO(0,L)=2</td>
+</tr>
+<tr>
+<td>0L2</td>
+<td>=id$</td>
+<td>s6</td>
+</tr>
+<tr>
+<td>0L2=6</td>
+<td>id$</td>
+<td>s12</td>
+</tr>
+<tr>
+<td>0L2=6id12</td>
+<td>$</td>
+<td>r4 (L→id), GOTO(6,L)=10</td>
+</tr>
+<tr>
+<td>0L2=6L10</td>
+<td>$</td>
+<td>r5 (R→L), GOTO(6,R)=9</td>
+</tr>
+<tr>
+<td>0L2=6R9</td>
+<td>$</td>
+<td>r1 (S→L=R), GOTO(0,S)=1</td>
+</tr>
+<tr>
+<td>0S1</td>
+<td>$</td>
+<td><strong>acc</strong></td>
+</tr>
+</tbody>
+</table>
+<p>整个过程无冲突，每次决策唯一确定。</p>
+<blockquote>
+<p><strong>对比 SLR(1) 的 Trace</strong>：归约机制完全相同（弹出→暴露状态→查 GOTO），差异在于状态编号——LR(1) 多了 <span class="arithmatex">\(I_{10}\)</span>、<span class="arithmatex">\(I_{12}\)</span> 等状态（含精确展望符），归约触发条件也更精确（如状态 10 的 <code>r5</code> 仅在 <code>$</code> 上归约，不在 <code>=</code> 上归约），从而消除了 SLR(1) 中 <span class="arithmatex">\(I_2\)</span> 的冲突。</p>
+</blockquote>
+<p><strong>代价</strong>：LR(1) 有 14 个状态（LR(0) 仅 10 个），对于实际语言的状态数可达数千。</p>
+<hr />
+<h3 id="lalr1">LALR(1)<a class="headerlink" href="#lalr1" title="Permanent link">&para;</a></h3>
+<p><strong>核心思想</strong>：将 LR(1) 自动机中<strong>核心项相同（忽略展望符）</strong>的状态合并，保留展望符的并集。合并后状态数回溯至 LR(0)/SLR(1) 级别（本例中 10 个），而分析能力接近 LR(1)。</p>
+<p><strong>合并过程</strong>（对上例）：</p>
+<table>
+<thead>
+<tr>
+<th>LR(1) 状态对</th>
+<th>核心项</th>
+<th>合并后展望符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(I_4 + I_{11}\)</span></td>
+<td><span class="arithmatex">\(L \to * \cdot R, R \to \cdot L, L \to \cdot *R, L \to \cdot id\)</span></td>
+<td><span class="arithmatex">\(\{=, \$\}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(I_7 + I_{13}\)</span></td>
+<td><span class="arithmatex">\(L \to * R \cdot\)</span></td>
+<td><span class="arithmatex">\(\{=, \$\}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(I_8 + I_{10}\)</span></td>
+<td><span class="arithmatex">\(R \to L \cdot\)</span></td>
+<td><span class="arithmatex">\(\{=, \$\}\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(I_5 + I_{12}\)</span></td>
+<td><span class="arithmatex">\(L \to id \cdot\)</span></td>
+<td><span class="arithmatex">\(\{=, \$\}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>合并后得到 10 个状态，与 LR(0)/SLR(1) 结构相同，但带精确展望符。</p>
+<p><strong>LALR(1) 不会引入新的 shift-reduce 冲突</strong>（证明略），但<strong>可能引入 reduce-reduce 冲突</strong>（两个不同产生式的归约项合并后展望符重叠）。实际语言中很少发生。</p>
+<hr />
+<p><strong>LALR(1) Example</strong> — 合并后的分析表：</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>id</th>
+<th>*</th>
+<th>=</th>
+<th>$</th>
+<th>S</th>
+<th>L</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>s5</td>
+<td>s4</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>acc</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td>s6</td>
+<td>r5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td>r2</td>
+<td>r2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>s5</td>
+<td>s4</td>
+<td></td>
+<td></td>
+<td></td>
+<td>8</td>
+<td>7</td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td>r4</td>
+<td>r4</td>
+<td>r4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>s5</td>
+<td>s4</td>
+<td></td>
+<td></td>
+<td></td>
+<td>8</td>
+<td>9</td>
+</tr>
+<tr>
+<td>7</td>
+<td></td>
+<td>r3</td>
+<td>r3</td>
+<td>r3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td></td>
+<td>r5</td>
+<td>r5</td>
+<td>r5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td></td>
+<td></td>
+<td>r1</td>
+<td>r1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>注意 <span class="arithmatex">\(I_2\)</span>：reduce <code>r5</code> 仅在 <code>$</code> 列（LR(1) 精确展望符带来的好处保留），<code>=</code> 列为纯 shift <code>s6</code>。冲突已消除。</p>
+<h2 id="24-comparison">2.4 Comparison<a class="headerlink" href="#24-comparison" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>LR(0)</th>
+<th>SLR(1)</th>
+<th>LR(1)</th>
+<th>LALR(1)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>展望符</td>
+<td>无</td>
+<td>FOLLOW 集</td>
+<td>精确传播</td>
+<td>合并后并集</td>
+</tr>
+<tr>
+<td>状态数</td>
+<td>最少</td>
+<td>同 LR(0)</td>
+<td>最多（可达 LR(0) 的 10 倍）</td>
+<td>同 LR(0)</td>
+</tr>
+<tr>
+<td>能力</td>
+<td>最弱</td>
+<td>较弱</td>
+<td>最强</td>
+<td>接近 LR(1)</td>
+</tr>
+<tr>
+<td>工程使用</td>
+<td>无</td>
+<td>教学用</td>
+<td>几乎不用（表太大）</td>
+<td>Yacc/Bison 默认</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">表达能力链</p>
+<p>LL(1) ⊂ SLR(1) ⊂ LALR(1) ⊂ LR(1)。任何 LL(1) 文法也是 LR(1) 文法。实际编程语言的文法通常可用 LALR(1) 描述。</p>
+</div>
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        此页面有帮助吗？
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9v12H1V9h4m4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21H9m0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03V19Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 15V3h4v12h-4M15 3a2 2 0 0 1 2 2v10c0 .55-.22 1.05-.59 1.41L9.83 23l-1.06-1.06c-.27-.27-.44-.64-.44-1.06l.03-.31.95-4.57H3a2 2 0 0 1-2-2v-2c0-.26.05-.5.14-.73l3.02-7.05C4.46 3.5 5.17 3 6 3h9m0 2H5.97L3 12v2h8.78l-1.13 5.32L15 14.97V5Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              谢谢你的反馈！
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="https://marketingplatform.google.com/about/analytics/" target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+<div id="__comments">
+
+  <script>
+  var buttons = document.querySelectorAll("button[data-md-color-primary]")
+  buttons.forEach(function(button) {
+          button.addEventListener("click", function() {
+          var attr = this.getAttribute("data-md-color-primary")
+          document.body.setAttribute("data-md-color-primary", attr)
+          localStorage.setItem("data-md-color-primary",attr);
+          })
+  })
+  </script>
+  
+  <h2 ><!-- 评论 -->评论区</h2>
+  
+  对你有帮助的话请给我个赞和 star => <a href="https://github.com/RoderickShao/RoderickShao_notebook"><img alt="GitHub stars" src="https://img.shields.io/github/stars/RoderickShao/RoderickShao_notebook.svg?style=plastic&amp;label=Stars"></a>
+  
+  </br>
+  
+  欢迎跟我探讨！！！
+  
+  </div>
+  
+  <script src="https://giscus.app/client.js"
+      data-repo="RoderickShao/RoderickShao_notebook"
+      data-repo-id="R_kgDOMS_5AQ"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOMS_5Ac4Cjs7e"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme="preferred_color_scheme"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+          
+  
+  updateScheme();
+  
+  </script>
+  
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+  var giscus = document.querySelector("script[src*=giscus]")
+  
+  /* Set palette on initial load */
+  var palette = __md_get("__palette")
+  if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "dark" : "light"
+      giscus.setAttribute("data-theme", theme) 
+  }
+  
+  /* Register event handlers after documented loaded */
+  document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+      var palette = __md_get("__palette")
+      if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "dark" : "light"
+          localStorage.setItem("data-md-color-scheme", palette.color.scheme === "slate" ? "slate" : "default");
+          /* Instruct Giscus to change theme */
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+          { giscus: { setConfig: { theme } } },
+          "https://giscus.app"
+          )
+      }
+      })
+  })
+  </script>
+  
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../1%20Lexical%20Analysis/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 1 Lexical Analysis" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                1 Lexical Analysis
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../3%20Abstract%20Syntax%20Tree/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3 Abstract Syntax Tree" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                3 Abstract Syntax Tree
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 - 2025 RoderickShao
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.prune", "navigation.tracking", "navigation.indexes", "navigation.tracking", "navigation.top", "navigation.footer", "header.autohide", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "material.extensions.emoji.twemoji"], "search": "../../../assets/javascripts/workers/search.dfff1995.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.4e31edb1.min.js"></script>
+      
+        
+          <script src="../../../javascripts/mathjax.js"></script>
+        
+      
+        
+          <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
