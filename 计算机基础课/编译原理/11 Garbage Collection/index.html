@@ -2454,7 +2454,7 @@
 </ol>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Initial State</label><label for="__tabbed_1_2">Step 1: Forward Root A</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Initial State</label><label for="__tabbed_1_2">Step 1: Forward Root A</label><label for="__tabbed_1_3">Step 2: Scan A, 一 Forward Its Pointer Fields</label><label for="__tabbed_1_4">Step 3: Scan B</label><label for="__tabbed_1_5">Step 4: Scan C</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <ul>
@@ -2473,41 +2473,25 @@
 <div class="tabbed-block">
 <p>First, we copy the root object (A) to to-space and leave a forwarding pointer in the original object.</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-20%20152414.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-20%20152414.png" /></a></p>
-<p>A’ is copied but not yet scanned ( its fields still hold </p>
+<p>A’ is copied but not yet scanned ( its fields still hold the original from-space addresses of B and C.)</p>
 </div>
-</div>
-</div>
-<p>the original from-space addresses of B and C.)</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Step 2: Scan A, 一 Forward Its Pointer Fields</label><label for="__tabbed_2_2">Step 3: Scan B</label></div>
-<div class="tabbed-content">
 <div class="tabbed-block">
 <p>while scan &lt; next: scan is at A, (process the object at scan (A') by forwarding its pointers to to-space.)</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-20%20152421.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-20%20152421.png" /></a></p>
 <p>B' is now copied and scanned. C' is copied but not yet scanned.</p>
 </div>
 <div class="tabbed-block">
-<p>Now we process the object at scan (B') by forwarding </p>
+<p>Now we process the object at scan (B') by forwarding its pointers to to-space</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-20%20152436.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-20%20152436.png" /></a></p>
+<p>B' is now copied and scanned. C' is copied but not yet scanned</p>
 </div>
-</div>
-</div>
-<p>its pointers to to-space</p>
-<div class="highlight"><pre><span></span><code>![](img/屏幕截图 2026-06-20 152436.png)
-
-B&#39; is now copied and scanned. C&#39; is copied but not yet scanned
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Step 4: Scan C</label></div>
-<div class="tabbed-content">
 <div class="tabbed-block">
-<p>Now we process the object at scan (C') by forwarding </p>
+<p>Now we process the object at scan (C') by forwarding its pointers to to-space.</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-20%20152443.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-20%20152443.png" /></a></p>
+<p>At this point, scan = next, which means we've processed all reachable objects and the collection is complete!</p>
 </div>
 </div>
 </div>
-<p>its pointers to to-space.</p>
-<div class="highlight"><pre><span></span><code>![](img/屏幕截图 2026-06-20 152443.png)
-
-At this point, scan = next, which means we&#39;ve processed
-</code></pre></div>
-<p>all reachable objects and the collection is complete!</p>
 </div>
 <p>整个过程不需要额外栈或队列结构——<code>[scan, next)</code> 区间本身就是 BFS 队列。这就是 Cheney 算法的优雅之处。</p>
 <h3 id="1143-locality">11.4.3 Locality<a class="headerlink" href="#1143-locality" title="Permanent link">&para;</a></h3>
