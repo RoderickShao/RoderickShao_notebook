@@ -1837,6 +1837,9 @@
 <p><strong>Tile (瓷砖)</strong>：一个 IR 子树片段，对应一条机器指令。例如 Tile <code>MEM(BINOP(PLUS, CONST c, TEMP r))</code> 对应 x86 的 <code>mov r, [r+c]</code>。</p>
 <p><strong>TEMP Tile</strong>：特殊的零代价 Tile，表示值已在寄存器中，无需额外指令加载。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-18%20145216.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-18%20145216.png" /></a></p>
+<blockquote>
+<p>记忆方法就是关注 CONST，和 CONST 相连的可以成为一个大块，还有就是 MOVE 和 MEM 相连的情况</p>
+</blockquote>
 <p><strong>树覆盖 (Tiling)</strong>：用一组 Tile <strong>无重叠、全覆盖</strong>地铺满 IR 树。同一棵树通常有多种铺法</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-18%20150003.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-18%20150003.png" /></a></p>
 <p><strong>Optimal vs Optimum</strong>：</p>

@@ -1373,25 +1373,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#calling-convention" class="md-nav__link">
-    Calling Convention
+  <a href="#52-calling-convention" class="md-nav__link">
+    5.2 Calling Convention
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#frame-resident-variables" class="md-nav__link">
-    Frame-Resident Variables
+  <a href="#53-frame-resident-variables" class="md-nav__link">
+    5.3 Frame-Resident Variables
   </a>
+  
+    <nav class="md-nav" aria-label="5.3 Frame-Resident Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-dangling-reference-problem" class="md-nav__link">
+    5.3.1 Dangling Reference Problem
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#static-scoping-nested-functions" class="md-nav__link">
-    Static Scoping &amp; Nested Functions
+  <a href="#54-static-scoping-nested-functions" class="md-nav__link">
+    5.4 Static Scoping &amp; Nested Functions
   </a>
   
-    <nav class="md-nav" aria-label="Static Scoping & Nested Functions">
+    <nav class="md-nav" aria-label="5.4 Static Scoping & Nested Functions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1421,8 +1434,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#stack-frame-layout" class="md-nav__link">
-    Stack Frame Layout
+  <a href="#55-stack-frame-layout" class="md-nav__link">
+    5.5 Stack Frame Layout
   </a>
   
 </li>
@@ -1787,25 +1800,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#calling-convention" class="md-nav__link">
-    Calling Convention
+  <a href="#52-calling-convention" class="md-nav__link">
+    5.2 Calling Convention
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#frame-resident-variables" class="md-nav__link">
-    Frame-Resident Variables
+  <a href="#53-frame-resident-variables" class="md-nav__link">
+    5.3 Frame-Resident Variables
   </a>
+  
+    <nav class="md-nav" aria-label="5.3 Frame-Resident Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-dangling-reference-problem" class="md-nav__link">
+    5.3.1 Dangling Reference Problem
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#static-scoping-nested-functions" class="md-nav__link">
-    Static Scoping &amp; Nested Functions
+  <a href="#54-static-scoping-nested-functions" class="md-nav__link">
+    5.4 Static Scoping &amp; Nested Functions
   </a>
   
-    <nav class="md-nav" aria-label="Static Scoping & Nested Functions">
+    <nav class="md-nav" aria-label="5.4 Static Scoping & Nested Functions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1835,8 +1861,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#stack-frame-layout" class="md-nav__link">
-    Stack Frame Layout
+  <a href="#55-stack-frame-layout" class="md-nav__link">
+    5.5 Stack Frame Layout
   </a>
   
 </li>
@@ -1875,7 +1901,7 @@
 <li><strong>FP (Frame Pointer)</strong>：指向当前栈帧的基址（固定锚点），用于访问局部变量和参数。在 x86-64 中通常用 <code>rbp</code>。</li>
 </ul>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-18%20153945.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-18%20153945.png" /></a></p>
-<h2 id="calling-convention">Calling Convention<a class="headerlink" href="#calling-convention" title="Permanent link">&para;</a></h2>
+<h2 id="52-calling-convention">5.2 Calling Convention<a class="headerlink" href="#52-calling-convention" title="Permanent link">&para;</a></h2>
 <p>调用约定由硬件平台和操作系统定义，以 x86-64 System V 为例：</p>
 <p><strong>参数传递</strong>：前 6 个整型/指针参数依次通过 <code>rdi, rsi, rdx, rcx, r8, r9</code> 传递，浮点参数通过 <code>xmm0</code>~<code>xmm7</code> 传递。超出部分通过栈传递，由调用者压入。</p>
 <p><strong>返回地址</strong>：<code>call</code> 指令自动将下一条指令地址压入栈，<code>ret</code> 指令弹出并跳转回去。</p>
@@ -1903,7 +1929,7 @@
 </tbody>
 </table>
 <p><strong>叶子过程优化 (Leaf Procedure)</strong>：不调用其他函数的函数称为叶子过程。若其只用 caller-save 寄存器且不超出寄存器数量，则无需保存任何寄存器，也无需建立完整栈帧——可省略 <code>push rbp</code> 等开销。</p>
-<h2 id="frame-resident-variables">Frame-Resident Variables<a class="headerlink" href="#frame-resident-variables" title="Permanent link">&para;</a></h2>
+<h2 id="53-frame-resident-variables">5.3 Frame-Resident Variables<a class="headerlink" href="#53-frame-resident-variables" title="Permanent link">&para;</a></h2>
 <p>以下情况变量<strong>必须分配在栈帧中</strong>，无法放入寄存器：</p>
 <ol>
 <li><strong>传引用 (Passed by reference)</strong>：必须有内存地址指向它。</li>
@@ -1914,11 +1940,27 @@
 <li><strong>寄存器溢出 (Spill)</strong>：活跃变量数超过寄存器数，部分被迫写入内存。</li>
 </ol>
 <p>满足 1、2、3 的变量称为<strong>逃逸变量 (Escape Variables)</strong>——它们"逃出"了寄存器的约束，必须驻留在栈帧中。</p>
-<h2 id="static-scoping-nested-functions">Static Scoping &amp; Nested Functions<a class="headerlink" href="#static-scoping-nested-functions" title="Permanent link">&para;</a></h2>
+<h3 id="531-dangling-reference-problem">5.3.1 Dangling Reference Problem<a class="headerlink" href="#531-dangling-reference-problem" title="Permanent link">&para;</a></h3>
+<p><strong>悬挂引用 (Dangling Reference)</strong> 是指向已被释放内存的指针。在栈分配的语境下：函数返回后其栈帧销毁，但外部仍持有指向该栈帧内局部变量的指针。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="nf">dangling</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span><span class="w">     </span><span class="c1">// 返回局部变量的地址</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span><span class="w">                  </span><span class="c1">// 函数返回, 栈帧弹出, x 不复存在</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dangling</span><span class="p">();</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span><span class="w">        </span><span class="c1">// 未定义行为: p 指向已被回收的栈内存</span>
+</code></pre></div>
+<p><strong>根本原因</strong>：栈上变量的生命周期与函数调用绑定——入口创建,出口销毁。而取地址操作（<code>&amp;</code>）使指针可以跨函数边界逃逸。这是 5.3 节逃逸变量的自然延伸：那些"被取了地址"而不得不放在栈帧中的变量,恰好也是悬挂引用的高危对象。</p>
+<p><strong>常见解决方案</strong>：C/C++ 编译器给出可选警告（<code>-Wreturn-local-addr</code>）；Rust 通过借用检查器在编译时直接拒绝；Java/Python 等将对象统一分配在堆上由 GC 管理，避免此问题。</p>
+<h2 id="54-static-scoping-nested-functions">5.4 Static Scoping &amp; Nested Functions<a class="headerlink" href="#54-static-scoping-nested-functions" title="Permanent link">&para;</a></h2>
 <p>C 语言不允许嵌套函数，但 Pascal、Tiger 等语言支持。问题：内部函数如何访问外层函数的变量？</p>
 <p><strong>静态作用域 (Lexical Scoping)</strong>：变量的可见性由代码的嵌套结构决定（写代码时就能确定），而非运行时调用链。</p>
 <p><strong>静态深度 (Static Depth)</strong>：函数定义所在的嵌套层数。最外层为 0，每嵌套一层 +1。</p>
 <h3 id="static-link">Static Link<a class="headerlink" href="#static-link" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Stack frame</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-26%20200001.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-26%20200001.png" /></a></p>
+</div>
 <p>每个栈帧包含一个<strong>静态链 (Static Link)</strong> 指针，指向其<strong>静态父函数</strong>（词法上直接包含它的函数）的栈帧。访问深度差为 <span class="arithmatex">\(d\)</span> 的非局部变量时，沿静态链追踪 <span class="arithmatex">\(d\)</span> 步到达目标帧。</p>
 <ul>
 <li><strong>优点</strong>：实现简单，每帧多一个指针。</li>
@@ -1938,35 +1980,37 @@
 <li><strong>优点</strong>：访问 <span class="arithmatex">\(O(1)\)</span>，直接寻址。</li>
 <li><strong>缺点</strong>：函数调用/返回时需保存和恢复 Display 数组项（深度为 <span class="arithmatex">\(d\)</span> 的函数进入时覆盖 <code>Display[d]</code>，退出时恢复），维护成本高。</li>
 </ul>
-<p><strong>Example</strong> — 沿用上面 P/Q/call_it 的嵌套结构（静态深度：P=0, Q=1, call_it=1）。Display 数组在调用过程中的演变：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>初始 (main 调用 P 前):                 P 进入后:
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  Display[0] = 空                       Display[0] = P的帧 ──→ 覆盖 0 号槽
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  Display[1] = 空                       Display[1] = 空
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  Display[2] = 空                       Display[2] = 空
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>call_it 进入后 (深度 1):               Q 进入后 (深度 1):
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  Display[0] = P的帧                     Display[0] = P的帧
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  Display[1] = call_it的帧 ──→ 覆盖      Display[1] = Q的帧 ──→ 覆盖 1 号槽
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  Display[2] = 空                        Display[2] = 空
+<p><strong>Display 的维护机制</strong>：</p>
+<p>当深度 <span class="arithmatex">\(d\)</span> 的函数 <span class="arithmatex">\(f\)</span> 被调用时，<span class="arithmatex">\(f\)</span> 在闭包中携带着<strong>静态链 (static link)</strong>——指向它静态外层函数（即 <span class="arithmatex">\(d-1\)</span> 层）的栈帧。进入 <span class="arithmatex">\(f\)</span> 后，不能只修正 <code>Display[d]</code>，必须沿静态链将浅于 <span class="arithmatex">\(d\)</span> 的 Display 项一并修正，使 Display 在 <span class="arithmatex">\(f\)</span> 执行期间与 <span class="arithmatex">\(f\)</span> 的<strong>静态嵌套结构</strong>对齐。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>enter(f, d, static_link):
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    f.saved = []                           // 保存被覆盖的 Display 项
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    for i = depth(static_link)+1 to d:
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        f.saved[i] = Display[i]            // 保存旧值，用于返回时恢复
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    parent = static_link                   // f 的静态上一层帧
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    for i = d-1 downto depth(static_link)+1:
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        Display[i] = parent                // 逐层修正
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        parent = parent.static_link
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    Display[d] = f&#39;s_frame                 // 修正最深一层
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>return(f, d):
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    for i = depth(static_link)+1 to d:
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        Display[i] = f.saved[i]            // 逐项恢复旧值
 </code></pre></div>
-<p>每次进入深度为 <span class="arithmatex">\(d\)</span> 的函数时，<strong>先保存</strong> <code>Display[d]</code> 的旧值到该函数的栈帧中，再<strong>覆盖写入</strong>当前帧地址。退出时从帧中恢复旧值。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>           栈帧                        保存/恢复机制
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>           ────                        ────────────
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  ┌─────────────────┐                  
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  │  P 的帧 (d=0)    │                 进入 P:  save old Display[0] → P 的帧内
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  │  [saved D[0]]   │                  Display[0] = P 的帧
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  ├─────────────────┤                  
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  │  call_it (d=1)  │                 进入 call_it: save old Display[1] → call_it 帧内
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  │  [saved D[1]]   │                 Display[1] = call_it 的帧
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  ├─────────────────┤                  
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  │  Q 的帧 (d=1)    │                 进入 Q: save old Display[1] → Q 的帧内
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>  │  [saved D[1]]   │  ← call_it 的帧  Display[1] = Q 的帧
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  └─────────────────┘                  
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>                                       Q 返回: Display[1] = saved (恢复为 call_it 的帧)
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                                       call_it 返回: Display[1] = saved (恢复为空)
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                                       P 返回: Display[0] = saved (恢复为空)
-</code></pre></div>
-<p>当 Q 执行 <code>print(x)</code> 访问深度为 0 的 <code>x</code> 时：直接取 <code>Display[0]</code> → P 的帧，一步到位，无需遍历链表。与 static link 需要沿链追踪 <span class="arithmatex">\(d\)</span> 步相比，Display 将<strong>变量访问</strong>从 <span class="arithmatex">\(O(d)\)</span> 降为 <span class="arithmatex">\(O(1)\)</span>，代价是<strong>函数调用/返回</strong>时需要额外维护。</p>
+<p><strong>为什么必须修正多层？</strong> 调用者（比如 depth 2 的 A）与 <span class="arithmatex">\(f\)</span> 的静态上一层（depth 2 的 C）不一定是同一个函数。如果 A 跨链调用 <span class="arithmatex">\(f\)</span>，Display[2] 还指向 A，<span class="arithmatex">\(f\)</span> 内访问 depth 2 的变量就会拿错帧。修正后 Display 在 <span class="arithmatex">\(f\)</span> 内与静态结构一致，返回后恢复。</p>
+<p><strong>对于普通嵌套调用</strong>（如 C 直接调用内部函数 B），static_link = Display[d-1]，修正范围覆盖 d 本身，等同于之前"只保存 Display[d]"的简化情况。</p>
+<div class="admonition note">
+<p class="admonition-title">关于跨链调用的补充思考</p>
+<p>课件中对 Display 的描述较为简略——只提到进入时覆盖 <code>Display[d]</code>、返回时恢复。这在<strong>所有调用都沿嵌套链发生</strong>的前提下是正确的。但如果存在跨链调用（通过闭包/函数指针将嵌套函数传到其他分支再调用），仅修正 <code>Display[d]</code> 是不够的——调用者的静态链与 Display 当前状态不一致，需要沿闭包中的 static link 修正多级 Display 项。课件默认的是普通嵌套场景，上述多级修正是对完整机制的补充分析。</p>
+</div>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-26%20200234.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-26%20200234.png" /></a></p>
+<p><strong>在 level4 中执行 <code>print(z + b + a + global)</code>，用 Display 访问变量：</strong></p>
+<ul>
+<li>z：局部变量，直接访问</li>
+<li>b：<code>Display[3]</code> → b（通过 Display[3] 访问 level3 的栈帧）</li>
+<li>a：<code>Display[2]</code> → a（通过 Display[2] 访问 level2 的栈帧）</li>
+<li>global：<code>Display[1]</code> → global（通过 Display[1] 访问 main 的栈帧）</li>
+</ul>
 <h3 id="lambda-lifting">Lambda Lifting<a class="headerlink" href="#lambda-lifting" title="Permanent link">&para;</a></h3>
 <p>将嵌套函数"提升"到外层，所有非局部变量转换为显式的额外参数。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// 提升前</span>
@@ -1982,7 +2026,7 @@
 <li><strong>优点</strong>：无需复杂栈帧结构，数据流显式。</li>
 <li><strong>缺点</strong>：增加参数数量，调用开销增大；闭包转发复杂。</li>
 </ul>
-<h2 id="stack-frame-layout">Stack Frame Layout<a class="headerlink" href="#stack-frame-layout" title="Permanent link">&para;</a></h2>
+<h2 id="55-stack-frame-layout">5.5 Stack Frame Layout<a class="headerlink" href="#55-stack-frame-layout" title="Permanent link">&para;</a></h2>
 <p>以 Tiger 编译器为例，典型栈帧从高地址（帧底）到低地址（栈顶）的布局：</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-18%20170119.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-18%20170119.png" /></a></p>
 <p>FP 指向 Static Link 上方（即 Return Address 的下方），SP 随参数压栈/弹出动态移动。编译时，每个局部变量和参数通过 <code>[FP + offset]</code> 即可定址。</p>

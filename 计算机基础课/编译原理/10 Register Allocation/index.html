@@ -1801,6 +1801,12 @@
 <h2 id="101-build">10.1 Build<a class="headerlink" href="#101-build" title="Permanent link">&para;</a></h2>
 <p>将程序转化为干涉图。<strong>节点</strong>代表虚拟寄存器（变量生存期），<strong>边</strong>表示两个变量生存期重叠（干涉）。与某节点相连的干涉边数称为<strong>度数 (Degree)</strong>。</p>
 <p>对于 <code>MOVE</code> 指令（如 <code>a = b</code>），不直接加干涉边，而是记录一条<strong>移动边 (Move Edge)</strong>——如果 <code>a</code> 和 <code>b</code> 最终分配到同一寄存器，这条 <code>MOVE</code> 可被消除（合并优化）。</p>
+<p><strong>构造算法</strong>：逐条指令遍历，每条指令定义一个变量 <span class="arithmatex">\(a\)</span>，其活跃出口集为 <span class="arithmatex">\(\text{out}[n] = \{b_1, \dots, b_j\}\)</span>，按指令类型分两种情况加边：</p>
+<ul>
+<li><strong>Case 1 — 非 MOVE 指令</strong>：<span class="arithmatex">\(a\)</span> 与所有活跃出口变量干涉。添加干涉边 <span class="arithmatex">\((a, b_1), \dots, (a, b_j)\)</span>。</li>
+<li><strong>Case 2 — MOVE 指令</strong> <code>a ← c</code>：<span class="arithmatex">\(a\)</span> 与每个 <span class="arithmatex">\(b_i \neq c\)</span> 都添加干涉边，<strong>但跳过源操作数 <span class="arithmatex">\(c\)</span></strong>——<span class="arithmatex">\(a\)</span> 与 <span class="arithmatex">\(c\)</span> 不干涉，记录一条 move edge，为后续合并 (Coalesce) 保留机会。</li>
+</ul>
+<p><strong>为什么区别对待？</strong> <code>a ← c</code> 执行后，<span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(c\)</span> 持有相同的值。如果不在图中加 <span class="arithmatex">\((a, c)\)</span> 干涉边，着色器就可能把 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(c\)</span> 分到同一寄存器，这条 MOVE 就成为冗余指令可直接删除。反过来，如果 <span class="arithmatex">\(a\)</span> 与 <span class="arithmatex">\(c\)</span> 确实有其他原因导致干涉，干涉边会在后续步骤通过其他指令加上（比如 <span class="arithmatex">\(c\)</span> 在之后被重新定义）。</p>
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-13%20180158.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-13%20180158.png" /></a></p>
 <p><strong>预着色节点 (Precolored Nodes)</strong>：硬件寄存器（帧指针、参数寄存器等）作为预着色节点加入图中。它们之间互相干涉，度数视为无穷大（不能被简化或溢出）。</p>
 <h2 id="102-simplify-coalesce">10.2 Simplify &amp; Coalesce<a class="headerlink" href="#102-simplify-coalesce" title="Permanent link">&para;</a></h2>
@@ -1834,6 +1840,11 @@
 <p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-13%20181528.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-13%20181528.png" /></a></p>
 <p>比如说上面这个情况就是 b 是 Potential Spill，但是实际着色的时候发现 a 和 e 是同一个，所以实际上 b 是可以着色的，不用溢出</p>
 </div>
+<div class="admonition exmaple">
+<p class="admonition-title">紧接着上面的例子</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-27%20160830.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-27%20160830.png" /></a></p>
+<p>由于 c 是 actuall spill，于是溢出到栈上，继续重写</p>
+</div>
 <h2 id="104-rewrite">10.4 Rewrite<a class="headerlink" href="#104-rewrite" title="Permanent link">&para;</a></h2>
 <p>若着色成功（无实际溢出），流程结束，替换虚拟寄存器为物理寄存器，删除被合并消除的 <code>MOVE</code>。</p>
 <p>若有实际溢出，则为溢出变量在栈上分配空间：每次<strong>定义</strong>后插入 <code>Store</code>，每次<strong>使用</strong>前插入 <code>Load</code>。溢出后变量生存期被拆分为多个短生存期（每个 def/use 点变为独立临时变量），改变了干涉图。随后<strong>回到 Build 阶段</strong>重新运行整个流程。</p>
@@ -1858,6 +1869,16 @@
 <p>Select阶段最终可能剩下不止一个actal spill。 那么Rewrite——把所有 actual spill 一次性插入内存访问，再重跑整个分配器。</p>
 </li>
 </ol>
+</div>
+<div class="admonition example">
+<p class="admonition-title">紧接上面的例子</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-27%20161027.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-27%20161027.png" /></a></p>
+<p>完成重写并着色</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-27%20161212.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-27%20161212.png" /></a></p>
+<p>然后对原指令进行重写</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-27%20161301.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-27%20161301.png" /></a></p>
+<p>删去不必要的赋值操作</p>
+<p><a class="glightbox" href="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-27%20161356.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202026-06-27%20161356.png" /></a></p>
 </div>
 
 

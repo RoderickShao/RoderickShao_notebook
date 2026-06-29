@@ -2046,30 +2046,72 @@
 </tbody>
 </table>
 <p>三种上下文之间需要互相转换，写翻译函数时命名约定为 <code>exp2ex</code>、<code>exp2nx</code>、<code>exp2cx</code> 等。</p>
+<p><strong>为什么要引入上下文？</strong> 同一个 AST 节点在不同位置需要不同的 IR 形状：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>x := a &gt; b      → 需要 a &gt; b 的&quot;值&quot; (0 或 1)         ← Ex
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>if (a &gt; b) ...  → 需要 a &gt; b 的&quot;跳转&quot; (真跳 t 假跳 f)  ← Cx
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>f(a &gt; b)        → 需要 a &gt; b 的&quot;值&quot;作为参数            ← Ex
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>a &gt; b;          → 只需要&quot;副作用&quot;，值丢弃                ← Nx
+</code></pre></div>
+<p>如果只按 AST 节点类型死翻译——比较运算一律生成 CJUMP，则在 <code>x := a &gt; b</code> 时不得不把条件跳转包装成"真跳设 1 假跳设 0，最后读临时变量"，绕一大圈。引入上下文让同一个 <code>a &gt; b</code> 在 Ex 下直接展开为算术比较（如 <code>x86</code> 的 <code>cmp</code> + <code>setg</code> 一条流水线），在 Cx 下展开为 CJUMP 跳转指令，避免了不必要的中间表示膨胀。</p>
+<div class="admonition example">
+<p class="admonition-title">翻译流程：自顶向下定上下文，自底向上拼 IR</p>
+<p>翻译 <code>if (a &lt; 5) b := c+1 else b := c-1</code>：</p>
+<ol>
+<li>
+<p><strong><code>if</code> 节点</strong> — 自身在 Nx 下（值丢弃，只留副作用）。它决定三个子节点各自的上下文：
+   - 条件 → <strong>Cx</strong>(t, f)：需要跳转
+   - then/else → <strong>Nx</strong>：赋值是语句，不取值</p>
+</li>
+<li>
+<p><strong><code>a &lt; 5</code> 在 Cx(t, f) 下</strong> — 比较符在 Cx 下直接生成 CJUMP，左右操作数递归取 Ex：
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>left = translate(a, Ex)  → MEM(BINOP(PLUS, TEMP fp, CONST off_a))
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>right = translate(5, Ex) → CONST 5
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>→ CJUMP(LT, left, right, t, f)
+</code></pre></div></p>
+</li>
+<li>
+<p><strong><code>b := c+1</code> 在 Nx 下</strong> — 赋值只求副作用。左边用 Ad（地址），右边用 Ex（值）：
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>lhs = translate(b, Ad)  → BINOP(PLUS, TEMP fp, CONST off_b)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>rhs = translate(c+1, Ex)→ BINOP(PLUS, MEM(BINOP(PLUS, TEMP fp, CONST off_c)), CONST 1)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>→ MOVE(MEM(lhs), rhs)
+</code></pre></div></p>
+</li>
+</ol>
+<p>最终拼合：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SEQ(CJUMP(LT, MEM(FP+off_a), CONST 5, t, f),
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    SEQ(LABEL(t),
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>        SEQ(MOVE(MEM(FP+off_b), BINOP(PLUS, MEM(FP+off_c), CONST 1)),
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>            SEQ(JUMP(join),
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>                SEQ(LABEL(f),
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                    SEQ(MOVE(MEM(FP+off_b), BINOP(MINUS, MEM(FP+off_c), CONST 1)),
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                        LABEL(join))))))))
+</code></pre></div></p>
+<p>上下文由父节点决定、向下传递——同一个 <code>a &lt; 5</code> 在不同父节点下收到不同上下文，产出不同 IR。</p>
+</div>
 <h3 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h3>
 <p><strong>局部变量</strong>在栈帧中有固定偏移，通过 FP 寻址：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>x (深度 0, 偏移 8)  →  MEM(BINOP(PLUS, TEMP fp, CONST 8))
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>x (深度 0, 偏移 8)  →  MEM(BINOP(PLUS, TEMP fp, CONST 8))
 </code></pre></div>
 <p><strong>非局部变量</strong>（嵌套函数访问外层变量）沿静态链追踪：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>x (深度差 2, 偏移 8)  →  MEM(BINOP(PLUS,
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>                             MEM(BINOP(PLUS,
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>                               MEM(BINOP(PLUS, TEMP fp, CONST sl_offset)),  ← 跟 1 步
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>                               CONST sl_offset)),                             ← 跟 2 步
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>                             CONST 8))                                        ← 读变量
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>x (深度差 2, 偏移 8)  →  MEM(BINOP(PLUS,
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>                             MEM(BINOP(PLUS,
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>                               MEM(BINOP(PLUS, TEMP fp, CONST sl_offset)),  ← 跟 1 步
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>                               CONST sl_offset)),                             ← 跟 2 步
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>                             CONST 8))                                        ← 读变量
 </code></pre></div>
 <p>每多一层嵌套深度差，就多一层 <code>MEM(BINOP(PLUS, ..., CONST sl_offset))</code> 解引用静态链。</p>
 <h3 id="arrays-records">Arrays &amp; Records<a class="headerlink" href="#arrays-records" title="Permanent link">&para;</a></h3>
 <p>Tiger 中数组和记录都是指针语义（变量存的是堆上对象的地址）。访问元素 <code>a[i]</code>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>MEM(BINOP(PLUS, MEM(a_base), BINOP(MUL, i, CONST word_size)))
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>                 └─读基址──┘   └─── 下标 × 字长 = 偏移 ───┘
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>       └──────────── 基址 + 偏移 = 元素地址 ─────────┘
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a> └── 读元素地址处的内容 ──┘
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>MEM(BINOP(PLUS, MEM(a_base), BINOP(MUL, i, CONST word_size)))
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>                 └─读基址──┘   └─── 下标 × 字长 = 偏移 ───┘
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>       └──────────── 基址 + 偏移 = 元素地址 ─────────┘
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a> └── 读元素地址处的内容 ──┘
 </code></pre></div>
 <p>数组访问需要<strong>边界检查</strong>：若 <code>i</code> 越界则引发 <code>subscript error</code>，翻译为 <code>CJUMP</code> 包围的 <code>ESEQ</code>。</p>
 <h3 id="control-flow">Control Flow<a class="headerlink" href="#control-flow" title="Permanent link">&para;</a></h3>
 <p><strong>if-then-else</strong>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>CJUMP(cond, t_label, f_label)  →  SEQ(LABEL(t), then_body, JUMP(join))
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>                                →  SEQ(LABEL(f), else_body, LABEL(join))
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>CJUMP(cond, t_label, f_label)  →  SEQ(LABEL(t), then_body, JUMP(join))
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>                                →  SEQ(LABEL(f), else_body, LABEL(join))
 </code></pre></div>
 <p><strong>短路求值 (Short-Circuit)</strong>：</p>
 <ul>
@@ -2077,12 +2119,12 @@
 <li><code>a | b</code>：翻译为 <code>if a then true else b</code>。先算 <code>a</code>，若真直接跳 <code>true</code> 标签，若假再算 <code>b</code>。</li>
 </ul>
 <p><strong>while 循环</strong>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>LABEL(test)
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>CJUMP(cond, body, done)
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>LABEL(body)
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  ... loop body ...
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  JUMP(test)
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>LABEL(done)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>LABEL(test)
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>CJUMP(cond, body, done)
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>LABEL(body)
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  ... loop body ...
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>  JUMP(test)
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>LABEL(done)
 </code></pre></div>
 <p><strong>for 循环</strong>改写为 while，特殊处理：上限 <code>hi</code> 要先存入临时变量（防止循环体内修改上限），且 <code>i+1</code> 需防溢出（当 <code>i = maxint</code> 时 <code>i+1</code> 会溢出为负数，导致循环永不终止）。</p>
 <p><strong>break</strong>：直接翻译为 <code>JUMP(done_label)</code>，跳转到最内层循环的结束标签。</p>

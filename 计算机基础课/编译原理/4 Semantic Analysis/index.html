@@ -1443,22 +1443,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#441-formal-system" class="md-nav__link">
-    4.4.1 Formal System
+  <a href="#441-typing-rules" class="md-nav__link">
+    4.4.1* Typing Rules
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#442-implementation-framework" class="md-nav__link">
-    4.4.2 Implementation Framework
+  <a href="#442-from-rules-to-code" class="md-nav__link">
+    4.4.2 From Rules to Code
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#443-complete-example" class="md-nav__link">
-    4.4.3 Complete Example
+  <a href="#443-worked-example" class="md-nav__link">
+    4.4.3 Worked Example
   </a>
   
 </li>
@@ -1945,22 +1945,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#441-formal-system" class="md-nav__link">
-    4.4.1 Formal System
+  <a href="#441-typing-rules" class="md-nav__link">
+    4.4.1* Typing Rules
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#442-implementation-framework" class="md-nav__link">
-    4.4.2 Implementation Framework
+  <a href="#442-from-rules-to-code" class="md-nav__link">
+    4.4.2 From Rules to Code
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#443-complete-example" class="md-nav__link">
-    4.4.3 Complete Example
+  <a href="#443-worked-example" class="md-nav__link">
+    4.4.3 Worked Example
   </a>
   
 </li>
@@ -2089,39 +2089,46 @@
 <p><strong>核心思想</strong>：维护一张可变哈希表 + 一个辅助栈。哈希表保证 <span class="arithmatex">\(O(1)\)</span> 查找；栈记录每次 <code>insert</code> 操作，用于 <code>endScope</code> 时回滚。</p>
 <p><strong>数据结构</strong>：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">HashTable</span><span class="w"> </span><span class="n">symtab</span><span class="p">;</span><span class="w">       </span><span class="c1">// name → Binding</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">Stack</span><span class="o">&lt;</span><span class="n">Symbol</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">scopeStack</span><span class="p">;</span><span class="w">  </span><span class="c1">// 记录作用域内插入的名字 + 作用域标记</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">Stack</span><span class="o">&lt;</span><span class="n">Entry</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scopeStack</span><span class="p">;</span><span class="w">  </span><span class="c1">// 记录 (名字, 被覆盖的旧值)，用于回滚</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kt">void</span><span class="w"> </span><span class="nf">beginScope</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">scopeStack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">SCOPE_MARKER</span><span class="p">);</span><span class="w">  </span><span class="c1">// 压入作用域边界标记</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">Binding</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="n">symtab</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">info</span><span class="p">;</span><span class="w">             </span><span class="c1">// 插入哈希表 (可能覆盖外层同名)</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="n">scopeStack</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">name</span><span class="p">);</span><span class="w">           </span><span class="c1">// 记录插入操作</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">Binding</span><span class="w"> </span><span class="nf">lookup</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">symtab</span><span class="p">[</span><span class="n">name</span><span class="p">];</span><span class="w">             </span><span class="c1">// O(1) 直接查表</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">}</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="kt">void</span><span class="w"> </span><span class="nf">endScope</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">scopeStack</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">SCOPE_MARKER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span><span class="n">symtab</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">scopeStack</span><span class="p">.</span><span class="n">top</span><span class="p">());</span><span class="w">  </span><span class="c1">// 撤销该作用域内的所有插入</span>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">        </span><span class="n">scopeStack</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="n">scopeStack</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span><span class="w">  </span><span class="c1">// 弹出 SCOPE_MARKER</span>
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="p">}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="n">Binding</span><span class="w"> </span><span class="n">old</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">symtab</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">symtab</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">NONE</span><span class="p">;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="n">symtab</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">info</span><span class="p">;</span><span class="w">             </span><span class="c1">// 插入 (可能覆盖外层同名)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="n">scopeStack</span><span class="p">.</span><span class="n">push</span><span class="p">({</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">});</span><span class="w">    </span><span class="c1">// 保存旧值，NONE 表示本层新增</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">}</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">Binding</span><span class="w"> </span><span class="nf">lookup</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">symtab</span><span class="p">[</span><span class="n">name</span><span class="p">];</span><span class="w">             </span><span class="c1">// O(1) 直接查表</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">}</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="kt">void</span><span class="w"> </span><span class="nf">endScope</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">scopeStack</span><span class="p">.</span><span class="n">top</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">SCOPE_MARKER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">        </span><span class="n">Entry</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scopeStack</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">old</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NONE</span><span class="p">)</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">            </span><span class="n">symtab</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">);</span><span class="w">   </span><span class="c1">// 本层新增的，直接删除</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">        </span><span class="k">else</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">            </span><span class="n">symtab</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">old</span><span class="p">;</span><span class="w">  </span><span class="c1">// 恢复被覆盖的外层值</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">    </span><span class="n">scopeStack</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span><span class="w">  </span><span class="c1">// 弹出 SCOPE_MARKER</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="p">}</span>
 </code></pre></div>
 <p><strong>过程示例</strong>：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>beginScope()              scopeStack=[◆]
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>insert(&quot;x&quot;, Ty_Int)       scopeStack=[◆, &quot;x&quot;]    symtab={&quot;x&quot;: int}
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>insert(&quot;y&quot;, Ty_String)    scopeStack=[◆, &quot;x&quot;, &quot;y&quot;] symtab={&quot;x&quot;: int, &quot;y&quot;: string}
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  beginScope()            scopeStack=[◆, &quot;x&quot;, &quot;y&quot;, ◆]
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  insert(&quot;x&quot;, Ty_Record)  scopeStack=[..., ◆, &quot;x&quot;]  symtab={&quot;x&quot;: record, &quot;y&quot;: string}
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  lookup(&quot;x&quot;) = record    ← 找到内层 x (遮蔽外层)
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  endScope()              pop &quot;x&quot; → 删除 x; pop ◆ → symtab={&quot;x&quot;: int, &quot;y&quot;: string}
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>lookup(&quot;x&quot;) = int         ← 恢复外层 x
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>endScope()                pop &quot;y&quot;,&quot;x&quot;,◆ → symtab={}
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>insert(&quot;x&quot;, Ty_Int)       scopeStack=[◆, (&quot;x&quot;,NONE)]              symtab={&quot;x&quot;: int}
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>insert(&quot;y&quot;, Ty_String)    scopeStack=[◆, (&quot;x&quot;,NONE), (&quot;y&quot;,NONE)]  symtab={&quot;x&quot;: int, &quot;y&quot;: string}
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  beginScope()            scopeStack=[..., ◆]
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  insert(&quot;x&quot;, Ty_Record)  scopeStack=[..., ◆, (&quot;x&quot;,int)]          symtab={&quot;x&quot;: record, &quot;y&quot;: string}
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>                                                            ↑ 保存旧值 int
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  lookup(&quot;x&quot;) = record    ← 找到内层 x (遮蔽外层)
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  endScope()              pop (&quot;x&quot;,int) → 恢复 symtab[&quot;x&quot;]=int; pop ◆
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>                          → symtab={&quot;x&quot;: int, &quot;y&quot;: string}
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>lookup(&quot;x&quot;) = int         ← 外层 x 恢复
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>endScope()                pop (&quot;y&quot;,NONE)→remove y; pop (&quot;x&quot;,NONE)→remove x; pop ◆
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>                          → symtab={}
 </code></pre></div>
 <p><strong>复杂度分析</strong>：</p>
 <table>
@@ -2318,15 +2325,33 @@
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>├── Ty_Nil          // nil 类型 (兼容所有记录类型)
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>└── Ty_Void         // 无返回值类型 (语句/过程的返回值)
 </code></pre></div>
-<p><strong>基本类型</strong>：
-- <code>int</code>：32 位有符号整数。比较运算（<code>=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>）返回 <code>int</code>（0 假，非 0 真）。
-- <code>string</code>：字符串字面量。仅支持比较运算，无拼接操作。</p>
-<p><strong>构造类型</strong>：
-- <strong>Record</strong>：<code>{field1: type1, field2: type2, ...}</code>。字段顺序敏感（<code>{x:int, y:int}</code> 与 <code>{y:int, x:int}</code> 不同）。通过 <code>.</code> 访问字段。
-- <strong>Array</strong>：<code>array of element_type</code>。通过 <code>[index]</code> 访问元素，索引必须是 <code>int</code> 表达式。</p>
-<p><strong>特殊类型</strong>：
-- <code>nil</code>：空引用，兼容<strong>所有</strong>记录类型。<code>nil</code> 可以赋值给任何记录类型变量，也可以与任何记录类型比较。但不能赋给 <code>int</code> 或 <code>string</code>。
-- <code>void</code>：不产生值的表达式（如 <code>while</code>、<code>for</code>、赋值语句、<code>if</code> 无 else 分支）的类型。</p>
+<p><strong>基本类型</strong>：</p>
+<ul>
+<li>
+<p><code>int</code>：32 位有符号整数。比较运算（<code>=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>）返回 <code>int</code>（0 假，非 0 真）。</p>
+</li>
+<li>
+<p><code>string</code>：字符串字面量。仅支持比较运算，无拼接操作。</p>
+</li>
+</ul>
+<p><strong>构造类型</strong>：</p>
+<ul>
+<li>
+<p><strong>Record</strong>：<code>{field1: type1, field2: type2, ...}</code>。字段顺序敏感（<code>{x:int, y:int}</code> 与 <code>{y:int, x:int}</code> 不同）。通过 <code>.</code> 访问字段。</p>
+</li>
+<li>
+<p><strong>Array</strong>：<code>array of element_type</code>。通过 <code>[index]</code> 访问元素，索引必须是 <code>int</code> 表达式。</p>
+</li>
+</ul>
+<p><strong>特殊类型</strong>：</p>
+<ul>
+<li>
+<p><code>nil</code>：空引用，兼容<strong>所有</strong>记录类型。<code>nil</code> 可以赋值给任何记录类型变量，也可以与任何记录类型比较。但不能赋给 <code>int</code> 或 <code>string</code>。</p>
+</li>
+<li>
+<p><code>void</code>：不产生值的表达式（如 <code>while</code>、<code>for</code>、赋值语句、<code>if</code> 无 else 分支）的类型。</p>
+</li>
+</ul>
 <h3 id="433-type-equivalence">4.3.3 Type Equivalence<a class="headerlink" href="#433-type-equivalence" title="Permanent link">&para;</a></h3>
 <p><strong>名字等价 (Name Equivalence)</strong>：两个类型等价，当且仅当它们由<strong>同一次类型声明</strong>定义。</p>
 <p><strong>结构等价 (Structural Equivalence)</strong>：两个类型等价，当且仅当它们具有<strong>相同的结构</strong>（递归展开到基本类型）。</p>
@@ -2370,168 +2395,153 @@
 <p>相互引用的类型声明（如 <code>type a = b; type b = {x: a}</code>）需要两遍扫描处理前向引用问题：第一遍预注册所有类型名作为占位符，第二遍在完整的名字环境下解析体部。</p>
 </div>
 <h2 id="44-type-checking-formalization-implementation">4.4 Type Checking: Formalization &amp; Implementation<a class="headerlink" href="#44-type-checking-formalization-implementation" title="Permanent link">&para;</a></h2>
-<p>类型检查的核心是：在给定类型环境 <span class="arithmatex">\(\Gamma\)</span> 下，推导表达式 <span class="arithmatex">\(e\)</span> 的类型 <span class="arithmatex">\(\tau\)</span>。</p>
-<h3 id="441-formal-system">4.4.1 Formal System<a class="headerlink" href="#441-formal-system" title="Permanent link">&para;</a></h3>
-<p><strong>类型环境 (Type Environment)</strong>：</p>
-<div class="arithmatex">\[\Gamma = \{x_1 : \tau_1,\; x_2 : \tau_2,\; \ldots\}\]</div>
-<p>将变量名映射到其类型。</p>
-<p><strong>类型判断 (Type Judgment)</strong>：</p>
-<div class="arithmatex">\[\Gamma \vdash e : \tau\]</div>
-<p>读作："在环境 <span class="arithmatex">\(\Gamma\)</span> 下，表达式 <span class="arithmatex">\(e\)</span> 的类型是 <span class="arithmatex">\(\tau\)</span>"。</p>
-<p><strong>推导规则 (Typing Rules)</strong> 以自然演绎风格书写——横线上方是前提，下方是结论：</p>
-<p><strong>基本规则</strong>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>                         Γ(x) = τ
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>(T-Int) ───────────    (T-Var) ──────────    (T-String) ───────────────
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        Γ ⊢ n : int            Γ ⊢ x : τ                Γ ⊢ &quot;s&quot; : string
+<p>类型检查器的任务：在类型环境 <span class="arithmatex">\(\Gamma\)</span> 下，递归遍历 AST，为每个子表达式推导类型，同时检查类型一致性。</p>
+<p>核心判断形式：<span class="arithmatex">\(\Gamma \vdash e : \tau\)</span> — "在环境 <span class="arithmatex">\(\Gamma\)</span> 下，表达式 <span class="arithmatex">\(e\)</span> 的类型为 <span class="arithmatex">\(\tau\)</span>"。</p>
+<h3 id="441-typing-rules">4.4.1* Typing Rules<a class="headerlink" href="#441-typing-rules" title="Permanent link">&para;</a></h3>
+<p>推导规则以自然演绎风格书写，横线上方是前提、下方是结论。以下按类别列出 Tiger 的完整类型推导规则：</p>
+<p><strong>基本类型与变量</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>                        Γ(x) = τ
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>(T-Int) ───────    (T-Var) ────────    (T-String) ────────────    (T-Nil) ────────
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        Γ ⊢ n : int         Γ ⊢ x : τ             Γ ⊢ &quot;s&quot; : string          Γ ⊢ nil : nil
 </code></pre></div>
-<p><strong>二元运算</strong>：</p>
+<p><code>nil</code> 可隐式匹配任意 record 类型——若 <code>if</code> 分支或赋值左右一侧为 <code>nil</code> 另一侧为 record，则视为兼容。</p>
+<p><strong>算术与比较</strong>（均要求两侧 <code>int</code>，结果 <code>int</code>；Tiger 中比较返回 0/1）：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>        Γ ⊢ e₁ : int    Γ ⊢ e₂ : int
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>(T-Plus) ──────────────────────────────
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>             Γ ⊢ e₁ + e₂ : int
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>(T-Op) ──────────────────────────────    （+ - * / = &lt;&gt; &lt; &lt;= &gt; &gt;= 共 10 条同模式规则）
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>             Γ ⊢ e₁ op e₂ : int
 </code></pre></div>
-<p><code>-</code>, <code>*</code>, <code>/</code> 规则相同，要求左右操作数均为 <code>int</code>，结果也是 <code>int</code>。</p>
-<p><strong>比较运算</strong>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>         Γ ⊢ e₁ : int    Γ ⊢ e₂ : int
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>(T-Eq) ──────────────────────────────────   // Tiger 中比较返回 0/1 (int)
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>            Γ ⊢ e₁ = e₂ : int
-</code></pre></div>
-<p>Tiger 允许对 record 和 array 也使用 <code>=</code> 和 <code>&lt;&gt;</code>（地址比较），对 string 也允许比较（内容比较）。</p>
 <p><strong>控制流</strong>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>    Γ ⊢ e₁ : int    Γ ⊢ e₂ : τ    Γ ⊢ e₃ : τ
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>(T-If) ─────────────────────────────────────────
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>              Γ ⊢ if e₁ then e₂ else e₃ : τ
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>    Γ ⊢ e₁ : int    Γ ⊢ e₂ : τ    Γ ⊢ e₃ : τ
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>(T-If) ─────────────────────────────────────────    (T-While) 条件 int，整体 void
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>              Γ ⊢ if e₁ then e₂ else e₃ : τ
 </code></pre></div>
-<p>要求：条件必须是 <code>int</code>，then/else 分支类型相同。若其中一个分支是 <code>nil</code>，另一个是某个 record 类型 <span class="arithmatex">\(R\)</span>，则整体类型为 <span class="arithmatex">\(R\)</span>。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>    Γ ⊢ e₁ : int    Γ ⊢ e₂ : τ
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>(T-While) ──────────────────────────
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>          Γ ⊢ while e₁ do e₂ : void
+<p><strong>变量绑定</strong>（先处理声明得到 <span class="arithmatex">\(\Gamma'\)</span>，扩展环境后检查体部；退出作用域时恢复）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>    Γ ⊢ decls : Γ&#39;    Γ ⊕ Γ&#39; ⊢ e : τ                   Γ ⊢ e : τ    Γ(x) = τ
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>(T-Let) ───────────────────────────────    (T-Assign) ───────────────────
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>         Γ ⊢ let decls in e end : τ                    Γ ⊢ x := e : void
 </code></pre></div>
-<p><code>while</code> 和 <code>for</code> 循环始终具有 <code>void</code> 类型（不产生值）。</p>
-<p><strong>变量绑定</strong>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>    Γ ⊢ decls : Γ&#39;    Γ ⊕ Γ&#39; ⊢ e : τ
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>(T-Let) ─────────────────────────────────
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>         Γ ⊢ let decls in e end : τ
-</code></pre></div>
-<p>其中 <span class="arithmatex">\(Γ \oplus Γ'\)</span> 表示用 <span class="arithmatex">\(\Gamma'\)</span> 扩展 <span class="arithmatex">\(\Gamma\)</span>（新绑定覆盖同名旧绑定）。先处理声明块得到新的类型绑定 <span class="arithmatex">\(\Gamma'\)</span>，再在扩展后的环境中检查表达式体。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>    Γ ⊢ e : τ    Γ(x) = τ    x 是左值
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>(T-Assign) ────────────────────────────
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>           Γ ⊢ x := e : void
-</code></pre></div>
-<p>赋值语句类型为 <code>void</code>，左侧必须是可被赋值的左值（变量、记录字段、数组元素），左右类型必须匹配。</p>
 <p><strong>Record 与 Array</strong>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>    Γ ⊢ e₁ : τ₁    ...    Γ ⊢ eₙ : τₙ
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>(T-Record) ───────────────────────────────────
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>           Γ ⊢ rectype{a₁=e₁, ..., aₙ=eₙ} : rectype
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>    Γ ⊢ eᵢ : τᵢ (对所有字段)          Γ ⊢ e₁ : array of τ    Γ ⊢ e₂ : int
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>(T-Record) ─────────────────────    (T-Sub) ───────────────────────────
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>           Γ ⊢ R{...} : R                     Γ ⊢ e₁[e₂] : τ
 </code></pre></div>
-<p><code>nil</code> 兼容所有 record 类型：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>              Γ ⊢ nil : nil
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>(T-Nil) ──────────────────────   (nil 可隐式转为任意 record 类型)
+<p><strong>函数调用</strong>（实参数量与类型必须匹配形参）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>    Γ ⊢ f : (τ₁, ..., τₙ) → τᵣ    Γ ⊢ e₁ : τ₁    ...    Γ ⊢ eₙ : τₙ
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>(T-Call) ─────────────────────────────────────────────────────────
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>                       Γ ⊢ f(e₁, ..., eₙ) : τᵣ
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>    Γ ⊢ e₁ : array of τ    Γ ⊢ e₂ : int
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>(T-Array) ─────────────────────────────────
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>              Γ ⊢ e₁[e₂] : τ
+<p><strong>序列表达式</strong>（类型取最右一项）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>    Γ ⊢ e₁ : τ₁    Γ ⊕ (x : τ₁) ⊢ e₂ : τ₂
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>(T-Seq) ──────────────────────────────────
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>         Γ ⊢ (e₁; e₂) : τ₂
 </code></pre></div>
-<p><strong>函数调用</strong>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>    Γ ⊢ f : (τ₁, τ₂, ..., τₙ) → τᵣ     Γ ⊢ e₁ : τ₁   ...   Γ ⊢ eₙ : τₙ
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>(T-Call) ──────────────────────────────────────────────────────────────────
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>                      Γ ⊢ f(e₁, ..., eₙ) : τᵣ
-</code></pre></div>
-<p>参数数量必须匹配，各参数类型必须一致。</p>
-<p><strong>序列表达式</strong>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>    Γ ⊢ e₁ : τ₁    Γ ⊕ (x:τ₁) ⊢ e₂ : τ₂
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>(T-Seq) ────────────────────────────────────
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>         Γ ⊢ (e₁; e₂) : τ₂
-</code></pre></div>
-<p>或用 Tiger 语法 <code>e₁; e₂</code>，整个表达式类型为第二个子表达式的类型。</p>
-<h3 id="442-implementation-framework">4.4.2 Implementation Framework<a class="headerlink" href="#442-implementation-framework" title="Permanent link">&para;</a></h3>
-<p>类型检查器在 AST 上<strong>递归下降</strong>，类型信息<strong>自底向上流动</strong>。</p>
-<p><strong>环境维护</strong>：需要维护两个环境表：</p>
+<h3 id="442-from-rules-to-code">4.4.2 From Rules to Code<a class="headerlink" href="#442-from-rules-to-code" title="Permanent link">&para;</a></h3>
+<p>类型检查器在 AST 上<strong>递归下降</strong>，每个推导规则对应 <code>transExp</code> 中的一个 <code>case</code>。类型信息<strong>自底向上流动</strong>：先递归检查子节点、收集子类型，再按规则判定当前节点类型。</p>
+<p>两条环境链：</p>
 <ul>
-<li><strong><code>venv</code> (Variable Environment)</strong>：变量名 → 类型。处理 <code>var</code> 声明、<code>let</code> 表达式、函数形参时扩展，退出作用域时恢复。</li>
-<li><strong><code>tenv</code> (Type Environment)</strong>：类型名 → 实际类型。处理 <code>type</code> 声明时扩展。</li>
+<li><code>venv</code>：变量名 → 类型（<code>var</code> / <code>let</code> / 形参 时扩展，退出作用域恢复）</li>
+<li><code>tenv</code>：类型名 → 实际类型（<code>type</code> 声明时扩展）</li>
 </ul>
-<p><strong>核心函数</strong>——以表达式类型检查为例：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">Type</span><span class="w"> </span><span class="nf">transExp</span><span class="p">(</span><span class="n">ExpNode</span><span class="o">*</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">Env</span><span class="o">*</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">Env</span><span class="o">*</span><span class="w"> </span><span class="n">tenv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">kind</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">INT</span><span class="p">:</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Ty_Int</span><span class="p">;</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">STRING</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Ty_String</span><span class="p">;</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">VAR</span><span class="p">:</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">lookup</span><span class="p">(</span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">);</span><span class="w">  </span><span class="c1">// 未找到 → 报错</span>
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">PLUS</span><span class="p">:</span>
-<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">lt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
-<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">rt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
-<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Ty_Int</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">rt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Ty_Int</span><span class="p">)</span>
-<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">                </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;+ requires int operands&quot;</span><span class="p">);</span>
-<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Ty_Int</span><span class="p">;</span>
-<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">IF</span><span class="p">:</span>
-<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">cond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">cond</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
-<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cond</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Ty_Int</span><span class="p">)</span><span class="w"> </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;if condition must be int&quot;</span><span class="p">);</span>
-<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">then</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">then</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
-<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">els</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">els</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
-<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">then</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">els</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="w">                </span><span class="c1">// 特殊处理 nil: nil 可匹配任意 record</span>
-<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isNil</span><span class="p">(</span><span class="n">then</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isRecord</span><span class="p">(</span><span class="n">els</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">els</span><span class="p">;</span>
-<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isNil</span><span class="p">(</span><span class="n">els</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isRecord</span><span class="p">(</span><span class="n">then</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">then</span><span class="p">;</span>
-<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="w">                </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;if branches have different types&quot;</span><span class="p">);</span>
-<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="w">            </span><span class="p">}</span>
-<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">then</span><span class="p">;</span>
-<a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">LET</span><span class="p">:</span>
-<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a><span class="w">            </span><span class="n">Env</span><span class="o">*</span><span class="w"> </span><span class="n">saved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">venv</span><span class="p">;</span>
-<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a><span class="w">            </span><span class="n">transDecs</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">decs</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span><span class="w">   </span><span class="c1">// 处理声明，扩展 venv/tenv</span>
-<a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
-<a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a><span class="w">            </span><span class="n">venv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">saved</span><span class="p">;</span><span class="w">                      </span><span class="c1">// 恢复变量环境</span>
-<a id="__codelineno-22-30" name="__codelineno-22-30" href="#__codelineno-22-30"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">body</span><span class="p">;</span>
-<a id="__codelineno-22-31" name="__codelineno-22-31" href="#__codelineno-22-31"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">CALL</span><span class="p">:</span>
-<a id="__codelineno-22-32" name="__codelineno-22-32" href="#__codelineno-22-32"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lookup</span><span class="p">(</span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">-&gt;</span><span class="n">func</span><span class="p">);</span>
-<a id="__codelineno-22-33" name="__codelineno-22-33" href="#__codelineno-22-33"></a><span class="w">            </span><span class="c1">// 检查参数数量和类型...</span>
-<a id="__codelineno-22-34" name="__codelineno-22-34" href="#__codelineno-22-34"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">func</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">;</span>
-<a id="__codelineno-22-35" name="__codelineno-22-35" href="#__codelineno-22-35"></a><span class="w">        </span><span class="c1">// ... 其余节点类型</span>
-<a id="__codelineno-22-36" name="__codelineno-22-36" href="#__codelineno-22-36"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-22-37" name="__codelineno-22-37" href="#__codelineno-22-37"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Type</span><span class="w"> </span><span class="nf">transExp</span><span class="p">(</span><span class="n">ExpNode</span><span class="o">*</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">Env</span><span class="o">*</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">Env</span><span class="o">*</span><span class="w"> </span><span class="n">tenv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">kind</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">INT</span><span class="p">:</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Ty_Int</span><span class="p">;</span><span class="w">                         </span><span class="c1">// (T-Int)</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">STRING</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Ty_String</span><span class="p">;</span><span class="w">                      </span><span class="c1">// (T-String)</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">NIL</span><span class="p">:</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Ty_Nil</span><span class="p">;</span><span class="w">                         </span><span class="c1">// (T-Nil)</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">VAR</span><span class="p">:</span><span class="w">                                           </span><span class="c1">// (T-Var)</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">lookup</span><span class="p">(</span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">))</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">                </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;undefined: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">);</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">lookup</span><span class="p">(</span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">);</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">BINOP</span><span class="p">:</span><span class="w">                                         </span><span class="c1">// (T-Op)</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">lt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">rt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Ty_Int</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">rt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Ty_Int</span><span class="p">)</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">                </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;%s requires int operands&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">-&gt;</span><span class="n">op</span><span class="p">);</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Ty_Int</span><span class="p">;</span>
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">IF</span><span class="p">:</span><span class="w">                                            </span><span class="c1">// (T-If)</span>
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">cond</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Ty_Int</span><span class="p">)</span>
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="w">                </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;if condition must be int&quot;</span><span class="p">);</span>
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">then</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">then</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">els</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="k">else</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">then</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">els</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isNil</span><span class="p">(</span><span class="n">then</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isRecord</span><span class="p">(</span><span class="n">els</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">els</span><span class="p">;</span><span class="w">   </span><span class="c1">// nil 兼容</span>
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isNil</span><span class="p">(</span><span class="n">els</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isRecord</span><span class="p">(</span><span class="n">then</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">then</span><span class="p">;</span>
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a><span class="w">                </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;branch types mismatch&quot;</span><span class="p">);</span>
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">then</span><span class="p">;</span>
+<a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>
+<a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">LET</span><span class="p">:</span><span class="w">                                           </span><span class="c1">// (T-Let)</span>
+<a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a><span class="w">            </span><span class="n">Env</span><span class="o">*</span><span class="w"> </span><span class="n">saved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">venv</span><span class="p">;</span>
+<a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a><span class="w">            </span><span class="n">transDecs</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">decs</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span><span class="w">                 </span><span class="c1">// 扩展 venv/tenv</span>
+<a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
+<a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a><span class="w">            </span><span class="n">venv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">saved</span><span class="p">;</span><span class="w">                                   </span><span class="c1">// 恢复 ← 关键</span>
+<a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">body</span><span class="p">;</span>
+<a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>
+<a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ASSIGN</span><span class="p">:</span><span class="w">                                        </span><span class="c1">// (T-Assign)</span>
+<a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
+<a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a><span class="w">            </span><span class="n">Type</span><span class="w"> </span><span class="n">rhs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">rhs</span><span class="p">,</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">);</span>
+<a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lhs</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span>
+<a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a><span class="w">                </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;assignment type mismatch&quot;</span><span class="p">);</span>
+<a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Ty_Void</span><span class="p">;</span>
+<a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a>
+<a id="__codelineno-17-45" name="__codelineno-17-45" href="#__codelineno-17-45"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">CALL</span><span class="p">:</span><span class="w">                                          </span><span class="c1">// (T-Call)</span>
+<a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a><span class="w">            </span><span class="n">FuncTy</span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lookup</span><span class="p">(</span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="o">-&gt;</span><span class="n">func</span><span class="p">);</span>
+<a id="__codelineno-17-47" name="__codelineno-17-47" href="#__codelineno-17-47"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">f</span><span class="o">-&gt;</span><span class="n">arity</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<a id="__codelineno-17-48" name="__codelineno-17-48" href="#__codelineno-17-48"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">transExp</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">venv</span><span class="p">,</span><span class="w"> </span><span class="n">tenv</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">f</span><span class="o">-&gt;</span><span class="n">param</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<a id="__codelineno-17-49" name="__codelineno-17-49" href="#__codelineno-17-49"></a><span class="w">                    </span><span class="n">error</span><span class="p">(</span><span class="s">&quot;arg %d type mismatch&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<a id="__codelineno-17-50" name="__codelineno-17-50" href="#__codelineno-17-50"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="o">-&gt;</span><span class="n">result</span><span class="p">;</span>
+<a id="__codelineno-17-51" name="__codelineno-17-51" href="#__codelineno-17-51"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-17-52" name="__codelineno-17-52" href="#__codelineno-17-52"></a><span class="p">}</span>
 </code></pre></div>
-<p><strong>错误恢复 (Error Recovery)</strong>：类型检查过程中遇到错误（如未定义变量、类型不匹配）时，<strong>不终止检查</strong>——而是返回一个特殊类型（如 <code>Ty_Int</code>）或错误类型 <code>Ty_Error</code>，让检查器能继续处理剩余代码。这防止了级联报错（一个未定义变量导致后续所有使用该变量的表达式都报"类型错误"）。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>case VAR:
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>    if (!exists(venv, e-&gt;name)) {
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>        error(&quot;undefined variable: %s&quot;, e-&gt;name);
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>        return Ty_Int;   // 返回默认类型，继续检查
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    }
-<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>    return lookup(venv, e-&gt;name);
+<p><strong>错误恢复</strong>：遇到类型错误不终止，而是返回一个默认类型（如 <code>Ty_Int</code>）或 <code>Ty_Error</code>，让检查器继续处理剩余代码，防止级联报错（一个未定义变量引发后续所有使用处都报错）。</p>
+<h3 id="443-worked-example">4.4.3 Worked Example<a class="headerlink" href="#443-worked-example" title="Permanent link">&para;</a></h3>
+<p>逐步推导以下 Tiger 表达式的类型：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>let
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>  type point = {x: int, y: int}
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>  var  p : point := point{x = 10, y = 20}
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>  var  d : int   := p.x + p.y
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>in
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>  if d &gt; 0 then d else 0
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>end
 </code></pre></div>
-<h3 id="443-complete-example">4.4.3 Complete Example<a class="headerlink" href="#443-complete-example" title="Permanent link">&para;</a></h3>
-<p>以 Tiger 表达式为例，逐步展示类型推导过程：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>let
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>  type point = {x: int, y: int}
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>  var  p : point := point{x = 10, y = 20}
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>  var  d : int := p.x + p.y
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>in
-<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>  if d &gt; 0 then d else 0
-<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>end
-</code></pre></div>
-<p><strong>类型环境初始化</strong>：<span class="arithmatex">\(\Gamma_{venv} = \{\}\)</span>, <span class="arithmatex">\(\Gamma_{tenv} = \{\}\)</span></p>
-<p><strong>Step 1 — 处理 <code>type point = {x: int, y: int}</code></strong>：
-- 体部 <code>{x: int, y: int}</code> 不引用 point 自身，不是递归类型，直接解析为 <code>Ty_Record([("x", Ty_Int), ("y", Ty_Int)])</code>
-- <code>point</code> 加入 <code>tenv</code>，指向该 record 类型</p>
-<p><strong>Step 2 — 处理 <code>var p : point := point{x = 10, y = 20}</code></strong>：
-- 检查声明类型 <code>point</code> 在 <code>tenv</code> 中存在 → 解析为 record 类型
-- 检查初始化表达式 <code>point{x=10, y=20}</code>：<code>10</code> 是 <code>int</code> 匹配字段 <code>x: int</code> ✓；<code>20</code> 是 <code>int</code> 匹配字段 <code>y: int</code> ✓
-- 表达式类型为 <code>point</code>，与声明的 <code>point</code> 匹配 ✓
-- <span class="arithmatex">\(\Gamma_{venv} = \{p : \text{point}\}\)</span></p>
-<p><strong>Step 3 — 处理 <code>var d : int := p.x + p.y</code></strong>：
-- 检查 <code>p.x</code>：<code>p</code> 类型为 <code>point</code>（record），字段 <code>x</code> 类型为 <code>int</code> → <code>p.x : int</code> ✓
-- 检查 <code>p.y</code>：同理 → <code>p.y : int</code> ✓
-- 检查 <code>+</code>：<code>int + int</code> → <code>int</code> ✓
-- 声明类型 <code>int</code> 匹配初始化表达式类型 <code>int</code> ✓
-- <span class="arithmatex">\(\Gamma_{venv} = \{p : \text{point},\; d : \text{int}\}\)</span></p>
-<p><strong>Step 4 — 检查表达式体 <code>if d &gt; 0 then d else 0</code></strong>：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Γ ⊢ d : int    Γ ⊢ 0 : int
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>─────────────────────────── (T-Gt)
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>  Γ ⊢ d &gt; 0 : int                              Γ ⊢ d : int    Γ ⊢ 0 : int
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>───────────────────────────────────────────────────────────────────────── (T-If)
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>          Γ ⊢ if d &gt; 0 then d else 0 : int
-</code></pre></div>
-<p>条件 <span class="arithmatex">\(d &gt; 0\)</span> 推导为 <code>int</code> ✓；then 分支 <span class="arithmatex">\(d\)</span> 为 <code>int</code>，else 分支 <span class="arithmatex">\(0\)</span> 为 <code>int</code>，两者一致 ✓。</p>
-<p><strong>Step 5 — 整体类型</strong>：<code>let ... in ... end</code> 体部类型为 <code>int</code>，整体表达式类型为 <code>int</code> ✓。</p>
-<p>类型检查通过，无错误。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>内容</th>
+<th>推导</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>type point = ...</code></td>
+<td><code>point</code> → <code>{x:int, y:int}</code> 加入 <code>tenv</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>var p : point := point{x=10, y=20}</code></td>
+<td>(T-Record)：字段 <code>10:int</code>, <code>20:int</code> 匹配 <code>x</code>, <code>y</code> ✓；表达式类型 <code>point</code> 匹配声明 ✓；<code>venv = {p: point}</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>var d : int := p.x + p.y</code></td>
+<td><code>p.x:int</code>, <code>p.y:int</code>；(T-Op) <code>int+int → int</code>；匹配声明 <code>int</code> ✓；<code>venv = {p:point, d:int}</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>if d &gt; 0 then d else 0</code></td>
+<td>(T-Op) <code>d&gt;0:int</code>；(T-If) then <code>d:int</code> else <code>0:int</code>，两分支一致 ✓ → 体部类型 <code>int</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>整体 <code>let ... end</code></td>
+<td>(T-Let) 体部 <code>int</code> → 整体 <code>int</code> ✓</td>
+</tr>
+</tbody>
+</table>
 <h2 id="comparison">Comparison<a class="headerlink" href="#comparison" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
